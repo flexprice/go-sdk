@@ -1,0 +1,17 @@
+# TypesWalletTxReferenceType
+
+## Enum
+
+
+* `WalletTxReferenceTypeInvoice` (value: `"INVOICE"`)
+
+* `WalletTxReferenceTypePayment` (value: `"PAYMENT"`)
+
+* `WalletTxReferenceTypeExternal` (value: `"EXTERNAL"`)
+
+* `WalletTxReferenceTypeRequest` (value: `"REQUEST"`)
+
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+
