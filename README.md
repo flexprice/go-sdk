@@ -20,7 +20,7 @@ import (
 	"os"
 	"time"
 
-	flexpriceclient "github.com/flexprice/go-sdk"
+	flexprice "github.com/flexprice/go-sdk"
 	"github.com/joho/godotenv"
 	"github.com/samber/lo"
 )
@@ -49,12 +49,12 @@ func RunSample() {
 	}
 
 	// Initialize API client
-	config := flexpriceclient.NewConfiguration()
+	config := flexprice.NewConfiguration()
 	config.Scheme = "https"
 	config.Host = apiHost
 	config.AddDefaultHeader("x-api-key", apiKey)
 
-	client := flexpriceclient.NewAPIClient(config)
+	client := flexprice.NewAPIClient(config)
 	ctx := context.Background()
 
 	// Generate a unique customer ID for this sample
@@ -62,7 +62,7 @@ func RunSample() {
 
 	// Step 1: Create an event
 	fmt.Println("Creating event...")
-	eventRequest := flexpriceclient.DtoIngestEventRequest{
+	eventRequest := flexprice.DtoIngestEventRequest{
 		EventName:          "Sample Event",
 		ExternalCustomerId: customerId,
 		Properties: &map[string]string{

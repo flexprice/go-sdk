@@ -32,7 +32,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/flexprice/go-sdk/flexpriceclient"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
 )
 
 func main() {
@@ -118,7 +118,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/flexprice/go-sdk/flexpriceclient"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
 )
 
 func main() {
@@ -186,7 +186,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/flexprice/go-sdk/flexpriceclient"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
 )
 
 func main() {
@@ -260,7 +260,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/flexprice/go-sdk/flexpriceclient"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
 )
 
 func main() {
@@ -330,7 +330,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/flexprice/go-sdk/flexpriceclient"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
 )
 
 func main() {
@@ -402,7 +402,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/flexprice/go-sdk/flexpriceclient"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
 )
 
 func main() {
@@ -476,7 +476,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/flexprice/go-sdk/flexpriceclient"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
 )
 
 func main() {
@@ -546,7 +546,7 @@ import (
 	"context"
 	"fmt"
 	"os"
-	openapiclient "github.com/flexprice/go-sdk/flexpriceclient"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
 )
 
 func main() {
