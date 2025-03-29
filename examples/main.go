@@ -17,7 +17,7 @@ import (
 // To run this example:
 // 1. Copy this file to your project
 // 2. Create a .env file with FLEXPRICE_API_KEY and FLEXPRICE_API_HOST
-// 3. Run with: go run sample_app.go
+// 3. Run with: go run main.go
 
 // Sample .env file:
 // FLEXPRICE_API_KEY=your_api_key_here
