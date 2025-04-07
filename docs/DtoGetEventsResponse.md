@@ -8,6 +8,8 @@ Name | Type | Description | Notes
 **HasMore** | Pointer to **bool** |  | [optional] 
 **IterFirstKey** | Pointer to **string** |  | [optional] 
 **IterLastKey** | Pointer to **string** |  | [optional] 
+**Offset** | Pointer to **int32** |  | [optional] 
+**TotalCount** | Pointer to **int32** |  | [optional] 
 
 ## Methods
 
@@ -127,6 +129,56 @@ SetIterLastKey sets IterLastKey field to given value.
 `func (o *DtoGetEventsResponse) HasIterLastKey() bool`
 
 HasIterLastKey returns a boolean if a field has been set.
+
+### GetOffset
+
+`func (o *DtoGetEventsResponse) GetOffset() int32`
+
+GetOffset returns the Offset field if non-nil, zero value otherwise.
+
+### GetOffsetOk
+
+`func (o *DtoGetEventsResponse) GetOffsetOk() (*int32, bool)`
+
+GetOffsetOk returns a tuple with the Offset field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOffset
+
+`func (o *DtoGetEventsResponse) SetOffset(v int32)`
+
+SetOffset sets Offset field to given value.
+
+### HasOffset
+
+`func (o *DtoGetEventsResponse) HasOffset() bool`
+
+HasOffset returns a boolean if a field has been set.
+
+### GetTotalCount
+
+`func (o *DtoGetEventsResponse) GetTotalCount() int32`
+
+GetTotalCount returns the TotalCount field if non-nil, zero value otherwise.
+
+### GetTotalCountOk
+
+`func (o *DtoGetEventsResponse) GetTotalCountOk() (*int32, bool)`
+
+GetTotalCountOk returns a tuple with the TotalCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalCount
+
+`func (o *DtoGetEventsResponse) SetTotalCount(v int32)`
+
+SetTotalCount sets TotalCount field to given value.
+
+### HasTotalCount
+
+`func (o *DtoGetEventsResponse) HasTotalCount() bool`
+
+HasTotalCount returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

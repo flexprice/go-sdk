@@ -30,7 +30,7 @@ type DtoCreateInvoiceLineItemRequest struct {
 	PeriodStart *string `json:"period_start,omitempty"`
 	PlanDisplayName *string `json:"plan_display_name,omitempty"`
 	PlanId *string `json:"plan_id,omitempty"`
-	PriceId string `json:"price_id"`
+	PriceId *string `json:"price_id,omitempty"`
 	PriceType *string `json:"price_type,omitempty"`
 	Quantity float32 `json:"quantity"`
 }
@@ -41,10 +41,9 @@ type _DtoCreateInvoiceLineItemRequest DtoCreateInvoiceLineItemRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDtoCreateInvoiceLineItemRequest(amount float32, priceId string, quantity float32) *DtoCreateInvoiceLineItemRequest {
+func NewDtoCreateInvoiceLineItemRequest(amount float32, quantity float32) *DtoCreateInvoiceLineItemRequest {
 	this := DtoCreateInvoiceLineItemRequest{}
 	this.Amount = amount
-	this.PriceId = priceId
 	this.Quantity = quantity
 	return &this
 }
@@ -337,28 +336,36 @@ func (o *DtoCreateInvoiceLineItemRequest) SetPlanId(v string) {
 	o.PlanId = &v
 }
 
-// GetPriceId returns the PriceId field value
+// GetPriceId returns the PriceId field value if set, zero value otherwise.
 func (o *DtoCreateInvoiceLineItemRequest) GetPriceId() string {
-	if o == nil {
+	if o == nil || IsNil(o.PriceId) {
 		var ret string
 		return ret
 	}
-
-	return o.PriceId
+	return *o.PriceId
 }
 
-// GetPriceIdOk returns a tuple with the PriceId field value
+// GetPriceIdOk returns a tuple with the PriceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DtoCreateInvoiceLineItemRequest) GetPriceIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.PriceId) {
 		return nil, false
 	}
-	return &o.PriceId, true
+	return o.PriceId, true
 }
 
-// SetPriceId sets field value
+// HasPriceId returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceLineItemRequest) HasPriceId() bool {
+	if o != nil && !IsNil(o.PriceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceId gets a reference to the given string and assigns it to the PriceId field.
 func (o *DtoCreateInvoiceLineItemRequest) SetPriceId(v string) {
-	o.PriceId = v
+	o.PriceId = &v
 }
 
 // GetPriceType returns the PriceType field value if set, zero value otherwise.
@@ -452,7 +459,9 @@ func (o DtoCreateInvoiceLineItemRequest) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.PlanId) {
 		toSerialize["plan_id"] = o.PlanId
 	}
-	toSerialize["price_id"] = o.PriceId
+	if !IsNil(o.PriceId) {
+		toSerialize["price_id"] = o.PriceId
+	}
 	if !IsNil(o.PriceType) {
 		toSerialize["price_type"] = o.PriceType
 	}
@@ -466,7 +475,6 @@ func (o *DtoCreateInvoiceLineItemRequest) UnmarshalJSON(data []byte) (err error)
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"amount",
-		"price_id",
 		"quantity",
 	}
 

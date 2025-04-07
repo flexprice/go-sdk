@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **PeriodStart** | Pointer to **string** |  | [optional] 
 **PlanDisplayName** | Pointer to **string** |  | [optional] 
 **PlanId** | Pointer to **string** |  | [optional] 
-**PriceId** | **string** |  | 
+**PriceId** | Pointer to **string** |  | [optional] 
 **PriceType** | Pointer to **string** |  | [optional] 
 **Quantity** | **float32** |  | 
 
@@ -21,7 +21,7 @@ Name | Type | Description | Notes
 
 ### NewDtoCreateInvoiceLineItemRequest
 
-`func NewDtoCreateInvoiceLineItemRequest(amount float32, priceId string, quantity float32, ) *DtoCreateInvoiceLineItemRequest`
+`func NewDtoCreateInvoiceLineItemRequest(amount float32, quantity float32, ) *DtoCreateInvoiceLineItemRequest`
 
 NewDtoCreateInvoiceLineItemRequest instantiates a new DtoCreateInvoiceLineItemRequest object
 This constructor will assign default values to properties that have it defined,
@@ -275,6 +275,11 @@ and a boolean to check if the value has been set.
 
 SetPriceId sets PriceId field to given value.
 
+### HasPriceId
+
+`func (o *DtoCreateInvoiceLineItemRequest) HasPriceId() bool`
+
+HasPriceId returns a boolean if a field has been set.
 
 ### GetPriceType
 

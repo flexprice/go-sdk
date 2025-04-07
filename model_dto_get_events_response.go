@@ -23,6 +23,8 @@ type DtoGetEventsResponse struct {
 	HasMore *bool `json:"has_more,omitempty"`
 	IterFirstKey *string `json:"iter_first_key,omitempty"`
 	IterLastKey *string `json:"iter_last_key,omitempty"`
+	Offset *int32 `json:"offset,omitempty"`
+	TotalCount *int32 `json:"total_count,omitempty"`
 }
 
 // NewDtoGetEventsResponse instantiates a new DtoGetEventsResponse object
@@ -170,6 +172,70 @@ func (o *DtoGetEventsResponse) SetIterLastKey(v string) {
 	o.IterLastKey = &v
 }
 
+// GetOffset returns the Offset field value if set, zero value otherwise.
+func (o *DtoGetEventsResponse) GetOffset() int32 {
+	if o == nil || IsNil(o.Offset) {
+		var ret int32
+		return ret
+	}
+	return *o.Offset
+}
+
+// GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetEventsResponse) GetOffsetOk() (*int32, bool) {
+	if o == nil || IsNil(o.Offset) {
+		return nil, false
+	}
+	return o.Offset, true
+}
+
+// HasOffset returns a boolean if a field has been set.
+func (o *DtoGetEventsResponse) HasOffset() bool {
+	if o != nil && !IsNil(o.Offset) {
+		return true
+	}
+
+	return false
+}
+
+// SetOffset gets a reference to the given int32 and assigns it to the Offset field.
+func (o *DtoGetEventsResponse) SetOffset(v int32) {
+	o.Offset = &v
+}
+
+// GetTotalCount returns the TotalCount field value if set, zero value otherwise.
+func (o *DtoGetEventsResponse) GetTotalCount() int32 {
+	if o == nil || IsNil(o.TotalCount) {
+		var ret int32
+		return ret
+	}
+	return *o.TotalCount
+}
+
+// GetTotalCountOk returns a tuple with the TotalCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetEventsResponse) GetTotalCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.TotalCount) {
+		return nil, false
+	}
+	return o.TotalCount, true
+}
+
+// HasTotalCount returns a boolean if a field has been set.
+func (o *DtoGetEventsResponse) HasTotalCount() bool {
+	if o != nil && !IsNil(o.TotalCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalCount gets a reference to the given int32 and assigns it to the TotalCount field.
+func (o *DtoGetEventsResponse) SetTotalCount(v int32) {
+	o.TotalCount = &v
+}
+
 func (o DtoGetEventsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -191,6 +257,12 @@ func (o DtoGetEventsResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IterLastKey) {
 		toSerialize["iter_last_key"] = o.IterLastKey
+	}
+	if !IsNil(o.Offset) {
+		toSerialize["offset"] = o.Offset
+	}
+	if !IsNil(o.TotalCount) {
+		toSerialize["total_count"] = o.TotalCount
 	}
 	return toSerialize, nil
 }

@@ -1058,89 +1058,6 @@ paths:
       - Environments
       x-codegen-request-body-name: environment
   /events:
-    get:
-      description: Retrieve raw events with pagination and filtering
-      parameters:
-      - description: External Customer ID
-        explode: true
-        in: query
-        name: external_customer_id
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Event Name
-        explode: true
-        in: query
-        name: event_name
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Start Time (RFC3339)
-        explode: true
-        in: query
-        name: start_time
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: End Time (RFC3339)
-        explode: true
-        in: query
-        name: end_time
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Iter First Key (unix_timestamp_nanoseconds::event_id)
-        explode: true
-        in: query
-        name: iter_first_key
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Iter Last Key (unix_timestamp_nanoseconds::event_id)
-        explode: true
-        in: query
-        name: iter_last_key
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Page Size (1-50)
-        explode: true
-        in: query
-        name: page_size
-        required: false
-        schema:
-          type: integer
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/dto.GetEventsResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Bad Request
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: Get raw events
-      tags:
-      - Events
     post:
       description: Ingest a new event into the system
       requestBody:
@@ -1214,6 +1131,41 @@ paths:
       tags:
       - Events
       x-codegen-request-body-name: event
+  /events/query:
+    post:
+      description: Retrieve raw events with pagination and filtering
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/dto.GetEventsRequest'
+        description: Request body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dto.GetEventsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors.ErrorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors.ErrorResponse'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: List raw events
+      tags:
+      - Events
+      x-codegen-request-body-name: request
   /events/usage:
     post:
       description: Retrieve aggregated usage statistics for events
@@ -5319,7 +5271,6 @@ components:
           type: number
       required:
       - amount
-      - price_id
       - quantity
       type: object
     dto.CreateInvoiceRequest:
@@ -6576,10 +6527,45 @@ components:
         usage_percent:
           type: number
       type: object
+    dto.GetEventsRequest:
+      properties:
+        count_total:
+          type: boolean
+        end_time:
+          example: 2024-12-09T00:00:00Z
+          type: string
+        event_id:
+          type: string
+        event_name:
+          type: string
+        external_customer_id:
+          type: string
+        iter_first_key:
+          type: string
+        iter_last_key:
+          type: string
+        offset:
+          type: integer
+        page_size:
+          type: integer
+        property_filters:
+          additionalProperties:
+            items:
+              type: string
+            type: array
+          type: object
+        start_time:
+          example: 2024-11-09T00:00:00Z
+          type: string
+      required:
+      - event_name
+      type: object
     dto.GetEventsResponse:
       example:
         iter_first_key: iter_first_key
+        offset: 0
         iter_last_key: iter_last_key
+        total_count: 6
         has_more: true
         events:
         - external_customer_id: external_customer_id
@@ -6609,6 +6595,10 @@ components:
           type: string
         iter_last_key:
           type: string
+        offset:
+          type: integer
+        total_count:
+          type: integer
       type: object
     dto.GetPreviewInvoiceRequest:
       properties:

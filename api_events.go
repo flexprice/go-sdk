@@ -168,210 +168,6 @@ func (a *EventsAPIService) EventsBulkPostExecute(r EventsAPIEventsBulkPostReques
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type EventsAPIEventsGetRequest struct {
-	ctx context.Context
-	ApiService *EventsAPIService
-	externalCustomerId *string
-	eventName *string
-	startTime *string
-	endTime *string
-	iterFirstKey *string
-	iterLastKey *string
-	pageSize *int32
-}
-
-// External Customer ID
-func (r EventsAPIEventsGetRequest) ExternalCustomerId(externalCustomerId string) EventsAPIEventsGetRequest {
-	r.externalCustomerId = &externalCustomerId
-	return r
-}
-
-// Event Name
-func (r EventsAPIEventsGetRequest) EventName(eventName string) EventsAPIEventsGetRequest {
-	r.eventName = &eventName
-	return r
-}
-
-// Start Time (RFC3339)
-func (r EventsAPIEventsGetRequest) StartTime(startTime string) EventsAPIEventsGetRequest {
-	r.startTime = &startTime
-	return r
-}
-
-// End Time (RFC3339)
-func (r EventsAPIEventsGetRequest) EndTime(endTime string) EventsAPIEventsGetRequest {
-	r.endTime = &endTime
-	return r
-}
-
-// Iter First Key (unix_timestamp_nanoseconds::event_id)
-func (r EventsAPIEventsGetRequest) IterFirstKey(iterFirstKey string) EventsAPIEventsGetRequest {
-	r.iterFirstKey = &iterFirstKey
-	return r
-}
-
-// Iter Last Key (unix_timestamp_nanoseconds::event_id)
-func (r EventsAPIEventsGetRequest) IterLastKey(iterLastKey string) EventsAPIEventsGetRequest {
-	r.iterLastKey = &iterLastKey
-	return r
-}
-
-// Page Size (1-50)
-func (r EventsAPIEventsGetRequest) PageSize(pageSize int32) EventsAPIEventsGetRequest {
-	r.pageSize = &pageSize
-	return r
-}
-
-func (r EventsAPIEventsGetRequest) Execute() (*DtoGetEventsResponse, *http.Response, error) {
-	return r.ApiService.EventsGetExecute(r)
-}
-
-/*
-EventsGet Get raw events
-
-Retrieve raw events with pagination and filtering
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return EventsAPIEventsGetRequest
-*/
-func (a *EventsAPIService) EventsGet(ctx context.Context) EventsAPIEventsGetRequest {
-	return EventsAPIEventsGetRequest{
-		ApiService: a,
-		ctx: ctx,
-	}
-}
-
-// Execute executes the request
-//  @return DtoGetEventsResponse
-func (a *EventsAPIService) EventsGetExecute(r EventsAPIEventsGetRequest) (*DtoGetEventsResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodGet
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DtoGetEventsResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.EventsGet")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/events"
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	if r.externalCustomerId != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "external_customer_id", r.externalCustomerId, "form", "")
-	}
-	if r.eventName != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "event_name", r.eventName, "form", "")
-	}
-	if r.startTime != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "start_time", r.startTime, "form", "")
-	}
-	if r.endTime != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "end_time", r.endTime, "form", "")
-	}
-	if r.iterFirstKey != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "iter_first_key", r.iterFirstKey, "form", "")
-	}
-	if r.iterLastKey != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "iter_last_key", r.iterLastKey, "form", "")
-	}
-	if r.pageSize != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "page_size", r.pageSize, "form", "")
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKeyAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorsErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorsErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
 type EventsAPIEventsPostRequest struct {
 	ctx context.Context
 	ApiService *EventsAPIService
@@ -446,6 +242,152 @@ func (a *EventsAPIService) EventsPostExecute(r EventsAPIEventsPostRequest) (map[
 	}
 	// body params
 	localVarPostBody = r.event
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type EventsAPIEventsQueryPostRequest struct {
+	ctx context.Context
+	ApiService *EventsAPIService
+	request *DtoGetEventsRequest
+}
+
+// Request body
+func (r EventsAPIEventsQueryPostRequest) Request(request DtoGetEventsRequest) EventsAPIEventsQueryPostRequest {
+	r.request = &request
+	return r
+}
+
+func (r EventsAPIEventsQueryPostRequest) Execute() (*DtoGetEventsResponse, *http.Response, error) {
+	return r.ApiService.EventsQueryPostExecute(r)
+}
+
+/*
+EventsQueryPost List raw events
+
+Retrieve raw events with pagination and filtering
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return EventsAPIEventsQueryPostRequest
+*/
+func (a *EventsAPIService) EventsQueryPost(ctx context.Context) EventsAPIEventsQueryPostRequest {
+	return EventsAPIEventsQueryPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return DtoGetEventsResponse
+func (a *EventsAPIService) EventsQueryPostExecute(r EventsAPIEventsQueryPostRequest) (*DtoGetEventsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DtoGetEventsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsAPIService.EventsQueryPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/events/query"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
