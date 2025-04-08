@@ -88,7 +88,7 @@ func (r MetersAPIMetersGetRequest) Status(status string) MetersAPIMetersGetReque
 	return r
 }
 
-func (r MetersAPIMetersGetRequest) Execute() ([]DtoMeterResponse, *http.Response, error) {
+func (r MetersAPIMetersGetRequest) Execute() (*DtoListMetersResponse, *http.Response, error) {
 	return r.ApiService.MetersGetExecute(r)
 }
 
@@ -108,13 +108,13 @@ func (a *MetersAPIService) MetersGet(ctx context.Context) MetersAPIMetersGetRequ
 }
 
 // Execute executes the request
-//  @return []DtoMeterResponse
-func (a *MetersAPIService) MetersGetExecute(r MetersAPIMetersGetRequest) ([]DtoMeterResponse, *http.Response, error) {
+//  @return DtoListMetersResponse
+func (a *MetersAPIService) MetersGetExecute(r MetersAPIMetersGetRequest) (*DtoListMetersResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodGet
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  []DtoMeterResponse
+		localVarReturnValue  *DtoListMetersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetersAPIService.MetersGet")

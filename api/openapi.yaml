@@ -2109,9 +2109,7 @@ paths:
           content:
             application/json:
               schema:
-                items:
-                  $ref: '#/components/schemas/dto.MeterResponse'
-                type: array
+                $ref: '#/components/schemas/dto.ListMetersResponse'
           description: OK
         "500":
           content:
@@ -6557,8 +6555,6 @@ components:
         start_time:
           example: 2024-11-09T00:00:00Z
           type: string
-      required:
-      - event_name
       type: object
     dto.GetEventsResponse:
       example:
@@ -8762,6 +8758,61 @@ components:
         items:
           items:
             $ref: '#/components/schemas/dto.InvoiceResponse'
+          type: array
+        pagination:
+          $ref: '#/components/schemas/types.PaginationResponse'
+      type: object
+    dto.ListMetersResponse:
+      example:
+        pagination:
+          total: 1
+          offset: 6
+          limit: 0
+        items:
+        - tenant_id: tenant123
+          updated_at: 2024-03-20T15:04:05Z
+          name: API Usage Meter
+          created_at: 2024-03-20T15:04:05Z
+          event_name: api_request
+          aggregation:
+            field: field
+            type: COUNT
+          reset_usage: BILLING_PERIOD
+          filters:
+          - values:
+            - values
+            - values
+            key: key
+          - values:
+            - values
+            - values
+            key: key
+          id: 550e8400-e29b-41d4-a716-446655440000
+          status: published
+        - tenant_id: tenant123
+          updated_at: 2024-03-20T15:04:05Z
+          name: API Usage Meter
+          created_at: 2024-03-20T15:04:05Z
+          event_name: api_request
+          aggregation:
+            field: field
+            type: COUNT
+          reset_usage: BILLING_PERIOD
+          filters:
+          - values:
+            - values
+            - values
+            key: key
+          - values:
+            - values
+            - values
+            key: key
+          id: 550e8400-e29b-41d4-a716-446655440000
+          status: published
+      properties:
+        items:
+          items:
+            $ref: '#/components/schemas/dto.MeterResponse'
           type: array
         pagination:
           $ref: '#/components/schemas/types.PaginationResponse'

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **CountTotal** | Pointer to **bool** |  | [optional] 
 **EndTime** | Pointer to **string** |  | [optional] 
 **EventId** | Pointer to **string** |  | [optional] 
-**EventName** | **string** |  | 
+**EventName** | Pointer to **string** |  | [optional] 
 **ExternalCustomerId** | Pointer to **string** |  | [optional] 
 **IterFirstKey** | Pointer to **string** |  | [optional] 
 **IterLastKey** | Pointer to **string** |  | [optional] 
@@ -20,7 +20,7 @@ Name | Type | Description | Notes
 
 ### NewDtoGetEventsRequest
 
-`func NewDtoGetEventsRequest(eventName string, ) *DtoGetEventsRequest`
+`func NewDtoGetEventsRequest() *DtoGetEventsRequest`
 
 NewDtoGetEventsRequest instantiates a new DtoGetEventsRequest object
 This constructor will assign default values to properties that have it defined,
@@ -129,6 +129,11 @@ and a boolean to check if the value has been set.
 
 SetEventName sets EventName field to given value.
 
+### HasEventName
+
+`func (o *DtoGetEventsRequest) HasEventName() bool`
+
+HasEventName returns a boolean if a field has been set.
 
 ### GetExternalCustomerId
 

@@ -12,8 +12,6 @@ package flexprice
 
 import (
 	"encoding/json"
-	"bytes"
-	"fmt"
 )
 
 // checks if the DtoGetEventsRequest type satisfies the MappedNullable interface at compile time
@@ -24,7 +22,7 @@ type DtoGetEventsRequest struct {
 	CountTotal *bool `json:"count_total,omitempty"`
 	EndTime *string `json:"end_time,omitempty"`
 	EventId *string `json:"event_id,omitempty"`
-	EventName string `json:"event_name"`
+	EventName *string `json:"event_name,omitempty"`
 	ExternalCustomerId *string `json:"external_customer_id,omitempty"`
 	IterFirstKey *string `json:"iter_first_key,omitempty"`
 	IterLastKey *string `json:"iter_last_key,omitempty"`
@@ -34,15 +32,12 @@ type DtoGetEventsRequest struct {
 	StartTime *string `json:"start_time,omitempty"`
 }
 
-type _DtoGetEventsRequest DtoGetEventsRequest
-
 // NewDtoGetEventsRequest instantiates a new DtoGetEventsRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDtoGetEventsRequest(eventName string) *DtoGetEventsRequest {
+func NewDtoGetEventsRequest() *DtoGetEventsRequest {
 	this := DtoGetEventsRequest{}
-	this.EventName = eventName
 	return &this
 }
 
@@ -150,28 +145,36 @@ func (o *DtoGetEventsRequest) SetEventId(v string) {
 	o.EventId = &v
 }
 
-// GetEventName returns the EventName field value
+// GetEventName returns the EventName field value if set, zero value otherwise.
 func (o *DtoGetEventsRequest) GetEventName() string {
-	if o == nil {
+	if o == nil || IsNil(o.EventName) {
 		var ret string
 		return ret
 	}
-
-	return o.EventName
+	return *o.EventName
 }
 
-// GetEventNameOk returns a tuple with the EventName field value
+// GetEventNameOk returns a tuple with the EventName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DtoGetEventsRequest) GetEventNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.EventName) {
 		return nil, false
 	}
-	return &o.EventName, true
+	return o.EventName, true
 }
 
-// SetEventName sets field value
+// HasEventName returns a boolean if a field has been set.
+func (o *DtoGetEventsRequest) HasEventName() bool {
+	if o != nil && !IsNil(o.EventName) {
+		return true
+	}
+
+	return false
+}
+
+// SetEventName gets a reference to the given string and assigns it to the EventName field.
 func (o *DtoGetEventsRequest) SetEventName(v string) {
-	o.EventName = v
+	o.EventName = &v
 }
 
 // GetExternalCustomerId returns the ExternalCustomerId field value if set, zero value otherwise.
@@ -417,7 +420,9 @@ func (o DtoGetEventsRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.EventId) {
 		toSerialize["event_id"] = o.EventId
 	}
-	toSerialize["event_name"] = o.EventName
+	if !IsNil(o.EventName) {
+		toSerialize["event_name"] = o.EventName
+	}
 	if !IsNil(o.ExternalCustomerId) {
 		toSerialize["external_customer_id"] = o.ExternalCustomerId
 	}
@@ -440,43 +445,6 @@ func (o DtoGetEventsRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["start_time"] = o.StartTime
 	}
 	return toSerialize, nil
-}
-
-func (o *DtoGetEventsRequest) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"event_name",
-	}
-
-	allProperties := make(map[string]interface{})
-
-	err = json.Unmarshal(data, &allProperties)
-
-	if err != nil {
-		return err;
-	}
-
-	for _, requiredProperty := range(requiredProperties) {
-		if _, exists := allProperties[requiredProperty]; !exists {
-			return fmt.Errorf("no value given for required property %v", requiredProperty)
-		}
-	}
-
-	varDtoGetEventsRequest := _DtoGetEventsRequest{}
-
-	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
-	err = decoder.Decode(&varDtoGetEventsRequest)
-
-	if err != nil {
-		return err
-	}
-
-	*o = DtoGetEventsRequest(varDtoGetEventsRequest)
-
-	return err
 }
 
 type NullableDtoGetEventsRequest struct {

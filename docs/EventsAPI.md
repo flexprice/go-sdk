@@ -165,7 +165,7 @@ import (
 )
 
 func main() {
-	request := *openapiclient.NewDtoGetEventsRequest("EventName_example") // DtoGetEventsRequest | Request body
+	request := *openapiclient.NewDtoGetEventsRequest() // DtoGetEventsRequest | Request body
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## MetersGet
 
-> []DtoMeterResponse MetersGet(ctx).EndTime(endTime).EventName(eventName).Expand(expand).Limit(limit).MeterIds(meterIds).Offset(offset).Order(order).Sort(sort).StartTime(startTime).Status(status).Execute()
+> DtoListMetersResponse MetersGet(ctx).EndTime(endTime).EventName(eventName).Expand(expand).Limit(limit).MeterIds(meterIds).Offset(offset).Order(order).Sort(sort).StartTime(startTime).Status(status).Execute()
 
 List meters
 
@@ -52,7 +52,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetersAPI.MetersGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `MetersGet`: []DtoMeterResponse
+	// response from `MetersGet`: DtoListMetersResponse
 	fmt.Fprintf(os.Stdout, "Response from `MetersAPI.MetersGet`: %v\n", resp)
 }
 ```
@@ -81,7 +81,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**[]DtoMeterResponse**](DtoMeterResponse.md)
+[**DtoListMetersResponse**](DtoListMetersResponse.md)
 
 ### Authorization
 
