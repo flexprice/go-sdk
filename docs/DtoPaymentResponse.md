@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **FailedAt** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IdempotencyKey** | Pointer to **string** |  | [optional] 
+**InvoiceNumber** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **PaymentMethodId** | Pointer to **string** |  | [optional] 
 **PaymentMethodType** | Pointer to [**TypesPaymentMethodType**](TypesPaymentMethodType.md) |  | [optional] 
@@ -319,6 +320,31 @@ SetIdempotencyKey sets IdempotencyKey field to given value.
 `func (o *DtoPaymentResponse) HasIdempotencyKey() bool`
 
 HasIdempotencyKey returns a boolean if a field has been set.
+
+### GetInvoiceNumber
+
+`func (o *DtoPaymentResponse) GetInvoiceNumber() string`
+
+GetInvoiceNumber returns the InvoiceNumber field if non-nil, zero value otherwise.
+
+### GetInvoiceNumberOk
+
+`func (o *DtoPaymentResponse) GetInvoiceNumberOk() (*string, bool)`
+
+GetInvoiceNumberOk returns a tuple with the InvoiceNumber field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInvoiceNumber
+
+`func (o *DtoPaymentResponse) SetInvoiceNumber(v string)`
+
+SetInvoiceNumber sets InvoiceNumber field to given value.
+
+### HasInvoiceNumber
+
+`func (o *DtoPaymentResponse) HasInvoiceNumber() bool`
+
+HasInvoiceNumber returns a boolean if a field has been set.
 
 ### GetMetadata
 

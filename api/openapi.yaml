@@ -1577,6 +1577,15 @@ paths:
         style: form
       - explode: false
         in: query
+        name: invoice_ids
+        required: false
+        schema:
+          items:
+            type: string
+          type: array
+        style: form
+      - explode: false
+        in: query
         name: invoice_status
         required: false
         schema:
@@ -1947,6 +1956,14 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Return presigned URL from s3 instead of PDF
+        explode: true
+        in: query
+        name: url
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -2010,312 +2027,6 @@ paths:
       summary: Void an invoice
       tags:
       - Invoices
-  /meters:
-    get:
-      description: Get all meters
-      parameters:
-      - explode: true
-        in: query
-        name: end_time
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: event_name
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: expand
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: limit
-        required: false
-        schema:
-          maximum: 1000
-          minimum: 1
-          type: integer
-        style: form
-      - explode: false
-        in: query
-        name: meter_ids
-        required: false
-        schema:
-          items:
-            type: string
-          type: array
-        style: form
-      - explode: true
-        in: query
-        name: offset
-        required: false
-        schema:
-          minimum: 0
-          type: integer
-        style: form
-      - explode: true
-        in: query
-        name: order
-        required: false
-        schema:
-          enum:
-          - asc
-          - desc
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: sort
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: start_time
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: status
-        required: false
-        schema:
-          enum:
-          - published
-          - deleted
-          - archived
-          type: string
-          x-enum-varnames:
-          - StatusPublished
-          - StatusDeleted
-          - StatusArchived
-        style: form
-        x-enum-varnames:
-        - StatusPublished
-        - StatusDeleted
-        - StatusArchived
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/dto.ListMetersResponse'
-          description: OK
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: List meters
-      tags:
-      - Meters
-    post:
-      description: Create a new meter with the specified configuration
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/dto.CreateMeterRequest'
-        description: Meter configuration
-        required: true
-      responses:
-        "201":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/dto.MeterResponse'
-          description: Created
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Bad Request
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: Create meter
-      tags:
-      - Meters
-      x-codegen-request-body-name: meter
-  /meters/{id}:
-    delete:
-      description: Delete an existing meter
-      parameters:
-      - description: Meter ID
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                additionalProperties:
-                  type: string
-                type: object
-          description: message:Meter deleted successfully
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: Delete meter
-      tags:
-      - Meters
-    get:
-      description: Get a specific meter by ID
-      parameters:
-      - description: Meter ID
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/dto.MeterResponse'
-          description: OK
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: Get meter
-      tags:
-      - Meters
-    put:
-      description: Update an existing meter
-      parameters:
-      - description: Meter ID
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/dto.UpdateMeterRequest'
-        description: Meter configuration
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/dto.MeterResponse'
-          description: OK
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Bad Request
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: Update meter
-      tags:
-      - Meters
-      x-codegen-request-body-name: meter
-  /meters/{id}/disable:
-    post:
-      description: Disable an existing meter
-      parameters:
-      - description: Meter ID
-        explode: false
-        in: path
-        name: id
-        required: true
-        schema:
-          type: string
-        style: simple
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                additionalProperties:
-                  type: string
-                type: object
-          description: message:Meter disabled successfully
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Not Found
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/errors.ErrorResponse'
-          description: Internal Server Error
-      security:
-      - ApiKeyAuth: []
-      summary: "Disable meter [TODO: Deprecate]"
-      tags:
-      - Meters
   /payments:
     get:
       description: List payments with the specified filter
@@ -3542,14 +3253,6 @@ paths:
         required: false
         schema:
           type: string
-        style: form
-      - description: IncludeCanceled includes canceled subscriptions if true
-        explode: true
-        in: query
-        name: include_canceled
-        required: false
-        schema:
-          type: boolean
         style: form
       - explode: true
         in: query
@@ -5210,6 +4913,8 @@ components:
           additionalProperties:
             type: string
           type: object
+        meter:
+          $ref: '#/components/schemas/dto.CreateMeterRequest'
         meter_id:
           type: string
         name:
@@ -8762,61 +8467,6 @@ components:
         pagination:
           $ref: '#/components/schemas/types.PaginationResponse'
       type: object
-    dto.ListMetersResponse:
-      example:
-        pagination:
-          total: 1
-          offset: 6
-          limit: 0
-        items:
-        - tenant_id: tenant123
-          updated_at: 2024-03-20T15:04:05Z
-          name: API Usage Meter
-          created_at: 2024-03-20T15:04:05Z
-          event_name: api_request
-          aggregation:
-            field: field
-            type: COUNT
-          reset_usage: BILLING_PERIOD
-          filters:
-          - values:
-            - values
-            - values
-            key: key
-          - values:
-            - values
-            - values
-            key: key
-          id: 550e8400-e29b-41d4-a716-446655440000
-          status: published
-        - tenant_id: tenant123
-          updated_at: 2024-03-20T15:04:05Z
-          name: API Usage Meter
-          created_at: 2024-03-20T15:04:05Z
-          event_name: api_request
-          aggregation:
-            field: field
-            type: COUNT
-          reset_usage: BILLING_PERIOD
-          filters:
-          - values:
-            - values
-            - values
-            key: key
-          - values:
-            - values
-            - values
-            key: key
-          id: 550e8400-e29b-41d4-a716-446655440000
-          status: published
-      properties:
-        items:
-          items:
-            $ref: '#/components/schemas/dto.MeterResponse'
-          type: array
-        pagination:
-          $ref: '#/components/schemas/types.PaginationResponse'
-      type: object
     dto.ListPaymentsResponse:
       example:
         pagination:
@@ -8845,6 +8495,7 @@ components:
           currency: currency
           failed_at: failed_at
           id: id
+          invoice_number: invoice_number
           attempts:
           - error_message: error_message
             tenant_id: tenant_id
@@ -8889,6 +8540,7 @@ components:
           currency: currency
           failed_at: failed_at
           id: id
+          invoice_number: invoice_number
           attempts:
           - error_message: error_message
             tenant_id: tenant_id
@@ -10268,6 +9920,7 @@ components:
         currency: currency
         failed_at: failed_at
         id: id
+        invoice_number: invoice_number
         attempts:
         - error_message: error_message
           tenant_id: tenant_id
@@ -10315,6 +9968,8 @@ components:
         id:
           type: string
         idempotency_key:
+          type: string
+        invoice_number:
           type: string
         metadata:
           additionalProperties:
@@ -12187,6 +11842,10 @@ components:
       properties:
         description:
           type: string
+        filters:
+          items:
+            $ref: '#/components/schemas/meter.Filter'
+          type: array
         metadata:
           additionalProperties:
             type: string
@@ -12197,13 +11856,6 @@ components:
           type: string
         unit_singular:
           type: string
-      type: object
-    dto.UpdateMeterRequest:
-      properties:
-        filters:
-          items:
-            $ref: '#/components/schemas/meter.Filter'
-          type: array
       type: object
     dto.UpdatePaymentRequest:
       properties:

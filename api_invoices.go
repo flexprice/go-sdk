@@ -170,6 +170,7 @@ type InvoicesAPIInvoicesGetRequest struct {
 	customerId *string
 	endTime *string
 	expand *string
+	invoiceIds *[]string
 	invoiceStatus *[]string
 	invoiceType *string
 	limit *int32
@@ -204,6 +205,11 @@ func (r InvoicesAPIInvoicesGetRequest) EndTime(endTime string) InvoicesAPIInvoic
 
 func (r InvoicesAPIInvoicesGetRequest) Expand(expand string) InvoicesAPIInvoicesGetRequest {
 	r.expand = &expand
+	return r
+}
+
+func (r InvoicesAPIInvoicesGetRequest) InvoiceIds(invoiceIds []string) InvoicesAPIInvoicesGetRequest {
+	r.invoiceIds = &invoiceIds
 	return r
 }
 
@@ -311,6 +317,9 @@ func (a *InvoicesAPIService) InvoicesGetExecute(r InvoicesAPIInvoicesGetRequest)
 	}
 	if r.expand != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "expand", r.expand, "form", "")
+	}
+	if r.invoiceIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "invoice_ids", r.invoiceIds, "form", "csv")
 	}
 	if r.invoiceStatus != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "invoice_status", r.invoiceStatus, "form", "csv")
@@ -965,6 +974,13 @@ type InvoicesAPIInvoicesIdPdfGetRequest struct {
 	ctx context.Context
 	ApiService *InvoicesAPIService
 	id string
+	url *bool
+}
+
+// Return presigned URL from s3 instead of PDF
+func (r InvoicesAPIInvoicesIdPdfGetRequest) Url(url bool) InvoicesAPIInvoicesIdPdfGetRequest {
+	r.url = &url
+	return r
 }
 
 func (r InvoicesAPIInvoicesIdPdfGetRequest) Execute() (*os.File, *http.Response, error) {
@@ -1010,6 +1026,9 @@ func (a *InvoicesAPIService) InvoicesIdPdfGetExecute(r InvoicesAPIInvoicesIdPdfG
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.url != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "url", r.url, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

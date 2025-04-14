@@ -1,5 +1,7 @@
 module flexprice/go-sdk/examples
 
+replace github.com/flexprice/go-sdk => ../
+
 go 1.23.2
 
 require (
