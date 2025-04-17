@@ -32,6 +32,7 @@ type SubscriptionsAPISubscriptionsGetRequest struct {
 	customerId *string
 	endTime *string
 	expand *string
+	includeCanceled *bool
 	limit *int32
 	offset *int32
 	order *string
@@ -74,6 +75,12 @@ func (r SubscriptionsAPISubscriptionsGetRequest) EndTime(endTime string) Subscri
 
 func (r SubscriptionsAPISubscriptionsGetRequest) Expand(expand string) SubscriptionsAPISubscriptionsGetRequest {
 	r.expand = &expand
+	return r
+}
+
+// IncludeCanceled includes canceled subscriptions if true
+func (r SubscriptionsAPISubscriptionsGetRequest) IncludeCanceled(includeCanceled bool) SubscriptionsAPISubscriptionsGetRequest {
+	r.includeCanceled = &includeCanceled
 	return r
 }
 
@@ -182,6 +189,9 @@ func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r SubscriptionsAPISubs
 	}
 	if r.expand != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "expand", r.expand, "form", "")
+	}
+	if r.includeCanceled != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "include_canceled", r.includeCanceled, "form", "")
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")

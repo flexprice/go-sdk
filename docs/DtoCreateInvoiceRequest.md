@@ -14,7 +14,6 @@ Name | Type | Description | Notes
 **DueDate** | Pointer to **string** |  | [optional] 
 **EnvironmentId** | Pointer to **string** |  | [optional] 
 **IdempotencyKey** | Pointer to **string** |  | [optional] 
-**InvoiceNumber** | Pointer to **string** |  | [optional] 
 **InvoiceStatus** | Pointer to [**TypesInvoiceStatus**](TypesInvoiceStatus.md) |  | [optional] 
 **InvoiceType** | Pointer to [**TypesInvoiceType**](TypesInvoiceType.md) |  | [optional] 
 **LineItems** | Pointer to [**[]DtoCreateInvoiceLineItemRequest**](DtoCreateInvoiceLineItemRequest.md) |  | [optional] 
@@ -277,31 +276,6 @@ SetIdempotencyKey sets IdempotencyKey field to given value.
 `func (o *DtoCreateInvoiceRequest) HasIdempotencyKey() bool`
 
 HasIdempotencyKey returns a boolean if a field has been set.
-
-### GetInvoiceNumber
-
-`func (o *DtoCreateInvoiceRequest) GetInvoiceNumber() string`
-
-GetInvoiceNumber returns the InvoiceNumber field if non-nil, zero value otherwise.
-
-### GetInvoiceNumberOk
-
-`func (o *DtoCreateInvoiceRequest) GetInvoiceNumberOk() (*string, bool)`
-
-GetInvoiceNumberOk returns a tuple with the InvoiceNumber field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetInvoiceNumber
-
-`func (o *DtoCreateInvoiceRequest) SetInvoiceNumber(v string)`
-
-SetInvoiceNumber sets InvoiceNumber field to given value.
-
-### HasInvoiceNumber
-
-`func (o *DtoCreateInvoiceRequest) HasInvoiceNumber() bool`
-
-HasInvoiceNumber returns a boolean if a field has been set.
 
 ### GetInvoiceStatus
 

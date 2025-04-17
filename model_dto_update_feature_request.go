@@ -20,7 +20,6 @@ var _ MappedNullable = &DtoUpdateFeatureRequest{}
 // DtoUpdateFeatureRequest struct for DtoUpdateFeatureRequest
 type DtoUpdateFeatureRequest struct {
 	Description *string `json:"description,omitempty"`
-	Filters []MeterFilter `json:"filters,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	Name *string `json:"name,omitempty"`
 	UnitPlural *string `json:"unit_plural,omitempty"`
@@ -74,38 +73,6 @@ func (o *DtoUpdateFeatureRequest) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *DtoUpdateFeatureRequest) SetDescription(v string) {
 	o.Description = &v
-}
-
-// GetFilters returns the Filters field value if set, zero value otherwise.
-func (o *DtoUpdateFeatureRequest) GetFilters() []MeterFilter {
-	if o == nil || IsNil(o.Filters) {
-		var ret []MeterFilter
-		return ret
-	}
-	return o.Filters
-}
-
-// GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoUpdateFeatureRequest) GetFiltersOk() ([]MeterFilter, bool) {
-	if o == nil || IsNil(o.Filters) {
-		return nil, false
-	}
-	return o.Filters, true
-}
-
-// HasFilters returns a boolean if a field has been set.
-func (o *DtoUpdateFeatureRequest) HasFilters() bool {
-	if o != nil && !IsNil(o.Filters) {
-		return true
-	}
-
-	return false
-}
-
-// SetFilters gets a reference to the given []MeterFilter and assigns it to the Filters field.
-func (o *DtoUpdateFeatureRequest) SetFilters(v []MeterFilter) {
-	o.Filters = v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -248,9 +215,6 @@ func (o DtoUpdateFeatureRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
-	}
-	if !IsNil(o.Filters) {
-		toSerialize["filters"] = o.Filters
 	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata

@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Description** | Pointer to **string** |  | [optional] 
-**Filters** | Pointer to [**[]MeterFilter**](MeterFilter.md) |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 **UnitPlural** | Pointer to **string** |  | [optional] 
@@ -54,31 +53,6 @@ SetDescription sets Description field to given value.
 `func (o *DtoUpdateFeatureRequest) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
-
-### GetFilters
-
-`func (o *DtoUpdateFeatureRequest) GetFilters() []MeterFilter`
-
-GetFilters returns the Filters field if non-nil, zero value otherwise.
-
-### GetFiltersOk
-
-`func (o *DtoUpdateFeatureRequest) GetFiltersOk() (*[]MeterFilter, bool)`
-
-GetFiltersOk returns a tuple with the Filters field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetFilters
-
-`func (o *DtoUpdateFeatureRequest) SetFilters(v []MeterFilter)`
-
-SetFilters sets Filters field to given value.
-
-### HasFilters
-
-`func (o *DtoUpdateFeatureRequest) HasFilters() bool`
-
-HasFilters returns a boolean if a field has been set.
 
 ### GetMetadata
 

@@ -4,17 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EndTime** | Pointer to **string** | End time of the events to be fetched in ISO 8601 format Defaults to now if not provided | [optional] 
-**EventId** | Pointer to **string** | Event ID is the idempotency key for the event | [optional] 
-**EventName** | Pointer to **string** | Event name / Unique identifier for the event in your system | [optional] 
-**ExternalCustomerId** | Pointer to **string** | Customer ID in your system that was sent with the event | [optional] 
-**IterFirstKey** | Pointer to **string** | First key to iterate over the events | [optional] 
-**IterLastKey** | Pointer to **string** | Last key to iterate over the events | [optional] 
-**Offset** | Pointer to **int32** | Offset to fetch the events and is set to 0 by default | [optional] 
-**PageSize** | Pointer to **int32** | Page size to fetch the events and is set to 50 by default | [optional] 
-**PropertyFilters** | Pointer to **map[string][]string** | Property filters to filter the events by the keys in &#x60;properties&#x60; field of the event | [optional] 
-**Source** | Pointer to **string** | Source to filter the events by the source | [optional] 
-**StartTime** | Pointer to **string** | Start time of the events to be fetched in ISO 8601 format Defaults to last 7 days from now if not provided | [optional] 
+**CountTotal** | Pointer to **bool** |  | [optional] 
+**EndTime** | Pointer to **string** |  | [optional] 
+**EventId** | Pointer to **string** |  | [optional] 
+**EventName** | Pointer to **string** |  | [optional] 
+**ExternalCustomerId** | Pointer to **string** |  | [optional] 
+**IterFirstKey** | Pointer to **string** |  | [optional] 
+**IterLastKey** | Pointer to **string** |  | [optional] 
+**Offset** | Pointer to **int32** |  | [optional] 
+**PageSize** | Pointer to **int32** |  | [optional] 
+**PropertyFilters** | Pointer to **map[string][]string** |  | [optional] 
+**StartTime** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -34,6 +34,31 @@ will change when the set of required properties is changed
 NewDtoGetEventsRequestWithDefaults instantiates a new DtoGetEventsRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCountTotal
+
+`func (o *DtoGetEventsRequest) GetCountTotal() bool`
+
+GetCountTotal returns the CountTotal field if non-nil, zero value otherwise.
+
+### GetCountTotalOk
+
+`func (o *DtoGetEventsRequest) GetCountTotalOk() (*bool, bool)`
+
+GetCountTotalOk returns a tuple with the CountTotal field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCountTotal
+
+`func (o *DtoGetEventsRequest) SetCountTotal(v bool)`
+
+SetCountTotal sets CountTotal field to given value.
+
+### HasCountTotal
+
+`func (o *DtoGetEventsRequest) HasCountTotal() bool`
+
+HasCountTotal returns a boolean if a field has been set.
 
 ### GetEndTime
 
@@ -259,31 +284,6 @@ SetPropertyFilters sets PropertyFilters field to given value.
 `func (o *DtoGetEventsRequest) HasPropertyFilters() bool`
 
 HasPropertyFilters returns a boolean if a field has been set.
-
-### GetSource
-
-`func (o *DtoGetEventsRequest) GetSource() string`
-
-GetSource returns the Source field if non-nil, zero value otherwise.
-
-### GetSourceOk
-
-`func (o *DtoGetEventsRequest) GetSourceOk() (*string, bool)`
-
-GetSourceOk returns a tuple with the Source field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSource
-
-`func (o *DtoGetEventsRequest) SetSource(v string)`
-
-SetSource sets Source field to given value.
-
-### HasSource
-
-`func (o *DtoGetEventsRequest) HasSource() bool`
-
-HasSource returns a boolean if a field has been set.
 
 ### GetStartTime
 

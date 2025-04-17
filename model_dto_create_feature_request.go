@@ -24,7 +24,6 @@ type DtoCreateFeatureRequest struct {
 	Description *string `json:"description,omitempty"`
 	LookupKey *string `json:"lookup_key,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
-	Meter *DtoCreateMeterRequest `json:"meter,omitempty"`
 	MeterId *string `json:"meter_id,omitempty"`
 	Name string `json:"name"`
 	Type TypesFeatureType `json:"type"`
@@ -147,38 +146,6 @@ func (o *DtoCreateFeatureRequest) HasMetadata() bool {
 // SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
 func (o *DtoCreateFeatureRequest) SetMetadata(v map[string]string) {
 	o.Metadata = &v
-}
-
-// GetMeter returns the Meter field value if set, zero value otherwise.
-func (o *DtoCreateFeatureRequest) GetMeter() DtoCreateMeterRequest {
-	if o == nil || IsNil(o.Meter) {
-		var ret DtoCreateMeterRequest
-		return ret
-	}
-	return *o.Meter
-}
-
-// GetMeterOk returns a tuple with the Meter field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoCreateFeatureRequest) GetMeterOk() (*DtoCreateMeterRequest, bool) {
-	if o == nil || IsNil(o.Meter) {
-		return nil, false
-	}
-	return o.Meter, true
-}
-
-// HasMeter returns a boolean if a field has been set.
-func (o *DtoCreateFeatureRequest) HasMeter() bool {
-	if o != nil && !IsNil(o.Meter) {
-		return true
-	}
-
-	return false
-}
-
-// SetMeter gets a reference to the given DtoCreateMeterRequest and assigns it to the Meter field.
-func (o *DtoCreateFeatureRequest) SetMeter(v DtoCreateMeterRequest) {
-	o.Meter = &v
 }
 
 // GetMeterId returns the MeterId field value if set, zero value otherwise.
@@ -343,9 +310,6 @@ func (o DtoCreateFeatureRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
-	}
-	if !IsNil(o.Meter) {
-		toSerialize["meter"] = o.Meter
 	}
 	if !IsNil(o.MeterId) {
 		toSerialize["meter_id"] = o.MeterId

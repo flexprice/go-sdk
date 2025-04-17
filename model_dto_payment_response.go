@@ -30,7 +30,6 @@ type DtoPaymentResponse struct {
 	FailedAt *string `json:"failed_at,omitempty"`
 	Id *string `json:"id,omitempty"`
 	IdempotencyKey *string `json:"idempotency_key,omitempty"`
-	InvoiceNumber *string `json:"invoice_number,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	PaymentMethodId *string `json:"payment_method_id,omitempty"`
 	PaymentMethodType *TypesPaymentMethodType `json:"payment_method_type,omitempty"`
@@ -412,38 +411,6 @@ func (o *DtoPaymentResponse) SetIdempotencyKey(v string) {
 	o.IdempotencyKey = &v
 }
 
-// GetInvoiceNumber returns the InvoiceNumber field value if set, zero value otherwise.
-func (o *DtoPaymentResponse) GetInvoiceNumber() string {
-	if o == nil || IsNil(o.InvoiceNumber) {
-		var ret string
-		return ret
-	}
-	return *o.InvoiceNumber
-}
-
-// GetInvoiceNumberOk returns a tuple with the InvoiceNumber field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoPaymentResponse) GetInvoiceNumberOk() (*string, bool) {
-	if o == nil || IsNil(o.InvoiceNumber) {
-		return nil, false
-	}
-	return o.InvoiceNumber, true
-}
-
-// HasInvoiceNumber returns a boolean if a field has been set.
-func (o *DtoPaymentResponse) HasInvoiceNumber() bool {
-	if o != nil && !IsNil(o.InvoiceNumber) {
-		return true
-	}
-
-	return false
-}
-
-// SetInvoiceNumber gets a reference to the given string and assigns it to the InvoiceNumber field.
-func (o *DtoPaymentResponse) SetInvoiceNumber(v string) {
-	o.InvoiceNumber = &v
-}
-
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *DtoPaymentResponse) GetMetadata() map[string]string {
 	if o == nil || IsNil(o.Metadata) {
@@ -806,9 +773,6 @@ func (o DtoPaymentResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IdempotencyKey) {
 		toSerialize["idempotency_key"] = o.IdempotencyKey
-	}
-	if !IsNil(o.InvoiceNumber) {
-		toSerialize["invoice_number"] = o.InvoiceNumber
 	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata

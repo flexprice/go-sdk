@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** | Description of the price | [optional] 
 **DisplayAmount** | Pointer to **string** | DisplayAmount is the formatted amount with currency symbol For USD: $12.50 | [optional] 
 **EnvironmentId** | Pointer to **string** | EnvironmentID is the environment identifier for the price | [optional] 
+**FilterValues** | Pointer to **map[string][]string** |  | [optional] 
 **Id** | Pointer to **string** | ID uuid identifier for the price | [optional] 
 **InvoiceCadence** | Pointer to [**TypesInvoiceCadence**](TypesInvoiceCadence.md) |  | [optional] 
 **LookupKey** | Pointer to **string** | LookupKey used for looking up the price in the database | [optional] 
@@ -325,6 +326,31 @@ SetEnvironmentId sets EnvironmentId field to given value.
 `func (o *DtoPriceResponse) HasEnvironmentId() bool`
 
 HasEnvironmentId returns a boolean if a field has been set.
+
+### GetFilterValues
+
+`func (o *DtoPriceResponse) GetFilterValues() map[string][]string`
+
+GetFilterValues returns the FilterValues field if non-nil, zero value otherwise.
+
+### GetFilterValuesOk
+
+`func (o *DtoPriceResponse) GetFilterValuesOk() (*map[string][]string, bool)`
+
+GetFilterValuesOk returns a tuple with the FilterValues field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFilterValues
+
+`func (o *DtoPriceResponse) SetFilterValues(v map[string][]string)`
+
+SetFilterValues sets FilterValues field to given value.
+
+### HasFilterValues
+
+`func (o *DtoPriceResponse) HasFilterValues() bool`
+
+HasFilterValues returns a boolean if a field has been set.
 
 ### GetId
 

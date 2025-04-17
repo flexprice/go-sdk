@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CustomerId** | Pointer to **string** |  | [optional] 
-**EnvironmentId** | Pointer to **string** |  | [optional] 
 **EventName** | Pointer to **string** |  | [optional] 
 **ExternalCustomerId** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
@@ -56,31 +55,6 @@ SetCustomerId sets CustomerId field to given value.
 `func (o *DtoEvent) HasCustomerId() bool`
 
 HasCustomerId returns a boolean if a field has been set.
-
-### GetEnvironmentId
-
-`func (o *DtoEvent) GetEnvironmentId() string`
-
-GetEnvironmentId returns the EnvironmentId field if non-nil, zero value otherwise.
-
-### GetEnvironmentIdOk
-
-`func (o *DtoEvent) GetEnvironmentIdOk() (*string, bool)`
-
-GetEnvironmentIdOk returns a tuple with the EnvironmentId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnvironmentId
-
-`func (o *DtoEvent) SetEnvironmentId(v string)`
-
-SetEnvironmentId sets EnvironmentId field to given value.
-
-### HasEnvironmentId
-
-`func (o *DtoEvent) HasEnvironmentId() bool`
-
-HasEnvironmentId returns a boolean if a field has been set.
 
 ### GetEventName
 
