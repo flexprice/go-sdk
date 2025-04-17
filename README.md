@@ -1,43 +1,3 @@
-# Flexprice Go SDK
-
-The official Go client library for Flexprice API
-
-## Installation
-
-```bash
-go get github.com/flexprice/go-sdk
-```
-
-## Usage
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-
-	"github.com/flexprice/go-sdk"
-)
-
-func main() {
-	// Initialize client with API key
-	client := flexprice.NewClient(os.Getenv("FLEXPRICE_API_KEY"))
-
-	// For example, to get customer details
-	customer, err := client.Customers.Get(context.Background(), "customer_id")
-	if err != nil {
-		fmt.Printf("Error: %v\n", err)
-		return
-	}
-
-	fmt.Printf("Customer: %+v\n", customer)
-}
-```
-
-## API Documentation
-
 # FlexPrice Go SDK
 
 This is the Go client library for the FlexPrice API.
@@ -258,3 +218,7 @@ The async client provides several advantages:
 ## Documentation
 
 For detailed API documentation, refer to the code comments and the official FlexPrice API documentation. 
+
+## Auto-Generated API Documentation
+
+

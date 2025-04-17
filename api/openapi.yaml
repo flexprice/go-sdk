@@ -4998,6 +4998,8 @@ components:
           type: string
         idempotency_key:
           type: string
+        invoice_number:
+          type: string
         invoice_status:
           $ref: '#/components/schemas/types.InvoiceStatus'
         invoice_type:
@@ -5861,10 +5863,6 @@ components:
             id: id
             amount: 0.8008281904610115
             billing_model: FLAT_FEE
-            filter_values:
-              key:
-              - filter_values
-              - filter_values
             meter:
               tenant_id: tenant123
               updated_at: 2024-03-20T15:04:05Z
@@ -5921,10 +5919,6 @@ components:
             id: id
             amount: 0.8008281904610115
             billing_model: FLAT_FEE
-            filter_values:
-              key:
-              - filter_values
-              - filter_values
             meter:
               tenant_id: tenant123
               updated_at: 2024-03-20T15:04:05Z
@@ -6046,6 +6040,7 @@ components:
       type: object
     dto.Event:
       example:
+        environment_id: environment_id
         external_customer_id: external_customer_id
         event_name: event_name
         id: id
@@ -6056,6 +6051,8 @@ components:
         timestamp: timestamp
       properties:
         customer_id:
+          type: string
+        environment_id:
           type: string
         event_name:
           type: string
@@ -6232,32 +6229,48 @@ components:
       type: object
     dto.GetEventsRequest:
       properties:
-        count_total:
-          type: boolean
         end_time:
+          description: |-
+            End time of the events to be fetched in ISO 8601 format
+            Defaults to now if not provided
           example: 2024-12-09T00:00:00Z
           type: string
         event_id:
+          description: Event ID is the idempotency key for the event
           type: string
         event_name:
+          description: Event name / Unique identifier for the event in your system
           type: string
         external_customer_id:
+          description: Customer ID in your system that was sent with the event
           type: string
         iter_first_key:
+          description: First key to iterate over the events
           type: string
         iter_last_key:
+          description: Last key to iterate over the events
           type: string
         offset:
+          description: Offset to fetch the events and is set to 0 by default
           type: integer
         page_size:
+          description: Page size to fetch the events and is set to 50 by default
           type: integer
         property_filters:
           additionalProperties:
             items:
               type: string
             type: array
+          description: Property filters to filter the events by the keys in `properties`
+            field of the event
           type: object
+        source:
+          description: Source to filter the events by the source
+          type: string
         start_time:
+          description: |-
+            Start time of the events to be fetched in ISO 8601 format
+            Defaults to last 7 days from now if not provided
           example: 2024-11-09T00:00:00Z
           type: string
       type: object
@@ -6269,7 +6282,8 @@ components:
         total_count: 6
         has_more: true
         events:
-        - external_customer_id: external_customer_id
+        - environment_id: environment_id
+          external_customer_id: external_customer_id
           event_name: event_name
           id: id
           source: source
@@ -6277,7 +6291,8 @@ components:
           properties:
             key: ""
           timestamp: timestamp
-        - external_customer_id: external_customer_id
+        - environment_id: environment_id
+          external_customer_id: external_customer_id
           event_name: event_name
           id: id
           source: source
@@ -6394,10 +6409,6 @@ components:
             id: id
             amount: 1.4658129805029452
             billing_model: FLAT_FEE
-            filter_values:
-              key:
-              - filter_values
-              - filter_values
             created_by: created_by
             transform_quantity:
               round: round
@@ -6444,10 +6455,6 @@ components:
             id: id
             amount: 1.4658129805029452
             billing_model: FLAT_FEE
-            filter_values:
-              key:
-              - filter_values
-              - filter_values
             created_by: created_by
             transform_quantity:
               round: round
@@ -6860,10 +6867,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -6920,10 +6923,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -7270,10 +7269,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -7330,10 +7325,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -7461,10 +7452,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -7521,10 +7508,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -7904,10 +7887,6 @@ components:
                 id: id
                 amount: 0.8008281904610115
                 billing_model: FLAT_FEE
-                filter_values:
-                  key:
-                  - filter_values
-                  - filter_values
                 meter:
                   tenant_id: tenant123
                   updated_at: 2024-03-20T15:04:05Z
@@ -7964,10 +7943,6 @@ components:
                 id: id
                 amount: 0.8008281904610115
                 billing_model: FLAT_FEE
-                filter_values:
-                  key:
-                  - filter_values
-                  - filter_values
                 meter:
                   tenant_id: tenant123
                   updated_at: 2024-03-20T15:04:05Z
@@ -8287,10 +8262,6 @@ components:
                 id: id
                 amount: 0.8008281904610115
                 billing_model: FLAT_FEE
-                filter_values:
-                  key:
-                  - filter_values
-                  - filter_values
                 meter:
                   tenant_id: tenant123
                   updated_at: 2024-03-20T15:04:05Z
@@ -8347,10 +8318,6 @@ components:
                 id: id
                 amount: 0.8008281904610115
                 billing_model: FLAT_FEE
-                filter_values:
-                  key:
-                  - filter_values
-                  - filter_values
                 meter:
                   tenant_id: tenant123
                   updated_at: 2024-03-20T15:04:05Z
@@ -8618,10 +8585,6 @@ components:
             id: id
             amount: 0.8008281904610115
             billing_model: FLAT_FEE
-            filter_values:
-              key:
-              - filter_values
-              - filter_values
             meter:
               tenant_id: tenant123
               updated_at: 2024-03-20T15:04:05Z
@@ -8678,10 +8641,6 @@ components:
             id: id
             amount: 0.8008281904610115
             billing_model: FLAT_FEE
-            filter_values:
-              key:
-              - filter_values
-              - filter_values
             meter:
               tenant_id: tenant123
               updated_at: 2024-03-20T15:04:05Z
@@ -8753,10 +8712,6 @@ components:
             id: id
             amount: 0.8008281904610115
             billing_model: FLAT_FEE
-            filter_values:
-              key:
-              - filter_values
-              - filter_values
             meter:
               tenant_id: tenant123
               updated_at: 2024-03-20T15:04:05Z
@@ -8813,10 +8768,6 @@ components:
             id: id
             amount: 0.8008281904610115
             billing_model: FLAT_FEE
-            filter_values:
-              key:
-              - filter_values
-              - filter_values
             meter:
               tenant_id: tenant123
               updated_at: 2024-03-20T15:04:05Z
@@ -8889,10 +8840,6 @@ components:
           id: id
           amount: 0.8008281904610115
           billing_model: FLAT_FEE
-          filter_values:
-            key:
-            - filter_values
-            - filter_values
           meter:
             tenant_id: tenant123
             updated_at: 2024-03-20T15:04:05Z
@@ -8949,10 +8896,6 @@ components:
           id: id
           amount: 0.8008281904610115
           billing_model: FLAT_FEE
-          filter_values:
-            key:
-            - filter_values
-            - filter_values
           meter:
             tenant_id: tenant123
             updated_at: 2024-03-20T15:04:05Z
@@ -9244,10 +9187,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -9304,10 +9243,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -9525,10 +9460,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -9585,10 +9516,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -10035,10 +9962,6 @@ components:
           id: id
           amount: 0.8008281904610115
           billing_model: FLAT_FEE
-          filter_values:
-            key:
-            - filter_values
-            - filter_values
           meter:
             tenant_id: tenant123
             updated_at: 2024-03-20T15:04:05Z
@@ -10095,10 +10018,6 @@ components:
           id: id
           amount: 0.8008281904610115
           billing_model: FLAT_FEE
-          filter_values:
-            key:
-            - filter_values
-            - filter_values
           meter:
             tenant_id: tenant123
             updated_at: 2024-03-20T15:04:05Z
@@ -10190,10 +10109,6 @@ components:
         id: id
         amount: 0.8008281904610115
         billing_model: FLAT_FEE
-        filter_values:
-          key:
-          - filter_values
-          - filter_values
         meter:
           tenant_id: tenant123
           updated_at: 2024-03-20T15:04:05Z
@@ -10260,12 +10175,6 @@ components:
         environment_id:
           description: EnvironmentID is the environment identifier for the price
           type: string
-        filter_values:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
         id:
           description: ID uuid identifier for the price
           type: string
@@ -10608,10 +10517,6 @@ components:
             id: id
             amount: 0.8008281904610115
             billing_model: FLAT_FEE
-            filter_values:
-              key:
-              - filter_values
-              - filter_values
             meter:
               tenant_id: tenant123
               updated_at: 2024-03-20T15:04:05Z
@@ -10668,10 +10573,6 @@ components:
             id: id
             amount: 0.8008281904610115
             billing_model: FLAT_FEE
-            filter_values:
-              key:
-              - filter_values
-              - filter_values
             meter:
               tenant_id: tenant123
               updated_at: 2024-03-20T15:04:05Z
@@ -10879,10 +10780,6 @@ components:
           id: id
           amount: 1.4658129805029452
           billing_model: FLAT_FEE
-          filter_values:
-            key:
-            - filter_values
-            - filter_values
           created_by: created_by
           transform_quantity:
             round: round
@@ -11168,10 +11065,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -11228,10 +11121,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -11449,10 +11338,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -11509,10 +11394,6 @@ components:
               id: id
               amount: 0.8008281904610115
               billing_model: FLAT_FEE
-              filter_values:
-                key:
-                - filter_values
-                - filter_values
               meter:
                 tenant_id: tenant123
                 updated_at: 2024-03-20T15:04:05Z
@@ -12382,10 +12263,6 @@ components:
         id: id
         amount: 1.4658129805029452
         billing_model: FLAT_FEE
-        filter_values:
-          key:
-          - filter_values
-          - filter_values
         created_by: created_by
         transform_quantity:
           round: round
@@ -12431,12 +12308,6 @@ components:
         environment_id:
           description: EnvironmentID is the environment identifier for the price
           type: string
-        filter_values:
-          additionalProperties:
-            items:
-              type: string
-            type: array
-          type: object
         id:
           description: ID uuid identifier for the price
           type: string

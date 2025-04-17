@@ -20,6 +20,7 @@ var _ MappedNullable = &DtoEvent{}
 // DtoEvent struct for DtoEvent
 type DtoEvent struct {
 	CustomerId *string `json:"customer_id,omitempty"`
+	EnvironmentId *string `json:"environment_id,omitempty"`
 	EventName *string `json:"event_name,omitempty"`
 	ExternalCustomerId *string `json:"external_customer_id,omitempty"`
 	Id *string `json:"id,omitempty"`
@@ -75,6 +76,38 @@ func (o *DtoEvent) HasCustomerId() bool {
 // SetCustomerId gets a reference to the given string and assigns it to the CustomerId field.
 func (o *DtoEvent) SetCustomerId(v string) {
 	o.CustomerId = &v
+}
+
+// GetEnvironmentId returns the EnvironmentId field value if set, zero value otherwise.
+func (o *DtoEvent) GetEnvironmentId() string {
+	if o == nil || IsNil(o.EnvironmentId) {
+		var ret string
+		return ret
+	}
+	return *o.EnvironmentId
+}
+
+// GetEnvironmentIdOk returns a tuple with the EnvironmentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoEvent) GetEnvironmentIdOk() (*string, bool) {
+	if o == nil || IsNil(o.EnvironmentId) {
+		return nil, false
+	}
+	return o.EnvironmentId, true
+}
+
+// HasEnvironmentId returns a boolean if a field has been set.
+func (o *DtoEvent) HasEnvironmentId() bool {
+	if o != nil && !IsNil(o.EnvironmentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnvironmentId gets a reference to the given string and assigns it to the EnvironmentId field.
+func (o *DtoEvent) SetEnvironmentId(v string) {
+	o.EnvironmentId = &v
 }
 
 // GetEventName returns the EventName field value if set, zero value otherwise.
@@ -281,6 +314,9 @@ func (o DtoEvent) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.CustomerId) {
 		toSerialize["customer_id"] = o.CustomerId
+	}
+	if !IsNil(o.EnvironmentId) {
+		toSerialize["environment_id"] = o.EnvironmentId
 	}
 	if !IsNil(o.EventName) {
 		toSerialize["event_name"] = o.EventName

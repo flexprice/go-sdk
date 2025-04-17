@@ -31,6 +31,7 @@ type DtoCreateInvoiceRequest struct {
 	DueDate *string `json:"due_date,omitempty"`
 	EnvironmentId *string `json:"environment_id,omitempty"`
 	IdempotencyKey *string `json:"idempotency_key,omitempty"`
+	InvoiceNumber *string `json:"invoice_number,omitempty"`
 	InvoiceStatus *TypesInvoiceStatus `json:"invoice_status,omitempty"`
 	InvoiceType *TypesInvoiceType `json:"invoice_type,omitempty"`
 	LineItems []DtoCreateInvoiceLineItemRequest `json:"line_items,omitempty"`
@@ -359,6 +360,38 @@ func (o *DtoCreateInvoiceRequest) SetIdempotencyKey(v string) {
 	o.IdempotencyKey = &v
 }
 
+// GetInvoiceNumber returns the InvoiceNumber field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceRequest) GetInvoiceNumber() string {
+	if o == nil || IsNil(o.InvoiceNumber) {
+		var ret string
+		return ret
+	}
+	return *o.InvoiceNumber
+}
+
+// GetInvoiceNumberOk returns a tuple with the InvoiceNumber field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceRequest) GetInvoiceNumberOk() (*string, bool) {
+	if o == nil || IsNil(o.InvoiceNumber) {
+		return nil, false
+	}
+	return o.InvoiceNumber, true
+}
+
+// HasInvoiceNumber returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceRequest) HasInvoiceNumber() bool {
+	if o != nil && !IsNil(o.InvoiceNumber) {
+		return true
+	}
+
+	return false
+}
+
+// SetInvoiceNumber gets a reference to the given string and assigns it to the InvoiceNumber field.
+func (o *DtoCreateInvoiceRequest) SetInvoiceNumber(v string) {
+	o.InvoiceNumber = &v
+}
+
 // GetInvoiceStatus returns the InvoiceStatus field value if set, zero value otherwise.
 func (o *DtoCreateInvoiceRequest) GetInvoiceStatus() TypesInvoiceStatus {
 	if o == nil || IsNil(o.InvoiceStatus) {
@@ -648,6 +681,9 @@ func (o DtoCreateInvoiceRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IdempotencyKey) {
 		toSerialize["idempotency_key"] = o.IdempotencyKey
+	}
+	if !IsNil(o.InvoiceNumber) {
+		toSerialize["invoice_number"] = o.InvoiceNumber
 	}
 	if !IsNil(o.InvoiceStatus) {
 		toSerialize["invoice_status"] = o.InvoiceStatus

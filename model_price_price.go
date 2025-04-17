@@ -36,7 +36,6 @@ type PricePrice struct {
 	DisplayAmount *string `json:"display_amount,omitempty"`
 	// EnvironmentID is the environment identifier for the price
 	EnvironmentId *string `json:"environment_id,omitempty"`
-	FilterValues *map[string][]string `json:"filter_values,omitempty"`
 	// ID uuid identifier for the price
 	Id *string `json:"id,omitempty"`
 	InvoiceCadence *TypesInvoiceCadence `json:"invoice_cadence,omitempty"`
@@ -426,38 +425,6 @@ func (o *PricePrice) HasEnvironmentId() bool {
 // SetEnvironmentId gets a reference to the given string and assigns it to the EnvironmentId field.
 func (o *PricePrice) SetEnvironmentId(v string) {
 	o.EnvironmentId = &v
-}
-
-// GetFilterValues returns the FilterValues field value if set, zero value otherwise.
-func (o *PricePrice) GetFilterValues() map[string][]string {
-	if o == nil || IsNil(o.FilterValues) {
-		var ret map[string][]string
-		return ret
-	}
-	return *o.FilterValues
-}
-
-// GetFilterValuesOk returns a tuple with the FilterValues field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PricePrice) GetFilterValuesOk() (*map[string][]string, bool) {
-	if o == nil || IsNil(o.FilterValues) {
-		return nil, false
-	}
-	return o.FilterValues, true
-}
-
-// HasFilterValues returns a boolean if a field has been set.
-func (o *PricePrice) HasFilterValues() bool {
-	if o != nil && !IsNil(o.FilterValues) {
-		return true
-	}
-
-	return false
-}
-
-// SetFilterValues gets a reference to the given map[string][]string and assigns it to the FilterValues field.
-func (o *PricePrice) SetFilterValues(v map[string][]string) {
-	o.FilterValues = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -982,9 +949,6 @@ func (o PricePrice) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.EnvironmentId) {
 		toSerialize["environment_id"] = o.EnvironmentId
-	}
-	if !IsNil(o.FilterValues) {
-		toSerialize["filter_values"] = o.FilterValues
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
