@@ -89,7 +89,7 @@ Name | Type | Description  | Notes
 
 ## InvoicesGet
 
-> DtoListInvoicesResponse InvoicesGet(ctx).AmountDueGt(amountDueGt).AmountRemainingGt(amountRemainingGt).CustomerId(customerId).EndTime(endTime).Expand(expand).InvoiceStatus(invoiceStatus).InvoiceType(invoiceType).Limit(limit).Offset(offset).Order(order).PaymentStatus(paymentStatus).Sort(sort).StartTime(startTime).Status(status).SubscriptionId(subscriptionId).Execute()
+> DtoListInvoicesResponse InvoicesGet(ctx).AmountDueGt(amountDueGt).AmountRemainingGt(amountRemainingGt).CustomerId(customerId).EndTime(endTime).Expand(expand).InvoiceIds(invoiceIds).InvoiceStatus(invoiceStatus).InvoiceType(invoiceType).Limit(limit).Offset(offset).Order(order).PaymentStatus(paymentStatus).Sort(sort).StartTime(startTime).Status(status).SubscriptionId(subscriptionId).Execute()
 
 List invoices
 
@@ -113,6 +113,7 @@ func main() {
 	customerId := "customerId_example" // string |  (optional)
 	endTime := "endTime_example" // string |  (optional)
 	expand := "expand_example" // string |  (optional)
+	invoiceIds := []string{"Inner_example"} // []string |  (optional)
 	invoiceStatus := []string{"InvoiceStatus_example"} // []string |  (optional)
 	invoiceType := "invoiceType_example" // string |  (optional)
 	limit := int32(56) // int32 |  (optional)
@@ -126,7 +127,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.InvoicesAPI.InvoicesGet(context.Background()).AmountDueGt(amountDueGt).AmountRemainingGt(amountRemainingGt).CustomerId(customerId).EndTime(endTime).Expand(expand).InvoiceStatus(invoiceStatus).InvoiceType(invoiceType).Limit(limit).Offset(offset).Order(order).PaymentStatus(paymentStatus).Sort(sort).StartTime(startTime).Status(status).SubscriptionId(subscriptionId).Execute()
+	resp, r, err := apiClient.InvoicesAPI.InvoicesGet(context.Background()).AmountDueGt(amountDueGt).AmountRemainingGt(amountRemainingGt).CustomerId(customerId).EndTime(endTime).Expand(expand).InvoiceIds(invoiceIds).InvoiceStatus(invoiceStatus).InvoiceType(invoiceType).Limit(limit).Offset(offset).Order(order).PaymentStatus(paymentStatus).Sort(sort).StartTime(startTime).Status(status).SubscriptionId(subscriptionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InvoicesAPI.InvoicesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -152,6 +153,7 @@ Name | Type | Description  | Notes
  **customerId** | **string** |  | 
  **endTime** | **string** |  | 
  **expand** | **string** |  | 
+ **invoiceIds** | **[]string** |  | 
  **invoiceStatus** | **[]string** |  | 
  **invoiceType** | **string** |  | 
  **limit** | **int32** |  | 
@@ -465,7 +467,7 @@ Name | Type | Description  | Notes
 
 ## InvoicesIdPdfGet
 
-> *os.File InvoicesIdPdfGet(ctx, id).Execute()
+> *os.File InvoicesIdPdfGet(ctx, id).Url(url).Execute()
 
 Get PDF for an invoice
 
@@ -485,10 +487,11 @@ import (
 
 func main() {
 	id := "id_example" // string | Invoice ID
+	url := true // bool | Return presigned URL from s3 instead of PDF (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.InvoicesAPI.InvoicesIdPdfGet(context.Background(), id).Execute()
+	resp, r, err := apiClient.InvoicesAPI.InvoicesIdPdfGet(context.Background(), id).Url(url).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InvoicesAPI.InvoicesIdPdfGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -514,6 +517,7 @@ Other parameters are passed through a pointer to a apiInvoicesIdPdfGetRequest st
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **url** | **bool** | Return presigned URL from s3 instead of PDF | 
 
 ### Return type
 

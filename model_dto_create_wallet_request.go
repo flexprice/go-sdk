@@ -25,10 +25,15 @@ type DtoCreateWalletRequest struct {
 	AutoTopupMinBalance *float32 `json:"auto_topup_min_balance,omitempty"`
 	AutoTopupTrigger *TypesAutoTopupTrigger `json:"auto_topup_trigger,omitempty"`
 	Config *TypesWalletConfig `json:"config,omitempty"`
+	// amount in the currency =  number of credits * conversion_rate ex if conversion_rate is 1, then 1 USD = 1 credit ex if conversion_rate is 2, then 1 USD = 0.5 credits ex if conversion_rate is 0.5, then 1 USD = 2 credits
 	ConversionRate *float32 `json:"conversion_rate,omitempty"`
 	Currency string `json:"currency"`
 	CustomerId string `json:"customer_id"`
 	Description *string `json:"description,omitempty"`
+	// initial_credits_to_load is the number of credits to load to the wallet if not provided, the wallet will be created with 0 balance NOTE: this is not the amount in the currency, but the number of credits
+	InitialCreditsToLoad *float32 `json:"initial_credits_to_load,omitempty"`
+	// initial_credits_to_load_expiry_date YYYYMMDD format in UTC timezone (optional to set nil means no expiry) for ex 20250101 means the credits will expire on 2025-01-01 00:00:00 UTC hence they will be available for use until 2024-12-31 23:59:59 UTC
+	InitialCreditsToLoadExpiryDate *int32 `json:"initial_credits_to_load_expiry_date,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	Name *string `json:"name,omitempty"`
 	WalletType *TypesWalletType `json:"wallet_type,omitempty"`
@@ -295,6 +300,70 @@ func (o *DtoCreateWalletRequest) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetInitialCreditsToLoad returns the InitialCreditsToLoad field value if set, zero value otherwise.
+func (o *DtoCreateWalletRequest) GetInitialCreditsToLoad() float32 {
+	if o == nil || IsNil(o.InitialCreditsToLoad) {
+		var ret float32
+		return ret
+	}
+	return *o.InitialCreditsToLoad
+}
+
+// GetInitialCreditsToLoadOk returns a tuple with the InitialCreditsToLoad field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateWalletRequest) GetInitialCreditsToLoadOk() (*float32, bool) {
+	if o == nil || IsNil(o.InitialCreditsToLoad) {
+		return nil, false
+	}
+	return o.InitialCreditsToLoad, true
+}
+
+// HasInitialCreditsToLoad returns a boolean if a field has been set.
+func (o *DtoCreateWalletRequest) HasInitialCreditsToLoad() bool {
+	if o != nil && !IsNil(o.InitialCreditsToLoad) {
+		return true
+	}
+
+	return false
+}
+
+// SetInitialCreditsToLoad gets a reference to the given float32 and assigns it to the InitialCreditsToLoad field.
+func (o *DtoCreateWalletRequest) SetInitialCreditsToLoad(v float32) {
+	o.InitialCreditsToLoad = &v
+}
+
+// GetInitialCreditsToLoadExpiryDate returns the InitialCreditsToLoadExpiryDate field value if set, zero value otherwise.
+func (o *DtoCreateWalletRequest) GetInitialCreditsToLoadExpiryDate() int32 {
+	if o == nil || IsNil(o.InitialCreditsToLoadExpiryDate) {
+		var ret int32
+		return ret
+	}
+	return *o.InitialCreditsToLoadExpiryDate
+}
+
+// GetInitialCreditsToLoadExpiryDateOk returns a tuple with the InitialCreditsToLoadExpiryDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateWalletRequest) GetInitialCreditsToLoadExpiryDateOk() (*int32, bool) {
+	if o == nil || IsNil(o.InitialCreditsToLoadExpiryDate) {
+		return nil, false
+	}
+	return o.InitialCreditsToLoadExpiryDate, true
+}
+
+// HasInitialCreditsToLoadExpiryDate returns a boolean if a field has been set.
+func (o *DtoCreateWalletRequest) HasInitialCreditsToLoadExpiryDate() bool {
+	if o != nil && !IsNil(o.InitialCreditsToLoadExpiryDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetInitialCreditsToLoadExpiryDate gets a reference to the given int32 and assigns it to the InitialCreditsToLoadExpiryDate field.
+func (o *DtoCreateWalletRequest) SetInitialCreditsToLoadExpiryDate(v int32) {
+	o.InitialCreditsToLoadExpiryDate = &v
+}
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *DtoCreateWalletRequest) GetMetadata() map[string]string {
 	if o == nil || IsNil(o.Metadata) {
@@ -420,6 +489,12 @@ func (o DtoCreateWalletRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["customer_id"] = o.CustomerId
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.InitialCreditsToLoad) {
+		toSerialize["initial_credits_to_load"] = o.InitialCreditsToLoad
+	}
+	if !IsNil(o.InitialCreditsToLoadExpiryDate) {
+		toSerialize["initial_credits_to_load_expiry_date"] = o.InitialCreditsToLoadExpiryDate
 	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata

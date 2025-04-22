@@ -24,6 +24,7 @@ type DtoSubscriptionResponse struct {
 	// BillingAnchor is the reference point that aligns future billing cycle dates. It sets the day of week for week intervals, the day of month for month and year intervals, and the month of year for year intervals. The timestamp is in UTC format.
 	BillingAnchor *string `json:"billing_anchor,omitempty"`
 	BillingCadence *TypesBillingCadence `json:"billing_cadence,omitempty"`
+	BillingCycle *TypesBillingCycle `json:"billing_cycle,omitempty"`
 	BillingPeriod *TypesBillingPeriod `json:"billing_period,omitempty"`
 	// BillingPeriodCount is the total number units of the billing period.
 	BillingPeriodCount *int32 `json:"billing_period_count,omitempty"`
@@ -185,6 +186,38 @@ func (o *DtoSubscriptionResponse) HasBillingCadence() bool {
 // SetBillingCadence gets a reference to the given TypesBillingCadence and assigns it to the BillingCadence field.
 func (o *DtoSubscriptionResponse) SetBillingCadence(v TypesBillingCadence) {
 	o.BillingCadence = &v
+}
+
+// GetBillingCycle returns the BillingCycle field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetBillingCycle() TypesBillingCycle {
+	if o == nil || IsNil(o.BillingCycle) {
+		var ret TypesBillingCycle
+		return ret
+	}
+	return *o.BillingCycle
+}
+
+// GetBillingCycleOk returns a tuple with the BillingCycle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetBillingCycleOk() (*TypesBillingCycle, bool) {
+	if o == nil || IsNil(o.BillingCycle) {
+		return nil, false
+	}
+	return o.BillingCycle, true
+}
+
+// HasBillingCycle returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasBillingCycle() bool {
+	if o != nil && !IsNil(o.BillingCycle) {
+		return true
+	}
+
+	return false
+}
+
+// SetBillingCycle gets a reference to the given TypesBillingCycle and assigns it to the BillingCycle field.
+func (o *DtoSubscriptionResponse) SetBillingCycle(v TypesBillingCycle) {
+	o.BillingCycle = &v
 }
 
 // GetBillingPeriod returns the BillingPeriod field value if set, zero value otherwise.
@@ -1197,6 +1230,9 @@ func (o DtoSubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.BillingCadence) {
 		toSerialize["billing_cadence"] = o.BillingCadence
+	}
+	if !IsNil(o.BillingCycle) {
+		toSerialize["billing_cycle"] = o.BillingCycle
 	}
 	if !IsNil(o.BillingPeriod) {
 		toSerialize["billing_period"] = o.BillingPeriod

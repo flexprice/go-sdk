@@ -19,16 +19,27 @@ var _ MappedNullable = &DtoGetEventsRequest{}
 
 // DtoGetEventsRequest struct for DtoGetEventsRequest
 type DtoGetEventsRequest struct {
-	CountTotal *bool `json:"count_total,omitempty"`
+	// End time of the events to be fetched in ISO 8601 format Defaults to now if not provided
 	EndTime *string `json:"end_time,omitempty"`
+	// Event ID is the idempotency key for the event
 	EventId *string `json:"event_id,omitempty"`
+	// Event name / Unique identifier for the event in your system
 	EventName *string `json:"event_name,omitempty"`
+	// Customer ID in your system that was sent with the event
 	ExternalCustomerId *string `json:"external_customer_id,omitempty"`
+	// First key to iterate over the events
 	IterFirstKey *string `json:"iter_first_key,omitempty"`
+	// Last key to iterate over the events
 	IterLastKey *string `json:"iter_last_key,omitempty"`
+	// Offset to fetch the events and is set to 0 by default
 	Offset *int32 `json:"offset,omitempty"`
+	// Page size to fetch the events and is set to 50 by default
 	PageSize *int32 `json:"page_size,omitempty"`
+	// Property filters to filter the events by the keys in `properties` field of the event
 	PropertyFilters *map[string][]string `json:"property_filters,omitempty"`
+	// Source to filter the events by the source
+	Source *string `json:"source,omitempty"`
+	// Start time of the events to be fetched in ISO 8601 format Defaults to last 7 days from now if not provided
 	StartTime *string `json:"start_time,omitempty"`
 }
 
@@ -47,38 +58,6 @@ func NewDtoGetEventsRequest() *DtoGetEventsRequest {
 func NewDtoGetEventsRequestWithDefaults() *DtoGetEventsRequest {
 	this := DtoGetEventsRequest{}
 	return &this
-}
-
-// GetCountTotal returns the CountTotal field value if set, zero value otherwise.
-func (o *DtoGetEventsRequest) GetCountTotal() bool {
-	if o == nil || IsNil(o.CountTotal) {
-		var ret bool
-		return ret
-	}
-	return *o.CountTotal
-}
-
-// GetCountTotalOk returns a tuple with the CountTotal field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoGetEventsRequest) GetCountTotalOk() (*bool, bool) {
-	if o == nil || IsNil(o.CountTotal) {
-		return nil, false
-	}
-	return o.CountTotal, true
-}
-
-// HasCountTotal returns a boolean if a field has been set.
-func (o *DtoGetEventsRequest) HasCountTotal() bool {
-	if o != nil && !IsNil(o.CountTotal) {
-		return true
-	}
-
-	return false
-}
-
-// SetCountTotal gets a reference to the given bool and assigns it to the CountTotal field.
-func (o *DtoGetEventsRequest) SetCountTotal(v bool) {
-	o.CountTotal = &v
 }
 
 // GetEndTime returns the EndTime field value if set, zero value otherwise.
@@ -369,6 +348,38 @@ func (o *DtoGetEventsRequest) SetPropertyFilters(v map[string][]string) {
 	o.PropertyFilters = &v
 }
 
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *DtoGetEventsRequest) GetSource() string {
+	if o == nil || IsNil(o.Source) {
+		var ret string
+		return ret
+	}
+	return *o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetEventsRequest) GetSourceOk() (*string, bool) {
+	if o == nil || IsNil(o.Source) {
+		return nil, false
+	}
+	return o.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *DtoGetEventsRequest) HasSource() bool {
+	if o != nil && !IsNil(o.Source) {
+		return true
+	}
+
+	return false
+}
+
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *DtoGetEventsRequest) SetSource(v string) {
+	o.Source = &v
+}
+
 // GetStartTime returns the StartTime field value if set, zero value otherwise.
 func (o *DtoGetEventsRequest) GetStartTime() string {
 	if o == nil || IsNil(o.StartTime) {
@@ -411,9 +422,6 @@ func (o DtoGetEventsRequest) MarshalJSON() ([]byte, error) {
 
 func (o DtoGetEventsRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.CountTotal) {
-		toSerialize["count_total"] = o.CountTotal
-	}
 	if !IsNil(o.EndTime) {
 		toSerialize["end_time"] = o.EndTime
 	}
@@ -440,6 +448,9 @@ func (o DtoGetEventsRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PropertyFilters) {
 		toSerialize["property_filters"] = o.PropertyFilters
+	}
+	if !IsNil(o.Source) {
+		toSerialize["source"] = o.Source
 	}
 	if !IsNil(o.StartTime) {
 		toSerialize["start_time"] = o.StartTime

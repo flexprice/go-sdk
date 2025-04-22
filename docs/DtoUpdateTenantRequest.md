@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BillingDetails** | Pointer to [**DtoTenantBillingDetails**](DtoTenantBillingDetails.md) |  | [optional] 
+**Name** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -49,6 +50,31 @@ SetBillingDetails sets BillingDetails field to given value.
 `func (o *DtoUpdateTenantRequest) HasBillingDetails() bool`
 
 HasBillingDetails returns a boolean if a field has been set.
+
+### GetName
+
+`func (o *DtoUpdateTenantRequest) GetName() string`
+
+GetName returns the Name field if non-nil, zero value otherwise.
+
+### GetNameOk
+
+`func (o *DtoUpdateTenantRequest) GetNameOk() (*string, bool)`
+
+GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetName
+
+`func (o *DtoUpdateTenantRequest) SetName(v string)`
+
+SetName sets Name field to given value.
+
+### HasName
+
+`func (o *DtoUpdateTenantRequest) HasName() bool`
+
+HasName returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

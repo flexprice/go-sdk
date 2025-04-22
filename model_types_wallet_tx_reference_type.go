@@ -20,7 +20,6 @@ type TypesWalletTxReferenceType string
 
 // List of types.WalletTxReferenceType
 const (
-	TYPESWALLETTXREFERENCETYPE_WalletTxReferenceTypeInvoice TypesWalletTxReferenceType = "INVOICE"
 	TYPESWALLETTXREFERENCETYPE_WalletTxReferenceTypePayment TypesWalletTxReferenceType = "PAYMENT"
 	TYPESWALLETTXREFERENCETYPE_WalletTxReferenceTypeExternal TypesWalletTxReferenceType = "EXTERNAL"
 	TYPESWALLETTXREFERENCETYPE_WalletTxReferenceTypeRequest TypesWalletTxReferenceType = "REQUEST"
@@ -28,7 +27,6 @@ const (
 
 // All allowed values of TypesWalletTxReferenceType enum
 var AllowedTypesWalletTxReferenceTypeEnumValues = []TypesWalletTxReferenceType{
-	"INVOICE",
 	"PAYMENT",
 	"EXTERNAL",
 	"REQUEST",

@@ -4,20 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | **float32** | amount is the number of credits to add to the wallet | 
+**Amount** | Pointer to **float32** | amount is the amount in the currency of the wallet to be added NOTE: this is not the number of credits to add, but the amount in the currency amount &#x3D; credits_to_add * conversion_rate if both amount and credits_to_add are provided, amount will be ignored ex if the wallet has a conversion_rate of 2 then adding an amount of 10 USD in the wallet wil add 5 credits in the wallet | [optional] 
+**CreditsToAdd** | Pointer to **float32** | credits_to_add is the number of credits to add to the wallet | [optional] 
 **Description** | Pointer to **string** | description to add any specific details about the transaction | [optional] 
-**ExpiryDate** | Pointer to **int32** | expiry_date YYYYMMDD format in UTC timezone (optional to set nil means no expiry) for ex 20250101 means the credits will expire on 2025-01-01 00:00:00 UTC hence they will be available for use until 2024-12-31 23:59:59 UTC | [optional] 
-**GenerateInvoice** | Pointer to **bool** | generate_invoice when true, an invoice will be generated for the transaction | [optional] 
+**ExpiryDateUtc** | Pointer to **string** | expiry_date_utc is the expiry date in UTC timezone ex 2025-01-01 00:00:00 UTC | [optional] 
+**IdempotencyKey** | **string** | idempotency_key is a unique key for the transaction | 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
-**PurchasedCredits** | Pointer to **bool** | purchased_credits when true, the credits are added as purchased credits | [optional] 
-**ReferenceId** | Pointer to **string** | reference_id is the ID of the reference ex payment ID, invoice ID, request ID | [optional] 
-**ReferenceType** | Pointer to **string** | reference_type is the type of the reference ex payment, invoice, request | [optional] 
+**TransactionReason** | [**TypesTransactionReason**](TypesTransactionReason.md) |  | 
 
 ## Methods
 
 ### NewDtoTopUpWalletRequest
 
-`func NewDtoTopUpWalletRequest(amount float32, ) *DtoTopUpWalletRequest`
+`func NewDtoTopUpWalletRequest(idempotencyKey string, transactionReason TypesTransactionReason, ) *DtoTopUpWalletRequest`
 
 NewDtoTopUpWalletRequest instantiates a new DtoTopUpWalletRequest object
 This constructor will assign default values to properties that have it defined,
@@ -51,6 +50,36 @@ and a boolean to check if the value has been set.
 
 SetAmount sets Amount field to given value.
 
+### HasAmount
+
+`func (o *DtoTopUpWalletRequest) HasAmount() bool`
+
+HasAmount returns a boolean if a field has been set.
+
+### GetCreditsToAdd
+
+`func (o *DtoTopUpWalletRequest) GetCreditsToAdd() float32`
+
+GetCreditsToAdd returns the CreditsToAdd field if non-nil, zero value otherwise.
+
+### GetCreditsToAddOk
+
+`func (o *DtoTopUpWalletRequest) GetCreditsToAddOk() (*float32, bool)`
+
+GetCreditsToAddOk returns a tuple with the CreditsToAdd field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreditsToAdd
+
+`func (o *DtoTopUpWalletRequest) SetCreditsToAdd(v float32)`
+
+SetCreditsToAdd sets CreditsToAdd field to given value.
+
+### HasCreditsToAdd
+
+`func (o *DtoTopUpWalletRequest) HasCreditsToAdd() bool`
+
+HasCreditsToAdd returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -77,55 +106,50 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
-### GetExpiryDate
+### GetExpiryDateUtc
 
-`func (o *DtoTopUpWalletRequest) GetExpiryDate() int32`
+`func (o *DtoTopUpWalletRequest) GetExpiryDateUtc() string`
 
-GetExpiryDate returns the ExpiryDate field if non-nil, zero value otherwise.
+GetExpiryDateUtc returns the ExpiryDateUtc field if non-nil, zero value otherwise.
 
-### GetExpiryDateOk
+### GetExpiryDateUtcOk
 
-`func (o *DtoTopUpWalletRequest) GetExpiryDateOk() (*int32, bool)`
+`func (o *DtoTopUpWalletRequest) GetExpiryDateUtcOk() (*string, bool)`
 
-GetExpiryDateOk returns a tuple with the ExpiryDate field if it's non-nil, zero value otherwise
+GetExpiryDateUtcOk returns a tuple with the ExpiryDateUtc field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetExpiryDate
+### SetExpiryDateUtc
 
-`func (o *DtoTopUpWalletRequest) SetExpiryDate(v int32)`
+`func (o *DtoTopUpWalletRequest) SetExpiryDateUtc(v string)`
 
-SetExpiryDate sets ExpiryDate field to given value.
+SetExpiryDateUtc sets ExpiryDateUtc field to given value.
 
-### HasExpiryDate
+### HasExpiryDateUtc
 
-`func (o *DtoTopUpWalletRequest) HasExpiryDate() bool`
+`func (o *DtoTopUpWalletRequest) HasExpiryDateUtc() bool`
 
-HasExpiryDate returns a boolean if a field has been set.
+HasExpiryDateUtc returns a boolean if a field has been set.
 
-### GetGenerateInvoice
+### GetIdempotencyKey
 
-`func (o *DtoTopUpWalletRequest) GetGenerateInvoice() bool`
+`func (o *DtoTopUpWalletRequest) GetIdempotencyKey() string`
 
-GetGenerateInvoice returns the GenerateInvoice field if non-nil, zero value otherwise.
+GetIdempotencyKey returns the IdempotencyKey field if non-nil, zero value otherwise.
 
-### GetGenerateInvoiceOk
+### GetIdempotencyKeyOk
 
-`func (o *DtoTopUpWalletRequest) GetGenerateInvoiceOk() (*bool, bool)`
+`func (o *DtoTopUpWalletRequest) GetIdempotencyKeyOk() (*string, bool)`
 
-GetGenerateInvoiceOk returns a tuple with the GenerateInvoice field if it's non-nil, zero value otherwise
+GetIdempotencyKeyOk returns a tuple with the IdempotencyKey field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetGenerateInvoice
+### SetIdempotencyKey
 
-`func (o *DtoTopUpWalletRequest) SetGenerateInvoice(v bool)`
+`func (o *DtoTopUpWalletRequest) SetIdempotencyKey(v string)`
 
-SetGenerateInvoice sets GenerateInvoice field to given value.
+SetIdempotencyKey sets IdempotencyKey field to given value.
 
-### HasGenerateInvoice
-
-`func (o *DtoTopUpWalletRequest) HasGenerateInvoice() bool`
-
-HasGenerateInvoice returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -152,80 +176,25 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
-### GetPurchasedCredits
+### GetTransactionReason
 
-`func (o *DtoTopUpWalletRequest) GetPurchasedCredits() bool`
+`func (o *DtoTopUpWalletRequest) GetTransactionReason() TypesTransactionReason`
 
-GetPurchasedCredits returns the PurchasedCredits field if non-nil, zero value otherwise.
+GetTransactionReason returns the TransactionReason field if non-nil, zero value otherwise.
 
-### GetPurchasedCreditsOk
+### GetTransactionReasonOk
 
-`func (o *DtoTopUpWalletRequest) GetPurchasedCreditsOk() (*bool, bool)`
+`func (o *DtoTopUpWalletRequest) GetTransactionReasonOk() (*TypesTransactionReason, bool)`
 
-GetPurchasedCreditsOk returns a tuple with the PurchasedCredits field if it's non-nil, zero value otherwise
+GetTransactionReasonOk returns a tuple with the TransactionReason field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPurchasedCredits
+### SetTransactionReason
 
-`func (o *DtoTopUpWalletRequest) SetPurchasedCredits(v bool)`
+`func (o *DtoTopUpWalletRequest) SetTransactionReason(v TypesTransactionReason)`
 
-SetPurchasedCredits sets PurchasedCredits field to given value.
+SetTransactionReason sets TransactionReason field to given value.
 
-### HasPurchasedCredits
-
-`func (o *DtoTopUpWalletRequest) HasPurchasedCredits() bool`
-
-HasPurchasedCredits returns a boolean if a field has been set.
-
-### GetReferenceId
-
-`func (o *DtoTopUpWalletRequest) GetReferenceId() string`
-
-GetReferenceId returns the ReferenceId field if non-nil, zero value otherwise.
-
-### GetReferenceIdOk
-
-`func (o *DtoTopUpWalletRequest) GetReferenceIdOk() (*string, bool)`
-
-GetReferenceIdOk returns a tuple with the ReferenceId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReferenceId
-
-`func (o *DtoTopUpWalletRequest) SetReferenceId(v string)`
-
-SetReferenceId sets ReferenceId field to given value.
-
-### HasReferenceId
-
-`func (o *DtoTopUpWalletRequest) HasReferenceId() bool`
-
-HasReferenceId returns a boolean if a field has been set.
-
-### GetReferenceType
-
-`func (o *DtoTopUpWalletRequest) GetReferenceType() string`
-
-GetReferenceType returns the ReferenceType field if non-nil, zero value otherwise.
-
-### GetReferenceTypeOk
-
-`func (o *DtoTopUpWalletRequest) GetReferenceTypeOk() (*string, bool)`
-
-GetReferenceTypeOk returns a tuple with the ReferenceType field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetReferenceType
-
-`func (o *DtoTopUpWalletRequest) SetReferenceType(v string)`
-
-SetReferenceType sets ReferenceType field to given value.
-
-### HasReferenceType
-
-`func (o *DtoTopUpWalletRequest) HasReferenceType() bool`
-
-HasReferenceType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

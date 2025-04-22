@@ -17,7 +17,7 @@ Method | HTTP request | Description
 
 ## SubscriptionsGet
 
-> DtoListSubscriptionsResponse SubscriptionsGet(ctx).ActiveAt(activeAt).BillingCadence(billingCadence).BillingPeriod(billingPeriod).CustomerId(customerId).EndTime(endTime).Expand(expand).IncludeCanceled(includeCanceled).Limit(limit).Offset(offset).Order(order).PlanId(planId).Sort(sort).StartTime(startTime).Status(status).SubscriptionStatus(subscriptionStatus).WithLineItems(withLineItems).Execute()
+> DtoListSubscriptionsResponse SubscriptionsGet(ctx).ActiveAt(activeAt).BillingCadence(billingCadence).BillingPeriod(billingPeriod).CustomerId(customerId).EndTime(endTime).Expand(expand).Limit(limit).Offset(offset).Order(order).PlanId(planId).Sort(sort).StartTime(startTime).Status(status).SubscriptionStatus(subscriptionStatus).WithLineItems(withLineItems).Execute()
 
 List subscriptions
 
@@ -42,7 +42,6 @@ func main() {
 	customerId := "customerId_example" // string | CustomerID filters by customer ID (optional)
 	endTime := "endTime_example" // string |  (optional)
 	expand := "expand_example" // string |  (optional)
-	includeCanceled := true // bool | IncludeCanceled includes canceled subscriptions if true (optional)
 	limit := int32(56) // int32 |  (optional)
 	offset := int32(56) // int32 |  (optional)
 	order := "order_example" // string |  (optional)
@@ -55,7 +54,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubscriptionsAPI.SubscriptionsGet(context.Background()).ActiveAt(activeAt).BillingCadence(billingCadence).BillingPeriod(billingPeriod).CustomerId(customerId).EndTime(endTime).Expand(expand).IncludeCanceled(includeCanceled).Limit(limit).Offset(offset).Order(order).PlanId(planId).Sort(sort).StartTime(startTime).Status(status).SubscriptionStatus(subscriptionStatus).WithLineItems(withLineItems).Execute()
+	resp, r, err := apiClient.SubscriptionsAPI.SubscriptionsGet(context.Background()).ActiveAt(activeAt).BillingCadence(billingCadence).BillingPeriod(billingPeriod).CustomerId(customerId).EndTime(endTime).Expand(expand).Limit(limit).Offset(offset).Order(order).PlanId(planId).Sort(sort).StartTime(startTime).Status(status).SubscriptionStatus(subscriptionStatus).WithLineItems(withLineItems).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -82,7 +81,6 @@ Name | Type | Description  | Notes
  **customerId** | **string** | CustomerID filters by customer ID | 
  **endTime** | **string** |  | 
  **expand** | **string** |  | 
- **includeCanceled** | **bool** | IncludeCanceled includes canceled subscriptions if true | 
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
  **order** | **string** |  | 

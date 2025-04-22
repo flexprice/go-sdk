@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Description** | Pointer to **string** |  | [optional] 
 **LookupKey** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
+**Meter** | Pointer to [**DtoCreateMeterRequest**](DtoCreateMeterRequest.md) |  | [optional] 
 **MeterId** | Pointer to **string** |  | [optional] 
 **Name** | **string** |  | 
 **Type** | [**TypesFeatureType**](TypesFeatureType.md) |  | 
@@ -106,6 +107,31 @@ SetMetadata sets Metadata field to given value.
 `func (o *DtoCreateFeatureRequest) HasMetadata() bool`
 
 HasMetadata returns a boolean if a field has been set.
+
+### GetMeter
+
+`func (o *DtoCreateFeatureRequest) GetMeter() DtoCreateMeterRequest`
+
+GetMeter returns the Meter field if non-nil, zero value otherwise.
+
+### GetMeterOk
+
+`func (o *DtoCreateFeatureRequest) GetMeterOk() (*DtoCreateMeterRequest, bool)`
+
+GetMeterOk returns a tuple with the Meter field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMeter
+
+`func (o *DtoCreateFeatureRequest) SetMeter(v DtoCreateMeterRequest)`
+
+SetMeter sets Meter field to given value.
+
+### HasMeter
+
+`func (o *DtoCreateFeatureRequest) HasMeter() bool`
+
+HasMeter returns a boolean if a field has been set.
 
 ### GetMeterId
 

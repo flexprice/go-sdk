@@ -20,6 +20,7 @@ var _ MappedNullable = &DtoUpdateTenantRequest{}
 // DtoUpdateTenantRequest struct for DtoUpdateTenantRequest
 type DtoUpdateTenantRequest struct {
 	BillingDetails *DtoTenantBillingDetails `json:"billing_details,omitempty"`
+	Name *string `json:"name,omitempty"`
 }
 
 // NewDtoUpdateTenantRequest instantiates a new DtoUpdateTenantRequest object
@@ -71,6 +72,38 @@ func (o *DtoUpdateTenantRequest) SetBillingDetails(v DtoTenantBillingDetails) {
 	o.BillingDetails = &v
 }
 
+// GetName returns the Name field value if set, zero value otherwise.
+func (o *DtoUpdateTenantRequest) GetName() string {
+	if o == nil || IsNil(o.Name) {
+		var ret string
+		return ret
+	}
+	return *o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdateTenantRequest) GetNameOk() (*string, bool) {
+	if o == nil || IsNil(o.Name) {
+		return nil, false
+	}
+	return o.Name, true
+}
+
+// HasName returns a boolean if a field has been set.
+func (o *DtoUpdateTenantRequest) HasName() bool {
+	if o != nil && !IsNil(o.Name) {
+		return true
+	}
+
+	return false
+}
+
+// SetName gets a reference to the given string and assigns it to the Name field.
+func (o *DtoUpdateTenantRequest) SetName(v string) {
+	o.Name = &v
+}
+
 func (o DtoUpdateTenantRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -83,6 +116,9 @@ func (o DtoUpdateTenantRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.BillingDetails) {
 		toSerialize["billing_details"] = o.BillingDetails
+	}
+	if !IsNil(o.Name) {
+		toSerialize["name"] = o.Name
 	}
 	return toSerialize, nil
 }

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BillingCadence** | [**TypesBillingCadence**](TypesBillingCadence.md) |  | 
+**BillingCycle** | Pointer to [**TypesBillingCycle**](TypesBillingCycle.md) |  | [optional] 
 **BillingPeriod** | [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | 
 **BillingPeriodCount** | **int32** |  | 
 **Currency** | **string** |  | 
@@ -55,6 +56,31 @@ and a boolean to check if the value has been set.
 
 SetBillingCadence sets BillingCadence field to given value.
 
+
+### GetBillingCycle
+
+`func (o *DtoCreateSubscriptionRequest) GetBillingCycle() TypesBillingCycle`
+
+GetBillingCycle returns the BillingCycle field if non-nil, zero value otherwise.
+
+### GetBillingCycleOk
+
+`func (o *DtoCreateSubscriptionRequest) GetBillingCycleOk() (*TypesBillingCycle, bool)`
+
+GetBillingCycleOk returns a tuple with the BillingCycle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBillingCycle
+
+`func (o *DtoCreateSubscriptionRequest) SetBillingCycle(v TypesBillingCycle)`
+
+SetBillingCycle sets BillingCycle field to given value.
+
+### HasBillingCycle
+
+`func (o *DtoCreateSubscriptionRequest) HasBillingCycle() bool`
+
+HasBillingCycle returns a boolean if a field has been set.
 
 ### GetBillingPeriod
 

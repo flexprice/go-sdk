@@ -22,6 +22,7 @@ var _ MappedNullable = &DtoCreateSubscriptionRequest{}
 // DtoCreateSubscriptionRequest struct for DtoCreateSubscriptionRequest
 type DtoCreateSubscriptionRequest struct {
 	BillingCadence TypesBillingCadence `json:"billing_cadence"`
+	BillingCycle *TypesBillingCycle `json:"billing_cycle,omitempty"`
 	BillingPeriod TypesBillingPeriod `json:"billing_period"`
 	BillingPeriodCount int32 `json:"billing_period_count"`
 	Currency string `json:"currency"`
@@ -83,6 +84,38 @@ func (o *DtoCreateSubscriptionRequest) GetBillingCadenceOk() (*TypesBillingCaden
 // SetBillingCadence sets field value
 func (o *DtoCreateSubscriptionRequest) SetBillingCadence(v TypesBillingCadence) {
 	o.BillingCadence = v
+}
+
+// GetBillingCycle returns the BillingCycle field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetBillingCycle() TypesBillingCycle {
+	if o == nil || IsNil(o.BillingCycle) {
+		var ret TypesBillingCycle
+		return ret
+	}
+	return *o.BillingCycle
+}
+
+// GetBillingCycleOk returns a tuple with the BillingCycle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetBillingCycleOk() (*TypesBillingCycle, bool) {
+	if o == nil || IsNil(o.BillingCycle) {
+		return nil, false
+	}
+	return o.BillingCycle, true
+}
+
+// HasBillingCycle returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasBillingCycle() bool {
+	if o != nil && !IsNil(o.BillingCycle) {
+		return true
+	}
+
+	return false
+}
+
+// SetBillingCycle gets a reference to the given TypesBillingCycle and assigns it to the BillingCycle field.
+func (o *DtoCreateSubscriptionRequest) SetBillingCycle(v TypesBillingCycle) {
+	o.BillingCycle = &v
 }
 
 // GetBillingPeriod returns the BillingPeriod field value
@@ -400,6 +433,9 @@ func (o DtoCreateSubscriptionRequest) MarshalJSON() ([]byte, error) {
 func (o DtoCreateSubscriptionRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["billing_cadence"] = o.BillingCadence
+	if !IsNil(o.BillingCycle) {
+		toSerialize["billing_cycle"] = o.BillingCycle
+	}
 	toSerialize["billing_period"] = o.BillingPeriod
 	toSerialize["billing_period_count"] = o.BillingPeriodCount
 	toSerialize["currency"] = o.Currency

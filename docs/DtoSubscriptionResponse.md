@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **ActivePauseId** | Pointer to **string** | ActivePauseID references the current active pause configuration This will be null if no pause is active or scheduled | [optional] 
 **BillingAnchor** | Pointer to **string** | BillingAnchor is the reference point that aligns future billing cycle dates. It sets the day of week for week intervals, the day of month for month and year intervals, and the month of year for year intervals. The timestamp is in UTC format. | [optional] 
 **BillingCadence** | Pointer to [**TypesBillingCadence**](TypesBillingCadence.md) |  | [optional] 
+**BillingCycle** | Pointer to [**TypesBillingCycle**](TypesBillingCycle.md) |  | [optional] 
 **BillingPeriod** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
 **BillingPeriodCount** | Pointer to **int32** | BillingPeriodCount is the total number units of the billing period. | [optional] 
 **CancelAt** | Pointer to **string** | CancelAt is the date the subscription will be canceled | [optional] 
@@ -132,6 +133,31 @@ SetBillingCadence sets BillingCadence field to given value.
 `func (o *DtoSubscriptionResponse) HasBillingCadence() bool`
 
 HasBillingCadence returns a boolean if a field has been set.
+
+### GetBillingCycle
+
+`func (o *DtoSubscriptionResponse) GetBillingCycle() TypesBillingCycle`
+
+GetBillingCycle returns the BillingCycle field if non-nil, zero value otherwise.
+
+### GetBillingCycleOk
+
+`func (o *DtoSubscriptionResponse) GetBillingCycleOk() (*TypesBillingCycle, bool)`
+
+GetBillingCycleOk returns a tuple with the BillingCycle field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBillingCycle
+
+`func (o *DtoSubscriptionResponse) SetBillingCycle(v TypesBillingCycle)`
+
+SetBillingCycle sets BillingCycle field to given value.
+
+### HasBillingCycle
+
+`func (o *DtoSubscriptionResponse) HasBillingCycle() bool`
+
+HasBillingCycle returns a boolean if a field has been set.
 
 ### GetBillingPeriod
 
