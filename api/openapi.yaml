@@ -131,13 +131,6 @@ paths:
         style: form
       - explode: true
         in: query
-        name: sort
-        required: false
-        schema:
-          type: string
-        style: form
-      - explode: true
-        in: query
         name: start_time
         required: false
         schema:
@@ -262,6 +255,41 @@ paths:
       summary: Get a customer by lookup key
       tags:
       - Customers
+  /customers/search:
+    post:
+      description: List customers by filter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/types.CustomerFilter'
+        description: Filter
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dto.ListCustomersResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors.ErrorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors.ErrorResponse'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: List customers by filter
+      tags:
+      - Customers
+      x-codegen-request-body-name: filter
   /customers/wallets:
     get:
       description: Get all wallets for a customer by lookup key or id
@@ -1152,6 +1180,42 @@ paths:
       tags:
       - Events
       x-codegen-request-body-name: event
+  /events/analytics:
+    post:
+      description: "Retrieve comprehensive usage analytics with filtering, grouping,\
+        \ and time-series data"
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/dto.GetUsageAnalyticsRequest'
+        description: Request body
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dto.GetUsageAnalyticsResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors.ErrorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors.ErrorResponse'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: Get usage analytics
+      tags:
+      - Events
+      x-codegen-request-body-name: request
   /events/bulk:
     post:
       description: Ingest bulk events into the system
@@ -1355,6 +1419,13 @@ paths:
         style: form
       - explode: true
         in: query
+        name: name_contains
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
         name: offset
         required: false
         schema:
@@ -1369,13 +1440,6 @@ paths:
           enum:
           - asc
           - desc
-          type: string
-        style: form
-      - explode: true
-        in: query
-        name: sort
-        required: false
-        schema:
           type: string
         style: form
       - explode: true
@@ -1462,6 +1526,41 @@ paths:
       tags:
       - Features
       x-codegen-request-body-name: feature
+  /features/search:
+    post:
+      description: List features by filter
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/types.FeatureFilter'
+        description: Filter
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dto.ListFeaturesResponse'
+          description: OK
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors.ErrorResponse'
+          description: Bad Request
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/errors.ErrorResponse'
+          description: Internal Server Error
+      security:
+      - ApiKeyAuth: []
+      summary: List features by filter
+      tags:
+      - Features
+      x-codegen-request-body-name: filter
   /features/{id}:
     delete:
       description: Delete a feature by ID
@@ -6403,6 +6502,82 @@ components:
           type: string
       required:
       - subscription_id
+      type: object
+    dto.GetUsageAnalyticsRequest:
+      properties:
+        end_time:
+          type: string
+        external_customer_id:
+          type: string
+        feature_ids:
+          items:
+            type: string
+          type: array
+        group_by:
+          description: "allowed values: \"source\", \"feature_id\""
+          items:
+            type: string
+          type: array
+        sources:
+          items:
+            type: string
+          type: array
+        start_time:
+          type: string
+        window_size:
+          description: "e.g., \"MINUTE\", \"HOUR\", \"DAY\""
+          type: string
+      required:
+      - external_customer_id
+      type: object
+    dto.GetUsageAnalyticsResponse:
+      example:
+        total_cost: 5.637376656633329
+        currency: currency
+        items:
+        - aggregation_type: COUNT
+          feature_id: feature_id
+          unit: unit
+          total_cost: 1.4658129805029452
+          total_usage: 5.962133916683182
+          name: name
+          event_name: event_name
+          currency: currency
+          unit_plural: unit_plural
+          source: source
+          points:
+          - cost: 0.8008281904610115
+            usage: 6.027456183070403
+            timestamp: timestamp
+          - cost: 0.8008281904610115
+            usage: 6.027456183070403
+            timestamp: timestamp
+        - aggregation_type: COUNT
+          feature_id: feature_id
+          unit: unit
+          total_cost: 1.4658129805029452
+          total_usage: 5.962133916683182
+          name: name
+          event_name: event_name
+          currency: currency
+          unit_plural: unit_plural
+          source: source
+          points:
+          - cost: 0.8008281904610115
+            usage: 6.027456183070403
+            timestamp: timestamp
+          - cost: 0.8008281904610115
+            usage: 6.027456183070403
+            timestamp: timestamp
+      properties:
+        currency:
+          type: string
+        items:
+          items:
+            $ref: '#/components/schemas/dto.UsageAnalyticItem'
+          type: array
+        total_cost:
+          type: number
       type: object
     dto.GetUsageByMeterRequest:
       properties:
@@ -11988,6 +12163,64 @@ components:
         name:
           type: string
       type: object
+    dto.UsageAnalyticItem:
+      example:
+        aggregation_type: COUNT
+        feature_id: feature_id
+        unit: unit
+        total_cost: 1.4658129805029452
+        total_usage: 5.962133916683182
+        name: name
+        event_name: event_name
+        currency: currency
+        unit_plural: unit_plural
+        source: source
+        points:
+        - cost: 0.8008281904610115
+          usage: 6.027456183070403
+          timestamp: timestamp
+        - cost: 0.8008281904610115
+          usage: 6.027456183070403
+          timestamp: timestamp
+      properties:
+        aggregation_type:
+          $ref: '#/components/schemas/types.AggregationType'
+        currency:
+          type: string
+        event_name:
+          type: string
+        feature_id:
+          type: string
+        name:
+          type: string
+        points:
+          items:
+            $ref: '#/components/schemas/dto.UsageAnalyticPoint'
+          type: array
+        source:
+          type: string
+        total_cost:
+          type: number
+        total_usage:
+          type: number
+        unit:
+          type: string
+        unit_plural:
+          type: string
+      type: object
+    dto.UsageAnalyticPoint:
+      example:
+        cost: 0.8008281904610115
+        usage: 6.027456183070403
+        timestamp: timestamp
+      properties:
+        cost:
+          type: number
+        timestamp:
+          type: string
+        usage:
+          type: number
+      type: object
     dto.UsageResult:
       example:
         window_size: window_size
@@ -12267,6 +12500,21 @@ components:
     gin.H:
       additionalProperties:
         type: object
+      type: object
+    github_com_flexprice_flexprice_internal_types.Value:
+      properties:
+        array:
+          items:
+            type: string
+          type: array
+        boolean:
+          type: boolean
+        date:
+          type: string
+        number:
+          type: number
+        string:
+          type: string
       type: object
     meter.Aggregation:
       example:
@@ -12693,6 +12941,58 @@ components:
       x-enum-varnames:
       - BILLING_TIER_VOLUME
       - BILLING_TIER_SLAB
+    types.CustomerFilter:
+      properties:
+        customer_ids:
+          items:
+            type: string
+          type: array
+        email:
+          type: string
+        end_time:
+          type: string
+        expand:
+          type: string
+        external_id:
+          type: string
+        filters:
+          description: filters allows complex filtering based on multiple fields
+          items:
+            $ref: '#/components/schemas/types.FilterCondition'
+          type: array
+        limit:
+          maximum: 1000
+          minimum: 1
+          type: integer
+        offset:
+          minimum: 0
+          type: integer
+        order:
+          enum:
+          - asc
+          - desc
+          type: string
+        sort:
+          items:
+            $ref: '#/components/schemas/types.SortCondition'
+          type: array
+        start_time:
+          type: string
+        status:
+          $ref: '#/components/schemas/types.Status'
+      type: object
+    types.DataType:
+      enum:
+      - string
+      - number
+      - date
+      - array
+      type: string
+      x-enum-varnames:
+      - DataTypeString
+      - DataTypeNumber
+      - DataTypeDate
+      - DataTypeArray
     types.EntityType:
       enum:
       - EVENTS
@@ -12703,6 +13003,51 @@ components:
       - EntityTypeEvents
       - EntityTypePrices
       - EntityTypeCustomers
+    types.FeatureFilter:
+      properties:
+        end_time:
+          type: string
+        expand:
+          type: string
+        feature_ids:
+          description: Feature specific filters
+          items:
+            type: string
+          type: array
+        filters:
+          description: filters allows complex filtering based on multiple fields
+          items:
+            $ref: '#/components/schemas/types.FilterCondition'
+          type: array
+        limit:
+          maximum: 1000
+          minimum: 1
+          type: integer
+        lookup_key:
+          type: string
+        meter_ids:
+          items:
+            type: string
+          type: array
+        name_contains:
+          type: string
+        offset:
+          minimum: 0
+          type: integer
+        order:
+          enum:
+          - asc
+          - desc
+          type: string
+        sort:
+          items:
+            $ref: '#/components/schemas/types.SortCondition'
+          type: array
+        start_time:
+          type: string
+        status:
+          $ref: '#/components/schemas/types.Status'
+      type: object
     types.FeatureType:
       enum:
       - metered
@@ -12721,6 +13066,37 @@ components:
       x-enum-varnames:
       - FileTypeCSV
       - FileTypeJSON
+    types.FilterCondition:
+      properties:
+        data_type:
+          $ref: '#/components/schemas/types.DataType'
+        field:
+          type: string
+        operator:
+          $ref: '#/components/schemas/types.FilterOperatorType'
+        value:
+          $ref: '#/components/schemas/github_com_flexprice_flexprice_internal_types.Value'
+      type: object
+    types.FilterOperatorType:
+      enum:
+      - eq
+      - contains
+      - gt
+      - lt
+      - in
+      - not_in
+      - before
+      - after
+      type: string
+      x-enum-varnames:
+      - EQUAL
+      - CONTAINS
+      - GREATER_THAN
+      - LESS_THAN
+      - IN
+      - NOT_IN
+      - BEFORE
+      - AFTER
     types.InvoiceBillingReason:
       enum:
       - SUBSCRIPTION_CREATE
@@ -12882,6 +13258,21 @@ components:
       - SecretTypePrivateKey
       - SecretTypePublishableKey
       - SecretTypeIntegration
+    types.SortCondition:
+      properties:
+        direction:
+          $ref: '#/components/schemas/types.SortDirection'
+        field:
+          type: string
+      type: object
+    types.SortDirection:
+      enum:
+      - asc
+      - desc
+      type: string
+      x-enum-varnames:
+      - SortDirectionAsc
+      - SortDirectionDesc
     types.Status:
       enum:
       - published

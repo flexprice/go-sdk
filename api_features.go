@@ -32,9 +32,9 @@ type FeaturesAPIFeaturesGetRequest struct {
 	limit *int32
 	lookupKey *string
 	meterIds *[]string
+	nameContains *string
 	offset *int32
 	order *string
-	sort *string
 	startTime *string
 	status *string
 }
@@ -70,6 +70,11 @@ func (r FeaturesAPIFeaturesGetRequest) MeterIds(meterIds []string) FeaturesAPIFe
 	return r
 }
 
+func (r FeaturesAPIFeaturesGetRequest) NameContains(nameContains string) FeaturesAPIFeaturesGetRequest {
+	r.nameContains = &nameContains
+	return r
+}
+
 func (r FeaturesAPIFeaturesGetRequest) Offset(offset int32) FeaturesAPIFeaturesGetRequest {
 	r.offset = &offset
 	return r
@@ -77,11 +82,6 @@ func (r FeaturesAPIFeaturesGetRequest) Offset(offset int32) FeaturesAPIFeaturesG
 
 func (r FeaturesAPIFeaturesGetRequest) Order(order string) FeaturesAPIFeaturesGetRequest {
 	r.order = &order
-	return r
-}
-
-func (r FeaturesAPIFeaturesGetRequest) Sort(sort string) FeaturesAPIFeaturesGetRequest {
-	r.sort = &sort
 	return r
 }
 
@@ -153,14 +153,14 @@ func (a *FeaturesAPIService) FeaturesGetExecute(r FeaturesAPIFeaturesGetRequest)
 	if r.meterIds != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "meter_ids", r.meterIds, "form", "csv")
 	}
+	if r.nameContains != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "name_contains", r.nameContains, "form", "")
+	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.order != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "order", r.order, "form", "")
-	}
-	if r.sort != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "form", "")
 	}
 	if r.startTime != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start_time", r.startTime, "form", "")
@@ -790,6 +790,152 @@ func (a *FeaturesAPIService) FeaturesPostExecute(r FeaturesAPIFeaturesPostReques
 	}
 	// body params
 	localVarPostBody = r.feature
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type FeaturesAPIFeaturesSearchPostRequest struct {
+	ctx context.Context
+	ApiService *FeaturesAPIService
+	filter *TypesFeatureFilter
+}
+
+// Filter
+func (r FeaturesAPIFeaturesSearchPostRequest) Filter(filter TypesFeatureFilter) FeaturesAPIFeaturesSearchPostRequest {
+	r.filter = &filter
+	return r
+}
+
+func (r FeaturesAPIFeaturesSearchPostRequest) Execute() (*DtoListFeaturesResponse, *http.Response, error) {
+	return r.ApiService.FeaturesSearchPostExecute(r)
+}
+
+/*
+FeaturesSearchPost List features by filter
+
+List features by filter
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return FeaturesAPIFeaturesSearchPostRequest
+*/
+func (a *FeaturesAPIService) FeaturesSearchPost(ctx context.Context) FeaturesAPIFeaturesSearchPostRequest {
+	return FeaturesAPIFeaturesSearchPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return DtoListFeaturesResponse
+func (a *FeaturesAPIService) FeaturesSearchPostExecute(r FeaturesAPIFeaturesSearchPostRequest) (*DtoListFeaturesResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DtoListFeaturesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FeaturesAPIService.FeaturesSearchPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/features/search"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.filter == nil {
+		return localVarReturnValue, nil, reportError("filter is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.filter
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

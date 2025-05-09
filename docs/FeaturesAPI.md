@@ -9,12 +9,13 @@ Method | HTTP request | Description
 [**FeaturesIdGet**](FeaturesAPI.md#FeaturesIdGet) | **Get** /features/{id} | Get a feature by ID
 [**FeaturesIdPut**](FeaturesAPI.md#FeaturesIdPut) | **Put** /features/{id} | Update a feature
 [**FeaturesPost**](FeaturesAPI.md#FeaturesPost) | **Post** /features | Create a new feature
+[**FeaturesSearchPost**](FeaturesAPI.md#FeaturesSearchPost) | **Post** /features/search | List features by filter
 
 
 
 ## FeaturesGet
 
-> DtoListFeaturesResponse FeaturesGet(ctx).EndTime(endTime).Expand(expand).FeatureIds(featureIds).Limit(limit).LookupKey(lookupKey).MeterIds(meterIds).Offset(offset).Order(order).Sort(sort).StartTime(startTime).Status(status).Execute()
+> DtoListFeaturesResponse FeaturesGet(ctx).EndTime(endTime).Expand(expand).FeatureIds(featureIds).Limit(limit).LookupKey(lookupKey).MeterIds(meterIds).NameContains(nameContains).Offset(offset).Order(order).StartTime(startTime).Status(status).Execute()
 
 List features
 
@@ -39,15 +40,15 @@ func main() {
 	limit := int32(56) // int32 |  (optional)
 	lookupKey := "lookupKey_example" // string |  (optional)
 	meterIds := []string{"Inner_example"} // []string |  (optional)
+	nameContains := "nameContains_example" // string |  (optional)
 	offset := int32(56) // int32 |  (optional)
 	order := "order_example" // string |  (optional)
-	sort := "sort_example" // string |  (optional)
 	startTime := "startTime_example" // string |  (optional)
 	status := "status_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FeaturesAPI.FeaturesGet(context.Background()).EndTime(endTime).Expand(expand).FeatureIds(featureIds).Limit(limit).LookupKey(lookupKey).MeterIds(meterIds).Offset(offset).Order(order).Sort(sort).StartTime(startTime).Status(status).Execute()
+	resp, r, err := apiClient.FeaturesAPI.FeaturesGet(context.Background()).EndTime(endTime).Expand(expand).FeatureIds(featureIds).Limit(limit).LookupKey(lookupKey).MeterIds(meterIds).NameContains(nameContains).Offset(offset).Order(order).StartTime(startTime).Status(status).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeaturesAPI.FeaturesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -74,9 +75,9 @@ Name | Type | Description  | Notes
  **limit** | **int32** |  | 
  **lookupKey** | **string** |  | 
  **meterIds** | **[]string** |  | 
+ **nameContains** | **string** |  | 
  **offset** | **int32** |  | 
  **order** | **string** |  | 
- **sort** | **string** |  | 
  **startTime** | **string** |  | 
  **status** | **string** |  | 
 
@@ -361,6 +362,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DtoFeatureResponse**](DtoFeatureResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## FeaturesSearchPost
+
+> DtoListFeaturesResponse FeaturesSearchPost(ctx).Filter(filter).Execute()
+
+List features by filter
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	filter := *openapiclient.NewTypesFeatureFilter() // TypesFeatureFilter | Filter
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.FeaturesAPI.FeaturesSearchPost(context.Background()).Filter(filter).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `FeaturesAPI.FeaturesSearchPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `FeaturesSearchPost`: DtoListFeaturesResponse
+	fmt.Fprintf(os.Stdout, "Response from `FeaturesAPI.FeaturesSearchPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiFeaturesSearchPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **filter** | [**TypesFeatureFilter**](TypesFeatureFilter.md) | Filter | 
+
+### Return type
+
+[**DtoListFeaturesResponse**](DtoListFeaturesResponse.md)
 
 ### Authorization
 

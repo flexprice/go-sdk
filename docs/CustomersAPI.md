@@ -12,12 +12,13 @@ Method | HTTP request | Description
 [**CustomersIdUsageGet**](CustomersAPI.md#CustomersIdUsageGet) | **Get** /customers/{id}/usage | Get customer usage summary
 [**CustomersLookupLookupKeyGet**](CustomersAPI.md#CustomersLookupLookupKeyGet) | **Get** /customers/lookup/{lookup_key} | Get a customer by lookup key
 [**CustomersPost**](CustomersAPI.md#CustomersPost) | **Post** /customers | Create a customer
+[**CustomersSearchPost**](CustomersAPI.md#CustomersSearchPost) | **Post** /customers/search | List customers by filter
 
 
 
 ## CustomersGet
 
-> DtoListCustomersResponse CustomersGet(ctx).CustomerIds(customerIds).Email(email).EndTime(endTime).Expand(expand).ExternalId(externalId).Limit(limit).Offset(offset).Order(order).Sort(sort).StartTime(startTime).Status(status).Execute()
+> DtoListCustomersResponse CustomersGet(ctx).CustomerIds(customerIds).Email(email).EndTime(endTime).Expand(expand).ExternalId(externalId).Limit(limit).Offset(offset).Order(order).StartTime(startTime).Status(status).Execute()
 
 Get customers
 
@@ -44,13 +45,12 @@ func main() {
 	limit := int32(56) // int32 |  (optional)
 	offset := int32(56) // int32 |  (optional)
 	order := "order_example" // string |  (optional)
-	sort := "sort_example" // string |  (optional)
 	startTime := "startTime_example" // string |  (optional)
 	status := "status_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomersAPI.CustomersGet(context.Background()).CustomerIds(customerIds).Email(email).EndTime(endTime).Expand(expand).ExternalId(externalId).Limit(limit).Offset(offset).Order(order).Sort(sort).StartTime(startTime).Status(status).Execute()
+	resp, r, err := apiClient.CustomersAPI.CustomersGet(context.Background()).CustomerIds(customerIds).Email(email).EndTime(endTime).Expand(expand).ExternalId(externalId).Limit(limit).Offset(offset).Order(order).StartTime(startTime).Status(status).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CustomersGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -79,7 +79,6 @@ Name | Type | Description  | Notes
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
  **order** | **string** |  | 
- **sort** | **string** |  | 
  **startTime** | **string** |  | 
  **status** | **string** |  | 
 
@@ -580,6 +579,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DtoCustomerResponse**](DtoCustomerResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CustomersSearchPost
+
+> DtoListCustomersResponse CustomersSearchPost(ctx).Filter(filter).Execute()
+
+List customers by filter
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	filter := *openapiclient.NewTypesCustomerFilter() // TypesCustomerFilter | Filter
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CustomersAPI.CustomersSearchPost(context.Background()).Filter(filter).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CustomersSearchPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CustomersSearchPost`: DtoListCustomersResponse
+	fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.CustomersSearchPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCustomersSearchPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **filter** | [**TypesCustomerFilter**](TypesCustomerFilter.md) | Filter | 
+
+### Return type
+
+[**DtoListCustomersResponse**](DtoListCustomersResponse.md)
 
 ### Authorization
 

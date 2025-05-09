@@ -4,12 +4,79 @@ All URIs are relative to */v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**EventsAnalyticsPost**](EventsAPI.md#EventsAnalyticsPost) | **Post** /events/analytics | Get usage analytics
 [**EventsBulkPost**](EventsAPI.md#EventsBulkPost) | **Post** /events/bulk | Bulk Ingest events
 [**EventsPost**](EventsAPI.md#EventsPost) | **Post** /events | Ingest event
 [**EventsQueryPost**](EventsAPI.md#EventsQueryPost) | **Post** /events/query | List raw events
 [**EventsUsageMeterPost**](EventsAPI.md#EventsUsageMeterPost) | **Post** /events/usage/meter | Get usage by meter
 [**EventsUsagePost**](EventsAPI.md#EventsUsagePost) | **Post** /events/usage | Get usage statistics
 
+
+
+## EventsAnalyticsPost
+
+> DtoGetUsageAnalyticsResponse EventsAnalyticsPost(ctx).Request(request).Execute()
+
+Get usage analytics
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	request := *openapiclient.NewDtoGetUsageAnalyticsRequest("ExternalCustomerId_example") // DtoGetUsageAnalyticsRequest | Request body
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.EventsAnalyticsPost(context.Background()).Request(request).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.EventsAnalyticsPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EventsAnalyticsPost`: DtoGetUsageAnalyticsResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.EventsAnalyticsPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEventsAnalyticsPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | [**DtoGetUsageAnalyticsRequest**](DtoGetUsageAnalyticsRequest.md) | Request body | 
+
+### Return type
+
+[**DtoGetUsageAnalyticsResponse**](DtoGetUsageAnalyticsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## EventsBulkPost
