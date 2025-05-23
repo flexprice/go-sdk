@@ -33,10 +33,14 @@ type DtoGetEventsRequest struct {
 	IterLastKey *string `json:"iter_last_key,omitempty"`
 	// Offset to fetch the events and is set to 0 by default
 	Offset *int32 `json:"offset,omitempty"`
+	// Order by condition. Allowed values (case sensitive): asc, desc (default: desc)
+	Order *string `json:"order,omitempty"`
 	// Page size to fetch the events and is set to 50 by default
 	PageSize *int32 `json:"page_size,omitempty"`
 	// Property filters to filter the events by the keys in `properties` field of the event
 	PropertyFilters *map[string][]string `json:"property_filters,omitempty"`
+	// Sort by the field. Allowed values (case sensitive): timestamp, event_name (default: timestamp)
+	Sort *string `json:"sort,omitempty"`
 	// Source to filter the events by the source
 	Source *string `json:"source,omitempty"`
 	// Start time of the events to be fetched in ISO 8601 format Defaults to last 7 days from now if not provided
@@ -284,6 +288,38 @@ func (o *DtoGetEventsRequest) SetOffset(v int32) {
 	o.Offset = &v
 }
 
+// GetOrder returns the Order field value if set, zero value otherwise.
+func (o *DtoGetEventsRequest) GetOrder() string {
+	if o == nil || IsNil(o.Order) {
+		var ret string
+		return ret
+	}
+	return *o.Order
+}
+
+// GetOrderOk returns a tuple with the Order field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetEventsRequest) GetOrderOk() (*string, bool) {
+	if o == nil || IsNil(o.Order) {
+		return nil, false
+	}
+	return o.Order, true
+}
+
+// HasOrder returns a boolean if a field has been set.
+func (o *DtoGetEventsRequest) HasOrder() bool {
+	if o != nil && !IsNil(o.Order) {
+		return true
+	}
+
+	return false
+}
+
+// SetOrder gets a reference to the given string and assigns it to the Order field.
+func (o *DtoGetEventsRequest) SetOrder(v string) {
+	o.Order = &v
+}
+
 // GetPageSize returns the PageSize field value if set, zero value otherwise.
 func (o *DtoGetEventsRequest) GetPageSize() int32 {
 	if o == nil || IsNil(o.PageSize) {
@@ -346,6 +382,38 @@ func (o *DtoGetEventsRequest) HasPropertyFilters() bool {
 // SetPropertyFilters gets a reference to the given map[string][]string and assigns it to the PropertyFilters field.
 func (o *DtoGetEventsRequest) SetPropertyFilters(v map[string][]string) {
 	o.PropertyFilters = &v
+}
+
+// GetSort returns the Sort field value if set, zero value otherwise.
+func (o *DtoGetEventsRequest) GetSort() string {
+	if o == nil || IsNil(o.Sort) {
+		var ret string
+		return ret
+	}
+	return *o.Sort
+}
+
+// GetSortOk returns a tuple with the Sort field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetEventsRequest) GetSortOk() (*string, bool) {
+	if o == nil || IsNil(o.Sort) {
+		return nil, false
+	}
+	return o.Sort, true
+}
+
+// HasSort returns a boolean if a field has been set.
+func (o *DtoGetEventsRequest) HasSort() bool {
+	if o != nil && !IsNil(o.Sort) {
+		return true
+	}
+
+	return false
+}
+
+// SetSort gets a reference to the given string and assigns it to the Sort field.
+func (o *DtoGetEventsRequest) SetSort(v string) {
+	o.Sort = &v
 }
 
 // GetSource returns the Source field value if set, zero value otherwise.
@@ -443,11 +511,17 @@ func (o DtoGetEventsRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Offset) {
 		toSerialize["offset"] = o.Offset
 	}
+	if !IsNil(o.Order) {
+		toSerialize["order"] = o.Order
+	}
 	if !IsNil(o.PageSize) {
 		toSerialize["page_size"] = o.PageSize
 	}
 	if !IsNil(o.PropertyFilters) {
 		toSerialize["property_filters"] = o.PropertyFilters
+	}
+	if !IsNil(o.Sort) {
+		toSerialize["sort"] = o.Sort
 	}
 	if !IsNil(o.Source) {
 		toSerialize["source"] = o.Source

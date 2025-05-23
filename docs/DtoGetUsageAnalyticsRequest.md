@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **GroupBy** | Pointer to **[]string** | allowed values: \&quot;source\&quot;, \&quot;feature_id\&quot; | [optional] 
 **Sources** | Pointer to **[]string** |  | [optional] 
 **StartTime** | Pointer to **string** |  | [optional] 
-**WindowSize** | Pointer to **string** | e.g., \&quot;MINUTE\&quot;, \&quot;HOUR\&quot;, \&quot;DAY\&quot; | [optional] 
+**WindowSize** | Pointer to [**TypesWindowSize**](TypesWindowSize.md) |  | [optional] 
 
 ## Methods
 
@@ -178,20 +178,20 @@ HasStartTime returns a boolean if a field has been set.
 
 ### GetWindowSize
 
-`func (o *DtoGetUsageAnalyticsRequest) GetWindowSize() string`
+`func (o *DtoGetUsageAnalyticsRequest) GetWindowSize() TypesWindowSize`
 
 GetWindowSize returns the WindowSize field if non-nil, zero value otherwise.
 
 ### GetWindowSizeOk
 
-`func (o *DtoGetUsageAnalyticsRequest) GetWindowSizeOk() (*string, bool)`
+`func (o *DtoGetUsageAnalyticsRequest) GetWindowSizeOk() (*TypesWindowSize, bool)`
 
 GetWindowSizeOk returns a tuple with the WindowSize field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetWindowSize
 
-`func (o *DtoGetUsageAnalyticsRequest) SetWindowSize(v string)`
+`func (o *DtoGetUsageAnalyticsRequest) SetWindowSize(v TypesWindowSize)`
 
 SetWindowSize sets WindowSize field to given value.
 

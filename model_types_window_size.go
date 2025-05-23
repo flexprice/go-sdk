@@ -21,15 +21,27 @@ type TypesWindowSize string
 // List of types.WindowSize
 const (
 	TYPESWINDOWSIZE_WindowSizeMinute TypesWindowSize = "MINUTE"
+	TYPESWINDOWSIZE_WindowSize15Min TypesWindowSize = "15MIN"
+	TYPESWINDOWSIZE_WindowSize30Min TypesWindowSize = "30MIN"
 	TYPESWINDOWSIZE_WindowSizeHour TypesWindowSize = "HOUR"
+	TYPESWINDOWSIZE_WindowSize3Hour TypesWindowSize = "3HOUR"
+	TYPESWINDOWSIZE_WindowSize6Hour TypesWindowSize = "6HOUR"
+	TYPESWINDOWSIZE_WindowSize12Hour TypesWindowSize = "12HOUR"
 	TYPESWINDOWSIZE_WindowSizeDay TypesWindowSize = "DAY"
+	TYPESWINDOWSIZE_WindowSizeWeek TypesWindowSize = "WEEK"
 )
 
 // All allowed values of TypesWindowSize enum
 var AllowedTypesWindowSizeEnumValues = []TypesWindowSize{
 	"MINUTE",
+	"15MIN",
+	"30MIN",
 	"HOUR",
+	"3HOUR",
+	"6HOUR",
+	"12HOUR",
 	"DAY",
+	"WEEK",
 }
 
 func (v *TypesWindowSize) UnmarshalJSON(src []byte) error {

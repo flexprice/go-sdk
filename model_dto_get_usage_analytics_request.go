@@ -28,8 +28,7 @@ type DtoGetUsageAnalyticsRequest struct {
 	GroupBy []string `json:"group_by,omitempty"`
 	Sources []string `json:"sources,omitempty"`
 	StartTime *string `json:"start_time,omitempty"`
-	// e.g., \"MINUTE\", \"HOUR\", \"DAY\"
-	WindowSize *string `json:"window_size,omitempty"`
+	WindowSize *TypesWindowSize `json:"window_size,omitempty"`
 }
 
 type _DtoGetUsageAnalyticsRequest DtoGetUsageAnalyticsRequest
@@ -237,9 +236,9 @@ func (o *DtoGetUsageAnalyticsRequest) SetStartTime(v string) {
 }
 
 // GetWindowSize returns the WindowSize field value if set, zero value otherwise.
-func (o *DtoGetUsageAnalyticsRequest) GetWindowSize() string {
+func (o *DtoGetUsageAnalyticsRequest) GetWindowSize() TypesWindowSize {
 	if o == nil || IsNil(o.WindowSize) {
-		var ret string
+		var ret TypesWindowSize
 		return ret
 	}
 	return *o.WindowSize
@@ -247,7 +246,7 @@ func (o *DtoGetUsageAnalyticsRequest) GetWindowSize() string {
 
 // GetWindowSizeOk returns a tuple with the WindowSize field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoGetUsageAnalyticsRequest) GetWindowSizeOk() (*string, bool) {
+func (o *DtoGetUsageAnalyticsRequest) GetWindowSizeOk() (*TypesWindowSize, bool) {
 	if o == nil || IsNil(o.WindowSize) {
 		return nil, false
 	}
@@ -263,8 +262,8 @@ func (o *DtoGetUsageAnalyticsRequest) HasWindowSize() bool {
 	return false
 }
 
-// SetWindowSize gets a reference to the given string and assigns it to the WindowSize field.
-func (o *DtoGetUsageAnalyticsRequest) SetWindowSize(v string) {
+// SetWindowSize gets a reference to the given TypesWindowSize and assigns it to the WindowSize field.
+func (o *DtoGetUsageAnalyticsRequest) SetWindowSize(v TypesWindowSize) {
 	o.WindowSize = &v
 }
 

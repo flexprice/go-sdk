@@ -11,8 +11,10 @@ Name | Type | Description | Notes
 **IterFirstKey** | Pointer to **string** | First key to iterate over the events | [optional] 
 **IterLastKey** | Pointer to **string** | Last key to iterate over the events | [optional] 
 **Offset** | Pointer to **int32** | Offset to fetch the events and is set to 0 by default | [optional] 
+**Order** | Pointer to **string** | Order by condition. Allowed values (case sensitive): asc, desc (default: desc) | [optional] 
 **PageSize** | Pointer to **int32** | Page size to fetch the events and is set to 50 by default | [optional] 
 **PropertyFilters** | Pointer to **map[string][]string** | Property filters to filter the events by the keys in &#x60;properties&#x60; field of the event | [optional] 
+**Sort** | Pointer to **string** | Sort by the field. Allowed values (case sensitive): timestamp, event_name (default: timestamp) | [optional] 
 **Source** | Pointer to **string** | Source to filter the events by the source | [optional] 
 **StartTime** | Pointer to **string** | Start time of the events to be fetched in ISO 8601 format Defaults to last 7 days from now if not provided | [optional] 
 
@@ -210,6 +212,31 @@ SetOffset sets Offset field to given value.
 
 HasOffset returns a boolean if a field has been set.
 
+### GetOrder
+
+`func (o *DtoGetEventsRequest) GetOrder() string`
+
+GetOrder returns the Order field if non-nil, zero value otherwise.
+
+### GetOrderOk
+
+`func (o *DtoGetEventsRequest) GetOrderOk() (*string, bool)`
+
+GetOrderOk returns a tuple with the Order field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrder
+
+`func (o *DtoGetEventsRequest) SetOrder(v string)`
+
+SetOrder sets Order field to given value.
+
+### HasOrder
+
+`func (o *DtoGetEventsRequest) HasOrder() bool`
+
+HasOrder returns a boolean if a field has been set.
+
 ### GetPageSize
 
 `func (o *DtoGetEventsRequest) GetPageSize() int32`
@@ -259,6 +286,31 @@ SetPropertyFilters sets PropertyFilters field to given value.
 `func (o *DtoGetEventsRequest) HasPropertyFilters() bool`
 
 HasPropertyFilters returns a boolean if a field has been set.
+
+### GetSort
+
+`func (o *DtoGetEventsRequest) GetSort() string`
+
+GetSort returns the Sort field if non-nil, zero value otherwise.
+
+### GetSortOk
+
+`func (o *DtoGetEventsRequest) GetSortOk() (*string, bool)`
+
+GetSortOk returns a tuple with the Sort field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSort
+
+`func (o *DtoGetEventsRequest) SetSort(v string)`
+
+SetSort sets Sort field to given value.
+
+### HasSort
+
+`func (o *DtoGetEventsRequest) HasSort() bool`
+
+HasSort returns a boolean if a field has been set.
 
 ### GetSource
 

@@ -6429,6 +6429,11 @@ components:
         offset:
           description: Offset to fetch the events and is set to 0 by default
           type: integer
+        order:
+          description: "Order by condition. Allowed values (case sensitive): asc,\
+            \ desc (default: desc)"
+          example: desc
+          type: string
         page_size:
           description: Page size to fetch the events and is set to 50 by default
           type: integer
@@ -6440,6 +6445,11 @@ components:
           description: Property filters to filter the events by the keys in `properties`
             field of the event
           type: object
+        sort:
+          description: "Sort by the field. Allowed values (case sensitive): timestamp,\
+            \ event_name (default: timestamp)"
+          example: timestamp
+          type: string
         source:
           description: Source to filter the events by the source
           type: string
@@ -6525,8 +6535,7 @@ components:
         start_time:
           type: string
         window_size:
-          description: "e.g., \"MINUTE\", \"HOUR\", \"DAY\""
-          type: string
+          $ref: '#/components/schemas/types.WindowSize'
       required:
       - external_customer_id
       type: object
@@ -13416,13 +13425,25 @@ components:
     types.WindowSize:
       enum:
       - MINUTE
+      - 15MIN
+      - 30MIN
       - HOUR
+      - 3HOUR
+      - 6HOUR
+      - 12HOUR
       - DAY
+      - WEEK
       type: string
       x-enum-varnames:
       - WindowSizeMinute
+      - WindowSize15Min
+      - WindowSize30Min
       - WindowSizeHour
+      - WindowSize3Hour
+      - WindowSize6Hour
+      - WindowSize12Hour
       - WindowSizeDay
+      - WindowSizeWeek
   securitySchemes:
     ApiKeyAuth:
       description: Enter your API key in the format *x-api-key &lt;api-key&gt;**
