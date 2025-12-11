@@ -21,17 +21,48 @@ var _ MappedNullable = &DtoCreateSubscriptionRequest{}
 
 // DtoCreateSubscriptionRequest struct for DtoCreateSubscriptionRequest
 type DtoCreateSubscriptionRequest struct {
+	// Addons represents addons to be added to the subscription during creation
+	Addons []DtoAddAddonToSubscriptionRequest `json:"addons,omitempty"`
 	BillingCadence TypesBillingCadence `json:"billing_cadence"`
 	BillingCycle *TypesBillingCycle `json:"billing_cycle,omitempty"`
 	BillingPeriod TypesBillingPeriod `json:"billing_period"`
-	BillingPeriodCount int32 `json:"billing_period_count"`
+	BillingPeriodCount *int32 `json:"billing_period_count,omitempty"`
+	CollectionMethod *TypesCollectionMethod `json:"collection_method,omitempty"`
+	// CommitmentAmount is the minimum amount a customer commits to paying for a billing period
+	CommitmentAmount *string `json:"commitment_amount,omitempty"`
+	Coupons []string `json:"coupons,omitempty"`
+	// Credit grants to be applied when subscription is created
+	CreditGrants []DtoCreateCreditGrantRequest `json:"credit_grants,omitempty"`
 	Currency string `json:"currency"`
-	CustomerId string `json:"customer_id"`
+	// customer_id is the flexprice customer id and it is prioritized over external_customer_id in case both are provided.
+	CustomerId *string `json:"customer_id,omitempty"`
+	// Timezone of the customer. If not set, the default value is UTC.
+	CustomerTimezone *string `json:"customer_timezone,omitempty"`
+	// Enable Commitment True Up Fee
+	EnableTrueUp *bool `json:"enable_true_up,omitempty"`
 	EndDate *string `json:"end_date,omitempty"`
+	// external_customer_id is the customer id in your DB and must be same as what you provided as external_id while creating the customer in flexprice.
+	ExternalCustomerId *string `json:"external_customer_id,omitempty"`
+	GatewayPaymentMethodId *string `json:"gateway_payment_method_id,omitempty"`
+	InvoiceBilling *TypesInvoiceBilling `json:"invoice_billing,omitempty"`
+	LineItemCoupons *map[string][]string `json:"line_item_coupons,omitempty"`
 	LookupKey *string `json:"lookup_key,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	// OverageFactor is a multiplier applied to usage beyond the commitment amount
+	OverageFactor *string `json:"overage_factor,omitempty"`
+	// OverrideEntitlements allows customizing specific entitlements for this subscription
+	OverrideEntitlements []DtoOverrideEntitlementRequest `json:"override_entitlements,omitempty"`
+	// OverrideLineItems allows customizing specific prices for this subscription
+	OverrideLineItems []DtoOverrideLineItemRequest `json:"override_line_items,omitempty"`
+	PaymentBehavior *TypesPaymentBehavior `json:"payment_behavior,omitempty"`
+	// Phases represents subscription phases to be created with the subscription
+	Phases []DtoSubscriptionPhaseCreateRequest `json:"phases,omitempty"`
 	PlanId string `json:"plan_id"`
-	StartDate string `json:"start_date"`
+	ProrationBehavior *TypesProrationBehavior `json:"proration_behavior,omitempty"`
+	StartDate *string `json:"start_date,omitempty"`
+	SubscriptionStatus *TypesSubscriptionStatus `json:"subscription_status,omitempty"`
+	// tax_rate_overrides is the tax rate overrides to be applied to the subscription
+	TaxRateOverrides []DtoTaxRateOverride `json:"tax_rate_overrides,omitempty"`
 	TrialEnd *string `json:"trial_end,omitempty"`
 	TrialStart *string `json:"trial_start,omitempty"`
 }
@@ -42,15 +73,12 @@ type _DtoCreateSubscriptionRequest DtoCreateSubscriptionRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDtoCreateSubscriptionRequest(billingCadence TypesBillingCadence, billingPeriod TypesBillingPeriod, billingPeriodCount int32, currency string, customerId string, planId string, startDate string) *DtoCreateSubscriptionRequest {
+func NewDtoCreateSubscriptionRequest(billingCadence TypesBillingCadence, billingPeriod TypesBillingPeriod, currency string, planId string) *DtoCreateSubscriptionRequest {
 	this := DtoCreateSubscriptionRequest{}
 	this.BillingCadence = billingCadence
 	this.BillingPeriod = billingPeriod
-	this.BillingPeriodCount = billingPeriodCount
 	this.Currency = currency
-	this.CustomerId = customerId
 	this.PlanId = planId
-	this.StartDate = startDate
 	return &this
 }
 
@@ -60,6 +88,38 @@ func NewDtoCreateSubscriptionRequest(billingCadence TypesBillingCadence, billing
 func NewDtoCreateSubscriptionRequestWithDefaults() *DtoCreateSubscriptionRequest {
 	this := DtoCreateSubscriptionRequest{}
 	return &this
+}
+
+// GetAddons returns the Addons field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetAddons() []DtoAddAddonToSubscriptionRequest {
+	if o == nil || IsNil(o.Addons) {
+		var ret []DtoAddAddonToSubscriptionRequest
+		return ret
+	}
+	return o.Addons
+}
+
+// GetAddonsOk returns a tuple with the Addons field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetAddonsOk() ([]DtoAddAddonToSubscriptionRequest, bool) {
+	if o == nil || IsNil(o.Addons) {
+		return nil, false
+	}
+	return o.Addons, true
+}
+
+// HasAddons returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasAddons() bool {
+	if o != nil && !IsNil(o.Addons) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddons gets a reference to the given []DtoAddAddonToSubscriptionRequest and assigns it to the Addons field.
+func (o *DtoCreateSubscriptionRequest) SetAddons(v []DtoAddAddonToSubscriptionRequest) {
+	o.Addons = v
 }
 
 // GetBillingCadence returns the BillingCadence field value
@@ -142,28 +202,164 @@ func (o *DtoCreateSubscriptionRequest) SetBillingPeriod(v TypesBillingPeriod) {
 	o.BillingPeriod = v
 }
 
-// GetBillingPeriodCount returns the BillingPeriodCount field value
+// GetBillingPeriodCount returns the BillingPeriodCount field value if set, zero value otherwise.
 func (o *DtoCreateSubscriptionRequest) GetBillingPeriodCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.BillingPeriodCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.BillingPeriodCount
+	return *o.BillingPeriodCount
 }
 
-// GetBillingPeriodCountOk returns a tuple with the BillingPeriodCount field value
+// GetBillingPeriodCountOk returns a tuple with the BillingPeriodCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DtoCreateSubscriptionRequest) GetBillingPeriodCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BillingPeriodCount) {
 		return nil, false
 	}
-	return &o.BillingPeriodCount, true
+	return o.BillingPeriodCount, true
 }
 
-// SetBillingPeriodCount sets field value
+// HasBillingPeriodCount returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasBillingPeriodCount() bool {
+	if o != nil && !IsNil(o.BillingPeriodCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetBillingPeriodCount gets a reference to the given int32 and assigns it to the BillingPeriodCount field.
 func (o *DtoCreateSubscriptionRequest) SetBillingPeriodCount(v int32) {
-	o.BillingPeriodCount = v
+	o.BillingPeriodCount = &v
+}
+
+// GetCollectionMethod returns the CollectionMethod field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetCollectionMethod() TypesCollectionMethod {
+	if o == nil || IsNil(o.CollectionMethod) {
+		var ret TypesCollectionMethod
+		return ret
+	}
+	return *o.CollectionMethod
+}
+
+// GetCollectionMethodOk returns a tuple with the CollectionMethod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetCollectionMethodOk() (*TypesCollectionMethod, bool) {
+	if o == nil || IsNil(o.CollectionMethod) {
+		return nil, false
+	}
+	return o.CollectionMethod, true
+}
+
+// HasCollectionMethod returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasCollectionMethod() bool {
+	if o != nil && !IsNil(o.CollectionMethod) {
+		return true
+	}
+
+	return false
+}
+
+// SetCollectionMethod gets a reference to the given TypesCollectionMethod and assigns it to the CollectionMethod field.
+func (o *DtoCreateSubscriptionRequest) SetCollectionMethod(v TypesCollectionMethod) {
+	o.CollectionMethod = &v
+}
+
+// GetCommitmentAmount returns the CommitmentAmount field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetCommitmentAmount() string {
+	if o == nil || IsNil(o.CommitmentAmount) {
+		var ret string
+		return ret
+	}
+	return *o.CommitmentAmount
+}
+
+// GetCommitmentAmountOk returns a tuple with the CommitmentAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetCommitmentAmountOk() (*string, bool) {
+	if o == nil || IsNil(o.CommitmentAmount) {
+		return nil, false
+	}
+	return o.CommitmentAmount, true
+}
+
+// HasCommitmentAmount returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasCommitmentAmount() bool {
+	if o != nil && !IsNil(o.CommitmentAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentAmount gets a reference to the given string and assigns it to the CommitmentAmount field.
+func (o *DtoCreateSubscriptionRequest) SetCommitmentAmount(v string) {
+	o.CommitmentAmount = &v
+}
+
+// GetCoupons returns the Coupons field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetCoupons() []string {
+	if o == nil || IsNil(o.Coupons) {
+		var ret []string
+		return ret
+	}
+	return o.Coupons
+}
+
+// GetCouponsOk returns a tuple with the Coupons field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetCouponsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Coupons) {
+		return nil, false
+	}
+	return o.Coupons, true
+}
+
+// HasCoupons returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasCoupons() bool {
+	if o != nil && !IsNil(o.Coupons) {
+		return true
+	}
+
+	return false
+}
+
+// SetCoupons gets a reference to the given []string and assigns it to the Coupons field.
+func (o *DtoCreateSubscriptionRequest) SetCoupons(v []string) {
+	o.Coupons = v
+}
+
+// GetCreditGrants returns the CreditGrants field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetCreditGrants() []DtoCreateCreditGrantRequest {
+	if o == nil || IsNil(o.CreditGrants) {
+		var ret []DtoCreateCreditGrantRequest
+		return ret
+	}
+	return o.CreditGrants
+}
+
+// GetCreditGrantsOk returns a tuple with the CreditGrants field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetCreditGrantsOk() ([]DtoCreateCreditGrantRequest, bool) {
+	if o == nil || IsNil(o.CreditGrants) {
+		return nil, false
+	}
+	return o.CreditGrants, true
+}
+
+// HasCreditGrants returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasCreditGrants() bool {
+	if o != nil && !IsNil(o.CreditGrants) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreditGrants gets a reference to the given []DtoCreateCreditGrantRequest and assigns it to the CreditGrants field.
+func (o *DtoCreateSubscriptionRequest) SetCreditGrants(v []DtoCreateCreditGrantRequest) {
+	o.CreditGrants = v
 }
 
 // GetCurrency returns the Currency field value
@@ -190,28 +386,100 @@ func (o *DtoCreateSubscriptionRequest) SetCurrency(v string) {
 	o.Currency = v
 }
 
-// GetCustomerId returns the CustomerId field value
+// GetCustomerId returns the CustomerId field value if set, zero value otherwise.
 func (o *DtoCreateSubscriptionRequest) GetCustomerId() string {
-	if o == nil {
+	if o == nil || IsNil(o.CustomerId) {
 		var ret string
 		return ret
 	}
-
-	return o.CustomerId
+	return *o.CustomerId
 }
 
-// GetCustomerIdOk returns a tuple with the CustomerId field value
+// GetCustomerIdOk returns a tuple with the CustomerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DtoCreateSubscriptionRequest) GetCustomerIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CustomerId) {
 		return nil, false
 	}
-	return &o.CustomerId, true
+	return o.CustomerId, true
 }
 
-// SetCustomerId sets field value
+// HasCustomerId returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasCustomerId() bool {
+	if o != nil && !IsNil(o.CustomerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerId gets a reference to the given string and assigns it to the CustomerId field.
 func (o *DtoCreateSubscriptionRequest) SetCustomerId(v string) {
-	o.CustomerId = v
+	o.CustomerId = &v
+}
+
+// GetCustomerTimezone returns the CustomerTimezone field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetCustomerTimezone() string {
+	if o == nil || IsNil(o.CustomerTimezone) {
+		var ret string
+		return ret
+	}
+	return *o.CustomerTimezone
+}
+
+// GetCustomerTimezoneOk returns a tuple with the CustomerTimezone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetCustomerTimezoneOk() (*string, bool) {
+	if o == nil || IsNil(o.CustomerTimezone) {
+		return nil, false
+	}
+	return o.CustomerTimezone, true
+}
+
+// HasCustomerTimezone returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasCustomerTimezone() bool {
+	if o != nil && !IsNil(o.CustomerTimezone) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerTimezone gets a reference to the given string and assigns it to the CustomerTimezone field.
+func (o *DtoCreateSubscriptionRequest) SetCustomerTimezone(v string) {
+	o.CustomerTimezone = &v
+}
+
+// GetEnableTrueUp returns the EnableTrueUp field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetEnableTrueUp() bool {
+	if o == nil || IsNil(o.EnableTrueUp) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableTrueUp
+}
+
+// GetEnableTrueUpOk returns a tuple with the EnableTrueUp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetEnableTrueUpOk() (*bool, bool) {
+	if o == nil || IsNil(o.EnableTrueUp) {
+		return nil, false
+	}
+	return o.EnableTrueUp, true
+}
+
+// HasEnableTrueUp returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasEnableTrueUp() bool {
+	if o != nil && !IsNil(o.EnableTrueUp) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableTrueUp gets a reference to the given bool and assigns it to the EnableTrueUp field.
+func (o *DtoCreateSubscriptionRequest) SetEnableTrueUp(v bool) {
+	o.EnableTrueUp = &v
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
@@ -244,6 +512,134 @@ func (o *DtoCreateSubscriptionRequest) HasEndDate() bool {
 // SetEndDate gets a reference to the given string and assigns it to the EndDate field.
 func (o *DtoCreateSubscriptionRequest) SetEndDate(v string) {
 	o.EndDate = &v
+}
+
+// GetExternalCustomerId returns the ExternalCustomerId field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetExternalCustomerId() string {
+	if o == nil || IsNil(o.ExternalCustomerId) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalCustomerId
+}
+
+// GetExternalCustomerIdOk returns a tuple with the ExternalCustomerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetExternalCustomerIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ExternalCustomerId) {
+		return nil, false
+	}
+	return o.ExternalCustomerId, true
+}
+
+// HasExternalCustomerId returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasExternalCustomerId() bool {
+	if o != nil && !IsNil(o.ExternalCustomerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalCustomerId gets a reference to the given string and assigns it to the ExternalCustomerId field.
+func (o *DtoCreateSubscriptionRequest) SetExternalCustomerId(v string) {
+	o.ExternalCustomerId = &v
+}
+
+// GetGatewayPaymentMethodId returns the GatewayPaymentMethodId field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetGatewayPaymentMethodId() string {
+	if o == nil || IsNil(o.GatewayPaymentMethodId) {
+		var ret string
+		return ret
+	}
+	return *o.GatewayPaymentMethodId
+}
+
+// GetGatewayPaymentMethodIdOk returns a tuple with the GatewayPaymentMethodId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetGatewayPaymentMethodIdOk() (*string, bool) {
+	if o == nil || IsNil(o.GatewayPaymentMethodId) {
+		return nil, false
+	}
+	return o.GatewayPaymentMethodId, true
+}
+
+// HasGatewayPaymentMethodId returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasGatewayPaymentMethodId() bool {
+	if o != nil && !IsNil(o.GatewayPaymentMethodId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGatewayPaymentMethodId gets a reference to the given string and assigns it to the GatewayPaymentMethodId field.
+func (o *DtoCreateSubscriptionRequest) SetGatewayPaymentMethodId(v string) {
+	o.GatewayPaymentMethodId = &v
+}
+
+// GetInvoiceBilling returns the InvoiceBilling field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetInvoiceBilling() TypesInvoiceBilling {
+	if o == nil || IsNil(o.InvoiceBilling) {
+		var ret TypesInvoiceBilling
+		return ret
+	}
+	return *o.InvoiceBilling
+}
+
+// GetInvoiceBillingOk returns a tuple with the InvoiceBilling field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetInvoiceBillingOk() (*TypesInvoiceBilling, bool) {
+	if o == nil || IsNil(o.InvoiceBilling) {
+		return nil, false
+	}
+	return o.InvoiceBilling, true
+}
+
+// HasInvoiceBilling returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasInvoiceBilling() bool {
+	if o != nil && !IsNil(o.InvoiceBilling) {
+		return true
+	}
+
+	return false
+}
+
+// SetInvoiceBilling gets a reference to the given TypesInvoiceBilling and assigns it to the InvoiceBilling field.
+func (o *DtoCreateSubscriptionRequest) SetInvoiceBilling(v TypesInvoiceBilling) {
+	o.InvoiceBilling = &v
+}
+
+// GetLineItemCoupons returns the LineItemCoupons field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetLineItemCoupons() map[string][]string {
+	if o == nil || IsNil(o.LineItemCoupons) {
+		var ret map[string][]string
+		return ret
+	}
+	return *o.LineItemCoupons
+}
+
+// GetLineItemCouponsOk returns a tuple with the LineItemCoupons field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetLineItemCouponsOk() (*map[string][]string, bool) {
+	if o == nil || IsNil(o.LineItemCoupons) {
+		return nil, false
+	}
+	return o.LineItemCoupons, true
+}
+
+// HasLineItemCoupons returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasLineItemCoupons() bool {
+	if o != nil && !IsNil(o.LineItemCoupons) {
+		return true
+	}
+
+	return false
+}
+
+// SetLineItemCoupons gets a reference to the given map[string][]string and assigns it to the LineItemCoupons field.
+func (o *DtoCreateSubscriptionRequest) SetLineItemCoupons(v map[string][]string) {
+	o.LineItemCoupons = &v
 }
 
 // GetLookupKey returns the LookupKey field value if set, zero value otherwise.
@@ -310,6 +706,166 @@ func (o *DtoCreateSubscriptionRequest) SetMetadata(v map[string]string) {
 	o.Metadata = &v
 }
 
+// GetOverageFactor returns the OverageFactor field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetOverageFactor() string {
+	if o == nil || IsNil(o.OverageFactor) {
+		var ret string
+		return ret
+	}
+	return *o.OverageFactor
+}
+
+// GetOverageFactorOk returns a tuple with the OverageFactor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetOverageFactorOk() (*string, bool) {
+	if o == nil || IsNil(o.OverageFactor) {
+		return nil, false
+	}
+	return o.OverageFactor, true
+}
+
+// HasOverageFactor returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasOverageFactor() bool {
+	if o != nil && !IsNil(o.OverageFactor) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverageFactor gets a reference to the given string and assigns it to the OverageFactor field.
+func (o *DtoCreateSubscriptionRequest) SetOverageFactor(v string) {
+	o.OverageFactor = &v
+}
+
+// GetOverrideEntitlements returns the OverrideEntitlements field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetOverrideEntitlements() []DtoOverrideEntitlementRequest {
+	if o == nil || IsNil(o.OverrideEntitlements) {
+		var ret []DtoOverrideEntitlementRequest
+		return ret
+	}
+	return o.OverrideEntitlements
+}
+
+// GetOverrideEntitlementsOk returns a tuple with the OverrideEntitlements field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetOverrideEntitlementsOk() ([]DtoOverrideEntitlementRequest, bool) {
+	if o == nil || IsNil(o.OverrideEntitlements) {
+		return nil, false
+	}
+	return o.OverrideEntitlements, true
+}
+
+// HasOverrideEntitlements returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasOverrideEntitlements() bool {
+	if o != nil && !IsNil(o.OverrideEntitlements) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverrideEntitlements gets a reference to the given []DtoOverrideEntitlementRequest and assigns it to the OverrideEntitlements field.
+func (o *DtoCreateSubscriptionRequest) SetOverrideEntitlements(v []DtoOverrideEntitlementRequest) {
+	o.OverrideEntitlements = v
+}
+
+// GetOverrideLineItems returns the OverrideLineItems field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetOverrideLineItems() []DtoOverrideLineItemRequest {
+	if o == nil || IsNil(o.OverrideLineItems) {
+		var ret []DtoOverrideLineItemRequest
+		return ret
+	}
+	return o.OverrideLineItems
+}
+
+// GetOverrideLineItemsOk returns a tuple with the OverrideLineItems field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetOverrideLineItemsOk() ([]DtoOverrideLineItemRequest, bool) {
+	if o == nil || IsNil(o.OverrideLineItems) {
+		return nil, false
+	}
+	return o.OverrideLineItems, true
+}
+
+// HasOverrideLineItems returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasOverrideLineItems() bool {
+	if o != nil && !IsNil(o.OverrideLineItems) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverrideLineItems gets a reference to the given []DtoOverrideLineItemRequest and assigns it to the OverrideLineItems field.
+func (o *DtoCreateSubscriptionRequest) SetOverrideLineItems(v []DtoOverrideLineItemRequest) {
+	o.OverrideLineItems = v
+}
+
+// GetPaymentBehavior returns the PaymentBehavior field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetPaymentBehavior() TypesPaymentBehavior {
+	if o == nil || IsNil(o.PaymentBehavior) {
+		var ret TypesPaymentBehavior
+		return ret
+	}
+	return *o.PaymentBehavior
+}
+
+// GetPaymentBehaviorOk returns a tuple with the PaymentBehavior field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetPaymentBehaviorOk() (*TypesPaymentBehavior, bool) {
+	if o == nil || IsNil(o.PaymentBehavior) {
+		return nil, false
+	}
+	return o.PaymentBehavior, true
+}
+
+// HasPaymentBehavior returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasPaymentBehavior() bool {
+	if o != nil && !IsNil(o.PaymentBehavior) {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentBehavior gets a reference to the given TypesPaymentBehavior and assigns it to the PaymentBehavior field.
+func (o *DtoCreateSubscriptionRequest) SetPaymentBehavior(v TypesPaymentBehavior) {
+	o.PaymentBehavior = &v
+}
+
+// GetPhases returns the Phases field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetPhases() []DtoSubscriptionPhaseCreateRequest {
+	if o == nil || IsNil(o.Phases) {
+		var ret []DtoSubscriptionPhaseCreateRequest
+		return ret
+	}
+	return o.Phases
+}
+
+// GetPhasesOk returns a tuple with the Phases field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetPhasesOk() ([]DtoSubscriptionPhaseCreateRequest, bool) {
+	if o == nil || IsNil(o.Phases) {
+		return nil, false
+	}
+	return o.Phases, true
+}
+
+// HasPhases returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasPhases() bool {
+	if o != nil && !IsNil(o.Phases) {
+		return true
+	}
+
+	return false
+}
+
+// SetPhases gets a reference to the given []DtoSubscriptionPhaseCreateRequest and assigns it to the Phases field.
+func (o *DtoCreateSubscriptionRequest) SetPhases(v []DtoSubscriptionPhaseCreateRequest) {
+	o.Phases = v
+}
+
 // GetPlanId returns the PlanId field value
 func (o *DtoCreateSubscriptionRequest) GetPlanId() string {
 	if o == nil {
@@ -334,28 +890,132 @@ func (o *DtoCreateSubscriptionRequest) SetPlanId(v string) {
 	o.PlanId = v
 }
 
-// GetStartDate returns the StartDate field value
+// GetProrationBehavior returns the ProrationBehavior field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetProrationBehavior() TypesProrationBehavior {
+	if o == nil || IsNil(o.ProrationBehavior) {
+		var ret TypesProrationBehavior
+		return ret
+	}
+	return *o.ProrationBehavior
+}
+
+// GetProrationBehaviorOk returns a tuple with the ProrationBehavior field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetProrationBehaviorOk() (*TypesProrationBehavior, bool) {
+	if o == nil || IsNil(o.ProrationBehavior) {
+		return nil, false
+	}
+	return o.ProrationBehavior, true
+}
+
+// HasProrationBehavior returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasProrationBehavior() bool {
+	if o != nil && !IsNil(o.ProrationBehavior) {
+		return true
+	}
+
+	return false
+}
+
+// SetProrationBehavior gets a reference to the given TypesProrationBehavior and assigns it to the ProrationBehavior field.
+func (o *DtoCreateSubscriptionRequest) SetProrationBehavior(v TypesProrationBehavior) {
+	o.ProrationBehavior = &v
+}
+
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *DtoCreateSubscriptionRequest) GetStartDate() string {
-	if o == nil {
+	if o == nil || IsNil(o.StartDate) {
 		var ret string
 		return ret
 	}
-
-	return o.StartDate
+	return *o.StartDate
 }
 
-// GetStartDateOk returns a tuple with the StartDate field value
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DtoCreateSubscriptionRequest) GetStartDateOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.StartDate) {
 		return nil, false
 	}
-	return &o.StartDate, true
+	return o.StartDate, true
 }
 
-// SetStartDate sets field value
+// HasStartDate returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasStartDate() bool {
+	if o != nil && !IsNil(o.StartDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given string and assigns it to the StartDate field.
 func (o *DtoCreateSubscriptionRequest) SetStartDate(v string) {
-	o.StartDate = v
+	o.StartDate = &v
+}
+
+// GetSubscriptionStatus returns the SubscriptionStatus field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetSubscriptionStatus() TypesSubscriptionStatus {
+	if o == nil || IsNil(o.SubscriptionStatus) {
+		var ret TypesSubscriptionStatus
+		return ret
+	}
+	return *o.SubscriptionStatus
+}
+
+// GetSubscriptionStatusOk returns a tuple with the SubscriptionStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetSubscriptionStatusOk() (*TypesSubscriptionStatus, bool) {
+	if o == nil || IsNil(o.SubscriptionStatus) {
+		return nil, false
+	}
+	return o.SubscriptionStatus, true
+}
+
+// HasSubscriptionStatus returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasSubscriptionStatus() bool {
+	if o != nil && !IsNil(o.SubscriptionStatus) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionStatus gets a reference to the given TypesSubscriptionStatus and assigns it to the SubscriptionStatus field.
+func (o *DtoCreateSubscriptionRequest) SetSubscriptionStatus(v TypesSubscriptionStatus) {
+	o.SubscriptionStatus = &v
+}
+
+// GetTaxRateOverrides returns the TaxRateOverrides field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetTaxRateOverrides() []DtoTaxRateOverride {
+	if o == nil || IsNil(o.TaxRateOverrides) {
+		var ret []DtoTaxRateOverride
+		return ret
+	}
+	return o.TaxRateOverrides
+}
+
+// GetTaxRateOverridesOk returns a tuple with the TaxRateOverrides field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetTaxRateOverridesOk() ([]DtoTaxRateOverride, bool) {
+	if o == nil || IsNil(o.TaxRateOverrides) {
+		return nil, false
+	}
+	return o.TaxRateOverrides, true
+}
+
+// HasTaxRateOverrides returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasTaxRateOverrides() bool {
+	if o != nil && !IsNil(o.TaxRateOverrides) {
+		return true
+	}
+
+	return false
+}
+
+// SetTaxRateOverrides gets a reference to the given []DtoTaxRateOverride and assigns it to the TaxRateOverrides field.
+func (o *DtoCreateSubscriptionRequest) SetTaxRateOverrides(v []DtoTaxRateOverride) {
+	o.TaxRateOverrides = v
 }
 
 // GetTrialEnd returns the TrialEnd field value if set, zero value otherwise.
@@ -432,16 +1092,53 @@ func (o DtoCreateSubscriptionRequest) MarshalJSON() ([]byte, error) {
 
 func (o DtoCreateSubscriptionRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Addons) {
+		toSerialize["addons"] = o.Addons
+	}
 	toSerialize["billing_cadence"] = o.BillingCadence
 	if !IsNil(o.BillingCycle) {
 		toSerialize["billing_cycle"] = o.BillingCycle
 	}
 	toSerialize["billing_period"] = o.BillingPeriod
-	toSerialize["billing_period_count"] = o.BillingPeriodCount
+	if !IsNil(o.BillingPeriodCount) {
+		toSerialize["billing_period_count"] = o.BillingPeriodCount
+	}
+	if !IsNil(o.CollectionMethod) {
+		toSerialize["collection_method"] = o.CollectionMethod
+	}
+	if !IsNil(o.CommitmentAmount) {
+		toSerialize["commitment_amount"] = o.CommitmentAmount
+	}
+	if !IsNil(o.Coupons) {
+		toSerialize["coupons"] = o.Coupons
+	}
+	if !IsNil(o.CreditGrants) {
+		toSerialize["credit_grants"] = o.CreditGrants
+	}
 	toSerialize["currency"] = o.Currency
-	toSerialize["customer_id"] = o.CustomerId
+	if !IsNil(o.CustomerId) {
+		toSerialize["customer_id"] = o.CustomerId
+	}
+	if !IsNil(o.CustomerTimezone) {
+		toSerialize["customer_timezone"] = o.CustomerTimezone
+	}
+	if !IsNil(o.EnableTrueUp) {
+		toSerialize["enable_true_up"] = o.EnableTrueUp
+	}
 	if !IsNil(o.EndDate) {
 		toSerialize["end_date"] = o.EndDate
+	}
+	if !IsNil(o.ExternalCustomerId) {
+		toSerialize["external_customer_id"] = o.ExternalCustomerId
+	}
+	if !IsNil(o.GatewayPaymentMethodId) {
+		toSerialize["gateway_payment_method_id"] = o.GatewayPaymentMethodId
+	}
+	if !IsNil(o.InvoiceBilling) {
+		toSerialize["invoice_billing"] = o.InvoiceBilling
+	}
+	if !IsNil(o.LineItemCoupons) {
+		toSerialize["line_item_coupons"] = o.LineItemCoupons
 	}
 	if !IsNil(o.LookupKey) {
 		toSerialize["lookup_key"] = o.LookupKey
@@ -449,8 +1146,34 @@ func (o DtoCreateSubscriptionRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
+	if !IsNil(o.OverageFactor) {
+		toSerialize["overage_factor"] = o.OverageFactor
+	}
+	if !IsNil(o.OverrideEntitlements) {
+		toSerialize["override_entitlements"] = o.OverrideEntitlements
+	}
+	if !IsNil(o.OverrideLineItems) {
+		toSerialize["override_line_items"] = o.OverrideLineItems
+	}
+	if !IsNil(o.PaymentBehavior) {
+		toSerialize["payment_behavior"] = o.PaymentBehavior
+	}
+	if !IsNil(o.Phases) {
+		toSerialize["phases"] = o.Phases
+	}
 	toSerialize["plan_id"] = o.PlanId
-	toSerialize["start_date"] = o.StartDate
+	if !IsNil(o.ProrationBehavior) {
+		toSerialize["proration_behavior"] = o.ProrationBehavior
+	}
+	if !IsNil(o.StartDate) {
+		toSerialize["start_date"] = o.StartDate
+	}
+	if !IsNil(o.SubscriptionStatus) {
+		toSerialize["subscription_status"] = o.SubscriptionStatus
+	}
+	if !IsNil(o.TaxRateOverrides) {
+		toSerialize["tax_rate_overrides"] = o.TaxRateOverrides
+	}
 	if !IsNil(o.TrialEnd) {
 		toSerialize["trial_end"] = o.TrialEnd
 	}
@@ -467,11 +1190,8 @@ func (o *DtoCreateSubscriptionRequest) UnmarshalJSON(data []byte) (err error) {
 	requiredProperties := []string{
 		"billing_cadence",
 		"billing_period",
-		"billing_period_count",
 		"currency",
-		"customer_id",
 		"plan_id",
-		"start_date",
 	}
 
 	allProperties := make(map[string]interface{})

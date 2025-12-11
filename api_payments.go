@@ -31,6 +31,7 @@ type PaymentsAPIPaymentsGetRequest struct {
 	destinationType *string
 	endTime *string
 	expand *string
+	gatewayPaymentId *string
 	limit *int32
 	offset *int32
 	order *string
@@ -65,6 +66,11 @@ func (r PaymentsAPIPaymentsGetRequest) EndTime(endTime string) PaymentsAPIPaymen
 
 func (r PaymentsAPIPaymentsGetRequest) Expand(expand string) PaymentsAPIPaymentsGetRequest {
 	r.expand = &expand
+	return r
+}
+
+func (r PaymentsAPIPaymentsGetRequest) GatewayPaymentId(gatewayPaymentId string) PaymentsAPIPaymentsGetRequest {
+	r.gatewayPaymentId = &gatewayPaymentId
 	return r
 }
 
@@ -172,6 +178,9 @@ func (a *PaymentsAPIService) PaymentsGetExecute(r PaymentsAPIPaymentsGetRequest)
 	}
 	if r.expand != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "expand", r.expand, "form", "")
+	}
+	if r.gatewayPaymentId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "gateway_payment_id", r.gatewayPaymentId, "form", "")
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")

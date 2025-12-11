@@ -19,8 +19,11 @@ var _ MappedNullable = &MeterAggregation{}
 
 // MeterAggregation struct for MeterAggregation
 type MeterAggregation struct {
+	BucketSize *TypesWindowSize `json:"bucket_size,omitempty"`
 	// Field is the key in $event.properties on which the aggregation is to be applied For ex if the aggregation type is sum for API usage, the field could be \"duration_ms\"
 	Field *string `json:"field,omitempty"`
+	// Multiplier is the multiplier for the aggregation For ex if the aggregation type is sum_with_multiplier for API usage, the multiplier could be 1000 to scale up by a factor of 1000. If not provided, it will be null.
+	Multiplier *float32 `json:"multiplier,omitempty"`
 	Type *TypesAggregationType `json:"type,omitempty"`
 }
 
@@ -39,6 +42,38 @@ func NewMeterAggregation() *MeterAggregation {
 func NewMeterAggregationWithDefaults() *MeterAggregation {
 	this := MeterAggregation{}
 	return &this
+}
+
+// GetBucketSize returns the BucketSize field value if set, zero value otherwise.
+func (o *MeterAggregation) GetBucketSize() TypesWindowSize {
+	if o == nil || IsNil(o.BucketSize) {
+		var ret TypesWindowSize
+		return ret
+	}
+	return *o.BucketSize
+}
+
+// GetBucketSizeOk returns a tuple with the BucketSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MeterAggregation) GetBucketSizeOk() (*TypesWindowSize, bool) {
+	if o == nil || IsNil(o.BucketSize) {
+		return nil, false
+	}
+	return o.BucketSize, true
+}
+
+// HasBucketSize returns a boolean if a field has been set.
+func (o *MeterAggregation) HasBucketSize() bool {
+	if o != nil && !IsNil(o.BucketSize) {
+		return true
+	}
+
+	return false
+}
+
+// SetBucketSize gets a reference to the given TypesWindowSize and assigns it to the BucketSize field.
+func (o *MeterAggregation) SetBucketSize(v TypesWindowSize) {
+	o.BucketSize = &v
 }
 
 // GetField returns the Field field value if set, zero value otherwise.
@@ -71,6 +106,38 @@ func (o *MeterAggregation) HasField() bool {
 // SetField gets a reference to the given string and assigns it to the Field field.
 func (o *MeterAggregation) SetField(v string) {
 	o.Field = &v
+}
+
+// GetMultiplier returns the Multiplier field value if set, zero value otherwise.
+func (o *MeterAggregation) GetMultiplier() float32 {
+	if o == nil || IsNil(o.Multiplier) {
+		var ret float32
+		return ret
+	}
+	return *o.Multiplier
+}
+
+// GetMultiplierOk returns a tuple with the Multiplier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MeterAggregation) GetMultiplierOk() (*float32, bool) {
+	if o == nil || IsNil(o.Multiplier) {
+		return nil, false
+	}
+	return o.Multiplier, true
+}
+
+// HasMultiplier returns a boolean if a field has been set.
+func (o *MeterAggregation) HasMultiplier() bool {
+	if o != nil && !IsNil(o.Multiplier) {
+		return true
+	}
+
+	return false
+}
+
+// SetMultiplier gets a reference to the given float32 and assigns it to the Multiplier field.
+func (o *MeterAggregation) SetMultiplier(v float32) {
+	o.Multiplier = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -115,8 +182,14 @@ func (o MeterAggregation) MarshalJSON() ([]byte, error) {
 
 func (o MeterAggregation) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BucketSize) {
+		toSerialize["bucket_size"] = o.BucketSize
+	}
 	if !IsNil(o.Field) {
 		toSerialize["field"] = o.Field
+	}
+	if !IsNil(o.Multiplier) {
+		toSerialize["multiplier"] = o.Multiplier
 	}
 	if !IsNil(o.Type) {
 		toSerialize["type"] = o.Type

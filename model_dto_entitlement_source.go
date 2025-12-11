@@ -20,13 +20,15 @@ var _ MappedNullable = &DtoEntitlementSource{}
 // DtoEntitlementSource struct for DtoEntitlementSource
 type DtoEntitlementSource struct {
 	EntitlementId *string `json:"entitlement_id,omitempty"`
+	EntityId *string `json:"entity_id,omitempty"`
+	EntityName *string `json:"entity_name,omitempty"`
+	EntityType *DtoEntitlementSourceEntityType `json:"entity_type,omitempty"`
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	PlanId *string `json:"plan_id,omitempty"`
-	PlanName *string `json:"plan_name,omitempty"`
 	Quantity *int32 `json:"quantity,omitempty"`
 	StaticValue *string `json:"static_value,omitempty"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
 	UsageLimit *int32 `json:"usage_limit,omitempty"`
+	UsageResetPeriod *TypesBillingPeriod `json:"usage_reset_period,omitempty"`
 }
 
 // NewDtoEntitlementSource instantiates a new DtoEntitlementSource object
@@ -78,6 +80,102 @@ func (o *DtoEntitlementSource) SetEntitlementId(v string) {
 	o.EntitlementId = &v
 }
 
+// GetEntityId returns the EntityId field value if set, zero value otherwise.
+func (o *DtoEntitlementSource) GetEntityId() string {
+	if o == nil || IsNil(o.EntityId) {
+		var ret string
+		return ret
+	}
+	return *o.EntityId
+}
+
+// GetEntityIdOk returns a tuple with the EntityId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoEntitlementSource) GetEntityIdOk() (*string, bool) {
+	if o == nil || IsNil(o.EntityId) {
+		return nil, false
+	}
+	return o.EntityId, true
+}
+
+// HasEntityId returns a boolean if a field has been set.
+func (o *DtoEntitlementSource) HasEntityId() bool {
+	if o != nil && !IsNil(o.EntityId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityId gets a reference to the given string and assigns it to the EntityId field.
+func (o *DtoEntitlementSource) SetEntityId(v string) {
+	o.EntityId = &v
+}
+
+// GetEntityName returns the EntityName field value if set, zero value otherwise.
+func (o *DtoEntitlementSource) GetEntityName() string {
+	if o == nil || IsNil(o.EntityName) {
+		var ret string
+		return ret
+	}
+	return *o.EntityName
+}
+
+// GetEntityNameOk returns a tuple with the EntityName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoEntitlementSource) GetEntityNameOk() (*string, bool) {
+	if o == nil || IsNil(o.EntityName) {
+		return nil, false
+	}
+	return o.EntityName, true
+}
+
+// HasEntityName returns a boolean if a field has been set.
+func (o *DtoEntitlementSource) HasEntityName() bool {
+	if o != nil && !IsNil(o.EntityName) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityName gets a reference to the given string and assigns it to the EntityName field.
+func (o *DtoEntitlementSource) SetEntityName(v string) {
+	o.EntityName = &v
+}
+
+// GetEntityType returns the EntityType field value if set, zero value otherwise.
+func (o *DtoEntitlementSource) GetEntityType() DtoEntitlementSourceEntityType {
+	if o == nil || IsNil(o.EntityType) {
+		var ret DtoEntitlementSourceEntityType
+		return ret
+	}
+	return *o.EntityType
+}
+
+// GetEntityTypeOk returns a tuple with the EntityType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoEntitlementSource) GetEntityTypeOk() (*DtoEntitlementSourceEntityType, bool) {
+	if o == nil || IsNil(o.EntityType) {
+		return nil, false
+	}
+	return o.EntityType, true
+}
+
+// HasEntityType returns a boolean if a field has been set.
+func (o *DtoEntitlementSource) HasEntityType() bool {
+	if o != nil && !IsNil(o.EntityType) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityType gets a reference to the given DtoEntitlementSourceEntityType and assigns it to the EntityType field.
+func (o *DtoEntitlementSource) SetEntityType(v DtoEntitlementSourceEntityType) {
+	o.EntityType = &v
+}
+
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *DtoEntitlementSource) GetIsEnabled() bool {
 	if o == nil || IsNil(o.IsEnabled) {
@@ -108,70 +206,6 @@ func (o *DtoEntitlementSource) HasIsEnabled() bool {
 // SetIsEnabled gets a reference to the given bool and assigns it to the IsEnabled field.
 func (o *DtoEntitlementSource) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
-}
-
-// GetPlanId returns the PlanId field value if set, zero value otherwise.
-func (o *DtoEntitlementSource) GetPlanId() string {
-	if o == nil || IsNil(o.PlanId) {
-		var ret string
-		return ret
-	}
-	return *o.PlanId
-}
-
-// GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoEntitlementSource) GetPlanIdOk() (*string, bool) {
-	if o == nil || IsNil(o.PlanId) {
-		return nil, false
-	}
-	return o.PlanId, true
-}
-
-// HasPlanId returns a boolean if a field has been set.
-func (o *DtoEntitlementSource) HasPlanId() bool {
-	if o != nil && !IsNil(o.PlanId) {
-		return true
-	}
-
-	return false
-}
-
-// SetPlanId gets a reference to the given string and assigns it to the PlanId field.
-func (o *DtoEntitlementSource) SetPlanId(v string) {
-	o.PlanId = &v
-}
-
-// GetPlanName returns the PlanName field value if set, zero value otherwise.
-func (o *DtoEntitlementSource) GetPlanName() string {
-	if o == nil || IsNil(o.PlanName) {
-		var ret string
-		return ret
-	}
-	return *o.PlanName
-}
-
-// GetPlanNameOk returns a tuple with the PlanName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoEntitlementSource) GetPlanNameOk() (*string, bool) {
-	if o == nil || IsNil(o.PlanName) {
-		return nil, false
-	}
-	return o.PlanName, true
-}
-
-// HasPlanName returns a boolean if a field has been set.
-func (o *DtoEntitlementSource) HasPlanName() bool {
-	if o != nil && !IsNil(o.PlanName) {
-		return true
-	}
-
-	return false
-}
-
-// SetPlanName gets a reference to the given string and assigns it to the PlanName field.
-func (o *DtoEntitlementSource) SetPlanName(v string) {
-	o.PlanName = &v
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
@@ -302,6 +336,38 @@ func (o *DtoEntitlementSource) SetUsageLimit(v int32) {
 	o.UsageLimit = &v
 }
 
+// GetUsageResetPeriod returns the UsageResetPeriod field value if set, zero value otherwise.
+func (o *DtoEntitlementSource) GetUsageResetPeriod() TypesBillingPeriod {
+	if o == nil || IsNil(o.UsageResetPeriod) {
+		var ret TypesBillingPeriod
+		return ret
+	}
+	return *o.UsageResetPeriod
+}
+
+// GetUsageResetPeriodOk returns a tuple with the UsageResetPeriod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoEntitlementSource) GetUsageResetPeriodOk() (*TypesBillingPeriod, bool) {
+	if o == nil || IsNil(o.UsageResetPeriod) {
+		return nil, false
+	}
+	return o.UsageResetPeriod, true
+}
+
+// HasUsageResetPeriod returns a boolean if a field has been set.
+func (o *DtoEntitlementSource) HasUsageResetPeriod() bool {
+	if o != nil && !IsNil(o.UsageResetPeriod) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsageResetPeriod gets a reference to the given TypesBillingPeriod and assigns it to the UsageResetPeriod field.
+func (o *DtoEntitlementSource) SetUsageResetPeriod(v TypesBillingPeriod) {
+	o.UsageResetPeriod = &v
+}
+
 func (o DtoEntitlementSource) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -315,14 +381,17 @@ func (o DtoEntitlementSource) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.EntitlementId) {
 		toSerialize["entitlement_id"] = o.EntitlementId
 	}
+	if !IsNil(o.EntityId) {
+		toSerialize["entity_id"] = o.EntityId
+	}
+	if !IsNil(o.EntityName) {
+		toSerialize["entity_name"] = o.EntityName
+	}
+	if !IsNil(o.EntityType) {
+		toSerialize["entity_type"] = o.EntityType
+	}
 	if !IsNil(o.IsEnabled) {
 		toSerialize["is_enabled"] = o.IsEnabled
-	}
-	if !IsNil(o.PlanId) {
-		toSerialize["plan_id"] = o.PlanId
-	}
-	if !IsNil(o.PlanName) {
-		toSerialize["plan_name"] = o.PlanName
 	}
 	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
@@ -335,6 +404,9 @@ func (o DtoEntitlementSource) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.UsageLimit) {
 		toSerialize["usage_limit"] = o.UsageLimit
+	}
+	if !IsNil(o.UsageResetPeriod) {
+		toSerialize["usage_reset_period"] = o.UsageResetPeriod
 	}
 	return toSerialize, nil
 }

@@ -19,14 +19,20 @@ import (
 // checks if the DtoPauseSubscriptionRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DtoPauseSubscriptionRequest{}
 
-// DtoPauseSubscriptionRequest struct for DtoPauseSubscriptionRequest
+// DtoPauseSubscriptionRequest Request object for pausing an active subscription with various pause modes and options
 type DtoPauseSubscriptionRequest struct {
+	// Whether to perform a dry run @Description If true, validates the request and shows impact without actually pausing the subscription @Example false
 	DryRun *bool `json:"dry_run,omitempty"`
+	// Additional metadata as key-value pairs @Description Optional metadata for storing additional information about the pause @Example {\"requested_by\": \"customer\", \"channel\": \"support_ticket\"}
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	// Duration of the pause in days @Description Number of days to pause the subscription. Cannot be used together with pause_end. Must be greater than 0 @Example 30
 	PauseDays *int32 `json:"pause_days,omitempty"`
+	// End date for the subscription pause @Description ISO 8601 timestamp when the pause should end. Cannot be used together with pause_days. Must be after pause_start @Example \"2024-02-15T00:00:00Z\"
 	PauseEnd *string `json:"pause_end,omitempty"`
 	PauseMode TypesPauseMode `json:"pause_mode"`
+	// Start date for the subscription pause @Description ISO 8601 timestamp when the pause should begin. Required when pause_mode is \"scheduled\" @Example \"2024-01-15T00:00:00Z\"
 	PauseStart *string `json:"pause_start,omitempty"`
+	// Reason for pausing the subscription @Description Optional reason for the pause. Maximum 255 characters @Example \"Customer requested temporary suspension\"
 	Reason *string `json:"reason,omitempty"`
 }
 

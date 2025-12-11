@@ -19,6 +19,7 @@ var _ MappedNullable = &DtoFeatureResponse{}
 
 // DtoFeatureResponse struct for DtoFeatureResponse
 type DtoFeatureResponse struct {
+	AlertSettings *TypesAlertSettings `json:"alert_settings,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -53,6 +54,38 @@ func NewDtoFeatureResponse() *DtoFeatureResponse {
 func NewDtoFeatureResponseWithDefaults() *DtoFeatureResponse {
 	this := DtoFeatureResponse{}
 	return &this
+}
+
+// GetAlertSettings returns the AlertSettings field value if set, zero value otherwise.
+func (o *DtoFeatureResponse) GetAlertSettings() TypesAlertSettings {
+	if o == nil || IsNil(o.AlertSettings) {
+		var ret TypesAlertSettings
+		return ret
+	}
+	return *o.AlertSettings
+}
+
+// GetAlertSettingsOk returns a tuple with the AlertSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoFeatureResponse) GetAlertSettingsOk() (*TypesAlertSettings, bool) {
+	if o == nil || IsNil(o.AlertSettings) {
+		return nil, false
+	}
+	return o.AlertSettings, true
+}
+
+// HasAlertSettings returns a boolean if a field has been set.
+func (o *DtoFeatureResponse) HasAlertSettings() bool {
+	if o != nil && !IsNil(o.AlertSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlertSettings gets a reference to the given TypesAlertSettings and assigns it to the AlertSettings field.
+func (o *DtoFeatureResponse) SetAlertSettings(v TypesAlertSettings) {
+	o.AlertSettings = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -609,6 +642,9 @@ func (o DtoFeatureResponse) MarshalJSON() ([]byte, error) {
 
 func (o DtoFeatureResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AlertSettings) {
+		toSerialize["alert_settings"] = o.AlertSettings
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}

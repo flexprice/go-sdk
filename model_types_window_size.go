@@ -29,6 +29,7 @@ const (
 	TYPESWINDOWSIZE_WindowSize12Hour TypesWindowSize = "12HOUR"
 	TYPESWINDOWSIZE_WindowSizeDay TypesWindowSize = "DAY"
 	TYPESWINDOWSIZE_WindowSizeWeek TypesWindowSize = "WEEK"
+	TYPESWINDOWSIZE_WindowSizeMonth TypesWindowSize = "MONTH"
 )
 
 // All allowed values of TypesWindowSize enum
@@ -42,6 +43,7 @@ var AllowedTypesWindowSizeEnumValues = []TypesWindowSize{
 	"12HOUR",
 	"DAY",
 	"WEEK",
+	"MONTH",
 }
 
 func (v *TypesWindowSize) UnmarshalJSON(src []byte) error {

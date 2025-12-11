@@ -24,11 +24,12 @@ type TypesCustomerFilter struct {
 	EndTime *string `json:"end_time,omitempty"`
 	Expand *string `json:"expand,omitempty"`
 	ExternalId *string `json:"external_id,omitempty"`
-	// filters allows complex filtering based on multiple fields
+	ExternalIds []string `json:"external_ids,omitempty"`
 	Filters []TypesFilterCondition `json:"filters,omitempty"`
 	Limit *int32 `json:"limit,omitempty"`
 	Offset *int32 `json:"offset,omitempty"`
 	Order *string `json:"order,omitempty"`
+	ParentCustomerIds []string `json:"parent_customer_ids,omitempty"`
 	Sort []TypesSortCondition `json:"sort,omitempty"`
 	StartTime *string `json:"start_time,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
@@ -211,6 +212,38 @@ func (o *TypesCustomerFilter) SetExternalId(v string) {
 	o.ExternalId = &v
 }
 
+// GetExternalIds returns the ExternalIds field value if set, zero value otherwise.
+func (o *TypesCustomerFilter) GetExternalIds() []string {
+	if o == nil || IsNil(o.ExternalIds) {
+		var ret []string
+		return ret
+	}
+	return o.ExternalIds
+}
+
+// GetExternalIdsOk returns a tuple with the ExternalIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TypesCustomerFilter) GetExternalIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ExternalIds) {
+		return nil, false
+	}
+	return o.ExternalIds, true
+}
+
+// HasExternalIds returns a boolean if a field has been set.
+func (o *TypesCustomerFilter) HasExternalIds() bool {
+	if o != nil && !IsNil(o.ExternalIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalIds gets a reference to the given []string and assigns it to the ExternalIds field.
+func (o *TypesCustomerFilter) SetExternalIds(v []string) {
+	o.ExternalIds = v
+}
+
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *TypesCustomerFilter) GetFilters() []TypesFilterCondition {
 	if o == nil || IsNil(o.Filters) {
@@ -339,6 +372,38 @@ func (o *TypesCustomerFilter) SetOrder(v string) {
 	o.Order = &v
 }
 
+// GetParentCustomerIds returns the ParentCustomerIds field value if set, zero value otherwise.
+func (o *TypesCustomerFilter) GetParentCustomerIds() []string {
+	if o == nil || IsNil(o.ParentCustomerIds) {
+		var ret []string
+		return ret
+	}
+	return o.ParentCustomerIds
+}
+
+// GetParentCustomerIdsOk returns a tuple with the ParentCustomerIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TypesCustomerFilter) GetParentCustomerIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ParentCustomerIds) {
+		return nil, false
+	}
+	return o.ParentCustomerIds, true
+}
+
+// HasParentCustomerIds returns a boolean if a field has been set.
+func (o *TypesCustomerFilter) HasParentCustomerIds() bool {
+	if o != nil && !IsNil(o.ParentCustomerIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentCustomerIds gets a reference to the given []string and assigns it to the ParentCustomerIds field.
+func (o *TypesCustomerFilter) SetParentCustomerIds(v []string) {
+	o.ParentCustomerIds = v
+}
+
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *TypesCustomerFilter) GetSort() []TypesSortCondition {
 	if o == nil || IsNil(o.Sort) {
@@ -460,6 +525,9 @@ func (o TypesCustomerFilter) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExternalId) {
 		toSerialize["external_id"] = o.ExternalId
 	}
+	if !IsNil(o.ExternalIds) {
+		toSerialize["external_ids"] = o.ExternalIds
+	}
 	if !IsNil(o.Filters) {
 		toSerialize["filters"] = o.Filters
 	}
@@ -471,6 +539,9 @@ func (o TypesCustomerFilter) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Order) {
 		toSerialize["order"] = o.Order
+	}
+	if !IsNil(o.ParentCustomerIds) {
+		toSerialize["parent_customer_ids"] = o.ParentCustomerIds
 	}
 	if !IsNil(o.Sort) {
 		toSerialize["sort"] = o.Sort

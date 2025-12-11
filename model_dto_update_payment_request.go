@@ -19,8 +19,14 @@ var _ MappedNullable = &DtoUpdatePaymentRequest{}
 
 // DtoUpdatePaymentRequest struct for DtoUpdatePaymentRequest
 type DtoUpdatePaymentRequest struct {
+	ErrorMessage *string `json:"error_message,omitempty"`
+	FailedAt *string `json:"failed_at,omitempty"`
+	GatewayPaymentId *string `json:"gateway_payment_id,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	PaymentGateway *string `json:"payment_gateway,omitempty"`
+	PaymentMethodId *string `json:"payment_method_id,omitempty"`
 	PaymentStatus *string `json:"payment_status,omitempty"`
+	SucceededAt *string `json:"succeeded_at,omitempty"`
 }
 
 // NewDtoUpdatePaymentRequest instantiates a new DtoUpdatePaymentRequest object
@@ -38,6 +44,102 @@ func NewDtoUpdatePaymentRequest() *DtoUpdatePaymentRequest {
 func NewDtoUpdatePaymentRequestWithDefaults() *DtoUpdatePaymentRequest {
 	this := DtoUpdatePaymentRequest{}
 	return &this
+}
+
+// GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
+func (o *DtoUpdatePaymentRequest) GetErrorMessage() string {
+	if o == nil || IsNil(o.ErrorMessage) {
+		var ret string
+		return ret
+	}
+	return *o.ErrorMessage
+}
+
+// GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePaymentRequest) GetErrorMessageOk() (*string, bool) {
+	if o == nil || IsNil(o.ErrorMessage) {
+		return nil, false
+	}
+	return o.ErrorMessage, true
+}
+
+// HasErrorMessage returns a boolean if a field has been set.
+func (o *DtoUpdatePaymentRequest) HasErrorMessage() bool {
+	if o != nil && !IsNil(o.ErrorMessage) {
+		return true
+	}
+
+	return false
+}
+
+// SetErrorMessage gets a reference to the given string and assigns it to the ErrorMessage field.
+func (o *DtoUpdatePaymentRequest) SetErrorMessage(v string) {
+	o.ErrorMessage = &v
+}
+
+// GetFailedAt returns the FailedAt field value if set, zero value otherwise.
+func (o *DtoUpdatePaymentRequest) GetFailedAt() string {
+	if o == nil || IsNil(o.FailedAt) {
+		var ret string
+		return ret
+	}
+	return *o.FailedAt
+}
+
+// GetFailedAtOk returns a tuple with the FailedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePaymentRequest) GetFailedAtOk() (*string, bool) {
+	if o == nil || IsNil(o.FailedAt) {
+		return nil, false
+	}
+	return o.FailedAt, true
+}
+
+// HasFailedAt returns a boolean if a field has been set.
+func (o *DtoUpdatePaymentRequest) HasFailedAt() bool {
+	if o != nil && !IsNil(o.FailedAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetFailedAt gets a reference to the given string and assigns it to the FailedAt field.
+func (o *DtoUpdatePaymentRequest) SetFailedAt(v string) {
+	o.FailedAt = &v
+}
+
+// GetGatewayPaymentId returns the GatewayPaymentId field value if set, zero value otherwise.
+func (o *DtoUpdatePaymentRequest) GetGatewayPaymentId() string {
+	if o == nil || IsNil(o.GatewayPaymentId) {
+		var ret string
+		return ret
+	}
+	return *o.GatewayPaymentId
+}
+
+// GetGatewayPaymentIdOk returns a tuple with the GatewayPaymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePaymentRequest) GetGatewayPaymentIdOk() (*string, bool) {
+	if o == nil || IsNil(o.GatewayPaymentId) {
+		return nil, false
+	}
+	return o.GatewayPaymentId, true
+}
+
+// HasGatewayPaymentId returns a boolean if a field has been set.
+func (o *DtoUpdatePaymentRequest) HasGatewayPaymentId() bool {
+	if o != nil && !IsNil(o.GatewayPaymentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGatewayPaymentId gets a reference to the given string and assigns it to the GatewayPaymentId field.
+func (o *DtoUpdatePaymentRequest) SetGatewayPaymentId(v string) {
+	o.GatewayPaymentId = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -72,6 +174,70 @@ func (o *DtoUpdatePaymentRequest) SetMetadata(v map[string]string) {
 	o.Metadata = &v
 }
 
+// GetPaymentGateway returns the PaymentGateway field value if set, zero value otherwise.
+func (o *DtoUpdatePaymentRequest) GetPaymentGateway() string {
+	if o == nil || IsNil(o.PaymentGateway) {
+		var ret string
+		return ret
+	}
+	return *o.PaymentGateway
+}
+
+// GetPaymentGatewayOk returns a tuple with the PaymentGateway field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePaymentRequest) GetPaymentGatewayOk() (*string, bool) {
+	if o == nil || IsNil(o.PaymentGateway) {
+		return nil, false
+	}
+	return o.PaymentGateway, true
+}
+
+// HasPaymentGateway returns a boolean if a field has been set.
+func (o *DtoUpdatePaymentRequest) HasPaymentGateway() bool {
+	if o != nil && !IsNil(o.PaymentGateway) {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentGateway gets a reference to the given string and assigns it to the PaymentGateway field.
+func (o *DtoUpdatePaymentRequest) SetPaymentGateway(v string) {
+	o.PaymentGateway = &v
+}
+
+// GetPaymentMethodId returns the PaymentMethodId field value if set, zero value otherwise.
+func (o *DtoUpdatePaymentRequest) GetPaymentMethodId() string {
+	if o == nil || IsNil(o.PaymentMethodId) {
+		var ret string
+		return ret
+	}
+	return *o.PaymentMethodId
+}
+
+// GetPaymentMethodIdOk returns a tuple with the PaymentMethodId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePaymentRequest) GetPaymentMethodIdOk() (*string, bool) {
+	if o == nil || IsNil(o.PaymentMethodId) {
+		return nil, false
+	}
+	return o.PaymentMethodId, true
+}
+
+// HasPaymentMethodId returns a boolean if a field has been set.
+func (o *DtoUpdatePaymentRequest) HasPaymentMethodId() bool {
+	if o != nil && !IsNil(o.PaymentMethodId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentMethodId gets a reference to the given string and assigns it to the PaymentMethodId field.
+func (o *DtoUpdatePaymentRequest) SetPaymentMethodId(v string) {
+	o.PaymentMethodId = &v
+}
+
 // GetPaymentStatus returns the PaymentStatus field value if set, zero value otherwise.
 func (o *DtoUpdatePaymentRequest) GetPaymentStatus() string {
 	if o == nil || IsNil(o.PaymentStatus) {
@@ -104,6 +270,38 @@ func (o *DtoUpdatePaymentRequest) SetPaymentStatus(v string) {
 	o.PaymentStatus = &v
 }
 
+// GetSucceededAt returns the SucceededAt field value if set, zero value otherwise.
+func (o *DtoUpdatePaymentRequest) GetSucceededAt() string {
+	if o == nil || IsNil(o.SucceededAt) {
+		var ret string
+		return ret
+	}
+	return *o.SucceededAt
+}
+
+// GetSucceededAtOk returns a tuple with the SucceededAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePaymentRequest) GetSucceededAtOk() (*string, bool) {
+	if o == nil || IsNil(o.SucceededAt) {
+		return nil, false
+	}
+	return o.SucceededAt, true
+}
+
+// HasSucceededAt returns a boolean if a field has been set.
+func (o *DtoUpdatePaymentRequest) HasSucceededAt() bool {
+	if o != nil && !IsNil(o.SucceededAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetSucceededAt gets a reference to the given string and assigns it to the SucceededAt field.
+func (o *DtoUpdatePaymentRequest) SetSucceededAt(v string) {
+	o.SucceededAt = &v
+}
+
 func (o DtoUpdatePaymentRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -114,11 +312,29 @@ func (o DtoUpdatePaymentRequest) MarshalJSON() ([]byte, error) {
 
 func (o DtoUpdatePaymentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ErrorMessage) {
+		toSerialize["error_message"] = o.ErrorMessage
+	}
+	if !IsNil(o.FailedAt) {
+		toSerialize["failed_at"] = o.FailedAt
+	}
+	if !IsNil(o.GatewayPaymentId) {
+		toSerialize["gateway_payment_id"] = o.GatewayPaymentId
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
+	if !IsNil(o.PaymentGateway) {
+		toSerialize["payment_gateway"] = o.PaymentGateway
+	}
+	if !IsNil(o.PaymentMethodId) {
+		toSerialize["payment_method_id"] = o.PaymentMethodId
+	}
 	if !IsNil(o.PaymentStatus) {
 		toSerialize["payment_status"] = o.PaymentStatus
+	}
+	if !IsNil(o.SucceededAt) {
+		toSerialize["succeeded_at"] = o.SucceededAt
 	}
 	return toSerialize, nil
 }

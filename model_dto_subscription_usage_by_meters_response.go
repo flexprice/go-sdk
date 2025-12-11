@@ -23,8 +23,12 @@ type DtoSubscriptionUsageByMetersResponse struct {
 	Currency *string `json:"currency,omitempty"`
 	DisplayAmount *string `json:"display_amount,omitempty"`
 	FilterValues *map[string][]string `json:"filter_values,omitempty"`
+	// Whether this charge is at overage rate
+	IsOverage *bool `json:"is_overage,omitempty"`
 	MeterDisplayName *string `json:"meter_display_name,omitempty"`
 	MeterId *string `json:"meter_id,omitempty"`
+	// Factor applied to this charge if in overage
+	OverageFactor *float32 `json:"overage_factor,omitempty"`
 	Price *PricePrice `json:"price,omitempty"`
 	Quantity *float32 `json:"quantity,omitempty"`
 }
@@ -174,6 +178,38 @@ func (o *DtoSubscriptionUsageByMetersResponse) SetFilterValues(v map[string][]st
 	o.FilterValues = &v
 }
 
+// GetIsOverage returns the IsOverage field value if set, zero value otherwise.
+func (o *DtoSubscriptionUsageByMetersResponse) GetIsOverage() bool {
+	if o == nil || IsNil(o.IsOverage) {
+		var ret bool
+		return ret
+	}
+	return *o.IsOverage
+}
+
+// GetIsOverageOk returns a tuple with the IsOverage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionUsageByMetersResponse) GetIsOverageOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsOverage) {
+		return nil, false
+	}
+	return o.IsOverage, true
+}
+
+// HasIsOverage returns a boolean if a field has been set.
+func (o *DtoSubscriptionUsageByMetersResponse) HasIsOverage() bool {
+	if o != nil && !IsNil(o.IsOverage) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsOverage gets a reference to the given bool and assigns it to the IsOverage field.
+func (o *DtoSubscriptionUsageByMetersResponse) SetIsOverage(v bool) {
+	o.IsOverage = &v
+}
+
 // GetMeterDisplayName returns the MeterDisplayName field value if set, zero value otherwise.
 func (o *DtoSubscriptionUsageByMetersResponse) GetMeterDisplayName() string {
 	if o == nil || IsNil(o.MeterDisplayName) {
@@ -236,6 +272,38 @@ func (o *DtoSubscriptionUsageByMetersResponse) HasMeterId() bool {
 // SetMeterId gets a reference to the given string and assigns it to the MeterId field.
 func (o *DtoSubscriptionUsageByMetersResponse) SetMeterId(v string) {
 	o.MeterId = &v
+}
+
+// GetOverageFactor returns the OverageFactor field value if set, zero value otherwise.
+func (o *DtoSubscriptionUsageByMetersResponse) GetOverageFactor() float32 {
+	if o == nil || IsNil(o.OverageFactor) {
+		var ret float32
+		return ret
+	}
+	return *o.OverageFactor
+}
+
+// GetOverageFactorOk returns a tuple with the OverageFactor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionUsageByMetersResponse) GetOverageFactorOk() (*float32, bool) {
+	if o == nil || IsNil(o.OverageFactor) {
+		return nil, false
+	}
+	return o.OverageFactor, true
+}
+
+// HasOverageFactor returns a boolean if a field has been set.
+func (o *DtoSubscriptionUsageByMetersResponse) HasOverageFactor() bool {
+	if o != nil && !IsNil(o.OverageFactor) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverageFactor gets a reference to the given float32 and assigns it to the OverageFactor field.
+func (o *DtoSubscriptionUsageByMetersResponse) SetOverageFactor(v float32) {
+	o.OverageFactor = &v
 }
 
 // GetPrice returns the Price field value if set, zero value otherwise.
@@ -324,11 +392,17 @@ func (o DtoSubscriptionUsageByMetersResponse) ToMap() (map[string]interface{}, e
 	if !IsNil(o.FilterValues) {
 		toSerialize["filter_values"] = o.FilterValues
 	}
+	if !IsNil(o.IsOverage) {
+		toSerialize["is_overage"] = o.IsOverage
+	}
 	if !IsNil(o.MeterDisplayName) {
 		toSerialize["meter_display_name"] = o.MeterDisplayName
 	}
 	if !IsNil(o.MeterId) {
 		toSerialize["meter_id"] = o.MeterId
+	}
+	if !IsNil(o.OverageFactor) {
+		toSerialize["overage_factor"] = o.OverageFactor
 	}
 	if !IsNil(o.Price) {
 		toSerialize["price"] = o.Price

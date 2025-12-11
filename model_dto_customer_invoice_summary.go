@@ -19,16 +19,26 @@ var _ MappedNullable = &DtoCustomerInvoiceSummary{}
 
 // DtoCustomerInvoiceSummary struct for DtoCustomerInvoiceSummary
 type DtoCustomerInvoiceSummary struct {
+	// currency is the three-letter ISO currency code for this summary
 	Currency *string `json:"currency,omitempty"`
+	// customer_id is the unique identifier of the customer
 	CustomerId *string `json:"customer_id,omitempty"`
+	// overdue_invoice_count is the number of overdue invoices for this customer in this currency
 	OverdueInvoiceCount *int32 `json:"overdue_invoice_count,omitempty"`
+	// total_invoice_count is the total number of invoices for this customer in this currency
 	TotalInvoiceCount *int32 `json:"total_invoice_count,omitempty"`
-	TotalOverdueAmount *float32 `json:"total_overdue_amount,omitempty"`
-	TotalRevenueAmount *float32 `json:"total_revenue_amount,omitempty"`
-	TotalUnpaidAmount *float32 `json:"total_unpaid_amount,omitempty"`
-	UnpaidFixedCharges *float32 `json:"unpaid_fixed_charges,omitempty"`
+	// total_overdue_amount is the total amount of overdue invoices in this currency
+	TotalOverdueAmount *string `json:"total_overdue_amount,omitempty"`
+	// total_revenue_amount is the total revenue generated from this customer in this currency
+	TotalRevenueAmount *string `json:"total_revenue_amount,omitempty"`
+	// total_unpaid_amount is the total amount of unpaid invoices in this currency
+	TotalUnpaidAmount *string `json:"total_unpaid_amount,omitempty"`
+	// unpaid_fixed_charges is the total amount of unpaid fixed charges in this currency
+	UnpaidFixedCharges *string `json:"unpaid_fixed_charges,omitempty"`
+	// unpaid_invoice_count is the number of unpaid invoices for this customer in this currency
 	UnpaidInvoiceCount *int32 `json:"unpaid_invoice_count,omitempty"`
-	UnpaidUsageCharges *float32 `json:"unpaid_usage_charges,omitempty"`
+	// unpaid_usage_charges is the total amount of unpaid usage-based charges in this currency
+	UnpaidUsageCharges *string `json:"unpaid_usage_charges,omitempty"`
 }
 
 // NewDtoCustomerInvoiceSummary instantiates a new DtoCustomerInvoiceSummary object
@@ -177,9 +187,9 @@ func (o *DtoCustomerInvoiceSummary) SetTotalInvoiceCount(v int32) {
 }
 
 // GetTotalOverdueAmount returns the TotalOverdueAmount field value if set, zero value otherwise.
-func (o *DtoCustomerInvoiceSummary) GetTotalOverdueAmount() float32 {
+func (o *DtoCustomerInvoiceSummary) GetTotalOverdueAmount() string {
 	if o == nil || IsNil(o.TotalOverdueAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.TotalOverdueAmount
@@ -187,7 +197,7 @@ func (o *DtoCustomerInvoiceSummary) GetTotalOverdueAmount() float32 {
 
 // GetTotalOverdueAmountOk returns a tuple with the TotalOverdueAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCustomerInvoiceSummary) GetTotalOverdueAmountOk() (*float32, bool) {
+func (o *DtoCustomerInvoiceSummary) GetTotalOverdueAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.TotalOverdueAmount) {
 		return nil, false
 	}
@@ -203,15 +213,15 @@ func (o *DtoCustomerInvoiceSummary) HasTotalOverdueAmount() bool {
 	return false
 }
 
-// SetTotalOverdueAmount gets a reference to the given float32 and assigns it to the TotalOverdueAmount field.
-func (o *DtoCustomerInvoiceSummary) SetTotalOverdueAmount(v float32) {
+// SetTotalOverdueAmount gets a reference to the given string and assigns it to the TotalOverdueAmount field.
+func (o *DtoCustomerInvoiceSummary) SetTotalOverdueAmount(v string) {
 	o.TotalOverdueAmount = &v
 }
 
 // GetTotalRevenueAmount returns the TotalRevenueAmount field value if set, zero value otherwise.
-func (o *DtoCustomerInvoiceSummary) GetTotalRevenueAmount() float32 {
+func (o *DtoCustomerInvoiceSummary) GetTotalRevenueAmount() string {
 	if o == nil || IsNil(o.TotalRevenueAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.TotalRevenueAmount
@@ -219,7 +229,7 @@ func (o *DtoCustomerInvoiceSummary) GetTotalRevenueAmount() float32 {
 
 // GetTotalRevenueAmountOk returns a tuple with the TotalRevenueAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCustomerInvoiceSummary) GetTotalRevenueAmountOk() (*float32, bool) {
+func (o *DtoCustomerInvoiceSummary) GetTotalRevenueAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.TotalRevenueAmount) {
 		return nil, false
 	}
@@ -235,15 +245,15 @@ func (o *DtoCustomerInvoiceSummary) HasTotalRevenueAmount() bool {
 	return false
 }
 
-// SetTotalRevenueAmount gets a reference to the given float32 and assigns it to the TotalRevenueAmount field.
-func (o *DtoCustomerInvoiceSummary) SetTotalRevenueAmount(v float32) {
+// SetTotalRevenueAmount gets a reference to the given string and assigns it to the TotalRevenueAmount field.
+func (o *DtoCustomerInvoiceSummary) SetTotalRevenueAmount(v string) {
 	o.TotalRevenueAmount = &v
 }
 
 // GetTotalUnpaidAmount returns the TotalUnpaidAmount field value if set, zero value otherwise.
-func (o *DtoCustomerInvoiceSummary) GetTotalUnpaidAmount() float32 {
+func (o *DtoCustomerInvoiceSummary) GetTotalUnpaidAmount() string {
 	if o == nil || IsNil(o.TotalUnpaidAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.TotalUnpaidAmount
@@ -251,7 +261,7 @@ func (o *DtoCustomerInvoiceSummary) GetTotalUnpaidAmount() float32 {
 
 // GetTotalUnpaidAmountOk returns a tuple with the TotalUnpaidAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCustomerInvoiceSummary) GetTotalUnpaidAmountOk() (*float32, bool) {
+func (o *DtoCustomerInvoiceSummary) GetTotalUnpaidAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.TotalUnpaidAmount) {
 		return nil, false
 	}
@@ -267,15 +277,15 @@ func (o *DtoCustomerInvoiceSummary) HasTotalUnpaidAmount() bool {
 	return false
 }
 
-// SetTotalUnpaidAmount gets a reference to the given float32 and assigns it to the TotalUnpaidAmount field.
-func (o *DtoCustomerInvoiceSummary) SetTotalUnpaidAmount(v float32) {
+// SetTotalUnpaidAmount gets a reference to the given string and assigns it to the TotalUnpaidAmount field.
+func (o *DtoCustomerInvoiceSummary) SetTotalUnpaidAmount(v string) {
 	o.TotalUnpaidAmount = &v
 }
 
 // GetUnpaidFixedCharges returns the UnpaidFixedCharges field value if set, zero value otherwise.
-func (o *DtoCustomerInvoiceSummary) GetUnpaidFixedCharges() float32 {
+func (o *DtoCustomerInvoiceSummary) GetUnpaidFixedCharges() string {
 	if o == nil || IsNil(o.UnpaidFixedCharges) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.UnpaidFixedCharges
@@ -283,7 +293,7 @@ func (o *DtoCustomerInvoiceSummary) GetUnpaidFixedCharges() float32 {
 
 // GetUnpaidFixedChargesOk returns a tuple with the UnpaidFixedCharges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCustomerInvoiceSummary) GetUnpaidFixedChargesOk() (*float32, bool) {
+func (o *DtoCustomerInvoiceSummary) GetUnpaidFixedChargesOk() (*string, bool) {
 	if o == nil || IsNil(o.UnpaidFixedCharges) {
 		return nil, false
 	}
@@ -299,8 +309,8 @@ func (o *DtoCustomerInvoiceSummary) HasUnpaidFixedCharges() bool {
 	return false
 }
 
-// SetUnpaidFixedCharges gets a reference to the given float32 and assigns it to the UnpaidFixedCharges field.
-func (o *DtoCustomerInvoiceSummary) SetUnpaidFixedCharges(v float32) {
+// SetUnpaidFixedCharges gets a reference to the given string and assigns it to the UnpaidFixedCharges field.
+func (o *DtoCustomerInvoiceSummary) SetUnpaidFixedCharges(v string) {
 	o.UnpaidFixedCharges = &v
 }
 
@@ -337,9 +347,9 @@ func (o *DtoCustomerInvoiceSummary) SetUnpaidInvoiceCount(v int32) {
 }
 
 // GetUnpaidUsageCharges returns the UnpaidUsageCharges field value if set, zero value otherwise.
-func (o *DtoCustomerInvoiceSummary) GetUnpaidUsageCharges() float32 {
+func (o *DtoCustomerInvoiceSummary) GetUnpaidUsageCharges() string {
 	if o == nil || IsNil(o.UnpaidUsageCharges) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.UnpaidUsageCharges
@@ -347,7 +357,7 @@ func (o *DtoCustomerInvoiceSummary) GetUnpaidUsageCharges() float32 {
 
 // GetUnpaidUsageChargesOk returns a tuple with the UnpaidUsageCharges field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCustomerInvoiceSummary) GetUnpaidUsageChargesOk() (*float32, bool) {
+func (o *DtoCustomerInvoiceSummary) GetUnpaidUsageChargesOk() (*string, bool) {
 	if o == nil || IsNil(o.UnpaidUsageCharges) {
 		return nil, false
 	}
@@ -363,8 +373,8 @@ func (o *DtoCustomerInvoiceSummary) HasUnpaidUsageCharges() bool {
 	return false
 }
 
-// SetUnpaidUsageCharges gets a reference to the given float32 and assigns it to the UnpaidUsageCharges field.
-func (o *DtoCustomerInvoiceSummary) SetUnpaidUsageCharges(v float32) {
+// SetUnpaidUsageCharges gets a reference to the given string and assigns it to the UnpaidUsageCharges field.
+func (o *DtoCustomerInvoiceSummary) SetUnpaidUsageCharges(v string) {
 	o.UnpaidUsageCharges = &v
 }
 

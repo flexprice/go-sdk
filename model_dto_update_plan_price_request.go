@@ -25,17 +25,27 @@ type DtoUpdatePlanPriceRequest struct {
 	BillingCadence TypesBillingCadence `json:"billing_cadence"`
 	BillingModel TypesBillingModel `json:"billing_model"`
 	BillingPeriod TypesBillingPeriod `json:"billing_period"`
-	BillingPeriodCount int32 `json:"billing_period_count"`
+	BillingPeriodCount *int32 `json:"billing_period_count,omitempty"`
 	Currency string `json:"currency"`
 	Description *string `json:"description,omitempty"`
+	EndDate *string `json:"end_date,omitempty"`
+	// TODO: this will be required in the future as we will not allow prices to be created without an entity id
+	EntityId *string `json:"entity_id,omitempty"`
+	EntityType *TypesPriceEntityType `json:"entity_type,omitempty"`
 	FilterValues *map[string][]string `json:"filter_values,omitempty"`
+	// GroupID is the id of the group to add the price to
+	GroupId *string `json:"group_id,omitempty"`
 	// The ID of the price to update (present if the price is being updated)
 	Id *string `json:"id,omitempty"`
 	InvoiceCadence TypesInvoiceCadence `json:"invoice_cadence"`
 	LookupKey *string `json:"lookup_key,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	MeterId *string `json:"meter_id,omitempty"`
+	// TODO: This is deprecated and will be removed in the future
 	PlanId *string `json:"plan_id,omitempty"`
+	PriceUnitConfig *DtoPriceUnitConfig `json:"price_unit_config,omitempty"`
+	PriceUnitType TypesPriceUnitType `json:"price_unit_type"`
+	StartDate *string `json:"start_date,omitempty"`
 	TierMode *TypesBillingTier `json:"tier_mode,omitempty"`
 	Tiers []DtoCreatePriceTier `json:"tiers,omitempty"`
 	TransformQuantity *PriceTransformQuantity `json:"transform_quantity,omitempty"`
@@ -49,14 +59,14 @@ type _DtoUpdatePlanPriceRequest DtoUpdatePlanPriceRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDtoUpdatePlanPriceRequest(billingCadence TypesBillingCadence, billingModel TypesBillingModel, billingPeriod TypesBillingPeriod, billingPeriodCount int32, currency string, invoiceCadence TypesInvoiceCadence, type_ TypesPriceType) *DtoUpdatePlanPriceRequest {
+func NewDtoUpdatePlanPriceRequest(billingCadence TypesBillingCadence, billingModel TypesBillingModel, billingPeriod TypesBillingPeriod, currency string, invoiceCadence TypesInvoiceCadence, priceUnitType TypesPriceUnitType, type_ TypesPriceType) *DtoUpdatePlanPriceRequest {
 	this := DtoUpdatePlanPriceRequest{}
 	this.BillingCadence = billingCadence
 	this.BillingModel = billingModel
 	this.BillingPeriod = billingPeriod
-	this.BillingPeriodCount = billingPeriodCount
 	this.Currency = currency
 	this.InvoiceCadence = invoiceCadence
+	this.PriceUnitType = priceUnitType
 	this.Type = type_
 	return &this
 }
@@ -173,28 +183,36 @@ func (o *DtoUpdatePlanPriceRequest) SetBillingPeriod(v TypesBillingPeriod) {
 	o.BillingPeriod = v
 }
 
-// GetBillingPeriodCount returns the BillingPeriodCount field value
+// GetBillingPeriodCount returns the BillingPeriodCount field value if set, zero value otherwise.
 func (o *DtoUpdatePlanPriceRequest) GetBillingPeriodCount() int32 {
-	if o == nil {
+	if o == nil || IsNil(o.BillingPeriodCount) {
 		var ret int32
 		return ret
 	}
-
-	return o.BillingPeriodCount
+	return *o.BillingPeriodCount
 }
 
-// GetBillingPeriodCountOk returns a tuple with the BillingPeriodCount field value
+// GetBillingPeriodCountOk returns a tuple with the BillingPeriodCount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DtoUpdatePlanPriceRequest) GetBillingPeriodCountOk() (*int32, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.BillingPeriodCount) {
 		return nil, false
 	}
-	return &o.BillingPeriodCount, true
+	return o.BillingPeriodCount, true
 }
 
-// SetBillingPeriodCount sets field value
+// HasBillingPeriodCount returns a boolean if a field has been set.
+func (o *DtoUpdatePlanPriceRequest) HasBillingPeriodCount() bool {
+	if o != nil && !IsNil(o.BillingPeriodCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetBillingPeriodCount gets a reference to the given int32 and assigns it to the BillingPeriodCount field.
 func (o *DtoUpdatePlanPriceRequest) SetBillingPeriodCount(v int32) {
-	o.BillingPeriodCount = v
+	o.BillingPeriodCount = &v
 }
 
 // GetCurrency returns the Currency field value
@@ -253,6 +271,102 @@ func (o *DtoUpdatePlanPriceRequest) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetEndDate returns the EndDate field value if set, zero value otherwise.
+func (o *DtoUpdatePlanPriceRequest) GetEndDate() string {
+	if o == nil || IsNil(o.EndDate) {
+		var ret string
+		return ret
+	}
+	return *o.EndDate
+}
+
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePlanPriceRequest) GetEndDateOk() (*string, bool) {
+	if o == nil || IsNil(o.EndDate) {
+		return nil, false
+	}
+	return o.EndDate, true
+}
+
+// HasEndDate returns a boolean if a field has been set.
+func (o *DtoUpdatePlanPriceRequest) HasEndDate() bool {
+	if o != nil && !IsNil(o.EndDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
+func (o *DtoUpdatePlanPriceRequest) SetEndDate(v string) {
+	o.EndDate = &v
+}
+
+// GetEntityId returns the EntityId field value if set, zero value otherwise.
+func (o *DtoUpdatePlanPriceRequest) GetEntityId() string {
+	if o == nil || IsNil(o.EntityId) {
+		var ret string
+		return ret
+	}
+	return *o.EntityId
+}
+
+// GetEntityIdOk returns a tuple with the EntityId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePlanPriceRequest) GetEntityIdOk() (*string, bool) {
+	if o == nil || IsNil(o.EntityId) {
+		return nil, false
+	}
+	return o.EntityId, true
+}
+
+// HasEntityId returns a boolean if a field has been set.
+func (o *DtoUpdatePlanPriceRequest) HasEntityId() bool {
+	if o != nil && !IsNil(o.EntityId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityId gets a reference to the given string and assigns it to the EntityId field.
+func (o *DtoUpdatePlanPriceRequest) SetEntityId(v string) {
+	o.EntityId = &v
+}
+
+// GetEntityType returns the EntityType field value if set, zero value otherwise.
+func (o *DtoUpdatePlanPriceRequest) GetEntityType() TypesPriceEntityType {
+	if o == nil || IsNil(o.EntityType) {
+		var ret TypesPriceEntityType
+		return ret
+	}
+	return *o.EntityType
+}
+
+// GetEntityTypeOk returns a tuple with the EntityType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePlanPriceRequest) GetEntityTypeOk() (*TypesPriceEntityType, bool) {
+	if o == nil || IsNil(o.EntityType) {
+		return nil, false
+	}
+	return o.EntityType, true
+}
+
+// HasEntityType returns a boolean if a field has been set.
+func (o *DtoUpdatePlanPriceRequest) HasEntityType() bool {
+	if o != nil && !IsNil(o.EntityType) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityType gets a reference to the given TypesPriceEntityType and assigns it to the EntityType field.
+func (o *DtoUpdatePlanPriceRequest) SetEntityType(v TypesPriceEntityType) {
+	o.EntityType = &v
+}
+
 // GetFilterValues returns the FilterValues field value if set, zero value otherwise.
 func (o *DtoUpdatePlanPriceRequest) GetFilterValues() map[string][]string {
 	if o == nil || IsNil(o.FilterValues) {
@@ -283,6 +397,38 @@ func (o *DtoUpdatePlanPriceRequest) HasFilterValues() bool {
 // SetFilterValues gets a reference to the given map[string][]string and assigns it to the FilterValues field.
 func (o *DtoUpdatePlanPriceRequest) SetFilterValues(v map[string][]string) {
 	o.FilterValues = &v
+}
+
+// GetGroupId returns the GroupId field value if set, zero value otherwise.
+func (o *DtoUpdatePlanPriceRequest) GetGroupId() string {
+	if o == nil || IsNil(o.GroupId) {
+		var ret string
+		return ret
+	}
+	return *o.GroupId
+}
+
+// GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePlanPriceRequest) GetGroupIdOk() (*string, bool) {
+	if o == nil || IsNil(o.GroupId) {
+		return nil, false
+	}
+	return o.GroupId, true
+}
+
+// HasGroupId returns a boolean if a field has been set.
+func (o *DtoUpdatePlanPriceRequest) HasGroupId() bool {
+	if o != nil && !IsNil(o.GroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupId gets a reference to the given string and assigns it to the GroupId field.
+func (o *DtoUpdatePlanPriceRequest) SetGroupId(v string) {
+	o.GroupId = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -469,6 +615,94 @@ func (o *DtoUpdatePlanPriceRequest) SetPlanId(v string) {
 	o.PlanId = &v
 }
 
+// GetPriceUnitConfig returns the PriceUnitConfig field value if set, zero value otherwise.
+func (o *DtoUpdatePlanPriceRequest) GetPriceUnitConfig() DtoPriceUnitConfig {
+	if o == nil || IsNil(o.PriceUnitConfig) {
+		var ret DtoPriceUnitConfig
+		return ret
+	}
+	return *o.PriceUnitConfig
+}
+
+// GetPriceUnitConfigOk returns a tuple with the PriceUnitConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePlanPriceRequest) GetPriceUnitConfigOk() (*DtoPriceUnitConfig, bool) {
+	if o == nil || IsNil(o.PriceUnitConfig) {
+		return nil, false
+	}
+	return o.PriceUnitConfig, true
+}
+
+// HasPriceUnitConfig returns a boolean if a field has been set.
+func (o *DtoUpdatePlanPriceRequest) HasPriceUnitConfig() bool {
+	if o != nil && !IsNil(o.PriceUnitConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnitConfig gets a reference to the given DtoPriceUnitConfig and assigns it to the PriceUnitConfig field.
+func (o *DtoUpdatePlanPriceRequest) SetPriceUnitConfig(v DtoPriceUnitConfig) {
+	o.PriceUnitConfig = &v
+}
+
+// GetPriceUnitType returns the PriceUnitType field value
+func (o *DtoUpdatePlanPriceRequest) GetPriceUnitType() TypesPriceUnitType {
+	if o == nil {
+		var ret TypesPriceUnitType
+		return ret
+	}
+
+	return o.PriceUnitType
+}
+
+// GetPriceUnitTypeOk returns a tuple with the PriceUnitType field value
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePlanPriceRequest) GetPriceUnitTypeOk() (*TypesPriceUnitType, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.PriceUnitType, true
+}
+
+// SetPriceUnitType sets field value
+func (o *DtoUpdatePlanPriceRequest) SetPriceUnitType(v TypesPriceUnitType) {
+	o.PriceUnitType = v
+}
+
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
+func (o *DtoUpdatePlanPriceRequest) GetStartDate() string {
+	if o == nil || IsNil(o.StartDate) {
+		var ret string
+		return ret
+	}
+	return *o.StartDate
+}
+
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePlanPriceRequest) GetStartDateOk() (*string, bool) {
+	if o == nil || IsNil(o.StartDate) {
+		return nil, false
+	}
+	return o.StartDate, true
+}
+
+// HasStartDate returns a boolean if a field has been set.
+func (o *DtoUpdatePlanPriceRequest) HasStartDate() bool {
+	if o != nil && !IsNil(o.StartDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given string and assigns it to the StartDate field.
+func (o *DtoUpdatePlanPriceRequest) SetStartDate(v string) {
+	o.StartDate = &v
+}
+
 // GetTierMode returns the TierMode field value if set, zero value otherwise.
 func (o *DtoUpdatePlanPriceRequest) GetTierMode() TypesBillingTier {
 	if o == nil || IsNil(o.TierMode) {
@@ -637,13 +871,27 @@ func (o DtoUpdatePlanPriceRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["billing_cadence"] = o.BillingCadence
 	toSerialize["billing_model"] = o.BillingModel
 	toSerialize["billing_period"] = o.BillingPeriod
-	toSerialize["billing_period_count"] = o.BillingPeriodCount
+	if !IsNil(o.BillingPeriodCount) {
+		toSerialize["billing_period_count"] = o.BillingPeriodCount
+	}
 	toSerialize["currency"] = o.Currency
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	if !IsNil(o.EndDate) {
+		toSerialize["end_date"] = o.EndDate
+	}
+	if !IsNil(o.EntityId) {
+		toSerialize["entity_id"] = o.EntityId
+	}
+	if !IsNil(o.EntityType) {
+		toSerialize["entity_type"] = o.EntityType
+	}
 	if !IsNil(o.FilterValues) {
 		toSerialize["filter_values"] = o.FilterValues
+	}
+	if !IsNil(o.GroupId) {
+		toSerialize["group_id"] = o.GroupId
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
@@ -660,6 +908,13 @@ func (o DtoUpdatePlanPriceRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PlanId) {
 		toSerialize["plan_id"] = o.PlanId
+	}
+	if !IsNil(o.PriceUnitConfig) {
+		toSerialize["price_unit_config"] = o.PriceUnitConfig
+	}
+	toSerialize["price_unit_type"] = o.PriceUnitType
+	if !IsNil(o.StartDate) {
+		toSerialize["start_date"] = o.StartDate
 	}
 	if !IsNil(o.TierMode) {
 		toSerialize["tier_mode"] = o.TierMode
@@ -685,9 +940,9 @@ func (o *DtoUpdatePlanPriceRequest) UnmarshalJSON(data []byte) (err error) {
 		"billing_cadence",
 		"billing_model",
 		"billing_period",
-		"billing_period_count",
 		"currency",
 		"invoice_cadence",
+		"price_unit_type",
 		"type",
 	}
 

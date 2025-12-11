@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Currency** | Pointer to **string** |  | [optional] 
 **Items** | Pointer to [**[]DtoUsageAnalyticItem**](DtoUsageAnalyticItem.md) |  | [optional] 
-**TotalCost** | Pointer to **float32** |  | [optional] 
+**TotalCost** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -79,20 +79,20 @@ HasItems returns a boolean if a field has been set.
 
 ### GetTotalCost
 
-`func (o *DtoGetUsageAnalyticsResponse) GetTotalCost() float32`
+`func (o *DtoGetUsageAnalyticsResponse) GetTotalCost() string`
 
 GetTotalCost returns the TotalCost field if non-nil, zero value otherwise.
 
 ### GetTotalCostOk
 
-`func (o *DtoGetUsageAnalyticsResponse) GetTotalCostOk() (*float32, bool)`
+`func (o *DtoGetUsageAnalyticsResponse) GetTotalCostOk() (*string, bool)`
 
 GetTotalCostOk returns a tuple with the TotalCost field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalCost
 
-`func (o *DtoGetUsageAnalyticsResponse) SetTotalCost(v float32)`
+`func (o *DtoGetUsageAnalyticsResponse) SetTotalCost(v string)`
 
 SetTotalCost sets TotalCost field to given value.
 

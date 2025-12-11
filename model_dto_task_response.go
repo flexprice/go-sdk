@@ -23,6 +23,7 @@ type DtoTaskResponse struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
 	EntityType *TypesEntityType `json:"entity_type,omitempty"`
+	EnvironmentId *string `json:"environment_id,omitempty"`
 	ErrorSummary *string `json:"error_summary,omitempty"`
 	FailedAt *string `json:"failed_at,omitempty"`
 	FailedRecords *int32 `json:"failed_records,omitempty"`
@@ -32,8 +33,9 @@ type DtoTaskResponse struct {
 	Id *string `json:"id,omitempty"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	ProcessedRecords *int32 `json:"processed_records,omitempty"`
+	ScheduledTaskId *string `json:"scheduled_task_id,omitempty"`
 	StartedAt *string `json:"started_at,omitempty"`
-	Status *string `json:"status,omitempty"`
+	Status *TypesStatus `json:"status,omitempty"`
 	SuccessfulRecords *int32 `json:"successful_records,omitempty"`
 	TaskStatus *TypesTaskStatus `json:"task_status,omitempty"`
 	TaskType *TypesTaskType `json:"task_type,omitempty"`
@@ -41,6 +43,7 @@ type DtoTaskResponse struct {
 	TotalRecords *int32 `json:"total_records,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	UpdatedBy *string `json:"updated_by,omitempty"`
+	WorkflowId *string `json:"workflow_id,omitempty"`
 }
 
 // NewDtoTaskResponse instantiates a new DtoTaskResponse object
@@ -186,6 +189,38 @@ func (o *DtoTaskResponse) HasEntityType() bool {
 // SetEntityType gets a reference to the given TypesEntityType and assigns it to the EntityType field.
 func (o *DtoTaskResponse) SetEntityType(v TypesEntityType) {
 	o.EntityType = &v
+}
+
+// GetEnvironmentId returns the EnvironmentId field value if set, zero value otherwise.
+func (o *DtoTaskResponse) GetEnvironmentId() string {
+	if o == nil || IsNil(o.EnvironmentId) {
+		var ret string
+		return ret
+	}
+	return *o.EnvironmentId
+}
+
+// GetEnvironmentIdOk returns a tuple with the EnvironmentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoTaskResponse) GetEnvironmentIdOk() (*string, bool) {
+	if o == nil || IsNil(o.EnvironmentId) {
+		return nil, false
+	}
+	return o.EnvironmentId, true
+}
+
+// HasEnvironmentId returns a boolean if a field has been set.
+func (o *DtoTaskResponse) HasEnvironmentId() bool {
+	if o != nil && !IsNil(o.EnvironmentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnvironmentId gets a reference to the given string and assigns it to the EnvironmentId field.
+func (o *DtoTaskResponse) SetEnvironmentId(v string) {
+	o.EnvironmentId = &v
 }
 
 // GetErrorSummary returns the ErrorSummary field value if set, zero value otherwise.
@@ -476,6 +511,38 @@ func (o *DtoTaskResponse) SetProcessedRecords(v int32) {
 	o.ProcessedRecords = &v
 }
 
+// GetScheduledTaskId returns the ScheduledTaskId field value if set, zero value otherwise.
+func (o *DtoTaskResponse) GetScheduledTaskId() string {
+	if o == nil || IsNil(o.ScheduledTaskId) {
+		var ret string
+		return ret
+	}
+	return *o.ScheduledTaskId
+}
+
+// GetScheduledTaskIdOk returns a tuple with the ScheduledTaskId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoTaskResponse) GetScheduledTaskIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ScheduledTaskId) {
+		return nil, false
+	}
+	return o.ScheduledTaskId, true
+}
+
+// HasScheduledTaskId returns a boolean if a field has been set.
+func (o *DtoTaskResponse) HasScheduledTaskId() bool {
+	if o != nil && !IsNil(o.ScheduledTaskId) {
+		return true
+	}
+
+	return false
+}
+
+// SetScheduledTaskId gets a reference to the given string and assigns it to the ScheduledTaskId field.
+func (o *DtoTaskResponse) SetScheduledTaskId(v string) {
+	o.ScheduledTaskId = &v
+}
+
 // GetStartedAt returns the StartedAt field value if set, zero value otherwise.
 func (o *DtoTaskResponse) GetStartedAt() string {
 	if o == nil || IsNil(o.StartedAt) {
@@ -509,9 +576,9 @@ func (o *DtoTaskResponse) SetStartedAt(v string) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *DtoTaskResponse) GetStatus() string {
+func (o *DtoTaskResponse) GetStatus() TypesStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret TypesStatus
 		return ret
 	}
 	return *o.Status
@@ -519,7 +586,7 @@ func (o *DtoTaskResponse) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoTaskResponse) GetStatusOk() (*string, bool) {
+func (o *DtoTaskResponse) GetStatusOk() (*TypesStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -535,8 +602,8 @@ func (o *DtoTaskResponse) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *DtoTaskResponse) SetStatus(v string) {
+// SetStatus gets a reference to the given TypesStatus and assigns it to the Status field.
+func (o *DtoTaskResponse) SetStatus(v TypesStatus) {
 	o.Status = &v
 }
 
@@ -764,6 +831,38 @@ func (o *DtoTaskResponse) SetUpdatedBy(v string) {
 	o.UpdatedBy = &v
 }
 
+// GetWorkflowId returns the WorkflowId field value if set, zero value otherwise.
+func (o *DtoTaskResponse) GetWorkflowId() string {
+	if o == nil || IsNil(o.WorkflowId) {
+		var ret string
+		return ret
+	}
+	return *o.WorkflowId
+}
+
+// GetWorkflowIdOk returns a tuple with the WorkflowId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoTaskResponse) GetWorkflowIdOk() (*string, bool) {
+	if o == nil || IsNil(o.WorkflowId) {
+		return nil, false
+	}
+	return o.WorkflowId, true
+}
+
+// HasWorkflowId returns a boolean if a field has been set.
+func (o *DtoTaskResponse) HasWorkflowId() bool {
+	if o != nil && !IsNil(o.WorkflowId) {
+		return true
+	}
+
+	return false
+}
+
+// SetWorkflowId gets a reference to the given string and assigns it to the WorkflowId field.
+func (o *DtoTaskResponse) SetWorkflowId(v string) {
+	o.WorkflowId = &v
+}
+
 func (o DtoTaskResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -785,6 +884,9 @@ func (o DtoTaskResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.EntityType) {
 		toSerialize["entity_type"] = o.EntityType
+	}
+	if !IsNil(o.EnvironmentId) {
+		toSerialize["environment_id"] = o.EnvironmentId
 	}
 	if !IsNil(o.ErrorSummary) {
 		toSerialize["error_summary"] = o.ErrorSummary
@@ -813,6 +915,9 @@ func (o DtoTaskResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ProcessedRecords) {
 		toSerialize["processed_records"] = o.ProcessedRecords
 	}
+	if !IsNil(o.ScheduledTaskId) {
+		toSerialize["scheduled_task_id"] = o.ScheduledTaskId
+	}
 	if !IsNil(o.StartedAt) {
 		toSerialize["started_at"] = o.StartedAt
 	}
@@ -839,6 +944,9 @@ func (o DtoTaskResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.UpdatedBy) {
 		toSerialize["updated_by"] = o.UpdatedBy
+	}
+	if !IsNil(o.WorkflowId) {
+		toSerialize["workflow_id"] = o.WorkflowId
 	}
 	return toSerialize, nil
 }

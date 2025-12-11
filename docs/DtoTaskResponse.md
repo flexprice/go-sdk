@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **EntityType** | Pointer to [**TypesEntityType**](TypesEntityType.md) |  | [optional] 
+**EnvironmentId** | Pointer to **string** |  | [optional] 
 **ErrorSummary** | Pointer to **string** |  | [optional] 
 **FailedAt** | Pointer to **string** |  | [optional] 
 **FailedRecords** | Pointer to **int32** |  | [optional] 
@@ -17,8 +18,9 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **ProcessedRecords** | Pointer to **int32** |  | [optional] 
+**ScheduledTaskId** | Pointer to **string** |  | [optional] 
 **StartedAt** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **SuccessfulRecords** | Pointer to **int32** |  | [optional] 
 **TaskStatus** | Pointer to [**TypesTaskStatus**](TypesTaskStatus.md) |  | [optional] 
 **TaskType** | Pointer to [**TypesTaskType**](TypesTaskType.md) |  | [optional] 
@@ -26,6 +28,7 @@ Name | Type | Description | Notes
 **TotalRecords** | Pointer to **int32** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedBy** | Pointer to **string** |  | [optional] 
+**WorkflowId** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -145,6 +148,31 @@ SetEntityType sets EntityType field to given value.
 `func (o *DtoTaskResponse) HasEntityType() bool`
 
 HasEntityType returns a boolean if a field has been set.
+
+### GetEnvironmentId
+
+`func (o *DtoTaskResponse) GetEnvironmentId() string`
+
+GetEnvironmentId returns the EnvironmentId field if non-nil, zero value otherwise.
+
+### GetEnvironmentIdOk
+
+`func (o *DtoTaskResponse) GetEnvironmentIdOk() (*string, bool)`
+
+GetEnvironmentIdOk returns a tuple with the EnvironmentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnvironmentId
+
+`func (o *DtoTaskResponse) SetEnvironmentId(v string)`
+
+SetEnvironmentId sets EnvironmentId field to given value.
+
+### HasEnvironmentId
+
+`func (o *DtoTaskResponse) HasEnvironmentId() bool`
+
+HasEnvironmentId returns a boolean if a field has been set.
 
 ### GetErrorSummary
 
@@ -371,6 +399,31 @@ SetProcessedRecords sets ProcessedRecords field to given value.
 
 HasProcessedRecords returns a boolean if a field has been set.
 
+### GetScheduledTaskId
+
+`func (o *DtoTaskResponse) GetScheduledTaskId() string`
+
+GetScheduledTaskId returns the ScheduledTaskId field if non-nil, zero value otherwise.
+
+### GetScheduledTaskIdOk
+
+`func (o *DtoTaskResponse) GetScheduledTaskIdOk() (*string, bool)`
+
+GetScheduledTaskIdOk returns a tuple with the ScheduledTaskId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScheduledTaskId
+
+`func (o *DtoTaskResponse) SetScheduledTaskId(v string)`
+
+SetScheduledTaskId sets ScheduledTaskId field to given value.
+
+### HasScheduledTaskId
+
+`func (o *DtoTaskResponse) HasScheduledTaskId() bool`
+
+HasScheduledTaskId returns a boolean if a field has been set.
+
 ### GetStartedAt
 
 `func (o *DtoTaskResponse) GetStartedAt() string`
@@ -398,20 +451,20 @@ HasStartedAt returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *DtoTaskResponse) GetStatus() string`
+`func (o *DtoTaskResponse) GetStatus() TypesStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *DtoTaskResponse) GetStatusOk() (*string, bool)`
+`func (o *DtoTaskResponse) GetStatusOk() (*TypesStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *DtoTaskResponse) SetStatus(v string)`
+`func (o *DtoTaskResponse) SetStatus(v TypesStatus)`
 
 SetStatus sets Status field to given value.
 
@@ -595,6 +648,31 @@ SetUpdatedBy sets UpdatedBy field to given value.
 `func (o *DtoTaskResponse) HasUpdatedBy() bool`
 
 HasUpdatedBy returns a boolean if a field has been set.
+
+### GetWorkflowId
+
+`func (o *DtoTaskResponse) GetWorkflowId() string`
+
+GetWorkflowId returns the WorkflowId field if non-nil, zero value otherwise.
+
+### GetWorkflowIdOk
+
+`func (o *DtoTaskResponse) GetWorkflowIdOk() (*string, bool)`
+
+GetWorkflowIdOk returns a tuple with the WorkflowId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWorkflowId
+
+`func (o *DtoTaskResponse) SetWorkflowId(v string)`
+
+SetWorkflowId sets WorkflowId field to given value.
+
+### HasWorkflowId
+
+`func (o *DtoTaskResponse) HasWorkflowId() bool`
+
+HasWorkflowId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

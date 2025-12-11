@@ -31,6 +31,7 @@ type FeaturesAPIFeaturesGetRequest struct {
 	featureIds *[]string
 	limit *int32
 	lookupKey *string
+	lookupKeys *[]string
 	meterIds *[]string
 	nameContains *string
 	offset *int32
@@ -62,6 +63,11 @@ func (r FeaturesAPIFeaturesGetRequest) Limit(limit int32) FeaturesAPIFeaturesGet
 
 func (r FeaturesAPIFeaturesGetRequest) LookupKey(lookupKey string) FeaturesAPIFeaturesGetRequest {
 	r.lookupKey = &lookupKey
+	return r
+}
+
+func (r FeaturesAPIFeaturesGetRequest) LookupKeys(lookupKeys []string) FeaturesAPIFeaturesGetRequest {
+	r.lookupKeys = &lookupKeys
 	return r
 }
 
@@ -149,6 +155,9 @@ func (a *FeaturesAPIService) FeaturesGetExecute(r FeaturesAPIFeaturesGetRequest)
 	}
 	if r.lookupKey != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "lookup_key", r.lookupKey, "form", "")
+	}
+	if r.lookupKeys != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "lookup_keys", r.lookupKeys, "form", "csv")
 	}
 	if r.meterIds != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "meter_ids", r.meterIds, "form", "csv")

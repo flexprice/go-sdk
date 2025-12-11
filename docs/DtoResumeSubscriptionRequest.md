@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DryRun** | Pointer to **bool** |  | [optional] 
-**Metadata** | Pointer to **map[string]string** |  | [optional] 
+**DryRun** | Pointer to **bool** | Whether to perform a dry run @Description If true, validates the request and shows impact without actually resuming the subscription @Example false | [optional] 
+**Metadata** | Pointer to **map[string]string** | Additional metadata as key-value pairs @Description Optional metadata for storing additional information about the resume operation @Example {\&quot;resumed_by\&quot;: \&quot;admin\&quot;, \&quot;reason\&quot;: \&quot;issue_resolved\&quot;} | [optional] 
 **ResumeMode** | [**TypesResumeMode**](TypesResumeMode.md) |  | 
 
 ## Methods

@@ -19,14 +19,17 @@ var _ MappedNullable = &DtoWalletResponse{}
 
 // DtoWalletResponse struct for DtoWalletResponse
 type DtoWalletResponse struct {
-	AutoTopupAmount *float32 `json:"auto_topup_amount,omitempty"`
-	AutoTopupMinBalance *float32 `json:"auto_topup_min_balance,omitempty"`
+	AlertConfig *TypesAlertConfig `json:"alert_config,omitempty"`
+	AlertEnabled *bool `json:"alert_enabled,omitempty"`
+	AlertState *string `json:"alert_state,omitempty"`
+	AutoTopupAmount *string `json:"auto_topup_amount,omitempty"`
+	AutoTopupMinBalance *string `json:"auto_topup_min_balance,omitempty"`
 	AutoTopupTrigger *TypesAutoTopupTrigger `json:"auto_topup_trigger,omitempty"`
-	Balance *float32 `json:"balance,omitempty"`
+	Balance *string `json:"balance,omitempty"`
 	Config *TypesWalletConfig `json:"config,omitempty"`
-	ConversionRate *float32 `json:"conversion_rate,omitempty"`
+	ConversionRate *string `json:"conversion_rate,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
-	CreditBalance *float32 `json:"credit_balance,omitempty"`
+	CreditBalance *string `json:"credit_balance,omitempty"`
 	Currency *string `json:"currency,omitempty"`
 	CustomerId *string `json:"customer_id,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -55,10 +58,106 @@ func NewDtoWalletResponseWithDefaults() *DtoWalletResponse {
 	return &this
 }
 
+// GetAlertConfig returns the AlertConfig field value if set, zero value otherwise.
+func (o *DtoWalletResponse) GetAlertConfig() TypesAlertConfig {
+	if o == nil || IsNil(o.AlertConfig) {
+		var ret TypesAlertConfig
+		return ret
+	}
+	return *o.AlertConfig
+}
+
+// GetAlertConfigOk returns a tuple with the AlertConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletResponse) GetAlertConfigOk() (*TypesAlertConfig, bool) {
+	if o == nil || IsNil(o.AlertConfig) {
+		return nil, false
+	}
+	return o.AlertConfig, true
+}
+
+// HasAlertConfig returns a boolean if a field has been set.
+func (o *DtoWalletResponse) HasAlertConfig() bool {
+	if o != nil && !IsNil(o.AlertConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlertConfig gets a reference to the given TypesAlertConfig and assigns it to the AlertConfig field.
+func (o *DtoWalletResponse) SetAlertConfig(v TypesAlertConfig) {
+	o.AlertConfig = &v
+}
+
+// GetAlertEnabled returns the AlertEnabled field value if set, zero value otherwise.
+func (o *DtoWalletResponse) GetAlertEnabled() bool {
+	if o == nil || IsNil(o.AlertEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.AlertEnabled
+}
+
+// GetAlertEnabledOk returns a tuple with the AlertEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletResponse) GetAlertEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.AlertEnabled) {
+		return nil, false
+	}
+	return o.AlertEnabled, true
+}
+
+// HasAlertEnabled returns a boolean if a field has been set.
+func (o *DtoWalletResponse) HasAlertEnabled() bool {
+	if o != nil && !IsNil(o.AlertEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlertEnabled gets a reference to the given bool and assigns it to the AlertEnabled field.
+func (o *DtoWalletResponse) SetAlertEnabled(v bool) {
+	o.AlertEnabled = &v
+}
+
+// GetAlertState returns the AlertState field value if set, zero value otherwise.
+func (o *DtoWalletResponse) GetAlertState() string {
+	if o == nil || IsNil(o.AlertState) {
+		var ret string
+		return ret
+	}
+	return *o.AlertState
+}
+
+// GetAlertStateOk returns a tuple with the AlertState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletResponse) GetAlertStateOk() (*string, bool) {
+	if o == nil || IsNil(o.AlertState) {
+		return nil, false
+	}
+	return o.AlertState, true
+}
+
+// HasAlertState returns a boolean if a field has been set.
+func (o *DtoWalletResponse) HasAlertState() bool {
+	if o != nil && !IsNil(o.AlertState) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlertState gets a reference to the given string and assigns it to the AlertState field.
+func (o *DtoWalletResponse) SetAlertState(v string) {
+	o.AlertState = &v
+}
+
 // GetAutoTopupAmount returns the AutoTopupAmount field value if set, zero value otherwise.
-func (o *DtoWalletResponse) GetAutoTopupAmount() float32 {
+func (o *DtoWalletResponse) GetAutoTopupAmount() string {
 	if o == nil || IsNil(o.AutoTopupAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.AutoTopupAmount
@@ -66,7 +165,7 @@ func (o *DtoWalletResponse) GetAutoTopupAmount() float32 {
 
 // GetAutoTopupAmountOk returns a tuple with the AutoTopupAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoWalletResponse) GetAutoTopupAmountOk() (*float32, bool) {
+func (o *DtoWalletResponse) GetAutoTopupAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.AutoTopupAmount) {
 		return nil, false
 	}
@@ -82,15 +181,15 @@ func (o *DtoWalletResponse) HasAutoTopupAmount() bool {
 	return false
 }
 
-// SetAutoTopupAmount gets a reference to the given float32 and assigns it to the AutoTopupAmount field.
-func (o *DtoWalletResponse) SetAutoTopupAmount(v float32) {
+// SetAutoTopupAmount gets a reference to the given string and assigns it to the AutoTopupAmount field.
+func (o *DtoWalletResponse) SetAutoTopupAmount(v string) {
 	o.AutoTopupAmount = &v
 }
 
 // GetAutoTopupMinBalance returns the AutoTopupMinBalance field value if set, zero value otherwise.
-func (o *DtoWalletResponse) GetAutoTopupMinBalance() float32 {
+func (o *DtoWalletResponse) GetAutoTopupMinBalance() string {
 	if o == nil || IsNil(o.AutoTopupMinBalance) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.AutoTopupMinBalance
@@ -98,7 +197,7 @@ func (o *DtoWalletResponse) GetAutoTopupMinBalance() float32 {
 
 // GetAutoTopupMinBalanceOk returns a tuple with the AutoTopupMinBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoWalletResponse) GetAutoTopupMinBalanceOk() (*float32, bool) {
+func (o *DtoWalletResponse) GetAutoTopupMinBalanceOk() (*string, bool) {
 	if o == nil || IsNil(o.AutoTopupMinBalance) {
 		return nil, false
 	}
@@ -114,8 +213,8 @@ func (o *DtoWalletResponse) HasAutoTopupMinBalance() bool {
 	return false
 }
 
-// SetAutoTopupMinBalance gets a reference to the given float32 and assigns it to the AutoTopupMinBalance field.
-func (o *DtoWalletResponse) SetAutoTopupMinBalance(v float32) {
+// SetAutoTopupMinBalance gets a reference to the given string and assigns it to the AutoTopupMinBalance field.
+func (o *DtoWalletResponse) SetAutoTopupMinBalance(v string) {
 	o.AutoTopupMinBalance = &v
 }
 
@@ -152,9 +251,9 @@ func (o *DtoWalletResponse) SetAutoTopupTrigger(v TypesAutoTopupTrigger) {
 }
 
 // GetBalance returns the Balance field value if set, zero value otherwise.
-func (o *DtoWalletResponse) GetBalance() float32 {
+func (o *DtoWalletResponse) GetBalance() string {
 	if o == nil || IsNil(o.Balance) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Balance
@@ -162,7 +261,7 @@ func (o *DtoWalletResponse) GetBalance() float32 {
 
 // GetBalanceOk returns a tuple with the Balance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoWalletResponse) GetBalanceOk() (*float32, bool) {
+func (o *DtoWalletResponse) GetBalanceOk() (*string, bool) {
 	if o == nil || IsNil(o.Balance) {
 		return nil, false
 	}
@@ -178,8 +277,8 @@ func (o *DtoWalletResponse) HasBalance() bool {
 	return false
 }
 
-// SetBalance gets a reference to the given float32 and assigns it to the Balance field.
-func (o *DtoWalletResponse) SetBalance(v float32) {
+// SetBalance gets a reference to the given string and assigns it to the Balance field.
+func (o *DtoWalletResponse) SetBalance(v string) {
 	o.Balance = &v
 }
 
@@ -216,9 +315,9 @@ func (o *DtoWalletResponse) SetConfig(v TypesWalletConfig) {
 }
 
 // GetConversionRate returns the ConversionRate field value if set, zero value otherwise.
-func (o *DtoWalletResponse) GetConversionRate() float32 {
+func (o *DtoWalletResponse) GetConversionRate() string {
 	if o == nil || IsNil(o.ConversionRate) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.ConversionRate
@@ -226,7 +325,7 @@ func (o *DtoWalletResponse) GetConversionRate() float32 {
 
 // GetConversionRateOk returns a tuple with the ConversionRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoWalletResponse) GetConversionRateOk() (*float32, bool) {
+func (o *DtoWalletResponse) GetConversionRateOk() (*string, bool) {
 	if o == nil || IsNil(o.ConversionRate) {
 		return nil, false
 	}
@@ -242,8 +341,8 @@ func (o *DtoWalletResponse) HasConversionRate() bool {
 	return false
 }
 
-// SetConversionRate gets a reference to the given float32 and assigns it to the ConversionRate field.
-func (o *DtoWalletResponse) SetConversionRate(v float32) {
+// SetConversionRate gets a reference to the given string and assigns it to the ConversionRate field.
+func (o *DtoWalletResponse) SetConversionRate(v string) {
 	o.ConversionRate = &v
 }
 
@@ -280,9 +379,9 @@ func (o *DtoWalletResponse) SetCreatedAt(v string) {
 }
 
 // GetCreditBalance returns the CreditBalance field value if set, zero value otherwise.
-func (o *DtoWalletResponse) GetCreditBalance() float32 {
+func (o *DtoWalletResponse) GetCreditBalance() string {
 	if o == nil || IsNil(o.CreditBalance) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.CreditBalance
@@ -290,7 +389,7 @@ func (o *DtoWalletResponse) GetCreditBalance() float32 {
 
 // GetCreditBalanceOk returns a tuple with the CreditBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoWalletResponse) GetCreditBalanceOk() (*float32, bool) {
+func (o *DtoWalletResponse) GetCreditBalanceOk() (*string, bool) {
 	if o == nil || IsNil(o.CreditBalance) {
 		return nil, false
 	}
@@ -306,8 +405,8 @@ func (o *DtoWalletResponse) HasCreditBalance() bool {
 	return false
 }
 
-// SetCreditBalance gets a reference to the given float32 and assigns it to the CreditBalance field.
-func (o *DtoWalletResponse) SetCreditBalance(v float32) {
+// SetCreditBalance gets a reference to the given string and assigns it to the CreditBalance field.
+func (o *DtoWalletResponse) SetCreditBalance(v string) {
 	o.CreditBalance = &v
 }
 
@@ -609,6 +708,15 @@ func (o DtoWalletResponse) MarshalJSON() ([]byte, error) {
 
 func (o DtoWalletResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AlertConfig) {
+		toSerialize["alert_config"] = o.AlertConfig
+	}
+	if !IsNil(o.AlertEnabled) {
+		toSerialize["alert_enabled"] = o.AlertEnabled
+	}
+	if !IsNil(o.AlertState) {
+		toSerialize["alert_state"] = o.AlertState
+	}
 	if !IsNil(o.AutoTopupAmount) {
 		toSerialize["auto_topup_amount"] = o.AutoTopupAmount
 	}

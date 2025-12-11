@@ -4,29 +4,36 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **float32** |  | [optional] 
-**CreatedAt** | Pointer to **string** |  | [optional] 
-**CreatedBy** | Pointer to **string** |  | [optional] 
-**Currency** | Pointer to **string** |  | [optional] 
-**CustomerId** | Pointer to **string** |  | [optional] 
-**DisplayName** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**InvoiceId** | Pointer to **string** |  | [optional] 
+**Amount** | Pointer to **string** | amount is the monetary amount for this line item | [optional] 
+**CreatedAt** | Pointer to **string** | created_at is the timestamp when this line item was created | [optional] 
+**CreatedBy** | Pointer to **string** | created_by is the identifier of the user who created this line item | [optional] 
+**Currency** | Pointer to **string** | currency is the three-letter ISO currency code for this line item | [optional] 
+**CustomerId** | Pointer to **string** | customer_id is the unique identifier of the customer associated with this line item | [optional] 
+**DisplayName** | Pointer to **string** | display_name is the optional human-readable name for this line item | [optional] 
+**EntityId** | Pointer to **string** | entity_id is the optional unique identifier of the entity associated with this line item | [optional] 
+**EntityType** | Pointer to **string** | entity_type is the optional type of the entity associated with this line item | [optional] 
+**Id** | Pointer to **string** | id is the unique identifier for this line item | [optional] 
+**InvoiceId** | Pointer to **string** | invoice_id is the unique identifier of the invoice this line item belongs to | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
-**MeterDisplayName** | Pointer to **string** |  | [optional] 
-**MeterId** | Pointer to **string** |  | [optional] 
-**PeriodEnd** | Pointer to **string** |  | [optional] 
-**PeriodStart** | Pointer to **string** |  | [optional] 
-**PlanDisplayName** | Pointer to **string** |  | [optional] 
-**PlanId** | Pointer to **string** |  | [optional] 
-**PriceId** | Pointer to **string** |  | [optional] 
-**PriceType** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **float32** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
-**SubscriptionId** | Pointer to **string** |  | [optional] 
-**TenantId** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **string** |  | [optional] 
-**UpdatedBy** | Pointer to **string** |  | [optional] 
+**MeterDisplayName** | Pointer to **string** | meter_display_name is the optional human-readable name of the meter | [optional] 
+**MeterId** | Pointer to **string** | meter_id is the optional unique identifier of the meter used for usage tracking | [optional] 
+**PeriodEnd** | Pointer to **string** | period_end is the optional end date of the period this line item covers | [optional] 
+**PeriodStart** | Pointer to **string** | period_start is the optional start date of the period this line item covers | [optional] 
+**PlanDisplayName** | Pointer to **string** | plan_display_name is the optional human-readable name of the plan | [optional] 
+**PlanId** | Pointer to **string** | plan_id is the optional unique identifier of the plan associated with this line item | [optional] 
+**PriceId** | Pointer to **string** | price_id is the optional unique identifier of the price associated with this line item | [optional] 
+**PriceType** | Pointer to **string** | price_type indicates the type of pricing (fixed, usage, tiered, etc.) | [optional] 
+**PriceUnit** | Pointer to **string** | price_unit is the optional 3-digit ISO code of the price unit associated with this line item | [optional] 
+**PriceUnitAmount** | Pointer to **string** | price_unit_amount is the optional amount converted to the price unit currency | [optional] 
+**PriceUnitId** | Pointer to **string** | price_unit_id is the optional unique identifier of the price unit associated with this line item | [optional] 
+**Quantity** | Pointer to **string** | quantity is the quantity of units for this line item | [optional] 
+**Status** | Pointer to **string** | status represents the current status of this line item | [optional] 
+**SubscriptionId** | Pointer to **string** | subscription_id is the optional unique identifier of the subscription associated with this line item | [optional] 
+**TenantId** | Pointer to **string** | tenant_id is the unique identifier of the tenant this line item belongs to | [optional] 
+**UpdatedAt** | Pointer to **string** | updated_at is the timestamp when this line item was last updated | [optional] 
+**UpdatedBy** | Pointer to **string** | updated_by is the identifier of the user who last updated this line item | [optional] 
+**UsageAnalytics** | Pointer to [**[]DtoSourceUsageItem**](DtoSourceUsageItem.md) | usage_analytics contains usage analytics for this line item (legacy - grouped by source) | [optional] 
+**UsageBreakdown** | Pointer to [**[]DtoUsageBreakdownItem**](DtoUsageBreakdownItem.md) | usage_breakdown contains flexible usage breakdown for this line item (supports any grouping) | [optional] 
 
 ## Methods
 
@@ -49,20 +56,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *DtoInvoiceLineItemResponse) GetAmount() float32`
+`func (o *DtoInvoiceLineItemResponse) GetAmount() string`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *DtoInvoiceLineItemResponse) GetAmountOk() (*float32, bool)`
+`func (o *DtoInvoiceLineItemResponse) GetAmountOk() (*string, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *DtoInvoiceLineItemResponse) SetAmount(v float32)`
+`func (o *DtoInvoiceLineItemResponse) SetAmount(v string)`
 
 SetAmount sets Amount field to given value.
 
@@ -196,6 +203,56 @@ SetDisplayName sets DisplayName field to given value.
 `func (o *DtoInvoiceLineItemResponse) HasDisplayName() bool`
 
 HasDisplayName returns a boolean if a field has been set.
+
+### GetEntityId
+
+`func (o *DtoInvoiceLineItemResponse) GetEntityId() string`
+
+GetEntityId returns the EntityId field if non-nil, zero value otherwise.
+
+### GetEntityIdOk
+
+`func (o *DtoInvoiceLineItemResponse) GetEntityIdOk() (*string, bool)`
+
+GetEntityIdOk returns a tuple with the EntityId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityId
+
+`func (o *DtoInvoiceLineItemResponse) SetEntityId(v string)`
+
+SetEntityId sets EntityId field to given value.
+
+### HasEntityId
+
+`func (o *DtoInvoiceLineItemResponse) HasEntityId() bool`
+
+HasEntityId returns a boolean if a field has been set.
+
+### GetEntityType
+
+`func (o *DtoInvoiceLineItemResponse) GetEntityType() string`
+
+GetEntityType returns the EntityType field if non-nil, zero value otherwise.
+
+### GetEntityTypeOk
+
+`func (o *DtoInvoiceLineItemResponse) GetEntityTypeOk() (*string, bool)`
+
+GetEntityTypeOk returns a tuple with the EntityType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityType
+
+`func (o *DtoInvoiceLineItemResponse) SetEntityType(v string)`
+
+SetEntityType sets EntityType field to given value.
+
+### HasEntityType
+
+`func (o *DtoInvoiceLineItemResponse) HasEntityType() bool`
+
+HasEntityType returns a boolean if a field has been set.
 
 ### GetId
 
@@ -472,22 +529,97 @@ SetPriceType sets PriceType field to given value.
 
 HasPriceType returns a boolean if a field has been set.
 
+### GetPriceUnit
+
+`func (o *DtoInvoiceLineItemResponse) GetPriceUnit() string`
+
+GetPriceUnit returns the PriceUnit field if non-nil, zero value otherwise.
+
+### GetPriceUnitOk
+
+`func (o *DtoInvoiceLineItemResponse) GetPriceUnitOk() (*string, bool)`
+
+GetPriceUnitOk returns a tuple with the PriceUnit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnit
+
+`func (o *DtoInvoiceLineItemResponse) SetPriceUnit(v string)`
+
+SetPriceUnit sets PriceUnit field to given value.
+
+### HasPriceUnit
+
+`func (o *DtoInvoiceLineItemResponse) HasPriceUnit() bool`
+
+HasPriceUnit returns a boolean if a field has been set.
+
+### GetPriceUnitAmount
+
+`func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmount() string`
+
+GetPriceUnitAmount returns the PriceUnitAmount field if non-nil, zero value otherwise.
+
+### GetPriceUnitAmountOk
+
+`func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmountOk() (*string, bool)`
+
+GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitAmount
+
+`func (o *DtoInvoiceLineItemResponse) SetPriceUnitAmount(v string)`
+
+SetPriceUnitAmount sets PriceUnitAmount field to given value.
+
+### HasPriceUnitAmount
+
+`func (o *DtoInvoiceLineItemResponse) HasPriceUnitAmount() bool`
+
+HasPriceUnitAmount returns a boolean if a field has been set.
+
+### GetPriceUnitId
+
+`func (o *DtoInvoiceLineItemResponse) GetPriceUnitId() string`
+
+GetPriceUnitId returns the PriceUnitId field if non-nil, zero value otherwise.
+
+### GetPriceUnitIdOk
+
+`func (o *DtoInvoiceLineItemResponse) GetPriceUnitIdOk() (*string, bool)`
+
+GetPriceUnitIdOk returns a tuple with the PriceUnitId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitId
+
+`func (o *DtoInvoiceLineItemResponse) SetPriceUnitId(v string)`
+
+SetPriceUnitId sets PriceUnitId field to given value.
+
+### HasPriceUnitId
+
+`func (o *DtoInvoiceLineItemResponse) HasPriceUnitId() bool`
+
+HasPriceUnitId returns a boolean if a field has been set.
+
 ### GetQuantity
 
-`func (o *DtoInvoiceLineItemResponse) GetQuantity() float32`
+`func (o *DtoInvoiceLineItemResponse) GetQuantity() string`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *DtoInvoiceLineItemResponse) GetQuantityOk() (*float32, bool)`
+`func (o *DtoInvoiceLineItemResponse) GetQuantityOk() (*string, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *DtoInvoiceLineItemResponse) SetQuantity(v float32)`
+`func (o *DtoInvoiceLineItemResponse) SetQuantity(v string)`
 
 SetQuantity sets Quantity field to given value.
 
@@ -621,6 +753,56 @@ SetUpdatedBy sets UpdatedBy field to given value.
 `func (o *DtoInvoiceLineItemResponse) HasUpdatedBy() bool`
 
 HasUpdatedBy returns a boolean if a field has been set.
+
+### GetUsageAnalytics
+
+`func (o *DtoInvoiceLineItemResponse) GetUsageAnalytics() []DtoSourceUsageItem`
+
+GetUsageAnalytics returns the UsageAnalytics field if non-nil, zero value otherwise.
+
+### GetUsageAnalyticsOk
+
+`func (o *DtoInvoiceLineItemResponse) GetUsageAnalyticsOk() (*[]DtoSourceUsageItem, bool)`
+
+GetUsageAnalyticsOk returns a tuple with the UsageAnalytics field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsageAnalytics
+
+`func (o *DtoInvoiceLineItemResponse) SetUsageAnalytics(v []DtoSourceUsageItem)`
+
+SetUsageAnalytics sets UsageAnalytics field to given value.
+
+### HasUsageAnalytics
+
+`func (o *DtoInvoiceLineItemResponse) HasUsageAnalytics() bool`
+
+HasUsageAnalytics returns a boolean if a field has been set.
+
+### GetUsageBreakdown
+
+`func (o *DtoInvoiceLineItemResponse) GetUsageBreakdown() []DtoUsageBreakdownItem`
+
+GetUsageBreakdown returns the UsageBreakdown field if non-nil, zero value otherwise.
+
+### GetUsageBreakdownOk
+
+`func (o *DtoInvoiceLineItemResponse) GetUsageBreakdownOk() (*[]DtoUsageBreakdownItem, bool)`
+
+GetUsageBreakdownOk returns a tuple with the UsageBreakdown field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsageBreakdown
+
+`func (o *DtoInvoiceLineItemResponse) SetUsageBreakdown(v []DtoUsageBreakdownItem)`
+
+SetUsageBreakdown sets UsageBreakdown field to given value.
+
+### HasUsageBreakdown
+
+`func (o *DtoInvoiceLineItemResponse) HasUsageBreakdown() bool`
+
+HasUsageBreakdown returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

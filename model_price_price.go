@@ -26,6 +26,8 @@ type PricePrice struct {
 	BillingPeriod *TypesBillingPeriod `json:"billing_period,omitempty"`
 	// BillingPeriodCount is the count of the billing period ex 1, 3, 6, 12
 	BillingPeriodCount *int32 `json:"billing_period_count,omitempty"`
+	// ConversionRate is the rate of the price unit to the base currency For BTC: 1 BTC = 100000000 USD
+	ConversionRate *float32 `json:"conversion_rate,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
 	// Currency 3 digit ISO currency code in lowercase ex usd, eur, gbp
@@ -34,8 +36,17 @@ type PricePrice struct {
 	Description *string `json:"description,omitempty"`
 	// DisplayAmount is the formatted amount with currency symbol For USD: $12.50
 	DisplayAmount *string `json:"display_amount,omitempty"`
+	// DisplayPriceUnitAmount is the formatted amount with price unit symbol For BTC: 0.00000001 BTC
+	DisplayPriceUnitAmount *string `json:"display_price_unit_amount,omitempty"`
+	// EndDate is the end date of the price
+	EndDate *string `json:"end_date,omitempty"`
+	// EntityID holds the value of the \"entity_id\" field.
+	EntityId *string `json:"entity_id,omitempty"`
+	EntityType *TypesPriceEntityType `json:"entity_type,omitempty"`
 	// EnvironmentID is the environment identifier for the price
 	EnvironmentId *string `json:"environment_id,omitempty"`
+	// GroupID references the group this price belongs to
+	GroupId *string `json:"group_id,omitempty"`
 	// ID uuid identifier for the price
 	Id *string `json:"id,omitempty"`
 	InvoiceCadence *TypesInvoiceCadence `json:"invoice_cadence,omitempty"`
@@ -44,8 +55,19 @@ type PricePrice struct {
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	// MeterID is the id of the meter for usage based pricing
 	MeterId *string `json:"meter_id,omitempty"`
-	// PlanID is the id of the plan for plan based pricing
-	PlanId *string `json:"plan_id,omitempty"`
+	// ParentPriceID references the root price (always set for price lineage tracking)
+	ParentPriceId *string `json:"parent_price_id,omitempty"`
+	// PriceUnit 3 digit ISO currency code in lowercase ex btc For BTC: btc
+	PriceUnit *string `json:"price_unit,omitempty"`
+	// PriceUnitAmount is the amount stored in price unit For BTC: 0.00000001 means 0.00000001 BTC
+	PriceUnitAmount *float32 `json:"price_unit_amount,omitempty"`
+	// PriceUnitID is the id of the price unit
+	PriceUnitId *string `json:"price_unit_id,omitempty"`
+	// PriceUnitTiers are the tiers for the price unit
+	PriceUnitTiers []PricePriceTier `json:"price_unit_tiers,omitempty"`
+	PriceUnitType *TypesPriceUnitType `json:"price_unit_type,omitempty"`
+	// StartDate is the start date of the price
+	StartDate *string `json:"start_date,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
 	TierMode *TypesBillingTier `json:"tier_mode,omitempty"`
@@ -235,6 +257,38 @@ func (o *PricePrice) SetBillingPeriodCount(v int32) {
 	o.BillingPeriodCount = &v
 }
 
+// GetConversionRate returns the ConversionRate field value if set, zero value otherwise.
+func (o *PricePrice) GetConversionRate() float32 {
+	if o == nil || IsNil(o.ConversionRate) {
+		var ret float32
+		return ret
+	}
+	return *o.ConversionRate
+}
+
+// GetConversionRateOk returns a tuple with the ConversionRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PricePrice) GetConversionRateOk() (*float32, bool) {
+	if o == nil || IsNil(o.ConversionRate) {
+		return nil, false
+	}
+	return o.ConversionRate, true
+}
+
+// HasConversionRate returns a boolean if a field has been set.
+func (o *PricePrice) HasConversionRate() bool {
+	if o != nil && !IsNil(o.ConversionRate) {
+		return true
+	}
+
+	return false
+}
+
+// SetConversionRate gets a reference to the given float32 and assigns it to the ConversionRate field.
+func (o *PricePrice) SetConversionRate(v float32) {
+	o.ConversionRate = &v
+}
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *PricePrice) GetCreatedAt() string {
 	if o == nil || IsNil(o.CreatedAt) {
@@ -395,6 +449,134 @@ func (o *PricePrice) SetDisplayAmount(v string) {
 	o.DisplayAmount = &v
 }
 
+// GetDisplayPriceUnitAmount returns the DisplayPriceUnitAmount field value if set, zero value otherwise.
+func (o *PricePrice) GetDisplayPriceUnitAmount() string {
+	if o == nil || IsNil(o.DisplayPriceUnitAmount) {
+		var ret string
+		return ret
+	}
+	return *o.DisplayPriceUnitAmount
+}
+
+// GetDisplayPriceUnitAmountOk returns a tuple with the DisplayPriceUnitAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PricePrice) GetDisplayPriceUnitAmountOk() (*string, bool) {
+	if o == nil || IsNil(o.DisplayPriceUnitAmount) {
+		return nil, false
+	}
+	return o.DisplayPriceUnitAmount, true
+}
+
+// HasDisplayPriceUnitAmount returns a boolean if a field has been set.
+func (o *PricePrice) HasDisplayPriceUnitAmount() bool {
+	if o != nil && !IsNil(o.DisplayPriceUnitAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayPriceUnitAmount gets a reference to the given string and assigns it to the DisplayPriceUnitAmount field.
+func (o *PricePrice) SetDisplayPriceUnitAmount(v string) {
+	o.DisplayPriceUnitAmount = &v
+}
+
+// GetEndDate returns the EndDate field value if set, zero value otherwise.
+func (o *PricePrice) GetEndDate() string {
+	if o == nil || IsNil(o.EndDate) {
+		var ret string
+		return ret
+	}
+	return *o.EndDate
+}
+
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PricePrice) GetEndDateOk() (*string, bool) {
+	if o == nil || IsNil(o.EndDate) {
+		return nil, false
+	}
+	return o.EndDate, true
+}
+
+// HasEndDate returns a boolean if a field has been set.
+func (o *PricePrice) HasEndDate() bool {
+	if o != nil && !IsNil(o.EndDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
+func (o *PricePrice) SetEndDate(v string) {
+	o.EndDate = &v
+}
+
+// GetEntityId returns the EntityId field value if set, zero value otherwise.
+func (o *PricePrice) GetEntityId() string {
+	if o == nil || IsNil(o.EntityId) {
+		var ret string
+		return ret
+	}
+	return *o.EntityId
+}
+
+// GetEntityIdOk returns a tuple with the EntityId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PricePrice) GetEntityIdOk() (*string, bool) {
+	if o == nil || IsNil(o.EntityId) {
+		return nil, false
+	}
+	return o.EntityId, true
+}
+
+// HasEntityId returns a boolean if a field has been set.
+func (o *PricePrice) HasEntityId() bool {
+	if o != nil && !IsNil(o.EntityId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityId gets a reference to the given string and assigns it to the EntityId field.
+func (o *PricePrice) SetEntityId(v string) {
+	o.EntityId = &v
+}
+
+// GetEntityType returns the EntityType field value if set, zero value otherwise.
+func (o *PricePrice) GetEntityType() TypesPriceEntityType {
+	if o == nil || IsNil(o.EntityType) {
+		var ret TypesPriceEntityType
+		return ret
+	}
+	return *o.EntityType
+}
+
+// GetEntityTypeOk returns a tuple with the EntityType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PricePrice) GetEntityTypeOk() (*TypesPriceEntityType, bool) {
+	if o == nil || IsNil(o.EntityType) {
+		return nil, false
+	}
+	return o.EntityType, true
+}
+
+// HasEntityType returns a boolean if a field has been set.
+func (o *PricePrice) HasEntityType() bool {
+	if o != nil && !IsNil(o.EntityType) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityType gets a reference to the given TypesPriceEntityType and assigns it to the EntityType field.
+func (o *PricePrice) SetEntityType(v TypesPriceEntityType) {
+	o.EntityType = &v
+}
+
 // GetEnvironmentId returns the EnvironmentId field value if set, zero value otherwise.
 func (o *PricePrice) GetEnvironmentId() string {
 	if o == nil || IsNil(o.EnvironmentId) {
@@ -425,6 +607,38 @@ func (o *PricePrice) HasEnvironmentId() bool {
 // SetEnvironmentId gets a reference to the given string and assigns it to the EnvironmentId field.
 func (o *PricePrice) SetEnvironmentId(v string) {
 	o.EnvironmentId = &v
+}
+
+// GetGroupId returns the GroupId field value if set, zero value otherwise.
+func (o *PricePrice) GetGroupId() string {
+	if o == nil || IsNil(o.GroupId) {
+		var ret string
+		return ret
+	}
+	return *o.GroupId
+}
+
+// GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PricePrice) GetGroupIdOk() (*string, bool) {
+	if o == nil || IsNil(o.GroupId) {
+		return nil, false
+	}
+	return o.GroupId, true
+}
+
+// HasGroupId returns a boolean if a field has been set.
+func (o *PricePrice) HasGroupId() bool {
+	if o != nil && !IsNil(o.GroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupId gets a reference to the given string and assigns it to the GroupId field.
+func (o *PricePrice) SetGroupId(v string) {
+	o.GroupId = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -587,36 +801,228 @@ func (o *PricePrice) SetMeterId(v string) {
 	o.MeterId = &v
 }
 
-// GetPlanId returns the PlanId field value if set, zero value otherwise.
-func (o *PricePrice) GetPlanId() string {
-	if o == nil || IsNil(o.PlanId) {
+// GetParentPriceId returns the ParentPriceId field value if set, zero value otherwise.
+func (o *PricePrice) GetParentPriceId() string {
+	if o == nil || IsNil(o.ParentPriceId) {
 		var ret string
 		return ret
 	}
-	return *o.PlanId
+	return *o.ParentPriceId
 }
 
-// GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
+// GetParentPriceIdOk returns a tuple with the ParentPriceId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PricePrice) GetPlanIdOk() (*string, bool) {
-	if o == nil || IsNil(o.PlanId) {
+func (o *PricePrice) GetParentPriceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ParentPriceId) {
 		return nil, false
 	}
-	return o.PlanId, true
+	return o.ParentPriceId, true
 }
 
-// HasPlanId returns a boolean if a field has been set.
-func (o *PricePrice) HasPlanId() bool {
-	if o != nil && !IsNil(o.PlanId) {
+// HasParentPriceId returns a boolean if a field has been set.
+func (o *PricePrice) HasParentPriceId() bool {
+	if o != nil && !IsNil(o.ParentPriceId) {
 		return true
 	}
 
 	return false
 }
 
-// SetPlanId gets a reference to the given string and assigns it to the PlanId field.
-func (o *PricePrice) SetPlanId(v string) {
-	o.PlanId = &v
+// SetParentPriceId gets a reference to the given string and assigns it to the ParentPriceId field.
+func (o *PricePrice) SetParentPriceId(v string) {
+	o.ParentPriceId = &v
+}
+
+// GetPriceUnit returns the PriceUnit field value if set, zero value otherwise.
+func (o *PricePrice) GetPriceUnit() string {
+	if o == nil || IsNil(o.PriceUnit) {
+		var ret string
+		return ret
+	}
+	return *o.PriceUnit
+}
+
+// GetPriceUnitOk returns a tuple with the PriceUnit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PricePrice) GetPriceUnitOk() (*string, bool) {
+	if o == nil || IsNil(o.PriceUnit) {
+		return nil, false
+	}
+	return o.PriceUnit, true
+}
+
+// HasPriceUnit returns a boolean if a field has been set.
+func (o *PricePrice) HasPriceUnit() bool {
+	if o != nil && !IsNil(o.PriceUnit) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnit gets a reference to the given string and assigns it to the PriceUnit field.
+func (o *PricePrice) SetPriceUnit(v string) {
+	o.PriceUnit = &v
+}
+
+// GetPriceUnitAmount returns the PriceUnitAmount field value if set, zero value otherwise.
+func (o *PricePrice) GetPriceUnitAmount() float32 {
+	if o == nil || IsNil(o.PriceUnitAmount) {
+		var ret float32
+		return ret
+	}
+	return *o.PriceUnitAmount
+}
+
+// GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PricePrice) GetPriceUnitAmountOk() (*float32, bool) {
+	if o == nil || IsNil(o.PriceUnitAmount) {
+		return nil, false
+	}
+	return o.PriceUnitAmount, true
+}
+
+// HasPriceUnitAmount returns a boolean if a field has been set.
+func (o *PricePrice) HasPriceUnitAmount() bool {
+	if o != nil && !IsNil(o.PriceUnitAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnitAmount gets a reference to the given float32 and assigns it to the PriceUnitAmount field.
+func (o *PricePrice) SetPriceUnitAmount(v float32) {
+	o.PriceUnitAmount = &v
+}
+
+// GetPriceUnitId returns the PriceUnitId field value if set, zero value otherwise.
+func (o *PricePrice) GetPriceUnitId() string {
+	if o == nil || IsNil(o.PriceUnitId) {
+		var ret string
+		return ret
+	}
+	return *o.PriceUnitId
+}
+
+// GetPriceUnitIdOk returns a tuple with the PriceUnitId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PricePrice) GetPriceUnitIdOk() (*string, bool) {
+	if o == nil || IsNil(o.PriceUnitId) {
+		return nil, false
+	}
+	return o.PriceUnitId, true
+}
+
+// HasPriceUnitId returns a boolean if a field has been set.
+func (o *PricePrice) HasPriceUnitId() bool {
+	if o != nil && !IsNil(o.PriceUnitId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnitId gets a reference to the given string and assigns it to the PriceUnitId field.
+func (o *PricePrice) SetPriceUnitId(v string) {
+	o.PriceUnitId = &v
+}
+
+// GetPriceUnitTiers returns the PriceUnitTiers field value if set, zero value otherwise.
+func (o *PricePrice) GetPriceUnitTiers() []PricePriceTier {
+	if o == nil || IsNil(o.PriceUnitTiers) {
+		var ret []PricePriceTier
+		return ret
+	}
+	return o.PriceUnitTiers
+}
+
+// GetPriceUnitTiersOk returns a tuple with the PriceUnitTiers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PricePrice) GetPriceUnitTiersOk() ([]PricePriceTier, bool) {
+	if o == nil || IsNil(o.PriceUnitTiers) {
+		return nil, false
+	}
+	return o.PriceUnitTiers, true
+}
+
+// HasPriceUnitTiers returns a boolean if a field has been set.
+func (o *PricePrice) HasPriceUnitTiers() bool {
+	if o != nil && !IsNil(o.PriceUnitTiers) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnitTiers gets a reference to the given []PricePriceTier and assigns it to the PriceUnitTiers field.
+func (o *PricePrice) SetPriceUnitTiers(v []PricePriceTier) {
+	o.PriceUnitTiers = v
+}
+
+// GetPriceUnitType returns the PriceUnitType field value if set, zero value otherwise.
+func (o *PricePrice) GetPriceUnitType() TypesPriceUnitType {
+	if o == nil || IsNil(o.PriceUnitType) {
+		var ret TypesPriceUnitType
+		return ret
+	}
+	return *o.PriceUnitType
+}
+
+// GetPriceUnitTypeOk returns a tuple with the PriceUnitType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PricePrice) GetPriceUnitTypeOk() (*TypesPriceUnitType, bool) {
+	if o == nil || IsNil(o.PriceUnitType) {
+		return nil, false
+	}
+	return o.PriceUnitType, true
+}
+
+// HasPriceUnitType returns a boolean if a field has been set.
+func (o *PricePrice) HasPriceUnitType() bool {
+	if o != nil && !IsNil(o.PriceUnitType) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnitType gets a reference to the given TypesPriceUnitType and assigns it to the PriceUnitType field.
+func (o *PricePrice) SetPriceUnitType(v TypesPriceUnitType) {
+	o.PriceUnitType = &v
+}
+
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
+func (o *PricePrice) GetStartDate() string {
+	if o == nil || IsNil(o.StartDate) {
+		var ret string
+		return ret
+	}
+	return *o.StartDate
+}
+
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PricePrice) GetStartDateOk() (*string, bool) {
+	if o == nil || IsNil(o.StartDate) {
+		return nil, false
+	}
+	return o.StartDate, true
+}
+
+// HasStartDate returns a boolean if a field has been set.
+func (o *PricePrice) HasStartDate() bool {
+	if o != nil && !IsNil(o.StartDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given string and assigns it to the StartDate field.
+func (o *PricePrice) SetStartDate(v string) {
+	o.StartDate = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -932,6 +1338,9 @@ func (o PricePrice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BillingPeriodCount) {
 		toSerialize["billing_period_count"] = o.BillingPeriodCount
 	}
+	if !IsNil(o.ConversionRate) {
+		toSerialize["conversion_rate"] = o.ConversionRate
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -947,8 +1356,23 @@ func (o PricePrice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DisplayAmount) {
 		toSerialize["display_amount"] = o.DisplayAmount
 	}
+	if !IsNil(o.DisplayPriceUnitAmount) {
+		toSerialize["display_price_unit_amount"] = o.DisplayPriceUnitAmount
+	}
+	if !IsNil(o.EndDate) {
+		toSerialize["end_date"] = o.EndDate
+	}
+	if !IsNil(o.EntityId) {
+		toSerialize["entity_id"] = o.EntityId
+	}
+	if !IsNil(o.EntityType) {
+		toSerialize["entity_type"] = o.EntityType
+	}
 	if !IsNil(o.EnvironmentId) {
 		toSerialize["environment_id"] = o.EnvironmentId
+	}
+	if !IsNil(o.GroupId) {
+		toSerialize["group_id"] = o.GroupId
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
@@ -965,8 +1389,26 @@ func (o PricePrice) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MeterId) {
 		toSerialize["meter_id"] = o.MeterId
 	}
-	if !IsNil(o.PlanId) {
-		toSerialize["plan_id"] = o.PlanId
+	if !IsNil(o.ParentPriceId) {
+		toSerialize["parent_price_id"] = o.ParentPriceId
+	}
+	if !IsNil(o.PriceUnit) {
+		toSerialize["price_unit"] = o.PriceUnit
+	}
+	if !IsNil(o.PriceUnitAmount) {
+		toSerialize["price_unit_amount"] = o.PriceUnitAmount
+	}
+	if !IsNil(o.PriceUnitId) {
+		toSerialize["price_unit_id"] = o.PriceUnitId
+	}
+	if !IsNil(o.PriceUnitTiers) {
+		toSerialize["price_unit_tiers"] = o.PriceUnitTiers
+	}
+	if !IsNil(o.PriceUnitType) {
+		toSerialize["price_unit_type"] = o.PriceUnitType
+	}
+	if !IsNil(o.StartDate) {
+		toSerialize["start_date"] = o.StartDate
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status

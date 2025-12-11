@@ -4,15 +4,18 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**EntityId** | Pointer to **string** |  | [optional] 
+**EntityType** | Pointer to [**TypesEntitlementEntityType**](TypesEntitlementEntityType.md) |  | [optional] 
 **FeatureId** | **string** |  | 
 **FeatureType** | [**TypesFeatureType**](TypesFeatureType.md) |  | 
 **Id** | Pointer to **string** | The ID of the entitlement to update (present if the entitlement is being updated) | [optional] 
 **IsEnabled** | Pointer to **bool** |  | [optional] 
 **IsSoftLimit** | Pointer to **bool** |  | [optional] 
+**ParentEntitlementId** | Pointer to **string** |  | [optional] 
 **PlanId** | Pointer to **string** |  | [optional] 
 **StaticValue** | Pointer to **string** |  | [optional] 
 **UsageLimit** | Pointer to **int32** |  | [optional] 
-**UsageResetPeriod** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
+**UsageResetPeriod** | Pointer to [**TypesEntitlementUsageResetPeriod**](TypesEntitlementUsageResetPeriod.md) |  | [optional] 
 
 ## Methods
 
@@ -32,6 +35,56 @@ will change when the set of required properties is changed
 NewDtoUpdatePlanEntitlementRequestWithDefaults instantiates a new DtoUpdatePlanEntitlementRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetEntityId
+
+`func (o *DtoUpdatePlanEntitlementRequest) GetEntityId() string`
+
+GetEntityId returns the EntityId field if non-nil, zero value otherwise.
+
+### GetEntityIdOk
+
+`func (o *DtoUpdatePlanEntitlementRequest) GetEntityIdOk() (*string, bool)`
+
+GetEntityIdOk returns a tuple with the EntityId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityId
+
+`func (o *DtoUpdatePlanEntitlementRequest) SetEntityId(v string)`
+
+SetEntityId sets EntityId field to given value.
+
+### HasEntityId
+
+`func (o *DtoUpdatePlanEntitlementRequest) HasEntityId() bool`
+
+HasEntityId returns a boolean if a field has been set.
+
+### GetEntityType
+
+`func (o *DtoUpdatePlanEntitlementRequest) GetEntityType() TypesEntitlementEntityType`
+
+GetEntityType returns the EntityType field if non-nil, zero value otherwise.
+
+### GetEntityTypeOk
+
+`func (o *DtoUpdatePlanEntitlementRequest) GetEntityTypeOk() (*TypesEntitlementEntityType, bool)`
+
+GetEntityTypeOk returns a tuple with the EntityType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityType
+
+`func (o *DtoUpdatePlanEntitlementRequest) SetEntityType(v TypesEntitlementEntityType)`
+
+SetEntityType sets EntityType field to given value.
+
+### HasEntityType
+
+`func (o *DtoUpdatePlanEntitlementRequest) HasEntityType() bool`
+
+HasEntityType returns a boolean if a field has been set.
 
 ### GetFeatureId
 
@@ -148,6 +201,31 @@ SetIsSoftLimit sets IsSoftLimit field to given value.
 
 HasIsSoftLimit returns a boolean if a field has been set.
 
+### GetParentEntitlementId
+
+`func (o *DtoUpdatePlanEntitlementRequest) GetParentEntitlementId() string`
+
+GetParentEntitlementId returns the ParentEntitlementId field if non-nil, zero value otherwise.
+
+### GetParentEntitlementIdOk
+
+`func (o *DtoUpdatePlanEntitlementRequest) GetParentEntitlementIdOk() (*string, bool)`
+
+GetParentEntitlementIdOk returns a tuple with the ParentEntitlementId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentEntitlementId
+
+`func (o *DtoUpdatePlanEntitlementRequest) SetParentEntitlementId(v string)`
+
+SetParentEntitlementId sets ParentEntitlementId field to given value.
+
+### HasParentEntitlementId
+
+`func (o *DtoUpdatePlanEntitlementRequest) HasParentEntitlementId() bool`
+
+HasParentEntitlementId returns a boolean if a field has been set.
+
 ### GetPlanId
 
 `func (o *DtoUpdatePlanEntitlementRequest) GetPlanId() string`
@@ -225,20 +303,20 @@ HasUsageLimit returns a boolean if a field has been set.
 
 ### GetUsageResetPeriod
 
-`func (o *DtoUpdatePlanEntitlementRequest) GetUsageResetPeriod() TypesBillingPeriod`
+`func (o *DtoUpdatePlanEntitlementRequest) GetUsageResetPeriod() TypesEntitlementUsageResetPeriod`
 
 GetUsageResetPeriod returns the UsageResetPeriod field if non-nil, zero value otherwise.
 
 ### GetUsageResetPeriodOk
 
-`func (o *DtoUpdatePlanEntitlementRequest) GetUsageResetPeriodOk() (*TypesBillingPeriod, bool)`
+`func (o *DtoUpdatePlanEntitlementRequest) GetUsageResetPeriodOk() (*TypesEntitlementUsageResetPeriod, bool)`
 
 GetUsageResetPeriodOk returns a tuple with the UsageResetPeriod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsageResetPeriod
 
-`func (o *DtoUpdatePlanEntitlementRequest) SetUsageResetPeriod(v TypesBillingPeriod)`
+`func (o *DtoUpdatePlanEntitlementRequest) SetUsageResetPeriod(v TypesEntitlementUsageResetPeriod)`
 
 SetUsageResetPeriod sets UsageResetPeriod field to given value.
 

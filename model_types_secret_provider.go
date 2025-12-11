@@ -22,14 +22,22 @@ type TypesSecretProvider string
 const (
 	TYPESSECRETPROVIDER_SecretProviderFlexPrice TypesSecretProvider = "flexprice"
 	TYPESSECRETPROVIDER_SecretProviderStripe TypesSecretProvider = "stripe"
+	TYPESSECRETPROVIDER_SecretProviderS3 TypesSecretProvider = "s3"
+	TYPESSECRETPROVIDER_SecretProviderHubSpot TypesSecretProvider = "hubspot"
 	TYPESSECRETPROVIDER_SecretProviderRazorpay TypesSecretProvider = "razorpay"
+	TYPESSECRETPROVIDER_SecretProviderChargebee TypesSecretProvider = "chargebee"
+	TYPESSECRETPROVIDER_SecretProviderQuickBooks TypesSecretProvider = "quickbooks"
 )
 
 // All allowed values of TypesSecretProvider enum
 var AllowedTypesSecretProviderEnumValues = []TypesSecretProvider{
 	"flexprice",
 	"stripe",
+	"s3",
+	"hubspot",
 	"razorpay",
+	"chargebee",
+	"quickbooks",
 }
 
 func (v *TypesSecretProvider) UnmarshalJSON(src []byte) error {

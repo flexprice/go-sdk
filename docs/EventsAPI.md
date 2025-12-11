@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**EventsAnalyticsPost**](EventsAPI.md#EventsAnalyticsPost) | **Post** /events/analytics | Get usage analytics
 [**EventsBulkPost**](EventsAPI.md#EventsBulkPost) | **Post** /events/bulk | Bulk Ingest events
+[**EventsHuggingfaceInferencePost**](EventsAPI.md#EventsHuggingfaceInferencePost) | **Post** /events/huggingface-inference | Get hugging face inference data
+[**EventsMonitoringGet**](EventsAPI.md#EventsMonitoringGet) | **Get** /events/monitoring | Get monitoring data
 [**EventsPost**](EventsAPI.md#EventsPost) | **Post** /events | Ingest event
 [**EventsQueryPost**](EventsAPI.md#EventsQueryPost) | **Post** /events/query | List raw events
 [**EventsUsageMeterPost**](EventsAPI.md#EventsUsageMeterPost) | **Post** /events/usage/meter | Get usage by meter
@@ -138,6 +140,133 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EventsHuggingfaceInferencePost
+
+> DtoGetHuggingFaceBillingDataResponse EventsHuggingfaceInferencePost(ctx).Execute()
+
+Get hugging face inference data
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.EventsHuggingfaceInferencePost(context.Background()).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.EventsHuggingfaceInferencePost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EventsHuggingfaceInferencePost`: DtoGetHuggingFaceBillingDataResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.EventsHuggingfaceInferencePost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+This endpoint does not need any parameter.
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEventsHuggingfaceInferencePostRequest struct via the builder pattern
+
+
+### Return type
+
+[**DtoGetHuggingFaceBillingDataResponse**](DtoGetHuggingFaceBillingDataResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EventsMonitoringGet
+
+> DtoGetMonitoringDataResponse EventsMonitoringGet(ctx).WindowSize(windowSize).Execute()
+
+Get monitoring data
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	windowSize := "windowSize_example" // string | Window size for time series data (e.g., 'HOUR', 'DAY') - optional (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.EventsMonitoringGet(context.Background()).WindowSize(windowSize).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.EventsMonitoringGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EventsMonitoringGet`: DtoGetMonitoringDataResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.EventsMonitoringGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEventsMonitoringGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **windowSize** | **string** | Window size for time series data (e.g., &#39;HOUR&#39;, &#39;DAY&#39;) - optional | 
+
+### Return type
+
+[**DtoGetMonitoringDataResponse**](DtoGetMonitoringDataResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

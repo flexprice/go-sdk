@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CustomerId** | Pointer to **string** |  | [optional] 
-**DefaultCurrency** | Pointer to **string** |  | [optional] 
-**Summaries** | Pointer to [**[]DtoCustomerInvoiceSummary**](DtoCustomerInvoiceSummary.md) |  | [optional] 
+**CustomerId** | Pointer to **string** | customer_id is the unique identifier of the customer | [optional] 
+**DefaultCurrency** | Pointer to **string** | default_currency is the primary currency for this customer | [optional] 
+**Summaries** | Pointer to [**[]DtoCustomerInvoiceSummary**](DtoCustomerInvoiceSummary.md) | summaries contains the invoice summaries for each currency | [optional] 
 
 ## Methods
 

@@ -17,7 +17,7 @@ import (
 // checks if the DtoSubscriptionPauseResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DtoSubscriptionPauseResponse{}
 
-// DtoSubscriptionPauseResponse struct for DtoSubscriptionPauseResponse
+// DtoSubscriptionPauseResponse Response object containing subscription pause information
 type DtoSubscriptionPauseResponse struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`

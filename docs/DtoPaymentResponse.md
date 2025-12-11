@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **float32** |  | [optional] 
+**Amount** | Pointer to **string** |  | [optional] 
 **Attempts** | Pointer to [**[]DtoPaymentAttemptResponse**](DtoPaymentAttemptResponse.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
@@ -13,14 +13,20 @@ Name | Type | Description | Notes
 **DestinationType** | Pointer to [**TypesPaymentDestinationType**](TypesPaymentDestinationType.md) |  | [optional] 
 **ErrorMessage** | Pointer to **string** |  | [optional] 
 **FailedAt** | Pointer to **string** |  | [optional] 
+**GatewayMetadata** | Pointer to **map[string]string** |  | [optional] 
+**GatewayPaymentId** | Pointer to **string** |  | [optional] 
+**GatewayTrackingId** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **IdempotencyKey** | Pointer to **string** |  | [optional] 
 **InvoiceNumber** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
+**PaymentGateway** | Pointer to **string** |  | [optional] 
 **PaymentMethodId** | Pointer to **string** |  | [optional] 
 **PaymentMethodType** | Pointer to [**TypesPaymentMethodType**](TypesPaymentMethodType.md) |  | [optional] 
 **PaymentStatus** | Pointer to [**TypesPaymentStatus**](TypesPaymentStatus.md) |  | [optional] 
+**PaymentUrl** | Pointer to **string** |  | [optional] 
 **RefundedAt** | Pointer to **string** |  | [optional] 
+**SaveCardAndMakeDefault** | Pointer to **bool** |  | [optional] 
 **SucceededAt** | Pointer to **string** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **TrackAttempts** | Pointer to **bool** |  | [optional] 
@@ -48,20 +54,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *DtoPaymentResponse) GetAmount() float32`
+`func (o *DtoPaymentResponse) GetAmount() string`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *DtoPaymentResponse) GetAmountOk() (*float32, bool)`
+`func (o *DtoPaymentResponse) GetAmountOk() (*string, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *DtoPaymentResponse) SetAmount(v float32)`
+`func (o *DtoPaymentResponse) SetAmount(v string)`
 
 SetAmount sets Amount field to given value.
 
@@ -271,6 +277,81 @@ SetFailedAt sets FailedAt field to given value.
 
 HasFailedAt returns a boolean if a field has been set.
 
+### GetGatewayMetadata
+
+`func (o *DtoPaymentResponse) GetGatewayMetadata() map[string]string`
+
+GetGatewayMetadata returns the GatewayMetadata field if non-nil, zero value otherwise.
+
+### GetGatewayMetadataOk
+
+`func (o *DtoPaymentResponse) GetGatewayMetadataOk() (*map[string]string, bool)`
+
+GetGatewayMetadataOk returns a tuple with the GatewayMetadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGatewayMetadata
+
+`func (o *DtoPaymentResponse) SetGatewayMetadata(v map[string]string)`
+
+SetGatewayMetadata sets GatewayMetadata field to given value.
+
+### HasGatewayMetadata
+
+`func (o *DtoPaymentResponse) HasGatewayMetadata() bool`
+
+HasGatewayMetadata returns a boolean if a field has been set.
+
+### GetGatewayPaymentId
+
+`func (o *DtoPaymentResponse) GetGatewayPaymentId() string`
+
+GetGatewayPaymentId returns the GatewayPaymentId field if non-nil, zero value otherwise.
+
+### GetGatewayPaymentIdOk
+
+`func (o *DtoPaymentResponse) GetGatewayPaymentIdOk() (*string, bool)`
+
+GetGatewayPaymentIdOk returns a tuple with the GatewayPaymentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGatewayPaymentId
+
+`func (o *DtoPaymentResponse) SetGatewayPaymentId(v string)`
+
+SetGatewayPaymentId sets GatewayPaymentId field to given value.
+
+### HasGatewayPaymentId
+
+`func (o *DtoPaymentResponse) HasGatewayPaymentId() bool`
+
+HasGatewayPaymentId returns a boolean if a field has been set.
+
+### GetGatewayTrackingId
+
+`func (o *DtoPaymentResponse) GetGatewayTrackingId() string`
+
+GetGatewayTrackingId returns the GatewayTrackingId field if non-nil, zero value otherwise.
+
+### GetGatewayTrackingIdOk
+
+`func (o *DtoPaymentResponse) GetGatewayTrackingIdOk() (*string, bool)`
+
+GetGatewayTrackingIdOk returns a tuple with the GatewayTrackingId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGatewayTrackingId
+
+`func (o *DtoPaymentResponse) SetGatewayTrackingId(v string)`
+
+SetGatewayTrackingId sets GatewayTrackingId field to given value.
+
+### HasGatewayTrackingId
+
+`func (o *DtoPaymentResponse) HasGatewayTrackingId() bool`
+
+HasGatewayTrackingId returns a boolean if a field has been set.
+
 ### GetId
 
 `func (o *DtoPaymentResponse) GetId() string`
@@ -371,6 +452,31 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
+### GetPaymentGateway
+
+`func (o *DtoPaymentResponse) GetPaymentGateway() string`
+
+GetPaymentGateway returns the PaymentGateway field if non-nil, zero value otherwise.
+
+### GetPaymentGatewayOk
+
+`func (o *DtoPaymentResponse) GetPaymentGatewayOk() (*string, bool)`
+
+GetPaymentGatewayOk returns a tuple with the PaymentGateway field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPaymentGateway
+
+`func (o *DtoPaymentResponse) SetPaymentGateway(v string)`
+
+SetPaymentGateway sets PaymentGateway field to given value.
+
+### HasPaymentGateway
+
+`func (o *DtoPaymentResponse) HasPaymentGateway() bool`
+
+HasPaymentGateway returns a boolean if a field has been set.
+
 ### GetPaymentMethodId
 
 `func (o *DtoPaymentResponse) GetPaymentMethodId() string`
@@ -446,6 +552,31 @@ SetPaymentStatus sets PaymentStatus field to given value.
 
 HasPaymentStatus returns a boolean if a field has been set.
 
+### GetPaymentUrl
+
+`func (o *DtoPaymentResponse) GetPaymentUrl() string`
+
+GetPaymentUrl returns the PaymentUrl field if non-nil, zero value otherwise.
+
+### GetPaymentUrlOk
+
+`func (o *DtoPaymentResponse) GetPaymentUrlOk() (*string, bool)`
+
+GetPaymentUrlOk returns a tuple with the PaymentUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPaymentUrl
+
+`func (o *DtoPaymentResponse) SetPaymentUrl(v string)`
+
+SetPaymentUrl sets PaymentUrl field to given value.
+
+### HasPaymentUrl
+
+`func (o *DtoPaymentResponse) HasPaymentUrl() bool`
+
+HasPaymentUrl returns a boolean if a field has been set.
+
 ### GetRefundedAt
 
 `func (o *DtoPaymentResponse) GetRefundedAt() string`
@@ -470,6 +601,31 @@ SetRefundedAt sets RefundedAt field to given value.
 `func (o *DtoPaymentResponse) HasRefundedAt() bool`
 
 HasRefundedAt returns a boolean if a field has been set.
+
+### GetSaveCardAndMakeDefault
+
+`func (o *DtoPaymentResponse) GetSaveCardAndMakeDefault() bool`
+
+GetSaveCardAndMakeDefault returns the SaveCardAndMakeDefault field if non-nil, zero value otherwise.
+
+### GetSaveCardAndMakeDefaultOk
+
+`func (o *DtoPaymentResponse) GetSaveCardAndMakeDefaultOk() (*bool, bool)`
+
+GetSaveCardAndMakeDefaultOk returns a tuple with the SaveCardAndMakeDefault field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSaveCardAndMakeDefault
+
+`func (o *DtoPaymentResponse) SetSaveCardAndMakeDefault(v bool)`
+
+SetSaveCardAndMakeDefault sets SaveCardAndMakeDefault field to given value.
+
+### HasSaveCardAndMakeDefault
+
+`func (o *DtoPaymentResponse) HasSaveCardAndMakeDefault() bool`
+
+HasSaveCardAndMakeDefault returns a boolean if a field has been set.
 
 ### GetSucceededAt
 

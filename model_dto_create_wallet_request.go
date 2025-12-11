@@ -21,17 +21,24 @@ var _ MappedNullable = &DtoCreateWalletRequest{}
 
 // DtoCreateWalletRequest struct for DtoCreateWalletRequest
 type DtoCreateWalletRequest struct {
-	AutoTopupAmount *float32 `json:"auto_topup_amount,omitempty"`
-	AutoTopupMinBalance *float32 `json:"auto_topup_min_balance,omitempty"`
+	AlertConfig *DtoAlertConfig `json:"alert_config,omitempty"`
+	// alert_enabled is the flag to enable alerts for the wallet defaults to true, can be explicitly set to false to disable alerts
+	AlertEnabled *bool `json:"alert_enabled,omitempty"`
+	AutoTopupAmount *string `json:"auto_topup_amount,omitempty"`
+	AutoTopupMinBalance *string `json:"auto_topup_min_balance,omitempty"`
 	AutoTopupTrigger *TypesAutoTopupTrigger `json:"auto_topup_trigger,omitempty"`
 	Config *TypesWalletConfig `json:"config,omitempty"`
 	// amount in the currency =  number of credits * conversion_rate ex if conversion_rate is 1, then 1 USD = 1 credit ex if conversion_rate is 2, then 1 USD = 0.5 credits ex if conversion_rate is 0.5, then 1 USD = 2 credits
-	ConversionRate *float32 `json:"conversion_rate,omitempty"`
+	ConversionRate *string `json:"conversion_rate,omitempty"`
 	Currency string `json:"currency"`
-	CustomerId string `json:"customer_id"`
+	CustomerId *string `json:"customer_id,omitempty"`
 	Description *string `json:"description,omitempty"`
+	// external_customer_id is the customer id in the external system
+	ExternalCustomerId *string `json:"external_customer_id,omitempty"`
+	// initial_credits_expiry_date_utc is the expiry date in UTC timezone (optional to set nil means no expiry) ex 2025-01-01 00:00:00 UTC
+	InitialCreditsExpiryDateUtc *string `json:"initial_credits_expiry_date_utc,omitempty"`
 	// initial_credits_to_load is the number of credits to load to the wallet if not provided, the wallet will be created with 0 balance NOTE: this is not the amount in the currency, but the number of credits
-	InitialCreditsToLoad *float32 `json:"initial_credits_to_load,omitempty"`
+	InitialCreditsToLoad *string `json:"initial_credits_to_load,omitempty"`
 	// initial_credits_to_load_expiry_date YYYYMMDD format in UTC timezone (optional to set nil means no expiry) for ex 20250101 means the credits will expire on 2025-01-01 00:00:00 UTC hence they will be available for use until 2024-12-31 23:59:59 UTC
 	InitialCreditsToLoadExpiryDate *int32 `json:"initial_credits_to_load_expiry_date,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
@@ -45,10 +52,13 @@ type _DtoCreateWalletRequest DtoCreateWalletRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDtoCreateWalletRequest(currency string, customerId string) *DtoCreateWalletRequest {
+func NewDtoCreateWalletRequest(currency string) *DtoCreateWalletRequest {
 	this := DtoCreateWalletRequest{}
+	var conversionRate string = "1"
+	this.ConversionRate = &conversionRate
 	this.Currency = currency
-	this.CustomerId = customerId
+	var initialCreditsToLoad string = "0"
+	this.InitialCreditsToLoad = &initialCreditsToLoad
 	return &this
 }
 
@@ -57,13 +67,81 @@ func NewDtoCreateWalletRequest(currency string, customerId string) *DtoCreateWal
 // but it doesn't guarantee that properties required by API are set
 func NewDtoCreateWalletRequestWithDefaults() *DtoCreateWalletRequest {
 	this := DtoCreateWalletRequest{}
+	var conversionRate string = "1"
+	this.ConversionRate = &conversionRate
+	var initialCreditsToLoad string = "0"
+	this.InitialCreditsToLoad = &initialCreditsToLoad
 	return &this
 }
 
+// GetAlertConfig returns the AlertConfig field value if set, zero value otherwise.
+func (o *DtoCreateWalletRequest) GetAlertConfig() DtoAlertConfig {
+	if o == nil || IsNil(o.AlertConfig) {
+		var ret DtoAlertConfig
+		return ret
+	}
+	return *o.AlertConfig
+}
+
+// GetAlertConfigOk returns a tuple with the AlertConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateWalletRequest) GetAlertConfigOk() (*DtoAlertConfig, bool) {
+	if o == nil || IsNil(o.AlertConfig) {
+		return nil, false
+	}
+	return o.AlertConfig, true
+}
+
+// HasAlertConfig returns a boolean if a field has been set.
+func (o *DtoCreateWalletRequest) HasAlertConfig() bool {
+	if o != nil && !IsNil(o.AlertConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlertConfig gets a reference to the given DtoAlertConfig and assigns it to the AlertConfig field.
+func (o *DtoCreateWalletRequest) SetAlertConfig(v DtoAlertConfig) {
+	o.AlertConfig = &v
+}
+
+// GetAlertEnabled returns the AlertEnabled field value if set, zero value otherwise.
+func (o *DtoCreateWalletRequest) GetAlertEnabled() bool {
+	if o == nil || IsNil(o.AlertEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.AlertEnabled
+}
+
+// GetAlertEnabledOk returns a tuple with the AlertEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateWalletRequest) GetAlertEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.AlertEnabled) {
+		return nil, false
+	}
+	return o.AlertEnabled, true
+}
+
+// HasAlertEnabled returns a boolean if a field has been set.
+func (o *DtoCreateWalletRequest) HasAlertEnabled() bool {
+	if o != nil && !IsNil(o.AlertEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlertEnabled gets a reference to the given bool and assigns it to the AlertEnabled field.
+func (o *DtoCreateWalletRequest) SetAlertEnabled(v bool) {
+	o.AlertEnabled = &v
+}
+
 // GetAutoTopupAmount returns the AutoTopupAmount field value if set, zero value otherwise.
-func (o *DtoCreateWalletRequest) GetAutoTopupAmount() float32 {
+func (o *DtoCreateWalletRequest) GetAutoTopupAmount() string {
 	if o == nil || IsNil(o.AutoTopupAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.AutoTopupAmount
@@ -71,7 +149,7 @@ func (o *DtoCreateWalletRequest) GetAutoTopupAmount() float32 {
 
 // GetAutoTopupAmountOk returns a tuple with the AutoTopupAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCreateWalletRequest) GetAutoTopupAmountOk() (*float32, bool) {
+func (o *DtoCreateWalletRequest) GetAutoTopupAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.AutoTopupAmount) {
 		return nil, false
 	}
@@ -87,15 +165,15 @@ func (o *DtoCreateWalletRequest) HasAutoTopupAmount() bool {
 	return false
 }
 
-// SetAutoTopupAmount gets a reference to the given float32 and assigns it to the AutoTopupAmount field.
-func (o *DtoCreateWalletRequest) SetAutoTopupAmount(v float32) {
+// SetAutoTopupAmount gets a reference to the given string and assigns it to the AutoTopupAmount field.
+func (o *DtoCreateWalletRequest) SetAutoTopupAmount(v string) {
 	o.AutoTopupAmount = &v
 }
 
 // GetAutoTopupMinBalance returns the AutoTopupMinBalance field value if set, zero value otherwise.
-func (o *DtoCreateWalletRequest) GetAutoTopupMinBalance() float32 {
+func (o *DtoCreateWalletRequest) GetAutoTopupMinBalance() string {
 	if o == nil || IsNil(o.AutoTopupMinBalance) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.AutoTopupMinBalance
@@ -103,7 +181,7 @@ func (o *DtoCreateWalletRequest) GetAutoTopupMinBalance() float32 {
 
 // GetAutoTopupMinBalanceOk returns a tuple with the AutoTopupMinBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCreateWalletRequest) GetAutoTopupMinBalanceOk() (*float32, bool) {
+func (o *DtoCreateWalletRequest) GetAutoTopupMinBalanceOk() (*string, bool) {
 	if o == nil || IsNil(o.AutoTopupMinBalance) {
 		return nil, false
 	}
@@ -119,8 +197,8 @@ func (o *DtoCreateWalletRequest) HasAutoTopupMinBalance() bool {
 	return false
 }
 
-// SetAutoTopupMinBalance gets a reference to the given float32 and assigns it to the AutoTopupMinBalance field.
-func (o *DtoCreateWalletRequest) SetAutoTopupMinBalance(v float32) {
+// SetAutoTopupMinBalance gets a reference to the given string and assigns it to the AutoTopupMinBalance field.
+func (o *DtoCreateWalletRequest) SetAutoTopupMinBalance(v string) {
 	o.AutoTopupMinBalance = &v
 }
 
@@ -189,9 +267,9 @@ func (o *DtoCreateWalletRequest) SetConfig(v TypesWalletConfig) {
 }
 
 // GetConversionRate returns the ConversionRate field value if set, zero value otherwise.
-func (o *DtoCreateWalletRequest) GetConversionRate() float32 {
+func (o *DtoCreateWalletRequest) GetConversionRate() string {
 	if o == nil || IsNil(o.ConversionRate) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.ConversionRate
@@ -199,7 +277,7 @@ func (o *DtoCreateWalletRequest) GetConversionRate() float32 {
 
 // GetConversionRateOk returns a tuple with the ConversionRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCreateWalletRequest) GetConversionRateOk() (*float32, bool) {
+func (o *DtoCreateWalletRequest) GetConversionRateOk() (*string, bool) {
 	if o == nil || IsNil(o.ConversionRate) {
 		return nil, false
 	}
@@ -215,8 +293,8 @@ func (o *DtoCreateWalletRequest) HasConversionRate() bool {
 	return false
 }
 
-// SetConversionRate gets a reference to the given float32 and assigns it to the ConversionRate field.
-func (o *DtoCreateWalletRequest) SetConversionRate(v float32) {
+// SetConversionRate gets a reference to the given string and assigns it to the ConversionRate field.
+func (o *DtoCreateWalletRequest) SetConversionRate(v string) {
 	o.ConversionRate = &v
 }
 
@@ -244,28 +322,36 @@ func (o *DtoCreateWalletRequest) SetCurrency(v string) {
 	o.Currency = v
 }
 
-// GetCustomerId returns the CustomerId field value
+// GetCustomerId returns the CustomerId field value if set, zero value otherwise.
 func (o *DtoCreateWalletRequest) GetCustomerId() string {
-	if o == nil {
+	if o == nil || IsNil(o.CustomerId) {
 		var ret string
 		return ret
 	}
-
-	return o.CustomerId
+	return *o.CustomerId
 }
 
-// GetCustomerIdOk returns a tuple with the CustomerId field value
+// GetCustomerIdOk returns a tuple with the CustomerId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DtoCreateWalletRequest) GetCustomerIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.CustomerId) {
 		return nil, false
 	}
-	return &o.CustomerId, true
+	return o.CustomerId, true
 }
 
-// SetCustomerId sets field value
+// HasCustomerId returns a boolean if a field has been set.
+func (o *DtoCreateWalletRequest) HasCustomerId() bool {
+	if o != nil && !IsNil(o.CustomerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerId gets a reference to the given string and assigns it to the CustomerId field.
 func (o *DtoCreateWalletRequest) SetCustomerId(v string) {
-	o.CustomerId = v
+	o.CustomerId = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -300,10 +386,74 @@ func (o *DtoCreateWalletRequest) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetExternalCustomerId returns the ExternalCustomerId field value if set, zero value otherwise.
+func (o *DtoCreateWalletRequest) GetExternalCustomerId() string {
+	if o == nil || IsNil(o.ExternalCustomerId) {
+		var ret string
+		return ret
+	}
+	return *o.ExternalCustomerId
+}
+
+// GetExternalCustomerIdOk returns a tuple with the ExternalCustomerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateWalletRequest) GetExternalCustomerIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ExternalCustomerId) {
+		return nil, false
+	}
+	return o.ExternalCustomerId, true
+}
+
+// HasExternalCustomerId returns a boolean if a field has been set.
+func (o *DtoCreateWalletRequest) HasExternalCustomerId() bool {
+	if o != nil && !IsNil(o.ExternalCustomerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetExternalCustomerId gets a reference to the given string and assigns it to the ExternalCustomerId field.
+func (o *DtoCreateWalletRequest) SetExternalCustomerId(v string) {
+	o.ExternalCustomerId = &v
+}
+
+// GetInitialCreditsExpiryDateUtc returns the InitialCreditsExpiryDateUtc field value if set, zero value otherwise.
+func (o *DtoCreateWalletRequest) GetInitialCreditsExpiryDateUtc() string {
+	if o == nil || IsNil(o.InitialCreditsExpiryDateUtc) {
+		var ret string
+		return ret
+	}
+	return *o.InitialCreditsExpiryDateUtc
+}
+
+// GetInitialCreditsExpiryDateUtcOk returns a tuple with the InitialCreditsExpiryDateUtc field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateWalletRequest) GetInitialCreditsExpiryDateUtcOk() (*string, bool) {
+	if o == nil || IsNil(o.InitialCreditsExpiryDateUtc) {
+		return nil, false
+	}
+	return o.InitialCreditsExpiryDateUtc, true
+}
+
+// HasInitialCreditsExpiryDateUtc returns a boolean if a field has been set.
+func (o *DtoCreateWalletRequest) HasInitialCreditsExpiryDateUtc() bool {
+	if o != nil && !IsNil(o.InitialCreditsExpiryDateUtc) {
+		return true
+	}
+
+	return false
+}
+
+// SetInitialCreditsExpiryDateUtc gets a reference to the given string and assigns it to the InitialCreditsExpiryDateUtc field.
+func (o *DtoCreateWalletRequest) SetInitialCreditsExpiryDateUtc(v string) {
+	o.InitialCreditsExpiryDateUtc = &v
+}
+
 // GetInitialCreditsToLoad returns the InitialCreditsToLoad field value if set, zero value otherwise.
-func (o *DtoCreateWalletRequest) GetInitialCreditsToLoad() float32 {
+func (o *DtoCreateWalletRequest) GetInitialCreditsToLoad() string {
 	if o == nil || IsNil(o.InitialCreditsToLoad) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.InitialCreditsToLoad
@@ -311,7 +461,7 @@ func (o *DtoCreateWalletRequest) GetInitialCreditsToLoad() float32 {
 
 // GetInitialCreditsToLoadOk returns a tuple with the InitialCreditsToLoad field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCreateWalletRequest) GetInitialCreditsToLoadOk() (*float32, bool) {
+func (o *DtoCreateWalletRequest) GetInitialCreditsToLoadOk() (*string, bool) {
 	if o == nil || IsNil(o.InitialCreditsToLoad) {
 		return nil, false
 	}
@@ -327,8 +477,8 @@ func (o *DtoCreateWalletRequest) HasInitialCreditsToLoad() bool {
 	return false
 }
 
-// SetInitialCreditsToLoad gets a reference to the given float32 and assigns it to the InitialCreditsToLoad field.
-func (o *DtoCreateWalletRequest) SetInitialCreditsToLoad(v float32) {
+// SetInitialCreditsToLoad gets a reference to the given string and assigns it to the InitialCreditsToLoad field.
+func (o *DtoCreateWalletRequest) SetInitialCreditsToLoad(v string) {
 	o.InitialCreditsToLoad = &v
 }
 
@@ -470,6 +620,12 @@ func (o DtoCreateWalletRequest) MarshalJSON() ([]byte, error) {
 
 func (o DtoCreateWalletRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AlertConfig) {
+		toSerialize["alert_config"] = o.AlertConfig
+	}
+	if !IsNil(o.AlertEnabled) {
+		toSerialize["alert_enabled"] = o.AlertEnabled
+	}
 	if !IsNil(o.AutoTopupAmount) {
 		toSerialize["auto_topup_amount"] = o.AutoTopupAmount
 	}
@@ -486,9 +642,17 @@ func (o DtoCreateWalletRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["conversion_rate"] = o.ConversionRate
 	}
 	toSerialize["currency"] = o.Currency
-	toSerialize["customer_id"] = o.CustomerId
+	if !IsNil(o.CustomerId) {
+		toSerialize["customer_id"] = o.CustomerId
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.ExternalCustomerId) {
+		toSerialize["external_customer_id"] = o.ExternalCustomerId
+	}
+	if !IsNil(o.InitialCreditsExpiryDateUtc) {
+		toSerialize["initial_credits_expiry_date_utc"] = o.InitialCreditsExpiryDateUtc
 	}
 	if !IsNil(o.InitialCreditsToLoad) {
 		toSerialize["initial_credits_to_load"] = o.InitialCreditsToLoad
@@ -514,7 +678,6 @@ func (o *DtoCreateWalletRequest) UnmarshalJSON(data []byte) (err error) {
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
 		"currency",
-		"customer_id",
 	}
 
 	allProperties := make(map[string]interface{})

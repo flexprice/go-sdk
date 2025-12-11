@@ -19,9 +19,11 @@ import (
 // checks if the DtoResumeSubscriptionRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DtoResumeSubscriptionRequest{}
 
-// DtoResumeSubscriptionRequest struct for DtoResumeSubscriptionRequest
+// DtoResumeSubscriptionRequest Request object for resuming a paused subscription
 type DtoResumeSubscriptionRequest struct {
+	// Whether to perform a dry run @Description If true, validates the request and shows impact without actually resuming the subscription @Example false
 	DryRun *bool `json:"dry_run,omitempty"`
+	// Additional metadata as key-value pairs @Description Optional metadata for storing additional information about the resume operation @Example {\"resumed_by\": \"admin\", \"reason\": \"issue_resolved\"}
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	ResumeMode TypesResumeMode `json:"resume_mode"`
 }

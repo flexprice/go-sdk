@@ -23,6 +23,7 @@ const (
 	TYPESINVOICEBILLINGREASON_InvoiceBillingReasonSubscriptionCreate TypesInvoiceBillingReason = "SUBSCRIPTION_CREATE"
 	TYPESINVOICEBILLINGREASON_InvoiceBillingReasonSubscriptionCycle TypesInvoiceBillingReason = "SUBSCRIPTION_CYCLE"
 	TYPESINVOICEBILLINGREASON_InvoiceBillingReasonSubscriptionUpdate TypesInvoiceBillingReason = "SUBSCRIPTION_UPDATE"
+	TYPESINVOICEBILLINGREASON_InvoiceBillingReasonProration TypesInvoiceBillingReason = "PRORATION"
 	TYPESINVOICEBILLINGREASON_InvoiceBillingReasonManual TypesInvoiceBillingReason = "MANUAL"
 )
 
@@ -31,6 +32,7 @@ var AllowedTypesInvoiceBillingReasonEnumValues = []TypesInvoiceBillingReason{
 	"SUBSCRIPTION_CREATE",
 	"SUBSCRIPTION_CYCLE",
 	"SUBSCRIPTION_UPDATE",
+	"PRORATION",
 	"MANUAL",
 }
 

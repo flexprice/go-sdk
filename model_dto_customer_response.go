@@ -17,7 +17,7 @@ import (
 // checks if the DtoCustomerResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DtoCustomerResponse{}
 
-// DtoCustomerResponse struct for DtoCustomerResponse
+// DtoCustomerResponse Customer response object containing all customer information
 type DtoCustomerResponse struct {
 	// AddressCity is the city of the customer's address
 	AddressCity *string `json:"address_city,omitempty"`
@@ -45,6 +45,9 @@ type DtoCustomerResponse struct {
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	// Name is the name of the customer
 	Name *string `json:"name,omitempty"`
+	ParentCustomer *DtoCustomerResponse `json:"parent_customer,omitempty"`
+	// ParentCustomerID is the parent customer identifier for the customer
+	ParentCustomerId *string `json:"parent_customer_id,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
@@ -516,6 +519,70 @@ func (o *DtoCustomerResponse) SetName(v string) {
 	o.Name = &v
 }
 
+// GetParentCustomer returns the ParentCustomer field value if set, zero value otherwise.
+func (o *DtoCustomerResponse) GetParentCustomer() DtoCustomerResponse {
+	if o == nil || IsNil(o.ParentCustomer) {
+		var ret DtoCustomerResponse
+		return ret
+	}
+	return *o.ParentCustomer
+}
+
+// GetParentCustomerOk returns a tuple with the ParentCustomer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCustomerResponse) GetParentCustomerOk() (*DtoCustomerResponse, bool) {
+	if o == nil || IsNil(o.ParentCustomer) {
+		return nil, false
+	}
+	return o.ParentCustomer, true
+}
+
+// HasParentCustomer returns a boolean if a field has been set.
+func (o *DtoCustomerResponse) HasParentCustomer() bool {
+	if o != nil && !IsNil(o.ParentCustomer) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentCustomer gets a reference to the given DtoCustomerResponse and assigns it to the ParentCustomer field.
+func (o *DtoCustomerResponse) SetParentCustomer(v DtoCustomerResponse) {
+	o.ParentCustomer = &v
+}
+
+// GetParentCustomerId returns the ParentCustomerId field value if set, zero value otherwise.
+func (o *DtoCustomerResponse) GetParentCustomerId() string {
+	if o == nil || IsNil(o.ParentCustomerId) {
+		var ret string
+		return ret
+	}
+	return *o.ParentCustomerId
+}
+
+// GetParentCustomerIdOk returns a tuple with the ParentCustomerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCustomerResponse) GetParentCustomerIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ParentCustomerId) {
+		return nil, false
+	}
+	return o.ParentCustomerId, true
+}
+
+// HasParentCustomerId returns a boolean if a field has been set.
+func (o *DtoCustomerResponse) HasParentCustomerId() bool {
+	if o != nil && !IsNil(o.ParentCustomerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentCustomerId gets a reference to the given string and assigns it to the ParentCustomerId field.
+func (o *DtoCustomerResponse) SetParentCustomerId(v string) {
+	o.ParentCustomerId = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *DtoCustomerResponse) GetStatus() TypesStatus {
 	if o == nil || IsNil(o.Status) {
@@ -695,6 +762,12 @@ func (o DtoCustomerResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.ParentCustomer) {
+		toSerialize["parent_customer"] = o.ParentCustomer
+	}
+	if !IsNil(o.ParentCustomerId) {
+		toSerialize["parent_customer_id"] = o.ParentCustomerId
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status

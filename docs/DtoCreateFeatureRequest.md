@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AlertSettings** | Pointer to [**TypesAlertSettings**](TypesAlertSettings.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **LookupKey** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
@@ -32,6 +33,31 @@ will change when the set of required properties is changed
 NewDtoCreateFeatureRequestWithDefaults instantiates a new DtoCreateFeatureRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAlertSettings
+
+`func (o *DtoCreateFeatureRequest) GetAlertSettings() TypesAlertSettings`
+
+GetAlertSettings returns the AlertSettings field if non-nil, zero value otherwise.
+
+### GetAlertSettingsOk
+
+`func (o *DtoCreateFeatureRequest) GetAlertSettingsOk() (*TypesAlertSettings, bool)`
+
+GetAlertSettingsOk returns a tuple with the AlertSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlertSettings
+
+`func (o *DtoCreateFeatureRequest) SetAlertSettings(v TypesAlertSettings)`
+
+SetAlertSettings sets AlertSettings field to given value.
+
+### HasAlertSettings
+
+`func (o *DtoCreateFeatureRequest) HasAlertSettings() bool`
+
+HasAlertSettings returns a boolean if a field has been set.
 
 ### GetDescription
 

@@ -4,40 +4,47 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AmountDue** | Pointer to **float32** |  | [optional] 
-**AmountPaid** | Pointer to **float32** |  | [optional] 
-**AmountRemaining** | Pointer to **float32** |  | [optional] 
-**BillingPeriod** | Pointer to **string** |  | [optional] 
-**BillingReason** | Pointer to **string** |  | [optional] 
-**BillingSequence** | Pointer to **int32** |  | [optional] 
-**CreatedAt** | Pointer to **string** |  | [optional] 
-**CreatedBy** | Pointer to **string** |  | [optional] 
-**Currency** | Pointer to **string** |  | [optional] 
+**AmountDue** | Pointer to **string** | amount_due is the total amount that needs to be paid for this invoice | [optional] 
+**AmountPaid** | Pointer to **string** | amount_paid is the amount that has been paid towards this invoice | [optional] 
+**AmountRemaining** | Pointer to **string** | amount_remaining is the amount still outstanding on this invoice | [optional] 
+**BillingPeriod** | Pointer to **string** | billing_period is the period this invoice covers (e.g., \&quot;monthly\&quot;, \&quot;yearly\&quot;) | [optional] 
+**BillingReason** | Pointer to **string** | billing_reason indicates why this invoice was created (subscription_cycle, manual, etc.) | [optional] 
+**BillingSequence** | Pointer to **int32** | billing_sequence is the optional sequence number for billing cycles | [optional] 
+**CouponApplications** | Pointer to [**[]DtoCouponApplicationResponse**](DtoCouponApplicationResponse.md) | coupon_applications contains the coupon applications associated with this invoice | [optional] 
+**CreatedAt** | Pointer to **string** | created_at is the timestamp when this invoice was created | [optional] 
+**CreatedBy** | Pointer to **string** | created_by is the identifier of the user who created this invoice | [optional] 
+**Currency** | Pointer to **string** | currency is the three-letter ISO currency code (e.g., USD, EUR) for the invoice | [optional] 
 **Customer** | Pointer to [**DtoCustomerResponse**](DtoCustomerResponse.md) |  | [optional] 
-**CustomerId** | Pointer to **string** |  | [optional] 
-**Description** | Pointer to **string** |  | [optional] 
-**DueDate** | Pointer to **string** |  | [optional] 
-**FinalizedAt** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**IdempotencyKey** | Pointer to **string** |  | [optional] 
-**InvoiceNumber** | Pointer to **string** |  | [optional] 
-**InvoicePdfUrl** | Pointer to **string** |  | [optional] 
+**CustomerId** | Pointer to **string** | customer_id is the unique identifier of the customer this invoice belongs to | [optional] 
+**Description** | Pointer to **string** | description is the optional text description of the invoice | [optional] 
+**DueDate** | Pointer to **string** | due_date is the date by which payment is expected | [optional] 
+**FinalizedAt** | Pointer to **string** | finalized_at is the timestamp when this invoice was finalized | [optional] 
+**Id** | Pointer to **string** | id is the unique identifier for this invoice | [optional] 
+**IdempotencyKey** | Pointer to **string** | idempotency_key is the optional key used to prevent duplicate invoice creation | [optional] 
+**InvoiceNumber** | Pointer to **string** | invoice_number is the optional human-readable identifier for the invoice | [optional] 
+**InvoicePdfUrl** | Pointer to **string** | invoice_pdf_url is the optional URL to the PDF version of this invoice | [optional] 
 **InvoiceStatus** | Pointer to [**TypesInvoiceStatus**](TypesInvoiceStatus.md) |  | [optional] 
 **InvoiceType** | Pointer to [**TypesInvoiceType**](TypesInvoiceType.md) |  | [optional] 
-**LineItems** | Pointer to [**[]DtoInvoiceLineItemResponse**](DtoInvoiceLineItemResponse.md) |  | [optional] 
+**LineItems** | Pointer to [**[]DtoInvoiceLineItemResponse**](DtoInvoiceLineItemResponse.md) | line_items contains the individual items that make up this invoice | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
-**PaidAt** | Pointer to **string** |  | [optional] 
+**OverpaidAmount** | Pointer to **string** | overpaid_amount is the amount overpaid if payment_status is OVERPAID (amount_paid - total) | [optional] 
+**PaidAt** | Pointer to **string** | paid_at is the timestamp when this invoice was paid | [optional] 
 **PaymentStatus** | Pointer to [**TypesPaymentStatus**](TypesPaymentStatus.md) |  | [optional] 
-**PeriodEnd** | Pointer to **string** |  | [optional] 
-**PeriodStart** | Pointer to **string** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**PeriodEnd** | Pointer to **string** | period_end is the end date of the billing period | [optional] 
+**PeriodStart** | Pointer to **string** | period_start is the start date of the billing period | [optional] 
+**Status** | Pointer to **string** | status represents the current status of this invoice | [optional] 
 **Subscription** | Pointer to [**DtoSubscriptionResponse**](DtoSubscriptionResponse.md) |  | [optional] 
-**SubscriptionId** | Pointer to **string** |  | [optional] 
-**TenantId** | Pointer to **string** |  | [optional] 
-**UpdatedAt** | Pointer to **string** |  | [optional] 
-**UpdatedBy** | Pointer to **string** |  | [optional] 
-**Version** | Pointer to **int32** |  | [optional] 
-**VoidedAt** | Pointer to **string** |  | [optional] 
+**SubscriptionId** | Pointer to **string** | subscription_id is the optional unique identifier of the subscription associated with this invoice | [optional] 
+**Subtotal** | Pointer to **string** | subtotal is the amount before taxes and discounts are applied | [optional] 
+**Taxes** | Pointer to [**[]DtoTaxAppliedResponse**](DtoTaxAppliedResponse.md) | tax_applied_records contains the tax applied records associated with this invoice | [optional] 
+**TenantId** | Pointer to **string** | tenant_id is the unique identifier of the tenant this invoice belongs to | [optional] 
+**Total** | Pointer to **string** | total is the total amount of the invoice including taxes and discounts | [optional] 
+**TotalDiscount** | Pointer to **string** | total_discount is the total discount amount from coupon applications | [optional] 
+**TotalTax** | Pointer to **string** | total_tax is the total tax amount for this invoice | [optional] 
+**UpdatedAt** | Pointer to **string** | updated_at is the timestamp when this invoice was last updated | [optional] 
+**UpdatedBy** | Pointer to **string** | updated_by is the identifier of the user who last updated this invoice | [optional] 
+**Version** | Pointer to **int32** | version is the version number of this invoice | [optional] 
+**VoidedAt** | Pointer to **string** | voided_at is the timestamp when this invoice was voided | [optional] 
 
 ## Methods
 
@@ -60,20 +67,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmountDue
 
-`func (o *DtoInvoiceResponse) GetAmountDue() float32`
+`func (o *DtoInvoiceResponse) GetAmountDue() string`
 
 GetAmountDue returns the AmountDue field if non-nil, zero value otherwise.
 
 ### GetAmountDueOk
 
-`func (o *DtoInvoiceResponse) GetAmountDueOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetAmountDueOk() (*string, bool)`
 
 GetAmountDueOk returns a tuple with the AmountDue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmountDue
 
-`func (o *DtoInvoiceResponse) SetAmountDue(v float32)`
+`func (o *DtoInvoiceResponse) SetAmountDue(v string)`
 
 SetAmountDue sets AmountDue field to given value.
 
@@ -85,20 +92,20 @@ HasAmountDue returns a boolean if a field has been set.
 
 ### GetAmountPaid
 
-`func (o *DtoInvoiceResponse) GetAmountPaid() float32`
+`func (o *DtoInvoiceResponse) GetAmountPaid() string`
 
 GetAmountPaid returns the AmountPaid field if non-nil, zero value otherwise.
 
 ### GetAmountPaidOk
 
-`func (o *DtoInvoiceResponse) GetAmountPaidOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetAmountPaidOk() (*string, bool)`
 
 GetAmountPaidOk returns a tuple with the AmountPaid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmountPaid
 
-`func (o *DtoInvoiceResponse) SetAmountPaid(v float32)`
+`func (o *DtoInvoiceResponse) SetAmountPaid(v string)`
 
 SetAmountPaid sets AmountPaid field to given value.
 
@@ -110,20 +117,20 @@ HasAmountPaid returns a boolean if a field has been set.
 
 ### GetAmountRemaining
 
-`func (o *DtoInvoiceResponse) GetAmountRemaining() float32`
+`func (o *DtoInvoiceResponse) GetAmountRemaining() string`
 
 GetAmountRemaining returns the AmountRemaining field if non-nil, zero value otherwise.
 
 ### GetAmountRemainingOk
 
-`func (o *DtoInvoiceResponse) GetAmountRemainingOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetAmountRemainingOk() (*string, bool)`
 
 GetAmountRemainingOk returns a tuple with the AmountRemaining field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmountRemaining
 
-`func (o *DtoInvoiceResponse) SetAmountRemaining(v float32)`
+`func (o *DtoInvoiceResponse) SetAmountRemaining(v string)`
 
 SetAmountRemaining sets AmountRemaining field to given value.
 
@@ -207,6 +214,31 @@ SetBillingSequence sets BillingSequence field to given value.
 `func (o *DtoInvoiceResponse) HasBillingSequence() bool`
 
 HasBillingSequence returns a boolean if a field has been set.
+
+### GetCouponApplications
+
+`func (o *DtoInvoiceResponse) GetCouponApplications() []DtoCouponApplicationResponse`
+
+GetCouponApplications returns the CouponApplications field if non-nil, zero value otherwise.
+
+### GetCouponApplicationsOk
+
+`func (o *DtoInvoiceResponse) GetCouponApplicationsOk() (*[]DtoCouponApplicationResponse, bool)`
+
+GetCouponApplicationsOk returns a tuple with the CouponApplications field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCouponApplications
+
+`func (o *DtoInvoiceResponse) SetCouponApplications(v []DtoCouponApplicationResponse)`
+
+SetCouponApplications sets CouponApplications field to given value.
+
+### HasCouponApplications
+
+`func (o *DtoInvoiceResponse) HasCouponApplications() bool`
+
+HasCouponApplications returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -608,6 +640,31 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
+### GetOverpaidAmount
+
+`func (o *DtoInvoiceResponse) GetOverpaidAmount() string`
+
+GetOverpaidAmount returns the OverpaidAmount field if non-nil, zero value otherwise.
+
+### GetOverpaidAmountOk
+
+`func (o *DtoInvoiceResponse) GetOverpaidAmountOk() (*string, bool)`
+
+GetOverpaidAmountOk returns a tuple with the OverpaidAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOverpaidAmount
+
+`func (o *DtoInvoiceResponse) SetOverpaidAmount(v string)`
+
+SetOverpaidAmount sets OverpaidAmount field to given value.
+
+### HasOverpaidAmount
+
+`func (o *DtoInvoiceResponse) HasOverpaidAmount() bool`
+
+HasOverpaidAmount returns a boolean if a field has been set.
+
 ### GetPaidAt
 
 `func (o *DtoInvoiceResponse) GetPaidAt() string`
@@ -783,6 +840,56 @@ SetSubscriptionId sets SubscriptionId field to given value.
 
 HasSubscriptionId returns a boolean if a field has been set.
 
+### GetSubtotal
+
+`func (o *DtoInvoiceResponse) GetSubtotal() string`
+
+GetSubtotal returns the Subtotal field if non-nil, zero value otherwise.
+
+### GetSubtotalOk
+
+`func (o *DtoInvoiceResponse) GetSubtotalOk() (*string, bool)`
+
+GetSubtotalOk returns a tuple with the Subtotal field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubtotal
+
+`func (o *DtoInvoiceResponse) SetSubtotal(v string)`
+
+SetSubtotal sets Subtotal field to given value.
+
+### HasSubtotal
+
+`func (o *DtoInvoiceResponse) HasSubtotal() bool`
+
+HasSubtotal returns a boolean if a field has been set.
+
+### GetTaxes
+
+`func (o *DtoInvoiceResponse) GetTaxes() []DtoTaxAppliedResponse`
+
+GetTaxes returns the Taxes field if non-nil, zero value otherwise.
+
+### GetTaxesOk
+
+`func (o *DtoInvoiceResponse) GetTaxesOk() (*[]DtoTaxAppliedResponse, bool)`
+
+GetTaxesOk returns a tuple with the Taxes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTaxes
+
+`func (o *DtoInvoiceResponse) SetTaxes(v []DtoTaxAppliedResponse)`
+
+SetTaxes sets Taxes field to given value.
+
+### HasTaxes
+
+`func (o *DtoInvoiceResponse) HasTaxes() bool`
+
+HasTaxes returns a boolean if a field has been set.
+
 ### GetTenantId
 
 `func (o *DtoInvoiceResponse) GetTenantId() string`
@@ -807,6 +914,81 @@ SetTenantId sets TenantId field to given value.
 `func (o *DtoInvoiceResponse) HasTenantId() bool`
 
 HasTenantId returns a boolean if a field has been set.
+
+### GetTotal
+
+`func (o *DtoInvoiceResponse) GetTotal() string`
+
+GetTotal returns the Total field if non-nil, zero value otherwise.
+
+### GetTotalOk
+
+`func (o *DtoInvoiceResponse) GetTotalOk() (*string, bool)`
+
+GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotal
+
+`func (o *DtoInvoiceResponse) SetTotal(v string)`
+
+SetTotal sets Total field to given value.
+
+### HasTotal
+
+`func (o *DtoInvoiceResponse) HasTotal() bool`
+
+HasTotal returns a boolean if a field has been set.
+
+### GetTotalDiscount
+
+`func (o *DtoInvoiceResponse) GetTotalDiscount() string`
+
+GetTotalDiscount returns the TotalDiscount field if non-nil, zero value otherwise.
+
+### GetTotalDiscountOk
+
+`func (o *DtoInvoiceResponse) GetTotalDiscountOk() (*string, bool)`
+
+GetTotalDiscountOk returns a tuple with the TotalDiscount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalDiscount
+
+`func (o *DtoInvoiceResponse) SetTotalDiscount(v string)`
+
+SetTotalDiscount sets TotalDiscount field to given value.
+
+### HasTotalDiscount
+
+`func (o *DtoInvoiceResponse) HasTotalDiscount() bool`
+
+HasTotalDiscount returns a boolean if a field has been set.
+
+### GetTotalTax
+
+`func (o *DtoInvoiceResponse) GetTotalTax() string`
+
+GetTotalTax returns the TotalTax field if non-nil, zero value otherwise.
+
+### GetTotalTaxOk
+
+`func (o *DtoInvoiceResponse) GetTotalTaxOk() (*string, bool)`
+
+GetTotalTaxOk returns a tuple with the TotalTax field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalTax
+
+`func (o *DtoInvoiceResponse) SetTotalTax(v string)`
+
+SetTotalTax sets TotalTax field to given value.
+
+### HasTotalTax
+
+`func (o *DtoInvoiceResponse) HasTotalTax() bool`
+
+HasTotalTax returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

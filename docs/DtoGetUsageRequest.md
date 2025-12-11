@@ -5,11 +5,14 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AggregationType** | [**TypesAggregationType**](TypesAggregationType.md) |  | 
+**BillingAnchor** | Pointer to **string** | BillingAnchor enables custom monthly billing periods for usage aggregation.  When to use: - WindowSize &#x3D; \&quot;MONTH\&quot; AND you need custom monthly periods (not calendar months) - Subscription billing that doesn&#39;t align with calendar months - Example: Customer signed up on 15th, so billing periods are 15th to 15th  When NOT to use: - WindowSize !&#x3D; \&quot;MONTH\&quot; (ignored for DAY, HOUR, WEEK, etc.) - Standard calendar-based billing (1st to 1st of each month)  Example values: - \&quot;2024-03-05T14:30:45.123456789Z\&quot; (5th of each month at 2:30:45 PM) - \&quot;2024-01-15T00:00:00Z\&quot; (15th of each month at midnight) - \&quot;2024-02-29T12:00:00Z\&quot; (29th of each month at noon - handles leap years) | [optional] 
+**BucketSize** | Pointer to [**TypesWindowSize**](TypesWindowSize.md) |  | [optional] 
 **CustomerId** | Pointer to **string** |  | [optional] 
 **EndTime** | Pointer to **string** |  | [optional] 
 **EventName** | **string** |  | 
 **ExternalCustomerId** | Pointer to **string** |  | [optional] 
 **Filters** | Pointer to **map[string][]string** |  | [optional] 
+**Multiplier** | Pointer to **string** |  | [optional] 
 **PropertyName** | Pointer to **string** | will be empty/ignored in case of COUNT | [optional] 
 **StartTime** | Pointer to **string** |  | [optional] 
 **WindowSize** | Pointer to [**TypesWindowSize**](TypesWindowSize.md) |  | [optional] 
@@ -52,6 +55,56 @@ and a boolean to check if the value has been set.
 
 SetAggregationType sets AggregationType field to given value.
 
+
+### GetBillingAnchor
+
+`func (o *DtoGetUsageRequest) GetBillingAnchor() string`
+
+GetBillingAnchor returns the BillingAnchor field if non-nil, zero value otherwise.
+
+### GetBillingAnchorOk
+
+`func (o *DtoGetUsageRequest) GetBillingAnchorOk() (*string, bool)`
+
+GetBillingAnchorOk returns a tuple with the BillingAnchor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBillingAnchor
+
+`func (o *DtoGetUsageRequest) SetBillingAnchor(v string)`
+
+SetBillingAnchor sets BillingAnchor field to given value.
+
+### HasBillingAnchor
+
+`func (o *DtoGetUsageRequest) HasBillingAnchor() bool`
+
+HasBillingAnchor returns a boolean if a field has been set.
+
+### GetBucketSize
+
+`func (o *DtoGetUsageRequest) GetBucketSize() TypesWindowSize`
+
+GetBucketSize returns the BucketSize field if non-nil, zero value otherwise.
+
+### GetBucketSizeOk
+
+`func (o *DtoGetUsageRequest) GetBucketSizeOk() (*TypesWindowSize, bool)`
+
+GetBucketSizeOk returns a tuple with the BucketSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBucketSize
+
+`func (o *DtoGetUsageRequest) SetBucketSize(v TypesWindowSize)`
+
+SetBucketSize sets BucketSize field to given value.
+
+### HasBucketSize
+
+`func (o *DtoGetUsageRequest) HasBucketSize() bool`
+
+HasBucketSize returns a boolean if a field has been set.
 
 ### GetCustomerId
 
@@ -172,6 +225,31 @@ SetFilters sets Filters field to given value.
 `func (o *DtoGetUsageRequest) HasFilters() bool`
 
 HasFilters returns a boolean if a field has been set.
+
+### GetMultiplier
+
+`func (o *DtoGetUsageRequest) GetMultiplier() string`
+
+GetMultiplier returns the Multiplier field if non-nil, zero value otherwise.
+
+### GetMultiplierOk
+
+`func (o *DtoGetUsageRequest) GetMultiplierOk() (*string, bool)`
+
+GetMultiplierOk returns a tuple with the Multiplier field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMultiplier
+
+`func (o *DtoGetUsageRequest) SetMultiplier(v string)`
+
+SetMultiplier sets Multiplier field to given value.
+
+### HasMultiplier
+
+`func (o *DtoGetUsageRequest) HasMultiplier() bool`
+
+HasMultiplier returns a boolean if a field has been set.
 
 ### GetPropertyName
 

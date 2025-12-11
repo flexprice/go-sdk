@@ -26,6 +26,8 @@ type SubscriptionSubscriptionLineItem struct {
 	CustomerId *string `json:"customer_id,omitempty"`
 	DisplayName *string `json:"display_name,omitempty"`
 	EndDate *string `json:"end_date,omitempty"`
+	EntityId *string `json:"entity_id,omitempty"`
+	EntityType *TypesSubscriptionLineItemEntityType `json:"entity_type,omitempty"`
 	EnvironmentId *string `json:"environment_id,omitempty"`
 	Id *string `json:"id,omitempty"`
 	InvoiceCadence *TypesInvoiceCadence `json:"invoice_cadence,omitempty"`
@@ -33,13 +35,16 @@ type SubscriptionSubscriptionLineItem struct {
 	MeterDisplayName *string `json:"meter_display_name,omitempty"`
 	MeterId *string `json:"meter_id,omitempty"`
 	PlanDisplayName *string `json:"plan_display_name,omitempty"`
-	PlanId *string `json:"plan_id,omitempty"`
+	Price *PricePrice `json:"price,omitempty"`
 	PriceId *string `json:"price_id,omitempty"`
 	PriceType *TypesPriceType `json:"price_type,omitempty"`
+	PriceUnit *string `json:"price_unit,omitempty"`
+	PriceUnitId *string `json:"price_unit_id,omitempty"`
 	Quantity *float32 `json:"quantity,omitempty"`
 	StartDate *string `json:"start_date,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
+	SubscriptionPhaseId *string `json:"subscription_phase_id,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
 	TrialPeriod *int32 `json:"trial_period,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
@@ -287,6 +292,70 @@ func (o *SubscriptionSubscriptionLineItem) SetEndDate(v string) {
 	o.EndDate = &v
 }
 
+// GetEntityId returns the EntityId field value if set, zero value otherwise.
+func (o *SubscriptionSubscriptionLineItem) GetEntityId() string {
+	if o == nil || IsNil(o.EntityId) {
+		var ret string
+		return ret
+	}
+	return *o.EntityId
+}
+
+// GetEntityIdOk returns a tuple with the EntityId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionSubscriptionLineItem) GetEntityIdOk() (*string, bool) {
+	if o == nil || IsNil(o.EntityId) {
+		return nil, false
+	}
+	return o.EntityId, true
+}
+
+// HasEntityId returns a boolean if a field has been set.
+func (o *SubscriptionSubscriptionLineItem) HasEntityId() bool {
+	if o != nil && !IsNil(o.EntityId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityId gets a reference to the given string and assigns it to the EntityId field.
+func (o *SubscriptionSubscriptionLineItem) SetEntityId(v string) {
+	o.EntityId = &v
+}
+
+// GetEntityType returns the EntityType field value if set, zero value otherwise.
+func (o *SubscriptionSubscriptionLineItem) GetEntityType() TypesSubscriptionLineItemEntityType {
+	if o == nil || IsNil(o.EntityType) {
+		var ret TypesSubscriptionLineItemEntityType
+		return ret
+	}
+	return *o.EntityType
+}
+
+// GetEntityTypeOk returns a tuple with the EntityType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionSubscriptionLineItem) GetEntityTypeOk() (*TypesSubscriptionLineItemEntityType, bool) {
+	if o == nil || IsNil(o.EntityType) {
+		return nil, false
+	}
+	return o.EntityType, true
+}
+
+// HasEntityType returns a boolean if a field has been set.
+func (o *SubscriptionSubscriptionLineItem) HasEntityType() bool {
+	if o != nil && !IsNil(o.EntityType) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityType gets a reference to the given TypesSubscriptionLineItemEntityType and assigns it to the EntityType field.
+func (o *SubscriptionSubscriptionLineItem) SetEntityType(v TypesSubscriptionLineItemEntityType) {
+	o.EntityType = &v
+}
+
 // GetEnvironmentId returns the EnvironmentId field value if set, zero value otherwise.
 func (o *SubscriptionSubscriptionLineItem) GetEnvironmentId() string {
 	if o == nil || IsNil(o.EnvironmentId) {
@@ -511,36 +580,36 @@ func (o *SubscriptionSubscriptionLineItem) SetPlanDisplayName(v string) {
 	o.PlanDisplayName = &v
 }
 
-// GetPlanId returns the PlanId field value if set, zero value otherwise.
-func (o *SubscriptionSubscriptionLineItem) GetPlanId() string {
-	if o == nil || IsNil(o.PlanId) {
-		var ret string
+// GetPrice returns the Price field value if set, zero value otherwise.
+func (o *SubscriptionSubscriptionLineItem) GetPrice() PricePrice {
+	if o == nil || IsNil(o.Price) {
+		var ret PricePrice
 		return ret
 	}
-	return *o.PlanId
+	return *o.Price
 }
 
-// GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
+// GetPriceOk returns a tuple with the Price field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SubscriptionSubscriptionLineItem) GetPlanIdOk() (*string, bool) {
-	if o == nil || IsNil(o.PlanId) {
+func (o *SubscriptionSubscriptionLineItem) GetPriceOk() (*PricePrice, bool) {
+	if o == nil || IsNil(o.Price) {
 		return nil, false
 	}
-	return o.PlanId, true
+	return o.Price, true
 }
 
-// HasPlanId returns a boolean if a field has been set.
-func (o *SubscriptionSubscriptionLineItem) HasPlanId() bool {
-	if o != nil && !IsNil(o.PlanId) {
+// HasPrice returns a boolean if a field has been set.
+func (o *SubscriptionSubscriptionLineItem) HasPrice() bool {
+	if o != nil && !IsNil(o.Price) {
 		return true
 	}
 
 	return false
 }
 
-// SetPlanId gets a reference to the given string and assigns it to the PlanId field.
-func (o *SubscriptionSubscriptionLineItem) SetPlanId(v string) {
-	o.PlanId = &v
+// SetPrice gets a reference to the given PricePrice and assigns it to the Price field.
+func (o *SubscriptionSubscriptionLineItem) SetPrice(v PricePrice) {
+	o.Price = &v
 }
 
 // GetPriceId returns the PriceId field value if set, zero value otherwise.
@@ -605,6 +674,70 @@ func (o *SubscriptionSubscriptionLineItem) HasPriceType() bool {
 // SetPriceType gets a reference to the given TypesPriceType and assigns it to the PriceType field.
 func (o *SubscriptionSubscriptionLineItem) SetPriceType(v TypesPriceType) {
 	o.PriceType = &v
+}
+
+// GetPriceUnit returns the PriceUnit field value if set, zero value otherwise.
+func (o *SubscriptionSubscriptionLineItem) GetPriceUnit() string {
+	if o == nil || IsNil(o.PriceUnit) {
+		var ret string
+		return ret
+	}
+	return *o.PriceUnit
+}
+
+// GetPriceUnitOk returns a tuple with the PriceUnit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionSubscriptionLineItem) GetPriceUnitOk() (*string, bool) {
+	if o == nil || IsNil(o.PriceUnit) {
+		return nil, false
+	}
+	return o.PriceUnit, true
+}
+
+// HasPriceUnit returns a boolean if a field has been set.
+func (o *SubscriptionSubscriptionLineItem) HasPriceUnit() bool {
+	if o != nil && !IsNil(o.PriceUnit) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnit gets a reference to the given string and assigns it to the PriceUnit field.
+func (o *SubscriptionSubscriptionLineItem) SetPriceUnit(v string) {
+	o.PriceUnit = &v
+}
+
+// GetPriceUnitId returns the PriceUnitId field value if set, zero value otherwise.
+func (o *SubscriptionSubscriptionLineItem) GetPriceUnitId() string {
+	if o == nil || IsNil(o.PriceUnitId) {
+		var ret string
+		return ret
+	}
+	return *o.PriceUnitId
+}
+
+// GetPriceUnitIdOk returns a tuple with the PriceUnitId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionSubscriptionLineItem) GetPriceUnitIdOk() (*string, bool) {
+	if o == nil || IsNil(o.PriceUnitId) {
+		return nil, false
+	}
+	return o.PriceUnitId, true
+}
+
+// HasPriceUnitId returns a boolean if a field has been set.
+func (o *SubscriptionSubscriptionLineItem) HasPriceUnitId() bool {
+	if o != nil && !IsNil(o.PriceUnitId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnitId gets a reference to the given string and assigns it to the PriceUnitId field.
+func (o *SubscriptionSubscriptionLineItem) SetPriceUnitId(v string) {
+	o.PriceUnitId = &v
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
@@ -733,6 +866,38 @@ func (o *SubscriptionSubscriptionLineItem) HasSubscriptionId() bool {
 // SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
 func (o *SubscriptionSubscriptionLineItem) SetSubscriptionId(v string) {
 	o.SubscriptionId = &v
+}
+
+// GetSubscriptionPhaseId returns the SubscriptionPhaseId field value if set, zero value otherwise.
+func (o *SubscriptionSubscriptionLineItem) GetSubscriptionPhaseId() string {
+	if o == nil || IsNil(o.SubscriptionPhaseId) {
+		var ret string
+		return ret
+	}
+	return *o.SubscriptionPhaseId
+}
+
+// GetSubscriptionPhaseIdOk returns a tuple with the SubscriptionPhaseId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionSubscriptionLineItem) GetSubscriptionPhaseIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SubscriptionPhaseId) {
+		return nil, false
+	}
+	return o.SubscriptionPhaseId, true
+}
+
+// HasSubscriptionPhaseId returns a boolean if a field has been set.
+func (o *SubscriptionSubscriptionLineItem) HasSubscriptionPhaseId() bool {
+	if o != nil && !IsNil(o.SubscriptionPhaseId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionPhaseId gets a reference to the given string and assigns it to the SubscriptionPhaseId field.
+func (o *SubscriptionSubscriptionLineItem) SetSubscriptionPhaseId(v string) {
+	o.SubscriptionPhaseId = &v
 }
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
@@ -894,6 +1059,12 @@ func (o SubscriptionSubscriptionLineItem) ToMap() (map[string]interface{}, error
 	if !IsNil(o.EndDate) {
 		toSerialize["end_date"] = o.EndDate
 	}
+	if !IsNil(o.EntityId) {
+		toSerialize["entity_id"] = o.EntityId
+	}
+	if !IsNil(o.EntityType) {
+		toSerialize["entity_type"] = o.EntityType
+	}
 	if !IsNil(o.EnvironmentId) {
 		toSerialize["environment_id"] = o.EnvironmentId
 	}
@@ -915,14 +1086,20 @@ func (o SubscriptionSubscriptionLineItem) ToMap() (map[string]interface{}, error
 	if !IsNil(o.PlanDisplayName) {
 		toSerialize["plan_display_name"] = o.PlanDisplayName
 	}
-	if !IsNil(o.PlanId) {
-		toSerialize["plan_id"] = o.PlanId
+	if !IsNil(o.Price) {
+		toSerialize["price"] = o.Price
 	}
 	if !IsNil(o.PriceId) {
 		toSerialize["price_id"] = o.PriceId
 	}
 	if !IsNil(o.PriceType) {
 		toSerialize["price_type"] = o.PriceType
+	}
+	if !IsNil(o.PriceUnit) {
+		toSerialize["price_unit"] = o.PriceUnit
+	}
+	if !IsNil(o.PriceUnitId) {
+		toSerialize["price_unit_id"] = o.PriceUnitId
 	}
 	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
@@ -935,6 +1112,9 @@ func (o SubscriptionSubscriptionLineItem) ToMap() (map[string]interface{}, error
 	}
 	if !IsNil(o.SubscriptionId) {
 		toSerialize["subscription_id"] = o.SubscriptionId
+	}
+	if !IsNil(o.SubscriptionPhaseId) {
+		toSerialize["subscription_phase_id"] = o.SubscriptionPhaseId
 	}
 	if !IsNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId

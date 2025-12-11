@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## FeaturesGet
 
-> DtoListFeaturesResponse FeaturesGet(ctx).EndTime(endTime).Expand(expand).FeatureIds(featureIds).Limit(limit).LookupKey(lookupKey).MeterIds(meterIds).NameContains(nameContains).Offset(offset).Order(order).StartTime(startTime).Status(status).Execute()
+> DtoListFeaturesResponse FeaturesGet(ctx).EndTime(endTime).Expand(expand).FeatureIds(featureIds).Limit(limit).LookupKey(lookupKey).LookupKeys(lookupKeys).MeterIds(meterIds).NameContains(nameContains).Offset(offset).Order(order).StartTime(startTime).Status(status).Execute()
 
 List features
 
@@ -39,6 +39,7 @@ func main() {
 	featureIds := []string{"Inner_example"} // []string | Feature specific filters (optional)
 	limit := int32(56) // int32 |  (optional)
 	lookupKey := "lookupKey_example" // string |  (optional)
+	lookupKeys := []string{"Inner_example"} // []string |  (optional)
 	meterIds := []string{"Inner_example"} // []string |  (optional)
 	nameContains := "nameContains_example" // string |  (optional)
 	offset := int32(56) // int32 |  (optional)
@@ -48,7 +49,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.FeaturesAPI.FeaturesGet(context.Background()).EndTime(endTime).Expand(expand).FeatureIds(featureIds).Limit(limit).LookupKey(lookupKey).MeterIds(meterIds).NameContains(nameContains).Offset(offset).Order(order).StartTime(startTime).Status(status).Execute()
+	resp, r, err := apiClient.FeaturesAPI.FeaturesGet(context.Background()).EndTime(endTime).Expand(expand).FeatureIds(featureIds).Limit(limit).LookupKey(lookupKey).LookupKeys(lookupKeys).MeterIds(meterIds).NameContains(nameContains).Offset(offset).Order(order).StartTime(startTime).Status(status).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `FeaturesAPI.FeaturesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -74,6 +75,7 @@ Name | Type | Description  | Notes
  **featureIds** | **[]string** | Feature specific filters | 
  **limit** | **int32** |  | 
  **lookupKey** | **string** |  | 
+ **lookupKeys** | **[]string** |  | 
  **meterIds** | **[]string** |  | 
  **nameContains** | **string** |  | 
  **offset** | **int32** |  | 

@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **CustomerId** | Pointer to **string** |  | [optional] 
 **DisplayName** | Pointer to **string** |  | [optional] 
 **EndDate** | Pointer to **string** |  | [optional] 
+**EntityId** | Pointer to **string** |  | [optional] 
+**EntityType** | Pointer to [**TypesSubscriptionLineItemEntityType**](TypesSubscriptionLineItemEntityType.md) |  | [optional] 
 **EnvironmentId** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **InvoiceCadence** | Pointer to [**TypesInvoiceCadence**](TypesInvoiceCadence.md) |  | [optional] 
@@ -18,13 +20,16 @@ Name | Type | Description | Notes
 **MeterDisplayName** | Pointer to **string** |  | [optional] 
 **MeterId** | Pointer to **string** |  | [optional] 
 **PlanDisplayName** | Pointer to **string** |  | [optional] 
-**PlanId** | Pointer to **string** |  | [optional] 
+**Price** | Pointer to [**PricePrice**](PricePrice.md) |  | [optional] 
 **PriceId** | Pointer to **string** |  | [optional] 
 **PriceType** | Pointer to [**TypesPriceType**](TypesPriceType.md) |  | [optional] 
+**PriceUnit** | Pointer to **string** |  | [optional] 
+**PriceUnitId** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **float32** |  | [optional] 
 **StartDate** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **SubscriptionId** | Pointer to **string** |  | [optional] 
+**SubscriptionPhaseId** | Pointer to **string** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **TrialPeriod** | Pointer to **int32** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
@@ -224,6 +229,56 @@ SetEndDate sets EndDate field to given value.
 
 HasEndDate returns a boolean if a field has been set.
 
+### GetEntityId
+
+`func (o *SubscriptionSubscriptionLineItem) GetEntityId() string`
+
+GetEntityId returns the EntityId field if non-nil, zero value otherwise.
+
+### GetEntityIdOk
+
+`func (o *SubscriptionSubscriptionLineItem) GetEntityIdOk() (*string, bool)`
+
+GetEntityIdOk returns a tuple with the EntityId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityId
+
+`func (o *SubscriptionSubscriptionLineItem) SetEntityId(v string)`
+
+SetEntityId sets EntityId field to given value.
+
+### HasEntityId
+
+`func (o *SubscriptionSubscriptionLineItem) HasEntityId() bool`
+
+HasEntityId returns a boolean if a field has been set.
+
+### GetEntityType
+
+`func (o *SubscriptionSubscriptionLineItem) GetEntityType() TypesSubscriptionLineItemEntityType`
+
+GetEntityType returns the EntityType field if non-nil, zero value otherwise.
+
+### GetEntityTypeOk
+
+`func (o *SubscriptionSubscriptionLineItem) GetEntityTypeOk() (*TypesSubscriptionLineItemEntityType, bool)`
+
+GetEntityTypeOk returns a tuple with the EntityType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityType
+
+`func (o *SubscriptionSubscriptionLineItem) SetEntityType(v TypesSubscriptionLineItemEntityType)`
+
+SetEntityType sets EntityType field to given value.
+
+### HasEntityType
+
+`func (o *SubscriptionSubscriptionLineItem) HasEntityType() bool`
+
+HasEntityType returns a boolean if a field has been set.
+
 ### GetEnvironmentId
 
 `func (o *SubscriptionSubscriptionLineItem) GetEnvironmentId() string`
@@ -399,30 +454,30 @@ SetPlanDisplayName sets PlanDisplayName field to given value.
 
 HasPlanDisplayName returns a boolean if a field has been set.
 
-### GetPlanId
+### GetPrice
 
-`func (o *SubscriptionSubscriptionLineItem) GetPlanId() string`
+`func (o *SubscriptionSubscriptionLineItem) GetPrice() PricePrice`
 
-GetPlanId returns the PlanId field if non-nil, zero value otherwise.
+GetPrice returns the Price field if non-nil, zero value otherwise.
 
-### GetPlanIdOk
+### GetPriceOk
 
-`func (o *SubscriptionSubscriptionLineItem) GetPlanIdOk() (*string, bool)`
+`func (o *SubscriptionSubscriptionLineItem) GetPriceOk() (*PricePrice, bool)`
 
-GetPlanIdOk returns a tuple with the PlanId field if it's non-nil, zero value otherwise
+GetPriceOk returns a tuple with the Price field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPlanId
+### SetPrice
 
-`func (o *SubscriptionSubscriptionLineItem) SetPlanId(v string)`
+`func (o *SubscriptionSubscriptionLineItem) SetPrice(v PricePrice)`
 
-SetPlanId sets PlanId field to given value.
+SetPrice sets Price field to given value.
 
-### HasPlanId
+### HasPrice
 
-`func (o *SubscriptionSubscriptionLineItem) HasPlanId() bool`
+`func (o *SubscriptionSubscriptionLineItem) HasPrice() bool`
 
-HasPlanId returns a boolean if a field has been set.
+HasPrice returns a boolean if a field has been set.
 
 ### GetPriceId
 
@@ -473,6 +528,56 @@ SetPriceType sets PriceType field to given value.
 `func (o *SubscriptionSubscriptionLineItem) HasPriceType() bool`
 
 HasPriceType returns a boolean if a field has been set.
+
+### GetPriceUnit
+
+`func (o *SubscriptionSubscriptionLineItem) GetPriceUnit() string`
+
+GetPriceUnit returns the PriceUnit field if non-nil, zero value otherwise.
+
+### GetPriceUnitOk
+
+`func (o *SubscriptionSubscriptionLineItem) GetPriceUnitOk() (*string, bool)`
+
+GetPriceUnitOk returns a tuple with the PriceUnit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnit
+
+`func (o *SubscriptionSubscriptionLineItem) SetPriceUnit(v string)`
+
+SetPriceUnit sets PriceUnit field to given value.
+
+### HasPriceUnit
+
+`func (o *SubscriptionSubscriptionLineItem) HasPriceUnit() bool`
+
+HasPriceUnit returns a boolean if a field has been set.
+
+### GetPriceUnitId
+
+`func (o *SubscriptionSubscriptionLineItem) GetPriceUnitId() string`
+
+GetPriceUnitId returns the PriceUnitId field if non-nil, zero value otherwise.
+
+### GetPriceUnitIdOk
+
+`func (o *SubscriptionSubscriptionLineItem) GetPriceUnitIdOk() (*string, bool)`
+
+GetPriceUnitIdOk returns a tuple with the PriceUnitId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitId
+
+`func (o *SubscriptionSubscriptionLineItem) SetPriceUnitId(v string)`
+
+SetPriceUnitId sets PriceUnitId field to given value.
+
+### HasPriceUnitId
+
+`func (o *SubscriptionSubscriptionLineItem) HasPriceUnitId() bool`
+
+HasPriceUnitId returns a boolean if a field has been set.
 
 ### GetQuantity
 
@@ -573,6 +678,31 @@ SetSubscriptionId sets SubscriptionId field to given value.
 `func (o *SubscriptionSubscriptionLineItem) HasSubscriptionId() bool`
 
 HasSubscriptionId returns a boolean if a field has been set.
+
+### GetSubscriptionPhaseId
+
+`func (o *SubscriptionSubscriptionLineItem) GetSubscriptionPhaseId() string`
+
+GetSubscriptionPhaseId returns the SubscriptionPhaseId field if non-nil, zero value otherwise.
+
+### GetSubscriptionPhaseIdOk
+
+`func (o *SubscriptionSubscriptionLineItem) GetSubscriptionPhaseIdOk() (*string, bool)`
+
+GetSubscriptionPhaseIdOk returns a tuple with the SubscriptionPhaseId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscriptionPhaseId
+
+`func (o *SubscriptionSubscriptionLineItem) SetSubscriptionPhaseId(v string)`
+
+SetSubscriptionPhaseId sets SubscriptionPhaseId field to given value.
+
+### HasSubscriptionPhaseId
+
+`func (o *SubscriptionSubscriptionLineItem) HasSubscriptionPhaseId() bool`
+
+HasSubscriptionPhaseId returns a boolean if a field has been set.
 
 ### GetTenantId
 

@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ExpiresAt** | Pointer to **string** |  | [optional] 
 **Name** | **string** |  | 
-**Permissions** | Pointer to **[]string** |  | [optional] 
+**ServiceAccountId** | Pointer to **string** |  | [optional] 
 **Type** | [**TypesSecretType**](TypesSecretType.md) |  | 
 
 ## Methods
@@ -73,30 +73,30 @@ and a boolean to check if the value has been set.
 SetName sets Name field to given value.
 
 
-### GetPermissions
+### GetServiceAccountId
 
-`func (o *DtoCreateAPIKeyRequest) GetPermissions() []string`
+`func (o *DtoCreateAPIKeyRequest) GetServiceAccountId() string`
 
-GetPermissions returns the Permissions field if non-nil, zero value otherwise.
+GetServiceAccountId returns the ServiceAccountId field if non-nil, zero value otherwise.
 
-### GetPermissionsOk
+### GetServiceAccountIdOk
 
-`func (o *DtoCreateAPIKeyRequest) GetPermissionsOk() (*[]string, bool)`
+`func (o *DtoCreateAPIKeyRequest) GetServiceAccountIdOk() (*string, bool)`
 
-GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
+GetServiceAccountIdOk returns a tuple with the ServiceAccountId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPermissions
+### SetServiceAccountId
 
-`func (o *DtoCreateAPIKeyRequest) SetPermissions(v []string)`
+`func (o *DtoCreateAPIKeyRequest) SetServiceAccountId(v string)`
 
-SetPermissions sets Permissions field to given value.
+SetServiceAccountId sets ServiceAccountId field to given value.
 
-### HasPermissions
+### HasServiceAccountId
 
-`func (o *DtoCreateAPIKeyRequest) HasPermissions() bool`
+`func (o *DtoCreateAPIKeyRequest) HasServiceAccountId() bool`
 
-HasPermissions returns a boolean if a field has been set.
+HasServiceAccountId returns a boolean if a field has been set.
 
 ### GetType
 

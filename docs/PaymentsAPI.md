@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## PaymentsGet
 
-> DtoListPaymentsResponse PaymentsGet(ctx).Currency(currency).DestinationId(destinationId).DestinationType(destinationType).EndTime(endTime).Expand(expand).Limit(limit).Offset(offset).Order(order).PaymentGateway(paymentGateway).PaymentIds(paymentIds).PaymentMethodType(paymentMethodType).PaymentStatus(paymentStatus).Sort(sort).StartTime(startTime).Status(status).Execute()
+> DtoListPaymentsResponse PaymentsGet(ctx).Currency(currency).DestinationId(destinationId).DestinationType(destinationType).EndTime(endTime).Expand(expand).GatewayPaymentId(gatewayPaymentId).Limit(limit).Offset(offset).Order(order).PaymentGateway(paymentGateway).PaymentIds(paymentIds).PaymentMethodType(paymentMethodType).PaymentStatus(paymentStatus).Sort(sort).StartTime(startTime).Status(status).Execute()
 
 List payments
 
@@ -39,6 +39,7 @@ func main() {
 	destinationType := "destinationType_example" // string |  (optional)
 	endTime := "endTime_example" // string |  (optional)
 	expand := "expand_example" // string |  (optional)
+	gatewayPaymentId := "gatewayPaymentId_example" // string |  (optional)
 	limit := int32(56) // int32 |  (optional)
 	offset := int32(56) // int32 |  (optional)
 	order := "order_example" // string |  (optional)
@@ -52,7 +53,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentsAPI.PaymentsGet(context.Background()).Currency(currency).DestinationId(destinationId).DestinationType(destinationType).EndTime(endTime).Expand(expand).Limit(limit).Offset(offset).Order(order).PaymentGateway(paymentGateway).PaymentIds(paymentIds).PaymentMethodType(paymentMethodType).PaymentStatus(paymentStatus).Sort(sort).StartTime(startTime).Status(status).Execute()
+	resp, r, err := apiClient.PaymentsAPI.PaymentsGet(context.Background()).Currency(currency).DestinationId(destinationId).DestinationType(destinationType).EndTime(endTime).Expand(expand).GatewayPaymentId(gatewayPaymentId).Limit(limit).Offset(offset).Order(order).PaymentGateway(paymentGateway).PaymentIds(paymentIds).PaymentMethodType(paymentMethodType).PaymentStatus(paymentStatus).Sort(sort).StartTime(startTime).Status(status).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentsAPI.PaymentsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -78,6 +79,7 @@ Name | Type | Description  | Notes
  **destinationType** | **string** |  | 
  **endTime** | **string** |  | 
  **expand** | **string** |  | 
+ **gatewayPaymentId** | **string** |  | 
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
  **order** | **string** |  | 
@@ -410,7 +412,7 @@ import (
 )
 
 func main() {
-	payment := *openapiclient.NewDtoCreatePaymentRequest(float32(123), "Currency_example", "DestinationId_example", openapiclient.types.PaymentDestinationType("INVOICE"), openapiclient.types.PaymentMethodType("CARD")) // DtoCreatePaymentRequest | Payment configuration
+	payment := *openapiclient.NewDtoCreatePaymentRequest("Amount_example", "Currency_example", "DestinationId_example", openapiclient.types.PaymentDestinationType("INVOICE"), openapiclient.types.PaymentMethodType("CARD")) // DtoCreatePaymentRequest | Payment configuration
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

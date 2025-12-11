@@ -4,14 +4,17 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AutoTopupAmount** | Pointer to **float32** |  | [optional] 
-**AutoTopupMinBalance** | Pointer to **float32** |  | [optional] 
+**AlertConfig** | Pointer to [**TypesAlertConfig**](TypesAlertConfig.md) |  | [optional] 
+**AlertEnabled** | Pointer to **bool** |  | [optional] 
+**AlertState** | Pointer to **string** |  | [optional] 
+**AutoTopupAmount** | Pointer to **string** |  | [optional] 
+**AutoTopupMinBalance** | Pointer to **string** |  | [optional] 
 **AutoTopupTrigger** | Pointer to [**TypesAutoTopupTrigger**](TypesAutoTopupTrigger.md) |  | [optional] 
-**Balance** | Pointer to **float32** |  | [optional] 
+**Balance** | Pointer to **string** |  | [optional] 
 **Config** | Pointer to [**TypesWalletConfig**](TypesWalletConfig.md) |  | [optional] 
-**ConversionRate** | Pointer to **float32** |  | [optional] 
+**ConversionRate** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
-**CreditBalance** | Pointer to **float32** |  | [optional] 
+**CreditBalance** | Pointer to **string** |  | [optional] 
 **Currency** | Pointer to **string** |  | [optional] 
 **CustomerId** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
@@ -41,22 +44,97 @@ NewDtoWalletResponseWithDefaults instantiates a new DtoWalletResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetAlertConfig
+
+`func (o *DtoWalletResponse) GetAlertConfig() TypesAlertConfig`
+
+GetAlertConfig returns the AlertConfig field if non-nil, zero value otherwise.
+
+### GetAlertConfigOk
+
+`func (o *DtoWalletResponse) GetAlertConfigOk() (*TypesAlertConfig, bool)`
+
+GetAlertConfigOk returns a tuple with the AlertConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlertConfig
+
+`func (o *DtoWalletResponse) SetAlertConfig(v TypesAlertConfig)`
+
+SetAlertConfig sets AlertConfig field to given value.
+
+### HasAlertConfig
+
+`func (o *DtoWalletResponse) HasAlertConfig() bool`
+
+HasAlertConfig returns a boolean if a field has been set.
+
+### GetAlertEnabled
+
+`func (o *DtoWalletResponse) GetAlertEnabled() bool`
+
+GetAlertEnabled returns the AlertEnabled field if non-nil, zero value otherwise.
+
+### GetAlertEnabledOk
+
+`func (o *DtoWalletResponse) GetAlertEnabledOk() (*bool, bool)`
+
+GetAlertEnabledOk returns a tuple with the AlertEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlertEnabled
+
+`func (o *DtoWalletResponse) SetAlertEnabled(v bool)`
+
+SetAlertEnabled sets AlertEnabled field to given value.
+
+### HasAlertEnabled
+
+`func (o *DtoWalletResponse) HasAlertEnabled() bool`
+
+HasAlertEnabled returns a boolean if a field has been set.
+
+### GetAlertState
+
+`func (o *DtoWalletResponse) GetAlertState() string`
+
+GetAlertState returns the AlertState field if non-nil, zero value otherwise.
+
+### GetAlertStateOk
+
+`func (o *DtoWalletResponse) GetAlertStateOk() (*string, bool)`
+
+GetAlertStateOk returns a tuple with the AlertState field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlertState
+
+`func (o *DtoWalletResponse) SetAlertState(v string)`
+
+SetAlertState sets AlertState field to given value.
+
+### HasAlertState
+
+`func (o *DtoWalletResponse) HasAlertState() bool`
+
+HasAlertState returns a boolean if a field has been set.
+
 ### GetAutoTopupAmount
 
-`func (o *DtoWalletResponse) GetAutoTopupAmount() float32`
+`func (o *DtoWalletResponse) GetAutoTopupAmount() string`
 
 GetAutoTopupAmount returns the AutoTopupAmount field if non-nil, zero value otherwise.
 
 ### GetAutoTopupAmountOk
 
-`func (o *DtoWalletResponse) GetAutoTopupAmountOk() (*float32, bool)`
+`func (o *DtoWalletResponse) GetAutoTopupAmountOk() (*string, bool)`
 
 GetAutoTopupAmountOk returns a tuple with the AutoTopupAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAutoTopupAmount
 
-`func (o *DtoWalletResponse) SetAutoTopupAmount(v float32)`
+`func (o *DtoWalletResponse) SetAutoTopupAmount(v string)`
 
 SetAutoTopupAmount sets AutoTopupAmount field to given value.
 
@@ -68,20 +146,20 @@ HasAutoTopupAmount returns a boolean if a field has been set.
 
 ### GetAutoTopupMinBalance
 
-`func (o *DtoWalletResponse) GetAutoTopupMinBalance() float32`
+`func (o *DtoWalletResponse) GetAutoTopupMinBalance() string`
 
 GetAutoTopupMinBalance returns the AutoTopupMinBalance field if non-nil, zero value otherwise.
 
 ### GetAutoTopupMinBalanceOk
 
-`func (o *DtoWalletResponse) GetAutoTopupMinBalanceOk() (*float32, bool)`
+`func (o *DtoWalletResponse) GetAutoTopupMinBalanceOk() (*string, bool)`
 
 GetAutoTopupMinBalanceOk returns a tuple with the AutoTopupMinBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAutoTopupMinBalance
 
-`func (o *DtoWalletResponse) SetAutoTopupMinBalance(v float32)`
+`func (o *DtoWalletResponse) SetAutoTopupMinBalance(v string)`
 
 SetAutoTopupMinBalance sets AutoTopupMinBalance field to given value.
 
@@ -118,20 +196,20 @@ HasAutoTopupTrigger returns a boolean if a field has been set.
 
 ### GetBalance
 
-`func (o *DtoWalletResponse) GetBalance() float32`
+`func (o *DtoWalletResponse) GetBalance() string`
 
 GetBalance returns the Balance field if non-nil, zero value otherwise.
 
 ### GetBalanceOk
 
-`func (o *DtoWalletResponse) GetBalanceOk() (*float32, bool)`
+`func (o *DtoWalletResponse) GetBalanceOk() (*string, bool)`
 
 GetBalanceOk returns a tuple with the Balance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetBalance
 
-`func (o *DtoWalletResponse) SetBalance(v float32)`
+`func (o *DtoWalletResponse) SetBalance(v string)`
 
 SetBalance sets Balance field to given value.
 
@@ -168,20 +246,20 @@ HasConfig returns a boolean if a field has been set.
 
 ### GetConversionRate
 
-`func (o *DtoWalletResponse) GetConversionRate() float32`
+`func (o *DtoWalletResponse) GetConversionRate() string`
 
 GetConversionRate returns the ConversionRate field if non-nil, zero value otherwise.
 
 ### GetConversionRateOk
 
-`func (o *DtoWalletResponse) GetConversionRateOk() (*float32, bool)`
+`func (o *DtoWalletResponse) GetConversionRateOk() (*string, bool)`
 
 GetConversionRateOk returns a tuple with the ConversionRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConversionRate
 
-`func (o *DtoWalletResponse) SetConversionRate(v float32)`
+`func (o *DtoWalletResponse) SetConversionRate(v string)`
 
 SetConversionRate sets ConversionRate field to given value.
 
@@ -218,20 +296,20 @@ HasCreatedAt returns a boolean if a field has been set.
 
 ### GetCreditBalance
 
-`func (o *DtoWalletResponse) GetCreditBalance() float32`
+`func (o *DtoWalletResponse) GetCreditBalance() string`
 
 GetCreditBalance returns the CreditBalance field if non-nil, zero value otherwise.
 
 ### GetCreditBalanceOk
 
-`func (o *DtoWalletResponse) GetCreditBalanceOk() (*float32, bool)`
+`func (o *DtoWalletResponse) GetCreditBalanceOk() (*string, bool)`
 
 GetCreditBalanceOk returns a tuple with the CreditBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreditBalance
 
-`func (o *DtoWalletResponse) SetCreditBalance(v float32)`
+`func (o *DtoWalletResponse) SetCreditBalance(v string)`
 
 SetCreditBalance sets CreditBalance field to given value.
 

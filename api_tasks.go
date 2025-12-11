@@ -33,6 +33,7 @@ type TasksAPITasksGetRequest struct {
 	limit *int32
 	offset *int32
 	order *string
+	scheduledTaskId *string
 	sort *string
 	startTime *string
 	status *string
@@ -72,6 +73,11 @@ func (r TasksAPITasksGetRequest) Offset(offset int32) TasksAPITasksGetRequest {
 
 func (r TasksAPITasksGetRequest) Order(order string) TasksAPITasksGetRequest {
 	r.order = &order
+	return r
+}
+
+func (r TasksAPITasksGetRequest) ScheduledTaskId(scheduledTaskId string) TasksAPITasksGetRequest {
+	r.scheduledTaskId = &scheduledTaskId
 	return r
 }
 
@@ -161,6 +167,9 @@ func (a *TasksAPIService) TasksGetExecute(r TasksAPITasksGetRequest) (*DtoListTa
 	if r.order != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "order", r.order, "form", "")
 	}
+	if r.scheduledTaskId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "scheduled_task_id", r.scheduledTaskId, "form", "")
+	}
 	if r.sort != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "form", "")
 	}
@@ -192,6 +201,20 @@ func (a *TasksAPIService) TasksGetExecute(r TasksAPITasksGetRequest) (*DtoListTa
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -262,9 +285,9 @@ func (r TasksAPITasksIdGetRequest) Execute() (*DtoTaskResponse, *http.Response, 
 }
 
 /*
-TasksIdGet Get a task by ID
+TasksIdGet Get a task
 
-Get detailed information about a task
+Get a task by ID
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Task ID
@@ -317,129 +340,19 @@ func (a *TasksAPIService) TasksIdGetExecute(r TasksAPITasksIdGetRequest) (*DtoTa
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorsErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
 			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorsErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type TasksAPITasksIdProcessPostRequest struct {
-	ctx context.Context
-	ApiService *TasksAPIService
-	id string
-}
-
-func (r TasksAPITasksIdProcessPostRequest) Execute() (map[string]map[string]interface{}, *http.Response, error) {
-	return r.ApiService.TasksIdProcessPostExecute(r)
-}
-
-/*
-TasksIdProcessPost Process a task
-
-Start processing a task
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Task ID
- @return TasksAPITasksIdProcessPostRequest
-*/
-func (a *TasksAPIService) TasksIdProcessPost(ctx context.Context, id string) TasksAPITasksIdProcessPostRequest {
-	return TasksAPITasksIdProcessPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-//  @return map[string]map[string]interface{}
-func (a *TasksAPIService) TasksIdProcessPostExecute(r TasksAPITasksIdProcessPostRequest) (map[string]map[string]interface{}, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  map[string]map[string]interface{}
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksIdProcessPost")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/tasks/{id}/process"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
@@ -517,20 +430,20 @@ type TasksAPITasksIdStatusPutRequest struct {
 	status *DtoUpdateTaskStatusRequest
 }
 
-// New status
+// Status update
 func (r TasksAPITasksIdStatusPutRequest) Status(status DtoUpdateTaskStatusRequest) TasksAPITasksIdStatusPutRequest {
 	r.status = &status
 	return r
 }
 
-func (r TasksAPITasksIdStatusPutRequest) Execute() (*DtoTaskResponse, *http.Response, error) {
+func (r TasksAPITasksIdStatusPutRequest) Execute() (map[string]map[string]interface{}, *http.Response, error) {
 	return r.ApiService.TasksIdStatusPutExecute(r)
 }
 
 /*
 TasksIdStatusPut Update task status
 
-Update the status of a task
+Update a task's status
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Task ID
@@ -545,13 +458,13 @@ func (a *TasksAPIService) TasksIdStatusPut(ctx context.Context, id string) Tasks
 }
 
 // Execute executes the request
-//  @return DtoTaskResponse
-func (a *TasksAPIService) TasksIdStatusPutExecute(r TasksAPITasksIdStatusPutRequest) (*DtoTaskResponse, *http.Response, error) {
+//  @return map[string]map[string]interface{}
+func (a *TasksAPIService) TasksIdStatusPutExecute(r TasksAPITasksIdStatusPutRequest) (map[string]map[string]interface{}, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DtoTaskResponse
+		localVarReturnValue  map[string]map[string]interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksIdStatusPut")
@@ -588,6 +501,20 @@ func (a *TasksAPIService) TasksIdStatusPutExecute(r TasksAPITasksIdStatusPutRequ
 	}
 	// body params
 	localVarPostBody = r.status
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -663,7 +590,7 @@ type TasksAPITasksPostRequest struct {
 	task *DtoCreateTaskRequest
 }
 
-// Task details
+// Task configuration
 func (r TasksAPITasksPostRequest) Task(task DtoCreateTaskRequest) TasksAPITasksPostRequest {
 	r.task = &task
 	return r
@@ -676,7 +603,7 @@ func (r TasksAPITasksPostRequest) Execute() (*DtoTaskResponse, *http.Response, e
 /*
 TasksPost Create a new task
 
-Create a new import/export task
+Create a new task for processing files asynchronously
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return TasksAPITasksPostRequest
@@ -731,6 +658,20 @@ func (a *TasksAPIService) TasksPostExecute(r TasksAPITasksPostRequest) (*DtoTask
 	}
 	// body params
 	localVarPostBody = r.task
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -754,6 +695,162 @@ func (a *TasksAPIService) TasksPostExecute(r TasksAPITasksPostRequest) (*DtoTask
 			error: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type TasksAPITasksResultGetRequest struct {
+	ctx context.Context
+	ApiService *TasksAPIService
+	workflowId *string
+}
+
+// Workflow ID
+func (r TasksAPITasksResultGetRequest) WorkflowId(workflowId string) TasksAPITasksResultGetRequest {
+	r.workflowId = &workflowId
+	return r
+}
+
+func (r TasksAPITasksResultGetRequest) Execute() (*ModelsTemporalWorkflowResult, *http.Response, error) {
+	return r.ApiService.TasksResultGetExecute(r)
+}
+
+/*
+TasksResultGet Get task processing result
+
+Get the result of a task processing workflow
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return TasksAPITasksResultGetRequest
+*/
+func (a *TasksAPIService) TasksResultGet(ctx context.Context) TasksAPITasksResultGetRequest {
+	return TasksAPITasksResultGetRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return ModelsTemporalWorkflowResult
+func (a *TasksAPIService) TasksResultGetExecute(r TasksAPITasksResultGetRequest) (*ModelsTemporalWorkflowResult, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *ModelsTemporalWorkflowResult
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksResultGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/tasks/result"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.workflowId == nil {
+		return localVarReturnValue, nil, reportError("workflowId is required and must be specified")
+	}
+
+	parameterAddToHeaderOrQuery(localVarQueryParams, "workflow_id", r.workflowId, "form", "")
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorsErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

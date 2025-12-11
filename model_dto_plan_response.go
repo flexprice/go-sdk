@@ -21,12 +21,16 @@ var _ MappedNullable = &DtoPlanResponse{}
 type DtoPlanResponse struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
+	CreditGrants []DtoCreditGrantResponse `json:"credit_grants,omitempty"`
 	Description *string `json:"description,omitempty"`
+	DisplayOrder *int32 `json:"display_order,omitempty"`
 	Entitlements []DtoEntitlementResponse `json:"entitlements,omitempty"`
 	EnvironmentId *string `json:"environment_id,omitempty"`
 	Id *string `json:"id,omitempty"`
 	LookupKey *string `json:"lookup_key,omitempty"`
+	Metadata *map[string]string `json:"metadata,omitempty"`
 	Name *string `json:"name,omitempty"`
+	// TODO: Add inline addons
 	Prices []DtoPriceResponse `json:"prices,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
@@ -115,6 +119,38 @@ func (o *DtoPlanResponse) SetCreatedBy(v string) {
 	o.CreatedBy = &v
 }
 
+// GetCreditGrants returns the CreditGrants field value if set, zero value otherwise.
+func (o *DtoPlanResponse) GetCreditGrants() []DtoCreditGrantResponse {
+	if o == nil || IsNil(o.CreditGrants) {
+		var ret []DtoCreditGrantResponse
+		return ret
+	}
+	return o.CreditGrants
+}
+
+// GetCreditGrantsOk returns a tuple with the CreditGrants field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoPlanResponse) GetCreditGrantsOk() ([]DtoCreditGrantResponse, bool) {
+	if o == nil || IsNil(o.CreditGrants) {
+		return nil, false
+	}
+	return o.CreditGrants, true
+}
+
+// HasCreditGrants returns a boolean if a field has been set.
+func (o *DtoPlanResponse) HasCreditGrants() bool {
+	if o != nil && !IsNil(o.CreditGrants) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreditGrants gets a reference to the given []DtoCreditGrantResponse and assigns it to the CreditGrants field.
+func (o *DtoPlanResponse) SetCreditGrants(v []DtoCreditGrantResponse) {
+	o.CreditGrants = v
+}
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *DtoPlanResponse) GetDescription() string {
 	if o == nil || IsNil(o.Description) {
@@ -145,6 +181,38 @@ func (o *DtoPlanResponse) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *DtoPlanResponse) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetDisplayOrder returns the DisplayOrder field value if set, zero value otherwise.
+func (o *DtoPlanResponse) GetDisplayOrder() int32 {
+	if o == nil || IsNil(o.DisplayOrder) {
+		var ret int32
+		return ret
+	}
+	return *o.DisplayOrder
+}
+
+// GetDisplayOrderOk returns a tuple with the DisplayOrder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoPlanResponse) GetDisplayOrderOk() (*int32, bool) {
+	if o == nil || IsNil(o.DisplayOrder) {
+		return nil, false
+	}
+	return o.DisplayOrder, true
+}
+
+// HasDisplayOrder returns a boolean if a field has been set.
+func (o *DtoPlanResponse) HasDisplayOrder() bool {
+	if o != nil && !IsNil(o.DisplayOrder) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayOrder gets a reference to the given int32 and assigns it to the DisplayOrder field.
+func (o *DtoPlanResponse) SetDisplayOrder(v int32) {
+	o.DisplayOrder = &v
 }
 
 // GetEntitlements returns the Entitlements field value if set, zero value otherwise.
@@ -273,6 +341,38 @@ func (o *DtoPlanResponse) HasLookupKey() bool {
 // SetLookupKey gets a reference to the given string and assigns it to the LookupKey field.
 func (o *DtoPlanResponse) SetLookupKey(v string) {
 	o.LookupKey = &v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *DtoPlanResponse) GetMetadata() map[string]string {
+	if o == nil || IsNil(o.Metadata) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoPlanResponse) GetMetadataOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *DtoPlanResponse) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
+func (o *DtoPlanResponse) SetMetadata(v map[string]string) {
+	o.Metadata = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -483,8 +583,14 @@ func (o DtoPlanResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CreatedBy) {
 		toSerialize["created_by"] = o.CreatedBy
 	}
+	if !IsNil(o.CreditGrants) {
+		toSerialize["credit_grants"] = o.CreditGrants
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.DisplayOrder) {
+		toSerialize["display_order"] = o.DisplayOrder
 	}
 	if !IsNil(o.Entitlements) {
 		toSerialize["entitlements"] = o.Entitlements
@@ -497,6 +603,9 @@ func (o DtoPlanResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LookupKey) {
 		toSerialize["lookup_key"] = o.LookupKey
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name

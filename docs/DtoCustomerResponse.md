@@ -18,6 +18,8 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** | ID is the unique identifier for the customer | [optional] 
 **Metadata** | Pointer to **map[string]string** | Metadata | [optional] 
 **Name** | Pointer to **string** | Name is the name of the customer | [optional] 
+**ParentCustomer** | Pointer to [**DtoCustomerResponse**](DtoCustomerResponse.md) |  | [optional] 
+**ParentCustomerId** | Pointer to **string** | ParentCustomerID is the parent customer identifier for the customer | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
@@ -391,6 +393,56 @@ SetName sets Name field to given value.
 `func (o *DtoCustomerResponse) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetParentCustomer
+
+`func (o *DtoCustomerResponse) GetParentCustomer() DtoCustomerResponse`
+
+GetParentCustomer returns the ParentCustomer field if non-nil, zero value otherwise.
+
+### GetParentCustomerOk
+
+`func (o *DtoCustomerResponse) GetParentCustomerOk() (*DtoCustomerResponse, bool)`
+
+GetParentCustomerOk returns a tuple with the ParentCustomer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentCustomer
+
+`func (o *DtoCustomerResponse) SetParentCustomer(v DtoCustomerResponse)`
+
+SetParentCustomer sets ParentCustomer field to given value.
+
+### HasParentCustomer
+
+`func (o *DtoCustomerResponse) HasParentCustomer() bool`
+
+HasParentCustomer returns a boolean if a field has been set.
+
+### GetParentCustomerId
+
+`func (o *DtoCustomerResponse) GetParentCustomerId() string`
+
+GetParentCustomerId returns the ParentCustomerId field if non-nil, zero value otherwise.
+
+### GetParentCustomerIdOk
+
+`func (o *DtoCustomerResponse) GetParentCustomerIdOk() (*string, bool)`
+
+GetParentCustomerIdOk returns a tuple with the ParentCustomerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentCustomerId
+
+`func (o *DtoCustomerResponse) SetParentCustomerId(v string)`
+
+SetParentCustomerId sets ParentCustomerId field to given value.
+
+### HasParentCustomerId
+
+`func (o *DtoCustomerResponse) HasParentCustomerId() bool`
+
+HasParentCustomerId returns a boolean if a field has been set.
 
 ### GetStatus
 

@@ -19,29 +19,65 @@ var _ MappedNullable = &DtoInvoiceLineItemResponse{}
 
 // DtoInvoiceLineItemResponse struct for DtoInvoiceLineItemResponse
 type DtoInvoiceLineItemResponse struct {
-	Amount *float32 `json:"amount,omitempty"`
+	// amount is the monetary amount for this line item
+	Amount *string `json:"amount,omitempty"`
+	// created_at is the timestamp when this line item was created
 	CreatedAt *string `json:"created_at,omitempty"`
+	// created_by is the identifier of the user who created this line item
 	CreatedBy *string `json:"created_by,omitempty"`
+	// currency is the three-letter ISO currency code for this line item
 	Currency *string `json:"currency,omitempty"`
+	// customer_id is the unique identifier of the customer associated with this line item
 	CustomerId *string `json:"customer_id,omitempty"`
+	// display_name is the optional human-readable name for this line item
 	DisplayName *string `json:"display_name,omitempty"`
+	// entity_id is the optional unique identifier of the entity associated with this line item
+	EntityId *string `json:"entity_id,omitempty"`
+	// entity_type is the optional type of the entity associated with this line item
+	EntityType *string `json:"entity_type,omitempty"`
+	// id is the unique identifier for this line item
 	Id *string `json:"id,omitempty"`
+	// invoice_id is the unique identifier of the invoice this line item belongs to
 	InvoiceId *string `json:"invoice_id,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	// meter_display_name is the optional human-readable name of the meter
 	MeterDisplayName *string `json:"meter_display_name,omitempty"`
+	// meter_id is the optional unique identifier of the meter used for usage tracking
 	MeterId *string `json:"meter_id,omitempty"`
+	// period_end is the optional end date of the period this line item covers
 	PeriodEnd *string `json:"period_end,omitempty"`
+	// period_start is the optional start date of the period this line item covers
 	PeriodStart *string `json:"period_start,omitempty"`
+	// plan_display_name is the optional human-readable name of the plan
 	PlanDisplayName *string `json:"plan_display_name,omitempty"`
+	// plan_id is the optional unique identifier of the plan associated with this line item
 	PlanId *string `json:"plan_id,omitempty"`
+	// price_id is the optional unique identifier of the price associated with this line item
 	PriceId *string `json:"price_id,omitempty"`
+	// price_type indicates the type of pricing (fixed, usage, tiered, etc.)
 	PriceType *string `json:"price_type,omitempty"`
-	Quantity *float32 `json:"quantity,omitempty"`
+	// price_unit is the optional 3-digit ISO code of the price unit associated with this line item
+	PriceUnit *string `json:"price_unit,omitempty"`
+	// price_unit_amount is the optional amount converted to the price unit currency
+	PriceUnitAmount *string `json:"price_unit_amount,omitempty"`
+	// price_unit_id is the optional unique identifier of the price unit associated with this line item
+	PriceUnitId *string `json:"price_unit_id,omitempty"`
+	// quantity is the quantity of units for this line item
+	Quantity *string `json:"quantity,omitempty"`
+	// status represents the current status of this line item
 	Status *string `json:"status,omitempty"`
+	// subscription_id is the optional unique identifier of the subscription associated with this line item
 	SubscriptionId *string `json:"subscription_id,omitempty"`
+	// tenant_id is the unique identifier of the tenant this line item belongs to
 	TenantId *string `json:"tenant_id,omitempty"`
+	// updated_at is the timestamp when this line item was last updated
 	UpdatedAt *string `json:"updated_at,omitempty"`
+	// updated_by is the identifier of the user who last updated this line item
 	UpdatedBy *string `json:"updated_by,omitempty"`
+	// usage_analytics contains usage analytics for this line item (legacy - grouped by source)
+	UsageAnalytics []DtoSourceUsageItem `json:"usage_analytics,omitempty"`
+	// usage_breakdown contains flexible usage breakdown for this line item (supports any grouping)
+	UsageBreakdown []DtoUsageBreakdownItem `json:"usage_breakdown,omitempty"`
 }
 
 // NewDtoInvoiceLineItemResponse instantiates a new DtoInvoiceLineItemResponse object
@@ -62,9 +98,9 @@ func NewDtoInvoiceLineItemResponseWithDefaults() *DtoInvoiceLineItemResponse {
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *DtoInvoiceLineItemResponse) GetAmount() float32 {
+func (o *DtoInvoiceLineItemResponse) GetAmount() string {
 	if o == nil || IsNil(o.Amount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Amount
@@ -72,7 +108,7 @@ func (o *DtoInvoiceLineItemResponse) GetAmount() float32 {
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoInvoiceLineItemResponse) GetAmountOk() (*float32, bool) {
+func (o *DtoInvoiceLineItemResponse) GetAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
@@ -88,8 +124,8 @@ func (o *DtoInvoiceLineItemResponse) HasAmount() bool {
 	return false
 }
 
-// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
-func (o *DtoInvoiceLineItemResponse) SetAmount(v float32) {
+// SetAmount gets a reference to the given string and assigns it to the Amount field.
+func (o *DtoInvoiceLineItemResponse) SetAmount(v string) {
 	o.Amount = &v
 }
 
@@ -251,6 +287,70 @@ func (o *DtoInvoiceLineItemResponse) HasDisplayName() bool {
 // SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
 func (o *DtoInvoiceLineItemResponse) SetDisplayName(v string) {
 	o.DisplayName = &v
+}
+
+// GetEntityId returns the EntityId field value if set, zero value otherwise.
+func (o *DtoInvoiceLineItemResponse) GetEntityId() string {
+	if o == nil || IsNil(o.EntityId) {
+		var ret string
+		return ret
+	}
+	return *o.EntityId
+}
+
+// GetEntityIdOk returns a tuple with the EntityId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceLineItemResponse) GetEntityIdOk() (*string, bool) {
+	if o == nil || IsNil(o.EntityId) {
+		return nil, false
+	}
+	return o.EntityId, true
+}
+
+// HasEntityId returns a boolean if a field has been set.
+func (o *DtoInvoiceLineItemResponse) HasEntityId() bool {
+	if o != nil && !IsNil(o.EntityId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityId gets a reference to the given string and assigns it to the EntityId field.
+func (o *DtoInvoiceLineItemResponse) SetEntityId(v string) {
+	o.EntityId = &v
+}
+
+// GetEntityType returns the EntityType field value if set, zero value otherwise.
+func (o *DtoInvoiceLineItemResponse) GetEntityType() string {
+	if o == nil || IsNil(o.EntityType) {
+		var ret string
+		return ret
+	}
+	return *o.EntityType
+}
+
+// GetEntityTypeOk returns a tuple with the EntityType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceLineItemResponse) GetEntityTypeOk() (*string, bool) {
+	if o == nil || IsNil(o.EntityType) {
+		return nil, false
+	}
+	return o.EntityType, true
+}
+
+// HasEntityType returns a boolean if a field has been set.
+func (o *DtoInvoiceLineItemResponse) HasEntityType() bool {
+	if o != nil && !IsNil(o.EntityType) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityType gets a reference to the given string and assigns it to the EntityType field.
+func (o *DtoInvoiceLineItemResponse) SetEntityType(v string) {
+	o.EntityType = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -605,10 +705,106 @@ func (o *DtoInvoiceLineItemResponse) SetPriceType(v string) {
 	o.PriceType = &v
 }
 
+// GetPriceUnit returns the PriceUnit field value if set, zero value otherwise.
+func (o *DtoInvoiceLineItemResponse) GetPriceUnit() string {
+	if o == nil || IsNil(o.PriceUnit) {
+		var ret string
+		return ret
+	}
+	return *o.PriceUnit
+}
+
+// GetPriceUnitOk returns a tuple with the PriceUnit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceLineItemResponse) GetPriceUnitOk() (*string, bool) {
+	if o == nil || IsNil(o.PriceUnit) {
+		return nil, false
+	}
+	return o.PriceUnit, true
+}
+
+// HasPriceUnit returns a boolean if a field has been set.
+func (o *DtoInvoiceLineItemResponse) HasPriceUnit() bool {
+	if o != nil && !IsNil(o.PriceUnit) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnit gets a reference to the given string and assigns it to the PriceUnit field.
+func (o *DtoInvoiceLineItemResponse) SetPriceUnit(v string) {
+	o.PriceUnit = &v
+}
+
+// GetPriceUnitAmount returns the PriceUnitAmount field value if set, zero value otherwise.
+func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmount() string {
+	if o == nil || IsNil(o.PriceUnitAmount) {
+		var ret string
+		return ret
+	}
+	return *o.PriceUnitAmount
+}
+
+// GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmountOk() (*string, bool) {
+	if o == nil || IsNil(o.PriceUnitAmount) {
+		return nil, false
+	}
+	return o.PriceUnitAmount, true
+}
+
+// HasPriceUnitAmount returns a boolean if a field has been set.
+func (o *DtoInvoiceLineItemResponse) HasPriceUnitAmount() bool {
+	if o != nil && !IsNil(o.PriceUnitAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnitAmount gets a reference to the given string and assigns it to the PriceUnitAmount field.
+func (o *DtoInvoiceLineItemResponse) SetPriceUnitAmount(v string) {
+	o.PriceUnitAmount = &v
+}
+
+// GetPriceUnitId returns the PriceUnitId field value if set, zero value otherwise.
+func (o *DtoInvoiceLineItemResponse) GetPriceUnitId() string {
+	if o == nil || IsNil(o.PriceUnitId) {
+		var ret string
+		return ret
+	}
+	return *o.PriceUnitId
+}
+
+// GetPriceUnitIdOk returns a tuple with the PriceUnitId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceLineItemResponse) GetPriceUnitIdOk() (*string, bool) {
+	if o == nil || IsNil(o.PriceUnitId) {
+		return nil, false
+	}
+	return o.PriceUnitId, true
+}
+
+// HasPriceUnitId returns a boolean if a field has been set.
+func (o *DtoInvoiceLineItemResponse) HasPriceUnitId() bool {
+	if o != nil && !IsNil(o.PriceUnitId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnitId gets a reference to the given string and assigns it to the PriceUnitId field.
+func (o *DtoInvoiceLineItemResponse) SetPriceUnitId(v string) {
+	o.PriceUnitId = &v
+}
+
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *DtoInvoiceLineItemResponse) GetQuantity() float32 {
+func (o *DtoInvoiceLineItemResponse) GetQuantity() string {
 	if o == nil || IsNil(o.Quantity) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Quantity
@@ -616,7 +812,7 @@ func (o *DtoInvoiceLineItemResponse) GetQuantity() float32 {
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoInvoiceLineItemResponse) GetQuantityOk() (*float32, bool) {
+func (o *DtoInvoiceLineItemResponse) GetQuantityOk() (*string, bool) {
 	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
@@ -632,8 +828,8 @@ func (o *DtoInvoiceLineItemResponse) HasQuantity() bool {
 	return false
 }
 
-// SetQuantity gets a reference to the given float32 and assigns it to the Quantity field.
-func (o *DtoInvoiceLineItemResponse) SetQuantity(v float32) {
+// SetQuantity gets a reference to the given string and assigns it to the Quantity field.
+func (o *DtoInvoiceLineItemResponse) SetQuantity(v string) {
 	o.Quantity = &v
 }
 
@@ -797,6 +993,70 @@ func (o *DtoInvoiceLineItemResponse) SetUpdatedBy(v string) {
 	o.UpdatedBy = &v
 }
 
+// GetUsageAnalytics returns the UsageAnalytics field value if set, zero value otherwise.
+func (o *DtoInvoiceLineItemResponse) GetUsageAnalytics() []DtoSourceUsageItem {
+	if o == nil || IsNil(o.UsageAnalytics) {
+		var ret []DtoSourceUsageItem
+		return ret
+	}
+	return o.UsageAnalytics
+}
+
+// GetUsageAnalyticsOk returns a tuple with the UsageAnalytics field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceLineItemResponse) GetUsageAnalyticsOk() ([]DtoSourceUsageItem, bool) {
+	if o == nil || IsNil(o.UsageAnalytics) {
+		return nil, false
+	}
+	return o.UsageAnalytics, true
+}
+
+// HasUsageAnalytics returns a boolean if a field has been set.
+func (o *DtoInvoiceLineItemResponse) HasUsageAnalytics() bool {
+	if o != nil && !IsNil(o.UsageAnalytics) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsageAnalytics gets a reference to the given []DtoSourceUsageItem and assigns it to the UsageAnalytics field.
+func (o *DtoInvoiceLineItemResponse) SetUsageAnalytics(v []DtoSourceUsageItem) {
+	o.UsageAnalytics = v
+}
+
+// GetUsageBreakdown returns the UsageBreakdown field value if set, zero value otherwise.
+func (o *DtoInvoiceLineItemResponse) GetUsageBreakdown() []DtoUsageBreakdownItem {
+	if o == nil || IsNil(o.UsageBreakdown) {
+		var ret []DtoUsageBreakdownItem
+		return ret
+	}
+	return o.UsageBreakdown
+}
+
+// GetUsageBreakdownOk returns a tuple with the UsageBreakdown field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceLineItemResponse) GetUsageBreakdownOk() ([]DtoUsageBreakdownItem, bool) {
+	if o == nil || IsNil(o.UsageBreakdown) {
+		return nil, false
+	}
+	return o.UsageBreakdown, true
+}
+
+// HasUsageBreakdown returns a boolean if a field has been set.
+func (o *DtoInvoiceLineItemResponse) HasUsageBreakdown() bool {
+	if o != nil && !IsNil(o.UsageBreakdown) {
+		return true
+	}
+
+	return false
+}
+
+// SetUsageBreakdown gets a reference to the given []DtoUsageBreakdownItem and assigns it to the UsageBreakdown field.
+func (o *DtoInvoiceLineItemResponse) SetUsageBreakdown(v []DtoUsageBreakdownItem) {
+	o.UsageBreakdown = v
+}
+
 func (o DtoInvoiceLineItemResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -824,6 +1084,12 @@ func (o DtoInvoiceLineItemResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DisplayName) {
 		toSerialize["display_name"] = o.DisplayName
+	}
+	if !IsNil(o.EntityId) {
+		toSerialize["entity_id"] = o.EntityId
+	}
+	if !IsNil(o.EntityType) {
+		toSerialize["entity_type"] = o.EntityType
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
@@ -858,6 +1124,15 @@ func (o DtoInvoiceLineItemResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PriceType) {
 		toSerialize["price_type"] = o.PriceType
 	}
+	if !IsNil(o.PriceUnit) {
+		toSerialize["price_unit"] = o.PriceUnit
+	}
+	if !IsNil(o.PriceUnitAmount) {
+		toSerialize["price_unit_amount"] = o.PriceUnitAmount
+	}
+	if !IsNil(o.PriceUnitId) {
+		toSerialize["price_unit_id"] = o.PriceUnitId
+	}
 	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}
@@ -875,6 +1150,12 @@ func (o DtoInvoiceLineItemResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.UpdatedBy) {
 		toSerialize["updated_by"] = o.UpdatedBy
+	}
+	if !IsNil(o.UsageAnalytics) {
+		toSerialize["usage_analytics"] = o.UsageAnalytics
+	}
+	if !IsNil(o.UsageBreakdown) {
+		toSerialize["usage_breakdown"] = o.UsageBreakdown
 	}
 	return toSerialize, nil
 }

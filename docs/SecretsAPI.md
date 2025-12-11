@@ -68,7 +68,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -136,7 +136,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 
@@ -169,7 +169,7 @@ import (
 )
 
 func main() {
-	request := *openapiclient.NewDtoCreateAPIKeyRequest("Name_example", openapiclient.types.SecretType("private_key")) // DtoCreateAPIKeyRequest | API key creation request
+	request := *openapiclient.NewDtoCreateAPIKeyRequest("Name_example", openapiclient.types.SecretType("private_key")) // DtoCreateAPIKeyRequest | API key creation request\\
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -194,7 +194,7 @@ Other parameters are passed through a pointer to a apiSecretsApiKeysPostRequest 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | [**DtoCreateAPIKeyRequest**](DtoCreateAPIKeyRequest.md) | API key creation request | 
+ **request** | [**DtoCreateAPIKeyRequest**](DtoCreateAPIKeyRequest.md) | API key creation request\\ | 
 
 ### Return type
 
@@ -202,7 +202,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[ApiKeyAuth](../README.md#ApiKeyAuth)
 
 ### HTTP request headers
 

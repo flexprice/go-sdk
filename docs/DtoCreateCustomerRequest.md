@@ -4,16 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddressCity** | Pointer to **string** |  | [optional] 
-**AddressCountry** | Pointer to **string** |  | [optional] 
-**AddressLine1** | Pointer to **string** |  | [optional] 
-**AddressLine2** | Pointer to **string** |  | [optional] 
-**AddressPostalCode** | Pointer to **string** |  | [optional] 
-**AddressState** | Pointer to **string** |  | [optional] 
-**Email** | Pointer to **string** |  | [optional] 
-**ExternalId** | **string** |  | 
-**Metadata** | Pointer to **map[string]string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**AddressCity** | Pointer to **string** | address_city is the city name with maximum 100 characters | [optional] 
+**AddressCountry** | Pointer to **string** | address_country is the two-letter ISO 3166-1 alpha-2 country code | [optional] 
+**AddressLine1** | Pointer to **string** | address_line1 is the primary address line with maximum 255 characters | [optional] 
+**AddressLine2** | Pointer to **string** | address_line2 is the secondary address line with maximum 255 characters | [optional] 
+**AddressPostalCode** | Pointer to **string** | address_postal_code is the ZIP code or postal code with maximum 20 characters | [optional] 
+**AddressState** | Pointer to **string** | address_state is the state, province, or region name with maximum 100 characters | [optional] 
+**Email** | Pointer to **string** | email is the customer&#39;s email address and must be a valid email format if provided | [optional] 
+**ExternalId** | **string** | external_id is the unique identifier from your system to reference this customer (required) | 
+**IntegrationEntityMapping** | Pointer to [**[]DtoIntegrationEntityMapping**](DtoIntegrationEntityMapping.md) | integration_entity_mapping contains provider integration mappings for this customer | [optional] 
+**Metadata** | Pointer to **map[string]string** | metadata contains additional key-value pairs for storing extra information | [optional] 
+**Name** | Pointer to **string** | name is the full name or company name of the customer | [optional] 
+**ParentCustomerExternalId** | Pointer to **string** | parent_customer_external_id is the external ID of the parent customer from your system Exactly one of parent_customer_id or parent_customer_external_id may be provided | [optional] 
+**ParentCustomerId** | Pointer to **string** | parent_customer_id is the internal FlexPrice ID of the parent customer | [optional] 
+**TaxRateOverrides** | Pointer to [**[]DtoTaxRateOverride**](DtoTaxRateOverride.md) | tax_rate_overrides contains tax rate configurations to be linked to this customer | [optional] 
 
 ## Methods
 
@@ -229,6 +233,31 @@ and a boolean to check if the value has been set.
 SetExternalId sets ExternalId field to given value.
 
 
+### GetIntegrationEntityMapping
+
+`func (o *DtoCreateCustomerRequest) GetIntegrationEntityMapping() []DtoIntegrationEntityMapping`
+
+GetIntegrationEntityMapping returns the IntegrationEntityMapping field if non-nil, zero value otherwise.
+
+### GetIntegrationEntityMappingOk
+
+`func (o *DtoCreateCustomerRequest) GetIntegrationEntityMappingOk() (*[]DtoIntegrationEntityMapping, bool)`
+
+GetIntegrationEntityMappingOk returns a tuple with the IntegrationEntityMapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntegrationEntityMapping
+
+`func (o *DtoCreateCustomerRequest) SetIntegrationEntityMapping(v []DtoIntegrationEntityMapping)`
+
+SetIntegrationEntityMapping sets IntegrationEntityMapping field to given value.
+
+### HasIntegrationEntityMapping
+
+`func (o *DtoCreateCustomerRequest) HasIntegrationEntityMapping() bool`
+
+HasIntegrationEntityMapping returns a boolean if a field has been set.
+
 ### GetMetadata
 
 `func (o *DtoCreateCustomerRequest) GetMetadata() map[string]string`
@@ -278,6 +307,81 @@ SetName sets Name field to given value.
 `func (o *DtoCreateCustomerRequest) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetParentCustomerExternalId
+
+`func (o *DtoCreateCustomerRequest) GetParentCustomerExternalId() string`
+
+GetParentCustomerExternalId returns the ParentCustomerExternalId field if non-nil, zero value otherwise.
+
+### GetParentCustomerExternalIdOk
+
+`func (o *DtoCreateCustomerRequest) GetParentCustomerExternalIdOk() (*string, bool)`
+
+GetParentCustomerExternalIdOk returns a tuple with the ParentCustomerExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentCustomerExternalId
+
+`func (o *DtoCreateCustomerRequest) SetParentCustomerExternalId(v string)`
+
+SetParentCustomerExternalId sets ParentCustomerExternalId field to given value.
+
+### HasParentCustomerExternalId
+
+`func (o *DtoCreateCustomerRequest) HasParentCustomerExternalId() bool`
+
+HasParentCustomerExternalId returns a boolean if a field has been set.
+
+### GetParentCustomerId
+
+`func (o *DtoCreateCustomerRequest) GetParentCustomerId() string`
+
+GetParentCustomerId returns the ParentCustomerId field if non-nil, zero value otherwise.
+
+### GetParentCustomerIdOk
+
+`func (o *DtoCreateCustomerRequest) GetParentCustomerIdOk() (*string, bool)`
+
+GetParentCustomerIdOk returns a tuple with the ParentCustomerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentCustomerId
+
+`func (o *DtoCreateCustomerRequest) SetParentCustomerId(v string)`
+
+SetParentCustomerId sets ParentCustomerId field to given value.
+
+### HasParentCustomerId
+
+`func (o *DtoCreateCustomerRequest) HasParentCustomerId() bool`
+
+HasParentCustomerId returns a boolean if a field has been set.
+
+### GetTaxRateOverrides
+
+`func (o *DtoCreateCustomerRequest) GetTaxRateOverrides() []DtoTaxRateOverride`
+
+GetTaxRateOverrides returns the TaxRateOverrides field if non-nil, zero value otherwise.
+
+### GetTaxRateOverridesOk
+
+`func (o *DtoCreateCustomerRequest) GetTaxRateOverridesOk() (*[]DtoTaxRateOverride, bool)`
+
+GetTaxRateOverridesOk returns a tuple with the TaxRateOverrides field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTaxRateOverrides
+
+`func (o *DtoCreateCustomerRequest) SetTaxRateOverrides(v []DtoTaxRateOverride)`
+
+SetTaxRateOverrides sets TaxRateOverrides field to given value.
+
+### HasTaxRateOverrides
+
+`func (o *DtoCreateCustomerRequest) HasTaxRateOverrides() bool`
+
+HasTaxRateOverrides returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

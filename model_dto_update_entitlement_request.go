@@ -23,7 +23,7 @@ type DtoUpdateEntitlementRequest struct {
 	IsSoftLimit *bool `json:"is_soft_limit,omitempty"`
 	StaticValue *string `json:"static_value,omitempty"`
 	UsageLimit *int32 `json:"usage_limit,omitempty"`
-	UsageResetPeriod *TypesBillingPeriod `json:"usage_reset_period,omitempty"`
+	UsageResetPeriod *TypesEntitlementUsageResetPeriod `json:"usage_reset_period,omitempty"`
 }
 
 // NewDtoUpdateEntitlementRequest instantiates a new DtoUpdateEntitlementRequest object
@@ -172,9 +172,9 @@ func (o *DtoUpdateEntitlementRequest) SetUsageLimit(v int32) {
 }
 
 // GetUsageResetPeriod returns the UsageResetPeriod field value if set, zero value otherwise.
-func (o *DtoUpdateEntitlementRequest) GetUsageResetPeriod() TypesBillingPeriod {
+func (o *DtoUpdateEntitlementRequest) GetUsageResetPeriod() TypesEntitlementUsageResetPeriod {
 	if o == nil || IsNil(o.UsageResetPeriod) {
-		var ret TypesBillingPeriod
+		var ret TypesEntitlementUsageResetPeriod
 		return ret
 	}
 	return *o.UsageResetPeriod
@@ -182,7 +182,7 @@ func (o *DtoUpdateEntitlementRequest) GetUsageResetPeriod() TypesBillingPeriod {
 
 // GetUsageResetPeriodOk returns a tuple with the UsageResetPeriod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoUpdateEntitlementRequest) GetUsageResetPeriodOk() (*TypesBillingPeriod, bool) {
+func (o *DtoUpdateEntitlementRequest) GetUsageResetPeriodOk() (*TypesEntitlementUsageResetPeriod, bool) {
 	if o == nil || IsNil(o.UsageResetPeriod) {
 		return nil, false
 	}
@@ -198,8 +198,8 @@ func (o *DtoUpdateEntitlementRequest) HasUsageResetPeriod() bool {
 	return false
 }
 
-// SetUsageResetPeriod gets a reference to the given TypesBillingPeriod and assigns it to the UsageResetPeriod field.
-func (o *DtoUpdateEntitlementRequest) SetUsageResetPeriod(v TypesBillingPeriod) {
+// SetUsageResetPeriod gets a reference to the given TypesEntitlementUsageResetPeriod and assigns it to the UsageResetPeriod field.
+func (o *DtoUpdateEntitlementRequest) SetUsageResetPeriod(v TypesEntitlementUsageResetPeriod) {
 	o.UsageResetPeriod = &v
 }
 

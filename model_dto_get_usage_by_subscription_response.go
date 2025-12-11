@@ -21,9 +21,17 @@ var _ MappedNullable = &DtoGetUsageBySubscriptionResponse{}
 type DtoGetUsageBySubscriptionResponse struct {
 	Amount *float32 `json:"amount,omitempty"`
 	Charges []DtoSubscriptionUsageByMetersResponse `json:"charges,omitempty"`
+	CommitmentAmount *float32 `json:"commitment_amount,omitempty"`
+	// Amount of commitment used
+	CommitmentUtilized *float32 `json:"commitment_utilized,omitempty"`
 	Currency *string `json:"currency,omitempty"`
 	DisplayAmount *string `json:"display_amount,omitempty"`
 	EndTime *string `json:"end_time,omitempty"`
+	// Whether any usage exceeded commitment
+	HasOverage *bool `json:"has_overage,omitempty"`
+	// Amount charged at overage rate
+	OverageAmount *float32 `json:"overage_amount,omitempty"`
+	OverageFactor *float32 `json:"overage_factor,omitempty"`
 	StartTime *string `json:"start_time,omitempty"`
 }
 
@@ -106,6 +114,70 @@ func (o *DtoGetUsageBySubscriptionResponse) HasCharges() bool {
 // SetCharges gets a reference to the given []DtoSubscriptionUsageByMetersResponse and assigns it to the Charges field.
 func (o *DtoGetUsageBySubscriptionResponse) SetCharges(v []DtoSubscriptionUsageByMetersResponse) {
 	o.Charges = v
+}
+
+// GetCommitmentAmount returns the CommitmentAmount field value if set, zero value otherwise.
+func (o *DtoGetUsageBySubscriptionResponse) GetCommitmentAmount() float32 {
+	if o == nil || IsNil(o.CommitmentAmount) {
+		var ret float32
+		return ret
+	}
+	return *o.CommitmentAmount
+}
+
+// GetCommitmentAmountOk returns a tuple with the CommitmentAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageBySubscriptionResponse) GetCommitmentAmountOk() (*float32, bool) {
+	if o == nil || IsNil(o.CommitmentAmount) {
+		return nil, false
+	}
+	return o.CommitmentAmount, true
+}
+
+// HasCommitmentAmount returns a boolean if a field has been set.
+func (o *DtoGetUsageBySubscriptionResponse) HasCommitmentAmount() bool {
+	if o != nil && !IsNil(o.CommitmentAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentAmount gets a reference to the given float32 and assigns it to the CommitmentAmount field.
+func (o *DtoGetUsageBySubscriptionResponse) SetCommitmentAmount(v float32) {
+	o.CommitmentAmount = &v
+}
+
+// GetCommitmentUtilized returns the CommitmentUtilized field value if set, zero value otherwise.
+func (o *DtoGetUsageBySubscriptionResponse) GetCommitmentUtilized() float32 {
+	if o == nil || IsNil(o.CommitmentUtilized) {
+		var ret float32
+		return ret
+	}
+	return *o.CommitmentUtilized
+}
+
+// GetCommitmentUtilizedOk returns a tuple with the CommitmentUtilized field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageBySubscriptionResponse) GetCommitmentUtilizedOk() (*float32, bool) {
+	if o == nil || IsNil(o.CommitmentUtilized) {
+		return nil, false
+	}
+	return o.CommitmentUtilized, true
+}
+
+// HasCommitmentUtilized returns a boolean if a field has been set.
+func (o *DtoGetUsageBySubscriptionResponse) HasCommitmentUtilized() bool {
+	if o != nil && !IsNil(o.CommitmentUtilized) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentUtilized gets a reference to the given float32 and assigns it to the CommitmentUtilized field.
+func (o *DtoGetUsageBySubscriptionResponse) SetCommitmentUtilized(v float32) {
+	o.CommitmentUtilized = &v
 }
 
 // GetCurrency returns the Currency field value if set, zero value otherwise.
@@ -204,6 +276,102 @@ func (o *DtoGetUsageBySubscriptionResponse) SetEndTime(v string) {
 	o.EndTime = &v
 }
 
+// GetHasOverage returns the HasOverage field value if set, zero value otherwise.
+func (o *DtoGetUsageBySubscriptionResponse) GetHasOverage() bool {
+	if o == nil || IsNil(o.HasOverage) {
+		var ret bool
+		return ret
+	}
+	return *o.HasOverage
+}
+
+// GetHasOverageOk returns a tuple with the HasOverage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageBySubscriptionResponse) GetHasOverageOk() (*bool, bool) {
+	if o == nil || IsNil(o.HasOverage) {
+		return nil, false
+	}
+	return o.HasOverage, true
+}
+
+// HasHasOverage returns a boolean if a field has been set.
+func (o *DtoGetUsageBySubscriptionResponse) HasHasOverage() bool {
+	if o != nil && !IsNil(o.HasOverage) {
+		return true
+	}
+
+	return false
+}
+
+// SetHasOverage gets a reference to the given bool and assigns it to the HasOverage field.
+func (o *DtoGetUsageBySubscriptionResponse) SetHasOverage(v bool) {
+	o.HasOverage = &v
+}
+
+// GetOverageAmount returns the OverageAmount field value if set, zero value otherwise.
+func (o *DtoGetUsageBySubscriptionResponse) GetOverageAmount() float32 {
+	if o == nil || IsNil(o.OverageAmount) {
+		var ret float32
+		return ret
+	}
+	return *o.OverageAmount
+}
+
+// GetOverageAmountOk returns a tuple with the OverageAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageBySubscriptionResponse) GetOverageAmountOk() (*float32, bool) {
+	if o == nil || IsNil(o.OverageAmount) {
+		return nil, false
+	}
+	return o.OverageAmount, true
+}
+
+// HasOverageAmount returns a boolean if a field has been set.
+func (o *DtoGetUsageBySubscriptionResponse) HasOverageAmount() bool {
+	if o != nil && !IsNil(o.OverageAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverageAmount gets a reference to the given float32 and assigns it to the OverageAmount field.
+func (o *DtoGetUsageBySubscriptionResponse) SetOverageAmount(v float32) {
+	o.OverageAmount = &v
+}
+
+// GetOverageFactor returns the OverageFactor field value if set, zero value otherwise.
+func (o *DtoGetUsageBySubscriptionResponse) GetOverageFactor() float32 {
+	if o == nil || IsNil(o.OverageFactor) {
+		var ret float32
+		return ret
+	}
+	return *o.OverageFactor
+}
+
+// GetOverageFactorOk returns a tuple with the OverageFactor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageBySubscriptionResponse) GetOverageFactorOk() (*float32, bool) {
+	if o == nil || IsNil(o.OverageFactor) {
+		return nil, false
+	}
+	return o.OverageFactor, true
+}
+
+// HasOverageFactor returns a boolean if a field has been set.
+func (o *DtoGetUsageBySubscriptionResponse) HasOverageFactor() bool {
+	if o != nil && !IsNil(o.OverageFactor) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverageFactor gets a reference to the given float32 and assigns it to the OverageFactor field.
+func (o *DtoGetUsageBySubscriptionResponse) SetOverageFactor(v float32) {
+	o.OverageFactor = &v
+}
+
 // GetStartTime returns the StartTime field value if set, zero value otherwise.
 func (o *DtoGetUsageBySubscriptionResponse) GetStartTime() string {
 	if o == nil || IsNil(o.StartTime) {
@@ -252,6 +420,12 @@ func (o DtoGetUsageBySubscriptionResponse) ToMap() (map[string]interface{}, erro
 	if !IsNil(o.Charges) {
 		toSerialize["charges"] = o.Charges
 	}
+	if !IsNil(o.CommitmentAmount) {
+		toSerialize["commitment_amount"] = o.CommitmentAmount
+	}
+	if !IsNil(o.CommitmentUtilized) {
+		toSerialize["commitment_utilized"] = o.CommitmentUtilized
+	}
 	if !IsNil(o.Currency) {
 		toSerialize["currency"] = o.Currency
 	}
@@ -260,6 +434,15 @@ func (o DtoGetUsageBySubscriptionResponse) ToMap() (map[string]interface{}, erro
 	}
 	if !IsNil(o.EndTime) {
 		toSerialize["end_time"] = o.EndTime
+	}
+	if !IsNil(o.HasOverage) {
+		toSerialize["has_overage"] = o.HasOverage
+	}
+	if !IsNil(o.OverageAmount) {
+		toSerialize["overage_amount"] = o.OverageAmount
+	}
+	if !IsNil(o.OverageFactor) {
+		toSerialize["overage_factor"] = o.OverageFactor
 	}
 	if !IsNil(o.StartTime) {
 		toSerialize["start_time"] = o.StartTime

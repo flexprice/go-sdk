@@ -17,9 +17,11 @@ import (
 // checks if the DtoListSubscriptionPausesResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DtoListSubscriptionPausesResponse{}
 
-// DtoListSubscriptionPausesResponse struct for DtoListSubscriptionPausesResponse
+// DtoListSubscriptionPausesResponse Response object for listing subscription pauses with total count
 type DtoListSubscriptionPausesResponse struct {
+	// List of subscription pause objects @Description Array of subscription pauses
 	Items []DtoSubscriptionPauseResponse `json:"items,omitempty"`
+	// Total number of pauses @Description Total count of subscription pauses in the response
 	Total *int32 `json:"total,omitempty"`
 }
 

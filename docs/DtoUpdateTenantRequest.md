@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BillingDetails** | Pointer to [**DtoTenantBillingDetails**](DtoTenantBillingDetails.md) |  | [optional] 
+**Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -50,6 +51,31 @@ SetBillingDetails sets BillingDetails field to given value.
 `func (o *DtoUpdateTenantRequest) HasBillingDetails() bool`
 
 HasBillingDetails returns a boolean if a field has been set.
+
+### GetMetadata
+
+`func (o *DtoUpdateTenantRequest) GetMetadata() map[string]string`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *DtoUpdateTenantRequest) GetMetadataOk() (*map[string]string, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *DtoUpdateTenantRequest) SetMetadata(v map[string]string)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *DtoUpdateTenantRequest) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetName
 

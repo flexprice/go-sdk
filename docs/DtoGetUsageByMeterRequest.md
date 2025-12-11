@@ -4,6 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**BillingAnchor** | Pointer to **string** | BillingAnchor enables custom monthly billing periods for meter usage aggregation.  Usage guidelines: - Only effective when WindowSize &#x3D; \&quot;MONTH\&quot; - For other window sizes (DAY, HOUR, WEEK), this field is ignored - When nil, uses standard calendar months (1st to 1st) - When provided, creates custom monthly periods (e.g., 5th to 5th)  Common use cases: - Subscription billing periods that don&#39;t align with calendar months - Customer-specific billing cycles (e.g., signed up on 15th) - Multi-tenant systems with different billing anchor dates  Example: If BillingAnchor &#x3D; \&quot;2024-03-05T14:30:45Z\&quot; and WindowSize &#x3D; \&quot;MONTH\&quot;:   - March period: 2024-03-05 14:30:45 to 2024-04-05 14:30:45   - April period: 2024-04-05 14:30:45 to 2024-05-05 14:30:45 | [optional] 
+**BucketSize** | Pointer to [**TypesWindowSize**](TypesWindowSize.md) |  | [optional] 
 **CustomerId** | Pointer to **string** |  | [optional] 
 **EndTime** | Pointer to **string** |  | [optional] 
 **ExternalCustomerId** | Pointer to **string** |  | [optional] 
@@ -30,6 +32,56 @@ will change when the set of required properties is changed
 NewDtoGetUsageByMeterRequestWithDefaults instantiates a new DtoGetUsageByMeterRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetBillingAnchor
+
+`func (o *DtoGetUsageByMeterRequest) GetBillingAnchor() string`
+
+GetBillingAnchor returns the BillingAnchor field if non-nil, zero value otherwise.
+
+### GetBillingAnchorOk
+
+`func (o *DtoGetUsageByMeterRequest) GetBillingAnchorOk() (*string, bool)`
+
+GetBillingAnchorOk returns a tuple with the BillingAnchor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBillingAnchor
+
+`func (o *DtoGetUsageByMeterRequest) SetBillingAnchor(v string)`
+
+SetBillingAnchor sets BillingAnchor field to given value.
+
+### HasBillingAnchor
+
+`func (o *DtoGetUsageByMeterRequest) HasBillingAnchor() bool`
+
+HasBillingAnchor returns a boolean if a field has been set.
+
+### GetBucketSize
+
+`func (o *DtoGetUsageByMeterRequest) GetBucketSize() TypesWindowSize`
+
+GetBucketSize returns the BucketSize field if non-nil, zero value otherwise.
+
+### GetBucketSizeOk
+
+`func (o *DtoGetUsageByMeterRequest) GetBucketSizeOk() (*TypesWindowSize, bool)`
+
+GetBucketSizeOk returns a tuple with the BucketSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetBucketSize
+
+`func (o *DtoGetUsageByMeterRequest) SetBucketSize(v TypesWindowSize)`
+
+SetBucketSize sets BucketSize field to given value.
+
+### HasBucketSize
+
+`func (o *DtoGetUsageByMeterRequest) HasBucketSize() bool`
+
+HasBucketSize returns a boolean if a field has been set.
 
 ### GetCustomerId
 

@@ -22,6 +22,7 @@ type DtoTenantResponse struct {
 	BillingDetails *DtoTenantBillingDetails `json:"billing_details,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	Id *string `json:"id,omitempty"`
+	Metadata *map[string]string `json:"metadata,omitempty"`
 	Name *string `json:"name,omitempty"`
 	Status *string `json:"status,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
@@ -140,6 +141,38 @@ func (o *DtoTenantResponse) SetId(v string) {
 	o.Id = &v
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *DtoTenantResponse) GetMetadata() map[string]string {
+	if o == nil || IsNil(o.Metadata) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoTenantResponse) GetMetadataOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *DtoTenantResponse) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
+func (o *DtoTenantResponse) SetMetadata(v map[string]string) {
+	o.Metadata = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DtoTenantResponse) GetName() string {
 	if o == nil || IsNil(o.Name) {
@@ -254,6 +287,9 @@ func (o DtoTenantResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name

@@ -19,6 +19,9 @@ var _ MappedNullable = &DtoWalletBalanceResponse{}
 
 // DtoWalletBalanceResponse struct for DtoWalletBalanceResponse
 type DtoWalletBalanceResponse struct {
+	AlertConfig *TypesAlertConfig `json:"alert_config,omitempty"`
+	AlertEnabled *bool `json:"alert_enabled,omitempty"`
+	AlertState *string `json:"alert_state,omitempty"`
 	AutoTopupAmount *float32 `json:"auto_topup_amount,omitempty"`
 	AutoTopupMinBalance *float32 `json:"auto_topup_min_balance,omitempty"`
 	AutoTopupTrigger *TypesAutoTopupTrigger `json:"auto_topup_trigger,omitempty"`
@@ -30,18 +33,18 @@ type DtoWalletBalanceResponse struct {
 	CreatedBy *string `json:"created_by,omitempty"`
 	CreditBalance *float32 `json:"credit_balance,omitempty"`
 	Currency *string `json:"currency,omitempty"`
-	CurrentPeriodUsage *float32 `json:"current_period_usage,omitempty"`
+	CurrentPeriodUsage *string `json:"current_period_usage,omitempty"`
 	CustomerId *string `json:"customer_id,omitempty"`
 	Description *string `json:"description,omitempty"`
 	EnvironmentId *string `json:"environment_id,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	Name *string `json:"name,omitempty"`
-	RealTimeBalance *float32 `json:"real_time_balance,omitempty"`
-	RealTimeCreditBalance *float32 `json:"real_time_credit_balance,omitempty"`
+	RealTimeBalance *string `json:"real_time_balance,omitempty"`
+	RealTimeCreditBalance *string `json:"real_time_credit_balance,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
-	UnpaidInvoiceAmount *float32 `json:"unpaid_invoice_amount,omitempty"`
+	UnpaidInvoicesAmount *string `json:"unpaid_invoices_amount,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	WalletStatus *TypesWalletStatus `json:"wallet_status,omitempty"`
@@ -63,6 +66,102 @@ func NewDtoWalletBalanceResponse() *DtoWalletBalanceResponse {
 func NewDtoWalletBalanceResponseWithDefaults() *DtoWalletBalanceResponse {
 	this := DtoWalletBalanceResponse{}
 	return &this
+}
+
+// GetAlertConfig returns the AlertConfig field value if set, zero value otherwise.
+func (o *DtoWalletBalanceResponse) GetAlertConfig() TypesAlertConfig {
+	if o == nil || IsNil(o.AlertConfig) {
+		var ret TypesAlertConfig
+		return ret
+	}
+	return *o.AlertConfig
+}
+
+// GetAlertConfigOk returns a tuple with the AlertConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletBalanceResponse) GetAlertConfigOk() (*TypesAlertConfig, bool) {
+	if o == nil || IsNil(o.AlertConfig) {
+		return nil, false
+	}
+	return o.AlertConfig, true
+}
+
+// HasAlertConfig returns a boolean if a field has been set.
+func (o *DtoWalletBalanceResponse) HasAlertConfig() bool {
+	if o != nil && !IsNil(o.AlertConfig) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlertConfig gets a reference to the given TypesAlertConfig and assigns it to the AlertConfig field.
+func (o *DtoWalletBalanceResponse) SetAlertConfig(v TypesAlertConfig) {
+	o.AlertConfig = &v
+}
+
+// GetAlertEnabled returns the AlertEnabled field value if set, zero value otherwise.
+func (o *DtoWalletBalanceResponse) GetAlertEnabled() bool {
+	if o == nil || IsNil(o.AlertEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.AlertEnabled
+}
+
+// GetAlertEnabledOk returns a tuple with the AlertEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletBalanceResponse) GetAlertEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.AlertEnabled) {
+		return nil, false
+	}
+	return o.AlertEnabled, true
+}
+
+// HasAlertEnabled returns a boolean if a field has been set.
+func (o *DtoWalletBalanceResponse) HasAlertEnabled() bool {
+	if o != nil && !IsNil(o.AlertEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlertEnabled gets a reference to the given bool and assigns it to the AlertEnabled field.
+func (o *DtoWalletBalanceResponse) SetAlertEnabled(v bool) {
+	o.AlertEnabled = &v
+}
+
+// GetAlertState returns the AlertState field value if set, zero value otherwise.
+func (o *DtoWalletBalanceResponse) GetAlertState() string {
+	if o == nil || IsNil(o.AlertState) {
+		var ret string
+		return ret
+	}
+	return *o.AlertState
+}
+
+// GetAlertStateOk returns a tuple with the AlertState field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletBalanceResponse) GetAlertStateOk() (*string, bool) {
+	if o == nil || IsNil(o.AlertState) {
+		return nil, false
+	}
+	return o.AlertState, true
+}
+
+// HasAlertState returns a boolean if a field has been set.
+func (o *DtoWalletBalanceResponse) HasAlertState() bool {
+	if o != nil && !IsNil(o.AlertState) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlertState gets a reference to the given string and assigns it to the AlertState field.
+func (o *DtoWalletBalanceResponse) SetAlertState(v string) {
+	o.AlertState = &v
 }
 
 // GetAutoTopupAmount returns the AutoTopupAmount field value if set, zero value otherwise.
@@ -418,9 +517,9 @@ func (o *DtoWalletBalanceResponse) SetCurrency(v string) {
 }
 
 // GetCurrentPeriodUsage returns the CurrentPeriodUsage field value if set, zero value otherwise.
-func (o *DtoWalletBalanceResponse) GetCurrentPeriodUsage() float32 {
+func (o *DtoWalletBalanceResponse) GetCurrentPeriodUsage() string {
 	if o == nil || IsNil(o.CurrentPeriodUsage) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.CurrentPeriodUsage
@@ -428,7 +527,7 @@ func (o *DtoWalletBalanceResponse) GetCurrentPeriodUsage() float32 {
 
 // GetCurrentPeriodUsageOk returns a tuple with the CurrentPeriodUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoWalletBalanceResponse) GetCurrentPeriodUsageOk() (*float32, bool) {
+func (o *DtoWalletBalanceResponse) GetCurrentPeriodUsageOk() (*string, bool) {
 	if o == nil || IsNil(o.CurrentPeriodUsage) {
 		return nil, false
 	}
@@ -444,8 +543,8 @@ func (o *DtoWalletBalanceResponse) HasCurrentPeriodUsage() bool {
 	return false
 }
 
-// SetCurrentPeriodUsage gets a reference to the given float32 and assigns it to the CurrentPeriodUsage field.
-func (o *DtoWalletBalanceResponse) SetCurrentPeriodUsage(v float32) {
+// SetCurrentPeriodUsage gets a reference to the given string and assigns it to the CurrentPeriodUsage field.
+func (o *DtoWalletBalanceResponse) SetCurrentPeriodUsage(v string) {
 	o.CurrentPeriodUsage = &v
 }
 
@@ -642,9 +741,9 @@ func (o *DtoWalletBalanceResponse) SetName(v string) {
 }
 
 // GetRealTimeBalance returns the RealTimeBalance field value if set, zero value otherwise.
-func (o *DtoWalletBalanceResponse) GetRealTimeBalance() float32 {
+func (o *DtoWalletBalanceResponse) GetRealTimeBalance() string {
 	if o == nil || IsNil(o.RealTimeBalance) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.RealTimeBalance
@@ -652,7 +751,7 @@ func (o *DtoWalletBalanceResponse) GetRealTimeBalance() float32 {
 
 // GetRealTimeBalanceOk returns a tuple with the RealTimeBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoWalletBalanceResponse) GetRealTimeBalanceOk() (*float32, bool) {
+func (o *DtoWalletBalanceResponse) GetRealTimeBalanceOk() (*string, bool) {
 	if o == nil || IsNil(o.RealTimeBalance) {
 		return nil, false
 	}
@@ -668,15 +767,15 @@ func (o *DtoWalletBalanceResponse) HasRealTimeBalance() bool {
 	return false
 }
 
-// SetRealTimeBalance gets a reference to the given float32 and assigns it to the RealTimeBalance field.
-func (o *DtoWalletBalanceResponse) SetRealTimeBalance(v float32) {
+// SetRealTimeBalance gets a reference to the given string and assigns it to the RealTimeBalance field.
+func (o *DtoWalletBalanceResponse) SetRealTimeBalance(v string) {
 	o.RealTimeBalance = &v
 }
 
 // GetRealTimeCreditBalance returns the RealTimeCreditBalance field value if set, zero value otherwise.
-func (o *DtoWalletBalanceResponse) GetRealTimeCreditBalance() float32 {
+func (o *DtoWalletBalanceResponse) GetRealTimeCreditBalance() string {
 	if o == nil || IsNil(o.RealTimeCreditBalance) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.RealTimeCreditBalance
@@ -684,7 +783,7 @@ func (o *DtoWalletBalanceResponse) GetRealTimeCreditBalance() float32 {
 
 // GetRealTimeCreditBalanceOk returns a tuple with the RealTimeCreditBalance field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoWalletBalanceResponse) GetRealTimeCreditBalanceOk() (*float32, bool) {
+func (o *DtoWalletBalanceResponse) GetRealTimeCreditBalanceOk() (*string, bool) {
 	if o == nil || IsNil(o.RealTimeCreditBalance) {
 		return nil, false
 	}
@@ -700,8 +799,8 @@ func (o *DtoWalletBalanceResponse) HasRealTimeCreditBalance() bool {
 	return false
 }
 
-// SetRealTimeCreditBalance gets a reference to the given float32 and assigns it to the RealTimeCreditBalance field.
-func (o *DtoWalletBalanceResponse) SetRealTimeCreditBalance(v float32) {
+// SetRealTimeCreditBalance gets a reference to the given string and assigns it to the RealTimeCreditBalance field.
+func (o *DtoWalletBalanceResponse) SetRealTimeCreditBalance(v string) {
 	o.RealTimeCreditBalance = &v
 }
 
@@ -769,36 +868,36 @@ func (o *DtoWalletBalanceResponse) SetTenantId(v string) {
 	o.TenantId = &v
 }
 
-// GetUnpaidInvoiceAmount returns the UnpaidInvoiceAmount field value if set, zero value otherwise.
-func (o *DtoWalletBalanceResponse) GetUnpaidInvoiceAmount() float32 {
-	if o == nil || IsNil(o.UnpaidInvoiceAmount) {
-		var ret float32
+// GetUnpaidInvoicesAmount returns the UnpaidInvoicesAmount field value if set, zero value otherwise.
+func (o *DtoWalletBalanceResponse) GetUnpaidInvoicesAmount() string {
+	if o == nil || IsNil(o.UnpaidInvoicesAmount) {
+		var ret string
 		return ret
 	}
-	return *o.UnpaidInvoiceAmount
+	return *o.UnpaidInvoicesAmount
 }
 
-// GetUnpaidInvoiceAmountOk returns a tuple with the UnpaidInvoiceAmount field value if set, nil otherwise
+// GetUnpaidInvoicesAmountOk returns a tuple with the UnpaidInvoicesAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoWalletBalanceResponse) GetUnpaidInvoiceAmountOk() (*float32, bool) {
-	if o == nil || IsNil(o.UnpaidInvoiceAmount) {
+func (o *DtoWalletBalanceResponse) GetUnpaidInvoicesAmountOk() (*string, bool) {
+	if o == nil || IsNil(o.UnpaidInvoicesAmount) {
 		return nil, false
 	}
-	return o.UnpaidInvoiceAmount, true
+	return o.UnpaidInvoicesAmount, true
 }
 
-// HasUnpaidInvoiceAmount returns a boolean if a field has been set.
-func (o *DtoWalletBalanceResponse) HasUnpaidInvoiceAmount() bool {
-	if o != nil && !IsNil(o.UnpaidInvoiceAmount) {
+// HasUnpaidInvoicesAmount returns a boolean if a field has been set.
+func (o *DtoWalletBalanceResponse) HasUnpaidInvoicesAmount() bool {
+	if o != nil && !IsNil(o.UnpaidInvoicesAmount) {
 		return true
 	}
 
 	return false
 }
 
-// SetUnpaidInvoiceAmount gets a reference to the given float32 and assigns it to the UnpaidInvoiceAmount field.
-func (o *DtoWalletBalanceResponse) SetUnpaidInvoiceAmount(v float32) {
-	o.UnpaidInvoiceAmount = &v
+// SetUnpaidInvoicesAmount gets a reference to the given string and assigns it to the UnpaidInvoicesAmount field.
+func (o *DtoWalletBalanceResponse) SetUnpaidInvoicesAmount(v string) {
+	o.UnpaidInvoicesAmount = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -939,6 +1038,15 @@ func (o DtoWalletBalanceResponse) MarshalJSON() ([]byte, error) {
 
 func (o DtoWalletBalanceResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AlertConfig) {
+		toSerialize["alert_config"] = o.AlertConfig
+	}
+	if !IsNil(o.AlertEnabled) {
+		toSerialize["alert_enabled"] = o.AlertEnabled
+	}
+	if !IsNil(o.AlertState) {
+		toSerialize["alert_state"] = o.AlertState
+	}
 	if !IsNil(o.AutoTopupAmount) {
 		toSerialize["auto_topup_amount"] = o.AutoTopupAmount
 	}
@@ -1005,8 +1113,8 @@ func (o DtoWalletBalanceResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId
 	}
-	if !IsNil(o.UnpaidInvoiceAmount) {
-		toSerialize["unpaid_invoice_amount"] = o.UnpaidInvoiceAmount
+	if !IsNil(o.UnpaidInvoicesAmount) {
+		toSerialize["unpaid_invoices_amount"] = o.UnpaidInvoicesAmount
 	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt

@@ -9,6 +9,8 @@
 
 * `InvoiceBillingReasonSubscriptionUpdate` (value: `"SUBSCRIPTION_UPDATE"`)
 
+* `InvoiceBillingReasonProration` (value: `"PRORATION"`)
+
 * `InvoiceBillingReasonManual` (value: `"MANUAL"`)
 
 

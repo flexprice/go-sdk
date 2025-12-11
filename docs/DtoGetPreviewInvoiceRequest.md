@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**PeriodEnd** | Pointer to **string** |  | [optional] 
-**PeriodStart** | Pointer to **string** |  | [optional] 
-**SubscriptionId** | **string** |  | 
+**PeriodEnd** | Pointer to **string** | period_end is the optional end date of the period to preview | [optional] 
+**PeriodStart** | Pointer to **string** | period_start is the optional start date of the period to preview | [optional] 
+**SubscriptionId** | **string** | subscription_id is the unique identifier of the subscription to preview invoice for | 
 
 ## Methods
 

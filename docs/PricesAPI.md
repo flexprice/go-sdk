@@ -4,6 +4,7 @@ All URIs are relative to */v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**PricesBulkPost**](PricesAPI.md#PricesBulkPost) | **Post** /prices/bulk | Create multiple prices in bulk
 [**PricesGet**](PricesAPI.md#PricesGet) | **Get** /prices | Get prices
 [**PricesIdDelete**](PricesAPI.md#PricesIdDelete) | **Delete** /prices/{id} | Delete a price
 [**PricesIdGet**](PricesAPI.md#PricesIdGet) | **Get** /prices/{id} | Get a price by ID
@@ -12,9 +13,75 @@ Method | HTTP request | Description
 
 
 
+## PricesBulkPost
+
+> DtoCreateBulkPriceResponse PricesBulkPost(ctx).Prices(prices).Execute()
+
+Create multiple prices in bulk
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	prices := *openapiclient.NewDtoCreateBulkPriceRequest([]openapiclient.DtoCreatePriceRequest{*openapiclient.NewDtoCreatePriceRequest(openapiclient.types.BillingCadence("RECURRING"), openapiclient.types.BillingModel("FLAT_FEE"), openapiclient.types.BillingPeriod("MONTHLY"), "Currency_example", openapiclient.types.InvoiceCadence("ARREAR"), openapiclient.types.PriceUnitType("FIAT"), openapiclient.types.PriceType("USAGE"))}) // DtoCreateBulkPriceRequest | Bulk price configuration
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PricesAPI.PricesBulkPost(context.Background()).Prices(prices).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PricesAPI.PricesBulkPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PricesBulkPost`: DtoCreateBulkPriceResponse
+	fmt.Fprintf(os.Stdout, "Response from `PricesAPI.PricesBulkPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPricesBulkPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **prices** | [**DtoCreateBulkPriceRequest**](DtoCreateBulkPriceRequest.md) | Bulk price configuration | 
+
+### Return type
+
+[**DtoCreateBulkPriceResponse**](DtoCreateBulkPriceResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## PricesGet
 
-> DtoListPricesResponse PricesGet(ctx).EndTime(endTime).Expand(expand).Limit(limit).Offset(offset).Order(order).PlanIds(planIds).PriceIds(priceIds).Sort(sort).StartTime(startTime).Status(status).Execute()
+> DtoListPricesResponse PricesGet(ctx).AllowExpiredPrices(allowExpiredPrices).EndTime(endTime).EntityIds(entityIds).EntityType(entityType).Expand(expand).Limit(limit).MeterIds(meterIds).Offset(offset).Order(order).ParentPriceId(parentPriceId).PlanIds(planIds).PriceIds(priceIds).Sort(sort).StartDateLt(startDateLt).StartTime(startTime).Status(status).SubscriptionId(subscriptionId).Execute()
 
 Get prices
 
@@ -33,20 +100,27 @@ import (
 )
 
 func main() {
+	allowExpiredPrices := true // bool |  (optional) (default to false)
 	endTime := "endTime_example" // string |  (optional)
+	entityIds := []string{"Inner_example"} // []string |  (optional)
+	entityType := "entityType_example" // string |  (optional)
 	expand := "expand_example" // string |  (optional)
 	limit := int32(56) // int32 |  (optional)
+	meterIds := []string{"Inner_example"} // []string |  (optional)
 	offset := int32(56) // int32 |  (optional)
 	order := "order_example" // string |  (optional)
-	planIds := []string{"Inner_example"} // []string |  (optional)
+	parentPriceId := "parentPriceId_example" // string |  (optional)
+	planIds := []string{"Inner_example"} // []string | Price override filtering fields (optional)
 	priceIds := []string{"Inner_example"} // []string |  (optional)
 	sort := "sort_example" // string |  (optional)
+	startDateLt := "startDateLt_example" // string |  (optional)
 	startTime := "startTime_example" // string |  (optional)
 	status := "status_example" // string |  (optional)
+	subscriptionId := "subscriptionId_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PricesAPI.PricesGet(context.Background()).EndTime(endTime).Expand(expand).Limit(limit).Offset(offset).Order(order).PlanIds(planIds).PriceIds(priceIds).Sort(sort).StartTime(startTime).Status(status).Execute()
+	resp, r, err := apiClient.PricesAPI.PricesGet(context.Background()).AllowExpiredPrices(allowExpiredPrices).EndTime(endTime).EntityIds(entityIds).EntityType(entityType).Expand(expand).Limit(limit).MeterIds(meterIds).Offset(offset).Order(order).ParentPriceId(parentPriceId).PlanIds(planIds).PriceIds(priceIds).Sort(sort).StartDateLt(startDateLt).StartTime(startTime).Status(status).SubscriptionId(subscriptionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PricesAPI.PricesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -67,16 +141,23 @@ Other parameters are passed through a pointer to a apiPricesGetRequest struct vi
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **allowExpiredPrices** | **bool** |  | [default to false]
  **endTime** | **string** |  | 
+ **entityIds** | **[]string** |  | 
+ **entityType** | **string** |  | 
  **expand** | **string** |  | 
  **limit** | **int32** |  | 
+ **meterIds** | **[]string** |  | 
  **offset** | **int32** |  | 
  **order** | **string** |  | 
- **planIds** | **[]string** |  | 
+ **parentPriceId** | **string** |  | 
+ **planIds** | **[]string** | Price override filtering fields | 
  **priceIds** | **[]string** |  | 
  **sort** | **string** |  | 
+ **startDateLt** | **string** |  | 
  **startTime** | **string** |  | 
  **status** | **string** |  | 
+ **subscriptionId** | **string** |  | 
 
 ### Return type
 
@@ -329,7 +410,7 @@ import (
 )
 
 func main() {
-	price := *openapiclient.NewDtoCreatePriceRequest(openapiclient.types.BillingCadence("RECURRING"), openapiclient.types.BillingModel("FLAT_FEE"), openapiclient.types.BillingPeriod("MONTHLY"), int32(123), "Currency_example", openapiclient.types.InvoiceCadence("ARREAR"), openapiclient.types.PriceType("USAGE")) // DtoCreatePriceRequest | Price configuration
+	price := *openapiclient.NewDtoCreatePriceRequest(openapiclient.types.BillingCadence("RECURRING"), openapiclient.types.BillingModel("FLAT_FEE"), openapiclient.types.BillingPeriod("MONTHLY"), "Currency_example", openapiclient.types.InvoiceCadence("ARREAR"), openapiclient.types.PriceUnitType("FIAT"), openapiclient.types.PriceType("USAGE")) // DtoCreatePriceRequest | Price configuration
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -13,23 +13,36 @@ Name | Type | Description | Notes
 **CancelAt** | Pointer to **string** | CancelAt is the date the subscription will be canceled | [optional] 
 **CancelAtPeriodEnd** | Pointer to **bool** | CancelAtPeriodEnd is whether the subscription was canceled at the end of the current period | [optional] 
 **CancelledAt** | Pointer to **string** | CanceledAt is the date the subscription was canceled | [optional] 
+**CollectionMethod** | Pointer to **string** | CollectionMethod determines how invoices are collected | [optional] 
+**CommitmentAmount** | Pointer to **float32** | CommitmentAmount is the minimum amount a customer commits to paying for a billing period | [optional] 
+**CouponAssociations** | Pointer to [**[]DtoCouponAssociationResponse**](DtoCouponAssociationResponse.md) | CouponAssociations are the coupon associations for this subscription | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
+**CreditGrants** | Pointer to [**[]DtoCreditGrantResponse**](DtoCreditGrantResponse.md) | Credit grants are the credit grants for this subscription | [optional] 
 **Currency** | Pointer to **string** | Currency is the currency of the subscription in lowercase 3 digit ISO codes | [optional] 
 **CurrentPeriodEnd** | Pointer to **string** | CurrentPeriodEnd is the end of the current period that the subscription has been invoiced for. At the end of this period, a new invoice will be created. | [optional] 
 **CurrentPeriodStart** | Pointer to **string** | CurrentPeriodStart is the end of the current period that the subscription has been invoiced for. At the end of this period, a new invoice will be created. | [optional] 
 **Customer** | Pointer to [**DtoCustomerResponse**](DtoCustomerResponse.md) |  | [optional] 
 **CustomerId** | Pointer to **string** | CustomerID is the identifier for the customer in our system | [optional] 
+**CustomerTimezone** | Pointer to **string** |  | [optional] 
+**EnableTrueUp** | Pointer to **bool** |  | [optional] 
 **EndDate** | Pointer to **string** | EndDate is the end date of the subscription | [optional] 
 **EnvironmentId** | Pointer to **string** | EnvironmentID is the environment identifier for the subscription | [optional] 
+**GatewayPaymentMethodId** | Pointer to **string** | GatewayPaymentMethodID is the gateway payment method ID for this subscription | [optional] 
 **Id** | Pointer to **string** | ID is the unique identifier for the subscription | [optional] 
+**InvoicingCustomerId** | Pointer to **string** | InvoicingCustomerID is the customer ID to use for invoicing This can differ from the subscription customer (e.g., parent company invoicing for child company) | [optional] 
+**LatestInvoice** | Pointer to [**DtoInvoiceResponse**](DtoInvoiceResponse.md) |  | [optional] 
 **LineItems** | Pointer to [**[]SubscriptionSubscriptionLineItem**](SubscriptionSubscriptionLineItem.md) |  | [optional] 
 **LookupKey** | Pointer to **string** | LookupKey is the key used to lookup the subscription in our system | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
+**OverageFactor** | Pointer to **float32** | OverageFactor is a multiplier applied to usage beyond the commitment amount | [optional] 
 **PauseStatus** | Pointer to [**TypesPauseStatus**](TypesPauseStatus.md) |  | [optional] 
 **Pauses** | Pointer to [**[]SubscriptionSubscriptionPause**](SubscriptionSubscriptionPause.md) |  | [optional] 
+**PaymentBehavior** | Pointer to **string** | PaymentBehavior determines how subscription payments are handled | [optional] 
+**Phases** | Pointer to [**[]DtoSubscriptionPhaseResponse**](DtoSubscriptionPhaseResponse.md) | Phases are the subscription phases for this subscription | [optional] 
 **Plan** | Pointer to [**DtoPlanResponse**](DtoPlanResponse.md) |  | [optional] 
 **PlanId** | Pointer to **string** | PlanID is the identifier for the plan in our system | [optional] 
+**ProrationBehavior** | Pointer to [**TypesProrationBehavior**](TypesProrationBehavior.md) |  | [optional] 
 **StartDate** | Pointer to **string** | StartDate is the start date of the subscription | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **SubscriptionStatus** | Pointer to [**TypesSubscriptionStatus**](TypesSubscriptionStatus.md) |  | [optional] 
@@ -284,6 +297,81 @@ SetCancelledAt sets CancelledAt field to given value.
 
 HasCancelledAt returns a boolean if a field has been set.
 
+### GetCollectionMethod
+
+`func (o *DtoSubscriptionResponse) GetCollectionMethod() string`
+
+GetCollectionMethod returns the CollectionMethod field if non-nil, zero value otherwise.
+
+### GetCollectionMethodOk
+
+`func (o *DtoSubscriptionResponse) GetCollectionMethodOk() (*string, bool)`
+
+GetCollectionMethodOk returns a tuple with the CollectionMethod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCollectionMethod
+
+`func (o *DtoSubscriptionResponse) SetCollectionMethod(v string)`
+
+SetCollectionMethod sets CollectionMethod field to given value.
+
+### HasCollectionMethod
+
+`func (o *DtoSubscriptionResponse) HasCollectionMethod() bool`
+
+HasCollectionMethod returns a boolean if a field has been set.
+
+### GetCommitmentAmount
+
+`func (o *DtoSubscriptionResponse) GetCommitmentAmount() float32`
+
+GetCommitmentAmount returns the CommitmentAmount field if non-nil, zero value otherwise.
+
+### GetCommitmentAmountOk
+
+`func (o *DtoSubscriptionResponse) GetCommitmentAmountOk() (*float32, bool)`
+
+GetCommitmentAmountOk returns a tuple with the CommitmentAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentAmount
+
+`func (o *DtoSubscriptionResponse) SetCommitmentAmount(v float32)`
+
+SetCommitmentAmount sets CommitmentAmount field to given value.
+
+### HasCommitmentAmount
+
+`func (o *DtoSubscriptionResponse) HasCommitmentAmount() bool`
+
+HasCommitmentAmount returns a boolean if a field has been set.
+
+### GetCouponAssociations
+
+`func (o *DtoSubscriptionResponse) GetCouponAssociations() []DtoCouponAssociationResponse`
+
+GetCouponAssociations returns the CouponAssociations field if non-nil, zero value otherwise.
+
+### GetCouponAssociationsOk
+
+`func (o *DtoSubscriptionResponse) GetCouponAssociationsOk() (*[]DtoCouponAssociationResponse, bool)`
+
+GetCouponAssociationsOk returns a tuple with the CouponAssociations field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCouponAssociations
+
+`func (o *DtoSubscriptionResponse) SetCouponAssociations(v []DtoCouponAssociationResponse)`
+
+SetCouponAssociations sets CouponAssociations field to given value.
+
+### HasCouponAssociations
+
+`func (o *DtoSubscriptionResponse) HasCouponAssociations() bool`
+
+HasCouponAssociations returns a boolean if a field has been set.
+
 ### GetCreatedAt
 
 `func (o *DtoSubscriptionResponse) GetCreatedAt() string`
@@ -333,6 +421,31 @@ SetCreatedBy sets CreatedBy field to given value.
 `func (o *DtoSubscriptionResponse) HasCreatedBy() bool`
 
 HasCreatedBy returns a boolean if a field has been set.
+
+### GetCreditGrants
+
+`func (o *DtoSubscriptionResponse) GetCreditGrants() []DtoCreditGrantResponse`
+
+GetCreditGrants returns the CreditGrants field if non-nil, zero value otherwise.
+
+### GetCreditGrantsOk
+
+`func (o *DtoSubscriptionResponse) GetCreditGrantsOk() (*[]DtoCreditGrantResponse, bool)`
+
+GetCreditGrantsOk returns a tuple with the CreditGrants field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreditGrants
+
+`func (o *DtoSubscriptionResponse) SetCreditGrants(v []DtoCreditGrantResponse)`
+
+SetCreditGrants sets CreditGrants field to given value.
+
+### HasCreditGrants
+
+`func (o *DtoSubscriptionResponse) HasCreditGrants() bool`
+
+HasCreditGrants returns a boolean if a field has been set.
 
 ### GetCurrency
 
@@ -459,6 +572,56 @@ SetCustomerId sets CustomerId field to given value.
 
 HasCustomerId returns a boolean if a field has been set.
 
+### GetCustomerTimezone
+
+`func (o *DtoSubscriptionResponse) GetCustomerTimezone() string`
+
+GetCustomerTimezone returns the CustomerTimezone field if non-nil, zero value otherwise.
+
+### GetCustomerTimezoneOk
+
+`func (o *DtoSubscriptionResponse) GetCustomerTimezoneOk() (*string, bool)`
+
+GetCustomerTimezoneOk returns a tuple with the CustomerTimezone field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomerTimezone
+
+`func (o *DtoSubscriptionResponse) SetCustomerTimezone(v string)`
+
+SetCustomerTimezone sets CustomerTimezone field to given value.
+
+### HasCustomerTimezone
+
+`func (o *DtoSubscriptionResponse) HasCustomerTimezone() bool`
+
+HasCustomerTimezone returns a boolean if a field has been set.
+
+### GetEnableTrueUp
+
+`func (o *DtoSubscriptionResponse) GetEnableTrueUp() bool`
+
+GetEnableTrueUp returns the EnableTrueUp field if non-nil, zero value otherwise.
+
+### GetEnableTrueUpOk
+
+`func (o *DtoSubscriptionResponse) GetEnableTrueUpOk() (*bool, bool)`
+
+GetEnableTrueUpOk returns a tuple with the EnableTrueUp field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnableTrueUp
+
+`func (o *DtoSubscriptionResponse) SetEnableTrueUp(v bool)`
+
+SetEnableTrueUp sets EnableTrueUp field to given value.
+
+### HasEnableTrueUp
+
+`func (o *DtoSubscriptionResponse) HasEnableTrueUp() bool`
+
+HasEnableTrueUp returns a boolean if a field has been set.
+
 ### GetEndDate
 
 `func (o *DtoSubscriptionResponse) GetEndDate() string`
@@ -509,6 +672,31 @@ SetEnvironmentId sets EnvironmentId field to given value.
 
 HasEnvironmentId returns a boolean if a field has been set.
 
+### GetGatewayPaymentMethodId
+
+`func (o *DtoSubscriptionResponse) GetGatewayPaymentMethodId() string`
+
+GetGatewayPaymentMethodId returns the GatewayPaymentMethodId field if non-nil, zero value otherwise.
+
+### GetGatewayPaymentMethodIdOk
+
+`func (o *DtoSubscriptionResponse) GetGatewayPaymentMethodIdOk() (*string, bool)`
+
+GetGatewayPaymentMethodIdOk returns a tuple with the GatewayPaymentMethodId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGatewayPaymentMethodId
+
+`func (o *DtoSubscriptionResponse) SetGatewayPaymentMethodId(v string)`
+
+SetGatewayPaymentMethodId sets GatewayPaymentMethodId field to given value.
+
+### HasGatewayPaymentMethodId
+
+`func (o *DtoSubscriptionResponse) HasGatewayPaymentMethodId() bool`
+
+HasGatewayPaymentMethodId returns a boolean if a field has been set.
+
 ### GetId
 
 `func (o *DtoSubscriptionResponse) GetId() string`
@@ -533,6 +721,56 @@ SetId sets Id field to given value.
 `func (o *DtoSubscriptionResponse) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetInvoicingCustomerId
+
+`func (o *DtoSubscriptionResponse) GetInvoicingCustomerId() string`
+
+GetInvoicingCustomerId returns the InvoicingCustomerId field if non-nil, zero value otherwise.
+
+### GetInvoicingCustomerIdOk
+
+`func (o *DtoSubscriptionResponse) GetInvoicingCustomerIdOk() (*string, bool)`
+
+GetInvoicingCustomerIdOk returns a tuple with the InvoicingCustomerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInvoicingCustomerId
+
+`func (o *DtoSubscriptionResponse) SetInvoicingCustomerId(v string)`
+
+SetInvoicingCustomerId sets InvoicingCustomerId field to given value.
+
+### HasInvoicingCustomerId
+
+`func (o *DtoSubscriptionResponse) HasInvoicingCustomerId() bool`
+
+HasInvoicingCustomerId returns a boolean if a field has been set.
+
+### GetLatestInvoice
+
+`func (o *DtoSubscriptionResponse) GetLatestInvoice() DtoInvoiceResponse`
+
+GetLatestInvoice returns the LatestInvoice field if non-nil, zero value otherwise.
+
+### GetLatestInvoiceOk
+
+`func (o *DtoSubscriptionResponse) GetLatestInvoiceOk() (*DtoInvoiceResponse, bool)`
+
+GetLatestInvoiceOk returns a tuple with the LatestInvoice field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLatestInvoice
+
+`func (o *DtoSubscriptionResponse) SetLatestInvoice(v DtoInvoiceResponse)`
+
+SetLatestInvoice sets LatestInvoice field to given value.
+
+### HasLatestInvoice
+
+`func (o *DtoSubscriptionResponse) HasLatestInvoice() bool`
+
+HasLatestInvoice returns a boolean if a field has been set.
 
 ### GetLineItems
 
@@ -609,6 +847,31 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
+### GetOverageFactor
+
+`func (o *DtoSubscriptionResponse) GetOverageFactor() float32`
+
+GetOverageFactor returns the OverageFactor field if non-nil, zero value otherwise.
+
+### GetOverageFactorOk
+
+`func (o *DtoSubscriptionResponse) GetOverageFactorOk() (*float32, bool)`
+
+GetOverageFactorOk returns a tuple with the OverageFactor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOverageFactor
+
+`func (o *DtoSubscriptionResponse) SetOverageFactor(v float32)`
+
+SetOverageFactor sets OverageFactor field to given value.
+
+### HasOverageFactor
+
+`func (o *DtoSubscriptionResponse) HasOverageFactor() bool`
+
+HasOverageFactor returns a boolean if a field has been set.
+
 ### GetPauseStatus
 
 `func (o *DtoSubscriptionResponse) GetPauseStatus() TypesPauseStatus`
@@ -659,6 +922,56 @@ SetPauses sets Pauses field to given value.
 
 HasPauses returns a boolean if a field has been set.
 
+### GetPaymentBehavior
+
+`func (o *DtoSubscriptionResponse) GetPaymentBehavior() string`
+
+GetPaymentBehavior returns the PaymentBehavior field if non-nil, zero value otherwise.
+
+### GetPaymentBehaviorOk
+
+`func (o *DtoSubscriptionResponse) GetPaymentBehaviorOk() (*string, bool)`
+
+GetPaymentBehaviorOk returns a tuple with the PaymentBehavior field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPaymentBehavior
+
+`func (o *DtoSubscriptionResponse) SetPaymentBehavior(v string)`
+
+SetPaymentBehavior sets PaymentBehavior field to given value.
+
+### HasPaymentBehavior
+
+`func (o *DtoSubscriptionResponse) HasPaymentBehavior() bool`
+
+HasPaymentBehavior returns a boolean if a field has been set.
+
+### GetPhases
+
+`func (o *DtoSubscriptionResponse) GetPhases() []DtoSubscriptionPhaseResponse`
+
+GetPhases returns the Phases field if non-nil, zero value otherwise.
+
+### GetPhasesOk
+
+`func (o *DtoSubscriptionResponse) GetPhasesOk() (*[]DtoSubscriptionPhaseResponse, bool)`
+
+GetPhasesOk returns a tuple with the Phases field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPhases
+
+`func (o *DtoSubscriptionResponse) SetPhases(v []DtoSubscriptionPhaseResponse)`
+
+SetPhases sets Phases field to given value.
+
+### HasPhases
+
+`func (o *DtoSubscriptionResponse) HasPhases() bool`
+
+HasPhases returns a boolean if a field has been set.
+
 ### GetPlan
 
 `func (o *DtoSubscriptionResponse) GetPlan() DtoPlanResponse`
@@ -708,6 +1021,31 @@ SetPlanId sets PlanId field to given value.
 `func (o *DtoSubscriptionResponse) HasPlanId() bool`
 
 HasPlanId returns a boolean if a field has been set.
+
+### GetProrationBehavior
+
+`func (o *DtoSubscriptionResponse) GetProrationBehavior() TypesProrationBehavior`
+
+GetProrationBehavior returns the ProrationBehavior field if non-nil, zero value otherwise.
+
+### GetProrationBehaviorOk
+
+`func (o *DtoSubscriptionResponse) GetProrationBehaviorOk() (*TypesProrationBehavior, bool)`
+
+GetProrationBehaviorOk returns a tuple with the ProrationBehavior field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProrationBehavior
+
+`func (o *DtoSubscriptionResponse) SetProrationBehavior(v TypesProrationBehavior)`
+
+SetProrationBehavior sets ProrationBehavior field to given value.
+
+### HasProrationBehavior
+
+`func (o *DtoSubscriptionResponse) HasProrationBehavior() bool`
+
+HasProrationBehavior returns a boolean if a field has been set.
 
 ### GetStartDate
 

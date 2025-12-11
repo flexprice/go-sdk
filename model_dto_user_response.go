@@ -19,9 +19,12 @@ var _ MappedNullable = &DtoUserResponse{}
 
 // DtoUserResponse struct for DtoUserResponse
 type DtoUserResponse struct {
+	// Empty for service accounts
 	Email *string `json:"email,omitempty"`
 	Id *string `json:"id,omitempty"`
+	Roles []string `json:"roles,omitempty"`
 	Tenant *DtoTenantResponse `json:"tenant,omitempty"`
+	Type *TypesUserType `json:"type,omitempty"`
 }
 
 // NewDtoUserResponse instantiates a new DtoUserResponse object
@@ -105,6 +108,38 @@ func (o *DtoUserResponse) SetId(v string) {
 	o.Id = &v
 }
 
+// GetRoles returns the Roles field value if set, zero value otherwise.
+func (o *DtoUserResponse) GetRoles() []string {
+	if o == nil || IsNil(o.Roles) {
+		var ret []string
+		return ret
+	}
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUserResponse) GetRolesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Roles) {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// HasRoles returns a boolean if a field has been set.
+func (o *DtoUserResponse) HasRoles() bool {
+	if o != nil && !IsNil(o.Roles) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *DtoUserResponse) SetRoles(v []string) {
+	o.Roles = v
+}
+
 // GetTenant returns the Tenant field value if set, zero value otherwise.
 func (o *DtoUserResponse) GetTenant() DtoTenantResponse {
 	if o == nil || IsNil(o.Tenant) {
@@ -137,6 +172,38 @@ func (o *DtoUserResponse) SetTenant(v DtoTenantResponse) {
 	o.Tenant = &v
 }
 
+// GetType returns the Type field value if set, zero value otherwise.
+func (o *DtoUserResponse) GetType() TypesUserType {
+	if o == nil || IsNil(o.Type) {
+		var ret TypesUserType
+		return ret
+	}
+	return *o.Type
+}
+
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUserResponse) GetTypeOk() (*TypesUserType, bool) {
+	if o == nil || IsNil(o.Type) {
+		return nil, false
+	}
+	return o.Type, true
+}
+
+// HasType returns a boolean if a field has been set.
+func (o *DtoUserResponse) HasType() bool {
+	if o != nil && !IsNil(o.Type) {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given TypesUserType and assigns it to the Type field.
+func (o *DtoUserResponse) SetType(v TypesUserType) {
+	o.Type = &v
+}
+
 func (o DtoUserResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -153,8 +220,14 @@ func (o DtoUserResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
+	}
 	if !IsNil(o.Tenant) {
 		toSerialize["tenant"] = o.Tenant
+	}
+	if !IsNil(o.Type) {
+		toSerialize["type"] = o.Type
 	}
 	return toSerialize, nil
 }

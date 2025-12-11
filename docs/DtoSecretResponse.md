@@ -10,11 +10,12 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **LastUsedAt** | Pointer to **string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Permissions** | Pointer to **[]string** |  | [optional] 
 **Provider** | Pointer to [**TypesSecretProvider**](TypesSecretProvider.md) |  | [optional] 
+**Roles** | Pointer to **[]string** | RBAC roles | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **Type** | Pointer to [**TypesSecretType**](TypesSecretType.md) |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
+**UserType** | Pointer to [**TypesUserType**](TypesUserType.md) |  | [optional] 
 
 ## Methods
 
@@ -185,31 +186,6 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-### GetPermissions
-
-`func (o *DtoSecretResponse) GetPermissions() []string`
-
-GetPermissions returns the Permissions field if non-nil, zero value otherwise.
-
-### GetPermissionsOk
-
-`func (o *DtoSecretResponse) GetPermissionsOk() (*[]string, bool)`
-
-GetPermissionsOk returns a tuple with the Permissions field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPermissions
-
-`func (o *DtoSecretResponse) SetPermissions(v []string)`
-
-SetPermissions sets Permissions field to given value.
-
-### HasPermissions
-
-`func (o *DtoSecretResponse) HasPermissions() bool`
-
-HasPermissions returns a boolean if a field has been set.
-
 ### GetProvider
 
 `func (o *DtoSecretResponse) GetProvider() TypesSecretProvider`
@@ -234,6 +210,31 @@ SetProvider sets Provider field to given value.
 `func (o *DtoSecretResponse) HasProvider() bool`
 
 HasProvider returns a boolean if a field has been set.
+
+### GetRoles
+
+`func (o *DtoSecretResponse) GetRoles() []string`
+
+GetRoles returns the Roles field if non-nil, zero value otherwise.
+
+### GetRolesOk
+
+`func (o *DtoSecretResponse) GetRolesOk() (*[]string, bool)`
+
+GetRolesOk returns a tuple with the Roles field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRoles
+
+`func (o *DtoSecretResponse) SetRoles(v []string)`
+
+SetRoles sets Roles field to given value.
+
+### HasRoles
+
+`func (o *DtoSecretResponse) HasRoles() bool`
+
+HasRoles returns a boolean if a field has been set.
 
 ### GetStatus
 
@@ -309,6 +310,31 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *DtoSecretResponse) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetUserType
+
+`func (o *DtoSecretResponse) GetUserType() TypesUserType`
+
+GetUserType returns the UserType field if non-nil, zero value otherwise.
+
+### GetUserTypeOk
+
+`func (o *DtoSecretResponse) GetUserTypeOk() (*TypesUserType, bool)`
+
+GetUserTypeOk returns a tuple with the UserType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUserType
+
+`func (o *DtoSecretResponse) SetUserType(v TypesUserType)`
+
+SetUserType sets UserType field to given value.
+
+### HasUserType
+
+`func (o *DtoSecretResponse) HasUserType() bool`
+
+HasUserType returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

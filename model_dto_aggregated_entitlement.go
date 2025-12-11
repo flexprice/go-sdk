@@ -24,7 +24,7 @@ type DtoAggregatedEntitlement struct {
 	// For static/SLA features
 	StaticValues []string `json:"static_values,omitempty"`
 	UsageLimit *int32 `json:"usage_limit,omitempty"`
-	UsageResetPeriod *TypesBillingPeriod `json:"usage_reset_period,omitempty"`
+	UsageResetPeriod *TypesEntitlementUsageResetPeriod `json:"usage_reset_period,omitempty"`
 }
 
 // NewDtoAggregatedEntitlement instantiates a new DtoAggregatedEntitlement object
@@ -173,9 +173,9 @@ func (o *DtoAggregatedEntitlement) SetUsageLimit(v int32) {
 }
 
 // GetUsageResetPeriod returns the UsageResetPeriod field value if set, zero value otherwise.
-func (o *DtoAggregatedEntitlement) GetUsageResetPeriod() TypesBillingPeriod {
+func (o *DtoAggregatedEntitlement) GetUsageResetPeriod() TypesEntitlementUsageResetPeriod {
 	if o == nil || IsNil(o.UsageResetPeriod) {
-		var ret TypesBillingPeriod
+		var ret TypesEntitlementUsageResetPeriod
 		return ret
 	}
 	return *o.UsageResetPeriod
@@ -183,7 +183,7 @@ func (o *DtoAggregatedEntitlement) GetUsageResetPeriod() TypesBillingPeriod {
 
 // GetUsageResetPeriodOk returns a tuple with the UsageResetPeriod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoAggregatedEntitlement) GetUsageResetPeriodOk() (*TypesBillingPeriod, bool) {
+func (o *DtoAggregatedEntitlement) GetUsageResetPeriodOk() (*TypesEntitlementUsageResetPeriod, bool) {
 	if o == nil || IsNil(o.UsageResetPeriod) {
 		return nil, false
 	}
@@ -199,8 +199,8 @@ func (o *DtoAggregatedEntitlement) HasUsageResetPeriod() bool {
 	return false
 }
 
-// SetUsageResetPeriod gets a reference to the given TypesBillingPeriod and assigns it to the UsageResetPeriod field.
-func (o *DtoAggregatedEntitlement) SetUsageResetPeriod(v TypesBillingPeriod) {
+// SetUsageResetPeriod gets a reference to the given TypesEntitlementUsageResetPeriod and assigns it to the UsageResetPeriod field.
+func (o *DtoAggregatedEntitlement) SetUsageResetPeriod(v TypesEntitlementUsageResetPeriod) {
 	o.UsageResetPeriod = &v
 }
 

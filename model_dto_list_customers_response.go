@@ -17,7 +17,7 @@ import (
 // checks if the DtoListCustomersResponse type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DtoListCustomersResponse{}
 
-// DtoListCustomersResponse struct for DtoListCustomersResponse
+// DtoListCustomersResponse Response object for listing customers with pagination
 type DtoListCustomersResponse struct {
 	Items []DtoCustomerResponse `json:"items,omitempty"`
 	Pagination *TypesPaginationResponse `json:"pagination,omitempty"`

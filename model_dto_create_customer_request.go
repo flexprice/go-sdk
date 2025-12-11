@@ -19,18 +19,36 @@ import (
 // checks if the DtoCreateCustomerRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DtoCreateCustomerRequest{}
 
-// DtoCreateCustomerRequest struct for DtoCreateCustomerRequest
+// DtoCreateCustomerRequest Request object for creating a new customer in the system
 type DtoCreateCustomerRequest struct {
+	// address_city is the city name with maximum 100 characters
 	AddressCity *string `json:"address_city,omitempty"`
+	// address_country is the two-letter ISO 3166-1 alpha-2 country code
 	AddressCountry *string `json:"address_country,omitempty"`
+	// address_line1 is the primary address line with maximum 255 characters
 	AddressLine1 *string `json:"address_line1,omitempty"`
+	// address_line2 is the secondary address line with maximum 255 characters
 	AddressLine2 *string `json:"address_line2,omitempty"`
+	// address_postal_code is the ZIP code or postal code with maximum 20 characters
 	AddressPostalCode *string `json:"address_postal_code,omitempty"`
+	// address_state is the state, province, or region name with maximum 100 characters
 	AddressState *string `json:"address_state,omitempty"`
+	// email is the customer's email address and must be a valid email format if provided
 	Email *string `json:"email,omitempty"`
+	// external_id is the unique identifier from your system to reference this customer (required)
 	ExternalId string `json:"external_id"`
+	// integration_entity_mapping contains provider integration mappings for this customer
+	IntegrationEntityMapping []DtoIntegrationEntityMapping `json:"integration_entity_mapping,omitempty"`
+	// metadata contains additional key-value pairs for storing extra information
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	// name is the full name or company name of the customer
 	Name *string `json:"name,omitempty"`
+	// parent_customer_external_id is the external ID of the parent customer from your system Exactly one of parent_customer_id or parent_customer_external_id may be provided
+	ParentCustomerExternalId *string `json:"parent_customer_external_id,omitempty"`
+	// parent_customer_id is the internal FlexPrice ID of the parent customer
+	ParentCustomerId *string `json:"parent_customer_id,omitempty"`
+	// tax_rate_overrides contains tax rate configurations to be linked to this customer
+	TaxRateOverrides []DtoTaxRateOverride `json:"tax_rate_overrides,omitempty"`
 }
 
 type _DtoCreateCustomerRequest DtoCreateCustomerRequest
@@ -301,6 +319,38 @@ func (o *DtoCreateCustomerRequest) SetExternalId(v string) {
 	o.ExternalId = v
 }
 
+// GetIntegrationEntityMapping returns the IntegrationEntityMapping field value if set, zero value otherwise.
+func (o *DtoCreateCustomerRequest) GetIntegrationEntityMapping() []DtoIntegrationEntityMapping {
+	if o == nil || IsNil(o.IntegrationEntityMapping) {
+		var ret []DtoIntegrationEntityMapping
+		return ret
+	}
+	return o.IntegrationEntityMapping
+}
+
+// GetIntegrationEntityMappingOk returns a tuple with the IntegrationEntityMapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateCustomerRequest) GetIntegrationEntityMappingOk() ([]DtoIntegrationEntityMapping, bool) {
+	if o == nil || IsNil(o.IntegrationEntityMapping) {
+		return nil, false
+	}
+	return o.IntegrationEntityMapping, true
+}
+
+// HasIntegrationEntityMapping returns a boolean if a field has been set.
+func (o *DtoCreateCustomerRequest) HasIntegrationEntityMapping() bool {
+	if o != nil && !IsNil(o.IntegrationEntityMapping) {
+		return true
+	}
+
+	return false
+}
+
+// SetIntegrationEntityMapping gets a reference to the given []DtoIntegrationEntityMapping and assigns it to the IntegrationEntityMapping field.
+func (o *DtoCreateCustomerRequest) SetIntegrationEntityMapping(v []DtoIntegrationEntityMapping) {
+	o.IntegrationEntityMapping = v
+}
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *DtoCreateCustomerRequest) GetMetadata() map[string]string {
 	if o == nil || IsNil(o.Metadata) {
@@ -365,6 +415,102 @@ func (o *DtoCreateCustomerRequest) SetName(v string) {
 	o.Name = &v
 }
 
+// GetParentCustomerExternalId returns the ParentCustomerExternalId field value if set, zero value otherwise.
+func (o *DtoCreateCustomerRequest) GetParentCustomerExternalId() string {
+	if o == nil || IsNil(o.ParentCustomerExternalId) {
+		var ret string
+		return ret
+	}
+	return *o.ParentCustomerExternalId
+}
+
+// GetParentCustomerExternalIdOk returns a tuple with the ParentCustomerExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateCustomerRequest) GetParentCustomerExternalIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ParentCustomerExternalId) {
+		return nil, false
+	}
+	return o.ParentCustomerExternalId, true
+}
+
+// HasParentCustomerExternalId returns a boolean if a field has been set.
+func (o *DtoCreateCustomerRequest) HasParentCustomerExternalId() bool {
+	if o != nil && !IsNil(o.ParentCustomerExternalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentCustomerExternalId gets a reference to the given string and assigns it to the ParentCustomerExternalId field.
+func (o *DtoCreateCustomerRequest) SetParentCustomerExternalId(v string) {
+	o.ParentCustomerExternalId = &v
+}
+
+// GetParentCustomerId returns the ParentCustomerId field value if set, zero value otherwise.
+func (o *DtoCreateCustomerRequest) GetParentCustomerId() string {
+	if o == nil || IsNil(o.ParentCustomerId) {
+		var ret string
+		return ret
+	}
+	return *o.ParentCustomerId
+}
+
+// GetParentCustomerIdOk returns a tuple with the ParentCustomerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateCustomerRequest) GetParentCustomerIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ParentCustomerId) {
+		return nil, false
+	}
+	return o.ParentCustomerId, true
+}
+
+// HasParentCustomerId returns a boolean if a field has been set.
+func (o *DtoCreateCustomerRequest) HasParentCustomerId() bool {
+	if o != nil && !IsNil(o.ParentCustomerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentCustomerId gets a reference to the given string and assigns it to the ParentCustomerId field.
+func (o *DtoCreateCustomerRequest) SetParentCustomerId(v string) {
+	o.ParentCustomerId = &v
+}
+
+// GetTaxRateOverrides returns the TaxRateOverrides field value if set, zero value otherwise.
+func (o *DtoCreateCustomerRequest) GetTaxRateOverrides() []DtoTaxRateOverride {
+	if o == nil || IsNil(o.TaxRateOverrides) {
+		var ret []DtoTaxRateOverride
+		return ret
+	}
+	return o.TaxRateOverrides
+}
+
+// GetTaxRateOverridesOk returns a tuple with the TaxRateOverrides field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateCustomerRequest) GetTaxRateOverridesOk() ([]DtoTaxRateOverride, bool) {
+	if o == nil || IsNil(o.TaxRateOverrides) {
+		return nil, false
+	}
+	return o.TaxRateOverrides, true
+}
+
+// HasTaxRateOverrides returns a boolean if a field has been set.
+func (o *DtoCreateCustomerRequest) HasTaxRateOverrides() bool {
+	if o != nil && !IsNil(o.TaxRateOverrides) {
+		return true
+	}
+
+	return false
+}
+
+// SetTaxRateOverrides gets a reference to the given []DtoTaxRateOverride and assigns it to the TaxRateOverrides field.
+func (o *DtoCreateCustomerRequest) SetTaxRateOverrides(v []DtoTaxRateOverride) {
+	o.TaxRateOverrides = v
+}
+
 func (o DtoCreateCustomerRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -397,11 +543,23 @@ func (o DtoCreateCustomerRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["email"] = o.Email
 	}
 	toSerialize["external_id"] = o.ExternalId
+	if !IsNil(o.IntegrationEntityMapping) {
+		toSerialize["integration_entity_mapping"] = o.IntegrationEntityMapping
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.ParentCustomerExternalId) {
+		toSerialize["parent_customer_external_id"] = o.ParentCustomerExternalId
+	}
+	if !IsNil(o.ParentCustomerId) {
+		toSerialize["parent_customer_id"] = o.ParentCustomerId
+	}
+	if !IsNil(o.TaxRateOverrides) {
+		toSerialize["tax_rate_overrides"] = o.TaxRateOverrides
 	}
 	return toSerialize, nil
 }

@@ -34,8 +34,16 @@ type DtoSubscriptionResponse struct {
 	CancelAtPeriodEnd *bool `json:"cancel_at_period_end,omitempty"`
 	// CanceledAt is the date the subscription was canceled
 	CancelledAt *string `json:"cancelled_at,omitempty"`
+	// CollectionMethod determines how invoices are collected
+	CollectionMethod *string `json:"collection_method,omitempty"`
+	// CommitmentAmount is the minimum amount a customer commits to paying for a billing period
+	CommitmentAmount *float32 `json:"commitment_amount,omitempty"`
+	// CouponAssociations are the coupon associations for this subscription
+	CouponAssociations []DtoCouponAssociationResponse `json:"coupon_associations,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
+	// Credit grants are the credit grants for this subscription
+	CreditGrants []DtoCreditGrantResponse `json:"credit_grants,omitempty"`
 	// Currency is the currency of the subscription in lowercase 3 digit ISO codes
 	Currency *string `json:"currency,omitempty"`
 	// CurrentPeriodEnd is the end of the current period that the subscription has been invoiced for. At the end of this period, a new invoice will be created.
@@ -45,21 +53,35 @@ type DtoSubscriptionResponse struct {
 	Customer *DtoCustomerResponse `json:"customer,omitempty"`
 	// CustomerID is the identifier for the customer in our system
 	CustomerId *string `json:"customer_id,omitempty"`
+	CustomerTimezone *string `json:"customer_timezone,omitempty"`
+	EnableTrueUp *bool `json:"enable_true_up,omitempty"`
 	// EndDate is the end date of the subscription
 	EndDate *string `json:"end_date,omitempty"`
 	// EnvironmentID is the environment identifier for the subscription
 	EnvironmentId *string `json:"environment_id,omitempty"`
+	// GatewayPaymentMethodID is the gateway payment method ID for this subscription
+	GatewayPaymentMethodId *string `json:"gateway_payment_method_id,omitempty"`
 	// ID is the unique identifier for the subscription
 	Id *string `json:"id,omitempty"`
+	// InvoicingCustomerID is the customer ID to use for invoicing This can differ from the subscription customer (e.g., parent company invoicing for child company)
+	InvoicingCustomerId *string `json:"invoicing_customer_id,omitempty"`
+	LatestInvoice *DtoInvoiceResponse `json:"latest_invoice,omitempty"`
 	LineItems []SubscriptionSubscriptionLineItem `json:"line_items,omitempty"`
 	// LookupKey is the key used to lookup the subscription in our system
 	LookupKey *string `json:"lookup_key,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	// OverageFactor is a multiplier applied to usage beyond the commitment amount
+	OverageFactor *float32 `json:"overage_factor,omitempty"`
 	PauseStatus *TypesPauseStatus `json:"pause_status,omitempty"`
 	Pauses []SubscriptionSubscriptionPause `json:"pauses,omitempty"`
+	// PaymentBehavior determines how subscription payments are handled
+	PaymentBehavior *string `json:"payment_behavior,omitempty"`
+	// Phases are the subscription phases for this subscription
+	Phases []DtoSubscriptionPhaseResponse `json:"phases,omitempty"`
 	Plan *DtoPlanResponse `json:"plan,omitempty"`
 	// PlanID is the identifier for the plan in our system
 	PlanId *string `json:"plan_id,omitempty"`
+	ProrationBehavior *TypesProrationBehavior `json:"proration_behavior,omitempty"`
 	// StartDate is the start date of the subscription
 	StartDate *string `json:"start_date,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
@@ -380,6 +402,102 @@ func (o *DtoSubscriptionResponse) SetCancelledAt(v string) {
 	o.CancelledAt = &v
 }
 
+// GetCollectionMethod returns the CollectionMethod field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetCollectionMethod() string {
+	if o == nil || IsNil(o.CollectionMethod) {
+		var ret string
+		return ret
+	}
+	return *o.CollectionMethod
+}
+
+// GetCollectionMethodOk returns a tuple with the CollectionMethod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetCollectionMethodOk() (*string, bool) {
+	if o == nil || IsNil(o.CollectionMethod) {
+		return nil, false
+	}
+	return o.CollectionMethod, true
+}
+
+// HasCollectionMethod returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasCollectionMethod() bool {
+	if o != nil && !IsNil(o.CollectionMethod) {
+		return true
+	}
+
+	return false
+}
+
+// SetCollectionMethod gets a reference to the given string and assigns it to the CollectionMethod field.
+func (o *DtoSubscriptionResponse) SetCollectionMethod(v string) {
+	o.CollectionMethod = &v
+}
+
+// GetCommitmentAmount returns the CommitmentAmount field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetCommitmentAmount() float32 {
+	if o == nil || IsNil(o.CommitmentAmount) {
+		var ret float32
+		return ret
+	}
+	return *o.CommitmentAmount
+}
+
+// GetCommitmentAmountOk returns a tuple with the CommitmentAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetCommitmentAmountOk() (*float32, bool) {
+	if o == nil || IsNil(o.CommitmentAmount) {
+		return nil, false
+	}
+	return o.CommitmentAmount, true
+}
+
+// HasCommitmentAmount returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasCommitmentAmount() bool {
+	if o != nil && !IsNil(o.CommitmentAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentAmount gets a reference to the given float32 and assigns it to the CommitmentAmount field.
+func (o *DtoSubscriptionResponse) SetCommitmentAmount(v float32) {
+	o.CommitmentAmount = &v
+}
+
+// GetCouponAssociations returns the CouponAssociations field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetCouponAssociations() []DtoCouponAssociationResponse {
+	if o == nil || IsNil(o.CouponAssociations) {
+		var ret []DtoCouponAssociationResponse
+		return ret
+	}
+	return o.CouponAssociations
+}
+
+// GetCouponAssociationsOk returns a tuple with the CouponAssociations field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetCouponAssociationsOk() ([]DtoCouponAssociationResponse, bool) {
+	if o == nil || IsNil(o.CouponAssociations) {
+		return nil, false
+	}
+	return o.CouponAssociations, true
+}
+
+// HasCouponAssociations returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasCouponAssociations() bool {
+	if o != nil && !IsNil(o.CouponAssociations) {
+		return true
+	}
+
+	return false
+}
+
+// SetCouponAssociations gets a reference to the given []DtoCouponAssociationResponse and assigns it to the CouponAssociations field.
+func (o *DtoSubscriptionResponse) SetCouponAssociations(v []DtoCouponAssociationResponse) {
+	o.CouponAssociations = v
+}
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *DtoSubscriptionResponse) GetCreatedAt() string {
 	if o == nil || IsNil(o.CreatedAt) {
@@ -442,6 +560,38 @@ func (o *DtoSubscriptionResponse) HasCreatedBy() bool {
 // SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
 func (o *DtoSubscriptionResponse) SetCreatedBy(v string) {
 	o.CreatedBy = &v
+}
+
+// GetCreditGrants returns the CreditGrants field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetCreditGrants() []DtoCreditGrantResponse {
+	if o == nil || IsNil(o.CreditGrants) {
+		var ret []DtoCreditGrantResponse
+		return ret
+	}
+	return o.CreditGrants
+}
+
+// GetCreditGrantsOk returns a tuple with the CreditGrants field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetCreditGrantsOk() ([]DtoCreditGrantResponse, bool) {
+	if o == nil || IsNil(o.CreditGrants) {
+		return nil, false
+	}
+	return o.CreditGrants, true
+}
+
+// HasCreditGrants returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasCreditGrants() bool {
+	if o != nil && !IsNil(o.CreditGrants) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreditGrants gets a reference to the given []DtoCreditGrantResponse and assigns it to the CreditGrants field.
+func (o *DtoSubscriptionResponse) SetCreditGrants(v []DtoCreditGrantResponse) {
+	o.CreditGrants = v
 }
 
 // GetCurrency returns the Currency field value if set, zero value otherwise.
@@ -604,6 +754,70 @@ func (o *DtoSubscriptionResponse) SetCustomerId(v string) {
 	o.CustomerId = &v
 }
 
+// GetCustomerTimezone returns the CustomerTimezone field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetCustomerTimezone() string {
+	if o == nil || IsNil(o.CustomerTimezone) {
+		var ret string
+		return ret
+	}
+	return *o.CustomerTimezone
+}
+
+// GetCustomerTimezoneOk returns a tuple with the CustomerTimezone field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetCustomerTimezoneOk() (*string, bool) {
+	if o == nil || IsNil(o.CustomerTimezone) {
+		return nil, false
+	}
+	return o.CustomerTimezone, true
+}
+
+// HasCustomerTimezone returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasCustomerTimezone() bool {
+	if o != nil && !IsNil(o.CustomerTimezone) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomerTimezone gets a reference to the given string and assigns it to the CustomerTimezone field.
+func (o *DtoSubscriptionResponse) SetCustomerTimezone(v string) {
+	o.CustomerTimezone = &v
+}
+
+// GetEnableTrueUp returns the EnableTrueUp field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetEnableTrueUp() bool {
+	if o == nil || IsNil(o.EnableTrueUp) {
+		var ret bool
+		return ret
+	}
+	return *o.EnableTrueUp
+}
+
+// GetEnableTrueUpOk returns a tuple with the EnableTrueUp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetEnableTrueUpOk() (*bool, bool) {
+	if o == nil || IsNil(o.EnableTrueUp) {
+		return nil, false
+	}
+	return o.EnableTrueUp, true
+}
+
+// HasEnableTrueUp returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasEnableTrueUp() bool {
+	if o != nil && !IsNil(o.EnableTrueUp) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnableTrueUp gets a reference to the given bool and assigns it to the EnableTrueUp field.
+func (o *DtoSubscriptionResponse) SetEnableTrueUp(v bool) {
+	o.EnableTrueUp = &v
+}
+
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
 func (o *DtoSubscriptionResponse) GetEndDate() string {
 	if o == nil || IsNil(o.EndDate) {
@@ -668,6 +882,38 @@ func (o *DtoSubscriptionResponse) SetEnvironmentId(v string) {
 	o.EnvironmentId = &v
 }
 
+// GetGatewayPaymentMethodId returns the GatewayPaymentMethodId field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetGatewayPaymentMethodId() string {
+	if o == nil || IsNil(o.GatewayPaymentMethodId) {
+		var ret string
+		return ret
+	}
+	return *o.GatewayPaymentMethodId
+}
+
+// GetGatewayPaymentMethodIdOk returns a tuple with the GatewayPaymentMethodId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetGatewayPaymentMethodIdOk() (*string, bool) {
+	if o == nil || IsNil(o.GatewayPaymentMethodId) {
+		return nil, false
+	}
+	return o.GatewayPaymentMethodId, true
+}
+
+// HasGatewayPaymentMethodId returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasGatewayPaymentMethodId() bool {
+	if o != nil && !IsNil(o.GatewayPaymentMethodId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGatewayPaymentMethodId gets a reference to the given string and assigns it to the GatewayPaymentMethodId field.
+func (o *DtoSubscriptionResponse) SetGatewayPaymentMethodId(v string) {
+	o.GatewayPaymentMethodId = &v
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DtoSubscriptionResponse) GetId() string {
 	if o == nil || IsNil(o.Id) {
@@ -698,6 +944,70 @@ func (o *DtoSubscriptionResponse) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *DtoSubscriptionResponse) SetId(v string) {
 	o.Id = &v
+}
+
+// GetInvoicingCustomerId returns the InvoicingCustomerId field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetInvoicingCustomerId() string {
+	if o == nil || IsNil(o.InvoicingCustomerId) {
+		var ret string
+		return ret
+	}
+	return *o.InvoicingCustomerId
+}
+
+// GetInvoicingCustomerIdOk returns a tuple with the InvoicingCustomerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetInvoicingCustomerIdOk() (*string, bool) {
+	if o == nil || IsNil(o.InvoicingCustomerId) {
+		return nil, false
+	}
+	return o.InvoicingCustomerId, true
+}
+
+// HasInvoicingCustomerId returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasInvoicingCustomerId() bool {
+	if o != nil && !IsNil(o.InvoicingCustomerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetInvoicingCustomerId gets a reference to the given string and assigns it to the InvoicingCustomerId field.
+func (o *DtoSubscriptionResponse) SetInvoicingCustomerId(v string) {
+	o.InvoicingCustomerId = &v
+}
+
+// GetLatestInvoice returns the LatestInvoice field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetLatestInvoice() DtoInvoiceResponse {
+	if o == nil || IsNil(o.LatestInvoice) {
+		var ret DtoInvoiceResponse
+		return ret
+	}
+	return *o.LatestInvoice
+}
+
+// GetLatestInvoiceOk returns a tuple with the LatestInvoice field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetLatestInvoiceOk() (*DtoInvoiceResponse, bool) {
+	if o == nil || IsNil(o.LatestInvoice) {
+		return nil, false
+	}
+	return o.LatestInvoice, true
+}
+
+// HasLatestInvoice returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasLatestInvoice() bool {
+	if o != nil && !IsNil(o.LatestInvoice) {
+		return true
+	}
+
+	return false
+}
+
+// SetLatestInvoice gets a reference to the given DtoInvoiceResponse and assigns it to the LatestInvoice field.
+func (o *DtoSubscriptionResponse) SetLatestInvoice(v DtoInvoiceResponse) {
+	o.LatestInvoice = &v
 }
 
 // GetLineItems returns the LineItems field value if set, zero value otherwise.
@@ -796,6 +1106,38 @@ func (o *DtoSubscriptionResponse) SetMetadata(v map[string]string) {
 	o.Metadata = &v
 }
 
+// GetOverageFactor returns the OverageFactor field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetOverageFactor() float32 {
+	if o == nil || IsNil(o.OverageFactor) {
+		var ret float32
+		return ret
+	}
+	return *o.OverageFactor
+}
+
+// GetOverageFactorOk returns a tuple with the OverageFactor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetOverageFactorOk() (*float32, bool) {
+	if o == nil || IsNil(o.OverageFactor) {
+		return nil, false
+	}
+	return o.OverageFactor, true
+}
+
+// HasOverageFactor returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasOverageFactor() bool {
+	if o != nil && !IsNil(o.OverageFactor) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverageFactor gets a reference to the given float32 and assigns it to the OverageFactor field.
+func (o *DtoSubscriptionResponse) SetOverageFactor(v float32) {
+	o.OverageFactor = &v
+}
+
 // GetPauseStatus returns the PauseStatus field value if set, zero value otherwise.
 func (o *DtoSubscriptionResponse) GetPauseStatus() TypesPauseStatus {
 	if o == nil || IsNil(o.PauseStatus) {
@@ -860,6 +1202,70 @@ func (o *DtoSubscriptionResponse) SetPauses(v []SubscriptionSubscriptionPause) {
 	o.Pauses = v
 }
 
+// GetPaymentBehavior returns the PaymentBehavior field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetPaymentBehavior() string {
+	if o == nil || IsNil(o.PaymentBehavior) {
+		var ret string
+		return ret
+	}
+	return *o.PaymentBehavior
+}
+
+// GetPaymentBehaviorOk returns a tuple with the PaymentBehavior field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetPaymentBehaviorOk() (*string, bool) {
+	if o == nil || IsNil(o.PaymentBehavior) {
+		return nil, false
+	}
+	return o.PaymentBehavior, true
+}
+
+// HasPaymentBehavior returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasPaymentBehavior() bool {
+	if o != nil && !IsNil(o.PaymentBehavior) {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentBehavior gets a reference to the given string and assigns it to the PaymentBehavior field.
+func (o *DtoSubscriptionResponse) SetPaymentBehavior(v string) {
+	o.PaymentBehavior = &v
+}
+
+// GetPhases returns the Phases field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetPhases() []DtoSubscriptionPhaseResponse {
+	if o == nil || IsNil(o.Phases) {
+		var ret []DtoSubscriptionPhaseResponse
+		return ret
+	}
+	return o.Phases
+}
+
+// GetPhasesOk returns a tuple with the Phases field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetPhasesOk() ([]DtoSubscriptionPhaseResponse, bool) {
+	if o == nil || IsNil(o.Phases) {
+		return nil, false
+	}
+	return o.Phases, true
+}
+
+// HasPhases returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasPhases() bool {
+	if o != nil && !IsNil(o.Phases) {
+		return true
+	}
+
+	return false
+}
+
+// SetPhases gets a reference to the given []DtoSubscriptionPhaseResponse and assigns it to the Phases field.
+func (o *DtoSubscriptionResponse) SetPhases(v []DtoSubscriptionPhaseResponse) {
+	o.Phases = v
+}
+
 // GetPlan returns the Plan field value if set, zero value otherwise.
 func (o *DtoSubscriptionResponse) GetPlan() DtoPlanResponse {
 	if o == nil || IsNil(o.Plan) {
@@ -922,6 +1328,38 @@ func (o *DtoSubscriptionResponse) HasPlanId() bool {
 // SetPlanId gets a reference to the given string and assigns it to the PlanId field.
 func (o *DtoSubscriptionResponse) SetPlanId(v string) {
 	o.PlanId = &v
+}
+
+// GetProrationBehavior returns the ProrationBehavior field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetProrationBehavior() TypesProrationBehavior {
+	if o == nil || IsNil(o.ProrationBehavior) {
+		var ret TypesProrationBehavior
+		return ret
+	}
+	return *o.ProrationBehavior
+}
+
+// GetProrationBehaviorOk returns a tuple with the ProrationBehavior field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetProrationBehaviorOk() (*TypesProrationBehavior, bool) {
+	if o == nil || IsNil(o.ProrationBehavior) {
+		return nil, false
+	}
+	return o.ProrationBehavior, true
+}
+
+// HasProrationBehavior returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasProrationBehavior() bool {
+	if o != nil && !IsNil(o.ProrationBehavior) {
+		return true
+	}
+
+	return false
+}
+
+// SetProrationBehavior gets a reference to the given TypesProrationBehavior and assigns it to the ProrationBehavior field.
+func (o *DtoSubscriptionResponse) SetProrationBehavior(v TypesProrationBehavior) {
+	o.ProrationBehavior = &v
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
@@ -1249,11 +1687,23 @@ func (o DtoSubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CancelledAt) {
 		toSerialize["cancelled_at"] = o.CancelledAt
 	}
+	if !IsNil(o.CollectionMethod) {
+		toSerialize["collection_method"] = o.CollectionMethod
+	}
+	if !IsNil(o.CommitmentAmount) {
+		toSerialize["commitment_amount"] = o.CommitmentAmount
+	}
+	if !IsNil(o.CouponAssociations) {
+		toSerialize["coupon_associations"] = o.CouponAssociations
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
 	if !IsNil(o.CreatedBy) {
 		toSerialize["created_by"] = o.CreatedBy
+	}
+	if !IsNil(o.CreditGrants) {
+		toSerialize["credit_grants"] = o.CreditGrants
 	}
 	if !IsNil(o.Currency) {
 		toSerialize["currency"] = o.Currency
@@ -1270,14 +1720,29 @@ func (o DtoSubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CustomerId) {
 		toSerialize["customer_id"] = o.CustomerId
 	}
+	if !IsNil(o.CustomerTimezone) {
+		toSerialize["customer_timezone"] = o.CustomerTimezone
+	}
+	if !IsNil(o.EnableTrueUp) {
+		toSerialize["enable_true_up"] = o.EnableTrueUp
+	}
 	if !IsNil(o.EndDate) {
 		toSerialize["end_date"] = o.EndDate
 	}
 	if !IsNil(o.EnvironmentId) {
 		toSerialize["environment_id"] = o.EnvironmentId
 	}
+	if !IsNil(o.GatewayPaymentMethodId) {
+		toSerialize["gateway_payment_method_id"] = o.GatewayPaymentMethodId
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
+	}
+	if !IsNil(o.InvoicingCustomerId) {
+		toSerialize["invoicing_customer_id"] = o.InvoicingCustomerId
+	}
+	if !IsNil(o.LatestInvoice) {
+		toSerialize["latest_invoice"] = o.LatestInvoice
 	}
 	if !IsNil(o.LineItems) {
 		toSerialize["line_items"] = o.LineItems
@@ -1288,17 +1753,29 @@ func (o DtoSubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
+	if !IsNil(o.OverageFactor) {
+		toSerialize["overage_factor"] = o.OverageFactor
+	}
 	if !IsNil(o.PauseStatus) {
 		toSerialize["pause_status"] = o.PauseStatus
 	}
 	if !IsNil(o.Pauses) {
 		toSerialize["pauses"] = o.Pauses
 	}
+	if !IsNil(o.PaymentBehavior) {
+		toSerialize["payment_behavior"] = o.PaymentBehavior
+	}
+	if !IsNil(o.Phases) {
+		toSerialize["phases"] = o.Phases
+	}
 	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan
 	}
 	if !IsNil(o.PlanId) {
 		toSerialize["plan_id"] = o.PlanId
+	}
+	if !IsNil(o.ProrationBehavior) {
+		toSerialize["proration_behavior"] = o.ProrationBehavior
 	}
 	if !IsNil(o.StartDate) {
 		toSerialize["start_date"] = o.StartDate

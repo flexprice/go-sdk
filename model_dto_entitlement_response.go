@@ -19,8 +19,12 @@ var _ MappedNullable = &DtoEntitlementResponse{}
 
 // DtoEntitlementResponse struct for DtoEntitlementResponse
 type DtoEntitlementResponse struct {
+	Addon *DtoAddonResponse `json:"addon,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
+	DisplayOrder *int32 `json:"display_order,omitempty"`
+	EntityId *string `json:"entity_id,omitempty"`
+	EntityType *TypesEntitlementEntityType `json:"entity_type,omitempty"`
 	EnvironmentId *string `json:"environment_id,omitempty"`
 	Feature *DtoFeatureResponse `json:"feature,omitempty"`
 	FeatureId *string `json:"feature_id,omitempty"`
@@ -28,7 +32,9 @@ type DtoEntitlementResponse struct {
 	Id *string `json:"id,omitempty"`
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	IsSoftLimit *bool `json:"is_soft_limit,omitempty"`
+	ParentEntitlementId *string `json:"parent_entitlement_id,omitempty"`
 	Plan *DtoPlanResponse `json:"plan,omitempty"`
+	// TODO: Remove this once we have a proper entitlement entity type
 	PlanId *string `json:"plan_id,omitempty"`
 	StaticValue *string `json:"static_value,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
@@ -36,7 +42,7 @@ type DtoEntitlementResponse struct {
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	UsageLimit *int32 `json:"usage_limit,omitempty"`
-	UsageResetPeriod *TypesBillingPeriod `json:"usage_reset_period,omitempty"`
+	UsageResetPeriod *TypesEntitlementUsageResetPeriod `json:"usage_reset_period,omitempty"`
 }
 
 // NewDtoEntitlementResponse instantiates a new DtoEntitlementResponse object
@@ -54,6 +60,38 @@ func NewDtoEntitlementResponse() *DtoEntitlementResponse {
 func NewDtoEntitlementResponseWithDefaults() *DtoEntitlementResponse {
 	this := DtoEntitlementResponse{}
 	return &this
+}
+
+// GetAddon returns the Addon field value if set, zero value otherwise.
+func (o *DtoEntitlementResponse) GetAddon() DtoAddonResponse {
+	if o == nil || IsNil(o.Addon) {
+		var ret DtoAddonResponse
+		return ret
+	}
+	return *o.Addon
+}
+
+// GetAddonOk returns a tuple with the Addon field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoEntitlementResponse) GetAddonOk() (*DtoAddonResponse, bool) {
+	if o == nil || IsNil(o.Addon) {
+		return nil, false
+	}
+	return o.Addon, true
+}
+
+// HasAddon returns a boolean if a field has been set.
+func (o *DtoEntitlementResponse) HasAddon() bool {
+	if o != nil && !IsNil(o.Addon) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddon gets a reference to the given DtoAddonResponse and assigns it to the Addon field.
+func (o *DtoEntitlementResponse) SetAddon(v DtoAddonResponse) {
+	o.Addon = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -118,6 +156,102 @@ func (o *DtoEntitlementResponse) HasCreatedBy() bool {
 // SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
 func (o *DtoEntitlementResponse) SetCreatedBy(v string) {
 	o.CreatedBy = &v
+}
+
+// GetDisplayOrder returns the DisplayOrder field value if set, zero value otherwise.
+func (o *DtoEntitlementResponse) GetDisplayOrder() int32 {
+	if o == nil || IsNil(o.DisplayOrder) {
+		var ret int32
+		return ret
+	}
+	return *o.DisplayOrder
+}
+
+// GetDisplayOrderOk returns a tuple with the DisplayOrder field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoEntitlementResponse) GetDisplayOrderOk() (*int32, bool) {
+	if o == nil || IsNil(o.DisplayOrder) {
+		return nil, false
+	}
+	return o.DisplayOrder, true
+}
+
+// HasDisplayOrder returns a boolean if a field has been set.
+func (o *DtoEntitlementResponse) HasDisplayOrder() bool {
+	if o != nil && !IsNil(o.DisplayOrder) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayOrder gets a reference to the given int32 and assigns it to the DisplayOrder field.
+func (o *DtoEntitlementResponse) SetDisplayOrder(v int32) {
+	o.DisplayOrder = &v
+}
+
+// GetEntityId returns the EntityId field value if set, zero value otherwise.
+func (o *DtoEntitlementResponse) GetEntityId() string {
+	if o == nil || IsNil(o.EntityId) {
+		var ret string
+		return ret
+	}
+	return *o.EntityId
+}
+
+// GetEntityIdOk returns a tuple with the EntityId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoEntitlementResponse) GetEntityIdOk() (*string, bool) {
+	if o == nil || IsNil(o.EntityId) {
+		return nil, false
+	}
+	return o.EntityId, true
+}
+
+// HasEntityId returns a boolean if a field has been set.
+func (o *DtoEntitlementResponse) HasEntityId() bool {
+	if o != nil && !IsNil(o.EntityId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityId gets a reference to the given string and assigns it to the EntityId field.
+func (o *DtoEntitlementResponse) SetEntityId(v string) {
+	o.EntityId = &v
+}
+
+// GetEntityType returns the EntityType field value if set, zero value otherwise.
+func (o *DtoEntitlementResponse) GetEntityType() TypesEntitlementEntityType {
+	if o == nil || IsNil(o.EntityType) {
+		var ret TypesEntitlementEntityType
+		return ret
+	}
+	return *o.EntityType
+}
+
+// GetEntityTypeOk returns a tuple with the EntityType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoEntitlementResponse) GetEntityTypeOk() (*TypesEntitlementEntityType, bool) {
+	if o == nil || IsNil(o.EntityType) {
+		return nil, false
+	}
+	return o.EntityType, true
+}
+
+// HasEntityType returns a boolean if a field has been set.
+func (o *DtoEntitlementResponse) HasEntityType() bool {
+	if o != nil && !IsNil(o.EntityType) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityType gets a reference to the given TypesEntitlementEntityType and assigns it to the EntityType field.
+func (o *DtoEntitlementResponse) SetEntityType(v TypesEntitlementEntityType) {
+	o.EntityType = &v
 }
 
 // GetEnvironmentId returns the EnvironmentId field value if set, zero value otherwise.
@@ -342,6 +476,38 @@ func (o *DtoEntitlementResponse) HasIsSoftLimit() bool {
 // SetIsSoftLimit gets a reference to the given bool and assigns it to the IsSoftLimit field.
 func (o *DtoEntitlementResponse) SetIsSoftLimit(v bool) {
 	o.IsSoftLimit = &v
+}
+
+// GetParentEntitlementId returns the ParentEntitlementId field value if set, zero value otherwise.
+func (o *DtoEntitlementResponse) GetParentEntitlementId() string {
+	if o == nil || IsNil(o.ParentEntitlementId) {
+		var ret string
+		return ret
+	}
+	return *o.ParentEntitlementId
+}
+
+// GetParentEntitlementIdOk returns a tuple with the ParentEntitlementId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoEntitlementResponse) GetParentEntitlementIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ParentEntitlementId) {
+		return nil, false
+	}
+	return o.ParentEntitlementId, true
+}
+
+// HasParentEntitlementId returns a boolean if a field has been set.
+func (o *DtoEntitlementResponse) HasParentEntitlementId() bool {
+	if o != nil && !IsNil(o.ParentEntitlementId) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentEntitlementId gets a reference to the given string and assigns it to the ParentEntitlementId field.
+func (o *DtoEntitlementResponse) SetParentEntitlementId(v string) {
+	o.ParentEntitlementId = &v
 }
 
 // GetPlan returns the Plan field value if set, zero value otherwise.
@@ -601,9 +767,9 @@ func (o *DtoEntitlementResponse) SetUsageLimit(v int32) {
 }
 
 // GetUsageResetPeriod returns the UsageResetPeriod field value if set, zero value otherwise.
-func (o *DtoEntitlementResponse) GetUsageResetPeriod() TypesBillingPeriod {
+func (o *DtoEntitlementResponse) GetUsageResetPeriod() TypesEntitlementUsageResetPeriod {
 	if o == nil || IsNil(o.UsageResetPeriod) {
-		var ret TypesBillingPeriod
+		var ret TypesEntitlementUsageResetPeriod
 		return ret
 	}
 	return *o.UsageResetPeriod
@@ -611,7 +777,7 @@ func (o *DtoEntitlementResponse) GetUsageResetPeriod() TypesBillingPeriod {
 
 // GetUsageResetPeriodOk returns a tuple with the UsageResetPeriod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoEntitlementResponse) GetUsageResetPeriodOk() (*TypesBillingPeriod, bool) {
+func (o *DtoEntitlementResponse) GetUsageResetPeriodOk() (*TypesEntitlementUsageResetPeriod, bool) {
 	if o == nil || IsNil(o.UsageResetPeriod) {
 		return nil, false
 	}
@@ -627,8 +793,8 @@ func (o *DtoEntitlementResponse) HasUsageResetPeriod() bool {
 	return false
 }
 
-// SetUsageResetPeriod gets a reference to the given TypesBillingPeriod and assigns it to the UsageResetPeriod field.
-func (o *DtoEntitlementResponse) SetUsageResetPeriod(v TypesBillingPeriod) {
+// SetUsageResetPeriod gets a reference to the given TypesEntitlementUsageResetPeriod and assigns it to the UsageResetPeriod field.
+func (o *DtoEntitlementResponse) SetUsageResetPeriod(v TypesEntitlementUsageResetPeriod) {
 	o.UsageResetPeriod = &v
 }
 
@@ -642,11 +808,23 @@ func (o DtoEntitlementResponse) MarshalJSON() ([]byte, error) {
 
 func (o DtoEntitlementResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Addon) {
+		toSerialize["addon"] = o.Addon
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
 	if !IsNil(o.CreatedBy) {
 		toSerialize["created_by"] = o.CreatedBy
+	}
+	if !IsNil(o.DisplayOrder) {
+		toSerialize["display_order"] = o.DisplayOrder
+	}
+	if !IsNil(o.EntityId) {
+		toSerialize["entity_id"] = o.EntityId
+	}
+	if !IsNil(o.EntityType) {
+		toSerialize["entity_type"] = o.EntityType
 	}
 	if !IsNil(o.EnvironmentId) {
 		toSerialize["environment_id"] = o.EnvironmentId
@@ -668,6 +846,9 @@ func (o DtoEntitlementResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IsSoftLimit) {
 		toSerialize["is_soft_limit"] = o.IsSoftLimit
+	}
+	if !IsNil(o.ParentEntitlementId) {
+		toSerialize["parent_entitlement_id"] = o.ParentEntitlementId
 	}
 	if !IsNil(o.Plan) {
 		toSerialize["plan"] = o.Plan

@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**AlertSettings** | Pointer to [**TypesAlertSettings**](TypesAlertSettings.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
@@ -40,6 +41,31 @@ will change when the set of required properties is changed
 NewDtoFeatureResponseWithDefaults instantiates a new DtoFeatureResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAlertSettings
+
+`func (o *DtoFeatureResponse) GetAlertSettings() TypesAlertSettings`
+
+GetAlertSettings returns the AlertSettings field if non-nil, zero value otherwise.
+
+### GetAlertSettingsOk
+
+`func (o *DtoFeatureResponse) GetAlertSettingsOk() (*TypesAlertSettings, bool)`
+
+GetAlertSettingsOk returns a tuple with the AlertSettings field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlertSettings
+
+`func (o *DtoFeatureResponse) SetAlertSettings(v TypesAlertSettings)`
+
+SetAlertSettings sets AlertSettings field to given value.
+
+### HasAlertSettings
+
+`func (o *DtoFeatureResponse) HasAlertSettings() bool`
+
+HasAlertSettings returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

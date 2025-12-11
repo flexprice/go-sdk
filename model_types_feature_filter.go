@@ -27,6 +27,7 @@ type TypesFeatureFilter struct {
 	Filters []TypesFilterCondition `json:"filters,omitempty"`
 	Limit *int32 `json:"limit,omitempty"`
 	LookupKey *string `json:"lookup_key,omitempty"`
+	LookupKeys []string `json:"lookup_keys,omitempty"`
 	MeterIds []string `json:"meter_ids,omitempty"`
 	NameContains *string `json:"name_contains,omitempty"`
 	Offset *int32 `json:"offset,omitempty"`
@@ -243,6 +244,38 @@ func (o *TypesFeatureFilter) HasLookupKey() bool {
 // SetLookupKey gets a reference to the given string and assigns it to the LookupKey field.
 func (o *TypesFeatureFilter) SetLookupKey(v string) {
 	o.LookupKey = &v
+}
+
+// GetLookupKeys returns the LookupKeys field value if set, zero value otherwise.
+func (o *TypesFeatureFilter) GetLookupKeys() []string {
+	if o == nil || IsNil(o.LookupKeys) {
+		var ret []string
+		return ret
+	}
+	return o.LookupKeys
+}
+
+// GetLookupKeysOk returns a tuple with the LookupKeys field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TypesFeatureFilter) GetLookupKeysOk() ([]string, bool) {
+	if o == nil || IsNil(o.LookupKeys) {
+		return nil, false
+	}
+	return o.LookupKeys, true
+}
+
+// HasLookupKeys returns a boolean if a field has been set.
+func (o *TypesFeatureFilter) HasLookupKeys() bool {
+	if o != nil && !IsNil(o.LookupKeys) {
+		return true
+	}
+
+	return false
+}
+
+// SetLookupKeys gets a reference to the given []string and assigns it to the LookupKeys field.
+func (o *TypesFeatureFilter) SetLookupKeys(v []string) {
+	o.LookupKeys = v
 }
 
 // GetMeterIds returns the MeterIds field value if set, zero value otherwise.
@@ -496,6 +529,9 @@ func (o TypesFeatureFilter) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.LookupKey) {
 		toSerialize["lookup_key"] = o.LookupKey
+	}
+	if !IsNil(o.LookupKeys) {
+		toSerialize["lookup_keys"] = o.LookupKeys
 	}
 	if !IsNil(o.MeterIds) {
 		toSerialize["meter_ids"] = o.MeterIds

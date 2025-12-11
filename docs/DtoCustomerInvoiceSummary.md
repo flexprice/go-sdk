@@ -4,16 +4,16 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Currency** | Pointer to **string** |  | [optional] 
-**CustomerId** | Pointer to **string** |  | [optional] 
-**OverdueInvoiceCount** | Pointer to **int32** |  | [optional] 
-**TotalInvoiceCount** | Pointer to **int32** |  | [optional] 
-**TotalOverdueAmount** | Pointer to **float32** |  | [optional] 
-**TotalRevenueAmount** | Pointer to **float32** |  | [optional] 
-**TotalUnpaidAmount** | Pointer to **float32** |  | [optional] 
-**UnpaidFixedCharges** | Pointer to **float32** |  | [optional] 
-**UnpaidInvoiceCount** | Pointer to **int32** |  | [optional] 
-**UnpaidUsageCharges** | Pointer to **float32** |  | [optional] 
+**Currency** | Pointer to **string** | currency is the three-letter ISO currency code for this summary | [optional] 
+**CustomerId** | Pointer to **string** | customer_id is the unique identifier of the customer | [optional] 
+**OverdueInvoiceCount** | Pointer to **int32** | overdue_invoice_count is the number of overdue invoices for this customer in this currency | [optional] 
+**TotalInvoiceCount** | Pointer to **int32** | total_invoice_count is the total number of invoices for this customer in this currency | [optional] 
+**TotalOverdueAmount** | Pointer to **string** | total_overdue_amount is the total amount of overdue invoices in this currency | [optional] 
+**TotalRevenueAmount** | Pointer to **string** | total_revenue_amount is the total revenue generated from this customer in this currency | [optional] 
+**TotalUnpaidAmount** | Pointer to **string** | total_unpaid_amount is the total amount of unpaid invoices in this currency | [optional] 
+**UnpaidFixedCharges** | Pointer to **string** | unpaid_fixed_charges is the total amount of unpaid fixed charges in this currency | [optional] 
+**UnpaidInvoiceCount** | Pointer to **int32** | unpaid_invoice_count is the number of unpaid invoices for this customer in this currency | [optional] 
+**UnpaidUsageCharges** | Pointer to **string** | unpaid_usage_charges is the total amount of unpaid usage-based charges in this currency | [optional] 
 
 ## Methods
 
@@ -136,20 +136,20 @@ HasTotalInvoiceCount returns a boolean if a field has been set.
 
 ### GetTotalOverdueAmount
 
-`func (o *DtoCustomerInvoiceSummary) GetTotalOverdueAmount() float32`
+`func (o *DtoCustomerInvoiceSummary) GetTotalOverdueAmount() string`
 
 GetTotalOverdueAmount returns the TotalOverdueAmount field if non-nil, zero value otherwise.
 
 ### GetTotalOverdueAmountOk
 
-`func (o *DtoCustomerInvoiceSummary) GetTotalOverdueAmountOk() (*float32, bool)`
+`func (o *DtoCustomerInvoiceSummary) GetTotalOverdueAmountOk() (*string, bool)`
 
 GetTotalOverdueAmountOk returns a tuple with the TotalOverdueAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalOverdueAmount
 
-`func (o *DtoCustomerInvoiceSummary) SetTotalOverdueAmount(v float32)`
+`func (o *DtoCustomerInvoiceSummary) SetTotalOverdueAmount(v string)`
 
 SetTotalOverdueAmount sets TotalOverdueAmount field to given value.
 
@@ -161,20 +161,20 @@ HasTotalOverdueAmount returns a boolean if a field has been set.
 
 ### GetTotalRevenueAmount
 
-`func (o *DtoCustomerInvoiceSummary) GetTotalRevenueAmount() float32`
+`func (o *DtoCustomerInvoiceSummary) GetTotalRevenueAmount() string`
 
 GetTotalRevenueAmount returns the TotalRevenueAmount field if non-nil, zero value otherwise.
 
 ### GetTotalRevenueAmountOk
 
-`func (o *DtoCustomerInvoiceSummary) GetTotalRevenueAmountOk() (*float32, bool)`
+`func (o *DtoCustomerInvoiceSummary) GetTotalRevenueAmountOk() (*string, bool)`
 
 GetTotalRevenueAmountOk returns a tuple with the TotalRevenueAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalRevenueAmount
 
-`func (o *DtoCustomerInvoiceSummary) SetTotalRevenueAmount(v float32)`
+`func (o *DtoCustomerInvoiceSummary) SetTotalRevenueAmount(v string)`
 
 SetTotalRevenueAmount sets TotalRevenueAmount field to given value.
 
@@ -186,20 +186,20 @@ HasTotalRevenueAmount returns a boolean if a field has been set.
 
 ### GetTotalUnpaidAmount
 
-`func (o *DtoCustomerInvoiceSummary) GetTotalUnpaidAmount() float32`
+`func (o *DtoCustomerInvoiceSummary) GetTotalUnpaidAmount() string`
 
 GetTotalUnpaidAmount returns the TotalUnpaidAmount field if non-nil, zero value otherwise.
 
 ### GetTotalUnpaidAmountOk
 
-`func (o *DtoCustomerInvoiceSummary) GetTotalUnpaidAmountOk() (*float32, bool)`
+`func (o *DtoCustomerInvoiceSummary) GetTotalUnpaidAmountOk() (*string, bool)`
 
 GetTotalUnpaidAmountOk returns a tuple with the TotalUnpaidAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalUnpaidAmount
 
-`func (o *DtoCustomerInvoiceSummary) SetTotalUnpaidAmount(v float32)`
+`func (o *DtoCustomerInvoiceSummary) SetTotalUnpaidAmount(v string)`
 
 SetTotalUnpaidAmount sets TotalUnpaidAmount field to given value.
 
@@ -211,20 +211,20 @@ HasTotalUnpaidAmount returns a boolean if a field has been set.
 
 ### GetUnpaidFixedCharges
 
-`func (o *DtoCustomerInvoiceSummary) GetUnpaidFixedCharges() float32`
+`func (o *DtoCustomerInvoiceSummary) GetUnpaidFixedCharges() string`
 
 GetUnpaidFixedCharges returns the UnpaidFixedCharges field if non-nil, zero value otherwise.
 
 ### GetUnpaidFixedChargesOk
 
-`func (o *DtoCustomerInvoiceSummary) GetUnpaidFixedChargesOk() (*float32, bool)`
+`func (o *DtoCustomerInvoiceSummary) GetUnpaidFixedChargesOk() (*string, bool)`
 
 GetUnpaidFixedChargesOk returns a tuple with the UnpaidFixedCharges field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnpaidFixedCharges
 
-`func (o *DtoCustomerInvoiceSummary) SetUnpaidFixedCharges(v float32)`
+`func (o *DtoCustomerInvoiceSummary) SetUnpaidFixedCharges(v string)`
 
 SetUnpaidFixedCharges sets UnpaidFixedCharges field to given value.
 
@@ -261,20 +261,20 @@ HasUnpaidInvoiceCount returns a boolean if a field has been set.
 
 ### GetUnpaidUsageCharges
 
-`func (o *DtoCustomerInvoiceSummary) GetUnpaidUsageCharges() float32`
+`func (o *DtoCustomerInvoiceSummary) GetUnpaidUsageCharges() string`
 
 GetUnpaidUsageCharges returns the UnpaidUsageCharges field if non-nil, zero value otherwise.
 
 ### GetUnpaidUsageChargesOk
 
-`func (o *DtoCustomerInvoiceSummary) GetUnpaidUsageChargesOk() (*float32, bool)`
+`func (o *DtoCustomerInvoiceSummary) GetUnpaidUsageChargesOk() (*string, bool)`
 
 GetUnpaidUsageChargesOk returns a tuple with the UnpaidUsageCharges field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnpaidUsageCharges
 
-`func (o *DtoCustomerInvoiceSummary) SetUnpaidUsageCharges(v float32)`
+`func (o *DtoCustomerInvoiceSummary) SetUnpaidUsageCharges(v string)`
 
 SetUnpaidUsageCharges sets UnpaidUsageCharges field to given value.
 

@@ -23,23 +23,191 @@ import (
 // PricesAPIService PricesAPI service
 type PricesAPIService service
 
+type PricesAPIPricesBulkPostRequest struct {
+	ctx context.Context
+	ApiService *PricesAPIService
+	prices *DtoCreateBulkPriceRequest
+}
+
+// Bulk price configuration
+func (r PricesAPIPricesBulkPostRequest) Prices(prices DtoCreateBulkPriceRequest) PricesAPIPricesBulkPostRequest {
+	r.prices = &prices
+	return r
+}
+
+func (r PricesAPIPricesBulkPostRequest) Execute() (*DtoCreateBulkPriceResponse, *http.Response, error) {
+	return r.ApiService.PricesBulkPostExecute(r)
+}
+
+/*
+PricesBulkPost Create multiple prices in bulk
+
+Create multiple prices with the specified configurations. Supports both regular and price unit configurations.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return PricesAPIPricesBulkPostRequest
+*/
+func (a *PricesAPIService) PricesBulkPost(ctx context.Context) PricesAPIPricesBulkPostRequest {
+	return PricesAPIPricesBulkPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return DtoCreateBulkPriceResponse
+func (a *PricesAPIService) PricesBulkPostExecute(r PricesAPIPricesBulkPostRequest) (*DtoCreateBulkPriceResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DtoCreateBulkPriceResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PricesAPIService.PricesBulkPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/prices/bulk"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.prices == nil {
+		return localVarReturnValue, nil, reportError("prices is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.prices
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type PricesAPIPricesGetRequest struct {
 	ctx context.Context
 	ApiService *PricesAPIService
+	allowExpiredPrices *bool
 	endTime *string
+	entityIds *[]string
+	entityType *string
 	expand *string
 	limit *int32
+	meterIds *[]string
 	offset *int32
 	order *string
+	parentPriceId *string
 	planIds *[]string
 	priceIds *[]string
 	sort *string
+	startDateLt *string
 	startTime *string
 	status *string
+	subscriptionId *string
+}
+
+func (r PricesAPIPricesGetRequest) AllowExpiredPrices(allowExpiredPrices bool) PricesAPIPricesGetRequest {
+	r.allowExpiredPrices = &allowExpiredPrices
+	return r
 }
 
 func (r PricesAPIPricesGetRequest) EndTime(endTime string) PricesAPIPricesGetRequest {
 	r.endTime = &endTime
+	return r
+}
+
+func (r PricesAPIPricesGetRequest) EntityIds(entityIds []string) PricesAPIPricesGetRequest {
+	r.entityIds = &entityIds
+	return r
+}
+
+func (r PricesAPIPricesGetRequest) EntityType(entityType string) PricesAPIPricesGetRequest {
+	r.entityType = &entityType
 	return r
 }
 
@@ -53,6 +221,11 @@ func (r PricesAPIPricesGetRequest) Limit(limit int32) PricesAPIPricesGetRequest 
 	return r
 }
 
+func (r PricesAPIPricesGetRequest) MeterIds(meterIds []string) PricesAPIPricesGetRequest {
+	r.meterIds = &meterIds
+	return r
+}
+
 func (r PricesAPIPricesGetRequest) Offset(offset int32) PricesAPIPricesGetRequest {
 	r.offset = &offset
 	return r
@@ -63,6 +236,12 @@ func (r PricesAPIPricesGetRequest) Order(order string) PricesAPIPricesGetRequest
 	return r
 }
 
+func (r PricesAPIPricesGetRequest) ParentPriceId(parentPriceId string) PricesAPIPricesGetRequest {
+	r.parentPriceId = &parentPriceId
+	return r
+}
+
+// Price override filtering fields
 func (r PricesAPIPricesGetRequest) PlanIds(planIds []string) PricesAPIPricesGetRequest {
 	r.planIds = &planIds
 	return r
@@ -78,6 +257,11 @@ func (r PricesAPIPricesGetRequest) Sort(sort string) PricesAPIPricesGetRequest {
 	return r
 }
 
+func (r PricesAPIPricesGetRequest) StartDateLt(startDateLt string) PricesAPIPricesGetRequest {
+	r.startDateLt = &startDateLt
+	return r
+}
+
 func (r PricesAPIPricesGetRequest) StartTime(startTime string) PricesAPIPricesGetRequest {
 	r.startTime = &startTime
 	return r
@@ -85,6 +269,11 @@ func (r PricesAPIPricesGetRequest) StartTime(startTime string) PricesAPIPricesGe
 
 func (r PricesAPIPricesGetRequest) Status(status string) PricesAPIPricesGetRequest {
 	r.status = &status
+	return r
+}
+
+func (r PricesAPIPricesGetRequest) SubscriptionId(subscriptionId string) PricesAPIPricesGetRequest {
+	r.subscriptionId = &subscriptionId
 	return r
 }
 
@@ -128,8 +317,20 @@ func (a *PricesAPIService) PricesGetExecute(r PricesAPIPricesGetRequest) (*DtoLi
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.allowExpiredPrices != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "allow_expired_prices", r.allowExpiredPrices, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.allowExpiredPrices = &defaultValue
+	}
 	if r.endTime != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "end_time", r.endTime, "form", "")
+	}
+	if r.entityIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "entity_ids", r.entityIds, "form", "csv")
+	}
+	if r.entityType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "entity_type", r.entityType, "form", "")
 	}
 	if r.expand != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "expand", r.expand, "form", "")
@@ -137,11 +338,17 @@ func (a *PricesAPIService) PricesGetExecute(r PricesAPIPricesGetRequest) (*DtoLi
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
 	}
+	if r.meterIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "meter_ids", r.meterIds, "form", "csv")
+	}
 	if r.offset != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
 	}
 	if r.order != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "order", r.order, "form", "")
+	}
+	if r.parentPriceId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "parent_price_id", r.parentPriceId, "form", "")
 	}
 	if r.planIds != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "plan_ids", r.planIds, "form", "csv")
@@ -152,11 +359,17 @@ func (a *PricesAPIService) PricesGetExecute(r PricesAPIPricesGetRequest) (*DtoLi
 	if r.sort != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "form", "")
 	}
+	if r.startDateLt != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "start_date_lt", r.startDateLt, "form", "")
+	}
 	if r.startTime != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start_time", r.startTime, "form", "")
 	}
 	if r.status != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "form", "")
+	}
+	if r.subscriptionId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subscription_id", r.subscriptionId, "form", "")
 	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
@@ -398,7 +611,7 @@ func (r PricesAPIPricesIdGetRequest) Execute() (*DtoPriceResponse, *http.Respons
 /*
 PricesIdGet Get a price by ID
 
-Get a price by ID
+Get a price by ID with expanded meter and price unit information
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Price ID
@@ -692,7 +905,7 @@ func (r PricesAPIPricesPostRequest) Execute() (*DtoPriceResponse, *http.Response
 /*
 PricesPost Create a new price
 
-Create a new price with the specified configuration
+Create a new price with the specified configuration. Supports both regular and price unit configurations.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return PricesAPIPricesPostRequest

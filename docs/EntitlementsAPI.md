@@ -4,18 +4,157 @@ All URIs are relative to */v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**AddonsIdEntitlementsGet**](EntitlementsAPI.md#AddonsIdEntitlementsGet) | **Get** /addons/{id}/entitlements | Get addon entitlements
+[**EntitlementsBulkPost**](EntitlementsAPI.md#EntitlementsBulkPost) | **Post** /entitlements/bulk | Create multiple entitlements in bulk
 [**EntitlementsGet**](EntitlementsAPI.md#EntitlementsGet) | **Get** /entitlements | Get entitlements
 [**EntitlementsIdDelete**](EntitlementsAPI.md#EntitlementsIdDelete) | **Delete** /entitlements/{id} | Delete an entitlement
 [**EntitlementsIdGet**](EntitlementsAPI.md#EntitlementsIdGet) | **Get** /entitlements/{id} | Get an entitlement by ID
 [**EntitlementsIdPut**](EntitlementsAPI.md#EntitlementsIdPut) | **Put** /entitlements/{id} | Update an entitlement
 [**EntitlementsPost**](EntitlementsAPI.md#EntitlementsPost) | **Post** /entitlements | Create a new entitlement
+[**EntitlementsSearchPost**](EntitlementsAPI.md#EntitlementsSearchPost) | **Post** /entitlements/search | List entitlements by filter
 [**PlansIdEntitlementsGet**](EntitlementsAPI.md#PlansIdEntitlementsGet) | **Get** /plans/{id}/entitlements | Get plan entitlements
 
 
 
+## AddonsIdEntitlementsGet
+
+> DtoListEntitlementsResponse AddonsIdEntitlementsGet(ctx, id).Execute()
+
+Get addon entitlements
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	id := "id_example" // string | Addon ID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EntitlementsAPI.AddonsIdEntitlementsGet(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EntitlementsAPI.AddonsIdEntitlementsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `AddonsIdEntitlementsGet`: DtoListEntitlementsResponse
+	fmt.Fprintf(os.Stdout, "Response from `EntitlementsAPI.AddonsIdEntitlementsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Addon ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiAddonsIdEntitlementsGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DtoListEntitlementsResponse**](DtoListEntitlementsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EntitlementsBulkPost
+
+> DtoCreateBulkEntitlementResponse EntitlementsBulkPost(ctx).Entitlements(entitlements).Execute()
+
+Create multiple entitlements in bulk
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	entitlements := *openapiclient.NewDtoCreateBulkEntitlementRequest([]openapiclient.DtoCreateEntitlementRequest{*openapiclient.NewDtoCreateEntitlementRequest("FeatureId_example", openapiclient.types.FeatureType("metered"))}) // DtoCreateBulkEntitlementRequest | Bulk entitlement configuration
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EntitlementsAPI.EntitlementsBulkPost(context.Background()).Entitlements(entitlements).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EntitlementsAPI.EntitlementsBulkPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EntitlementsBulkPost`: DtoCreateBulkEntitlementResponse
+	fmt.Fprintf(os.Stdout, "Response from `EntitlementsAPI.EntitlementsBulkPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEntitlementsBulkPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **entitlements** | [**DtoCreateBulkEntitlementRequest**](DtoCreateBulkEntitlementRequest.md) | Bulk entitlement configuration | 
+
+### Return type
+
+[**DtoCreateBulkEntitlementResponse**](DtoCreateBulkEntitlementResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## EntitlementsGet
 
-> DtoListEntitlementsResponse EntitlementsGet(ctx).EndTime(endTime).Expand(expand).FeatureIds(featureIds).FeatureType(featureType).IsEnabled(isEnabled).Limit(limit).Offset(offset).Order(order).PlanIds(planIds).Sort(sort).StartTime(startTime).Status(status).Execute()
+> DtoListEntitlementsResponse EntitlementsGet(ctx).EndTime(endTime).EntityIds(entityIds).EntityType(entityType).Expand(expand).FeatureIds(featureIds).FeatureType(featureType).IsEnabled(isEnabled).Limit(limit).Offset(offset).Order(order).PlanIds(planIds).StartTime(startTime).Status(status).Execute()
 
 Get entitlements
 
@@ -35,6 +174,8 @@ import (
 
 func main() {
 	endTime := "endTime_example" // string |  (optional)
+	entityIds := []string{"Inner_example"} // []string |  (optional)
+	entityType := "entityType_example" // string |  (optional)
 	expand := "expand_example" // string |  (optional)
 	featureIds := []string{"Inner_example"} // []string |  (optional)
 	featureType := "featureType_example" // string |  (optional)
@@ -42,14 +183,13 @@ func main() {
 	limit := int32(56) // int32 |  (optional)
 	offset := int32(56) // int32 |  (optional)
 	order := "order_example" // string |  (optional)
-	planIds := []string{"Inner_example"} // []string | Specific filters for entitlements (optional)
-	sort := "sort_example" // string |  (optional)
+	planIds := []string{"Inner_example"} // []string |  (optional)
 	startTime := "startTime_example" // string |  (optional)
 	status := "status_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.EntitlementsAPI.EntitlementsGet(context.Background()).EndTime(endTime).Expand(expand).FeatureIds(featureIds).FeatureType(featureType).IsEnabled(isEnabled).Limit(limit).Offset(offset).Order(order).PlanIds(planIds).Sort(sort).StartTime(startTime).Status(status).Execute()
+	resp, r, err := apiClient.EntitlementsAPI.EntitlementsGet(context.Background()).EndTime(endTime).EntityIds(entityIds).EntityType(entityType).Expand(expand).FeatureIds(featureIds).FeatureType(featureType).IsEnabled(isEnabled).Limit(limit).Offset(offset).Order(order).PlanIds(planIds).StartTime(startTime).Status(status).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EntitlementsAPI.EntitlementsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -71,6 +211,8 @@ Other parameters are passed through a pointer to a apiEntitlementsGetRequest str
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **endTime** | **string** |  | 
+ **entityIds** | **[]string** |  | 
+ **entityType** | **string** |  | 
  **expand** | **string** |  | 
  **featureIds** | **[]string** |  | 
  **featureType** | **string** |  | 
@@ -78,8 +220,7 @@ Name | Type | Description  | Notes
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
  **order** | **string** |  | 
- **planIds** | **[]string** | Specific filters for entitlements | 
- **sort** | **string** |  | 
+ **planIds** | **[]string** |  | 
  **startTime** | **string** |  | 
  **status** | **string** |  | 
 
@@ -364,6 +505,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DtoEntitlementResponse**](DtoEntitlementResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EntitlementsSearchPost
+
+> DtoListEntitlementsResponse EntitlementsSearchPost(ctx).Filter(filter).Execute()
+
+List entitlements by filter
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	filter := *openapiclient.NewTypesEntitlementFilter() // TypesEntitlementFilter | Filter
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EntitlementsAPI.EntitlementsSearchPost(context.Background()).Filter(filter).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EntitlementsAPI.EntitlementsSearchPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EntitlementsSearchPost`: DtoListEntitlementsResponse
+	fmt.Fprintf(os.Stdout, "Response from `EntitlementsAPI.EntitlementsSearchPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEntitlementsSearchPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **filter** | [**TypesEntitlementFilter**](TypesEntitlementFilter.md) | Filter | 
+
+### Return type
+
+[**DtoListEntitlementsResponse**](DtoListEntitlementsResponse.md)
 
 ### Authorization
 

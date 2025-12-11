@@ -4,8 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AutoTopupAmount** | Pointer to **float32** |  | [optional] 
-**AutoTopupMinBalance** | Pointer to **float32** |  | [optional] 
+**AlertConfig** | Pointer to [**DtoAlertConfig**](DtoAlertConfig.md) |  | [optional] 
+**AlertEnabled** | Pointer to **bool** |  | [optional] 
+**AutoTopupAmount** | Pointer to **string** |  | [optional] 
+**AutoTopupMinBalance** | Pointer to **string** |  | [optional] 
 **AutoTopupTrigger** | Pointer to [**TypesAutoTopupTrigger**](TypesAutoTopupTrigger.md) |  | [optional] 
 **Config** | Pointer to [**TypesWalletConfig**](TypesWalletConfig.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
@@ -31,22 +33,72 @@ NewDtoUpdateWalletRequestWithDefaults instantiates a new DtoUpdateWalletRequest 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
+### GetAlertConfig
+
+`func (o *DtoUpdateWalletRequest) GetAlertConfig() DtoAlertConfig`
+
+GetAlertConfig returns the AlertConfig field if non-nil, zero value otherwise.
+
+### GetAlertConfigOk
+
+`func (o *DtoUpdateWalletRequest) GetAlertConfigOk() (*DtoAlertConfig, bool)`
+
+GetAlertConfigOk returns a tuple with the AlertConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlertConfig
+
+`func (o *DtoUpdateWalletRequest) SetAlertConfig(v DtoAlertConfig)`
+
+SetAlertConfig sets AlertConfig field to given value.
+
+### HasAlertConfig
+
+`func (o *DtoUpdateWalletRequest) HasAlertConfig() bool`
+
+HasAlertConfig returns a boolean if a field has been set.
+
+### GetAlertEnabled
+
+`func (o *DtoUpdateWalletRequest) GetAlertEnabled() bool`
+
+GetAlertEnabled returns the AlertEnabled field if non-nil, zero value otherwise.
+
+### GetAlertEnabledOk
+
+`func (o *DtoUpdateWalletRequest) GetAlertEnabledOk() (*bool, bool)`
+
+GetAlertEnabledOk returns a tuple with the AlertEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAlertEnabled
+
+`func (o *DtoUpdateWalletRequest) SetAlertEnabled(v bool)`
+
+SetAlertEnabled sets AlertEnabled field to given value.
+
+### HasAlertEnabled
+
+`func (o *DtoUpdateWalletRequest) HasAlertEnabled() bool`
+
+HasAlertEnabled returns a boolean if a field has been set.
+
 ### GetAutoTopupAmount
 
-`func (o *DtoUpdateWalletRequest) GetAutoTopupAmount() float32`
+`func (o *DtoUpdateWalletRequest) GetAutoTopupAmount() string`
 
 GetAutoTopupAmount returns the AutoTopupAmount field if non-nil, zero value otherwise.
 
 ### GetAutoTopupAmountOk
 
-`func (o *DtoUpdateWalletRequest) GetAutoTopupAmountOk() (*float32, bool)`
+`func (o *DtoUpdateWalletRequest) GetAutoTopupAmountOk() (*string, bool)`
 
 GetAutoTopupAmountOk returns a tuple with the AutoTopupAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAutoTopupAmount
 
-`func (o *DtoUpdateWalletRequest) SetAutoTopupAmount(v float32)`
+`func (o *DtoUpdateWalletRequest) SetAutoTopupAmount(v string)`
 
 SetAutoTopupAmount sets AutoTopupAmount field to given value.
 
@@ -58,20 +110,20 @@ HasAutoTopupAmount returns a boolean if a field has been set.
 
 ### GetAutoTopupMinBalance
 
-`func (o *DtoUpdateWalletRequest) GetAutoTopupMinBalance() float32`
+`func (o *DtoUpdateWalletRequest) GetAutoTopupMinBalance() string`
 
 GetAutoTopupMinBalance returns the AutoTopupMinBalance field if non-nil, zero value otherwise.
 
 ### GetAutoTopupMinBalanceOk
 
-`func (o *DtoUpdateWalletRequest) GetAutoTopupMinBalanceOk() (*float32, bool)`
+`func (o *DtoUpdateWalletRequest) GetAutoTopupMinBalanceOk() (*string, bool)`
 
 GetAutoTopupMinBalanceOk returns a tuple with the AutoTopupMinBalance field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAutoTopupMinBalance
 
-`func (o *DtoUpdateWalletRequest) SetAutoTopupMinBalance(v float32)`
+`func (o *DtoUpdateWalletRequest) SetAutoTopupMinBalance(v string)`
 
 SetAutoTopupMinBalance sets AutoTopupMinBalance field to given value.
 

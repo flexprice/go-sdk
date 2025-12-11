@@ -21,6 +21,9 @@ var _ MappedNullable = &DtoGetUsageByMeterRequest{}
 
 // DtoGetUsageByMeterRequest struct for DtoGetUsageByMeterRequest
 type DtoGetUsageByMeterRequest struct {
+	// BillingAnchor enables custom monthly billing periods for meter usage aggregation.  Usage guidelines: - Only effective when WindowSize = \"MONTH\" - For other window sizes (DAY, HOUR, WEEK), this field is ignored - When nil, uses standard calendar months (1st to 1st) - When provided, creates custom monthly periods (e.g., 5th to 5th)  Common use cases: - Subscription billing periods that don't align with calendar months - Customer-specific billing cycles (e.g., signed up on 15th) - Multi-tenant systems with different billing anchor dates  Example: If BillingAnchor = \"2024-03-05T14:30:45Z\" and WindowSize = \"MONTH\":   - March period: 2024-03-05 14:30:45 to 2024-04-05 14:30:45   - April period: 2024-04-05 14:30:45 to 2024-05-05 14:30:45
+	BillingAnchor *string `json:"billing_anchor,omitempty"`
+	BucketSize *TypesWindowSize `json:"bucket_size,omitempty"`
 	CustomerId *string `json:"customer_id,omitempty"`
 	EndTime *string `json:"end_time,omitempty"`
 	ExternalCustomerId *string `json:"external_customer_id,omitempty"`
@@ -48,6 +51,70 @@ func NewDtoGetUsageByMeterRequest(meterId string) *DtoGetUsageByMeterRequest {
 func NewDtoGetUsageByMeterRequestWithDefaults() *DtoGetUsageByMeterRequest {
 	this := DtoGetUsageByMeterRequest{}
 	return &this
+}
+
+// GetBillingAnchor returns the BillingAnchor field value if set, zero value otherwise.
+func (o *DtoGetUsageByMeterRequest) GetBillingAnchor() string {
+	if o == nil || IsNil(o.BillingAnchor) {
+		var ret string
+		return ret
+	}
+	return *o.BillingAnchor
+}
+
+// GetBillingAnchorOk returns a tuple with the BillingAnchor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageByMeterRequest) GetBillingAnchorOk() (*string, bool) {
+	if o == nil || IsNil(o.BillingAnchor) {
+		return nil, false
+	}
+	return o.BillingAnchor, true
+}
+
+// HasBillingAnchor returns a boolean if a field has been set.
+func (o *DtoGetUsageByMeterRequest) HasBillingAnchor() bool {
+	if o != nil && !IsNil(o.BillingAnchor) {
+		return true
+	}
+
+	return false
+}
+
+// SetBillingAnchor gets a reference to the given string and assigns it to the BillingAnchor field.
+func (o *DtoGetUsageByMeterRequest) SetBillingAnchor(v string) {
+	o.BillingAnchor = &v
+}
+
+// GetBucketSize returns the BucketSize field value if set, zero value otherwise.
+func (o *DtoGetUsageByMeterRequest) GetBucketSize() TypesWindowSize {
+	if o == nil || IsNil(o.BucketSize) {
+		var ret TypesWindowSize
+		return ret
+	}
+	return *o.BucketSize
+}
+
+// GetBucketSizeOk returns a tuple with the BucketSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageByMeterRequest) GetBucketSizeOk() (*TypesWindowSize, bool) {
+	if o == nil || IsNil(o.BucketSize) {
+		return nil, false
+	}
+	return o.BucketSize, true
+}
+
+// HasBucketSize returns a boolean if a field has been set.
+func (o *DtoGetUsageByMeterRequest) HasBucketSize() bool {
+	if o != nil && !IsNil(o.BucketSize) {
+		return true
+	}
+
+	return false
+}
+
+// SetBucketSize gets a reference to the given TypesWindowSize and assigns it to the BucketSize field.
+func (o *DtoGetUsageByMeterRequest) SetBucketSize(v TypesWindowSize) {
+	o.BucketSize = &v
 }
 
 // GetCustomerId returns the CustomerId field value if set, zero value otherwise.
@@ -276,6 +343,12 @@ func (o DtoGetUsageByMeterRequest) MarshalJSON() ([]byte, error) {
 
 func (o DtoGetUsageByMeterRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.BillingAnchor) {
+		toSerialize["billing_anchor"] = o.BillingAnchor
+	}
+	if !IsNil(o.BucketSize) {
+		toSerialize["bucket_size"] = o.BucketSize
+	}
 	if !IsNil(o.CustomerId) {
 		toSerialize["customer_id"] = o.CustomerId
 	}

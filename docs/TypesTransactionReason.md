@@ -13,11 +13,13 @@
 
 * `TransactionReasonPurchasedCreditDirect` (value: `"PURCHASED_CREDIT_DIRECT"`)
 
-* `TransactionReasonInvoiceRefund` (value: `"INVOICE_REFUND"`)
+* `TransactionReasonCreditNote` (value: `"CREDIT_NOTE"`)
 
 * `TransactionReasonCreditExpired` (value: `"CREDIT_EXPIRED"`)
 
 * `TransactionReasonWalletTermination` (value: `"WALLET_TERMINATION"`)
+
+* `TransactionReasonManualBalanceDebit` (value: `"MANUAL_BALANCE_DEBIT"`)
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

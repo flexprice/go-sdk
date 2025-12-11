@@ -4,24 +4,41 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Addon** | Pointer to [**DtoAddonResponse**](DtoAddonResponse.md) |  | [optional] 
 **Amount** | Pointer to **float32** | Amount stored in main currency units (e.g., dollars, not cents) For USD: 12.50 means $12.50 | [optional] 
 **BillingCadence** | Pointer to [**TypesBillingCadence**](TypesBillingCadence.md) |  | [optional] 
 **BillingModel** | Pointer to [**TypesBillingModel**](TypesBillingModel.md) |  | [optional] 
 **BillingPeriod** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
 **BillingPeriodCount** | Pointer to **int32** | BillingPeriodCount is the count of the billing period ex 1, 3, 6, 12 | [optional] 
+**ConversionRate** | Pointer to **float32** | ConversionRate is the rate of the price unit to the base currency For BTC: 1 BTC &#x3D; 100000000 USD | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **Currency** | Pointer to **string** | Currency 3 digit ISO currency code in lowercase ex usd, eur, gbp | [optional] 
 **Description** | Pointer to **string** | Description of the price | [optional] 
 **DisplayAmount** | Pointer to **string** | DisplayAmount is the formatted amount with currency symbol For USD: $12.50 | [optional] 
+**DisplayPriceUnitAmount** | Pointer to **string** | DisplayPriceUnitAmount is the formatted amount with price unit symbol For BTC: 0.00000001 BTC | [optional] 
+**EndDate** | Pointer to **string** | EndDate is the end date of the price | [optional] 
+**EntityId** | Pointer to **string** | EntityID holds the value of the \&quot;entity_id\&quot; field. | [optional] 
+**EntityType** | Pointer to [**TypesPriceEntityType**](TypesPriceEntityType.md) |  | [optional] 
 **EnvironmentId** | Pointer to **string** | EnvironmentID is the environment identifier for the price | [optional] 
+**Group** | Pointer to [**DtoGroupResponse**](DtoGroupResponse.md) |  | [optional] 
+**GroupId** | Pointer to **string** | GroupID references the group this price belongs to | [optional] 
 **Id** | Pointer to **string** | ID uuid identifier for the price | [optional] 
 **InvoiceCadence** | Pointer to [**TypesInvoiceCadence**](TypesInvoiceCadence.md) |  | [optional] 
 **LookupKey** | Pointer to **string** | LookupKey used for looking up the price in the database | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Meter** | Pointer to [**DtoMeterResponse**](DtoMeterResponse.md) |  | [optional] 
 **MeterId** | Pointer to **string** | MeterID is the id of the meter for usage based pricing | [optional] 
-**PlanId** | Pointer to **string** | PlanID is the id of the plan for plan based pricing | [optional] 
+**ParentPriceId** | Pointer to **string** | ParentPriceID references the root price (always set for price lineage tracking) | [optional] 
+**Plan** | Pointer to [**DtoPlanResponse**](DtoPlanResponse.md) |  | [optional] 
+**PlanId** | Pointer to **string** | TODO: Remove this once we have a proper price entity type | [optional] 
+**PriceUnit** | Pointer to **string** | PriceUnit 3 digit ISO currency code in lowercase ex btc For BTC: btc | [optional] 
+**PriceUnitAmount** | Pointer to **float32** | PriceUnitAmount is the amount stored in price unit For BTC: 0.00000001 means 0.00000001 BTC | [optional] 
+**PriceUnitId** | Pointer to **string** | PriceUnitID is the id of the price unit | [optional] 
+**PriceUnitTiers** | Pointer to [**[]PricePriceTier**](PricePriceTier.md) | PriceUnitTiers are the tiers for the price unit | [optional] 
+**PriceUnitType** | Pointer to [**TypesPriceUnitType**](TypesPriceUnitType.md) |  | [optional] 
+**PricingUnit** | Pointer to [**DtoPriceUnitResponse**](DtoPriceUnitResponse.md) |  | [optional] 
+**StartDate** | Pointer to **string** | StartDate is the start date of the price | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **TierMode** | Pointer to [**TypesBillingTier**](TypesBillingTier.md) |  | [optional] 
@@ -50,6 +67,31 @@ will change when the set of required properties is changed
 NewDtoPriceResponseWithDefaults instantiates a new DtoPriceResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAddon
+
+`func (o *DtoPriceResponse) GetAddon() DtoAddonResponse`
+
+GetAddon returns the Addon field if non-nil, zero value otherwise.
+
+### GetAddonOk
+
+`func (o *DtoPriceResponse) GetAddonOk() (*DtoAddonResponse, bool)`
+
+GetAddonOk returns a tuple with the Addon field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddon
+
+`func (o *DtoPriceResponse) SetAddon(v DtoAddonResponse)`
+
+SetAddon sets Addon field to given value.
+
+### HasAddon
+
+`func (o *DtoPriceResponse) HasAddon() bool`
+
+HasAddon returns a boolean if a field has been set.
 
 ### GetAmount
 
@@ -176,6 +218,31 @@ SetBillingPeriodCount sets BillingPeriodCount field to given value.
 
 HasBillingPeriodCount returns a boolean if a field has been set.
 
+### GetConversionRate
+
+`func (o *DtoPriceResponse) GetConversionRate() float32`
+
+GetConversionRate returns the ConversionRate field if non-nil, zero value otherwise.
+
+### GetConversionRateOk
+
+`func (o *DtoPriceResponse) GetConversionRateOk() (*float32, bool)`
+
+GetConversionRateOk returns a tuple with the ConversionRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConversionRate
+
+`func (o *DtoPriceResponse) SetConversionRate(v float32)`
+
+SetConversionRate sets ConversionRate field to given value.
+
+### HasConversionRate
+
+`func (o *DtoPriceResponse) HasConversionRate() bool`
+
+HasConversionRate returns a boolean if a field has been set.
+
 ### GetCreatedAt
 
 `func (o *DtoPriceResponse) GetCreatedAt() string`
@@ -301,6 +368,106 @@ SetDisplayAmount sets DisplayAmount field to given value.
 
 HasDisplayAmount returns a boolean if a field has been set.
 
+### GetDisplayPriceUnitAmount
+
+`func (o *DtoPriceResponse) GetDisplayPriceUnitAmount() string`
+
+GetDisplayPriceUnitAmount returns the DisplayPriceUnitAmount field if non-nil, zero value otherwise.
+
+### GetDisplayPriceUnitAmountOk
+
+`func (o *DtoPriceResponse) GetDisplayPriceUnitAmountOk() (*string, bool)`
+
+GetDisplayPriceUnitAmountOk returns a tuple with the DisplayPriceUnitAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayPriceUnitAmount
+
+`func (o *DtoPriceResponse) SetDisplayPriceUnitAmount(v string)`
+
+SetDisplayPriceUnitAmount sets DisplayPriceUnitAmount field to given value.
+
+### HasDisplayPriceUnitAmount
+
+`func (o *DtoPriceResponse) HasDisplayPriceUnitAmount() bool`
+
+HasDisplayPriceUnitAmount returns a boolean if a field has been set.
+
+### GetEndDate
+
+`func (o *DtoPriceResponse) GetEndDate() string`
+
+GetEndDate returns the EndDate field if non-nil, zero value otherwise.
+
+### GetEndDateOk
+
+`func (o *DtoPriceResponse) GetEndDateOk() (*string, bool)`
+
+GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndDate
+
+`func (o *DtoPriceResponse) SetEndDate(v string)`
+
+SetEndDate sets EndDate field to given value.
+
+### HasEndDate
+
+`func (o *DtoPriceResponse) HasEndDate() bool`
+
+HasEndDate returns a boolean if a field has been set.
+
+### GetEntityId
+
+`func (o *DtoPriceResponse) GetEntityId() string`
+
+GetEntityId returns the EntityId field if non-nil, zero value otherwise.
+
+### GetEntityIdOk
+
+`func (o *DtoPriceResponse) GetEntityIdOk() (*string, bool)`
+
+GetEntityIdOk returns a tuple with the EntityId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityId
+
+`func (o *DtoPriceResponse) SetEntityId(v string)`
+
+SetEntityId sets EntityId field to given value.
+
+### HasEntityId
+
+`func (o *DtoPriceResponse) HasEntityId() bool`
+
+HasEntityId returns a boolean if a field has been set.
+
+### GetEntityType
+
+`func (o *DtoPriceResponse) GetEntityType() TypesPriceEntityType`
+
+GetEntityType returns the EntityType field if non-nil, zero value otherwise.
+
+### GetEntityTypeOk
+
+`func (o *DtoPriceResponse) GetEntityTypeOk() (*TypesPriceEntityType, bool)`
+
+GetEntityTypeOk returns a tuple with the EntityType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityType
+
+`func (o *DtoPriceResponse) SetEntityType(v TypesPriceEntityType)`
+
+SetEntityType sets EntityType field to given value.
+
+### HasEntityType
+
+`func (o *DtoPriceResponse) HasEntityType() bool`
+
+HasEntityType returns a boolean if a field has been set.
+
 ### GetEnvironmentId
 
 `func (o *DtoPriceResponse) GetEnvironmentId() string`
@@ -325,6 +492,56 @@ SetEnvironmentId sets EnvironmentId field to given value.
 `func (o *DtoPriceResponse) HasEnvironmentId() bool`
 
 HasEnvironmentId returns a boolean if a field has been set.
+
+### GetGroup
+
+`func (o *DtoPriceResponse) GetGroup() DtoGroupResponse`
+
+GetGroup returns the Group field if non-nil, zero value otherwise.
+
+### GetGroupOk
+
+`func (o *DtoPriceResponse) GetGroupOk() (*DtoGroupResponse, bool)`
+
+GetGroupOk returns a tuple with the Group field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroup
+
+`func (o *DtoPriceResponse) SetGroup(v DtoGroupResponse)`
+
+SetGroup sets Group field to given value.
+
+### HasGroup
+
+`func (o *DtoPriceResponse) HasGroup() bool`
+
+HasGroup returns a boolean if a field has been set.
+
+### GetGroupId
+
+`func (o *DtoPriceResponse) GetGroupId() string`
+
+GetGroupId returns the GroupId field if non-nil, zero value otherwise.
+
+### GetGroupIdOk
+
+`func (o *DtoPriceResponse) GetGroupIdOk() (*string, bool)`
+
+GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupId
+
+`func (o *DtoPriceResponse) SetGroupId(v string)`
+
+SetGroupId sets GroupId field to given value.
+
+### HasGroupId
+
+`func (o *DtoPriceResponse) HasGroupId() bool`
+
+HasGroupId returns a boolean if a field has been set.
 
 ### GetId
 
@@ -476,6 +693,56 @@ SetMeterId sets MeterId field to given value.
 
 HasMeterId returns a boolean if a field has been set.
 
+### GetParentPriceId
+
+`func (o *DtoPriceResponse) GetParentPriceId() string`
+
+GetParentPriceId returns the ParentPriceId field if non-nil, zero value otherwise.
+
+### GetParentPriceIdOk
+
+`func (o *DtoPriceResponse) GetParentPriceIdOk() (*string, bool)`
+
+GetParentPriceIdOk returns a tuple with the ParentPriceId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentPriceId
+
+`func (o *DtoPriceResponse) SetParentPriceId(v string)`
+
+SetParentPriceId sets ParentPriceId field to given value.
+
+### HasParentPriceId
+
+`func (o *DtoPriceResponse) HasParentPriceId() bool`
+
+HasParentPriceId returns a boolean if a field has been set.
+
+### GetPlan
+
+`func (o *DtoPriceResponse) GetPlan() DtoPlanResponse`
+
+GetPlan returns the Plan field if non-nil, zero value otherwise.
+
+### GetPlanOk
+
+`func (o *DtoPriceResponse) GetPlanOk() (*DtoPlanResponse, bool)`
+
+GetPlanOk returns a tuple with the Plan field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPlan
+
+`func (o *DtoPriceResponse) SetPlan(v DtoPlanResponse)`
+
+SetPlan sets Plan field to given value.
+
+### HasPlan
+
+`func (o *DtoPriceResponse) HasPlan() bool`
+
+HasPlan returns a boolean if a field has been set.
+
 ### GetPlanId
 
 `func (o *DtoPriceResponse) GetPlanId() string`
@@ -500,6 +767,181 @@ SetPlanId sets PlanId field to given value.
 `func (o *DtoPriceResponse) HasPlanId() bool`
 
 HasPlanId returns a boolean if a field has been set.
+
+### GetPriceUnit
+
+`func (o *DtoPriceResponse) GetPriceUnit() string`
+
+GetPriceUnit returns the PriceUnit field if non-nil, zero value otherwise.
+
+### GetPriceUnitOk
+
+`func (o *DtoPriceResponse) GetPriceUnitOk() (*string, bool)`
+
+GetPriceUnitOk returns a tuple with the PriceUnit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnit
+
+`func (o *DtoPriceResponse) SetPriceUnit(v string)`
+
+SetPriceUnit sets PriceUnit field to given value.
+
+### HasPriceUnit
+
+`func (o *DtoPriceResponse) HasPriceUnit() bool`
+
+HasPriceUnit returns a boolean if a field has been set.
+
+### GetPriceUnitAmount
+
+`func (o *DtoPriceResponse) GetPriceUnitAmount() float32`
+
+GetPriceUnitAmount returns the PriceUnitAmount field if non-nil, zero value otherwise.
+
+### GetPriceUnitAmountOk
+
+`func (o *DtoPriceResponse) GetPriceUnitAmountOk() (*float32, bool)`
+
+GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitAmount
+
+`func (o *DtoPriceResponse) SetPriceUnitAmount(v float32)`
+
+SetPriceUnitAmount sets PriceUnitAmount field to given value.
+
+### HasPriceUnitAmount
+
+`func (o *DtoPriceResponse) HasPriceUnitAmount() bool`
+
+HasPriceUnitAmount returns a boolean if a field has been set.
+
+### GetPriceUnitId
+
+`func (o *DtoPriceResponse) GetPriceUnitId() string`
+
+GetPriceUnitId returns the PriceUnitId field if non-nil, zero value otherwise.
+
+### GetPriceUnitIdOk
+
+`func (o *DtoPriceResponse) GetPriceUnitIdOk() (*string, bool)`
+
+GetPriceUnitIdOk returns a tuple with the PriceUnitId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitId
+
+`func (o *DtoPriceResponse) SetPriceUnitId(v string)`
+
+SetPriceUnitId sets PriceUnitId field to given value.
+
+### HasPriceUnitId
+
+`func (o *DtoPriceResponse) HasPriceUnitId() bool`
+
+HasPriceUnitId returns a boolean if a field has been set.
+
+### GetPriceUnitTiers
+
+`func (o *DtoPriceResponse) GetPriceUnitTiers() []PricePriceTier`
+
+GetPriceUnitTiers returns the PriceUnitTiers field if non-nil, zero value otherwise.
+
+### GetPriceUnitTiersOk
+
+`func (o *DtoPriceResponse) GetPriceUnitTiersOk() (*[]PricePriceTier, bool)`
+
+GetPriceUnitTiersOk returns a tuple with the PriceUnitTiers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitTiers
+
+`func (o *DtoPriceResponse) SetPriceUnitTiers(v []PricePriceTier)`
+
+SetPriceUnitTiers sets PriceUnitTiers field to given value.
+
+### HasPriceUnitTiers
+
+`func (o *DtoPriceResponse) HasPriceUnitTiers() bool`
+
+HasPriceUnitTiers returns a boolean if a field has been set.
+
+### GetPriceUnitType
+
+`func (o *DtoPriceResponse) GetPriceUnitType() TypesPriceUnitType`
+
+GetPriceUnitType returns the PriceUnitType field if non-nil, zero value otherwise.
+
+### GetPriceUnitTypeOk
+
+`func (o *DtoPriceResponse) GetPriceUnitTypeOk() (*TypesPriceUnitType, bool)`
+
+GetPriceUnitTypeOk returns a tuple with the PriceUnitType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitType
+
+`func (o *DtoPriceResponse) SetPriceUnitType(v TypesPriceUnitType)`
+
+SetPriceUnitType sets PriceUnitType field to given value.
+
+### HasPriceUnitType
+
+`func (o *DtoPriceResponse) HasPriceUnitType() bool`
+
+HasPriceUnitType returns a boolean if a field has been set.
+
+### GetPricingUnit
+
+`func (o *DtoPriceResponse) GetPricingUnit() DtoPriceUnitResponse`
+
+GetPricingUnit returns the PricingUnit field if non-nil, zero value otherwise.
+
+### GetPricingUnitOk
+
+`func (o *DtoPriceResponse) GetPricingUnitOk() (*DtoPriceUnitResponse, bool)`
+
+GetPricingUnitOk returns a tuple with the PricingUnit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPricingUnit
+
+`func (o *DtoPriceResponse) SetPricingUnit(v DtoPriceUnitResponse)`
+
+SetPricingUnit sets PricingUnit field to given value.
+
+### HasPricingUnit
+
+`func (o *DtoPriceResponse) HasPricingUnit() bool`
+
+HasPricingUnit returns a boolean if a field has been set.
+
+### GetStartDate
+
+`func (o *DtoPriceResponse) GetStartDate() string`
+
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
+
+### GetStartDateOk
+
+`func (o *DtoPriceResponse) GetStartDateOk() (*string, bool)`
+
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStartDate
+
+`func (o *DtoPriceResponse) SetStartDate(v string)`
+
+SetStartDate sets StartDate field to given value.
+
+### HasStartDate
+
+`func (o *DtoPriceResponse) HasStartDate() bool`
+
+HasStartDate returns a boolean if a field has been set.
 
 ### GetStatus
 

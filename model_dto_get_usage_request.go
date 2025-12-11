@@ -22,11 +22,15 @@ var _ MappedNullable = &DtoGetUsageRequest{}
 // DtoGetUsageRequest struct for DtoGetUsageRequest
 type DtoGetUsageRequest struct {
 	AggregationType TypesAggregationType `json:"aggregation_type"`
+	// BillingAnchor enables custom monthly billing periods for usage aggregation.  When to use: - WindowSize = \"MONTH\" AND you need custom monthly periods (not calendar months) - Subscription billing that doesn't align with calendar months - Example: Customer signed up on 15th, so billing periods are 15th to 15th  When NOT to use: - WindowSize != \"MONTH\" (ignored for DAY, HOUR, WEEK, etc.) - Standard calendar-based billing (1st to 1st of each month)  Example values: - \"2024-03-05T14:30:45.123456789Z\" (5th of each month at 2:30:45 PM) - \"2024-01-15T00:00:00Z\" (15th of each month at midnight) - \"2024-02-29T12:00:00Z\" (29th of each month at noon - handles leap years)
+	BillingAnchor *string `json:"billing_anchor,omitempty"`
+	BucketSize *TypesWindowSize `json:"bucket_size,omitempty"`
 	CustomerId *string `json:"customer_id,omitempty"`
 	EndTime *string `json:"end_time,omitempty"`
 	EventName string `json:"event_name"`
 	ExternalCustomerId *string `json:"external_customer_id,omitempty"`
 	Filters *map[string][]string `json:"filters,omitempty"`
+	Multiplier *string `json:"multiplier,omitempty"`
 	// will be empty/ignored in case of COUNT
 	PropertyName *string `json:"property_name,omitempty"`
 	StartTime *string `json:"start_time,omitempty"`
@@ -76,6 +80,70 @@ func (o *DtoGetUsageRequest) GetAggregationTypeOk() (*TypesAggregationType, bool
 // SetAggregationType sets field value
 func (o *DtoGetUsageRequest) SetAggregationType(v TypesAggregationType) {
 	o.AggregationType = v
+}
+
+// GetBillingAnchor returns the BillingAnchor field value if set, zero value otherwise.
+func (o *DtoGetUsageRequest) GetBillingAnchor() string {
+	if o == nil || IsNil(o.BillingAnchor) {
+		var ret string
+		return ret
+	}
+	return *o.BillingAnchor
+}
+
+// GetBillingAnchorOk returns a tuple with the BillingAnchor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageRequest) GetBillingAnchorOk() (*string, bool) {
+	if o == nil || IsNil(o.BillingAnchor) {
+		return nil, false
+	}
+	return o.BillingAnchor, true
+}
+
+// HasBillingAnchor returns a boolean if a field has been set.
+func (o *DtoGetUsageRequest) HasBillingAnchor() bool {
+	if o != nil && !IsNil(o.BillingAnchor) {
+		return true
+	}
+
+	return false
+}
+
+// SetBillingAnchor gets a reference to the given string and assigns it to the BillingAnchor field.
+func (o *DtoGetUsageRequest) SetBillingAnchor(v string) {
+	o.BillingAnchor = &v
+}
+
+// GetBucketSize returns the BucketSize field value if set, zero value otherwise.
+func (o *DtoGetUsageRequest) GetBucketSize() TypesWindowSize {
+	if o == nil || IsNil(o.BucketSize) {
+		var ret TypesWindowSize
+		return ret
+	}
+	return *o.BucketSize
+}
+
+// GetBucketSizeOk returns a tuple with the BucketSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageRequest) GetBucketSizeOk() (*TypesWindowSize, bool) {
+	if o == nil || IsNil(o.BucketSize) {
+		return nil, false
+	}
+	return o.BucketSize, true
+}
+
+// HasBucketSize returns a boolean if a field has been set.
+func (o *DtoGetUsageRequest) HasBucketSize() bool {
+	if o != nil && !IsNil(o.BucketSize) {
+		return true
+	}
+
+	return false
+}
+
+// SetBucketSize gets a reference to the given TypesWindowSize and assigns it to the BucketSize field.
+func (o *DtoGetUsageRequest) SetBucketSize(v TypesWindowSize) {
+	o.BucketSize = &v
 }
 
 // GetCustomerId returns the CustomerId field value if set, zero value otherwise.
@@ -230,6 +298,38 @@ func (o *DtoGetUsageRequest) SetFilters(v map[string][]string) {
 	o.Filters = &v
 }
 
+// GetMultiplier returns the Multiplier field value if set, zero value otherwise.
+func (o *DtoGetUsageRequest) GetMultiplier() string {
+	if o == nil || IsNil(o.Multiplier) {
+		var ret string
+		return ret
+	}
+	return *o.Multiplier
+}
+
+// GetMultiplierOk returns a tuple with the Multiplier field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageRequest) GetMultiplierOk() (*string, bool) {
+	if o == nil || IsNil(o.Multiplier) {
+		return nil, false
+	}
+	return o.Multiplier, true
+}
+
+// HasMultiplier returns a boolean if a field has been set.
+func (o *DtoGetUsageRequest) HasMultiplier() bool {
+	if o != nil && !IsNil(o.Multiplier) {
+		return true
+	}
+
+	return false
+}
+
+// SetMultiplier gets a reference to the given string and assigns it to the Multiplier field.
+func (o *DtoGetUsageRequest) SetMultiplier(v string) {
+	o.Multiplier = &v
+}
+
 // GetPropertyName returns the PropertyName field value if set, zero value otherwise.
 func (o *DtoGetUsageRequest) GetPropertyName() string {
 	if o == nil || IsNil(o.PropertyName) {
@@ -337,6 +437,12 @@ func (o DtoGetUsageRequest) MarshalJSON() ([]byte, error) {
 func (o DtoGetUsageRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["aggregation_type"] = o.AggregationType
+	if !IsNil(o.BillingAnchor) {
+		toSerialize["billing_anchor"] = o.BillingAnchor
+	}
+	if !IsNil(o.BucketSize) {
+		toSerialize["bucket_size"] = o.BucketSize
+	}
 	if !IsNil(o.CustomerId) {
 		toSerialize["customer_id"] = o.CustomerId
 	}
@@ -349,6 +455,9 @@ func (o DtoGetUsageRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Filters) {
 		toSerialize["filters"] = o.Filters
+	}
+	if !IsNil(o.Multiplier) {
+		toSerialize["multiplier"] = o.Multiplier
 	}
 	if !IsNil(o.PropertyName) {
 		toSerialize["property_name"] = o.PropertyName

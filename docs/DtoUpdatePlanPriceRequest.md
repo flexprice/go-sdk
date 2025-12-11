@@ -8,16 +8,23 @@ Name | Type | Description | Notes
 **BillingCadence** | [**TypesBillingCadence**](TypesBillingCadence.md) |  | 
 **BillingModel** | [**TypesBillingModel**](TypesBillingModel.md) |  | 
 **BillingPeriod** | [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | 
-**BillingPeriodCount** | **int32** |  | 
+**BillingPeriodCount** | Pointer to **int32** |  | [optional] 
 **Currency** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
+**EndDate** | Pointer to **string** |  | [optional] 
+**EntityId** | Pointer to **string** | TODO: this will be required in the future as we will not allow prices to be created without an entity id | [optional] 
+**EntityType** | Pointer to [**TypesPriceEntityType**](TypesPriceEntityType.md) |  | [optional] 
 **FilterValues** | Pointer to **map[string][]string** |  | [optional] 
+**GroupId** | Pointer to **string** | GroupID is the id of the group to add the price to | [optional] 
 **Id** | Pointer to **string** | The ID of the price to update (present if the price is being updated) | [optional] 
 **InvoiceCadence** | [**TypesInvoiceCadence**](TypesInvoiceCadence.md) |  | 
 **LookupKey** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **MeterId** | Pointer to **string** |  | [optional] 
-**PlanId** | Pointer to **string** |  | [optional] 
+**PlanId** | Pointer to **string** | TODO: This is deprecated and will be removed in the future | [optional] 
+**PriceUnitConfig** | Pointer to [**DtoPriceUnitConfig**](DtoPriceUnitConfig.md) |  | [optional] 
+**PriceUnitType** | [**TypesPriceUnitType**](TypesPriceUnitType.md) |  | 
+**StartDate** | Pointer to **string** |  | [optional] 
 **TierMode** | Pointer to [**TypesBillingTier**](TypesBillingTier.md) |  | [optional] 
 **Tiers** | Pointer to [**[]DtoCreatePriceTier**](DtoCreatePriceTier.md) |  | [optional] 
 **TransformQuantity** | Pointer to [**PriceTransformQuantity**](PriceTransformQuantity.md) |  | [optional] 
@@ -28,7 +35,7 @@ Name | Type | Description | Notes
 
 ### NewDtoUpdatePlanPriceRequest
 
-`func NewDtoUpdatePlanPriceRequest(billingCadence TypesBillingCadence, billingModel TypesBillingModel, billingPeriod TypesBillingPeriod, billingPeriodCount int32, currency string, invoiceCadence TypesInvoiceCadence, type_ TypesPriceType, ) *DtoUpdatePlanPriceRequest`
+`func NewDtoUpdatePlanPriceRequest(billingCadence TypesBillingCadence, billingModel TypesBillingModel, billingPeriod TypesBillingPeriod, currency string, invoiceCadence TypesInvoiceCadence, priceUnitType TypesPriceUnitType, type_ TypesPriceType, ) *DtoUpdatePlanPriceRequest`
 
 NewDtoUpdatePlanPriceRequest instantiates a new DtoUpdatePlanPriceRequest object
 This constructor will assign default values to properties that have it defined,
@@ -147,6 +154,11 @@ and a boolean to check if the value has been set.
 
 SetBillingPeriodCount sets BillingPeriodCount field to given value.
 
+### HasBillingPeriodCount
+
+`func (o *DtoUpdatePlanPriceRequest) HasBillingPeriodCount() bool`
+
+HasBillingPeriodCount returns a boolean if a field has been set.
 
 ### GetCurrency
 
@@ -193,6 +205,81 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### GetEndDate
+
+`func (o *DtoUpdatePlanPriceRequest) GetEndDate() string`
+
+GetEndDate returns the EndDate field if non-nil, zero value otherwise.
+
+### GetEndDateOk
+
+`func (o *DtoUpdatePlanPriceRequest) GetEndDateOk() (*string, bool)`
+
+GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndDate
+
+`func (o *DtoUpdatePlanPriceRequest) SetEndDate(v string)`
+
+SetEndDate sets EndDate field to given value.
+
+### HasEndDate
+
+`func (o *DtoUpdatePlanPriceRequest) HasEndDate() bool`
+
+HasEndDate returns a boolean if a field has been set.
+
+### GetEntityId
+
+`func (o *DtoUpdatePlanPriceRequest) GetEntityId() string`
+
+GetEntityId returns the EntityId field if non-nil, zero value otherwise.
+
+### GetEntityIdOk
+
+`func (o *DtoUpdatePlanPriceRequest) GetEntityIdOk() (*string, bool)`
+
+GetEntityIdOk returns a tuple with the EntityId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityId
+
+`func (o *DtoUpdatePlanPriceRequest) SetEntityId(v string)`
+
+SetEntityId sets EntityId field to given value.
+
+### HasEntityId
+
+`func (o *DtoUpdatePlanPriceRequest) HasEntityId() bool`
+
+HasEntityId returns a boolean if a field has been set.
+
+### GetEntityType
+
+`func (o *DtoUpdatePlanPriceRequest) GetEntityType() TypesPriceEntityType`
+
+GetEntityType returns the EntityType field if non-nil, zero value otherwise.
+
+### GetEntityTypeOk
+
+`func (o *DtoUpdatePlanPriceRequest) GetEntityTypeOk() (*TypesPriceEntityType, bool)`
+
+GetEntityTypeOk returns a tuple with the EntityType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityType
+
+`func (o *DtoUpdatePlanPriceRequest) SetEntityType(v TypesPriceEntityType)`
+
+SetEntityType sets EntityType field to given value.
+
+### HasEntityType
+
+`func (o *DtoUpdatePlanPriceRequest) HasEntityType() bool`
+
+HasEntityType returns a boolean if a field has been set.
+
 ### GetFilterValues
 
 `func (o *DtoUpdatePlanPriceRequest) GetFilterValues() map[string][]string`
@@ -217,6 +304,31 @@ SetFilterValues sets FilterValues field to given value.
 `func (o *DtoUpdatePlanPriceRequest) HasFilterValues() bool`
 
 HasFilterValues returns a boolean if a field has been set.
+
+### GetGroupId
+
+`func (o *DtoUpdatePlanPriceRequest) GetGroupId() string`
+
+GetGroupId returns the GroupId field if non-nil, zero value otherwise.
+
+### GetGroupIdOk
+
+`func (o *DtoUpdatePlanPriceRequest) GetGroupIdOk() (*string, bool)`
+
+GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupId
+
+`func (o *DtoUpdatePlanPriceRequest) SetGroupId(v string)`
+
+SetGroupId sets GroupId field to given value.
+
+### HasGroupId
+
+`func (o *DtoUpdatePlanPriceRequest) HasGroupId() bool`
+
+HasGroupId returns a boolean if a field has been set.
 
 ### GetId
 
@@ -362,6 +474,76 @@ SetPlanId sets PlanId field to given value.
 `func (o *DtoUpdatePlanPriceRequest) HasPlanId() bool`
 
 HasPlanId returns a boolean if a field has been set.
+
+### GetPriceUnitConfig
+
+`func (o *DtoUpdatePlanPriceRequest) GetPriceUnitConfig() DtoPriceUnitConfig`
+
+GetPriceUnitConfig returns the PriceUnitConfig field if non-nil, zero value otherwise.
+
+### GetPriceUnitConfigOk
+
+`func (o *DtoUpdatePlanPriceRequest) GetPriceUnitConfigOk() (*DtoPriceUnitConfig, bool)`
+
+GetPriceUnitConfigOk returns a tuple with the PriceUnitConfig field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitConfig
+
+`func (o *DtoUpdatePlanPriceRequest) SetPriceUnitConfig(v DtoPriceUnitConfig)`
+
+SetPriceUnitConfig sets PriceUnitConfig field to given value.
+
+### HasPriceUnitConfig
+
+`func (o *DtoUpdatePlanPriceRequest) HasPriceUnitConfig() bool`
+
+HasPriceUnitConfig returns a boolean if a field has been set.
+
+### GetPriceUnitType
+
+`func (o *DtoUpdatePlanPriceRequest) GetPriceUnitType() TypesPriceUnitType`
+
+GetPriceUnitType returns the PriceUnitType field if non-nil, zero value otherwise.
+
+### GetPriceUnitTypeOk
+
+`func (o *DtoUpdatePlanPriceRequest) GetPriceUnitTypeOk() (*TypesPriceUnitType, bool)`
+
+GetPriceUnitTypeOk returns a tuple with the PriceUnitType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitType
+
+`func (o *DtoUpdatePlanPriceRequest) SetPriceUnitType(v TypesPriceUnitType)`
+
+SetPriceUnitType sets PriceUnitType field to given value.
+
+
+### GetStartDate
+
+`func (o *DtoUpdatePlanPriceRequest) GetStartDate() string`
+
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
+
+### GetStartDateOk
+
+`func (o *DtoUpdatePlanPriceRequest) GetStartDateOk() (*string, bool)`
+
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStartDate
+
+`func (o *DtoUpdatePlanPriceRequest) SetStartDate(v string)`
+
+SetStartDate sets StartDate field to given value.
+
+### HasStartDate
+
+`func (o *DtoUpdatePlanPriceRequest) HasStartDate() bool`
+
+HasStartDate returns a boolean if a field has been set.
 
 ### GetTierMode
 

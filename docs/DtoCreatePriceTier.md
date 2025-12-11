@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FlatAmount** | Pointer to **string** |  | [optional] 
-**UnitAmount** | **string** |  | 
-**UpTo** | Pointer to **int32** |  | [optional] 
+**FlatAmount** | Pointer to **string** | flat_amount is the flat amount for the given tier (optional) Applied on top of unit_amount*quantity. Useful for cases like \&quot;2.7$ + 5c\&quot; | [optional] 
+**UnitAmount** | **string** | unit_amount is the amount per unit for the given tier | 
+**UpTo** | Pointer to **int32** | up_to is the quantity up to which this tier applies. It is null for the last tier. IMPORTANT: Tier boundaries are INCLUSIVE. - If up_to is 1000, then quantity less than or equal to 1000 belongs to this tier - This behavior is consistent across both VOLUME and SLAB tier modes | [optional] 
 
 ## Methods
 

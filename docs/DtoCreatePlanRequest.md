@@ -4,9 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CreditGrants** | Pointer to [**[]DtoCreateCreditGrantRequest**](DtoCreateCreditGrantRequest.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
+**DisplayOrder** | Pointer to **int32** |  | [optional] 
 **Entitlements** | Pointer to [**[]DtoCreatePlanEntitlementRequest**](DtoCreatePlanEntitlementRequest.md) |  | [optional] 
 **LookupKey** | Pointer to **string** |  | [optional] 
+**Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Name** | **string** |  | 
 **Prices** | Pointer to [**[]DtoCreatePlanPriceRequest**](DtoCreatePlanPriceRequest.md) |  | [optional] 
 
@@ -28,6 +31,31 @@ will change when the set of required properties is changed
 NewDtoCreatePlanRequestWithDefaults instantiates a new DtoCreatePlanRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCreditGrants
+
+`func (o *DtoCreatePlanRequest) GetCreditGrants() []DtoCreateCreditGrantRequest`
+
+GetCreditGrants returns the CreditGrants field if non-nil, zero value otherwise.
+
+### GetCreditGrantsOk
+
+`func (o *DtoCreatePlanRequest) GetCreditGrantsOk() (*[]DtoCreateCreditGrantRequest, bool)`
+
+GetCreditGrantsOk returns a tuple with the CreditGrants field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreditGrants
+
+`func (o *DtoCreatePlanRequest) SetCreditGrants(v []DtoCreateCreditGrantRequest)`
+
+SetCreditGrants sets CreditGrants field to given value.
+
+### HasCreditGrants
+
+`func (o *DtoCreatePlanRequest) HasCreditGrants() bool`
+
+HasCreditGrants returns a boolean if a field has been set.
 
 ### GetDescription
 
@@ -53,6 +81,31 @@ SetDescription sets Description field to given value.
 `func (o *DtoCreatePlanRequest) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetDisplayOrder
+
+`func (o *DtoCreatePlanRequest) GetDisplayOrder() int32`
+
+GetDisplayOrder returns the DisplayOrder field if non-nil, zero value otherwise.
+
+### GetDisplayOrderOk
+
+`func (o *DtoCreatePlanRequest) GetDisplayOrderOk() (*int32, bool)`
+
+GetDisplayOrderOk returns a tuple with the DisplayOrder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayOrder
+
+`func (o *DtoCreatePlanRequest) SetDisplayOrder(v int32)`
+
+SetDisplayOrder sets DisplayOrder field to given value.
+
+### HasDisplayOrder
+
+`func (o *DtoCreatePlanRequest) HasDisplayOrder() bool`
+
+HasDisplayOrder returns a boolean if a field has been set.
 
 ### GetEntitlements
 
@@ -103,6 +156,31 @@ SetLookupKey sets LookupKey field to given value.
 `func (o *DtoCreatePlanRequest) HasLookupKey() bool`
 
 HasLookupKey returns a boolean if a field has been set.
+
+### GetMetadata
+
+`func (o *DtoCreatePlanRequest) GetMetadata() map[string]string`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *DtoCreatePlanRequest) GetMetadataOk() (*map[string]string, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *DtoCreatePlanRequest) SetMetadata(v map[string]string)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *DtoCreatePlanRequest) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetName
 

@@ -4,19 +4,20 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **float32** | amount is the amount in the currency of the wallet to be added NOTE: this is not the number of credits to add, but the amount in the currency amount &#x3D; credits_to_add * conversion_rate if both amount and credits_to_add are provided, amount will be ignored ex if the wallet has a conversion_rate of 2 then adding an amount of 10 USD in the wallet wil add 5 credits in the wallet | [optional] 
-**CreditsToAdd** | Pointer to **float32** | credits_to_add is the number of credits to add to the wallet | [optional] 
+**Amount** | Pointer to **string** | amount is the amount in the currency of the wallet to be added NOTE: this is not the number of credits to add, but the amount in the currency amount &#x3D; credits_to_add * conversion_rate if both amount and credits_to_add are provided, amount will be ignored ex if the wallet has a conversion_rate of 2 then adding an amount of 10 USD in the wallet wil add 5 credits in the wallet | [optional] 
+**CreditsToAdd** | Pointer to **string** | credits_to_add is the number of credits to add to the wallet | [optional] 
 **Description** | Pointer to **string** | description to add any specific details about the transaction | [optional] 
 **ExpiryDateUtc** | Pointer to **string** | expiry_date_utc is the expiry date in UTC timezone ex 2025-01-01 00:00:00 UTC | [optional] 
-**IdempotencyKey** | **string** | idempotency_key is a unique key for the transaction | 
+**IdempotencyKey** | Pointer to **string** | idempotency_key is a unique key for the transaction | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
+**Priority** | Pointer to **int32** | priority is the priority of the transaction lower number means higher priority default is nil which means no priority at all | [optional] 
 **TransactionReason** | [**TypesTransactionReason**](TypesTransactionReason.md) |  | 
 
 ## Methods
 
 ### NewDtoTopUpWalletRequest
 
-`func NewDtoTopUpWalletRequest(idempotencyKey string, transactionReason TypesTransactionReason, ) *DtoTopUpWalletRequest`
+`func NewDtoTopUpWalletRequest(transactionReason TypesTransactionReason, ) *DtoTopUpWalletRequest`
 
 NewDtoTopUpWalletRequest instantiates a new DtoTopUpWalletRequest object
 This constructor will assign default values to properties that have it defined,
@@ -33,20 +34,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *DtoTopUpWalletRequest) GetAmount() float32`
+`func (o *DtoTopUpWalletRequest) GetAmount() string`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *DtoTopUpWalletRequest) GetAmountOk() (*float32, bool)`
+`func (o *DtoTopUpWalletRequest) GetAmountOk() (*string, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *DtoTopUpWalletRequest) SetAmount(v float32)`
+`func (o *DtoTopUpWalletRequest) SetAmount(v string)`
 
 SetAmount sets Amount field to given value.
 
@@ -58,20 +59,20 @@ HasAmount returns a boolean if a field has been set.
 
 ### GetCreditsToAdd
 
-`func (o *DtoTopUpWalletRequest) GetCreditsToAdd() float32`
+`func (o *DtoTopUpWalletRequest) GetCreditsToAdd() string`
 
 GetCreditsToAdd returns the CreditsToAdd field if non-nil, zero value otherwise.
 
 ### GetCreditsToAddOk
 
-`func (o *DtoTopUpWalletRequest) GetCreditsToAddOk() (*float32, bool)`
+`func (o *DtoTopUpWalletRequest) GetCreditsToAddOk() (*string, bool)`
 
 GetCreditsToAddOk returns a tuple with the CreditsToAdd field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCreditsToAdd
 
-`func (o *DtoTopUpWalletRequest) SetCreditsToAdd(v float32)`
+`func (o *DtoTopUpWalletRequest) SetCreditsToAdd(v string)`
 
 SetCreditsToAdd sets CreditsToAdd field to given value.
 
@@ -150,6 +151,11 @@ and a boolean to check if the value has been set.
 
 SetIdempotencyKey sets IdempotencyKey field to given value.
 
+### HasIdempotencyKey
+
+`func (o *DtoTopUpWalletRequest) HasIdempotencyKey() bool`
+
+HasIdempotencyKey returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -175,6 +181,31 @@ SetMetadata sets Metadata field to given value.
 `func (o *DtoTopUpWalletRequest) HasMetadata() bool`
 
 HasMetadata returns a boolean if a field has been set.
+
+### GetPriority
+
+`func (o *DtoTopUpWalletRequest) GetPriority() int32`
+
+GetPriority returns the Priority field if non-nil, zero value otherwise.
+
+### GetPriorityOk
+
+`func (o *DtoTopUpWalletRequest) GetPriorityOk() (*int32, bool)`
+
+GetPriorityOk returns a tuple with the Priority field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriority
+
+`func (o *DtoTopUpWalletRequest) SetPriority(v int32)`
+
+SetPriority sets Priority field to given value.
+
+### HasPriority
+
+`func (o *DtoTopUpWalletRequest) HasPriority() bool`
+
+HasPriority returns a boolean if a field has been set.
 
 ### GetTransactionReason
 

@@ -17,18 +17,34 @@ import (
 // checks if the DtoUpdateCustomerRequest type satisfies the MappedNullable interface at compile time
 var _ MappedNullable = &DtoUpdateCustomerRequest{}
 
-// DtoUpdateCustomerRequest struct for DtoUpdateCustomerRequest
+// DtoUpdateCustomerRequest Request object for updating an existing customer. All fields are optional - only provided fields will be updated
 type DtoUpdateCustomerRequest struct {
+	// address_city is the updated city name with maximum 100 characters
 	AddressCity *string `json:"address_city,omitempty"`
+	// address_country is the updated two-letter ISO 3166-1 alpha-2 country code
 	AddressCountry *string `json:"address_country,omitempty"`
+	// address_line1 is the updated primary address line with maximum 255 characters
 	AddressLine1 *string `json:"address_line1,omitempty"`
+	// address_line2 is the updated secondary address line with maximum 255 characters
 	AddressLine2 *string `json:"address_line2,omitempty"`
+	// address_postal_code is the updated postal code with maximum 20 characters
 	AddressPostalCode *string `json:"address_postal_code,omitempty"`
+	// address_state is the updated state, province, or region name with maximum 100 characters
 	AddressState *string `json:"address_state,omitempty"`
+	// email is the updated email address and must be a valid email format if provided
 	Email *string `json:"email,omitempty"`
+	// external_id is the updated external identifier for the customer
 	ExternalId *string `json:"external_id,omitempty"`
+	// integration_entity_mapping contains provider integration mappings for this customer
+	IntegrationEntityMapping []DtoIntegrationEntityMapping `json:"integration_entity_mapping,omitempty"`
+	// metadata contains updated key-value pairs that will replace existing metadata
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	// name is the updated name or company name for the customer
 	Name *string `json:"name,omitempty"`
+	// parent_customer_external_id is the external ID of the parent customer from your system Exactly one of parent_customer_id or parent_customer_external_id may be provided If you provide the external ID, the parent customer value will be ignored
+	ParentCustomerExternalId *string `json:"parent_customer_external_id,omitempty"`
+	// parent_customer_id is the internal FlexPrice ID of the parent customer
+	ParentCustomerId *string `json:"parent_customer_id,omitempty"`
 }
 
 // NewDtoUpdateCustomerRequest instantiates a new DtoUpdateCustomerRequest object
@@ -304,6 +320,38 @@ func (o *DtoUpdateCustomerRequest) SetExternalId(v string) {
 	o.ExternalId = &v
 }
 
+// GetIntegrationEntityMapping returns the IntegrationEntityMapping field value if set, zero value otherwise.
+func (o *DtoUpdateCustomerRequest) GetIntegrationEntityMapping() []DtoIntegrationEntityMapping {
+	if o == nil || IsNil(o.IntegrationEntityMapping) {
+		var ret []DtoIntegrationEntityMapping
+		return ret
+	}
+	return o.IntegrationEntityMapping
+}
+
+// GetIntegrationEntityMappingOk returns a tuple with the IntegrationEntityMapping field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdateCustomerRequest) GetIntegrationEntityMappingOk() ([]DtoIntegrationEntityMapping, bool) {
+	if o == nil || IsNil(o.IntegrationEntityMapping) {
+		return nil, false
+	}
+	return o.IntegrationEntityMapping, true
+}
+
+// HasIntegrationEntityMapping returns a boolean if a field has been set.
+func (o *DtoUpdateCustomerRequest) HasIntegrationEntityMapping() bool {
+	if o != nil && !IsNil(o.IntegrationEntityMapping) {
+		return true
+	}
+
+	return false
+}
+
+// SetIntegrationEntityMapping gets a reference to the given []DtoIntegrationEntityMapping and assigns it to the IntegrationEntityMapping field.
+func (o *DtoUpdateCustomerRequest) SetIntegrationEntityMapping(v []DtoIntegrationEntityMapping) {
+	o.IntegrationEntityMapping = v
+}
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *DtoUpdateCustomerRequest) GetMetadata() map[string]string {
 	if o == nil || IsNil(o.Metadata) {
@@ -368,6 +416,70 @@ func (o *DtoUpdateCustomerRequest) SetName(v string) {
 	o.Name = &v
 }
 
+// GetParentCustomerExternalId returns the ParentCustomerExternalId field value if set, zero value otherwise.
+func (o *DtoUpdateCustomerRequest) GetParentCustomerExternalId() string {
+	if o == nil || IsNil(o.ParentCustomerExternalId) {
+		var ret string
+		return ret
+	}
+	return *o.ParentCustomerExternalId
+}
+
+// GetParentCustomerExternalIdOk returns a tuple with the ParentCustomerExternalId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdateCustomerRequest) GetParentCustomerExternalIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ParentCustomerExternalId) {
+		return nil, false
+	}
+	return o.ParentCustomerExternalId, true
+}
+
+// HasParentCustomerExternalId returns a boolean if a field has been set.
+func (o *DtoUpdateCustomerRequest) HasParentCustomerExternalId() bool {
+	if o != nil && !IsNil(o.ParentCustomerExternalId) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentCustomerExternalId gets a reference to the given string and assigns it to the ParentCustomerExternalId field.
+func (o *DtoUpdateCustomerRequest) SetParentCustomerExternalId(v string) {
+	o.ParentCustomerExternalId = &v
+}
+
+// GetParentCustomerId returns the ParentCustomerId field value if set, zero value otherwise.
+func (o *DtoUpdateCustomerRequest) GetParentCustomerId() string {
+	if o == nil || IsNil(o.ParentCustomerId) {
+		var ret string
+		return ret
+	}
+	return *o.ParentCustomerId
+}
+
+// GetParentCustomerIdOk returns a tuple with the ParentCustomerId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdateCustomerRequest) GetParentCustomerIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ParentCustomerId) {
+		return nil, false
+	}
+	return o.ParentCustomerId, true
+}
+
+// HasParentCustomerId returns a boolean if a field has been set.
+func (o *DtoUpdateCustomerRequest) HasParentCustomerId() bool {
+	if o != nil && !IsNil(o.ParentCustomerId) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentCustomerId gets a reference to the given string and assigns it to the ParentCustomerId field.
+func (o *DtoUpdateCustomerRequest) SetParentCustomerId(v string) {
+	o.ParentCustomerId = &v
+}
+
 func (o DtoUpdateCustomerRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -402,11 +514,20 @@ func (o DtoUpdateCustomerRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExternalId) {
 		toSerialize["external_id"] = o.ExternalId
 	}
+	if !IsNil(o.IntegrationEntityMapping) {
+		toSerialize["integration_entity_mapping"] = o.IntegrationEntityMapping
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.ParentCustomerExternalId) {
+		toSerialize["parent_customer_external_id"] = o.ParentCustomerExternalId
+	}
+	if !IsNil(o.ParentCustomerId) {
+		toSerialize["parent_customer_id"] = o.ParentCustomerId
 	}
 	return toSerialize, nil
 }

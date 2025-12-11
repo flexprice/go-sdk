@@ -21,15 +21,19 @@ var _ MappedNullable = &DtoCreatePaymentRequest{}
 
 // DtoCreatePaymentRequest struct for DtoCreatePaymentRequest
 type DtoCreatePaymentRequest struct {
-	Amount float32 `json:"amount"`
+	Amount string `json:"amount"`
+	CancelUrl *string `json:"cancel_url,omitempty"`
 	Currency string `json:"currency"`
 	DestinationId string `json:"destination_id"`
 	DestinationType TypesPaymentDestinationType `json:"destination_type"`
 	IdempotencyKey *string `json:"idempotency_key,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	PaymentGateway *TypesPaymentGatewayType `json:"payment_gateway,omitempty"`
 	PaymentMethodId *string `json:"payment_method_id,omitempty"`
 	PaymentMethodType TypesPaymentMethodType `json:"payment_method_type"`
 	ProcessPayment *bool `json:"process_payment,omitempty"`
+	SaveCardAndMakeDefault *bool `json:"save_card_and_make_default,omitempty"`
+	SuccessUrl *string `json:"success_url,omitempty"`
 }
 
 type _DtoCreatePaymentRequest DtoCreatePaymentRequest
@@ -38,7 +42,7 @@ type _DtoCreatePaymentRequest DtoCreatePaymentRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDtoCreatePaymentRequest(amount float32, currency string, destinationId string, destinationType TypesPaymentDestinationType, paymentMethodType TypesPaymentMethodType) *DtoCreatePaymentRequest {
+func NewDtoCreatePaymentRequest(amount string, currency string, destinationId string, destinationType TypesPaymentDestinationType, paymentMethodType TypesPaymentMethodType) *DtoCreatePaymentRequest {
 	this := DtoCreatePaymentRequest{}
 	this.Amount = amount
 	this.Currency = currency
@@ -47,6 +51,8 @@ func NewDtoCreatePaymentRequest(amount float32, currency string, destinationId s
 	this.PaymentMethodType = paymentMethodType
 	var processPayment bool = true
 	this.ProcessPayment = &processPayment
+	var saveCardAndMakeDefault bool = false
+	this.SaveCardAndMakeDefault = &saveCardAndMakeDefault
 	return &this
 }
 
@@ -57,13 +63,15 @@ func NewDtoCreatePaymentRequestWithDefaults() *DtoCreatePaymentRequest {
 	this := DtoCreatePaymentRequest{}
 	var processPayment bool = true
 	this.ProcessPayment = &processPayment
+	var saveCardAndMakeDefault bool = false
+	this.SaveCardAndMakeDefault = &saveCardAndMakeDefault
 	return &this
 }
 
 // GetAmount returns the Amount field value
-func (o *DtoCreatePaymentRequest) GetAmount() float32 {
+func (o *DtoCreatePaymentRequest) GetAmount() string {
 	if o == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 
@@ -72,7 +80,7 @@ func (o *DtoCreatePaymentRequest) GetAmount() float32 {
 
 // GetAmountOk returns a tuple with the Amount field value
 // and a boolean to check if the value has been set.
-func (o *DtoCreatePaymentRequest) GetAmountOk() (*float32, bool) {
+func (o *DtoCreatePaymentRequest) GetAmountOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -80,8 +88,40 @@ func (o *DtoCreatePaymentRequest) GetAmountOk() (*float32, bool) {
 }
 
 // SetAmount sets field value
-func (o *DtoCreatePaymentRequest) SetAmount(v float32) {
+func (o *DtoCreatePaymentRequest) SetAmount(v string) {
 	o.Amount = v
+}
+
+// GetCancelUrl returns the CancelUrl field value if set, zero value otherwise.
+func (o *DtoCreatePaymentRequest) GetCancelUrl() string {
+	if o == nil || IsNil(o.CancelUrl) {
+		var ret string
+		return ret
+	}
+	return *o.CancelUrl
+}
+
+// GetCancelUrlOk returns a tuple with the CancelUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreatePaymentRequest) GetCancelUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.CancelUrl) {
+		return nil, false
+	}
+	return o.CancelUrl, true
+}
+
+// HasCancelUrl returns a boolean if a field has been set.
+func (o *DtoCreatePaymentRequest) HasCancelUrl() bool {
+	if o != nil && !IsNil(o.CancelUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetCancelUrl gets a reference to the given string and assigns it to the CancelUrl field.
+func (o *DtoCreatePaymentRequest) SetCancelUrl(v string) {
+	o.CancelUrl = &v
 }
 
 // GetCurrency returns the Currency field value
@@ -220,6 +260,38 @@ func (o *DtoCreatePaymentRequest) SetMetadata(v map[string]string) {
 	o.Metadata = &v
 }
 
+// GetPaymentGateway returns the PaymentGateway field value if set, zero value otherwise.
+func (o *DtoCreatePaymentRequest) GetPaymentGateway() TypesPaymentGatewayType {
+	if o == nil || IsNil(o.PaymentGateway) {
+		var ret TypesPaymentGatewayType
+		return ret
+	}
+	return *o.PaymentGateway
+}
+
+// GetPaymentGatewayOk returns a tuple with the PaymentGateway field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreatePaymentRequest) GetPaymentGatewayOk() (*TypesPaymentGatewayType, bool) {
+	if o == nil || IsNil(o.PaymentGateway) {
+		return nil, false
+	}
+	return o.PaymentGateway, true
+}
+
+// HasPaymentGateway returns a boolean if a field has been set.
+func (o *DtoCreatePaymentRequest) HasPaymentGateway() bool {
+	if o != nil && !IsNil(o.PaymentGateway) {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentGateway gets a reference to the given TypesPaymentGatewayType and assigns it to the PaymentGateway field.
+func (o *DtoCreatePaymentRequest) SetPaymentGateway(v TypesPaymentGatewayType) {
+	o.PaymentGateway = &v
+}
+
 // GetPaymentMethodId returns the PaymentMethodId field value if set, zero value otherwise.
 func (o *DtoCreatePaymentRequest) GetPaymentMethodId() string {
 	if o == nil || IsNil(o.PaymentMethodId) {
@@ -308,6 +380,70 @@ func (o *DtoCreatePaymentRequest) SetProcessPayment(v bool) {
 	o.ProcessPayment = &v
 }
 
+// GetSaveCardAndMakeDefault returns the SaveCardAndMakeDefault field value if set, zero value otherwise.
+func (o *DtoCreatePaymentRequest) GetSaveCardAndMakeDefault() bool {
+	if o == nil || IsNil(o.SaveCardAndMakeDefault) {
+		var ret bool
+		return ret
+	}
+	return *o.SaveCardAndMakeDefault
+}
+
+// GetSaveCardAndMakeDefaultOk returns a tuple with the SaveCardAndMakeDefault field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreatePaymentRequest) GetSaveCardAndMakeDefaultOk() (*bool, bool) {
+	if o == nil || IsNil(o.SaveCardAndMakeDefault) {
+		return nil, false
+	}
+	return o.SaveCardAndMakeDefault, true
+}
+
+// HasSaveCardAndMakeDefault returns a boolean if a field has been set.
+func (o *DtoCreatePaymentRequest) HasSaveCardAndMakeDefault() bool {
+	if o != nil && !IsNil(o.SaveCardAndMakeDefault) {
+		return true
+	}
+
+	return false
+}
+
+// SetSaveCardAndMakeDefault gets a reference to the given bool and assigns it to the SaveCardAndMakeDefault field.
+func (o *DtoCreatePaymentRequest) SetSaveCardAndMakeDefault(v bool) {
+	o.SaveCardAndMakeDefault = &v
+}
+
+// GetSuccessUrl returns the SuccessUrl field value if set, zero value otherwise.
+func (o *DtoCreatePaymentRequest) GetSuccessUrl() string {
+	if o == nil || IsNil(o.SuccessUrl) {
+		var ret string
+		return ret
+	}
+	return *o.SuccessUrl
+}
+
+// GetSuccessUrlOk returns a tuple with the SuccessUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreatePaymentRequest) GetSuccessUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.SuccessUrl) {
+		return nil, false
+	}
+	return o.SuccessUrl, true
+}
+
+// HasSuccessUrl returns a boolean if a field has been set.
+func (o *DtoCreatePaymentRequest) HasSuccessUrl() bool {
+	if o != nil && !IsNil(o.SuccessUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetSuccessUrl gets a reference to the given string and assigns it to the SuccessUrl field.
+func (o *DtoCreatePaymentRequest) SetSuccessUrl(v string) {
+	o.SuccessUrl = &v
+}
+
 func (o DtoCreatePaymentRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -319,6 +455,9 @@ func (o DtoCreatePaymentRequest) MarshalJSON() ([]byte, error) {
 func (o DtoCreatePaymentRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["amount"] = o.Amount
+	if !IsNil(o.CancelUrl) {
+		toSerialize["cancel_url"] = o.CancelUrl
+	}
 	toSerialize["currency"] = o.Currency
 	toSerialize["destination_id"] = o.DestinationId
 	toSerialize["destination_type"] = o.DestinationType
@@ -328,12 +467,21 @@ func (o DtoCreatePaymentRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
+	if !IsNil(o.PaymentGateway) {
+		toSerialize["payment_gateway"] = o.PaymentGateway
+	}
 	if !IsNil(o.PaymentMethodId) {
 		toSerialize["payment_method_id"] = o.PaymentMethodId
 	}
 	toSerialize["payment_method_type"] = o.PaymentMethodType
 	if !IsNil(o.ProcessPayment) {
 		toSerialize["process_payment"] = o.ProcessPayment
+	}
+	if !IsNil(o.SaveCardAndMakeDefault) {
+		toSerialize["save_card_and_make_default"] = o.SaveCardAndMakeDefault
+	}
+	if !IsNil(o.SuccessUrl) {
+		toSerialize["success_url"] = o.SuccessUrl
 	}
 	return toSerialize, nil
 }

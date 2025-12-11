@@ -3,11 +3,15 @@
 ## Enum
 
 
+* `PaymentStatusInitiated` (value: `"INITIATED"`)
+
 * `PaymentStatusPending` (value: `"PENDING"`)
 
 * `PaymentStatusProcessing` (value: `"PROCESSING"`)
 
 * `PaymentStatusSucceeded` (value: `"SUCCEEDED"`)
+
+* `PaymentStatusOverpaid` (value: `"OVERPAID"`)
 
 * `PaymentStatusFailed` (value: `"FAILED"`)
 

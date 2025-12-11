@@ -4,8 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Addon** | Pointer to [**DtoAddonResponse**](DtoAddonResponse.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
+**DisplayOrder** | Pointer to **int32** |  | [optional] 
+**EntityId** | Pointer to **string** |  | [optional] 
+**EntityType** | Pointer to [**TypesEntitlementEntityType**](TypesEntitlementEntityType.md) |  | [optional] 
 **EnvironmentId** | Pointer to **string** |  | [optional] 
 **Feature** | Pointer to [**DtoFeatureResponse**](DtoFeatureResponse.md) |  | [optional] 
 **FeatureId** | Pointer to **string** |  | [optional] 
@@ -13,15 +17,16 @@ Name | Type | Description | Notes
 **Id** | Pointer to **string** |  | [optional] 
 **IsEnabled** | Pointer to **bool** |  | [optional] 
 **IsSoftLimit** | Pointer to **bool** |  | [optional] 
+**ParentEntitlementId** | Pointer to **string** |  | [optional] 
 **Plan** | Pointer to [**DtoPlanResponse**](DtoPlanResponse.md) |  | [optional] 
-**PlanId** | Pointer to **string** |  | [optional] 
+**PlanId** | Pointer to **string** | TODO: Remove this once we have a proper entitlement entity type | [optional] 
 **StaticValue** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedBy** | Pointer to **string** |  | [optional] 
 **UsageLimit** | Pointer to **int32** |  | [optional] 
-**UsageResetPeriod** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
+**UsageResetPeriod** | Pointer to [**TypesEntitlementUsageResetPeriod**](TypesEntitlementUsageResetPeriod.md) |  | [optional] 
 
 ## Methods
 
@@ -41,6 +46,31 @@ will change when the set of required properties is changed
 NewDtoEntitlementResponseWithDefaults instantiates a new DtoEntitlementResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAddon
+
+`func (o *DtoEntitlementResponse) GetAddon() DtoAddonResponse`
+
+GetAddon returns the Addon field if non-nil, zero value otherwise.
+
+### GetAddonOk
+
+`func (o *DtoEntitlementResponse) GetAddonOk() (*DtoAddonResponse, bool)`
+
+GetAddonOk returns a tuple with the Addon field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddon
+
+`func (o *DtoEntitlementResponse) SetAddon(v DtoAddonResponse)`
+
+SetAddon sets Addon field to given value.
+
+### HasAddon
+
+`func (o *DtoEntitlementResponse) HasAddon() bool`
+
+HasAddon returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -91,6 +121,81 @@ SetCreatedBy sets CreatedBy field to given value.
 `func (o *DtoEntitlementResponse) HasCreatedBy() bool`
 
 HasCreatedBy returns a boolean if a field has been set.
+
+### GetDisplayOrder
+
+`func (o *DtoEntitlementResponse) GetDisplayOrder() int32`
+
+GetDisplayOrder returns the DisplayOrder field if non-nil, zero value otherwise.
+
+### GetDisplayOrderOk
+
+`func (o *DtoEntitlementResponse) GetDisplayOrderOk() (*int32, bool)`
+
+GetDisplayOrderOk returns a tuple with the DisplayOrder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayOrder
+
+`func (o *DtoEntitlementResponse) SetDisplayOrder(v int32)`
+
+SetDisplayOrder sets DisplayOrder field to given value.
+
+### HasDisplayOrder
+
+`func (o *DtoEntitlementResponse) HasDisplayOrder() bool`
+
+HasDisplayOrder returns a boolean if a field has been set.
+
+### GetEntityId
+
+`func (o *DtoEntitlementResponse) GetEntityId() string`
+
+GetEntityId returns the EntityId field if non-nil, zero value otherwise.
+
+### GetEntityIdOk
+
+`func (o *DtoEntitlementResponse) GetEntityIdOk() (*string, bool)`
+
+GetEntityIdOk returns a tuple with the EntityId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityId
+
+`func (o *DtoEntitlementResponse) SetEntityId(v string)`
+
+SetEntityId sets EntityId field to given value.
+
+### HasEntityId
+
+`func (o *DtoEntitlementResponse) HasEntityId() bool`
+
+HasEntityId returns a boolean if a field has been set.
+
+### GetEntityType
+
+`func (o *DtoEntitlementResponse) GetEntityType() TypesEntitlementEntityType`
+
+GetEntityType returns the EntityType field if non-nil, zero value otherwise.
+
+### GetEntityTypeOk
+
+`func (o *DtoEntitlementResponse) GetEntityTypeOk() (*TypesEntitlementEntityType, bool)`
+
+GetEntityTypeOk returns a tuple with the EntityType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityType
+
+`func (o *DtoEntitlementResponse) SetEntityType(v TypesEntitlementEntityType)`
+
+SetEntityType sets EntityType field to given value.
+
+### HasEntityType
+
+`func (o *DtoEntitlementResponse) HasEntityType() bool`
+
+HasEntityType returns a boolean if a field has been set.
 
 ### GetEnvironmentId
 
@@ -266,6 +371,31 @@ SetIsSoftLimit sets IsSoftLimit field to given value.
 `func (o *DtoEntitlementResponse) HasIsSoftLimit() bool`
 
 HasIsSoftLimit returns a boolean if a field has been set.
+
+### GetParentEntitlementId
+
+`func (o *DtoEntitlementResponse) GetParentEntitlementId() string`
+
+GetParentEntitlementId returns the ParentEntitlementId field if non-nil, zero value otherwise.
+
+### GetParentEntitlementIdOk
+
+`func (o *DtoEntitlementResponse) GetParentEntitlementIdOk() (*string, bool)`
+
+GetParentEntitlementIdOk returns a tuple with the ParentEntitlementId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentEntitlementId
+
+`func (o *DtoEntitlementResponse) SetParentEntitlementId(v string)`
+
+SetParentEntitlementId sets ParentEntitlementId field to given value.
+
+### HasParentEntitlementId
+
+`func (o *DtoEntitlementResponse) HasParentEntitlementId() bool`
+
+HasParentEntitlementId returns a boolean if a field has been set.
 
 ### GetPlan
 
@@ -469,20 +599,20 @@ HasUsageLimit returns a boolean if a field has been set.
 
 ### GetUsageResetPeriod
 
-`func (o *DtoEntitlementResponse) GetUsageResetPeriod() TypesBillingPeriod`
+`func (o *DtoEntitlementResponse) GetUsageResetPeriod() TypesEntitlementUsageResetPeriod`
 
 GetUsageResetPeriod returns the UsageResetPeriod field if non-nil, zero value otherwise.
 
 ### GetUsageResetPeriodOk
 
-`func (o *DtoEntitlementResponse) GetUsageResetPeriodOk() (*TypesBillingPeriod, bool)`
+`func (o *DtoEntitlementResponse) GetUsageResetPeriodOk() (*TypesEntitlementUsageResetPeriod, bool)`
 
 GetUsageResetPeriodOk returns a tuple with the UsageResetPeriod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsageResetPeriod
 
-`func (o *DtoEntitlementResponse) SetUsageResetPeriod(v TypesBillingPeriod)`
+`func (o *DtoEntitlementResponse) SetUsageResetPeriod(v TypesEntitlementUsageResetPeriod)`
 
 SetUsageResetPeriod sets UsageResetPeriod field to given value.
 

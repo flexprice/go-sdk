@@ -21,7 +21,7 @@ var _ MappedNullable = &DtoGetUsageAnalyticsResponse{}
 type DtoGetUsageAnalyticsResponse struct {
 	Currency *string `json:"currency,omitempty"`
 	Items []DtoUsageAnalyticItem `json:"items,omitempty"`
-	TotalCost *float32 `json:"total_cost,omitempty"`
+	TotalCost *string `json:"total_cost,omitempty"`
 }
 
 // NewDtoGetUsageAnalyticsResponse instantiates a new DtoGetUsageAnalyticsResponse object
@@ -106,9 +106,9 @@ func (o *DtoGetUsageAnalyticsResponse) SetItems(v []DtoUsageAnalyticItem) {
 }
 
 // GetTotalCost returns the TotalCost field value if set, zero value otherwise.
-func (o *DtoGetUsageAnalyticsResponse) GetTotalCost() float32 {
+func (o *DtoGetUsageAnalyticsResponse) GetTotalCost() string {
 	if o == nil || IsNil(o.TotalCost) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.TotalCost
@@ -116,7 +116,7 @@ func (o *DtoGetUsageAnalyticsResponse) GetTotalCost() float32 {
 
 // GetTotalCostOk returns a tuple with the TotalCost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoGetUsageAnalyticsResponse) GetTotalCostOk() (*float32, bool) {
+func (o *DtoGetUsageAnalyticsResponse) GetTotalCostOk() (*string, bool) {
 	if o == nil || IsNil(o.TotalCost) {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *DtoGetUsageAnalyticsResponse) HasTotalCost() bool {
 	return false
 }
 
-// SetTotalCost gets a reference to the given float32 and assigns it to the TotalCost field.
-func (o *DtoGetUsageAnalyticsResponse) SetTotalCost(v float32) {
+// SetTotalCost gets a reference to the given string and assigns it to the TotalCost field.
+func (o *DtoGetUsageAnalyticsResponse) SetTotalCost(v string) {
 	o.TotalCost = &v
 }
 

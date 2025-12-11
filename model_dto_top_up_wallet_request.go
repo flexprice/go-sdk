@@ -22,16 +22,18 @@ var _ MappedNullable = &DtoTopUpWalletRequest{}
 // DtoTopUpWalletRequest struct for DtoTopUpWalletRequest
 type DtoTopUpWalletRequest struct {
 	// amount is the amount in the currency of the wallet to be added NOTE: this is not the number of credits to add, but the amount in the currency amount = credits_to_add * conversion_rate if both amount and credits_to_add are provided, amount will be ignored ex if the wallet has a conversion_rate of 2 then adding an amount of 10 USD in the wallet wil add 5 credits in the wallet
-	Amount *float32 `json:"amount,omitempty"`
+	Amount *string `json:"amount,omitempty"`
 	// credits_to_add is the number of credits to add to the wallet
-	CreditsToAdd *float32 `json:"credits_to_add,omitempty"`
+	CreditsToAdd *string `json:"credits_to_add,omitempty"`
 	// description to add any specific details about the transaction
 	Description *string `json:"description,omitempty"`
 	// expiry_date_utc is the expiry date in UTC timezone ex 2025-01-01 00:00:00 UTC
 	ExpiryDateUtc *string `json:"expiry_date_utc,omitempty"`
 	// idempotency_key is a unique key for the transaction
-	IdempotencyKey string `json:"idempotency_key"`
+	IdempotencyKey *string `json:"idempotency_key,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	// priority is the priority of the transaction lower number means higher priority default is nil which means no priority at all
+	Priority *int32 `json:"priority,omitempty"`
 	TransactionReason TypesTransactionReason `json:"transaction_reason"`
 }
 
@@ -41,9 +43,8 @@ type _DtoTopUpWalletRequest DtoTopUpWalletRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDtoTopUpWalletRequest(idempotencyKey string, transactionReason TypesTransactionReason) *DtoTopUpWalletRequest {
+func NewDtoTopUpWalletRequest(transactionReason TypesTransactionReason) *DtoTopUpWalletRequest {
 	this := DtoTopUpWalletRequest{}
-	this.IdempotencyKey = idempotencyKey
 	this.TransactionReason = transactionReason
 	return &this
 }
@@ -57,9 +58,9 @@ func NewDtoTopUpWalletRequestWithDefaults() *DtoTopUpWalletRequest {
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *DtoTopUpWalletRequest) GetAmount() float32 {
+func (o *DtoTopUpWalletRequest) GetAmount() string {
 	if o == nil || IsNil(o.Amount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Amount
@@ -67,7 +68,7 @@ func (o *DtoTopUpWalletRequest) GetAmount() float32 {
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoTopUpWalletRequest) GetAmountOk() (*float32, bool) {
+func (o *DtoTopUpWalletRequest) GetAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
@@ -83,15 +84,15 @@ func (o *DtoTopUpWalletRequest) HasAmount() bool {
 	return false
 }
 
-// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
-func (o *DtoTopUpWalletRequest) SetAmount(v float32) {
+// SetAmount gets a reference to the given string and assigns it to the Amount field.
+func (o *DtoTopUpWalletRequest) SetAmount(v string) {
 	o.Amount = &v
 }
 
 // GetCreditsToAdd returns the CreditsToAdd field value if set, zero value otherwise.
-func (o *DtoTopUpWalletRequest) GetCreditsToAdd() float32 {
+func (o *DtoTopUpWalletRequest) GetCreditsToAdd() string {
 	if o == nil || IsNil(o.CreditsToAdd) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.CreditsToAdd
@@ -99,7 +100,7 @@ func (o *DtoTopUpWalletRequest) GetCreditsToAdd() float32 {
 
 // GetCreditsToAddOk returns a tuple with the CreditsToAdd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoTopUpWalletRequest) GetCreditsToAddOk() (*float32, bool) {
+func (o *DtoTopUpWalletRequest) GetCreditsToAddOk() (*string, bool) {
 	if o == nil || IsNil(o.CreditsToAdd) {
 		return nil, false
 	}
@@ -115,8 +116,8 @@ func (o *DtoTopUpWalletRequest) HasCreditsToAdd() bool {
 	return false
 }
 
-// SetCreditsToAdd gets a reference to the given float32 and assigns it to the CreditsToAdd field.
-func (o *DtoTopUpWalletRequest) SetCreditsToAdd(v float32) {
+// SetCreditsToAdd gets a reference to the given string and assigns it to the CreditsToAdd field.
+func (o *DtoTopUpWalletRequest) SetCreditsToAdd(v string) {
 	o.CreditsToAdd = &v
 }
 
@@ -184,28 +185,36 @@ func (o *DtoTopUpWalletRequest) SetExpiryDateUtc(v string) {
 	o.ExpiryDateUtc = &v
 }
 
-// GetIdempotencyKey returns the IdempotencyKey field value
+// GetIdempotencyKey returns the IdempotencyKey field value if set, zero value otherwise.
 func (o *DtoTopUpWalletRequest) GetIdempotencyKey() string {
-	if o == nil {
+	if o == nil || IsNil(o.IdempotencyKey) {
 		var ret string
 		return ret
 	}
-
-	return o.IdempotencyKey
+	return *o.IdempotencyKey
 }
 
-// GetIdempotencyKeyOk returns a tuple with the IdempotencyKey field value
+// GetIdempotencyKeyOk returns a tuple with the IdempotencyKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DtoTopUpWalletRequest) GetIdempotencyKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil || IsNil(o.IdempotencyKey) {
 		return nil, false
 	}
-	return &o.IdempotencyKey, true
+	return o.IdempotencyKey, true
 }
 
-// SetIdempotencyKey sets field value
+// HasIdempotencyKey returns a boolean if a field has been set.
+func (o *DtoTopUpWalletRequest) HasIdempotencyKey() bool {
+	if o != nil && !IsNil(o.IdempotencyKey) {
+		return true
+	}
+
+	return false
+}
+
+// SetIdempotencyKey gets a reference to the given string and assigns it to the IdempotencyKey field.
 func (o *DtoTopUpWalletRequest) SetIdempotencyKey(v string) {
-	o.IdempotencyKey = v
+	o.IdempotencyKey = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -238,6 +247,38 @@ func (o *DtoTopUpWalletRequest) HasMetadata() bool {
 // SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
 func (o *DtoTopUpWalletRequest) SetMetadata(v map[string]string) {
 	o.Metadata = &v
+}
+
+// GetPriority returns the Priority field value if set, zero value otherwise.
+func (o *DtoTopUpWalletRequest) GetPriority() int32 {
+	if o == nil || IsNil(o.Priority) {
+		var ret int32
+		return ret
+	}
+	return *o.Priority
+}
+
+// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoTopUpWalletRequest) GetPriorityOk() (*int32, bool) {
+	if o == nil || IsNil(o.Priority) {
+		return nil, false
+	}
+	return o.Priority, true
+}
+
+// HasPriority returns a boolean if a field has been set.
+func (o *DtoTopUpWalletRequest) HasPriority() bool {
+	if o != nil && !IsNil(o.Priority) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriority gets a reference to the given int32 and assigns it to the Priority field.
+func (o *DtoTopUpWalletRequest) SetPriority(v int32) {
+	o.Priority = &v
 }
 
 // GetTransactionReason returns the TransactionReason field value
@@ -286,9 +327,14 @@ func (o DtoTopUpWalletRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.ExpiryDateUtc) {
 		toSerialize["expiry_date_utc"] = o.ExpiryDateUtc
 	}
-	toSerialize["idempotency_key"] = o.IdempotencyKey
+	if !IsNil(o.IdempotencyKey) {
+		toSerialize["idempotency_key"] = o.IdempotencyKey
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.Priority) {
+		toSerialize["priority"] = o.Priority
 	}
 	toSerialize["transaction_reason"] = o.TransactionReason
 	return toSerialize, nil
@@ -299,7 +345,6 @@ func (o *DtoTopUpWalletRequest) UnmarshalJSON(data []byte) (err error) {
 	// by unmarshalling the object into a generic map with string keys and checking
 	// that every required field exists as a key in the generic map.
 	requiredProperties := []string{
-		"idempotency_key",
 		"transaction_reason",
 	}
 

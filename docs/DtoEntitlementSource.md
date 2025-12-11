@@ -5,13 +5,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EntitlementId** | Pointer to **string** |  | [optional] 
+**EntityId** | Pointer to **string** |  | [optional] 
+**EntityName** | Pointer to **string** |  | [optional] 
+**EntityType** | Pointer to [**DtoEntitlementSourceEntityType**](DtoEntitlementSourceEntityType.md) |  | [optional] 
 **IsEnabled** | Pointer to **bool** |  | [optional] 
-**PlanId** | Pointer to **string** |  | [optional] 
-**PlanName** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **int32** |  | [optional] 
 **StaticValue** | Pointer to **string** |  | [optional] 
 **SubscriptionId** | Pointer to **string** |  | [optional] 
 **UsageLimit** | Pointer to **int32** |  | [optional] 
+**UsageResetPeriod** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
 
 ## Methods
 
@@ -57,6 +59,81 @@ SetEntitlementId sets EntitlementId field to given value.
 
 HasEntitlementId returns a boolean if a field has been set.
 
+### GetEntityId
+
+`func (o *DtoEntitlementSource) GetEntityId() string`
+
+GetEntityId returns the EntityId field if non-nil, zero value otherwise.
+
+### GetEntityIdOk
+
+`func (o *DtoEntitlementSource) GetEntityIdOk() (*string, bool)`
+
+GetEntityIdOk returns a tuple with the EntityId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityId
+
+`func (o *DtoEntitlementSource) SetEntityId(v string)`
+
+SetEntityId sets EntityId field to given value.
+
+### HasEntityId
+
+`func (o *DtoEntitlementSource) HasEntityId() bool`
+
+HasEntityId returns a boolean if a field has been set.
+
+### GetEntityName
+
+`func (o *DtoEntitlementSource) GetEntityName() string`
+
+GetEntityName returns the EntityName field if non-nil, zero value otherwise.
+
+### GetEntityNameOk
+
+`func (o *DtoEntitlementSource) GetEntityNameOk() (*string, bool)`
+
+GetEntityNameOk returns a tuple with the EntityName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityName
+
+`func (o *DtoEntitlementSource) SetEntityName(v string)`
+
+SetEntityName sets EntityName field to given value.
+
+### HasEntityName
+
+`func (o *DtoEntitlementSource) HasEntityName() bool`
+
+HasEntityName returns a boolean if a field has been set.
+
+### GetEntityType
+
+`func (o *DtoEntitlementSource) GetEntityType() DtoEntitlementSourceEntityType`
+
+GetEntityType returns the EntityType field if non-nil, zero value otherwise.
+
+### GetEntityTypeOk
+
+`func (o *DtoEntitlementSource) GetEntityTypeOk() (*DtoEntitlementSourceEntityType, bool)`
+
+GetEntityTypeOk returns a tuple with the EntityType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityType
+
+`func (o *DtoEntitlementSource) SetEntityType(v DtoEntitlementSourceEntityType)`
+
+SetEntityType sets EntityType field to given value.
+
+### HasEntityType
+
+`func (o *DtoEntitlementSource) HasEntityType() bool`
+
+HasEntityType returns a boolean if a field has been set.
+
 ### GetIsEnabled
 
 `func (o *DtoEntitlementSource) GetIsEnabled() bool`
@@ -81,56 +158,6 @@ SetIsEnabled sets IsEnabled field to given value.
 `func (o *DtoEntitlementSource) HasIsEnabled() bool`
 
 HasIsEnabled returns a boolean if a field has been set.
-
-### GetPlanId
-
-`func (o *DtoEntitlementSource) GetPlanId() string`
-
-GetPlanId returns the PlanId field if non-nil, zero value otherwise.
-
-### GetPlanIdOk
-
-`func (o *DtoEntitlementSource) GetPlanIdOk() (*string, bool)`
-
-GetPlanIdOk returns a tuple with the PlanId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPlanId
-
-`func (o *DtoEntitlementSource) SetPlanId(v string)`
-
-SetPlanId sets PlanId field to given value.
-
-### HasPlanId
-
-`func (o *DtoEntitlementSource) HasPlanId() bool`
-
-HasPlanId returns a boolean if a field has been set.
-
-### GetPlanName
-
-`func (o *DtoEntitlementSource) GetPlanName() string`
-
-GetPlanName returns the PlanName field if non-nil, zero value otherwise.
-
-### GetPlanNameOk
-
-`func (o *DtoEntitlementSource) GetPlanNameOk() (*string, bool)`
-
-GetPlanNameOk returns a tuple with the PlanName field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPlanName
-
-`func (o *DtoEntitlementSource) SetPlanName(v string)`
-
-SetPlanName sets PlanName field to given value.
-
-### HasPlanName
-
-`func (o *DtoEntitlementSource) HasPlanName() bool`
-
-HasPlanName returns a boolean if a field has been set.
 
 ### GetQuantity
 
@@ -231,6 +258,31 @@ SetUsageLimit sets UsageLimit field to given value.
 `func (o *DtoEntitlementSource) HasUsageLimit() bool`
 
 HasUsageLimit returns a boolean if a field has been set.
+
+### GetUsageResetPeriod
+
+`func (o *DtoEntitlementSource) GetUsageResetPeriod() TypesBillingPeriod`
+
+GetUsageResetPeriod returns the UsageResetPeriod field if non-nil, zero value otherwise.
+
+### GetUsageResetPeriodOk
+
+`func (o *DtoEntitlementSource) GetUsageResetPeriodOk() (*TypesBillingPeriod, bool)`
+
+GetUsageResetPeriodOk returns a tuple with the UsageResetPeriod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUsageResetPeriod
+
+`func (o *DtoEntitlementSource) SetUsageResetPeriod(v TypesBillingPeriod)`
+
+SetUsageResetPeriod sets UsageResetPeriod field to given value.
+
+### HasUsageResetPeriod
+
+`func (o *DtoEntitlementSource) HasUsageResetPeriod() bool`
+
+HasUsageResetPeriod returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

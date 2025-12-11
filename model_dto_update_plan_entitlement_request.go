@@ -21,16 +21,19 @@ var _ MappedNullable = &DtoUpdatePlanEntitlementRequest{}
 
 // DtoUpdatePlanEntitlementRequest struct for DtoUpdatePlanEntitlementRequest
 type DtoUpdatePlanEntitlementRequest struct {
+	EntityId *string `json:"entity_id,omitempty"`
+	EntityType *TypesEntitlementEntityType `json:"entity_type,omitempty"`
 	FeatureId string `json:"feature_id"`
 	FeatureType TypesFeatureType `json:"feature_type"`
 	// The ID of the entitlement to update (present if the entitlement is being updated)
 	Id *string `json:"id,omitempty"`
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	IsSoftLimit *bool `json:"is_soft_limit,omitempty"`
+	ParentEntitlementId *string `json:"parent_entitlement_id,omitempty"`
 	PlanId *string `json:"plan_id,omitempty"`
 	StaticValue *string `json:"static_value,omitempty"`
 	UsageLimit *int32 `json:"usage_limit,omitempty"`
-	UsageResetPeriod *TypesBillingPeriod `json:"usage_reset_period,omitempty"`
+	UsageResetPeriod *TypesEntitlementUsageResetPeriod `json:"usage_reset_period,omitempty"`
 }
 
 type _DtoUpdatePlanEntitlementRequest DtoUpdatePlanEntitlementRequest
@@ -52,6 +55,70 @@ func NewDtoUpdatePlanEntitlementRequest(featureId string, featureType TypesFeatu
 func NewDtoUpdatePlanEntitlementRequestWithDefaults() *DtoUpdatePlanEntitlementRequest {
 	this := DtoUpdatePlanEntitlementRequest{}
 	return &this
+}
+
+// GetEntityId returns the EntityId field value if set, zero value otherwise.
+func (o *DtoUpdatePlanEntitlementRequest) GetEntityId() string {
+	if o == nil || IsNil(o.EntityId) {
+		var ret string
+		return ret
+	}
+	return *o.EntityId
+}
+
+// GetEntityIdOk returns a tuple with the EntityId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePlanEntitlementRequest) GetEntityIdOk() (*string, bool) {
+	if o == nil || IsNil(o.EntityId) {
+		return nil, false
+	}
+	return o.EntityId, true
+}
+
+// HasEntityId returns a boolean if a field has been set.
+func (o *DtoUpdatePlanEntitlementRequest) HasEntityId() bool {
+	if o != nil && !IsNil(o.EntityId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityId gets a reference to the given string and assigns it to the EntityId field.
+func (o *DtoUpdatePlanEntitlementRequest) SetEntityId(v string) {
+	o.EntityId = &v
+}
+
+// GetEntityType returns the EntityType field value if set, zero value otherwise.
+func (o *DtoUpdatePlanEntitlementRequest) GetEntityType() TypesEntitlementEntityType {
+	if o == nil || IsNil(o.EntityType) {
+		var ret TypesEntitlementEntityType
+		return ret
+	}
+	return *o.EntityType
+}
+
+// GetEntityTypeOk returns a tuple with the EntityType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePlanEntitlementRequest) GetEntityTypeOk() (*TypesEntitlementEntityType, bool) {
+	if o == nil || IsNil(o.EntityType) {
+		return nil, false
+	}
+	return o.EntityType, true
+}
+
+// HasEntityType returns a boolean if a field has been set.
+func (o *DtoUpdatePlanEntitlementRequest) HasEntityType() bool {
+	if o != nil && !IsNil(o.EntityType) {
+		return true
+	}
+
+	return false
+}
+
+// SetEntityType gets a reference to the given TypesEntitlementEntityType and assigns it to the EntityType field.
+func (o *DtoUpdatePlanEntitlementRequest) SetEntityType(v TypesEntitlementEntityType) {
+	o.EntityType = &v
 }
 
 // GetFeatureId returns the FeatureId field value
@@ -198,6 +265,38 @@ func (o *DtoUpdatePlanEntitlementRequest) SetIsSoftLimit(v bool) {
 	o.IsSoftLimit = &v
 }
 
+// GetParentEntitlementId returns the ParentEntitlementId field value if set, zero value otherwise.
+func (o *DtoUpdatePlanEntitlementRequest) GetParentEntitlementId() string {
+	if o == nil || IsNil(o.ParentEntitlementId) {
+		var ret string
+		return ret
+	}
+	return *o.ParentEntitlementId
+}
+
+// GetParentEntitlementIdOk returns a tuple with the ParentEntitlementId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePlanEntitlementRequest) GetParentEntitlementIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ParentEntitlementId) {
+		return nil, false
+	}
+	return o.ParentEntitlementId, true
+}
+
+// HasParentEntitlementId returns a boolean if a field has been set.
+func (o *DtoUpdatePlanEntitlementRequest) HasParentEntitlementId() bool {
+	if o != nil && !IsNil(o.ParentEntitlementId) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentEntitlementId gets a reference to the given string and assigns it to the ParentEntitlementId field.
+func (o *DtoUpdatePlanEntitlementRequest) SetParentEntitlementId(v string) {
+	o.ParentEntitlementId = &v
+}
+
 // GetPlanId returns the PlanId field value if set, zero value otherwise.
 func (o *DtoUpdatePlanEntitlementRequest) GetPlanId() string {
 	if o == nil || IsNil(o.PlanId) {
@@ -295,9 +394,9 @@ func (o *DtoUpdatePlanEntitlementRequest) SetUsageLimit(v int32) {
 }
 
 // GetUsageResetPeriod returns the UsageResetPeriod field value if set, zero value otherwise.
-func (o *DtoUpdatePlanEntitlementRequest) GetUsageResetPeriod() TypesBillingPeriod {
+func (o *DtoUpdatePlanEntitlementRequest) GetUsageResetPeriod() TypesEntitlementUsageResetPeriod {
 	if o == nil || IsNil(o.UsageResetPeriod) {
-		var ret TypesBillingPeriod
+		var ret TypesEntitlementUsageResetPeriod
 		return ret
 	}
 	return *o.UsageResetPeriod
@@ -305,7 +404,7 @@ func (o *DtoUpdatePlanEntitlementRequest) GetUsageResetPeriod() TypesBillingPeri
 
 // GetUsageResetPeriodOk returns a tuple with the UsageResetPeriod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoUpdatePlanEntitlementRequest) GetUsageResetPeriodOk() (*TypesBillingPeriod, bool) {
+func (o *DtoUpdatePlanEntitlementRequest) GetUsageResetPeriodOk() (*TypesEntitlementUsageResetPeriod, bool) {
 	if o == nil || IsNil(o.UsageResetPeriod) {
 		return nil, false
 	}
@@ -321,8 +420,8 @@ func (o *DtoUpdatePlanEntitlementRequest) HasUsageResetPeriod() bool {
 	return false
 }
 
-// SetUsageResetPeriod gets a reference to the given TypesBillingPeriod and assigns it to the UsageResetPeriod field.
-func (o *DtoUpdatePlanEntitlementRequest) SetUsageResetPeriod(v TypesBillingPeriod) {
+// SetUsageResetPeriod gets a reference to the given TypesEntitlementUsageResetPeriod and assigns it to the UsageResetPeriod field.
+func (o *DtoUpdatePlanEntitlementRequest) SetUsageResetPeriod(v TypesEntitlementUsageResetPeriod) {
 	o.UsageResetPeriod = &v
 }
 
@@ -336,6 +435,12 @@ func (o DtoUpdatePlanEntitlementRequest) MarshalJSON() ([]byte, error) {
 
 func (o DtoUpdatePlanEntitlementRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.EntityId) {
+		toSerialize["entity_id"] = o.EntityId
+	}
+	if !IsNil(o.EntityType) {
+		toSerialize["entity_type"] = o.EntityType
+	}
 	toSerialize["feature_id"] = o.FeatureId
 	toSerialize["feature_type"] = o.FeatureType
 	if !IsNil(o.Id) {
@@ -346,6 +451,9 @@ func (o DtoUpdatePlanEntitlementRequest) ToMap() (map[string]interface{}, error)
 	}
 	if !IsNil(o.IsSoftLimit) {
 		toSerialize["is_soft_limit"] = o.IsSoftLimit
+	}
+	if !IsNil(o.ParentEntitlementId) {
+		toSerialize["parent_entitlement_id"] = o.ParentEntitlementId
 	}
 	if !IsNil(o.PlanId) {
 		toSerialize["plan_id"] = o.PlanId

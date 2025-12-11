@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **IsSoftLimit** | Pointer to **bool** |  | [optional] 
 **StaticValue** | Pointer to **string** |  | [optional] 
 **UsageLimit** | Pointer to **int32** |  | [optional] 
-**UsageResetPeriod** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
+**UsageResetPeriod** | Pointer to [**TypesEntitlementUsageResetPeriod**](TypesEntitlementUsageResetPeriod.md) |  | [optional] 
 
 ## Methods
 
@@ -131,20 +131,20 @@ HasUsageLimit returns a boolean if a field has been set.
 
 ### GetUsageResetPeriod
 
-`func (o *DtoUpdateEntitlementRequest) GetUsageResetPeriod() TypesBillingPeriod`
+`func (o *DtoUpdateEntitlementRequest) GetUsageResetPeriod() TypesEntitlementUsageResetPeriod`
 
 GetUsageResetPeriod returns the UsageResetPeriod field if non-nil, zero value otherwise.
 
 ### GetUsageResetPeriodOk
 
-`func (o *DtoUpdateEntitlementRequest) GetUsageResetPeriodOk() (*TypesBillingPeriod, bool)`
+`func (o *DtoUpdateEntitlementRequest) GetUsageResetPeriodOk() (*TypesEntitlementUsageResetPeriod, bool)`
 
 GetUsageResetPeriodOk returns a tuple with the UsageResetPeriod field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsageResetPeriod
 
-`func (o *DtoUpdateEntitlementRequest) SetUsageResetPeriod(v TypesBillingPeriod)`
+`func (o *DtoUpdateEntitlementRequest) SetUsageResetPeriod(v TypesEntitlementUsageResetPeriod)`
 
 SetUsageResetPeriod sets UsageResetPeriod field to given value.
 

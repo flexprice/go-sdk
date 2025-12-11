@@ -8,17 +8,18 @@ Method | HTTP request | Description
 [**CustomersIdDelete**](CustomersAPI.md#CustomersIdDelete) | **Delete** /customers/{id} | Delete a customer
 [**CustomersIdEntitlementsGet**](CustomersAPI.md#CustomersIdEntitlementsGet) | **Get** /customers/{id}/entitlements | Get customer entitlements
 [**CustomersIdGet**](CustomersAPI.md#CustomersIdGet) | **Get** /customers/{id} | Get a customer
+[**CustomersIdGrantsUpcomingGet**](CustomersAPI.md#CustomersIdGrantsUpcomingGet) | **Get** /customers/{id}/grants/upcoming | Get upcoming credit grant applications
 [**CustomersIdPut**](CustomersAPI.md#CustomersIdPut) | **Put** /customers/{id} | Update a customer
-[**CustomersIdUsageGet**](CustomersAPI.md#CustomersIdUsageGet) | **Get** /customers/{id}/usage | Get customer usage summary
 [**CustomersLookupLookupKeyGet**](CustomersAPI.md#CustomersLookupLookupKeyGet) | **Get** /customers/lookup/{lookup_key} | Get a customer by lookup key
 [**CustomersPost**](CustomersAPI.md#CustomersPost) | **Post** /customers | Create a customer
 [**CustomersSearchPost**](CustomersAPI.md#CustomersSearchPost) | **Post** /customers/search | List customers by filter
+[**CustomersUsageGet**](CustomersAPI.md#CustomersUsageGet) | **Get** /customers/usage | Get customer usage summary
 
 
 
 ## CustomersGet
 
-> DtoListCustomersResponse CustomersGet(ctx).CustomerIds(customerIds).Email(email).EndTime(endTime).Expand(expand).ExternalId(externalId).Limit(limit).Offset(offset).Order(order).StartTime(startTime).Status(status).Execute()
+> DtoListCustomersResponse CustomersGet(ctx).CustomerIds(customerIds).Email(email).EndTime(endTime).Expand(expand).ExternalId(externalId).ExternalIds(externalIds).Limit(limit).Offset(offset).Order(order).ParentCustomerIds(parentCustomerIds).StartTime(startTime).Status(status).Execute()
 
 Get customers
 
@@ -42,15 +43,17 @@ func main() {
 	endTime := "endTime_example" // string |  (optional)
 	expand := "expand_example" // string |  (optional)
 	externalId := "externalId_example" // string |  (optional)
+	externalIds := []string{"Inner_example"} // []string |  (optional)
 	limit := int32(56) // int32 |  (optional)
 	offset := int32(56) // int32 |  (optional)
 	order := "order_example" // string |  (optional)
+	parentCustomerIds := []string{"Inner_example"} // []string |  (optional)
 	startTime := "startTime_example" // string |  (optional)
 	status := "status_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomersAPI.CustomersGet(context.Background()).CustomerIds(customerIds).Email(email).EndTime(endTime).Expand(expand).ExternalId(externalId).Limit(limit).Offset(offset).Order(order).StartTime(startTime).Status(status).Execute()
+	resp, r, err := apiClient.CustomersAPI.CustomersGet(context.Background()).CustomerIds(customerIds).Email(email).EndTime(endTime).Expand(expand).ExternalId(externalId).ExternalIds(externalIds).Limit(limit).Offset(offset).Order(order).ParentCustomerIds(parentCustomerIds).StartTime(startTime).Status(status).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CustomersGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -76,9 +79,11 @@ Name | Type | Description  | Notes
  **endTime** | **string** |  | 
  **expand** | **string** |  | 
  **externalId** | **string** |  | 
+ **externalIds** | **[]string** |  | 
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
  **order** | **string** |  | 
+ **parentCustomerIds** | **[]string** |  | 
  **startTime** | **string** |  | 
  **status** | **string** |  | 
 
@@ -312,6 +317,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## CustomersIdGrantsUpcomingGet
+
+> DtoListCreditGrantApplicationsResponse CustomersIdGrantsUpcomingGet(ctx, id).Execute()
+
+Get upcoming credit grant applications
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	id := "id_example" // string | Customer ID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CustomersAPI.CustomersIdGrantsUpcomingGet(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CustomersIdGrantsUpcomingGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CustomersIdGrantsUpcomingGet`: DtoListCreditGrantApplicationsResponse
+	fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.CustomersIdGrantsUpcomingGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Customer ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCustomersIdGrantsUpcomingGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DtoListCreditGrantApplicationsResponse**](DtoListCreditGrantApplicationsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## CustomersIdPut
 
 > DtoCustomerResponse CustomersIdPut(ctx, id).Customer(customer).Execute()
@@ -377,80 +452,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CustomersIdUsageGet
-
-> DtoCustomerUsageSummaryResponse CustomersIdUsageGet(ctx, id).FeatureIds(featureIds).SubscriptionIds(subscriptionIds).Execute()
-
-Get customer usage summary
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/flexprice/go-sdk/flexprice"
-)
-
-func main() {
-	id := "id_example" // string | Customer ID
-	featureIds := []string{"Inner_example"} // []string |  (optional)
-	subscriptionIds := []string{"Inner_example"} // []string |  (optional)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomersAPI.CustomersIdUsageGet(context.Background(), id).FeatureIds(featureIds).SubscriptionIds(subscriptionIds).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CustomersIdUsageGet``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CustomersIdUsageGet`: DtoCustomerUsageSummaryResponse
-	fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.CustomersIdUsageGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Customer ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCustomersIdUsageGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **featureIds** | **[]string** |  | 
- **subscriptionIds** | **[]string** |  | 
-
-### Return type
-
-[**DtoCustomerUsageSummaryResponse**](DtoCustomerUsageSummaryResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -653,6 +654,80 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CustomersUsageGet
+
+> DtoCustomerUsageSummaryResponse CustomersUsageGet(ctx).CustomerId(customerId).CustomerLookupKey(customerLookupKey).FeatureIds(featureIds).FeatureLookupKeys(featureLookupKeys).SubscriptionIds(subscriptionIds).Execute()
+
+Get customer usage summary
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	customerId := "customerId_example" // string |  (optional)
+	customerLookupKey := "customerLookupKey_example" // string |  (optional)
+	featureIds := []string{"Inner_example"} // []string |  (optional)
+	featureLookupKeys := []string{"Inner_example"} // []string |  (optional)
+	subscriptionIds := []string{"Inner_example"} // []string |  (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CustomersAPI.CustomersUsageGet(context.Background()).CustomerId(customerId).CustomerLookupKey(customerLookupKey).FeatureIds(featureIds).FeatureLookupKeys(featureLookupKeys).SubscriptionIds(subscriptionIds).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CustomersUsageGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CustomersUsageGet`: DtoCustomerUsageSummaryResponse
+	fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.CustomersUsageGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCustomersUsageGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customerId** | **string** |  | 
+ **customerLookupKey** | **string** |  | 
+ **featureIds** | **[]string** |  | 
+ **featureLookupKeys** | **[]string** |  | 
+ **subscriptionIds** | **[]string** |  | 
+
+### Return type
+
+[**DtoCustomerUsageSummaryResponse**](DtoCustomerUsageSummaryResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

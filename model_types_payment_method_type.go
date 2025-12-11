@@ -24,6 +24,7 @@ const (
 	TYPESPAYMENTMETHODTYPE_PaymentMethodTypeACH TypesPaymentMethodType = "ACH"
 	TYPESPAYMENTMETHODTYPE_PaymentMethodTypeOffline TypesPaymentMethodType = "OFFLINE"
 	TYPESPAYMENTMETHODTYPE_PaymentMethodTypeCredits TypesPaymentMethodType = "CREDITS"
+	TYPESPAYMENTMETHODTYPE_PaymentMethodTypePaymentLink TypesPaymentMethodType = "PAYMENT_LINK"
 )
 
 // All allowed values of TypesPaymentMethodType enum
@@ -32,6 +33,7 @@ var AllowedTypesPaymentMethodTypeEnumValues = []TypesPaymentMethodType{
 	"ACH",
 	"OFFLINE",
 	"CREDITS",
+	"PAYMENT_LINK",
 }
 
 func (v *TypesPaymentMethodType) UnmarshalJSON(src []byte) error {

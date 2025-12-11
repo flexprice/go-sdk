@@ -19,8 +19,11 @@ var _ MappedNullable = &DtoCustomerMultiCurrencyInvoiceSummary{}
 
 // DtoCustomerMultiCurrencyInvoiceSummary struct for DtoCustomerMultiCurrencyInvoiceSummary
 type DtoCustomerMultiCurrencyInvoiceSummary struct {
+	// customer_id is the unique identifier of the customer
 	CustomerId *string `json:"customer_id,omitempty"`
+	// default_currency is the primary currency for this customer
 	DefaultCurrency *string `json:"default_currency,omitempty"`
+	// summaries contains the invoice summaries for each currency
 	Summaries []DtoCustomerInvoiceSummary `json:"summaries,omitempty"`
 }
 

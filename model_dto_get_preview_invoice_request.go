@@ -21,8 +21,11 @@ var _ MappedNullable = &DtoGetPreviewInvoiceRequest{}
 
 // DtoGetPreviewInvoiceRequest struct for DtoGetPreviewInvoiceRequest
 type DtoGetPreviewInvoiceRequest struct {
+	// period_end is the optional end date of the period to preview
 	PeriodEnd *string `json:"period_end,omitempty"`
+	// period_start is the optional start date of the period to preview
 	PeriodStart *string `json:"period_start,omitempty"`
+	// subscription_id is the unique identifier of the subscription to preview invoice for
 	SubscriptionId string `json:"subscription_id"`
 }
 

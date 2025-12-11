@@ -19,11 +19,11 @@ var _ MappedNullable = &PricePriceTier{}
 
 // PricePriceTier struct for PricePriceTier
 type PricePriceTier struct {
-	// FlatAmount is the flat amount for the given tier and it is applied on top of the unit amount*quantity. It solves cases in banking like 2.7% + 5c
+	// flat_amount is the flat amount for the given tier (optional) Applied on top of unit_amount*quantity. Useful for cases like \"2.7$ + 5c\"
 	FlatAmount *float32 `json:"flat_amount,omitempty"`
-	// UnitAmount is the amount per unit for the given tier
+	// unit_amount is the amount per unit for the given tier
 	UnitAmount *float32 `json:"unit_amount,omitempty"`
-	// Upto is the quantity up to which this tier applies. It is null for the last tier
+	// up_to is the quantity up to which this tier applies. It is null for the last tier. IMPORTANT: Tier boundaries are INCLUSIVE. - If up_to is 1000, then quantity less than or equal to 1000 belongs to this tier - This behavior is consistent across both VOLUME and SLAB tier modes
 	UpTo *int32 `json:"up_to,omitempty"`
 }
 

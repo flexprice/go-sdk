@@ -4,13 +4,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**DryRun** | Pointer to **bool** |  | [optional] 
-**Metadata** | Pointer to **map[string]string** |  | [optional] 
-**PauseDays** | Pointer to **int32** |  | [optional] 
-**PauseEnd** | Pointer to **string** |  | [optional] 
+**DryRun** | Pointer to **bool** | Whether to perform a dry run @Description If true, validates the request and shows impact without actually pausing the subscription @Example false | [optional] 
+**Metadata** | Pointer to **map[string]string** | Additional metadata as key-value pairs @Description Optional metadata for storing additional information about the pause @Example {\&quot;requested_by\&quot;: \&quot;customer\&quot;, \&quot;channel\&quot;: \&quot;support_ticket\&quot;} | [optional] 
+**PauseDays** | Pointer to **int32** | Duration of the pause in days @Description Number of days to pause the subscription. Cannot be used together with pause_end. Must be greater than 0 @Example 30 | [optional] 
+**PauseEnd** | Pointer to **string** | End date for the subscription pause @Description ISO 8601 timestamp when the pause should end. Cannot be used together with pause_days. Must be after pause_start @Example \&quot;2024-02-15T00:00:00Z\&quot; | [optional] 
 **PauseMode** | [**TypesPauseMode**](TypesPauseMode.md) |  | 
-**PauseStart** | Pointer to **string** |  | [optional] 
-**Reason** | Pointer to **string** |  | [optional] 
+**PauseStart** | Pointer to **string** | Start date for the subscription pause @Description ISO 8601 timestamp when the pause should begin. Required when pause_mode is \&quot;scheduled\&quot; @Example \&quot;2024-01-15T00:00:00Z\&quot; | [optional] 
+**Reason** | Pointer to **string** | Reason for pausing the subscription @Description Optional reason for the pause. Maximum 255 characters @Example \&quot;Customer requested temporary suspension\&quot; | [optional] 
 
 ## Methods
 

@@ -4,21 +4,25 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | **float32** |  | 
+**Amount** | **string** |  | 
+**CancelUrl** | Pointer to **string** |  | [optional] 
 **Currency** | **string** |  | 
 **DestinationId** | **string** |  | 
 **DestinationType** | [**TypesPaymentDestinationType**](TypesPaymentDestinationType.md) |  | 
 **IdempotencyKey** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
+**PaymentGateway** | Pointer to [**TypesPaymentGatewayType**](TypesPaymentGatewayType.md) |  | [optional] 
 **PaymentMethodId** | Pointer to **string** |  | [optional] 
 **PaymentMethodType** | [**TypesPaymentMethodType**](TypesPaymentMethodType.md) |  | 
 **ProcessPayment** | Pointer to **bool** |  | [optional] [default to true]
+**SaveCardAndMakeDefault** | Pointer to **bool** |  | [optional] [default to false]
+**SuccessUrl** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
 ### NewDtoCreatePaymentRequest
 
-`func NewDtoCreatePaymentRequest(amount float32, currency string, destinationId string, destinationType TypesPaymentDestinationType, paymentMethodType TypesPaymentMethodType, ) *DtoCreatePaymentRequest`
+`func NewDtoCreatePaymentRequest(amount string, currency string, destinationId string, destinationType TypesPaymentDestinationType, paymentMethodType TypesPaymentMethodType, ) *DtoCreatePaymentRequest`
 
 NewDtoCreatePaymentRequest instantiates a new DtoCreatePaymentRequest object
 This constructor will assign default values to properties that have it defined,
@@ -35,23 +39,48 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *DtoCreatePaymentRequest) GetAmount() float32`
+`func (o *DtoCreatePaymentRequest) GetAmount() string`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *DtoCreatePaymentRequest) GetAmountOk() (*float32, bool)`
+`func (o *DtoCreatePaymentRequest) GetAmountOk() (*string, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *DtoCreatePaymentRequest) SetAmount(v float32)`
+`func (o *DtoCreatePaymentRequest) SetAmount(v string)`
 
 SetAmount sets Amount field to given value.
 
+
+### GetCancelUrl
+
+`func (o *DtoCreatePaymentRequest) GetCancelUrl() string`
+
+GetCancelUrl returns the CancelUrl field if non-nil, zero value otherwise.
+
+### GetCancelUrlOk
+
+`func (o *DtoCreatePaymentRequest) GetCancelUrlOk() (*string, bool)`
+
+GetCancelUrlOk returns a tuple with the CancelUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCancelUrl
+
+`func (o *DtoCreatePaymentRequest) SetCancelUrl(v string)`
+
+SetCancelUrl sets CancelUrl field to given value.
+
+### HasCancelUrl
+
+`func (o *DtoCreatePaymentRequest) HasCancelUrl() bool`
+
+HasCancelUrl returns a boolean if a field has been set.
 
 ### GetCurrency
 
@@ -163,6 +192,31 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
+### GetPaymentGateway
+
+`func (o *DtoCreatePaymentRequest) GetPaymentGateway() TypesPaymentGatewayType`
+
+GetPaymentGateway returns the PaymentGateway field if non-nil, zero value otherwise.
+
+### GetPaymentGatewayOk
+
+`func (o *DtoCreatePaymentRequest) GetPaymentGatewayOk() (*TypesPaymentGatewayType, bool)`
+
+GetPaymentGatewayOk returns a tuple with the PaymentGateway field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPaymentGateway
+
+`func (o *DtoCreatePaymentRequest) SetPaymentGateway(v TypesPaymentGatewayType)`
+
+SetPaymentGateway sets PaymentGateway field to given value.
+
+### HasPaymentGateway
+
+`func (o *DtoCreatePaymentRequest) HasPaymentGateway() bool`
+
+HasPaymentGateway returns a boolean if a field has been set.
+
 ### GetPaymentMethodId
 
 `func (o *DtoCreatePaymentRequest) GetPaymentMethodId() string`
@@ -232,6 +286,56 @@ SetProcessPayment sets ProcessPayment field to given value.
 `func (o *DtoCreatePaymentRequest) HasProcessPayment() bool`
 
 HasProcessPayment returns a boolean if a field has been set.
+
+### GetSaveCardAndMakeDefault
+
+`func (o *DtoCreatePaymentRequest) GetSaveCardAndMakeDefault() bool`
+
+GetSaveCardAndMakeDefault returns the SaveCardAndMakeDefault field if non-nil, zero value otherwise.
+
+### GetSaveCardAndMakeDefaultOk
+
+`func (o *DtoCreatePaymentRequest) GetSaveCardAndMakeDefaultOk() (*bool, bool)`
+
+GetSaveCardAndMakeDefaultOk returns a tuple with the SaveCardAndMakeDefault field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSaveCardAndMakeDefault
+
+`func (o *DtoCreatePaymentRequest) SetSaveCardAndMakeDefault(v bool)`
+
+SetSaveCardAndMakeDefault sets SaveCardAndMakeDefault field to given value.
+
+### HasSaveCardAndMakeDefault
+
+`func (o *DtoCreatePaymentRequest) HasSaveCardAndMakeDefault() bool`
+
+HasSaveCardAndMakeDefault returns a boolean if a field has been set.
+
+### GetSuccessUrl
+
+`func (o *DtoCreatePaymentRequest) GetSuccessUrl() string`
+
+GetSuccessUrl returns the SuccessUrl field if non-nil, zero value otherwise.
+
+### GetSuccessUrlOk
+
+`func (o *DtoCreatePaymentRequest) GetSuccessUrlOk() (*string, bool)`
+
+GetSuccessUrlOk returns a tuple with the SuccessUrl field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSuccessUrl
+
+`func (o *DtoCreatePaymentRequest) SetSuccessUrl(v string)`
+
+SetSuccessUrl sets SuccessUrl field to given value.
+
+### HasSuccessUrl
+
+`func (o *DtoCreatePaymentRequest) HasSuccessUrl() bool`
+
+HasSuccessUrl returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

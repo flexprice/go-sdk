@@ -9,10 +9,12 @@ Name | Type | Description | Notes
 **EndTime** | Pointer to **string** |  | [optional] 
 **Expand** | Pointer to **string** |  | [optional] 
 **ExternalId** | Pointer to **string** |  | [optional] 
-**Filters** | Pointer to [**[]TypesFilterCondition**](TypesFilterCondition.md) | filters allows complex filtering based on multiple fields | [optional] 
+**ExternalIds** | Pointer to **[]string** |  | [optional] 
+**Filters** | Pointer to [**[]TypesFilterCondition**](TypesFilterCondition.md) |  | [optional] 
 **Limit** | Pointer to **int32** |  | [optional] 
 **Offset** | Pointer to **int32** |  | [optional] 
 **Order** | Pointer to **string** |  | [optional] 
+**ParentCustomerIds** | Pointer to **[]string** |  | [optional] 
 **Sort** | Pointer to [**[]TypesSortCondition**](TypesSortCondition.md) |  | [optional] 
 **StartTime** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
@@ -161,6 +163,31 @@ SetExternalId sets ExternalId field to given value.
 
 HasExternalId returns a boolean if a field has been set.
 
+### GetExternalIds
+
+`func (o *TypesCustomerFilter) GetExternalIds() []string`
+
+GetExternalIds returns the ExternalIds field if non-nil, zero value otherwise.
+
+### GetExternalIdsOk
+
+`func (o *TypesCustomerFilter) GetExternalIdsOk() (*[]string, bool)`
+
+GetExternalIdsOk returns a tuple with the ExternalIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExternalIds
+
+`func (o *TypesCustomerFilter) SetExternalIds(v []string)`
+
+SetExternalIds sets ExternalIds field to given value.
+
+### HasExternalIds
+
+`func (o *TypesCustomerFilter) HasExternalIds() bool`
+
+HasExternalIds returns a boolean if a field has been set.
+
 ### GetFilters
 
 `func (o *TypesCustomerFilter) GetFilters() []TypesFilterCondition`
@@ -260,6 +287,31 @@ SetOrder sets Order field to given value.
 `func (o *TypesCustomerFilter) HasOrder() bool`
 
 HasOrder returns a boolean if a field has been set.
+
+### GetParentCustomerIds
+
+`func (o *TypesCustomerFilter) GetParentCustomerIds() []string`
+
+GetParentCustomerIds returns the ParentCustomerIds field if non-nil, zero value otherwise.
+
+### GetParentCustomerIdsOk
+
+`func (o *TypesCustomerFilter) GetParentCustomerIdsOk() (*[]string, bool)`
+
+GetParentCustomerIdsOk returns a tuple with the ParentCustomerIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentCustomerIds
+
+`func (o *TypesCustomerFilter) SetParentCustomerIds(v []string)`
+
+SetParentCustomerIds sets ParentCustomerIds field to given value.
+
+### HasParentCustomerIds
+
+`func (o *TypesCustomerFilter) HasParentCustomerIds() bool`
+
+HasParentCustomerIds returns a boolean if a field has been set.
 
 ### GetSort
 

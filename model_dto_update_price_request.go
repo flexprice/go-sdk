@@ -19,9 +19,20 @@ var _ MappedNullable = &DtoUpdatePriceRequest{}
 
 // DtoUpdatePriceRequest struct for DtoUpdatePriceRequest
 type DtoUpdatePriceRequest struct {
+	// Amount is the new price amount that overrides the original price (optional)
+	Amount *string `json:"amount,omitempty"`
+	BillingModel *TypesBillingModel `json:"billing_model,omitempty"`
 	Description *string `json:"description,omitempty"`
+	EffectiveFrom *string `json:"effective_from,omitempty"`
+	// GroupID is the id of the group to update the price in
+	GroupId *string `json:"group_id,omitempty"`
+	// All price fields that can be updated Non-critical fields (can be updated directly)
 	LookupKey *string `json:"lookup_key,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	TierMode *TypesBillingTier `json:"tier_mode,omitempty"`
+	// Tiers determines the pricing tiers for this line item
+	Tiers []DtoCreatePriceTier `json:"tiers,omitempty"`
+	TransformQuantity *PriceTransformQuantity `json:"transform_quantity,omitempty"`
 }
 
 // NewDtoUpdatePriceRequest instantiates a new DtoUpdatePriceRequest object
@@ -39,6 +50,70 @@ func NewDtoUpdatePriceRequest() *DtoUpdatePriceRequest {
 func NewDtoUpdatePriceRequestWithDefaults() *DtoUpdatePriceRequest {
 	this := DtoUpdatePriceRequest{}
 	return &this
+}
+
+// GetAmount returns the Amount field value if set, zero value otherwise.
+func (o *DtoUpdatePriceRequest) GetAmount() string {
+	if o == nil || IsNil(o.Amount) {
+		var ret string
+		return ret
+	}
+	return *o.Amount
+}
+
+// GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePriceRequest) GetAmountOk() (*string, bool) {
+	if o == nil || IsNil(o.Amount) {
+		return nil, false
+	}
+	return o.Amount, true
+}
+
+// HasAmount returns a boolean if a field has been set.
+func (o *DtoUpdatePriceRequest) HasAmount() bool {
+	if o != nil && !IsNil(o.Amount) {
+		return true
+	}
+
+	return false
+}
+
+// SetAmount gets a reference to the given string and assigns it to the Amount field.
+func (o *DtoUpdatePriceRequest) SetAmount(v string) {
+	o.Amount = &v
+}
+
+// GetBillingModel returns the BillingModel field value if set, zero value otherwise.
+func (o *DtoUpdatePriceRequest) GetBillingModel() TypesBillingModel {
+	if o == nil || IsNil(o.BillingModel) {
+		var ret TypesBillingModel
+		return ret
+	}
+	return *o.BillingModel
+}
+
+// GetBillingModelOk returns a tuple with the BillingModel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePriceRequest) GetBillingModelOk() (*TypesBillingModel, bool) {
+	if o == nil || IsNil(o.BillingModel) {
+		return nil, false
+	}
+	return o.BillingModel, true
+}
+
+// HasBillingModel returns a boolean if a field has been set.
+func (o *DtoUpdatePriceRequest) HasBillingModel() bool {
+	if o != nil && !IsNil(o.BillingModel) {
+		return true
+	}
+
+	return false
+}
+
+// SetBillingModel gets a reference to the given TypesBillingModel and assigns it to the BillingModel field.
+func (o *DtoUpdatePriceRequest) SetBillingModel(v TypesBillingModel) {
+	o.BillingModel = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -71,6 +146,70 @@ func (o *DtoUpdatePriceRequest) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *DtoUpdatePriceRequest) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetEffectiveFrom returns the EffectiveFrom field value if set, zero value otherwise.
+func (o *DtoUpdatePriceRequest) GetEffectiveFrom() string {
+	if o == nil || IsNil(o.EffectiveFrom) {
+		var ret string
+		return ret
+	}
+	return *o.EffectiveFrom
+}
+
+// GetEffectiveFromOk returns a tuple with the EffectiveFrom field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePriceRequest) GetEffectiveFromOk() (*string, bool) {
+	if o == nil || IsNil(o.EffectiveFrom) {
+		return nil, false
+	}
+	return o.EffectiveFrom, true
+}
+
+// HasEffectiveFrom returns a boolean if a field has been set.
+func (o *DtoUpdatePriceRequest) HasEffectiveFrom() bool {
+	if o != nil && !IsNil(o.EffectiveFrom) {
+		return true
+	}
+
+	return false
+}
+
+// SetEffectiveFrom gets a reference to the given string and assigns it to the EffectiveFrom field.
+func (o *DtoUpdatePriceRequest) SetEffectiveFrom(v string) {
+	o.EffectiveFrom = &v
+}
+
+// GetGroupId returns the GroupId field value if set, zero value otherwise.
+func (o *DtoUpdatePriceRequest) GetGroupId() string {
+	if o == nil || IsNil(o.GroupId) {
+		var ret string
+		return ret
+	}
+	return *o.GroupId
+}
+
+// GetGroupIdOk returns a tuple with the GroupId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePriceRequest) GetGroupIdOk() (*string, bool) {
+	if o == nil || IsNil(o.GroupId) {
+		return nil, false
+	}
+	return o.GroupId, true
+}
+
+// HasGroupId returns a boolean if a field has been set.
+func (o *DtoUpdatePriceRequest) HasGroupId() bool {
+	if o != nil && !IsNil(o.GroupId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupId gets a reference to the given string and assigns it to the GroupId field.
+func (o *DtoUpdatePriceRequest) SetGroupId(v string) {
+	o.GroupId = &v
 }
 
 // GetLookupKey returns the LookupKey field value if set, zero value otherwise.
@@ -137,6 +276,102 @@ func (o *DtoUpdatePriceRequest) SetMetadata(v map[string]string) {
 	o.Metadata = &v
 }
 
+// GetTierMode returns the TierMode field value if set, zero value otherwise.
+func (o *DtoUpdatePriceRequest) GetTierMode() TypesBillingTier {
+	if o == nil || IsNil(o.TierMode) {
+		var ret TypesBillingTier
+		return ret
+	}
+	return *o.TierMode
+}
+
+// GetTierModeOk returns a tuple with the TierMode field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePriceRequest) GetTierModeOk() (*TypesBillingTier, bool) {
+	if o == nil || IsNil(o.TierMode) {
+		return nil, false
+	}
+	return o.TierMode, true
+}
+
+// HasTierMode returns a boolean if a field has been set.
+func (o *DtoUpdatePriceRequest) HasTierMode() bool {
+	if o != nil && !IsNil(o.TierMode) {
+		return true
+	}
+
+	return false
+}
+
+// SetTierMode gets a reference to the given TypesBillingTier and assigns it to the TierMode field.
+func (o *DtoUpdatePriceRequest) SetTierMode(v TypesBillingTier) {
+	o.TierMode = &v
+}
+
+// GetTiers returns the Tiers field value if set, zero value otherwise.
+func (o *DtoUpdatePriceRequest) GetTiers() []DtoCreatePriceTier {
+	if o == nil || IsNil(o.Tiers) {
+		var ret []DtoCreatePriceTier
+		return ret
+	}
+	return o.Tiers
+}
+
+// GetTiersOk returns a tuple with the Tiers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePriceRequest) GetTiersOk() ([]DtoCreatePriceTier, bool) {
+	if o == nil || IsNil(o.Tiers) {
+		return nil, false
+	}
+	return o.Tiers, true
+}
+
+// HasTiers returns a boolean if a field has been set.
+func (o *DtoUpdatePriceRequest) HasTiers() bool {
+	if o != nil && !IsNil(o.Tiers) {
+		return true
+	}
+
+	return false
+}
+
+// SetTiers gets a reference to the given []DtoCreatePriceTier and assigns it to the Tiers field.
+func (o *DtoUpdatePriceRequest) SetTiers(v []DtoCreatePriceTier) {
+	o.Tiers = v
+}
+
+// GetTransformQuantity returns the TransformQuantity field value if set, zero value otherwise.
+func (o *DtoUpdatePriceRequest) GetTransformQuantity() PriceTransformQuantity {
+	if o == nil || IsNil(o.TransformQuantity) {
+		var ret PriceTransformQuantity
+		return ret
+	}
+	return *o.TransformQuantity
+}
+
+// GetTransformQuantityOk returns a tuple with the TransformQuantity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePriceRequest) GetTransformQuantityOk() (*PriceTransformQuantity, bool) {
+	if o == nil || IsNil(o.TransformQuantity) {
+		return nil, false
+	}
+	return o.TransformQuantity, true
+}
+
+// HasTransformQuantity returns a boolean if a field has been set.
+func (o *DtoUpdatePriceRequest) HasTransformQuantity() bool {
+	if o != nil && !IsNil(o.TransformQuantity) {
+		return true
+	}
+
+	return false
+}
+
+// SetTransformQuantity gets a reference to the given PriceTransformQuantity and assigns it to the TransformQuantity field.
+func (o *DtoUpdatePriceRequest) SetTransformQuantity(v PriceTransformQuantity) {
+	o.TransformQuantity = &v
+}
+
 func (o DtoUpdatePriceRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -147,14 +382,35 @@ func (o DtoUpdatePriceRequest) MarshalJSON() ([]byte, error) {
 
 func (o DtoUpdatePriceRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Amount) {
+		toSerialize["amount"] = o.Amount
+	}
+	if !IsNil(o.BillingModel) {
+		toSerialize["billing_model"] = o.BillingModel
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
+	}
+	if !IsNil(o.EffectiveFrom) {
+		toSerialize["effective_from"] = o.EffectiveFrom
+	}
+	if !IsNil(o.GroupId) {
+		toSerialize["group_id"] = o.GroupId
 	}
 	if !IsNil(o.LookupKey) {
 		toSerialize["lookup_key"] = o.LookupKey
 	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.TierMode) {
+		toSerialize["tier_mode"] = o.TierMode
+	}
+	if !IsNil(o.Tiers) {
+		toSerialize["tiers"] = o.Tiers
+	}
+	if !IsNil(o.TransformQuantity) {
+		toSerialize["transform_quantity"] = o.TransformQuantity
 	}
 	return toSerialize, nil
 }

@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FlatAmount** | Pointer to **float32** | FlatAmount is the flat amount for the given tier and it is applied on top of the unit amount*quantity. It solves cases in banking like 2.7% + 5c | [optional] 
-**UnitAmount** | Pointer to **float32** | UnitAmount is the amount per unit for the given tier | [optional] 
-**UpTo** | Pointer to **int32** | Upto is the quantity up to which this tier applies. It is null for the last tier | [optional] 
+**FlatAmount** | Pointer to **float32** | flat_amount is the flat amount for the given tier (optional) Applied on top of unit_amount*quantity. Useful for cases like \&quot;2.7$ + 5c\&quot; | [optional] 
+**UnitAmount** | Pointer to **float32** | unit_amount is the amount per unit for the given tier | [optional] 
+**UpTo** | Pointer to **int32** | up_to is the quantity up to which this tier applies. It is null for the last tier. IMPORTANT: Tier boundaries are INCLUSIVE. - If up_to is 1000, then quantity less than or equal to 1000 belongs to this tier - This behavior is consistent across both VOLUME and SLAB tier modes | [optional] 
 
 ## Methods
 

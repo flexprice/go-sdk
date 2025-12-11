@@ -8,8 +8,10 @@ Name | Type | Description | Notes
 **Currency** | Pointer to **string** |  | [optional] 
 **DisplayAmount** | Pointer to **string** |  | [optional] 
 **FilterValues** | Pointer to **map[string][]string** |  | [optional] 
+**IsOverage** | Pointer to **bool** | Whether this charge is at overage rate | [optional] 
 **MeterDisplayName** | Pointer to **string** |  | [optional] 
 **MeterId** | Pointer to **string** |  | [optional] 
+**OverageFactor** | Pointer to **float32** | Factor applied to this charge if in overage | [optional] 
 **Price** | Pointer to [**PricePrice**](PricePrice.md) |  | [optional] 
 **Quantity** | Pointer to **float32** |  | [optional] 
 
@@ -132,6 +134,31 @@ SetFilterValues sets FilterValues field to given value.
 
 HasFilterValues returns a boolean if a field has been set.
 
+### GetIsOverage
+
+`func (o *DtoSubscriptionUsageByMetersResponse) GetIsOverage() bool`
+
+GetIsOverage returns the IsOverage field if non-nil, zero value otherwise.
+
+### GetIsOverageOk
+
+`func (o *DtoSubscriptionUsageByMetersResponse) GetIsOverageOk() (*bool, bool)`
+
+GetIsOverageOk returns a tuple with the IsOverage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsOverage
+
+`func (o *DtoSubscriptionUsageByMetersResponse) SetIsOverage(v bool)`
+
+SetIsOverage sets IsOverage field to given value.
+
+### HasIsOverage
+
+`func (o *DtoSubscriptionUsageByMetersResponse) HasIsOverage() bool`
+
+HasIsOverage returns a boolean if a field has been set.
+
 ### GetMeterDisplayName
 
 `func (o *DtoSubscriptionUsageByMetersResponse) GetMeterDisplayName() string`
@@ -181,6 +208,31 @@ SetMeterId sets MeterId field to given value.
 `func (o *DtoSubscriptionUsageByMetersResponse) HasMeterId() bool`
 
 HasMeterId returns a boolean if a field has been set.
+
+### GetOverageFactor
+
+`func (o *DtoSubscriptionUsageByMetersResponse) GetOverageFactor() float32`
+
+GetOverageFactor returns the OverageFactor field if non-nil, zero value otherwise.
+
+### GetOverageFactorOk
+
+`func (o *DtoSubscriptionUsageByMetersResponse) GetOverageFactorOk() (*float32, bool)`
+
+GetOverageFactorOk returns a tuple with the OverageFactor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOverageFactor
+
+`func (o *DtoSubscriptionUsageByMetersResponse) SetOverageFactor(v float32)`
+
+SetOverageFactor sets OverageFactor field to given value.
+
+### HasOverageFactor
+
+`func (o *DtoSubscriptionUsageByMetersResponse) HasOverageFactor() bool`
+
+HasOverageFactor returns a boolean if a field has been set.
 
 ### GetPrice
 

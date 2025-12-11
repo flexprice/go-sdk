@@ -6,13 +6,16 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
+**CreditGrants** | Pointer to [**[]DtoCreditGrantResponse**](DtoCreditGrantResponse.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
+**DisplayOrder** | Pointer to **int32** |  | [optional] 
 **Entitlements** | Pointer to [**[]DtoEntitlementResponse**](DtoEntitlementResponse.md) |  | [optional] 
 **EnvironmentId** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **LookupKey** | Pointer to **string** |  | [optional] 
+**Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Prices** | Pointer to [**[]DtoPriceResponse**](DtoPriceResponse.md) |  | [optional] 
+**Prices** | Pointer to [**[]DtoPriceResponse**](DtoPriceResponse.md) | TODO: Add inline addons | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
@@ -87,6 +90,31 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
+### GetCreditGrants
+
+`func (o *DtoPlanResponse) GetCreditGrants() []DtoCreditGrantResponse`
+
+GetCreditGrants returns the CreditGrants field if non-nil, zero value otherwise.
+
+### GetCreditGrantsOk
+
+`func (o *DtoPlanResponse) GetCreditGrantsOk() (*[]DtoCreditGrantResponse, bool)`
+
+GetCreditGrantsOk returns a tuple with the CreditGrants field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreditGrants
+
+`func (o *DtoPlanResponse) SetCreditGrants(v []DtoCreditGrantResponse)`
+
+SetCreditGrants sets CreditGrants field to given value.
+
+### HasCreditGrants
+
+`func (o *DtoPlanResponse) HasCreditGrants() bool`
+
+HasCreditGrants returns a boolean if a field has been set.
+
 ### GetDescription
 
 `func (o *DtoPlanResponse) GetDescription() string`
@@ -111,6 +139,31 @@ SetDescription sets Description field to given value.
 `func (o *DtoPlanResponse) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetDisplayOrder
+
+`func (o *DtoPlanResponse) GetDisplayOrder() int32`
+
+GetDisplayOrder returns the DisplayOrder field if non-nil, zero value otherwise.
+
+### GetDisplayOrderOk
+
+`func (o *DtoPlanResponse) GetDisplayOrderOk() (*int32, bool)`
+
+GetDisplayOrderOk returns a tuple with the DisplayOrder field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayOrder
+
+`func (o *DtoPlanResponse) SetDisplayOrder(v int32)`
+
+SetDisplayOrder sets DisplayOrder field to given value.
+
+### HasDisplayOrder
+
+`func (o *DtoPlanResponse) HasDisplayOrder() bool`
+
+HasDisplayOrder returns a boolean if a field has been set.
 
 ### GetEntitlements
 
@@ -211,6 +264,31 @@ SetLookupKey sets LookupKey field to given value.
 `func (o *DtoPlanResponse) HasLookupKey() bool`
 
 HasLookupKey returns a boolean if a field has been set.
+
+### GetMetadata
+
+`func (o *DtoPlanResponse) GetMetadata() map[string]string`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *DtoPlanResponse) GetMetadataOk() (*map[string]string, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *DtoPlanResponse) SetMetadata(v map[string]string)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *DtoPlanResponse) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
 
 ### GetName
 

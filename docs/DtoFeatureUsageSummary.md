@@ -4,13 +4,15 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CurrentUsage** | Pointer to **float32** |  | [optional] 
+**CurrentUsage** | Pointer to **string** |  | [optional] 
 **Feature** | Pointer to [**DtoFeatureResponse**](DtoFeatureResponse.md) |  | [optional] 
 **IsEnabled** | Pointer to **bool** |  | [optional] 
 **IsSoftLimit** | Pointer to **bool** |  | [optional] 
+**IsUnlimited** | Pointer to **bool** |  | [optional] 
+**NextUsageResetAt** | Pointer to **string** |  | [optional] 
 **Sources** | Pointer to [**[]DtoEntitlementSource**](DtoEntitlementSource.md) |  | [optional] 
 **TotalLimit** | Pointer to **int32** |  | [optional] 
-**UsagePercent** | Pointer to **float32** |  | [optional] 
+**UsagePercent** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -33,20 +35,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetCurrentUsage
 
-`func (o *DtoFeatureUsageSummary) GetCurrentUsage() float32`
+`func (o *DtoFeatureUsageSummary) GetCurrentUsage() string`
 
 GetCurrentUsage returns the CurrentUsage field if non-nil, zero value otherwise.
 
 ### GetCurrentUsageOk
 
-`func (o *DtoFeatureUsageSummary) GetCurrentUsageOk() (*float32, bool)`
+`func (o *DtoFeatureUsageSummary) GetCurrentUsageOk() (*string, bool)`
 
 GetCurrentUsageOk returns a tuple with the CurrentUsage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCurrentUsage
 
-`func (o *DtoFeatureUsageSummary) SetCurrentUsage(v float32)`
+`func (o *DtoFeatureUsageSummary) SetCurrentUsage(v string)`
 
 SetCurrentUsage sets CurrentUsage field to given value.
 
@@ -131,6 +133,56 @@ SetIsSoftLimit sets IsSoftLimit field to given value.
 
 HasIsSoftLimit returns a boolean if a field has been set.
 
+### GetIsUnlimited
+
+`func (o *DtoFeatureUsageSummary) GetIsUnlimited() bool`
+
+GetIsUnlimited returns the IsUnlimited field if non-nil, zero value otherwise.
+
+### GetIsUnlimitedOk
+
+`func (o *DtoFeatureUsageSummary) GetIsUnlimitedOk() (*bool, bool)`
+
+GetIsUnlimitedOk returns a tuple with the IsUnlimited field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsUnlimited
+
+`func (o *DtoFeatureUsageSummary) SetIsUnlimited(v bool)`
+
+SetIsUnlimited sets IsUnlimited field to given value.
+
+### HasIsUnlimited
+
+`func (o *DtoFeatureUsageSummary) HasIsUnlimited() bool`
+
+HasIsUnlimited returns a boolean if a field has been set.
+
+### GetNextUsageResetAt
+
+`func (o *DtoFeatureUsageSummary) GetNextUsageResetAt() string`
+
+GetNextUsageResetAt returns the NextUsageResetAt field if non-nil, zero value otherwise.
+
+### GetNextUsageResetAtOk
+
+`func (o *DtoFeatureUsageSummary) GetNextUsageResetAtOk() (*string, bool)`
+
+GetNextUsageResetAtOk returns a tuple with the NextUsageResetAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNextUsageResetAt
+
+`func (o *DtoFeatureUsageSummary) SetNextUsageResetAt(v string)`
+
+SetNextUsageResetAt sets NextUsageResetAt field to given value.
+
+### HasNextUsageResetAt
+
+`func (o *DtoFeatureUsageSummary) HasNextUsageResetAt() bool`
+
+HasNextUsageResetAt returns a boolean if a field has been set.
+
 ### GetSources
 
 `func (o *DtoFeatureUsageSummary) GetSources() []DtoEntitlementSource`
@@ -183,20 +235,20 @@ HasTotalLimit returns a boolean if a field has been set.
 
 ### GetUsagePercent
 
-`func (o *DtoFeatureUsageSummary) GetUsagePercent() float32`
+`func (o *DtoFeatureUsageSummary) GetUsagePercent() string`
 
 GetUsagePercent returns the UsagePercent field if non-nil, zero value otherwise.
 
 ### GetUsagePercentOk
 
-`func (o *DtoFeatureUsageSummary) GetUsagePercentOk() (*float32, bool)`
+`func (o *DtoFeatureUsageSummary) GetUsagePercentOk() (*string, bool)`
 
 GetUsagePercentOk returns a tuple with the UsagePercent field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUsagePercent
 
-`func (o *DtoFeatureUsageSummary) SetUsagePercent(v float32)`
+`func (o *DtoFeatureUsageSummary) SetUsagePercent(v string)`
 
 SetUsagePercent sets UsagePercent field to given value.
 

@@ -9,18 +9,30 @@ Name | Type | Description | Notes
 **BillingModel** | Pointer to [**TypesBillingModel**](TypesBillingModel.md) |  | [optional] 
 **BillingPeriod** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
 **BillingPeriodCount** | Pointer to **int32** | BillingPeriodCount is the count of the billing period ex 1, 3, 6, 12 | [optional] 
+**ConversionRate** | Pointer to **float32** | ConversionRate is the rate of the price unit to the base currency For BTC: 1 BTC &#x3D; 100000000 USD | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **Currency** | Pointer to **string** | Currency 3 digit ISO currency code in lowercase ex usd, eur, gbp | [optional] 
 **Description** | Pointer to **string** | Description of the price | [optional] 
 **DisplayAmount** | Pointer to **string** | DisplayAmount is the formatted amount with currency symbol For USD: $12.50 | [optional] 
+**DisplayPriceUnitAmount** | Pointer to **string** | DisplayPriceUnitAmount is the formatted amount with price unit symbol For BTC: 0.00000001 BTC | [optional] 
+**EndDate** | Pointer to **string** | EndDate is the end date of the price | [optional] 
+**EntityId** | Pointer to **string** | EntityID holds the value of the \&quot;entity_id\&quot; field. | [optional] 
+**EntityType** | Pointer to [**TypesPriceEntityType**](TypesPriceEntityType.md) |  | [optional] 
 **EnvironmentId** | Pointer to **string** | EnvironmentID is the environment identifier for the price | [optional] 
+**GroupId** | Pointer to **string** | GroupID references the group this price belongs to | [optional] 
 **Id** | Pointer to **string** | ID uuid identifier for the price | [optional] 
 **InvoiceCadence** | Pointer to [**TypesInvoiceCadence**](TypesInvoiceCadence.md) |  | [optional] 
 **LookupKey** | Pointer to **string** | LookupKey used for looking up the price in the database | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **MeterId** | Pointer to **string** | MeterID is the id of the meter for usage based pricing | [optional] 
-**PlanId** | Pointer to **string** | PlanID is the id of the plan for plan based pricing | [optional] 
+**ParentPriceId** | Pointer to **string** | ParentPriceID references the root price (always set for price lineage tracking) | [optional] 
+**PriceUnit** | Pointer to **string** | PriceUnit 3 digit ISO currency code in lowercase ex btc For BTC: btc | [optional] 
+**PriceUnitAmount** | Pointer to **float32** | PriceUnitAmount is the amount stored in price unit For BTC: 0.00000001 means 0.00000001 BTC | [optional] 
+**PriceUnitId** | Pointer to **string** | PriceUnitID is the id of the price unit | [optional] 
+**PriceUnitTiers** | Pointer to [**[]PricePriceTier**](PricePriceTier.md) | PriceUnitTiers are the tiers for the price unit | [optional] 
+**PriceUnitType** | Pointer to [**TypesPriceUnitType**](TypesPriceUnitType.md) |  | [optional] 
+**StartDate** | Pointer to **string** | StartDate is the start date of the price | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **TierMode** | Pointer to [**TypesBillingTier**](TypesBillingTier.md) |  | [optional] 
@@ -175,6 +187,31 @@ SetBillingPeriodCount sets BillingPeriodCount field to given value.
 
 HasBillingPeriodCount returns a boolean if a field has been set.
 
+### GetConversionRate
+
+`func (o *PricePrice) GetConversionRate() float32`
+
+GetConversionRate returns the ConversionRate field if non-nil, zero value otherwise.
+
+### GetConversionRateOk
+
+`func (o *PricePrice) GetConversionRateOk() (*float32, bool)`
+
+GetConversionRateOk returns a tuple with the ConversionRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConversionRate
+
+`func (o *PricePrice) SetConversionRate(v float32)`
+
+SetConversionRate sets ConversionRate field to given value.
+
+### HasConversionRate
+
+`func (o *PricePrice) HasConversionRate() bool`
+
+HasConversionRate returns a boolean if a field has been set.
+
 ### GetCreatedAt
 
 `func (o *PricePrice) GetCreatedAt() string`
@@ -300,6 +337,106 @@ SetDisplayAmount sets DisplayAmount field to given value.
 
 HasDisplayAmount returns a boolean if a field has been set.
 
+### GetDisplayPriceUnitAmount
+
+`func (o *PricePrice) GetDisplayPriceUnitAmount() string`
+
+GetDisplayPriceUnitAmount returns the DisplayPriceUnitAmount field if non-nil, zero value otherwise.
+
+### GetDisplayPriceUnitAmountOk
+
+`func (o *PricePrice) GetDisplayPriceUnitAmountOk() (*string, bool)`
+
+GetDisplayPriceUnitAmountOk returns a tuple with the DisplayPriceUnitAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayPriceUnitAmount
+
+`func (o *PricePrice) SetDisplayPriceUnitAmount(v string)`
+
+SetDisplayPriceUnitAmount sets DisplayPriceUnitAmount field to given value.
+
+### HasDisplayPriceUnitAmount
+
+`func (o *PricePrice) HasDisplayPriceUnitAmount() bool`
+
+HasDisplayPriceUnitAmount returns a boolean if a field has been set.
+
+### GetEndDate
+
+`func (o *PricePrice) GetEndDate() string`
+
+GetEndDate returns the EndDate field if non-nil, zero value otherwise.
+
+### GetEndDateOk
+
+`func (o *PricePrice) GetEndDateOk() (*string, bool)`
+
+GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndDate
+
+`func (o *PricePrice) SetEndDate(v string)`
+
+SetEndDate sets EndDate field to given value.
+
+### HasEndDate
+
+`func (o *PricePrice) HasEndDate() bool`
+
+HasEndDate returns a boolean if a field has been set.
+
+### GetEntityId
+
+`func (o *PricePrice) GetEntityId() string`
+
+GetEntityId returns the EntityId field if non-nil, zero value otherwise.
+
+### GetEntityIdOk
+
+`func (o *PricePrice) GetEntityIdOk() (*string, bool)`
+
+GetEntityIdOk returns a tuple with the EntityId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityId
+
+`func (o *PricePrice) SetEntityId(v string)`
+
+SetEntityId sets EntityId field to given value.
+
+### HasEntityId
+
+`func (o *PricePrice) HasEntityId() bool`
+
+HasEntityId returns a boolean if a field has been set.
+
+### GetEntityType
+
+`func (o *PricePrice) GetEntityType() TypesPriceEntityType`
+
+GetEntityType returns the EntityType field if non-nil, zero value otherwise.
+
+### GetEntityTypeOk
+
+`func (o *PricePrice) GetEntityTypeOk() (*TypesPriceEntityType, bool)`
+
+GetEntityTypeOk returns a tuple with the EntityType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityType
+
+`func (o *PricePrice) SetEntityType(v TypesPriceEntityType)`
+
+SetEntityType sets EntityType field to given value.
+
+### HasEntityType
+
+`func (o *PricePrice) HasEntityType() bool`
+
+HasEntityType returns a boolean if a field has been set.
+
 ### GetEnvironmentId
 
 `func (o *PricePrice) GetEnvironmentId() string`
@@ -324,6 +461,31 @@ SetEnvironmentId sets EnvironmentId field to given value.
 `func (o *PricePrice) HasEnvironmentId() bool`
 
 HasEnvironmentId returns a boolean if a field has been set.
+
+### GetGroupId
+
+`func (o *PricePrice) GetGroupId() string`
+
+GetGroupId returns the GroupId field if non-nil, zero value otherwise.
+
+### GetGroupIdOk
+
+`func (o *PricePrice) GetGroupIdOk() (*string, bool)`
+
+GetGroupIdOk returns a tuple with the GroupId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupId
+
+`func (o *PricePrice) SetGroupId(v string)`
+
+SetGroupId sets GroupId field to given value.
+
+### HasGroupId
+
+`func (o *PricePrice) HasGroupId() bool`
+
+HasGroupId returns a boolean if a field has been set.
 
 ### GetId
 
@@ -450,30 +612,180 @@ SetMeterId sets MeterId field to given value.
 
 HasMeterId returns a boolean if a field has been set.
 
-### GetPlanId
+### GetParentPriceId
 
-`func (o *PricePrice) GetPlanId() string`
+`func (o *PricePrice) GetParentPriceId() string`
 
-GetPlanId returns the PlanId field if non-nil, zero value otherwise.
+GetParentPriceId returns the ParentPriceId field if non-nil, zero value otherwise.
 
-### GetPlanIdOk
+### GetParentPriceIdOk
 
-`func (o *PricePrice) GetPlanIdOk() (*string, bool)`
+`func (o *PricePrice) GetParentPriceIdOk() (*string, bool)`
 
-GetPlanIdOk returns a tuple with the PlanId field if it's non-nil, zero value otherwise
+GetParentPriceIdOk returns a tuple with the ParentPriceId field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPlanId
+### SetParentPriceId
 
-`func (o *PricePrice) SetPlanId(v string)`
+`func (o *PricePrice) SetParentPriceId(v string)`
 
-SetPlanId sets PlanId field to given value.
+SetParentPriceId sets ParentPriceId field to given value.
 
-### HasPlanId
+### HasParentPriceId
 
-`func (o *PricePrice) HasPlanId() bool`
+`func (o *PricePrice) HasParentPriceId() bool`
 
-HasPlanId returns a boolean if a field has been set.
+HasParentPriceId returns a boolean if a field has been set.
+
+### GetPriceUnit
+
+`func (o *PricePrice) GetPriceUnit() string`
+
+GetPriceUnit returns the PriceUnit field if non-nil, zero value otherwise.
+
+### GetPriceUnitOk
+
+`func (o *PricePrice) GetPriceUnitOk() (*string, bool)`
+
+GetPriceUnitOk returns a tuple with the PriceUnit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnit
+
+`func (o *PricePrice) SetPriceUnit(v string)`
+
+SetPriceUnit sets PriceUnit field to given value.
+
+### HasPriceUnit
+
+`func (o *PricePrice) HasPriceUnit() bool`
+
+HasPriceUnit returns a boolean if a field has been set.
+
+### GetPriceUnitAmount
+
+`func (o *PricePrice) GetPriceUnitAmount() float32`
+
+GetPriceUnitAmount returns the PriceUnitAmount field if non-nil, zero value otherwise.
+
+### GetPriceUnitAmountOk
+
+`func (o *PricePrice) GetPriceUnitAmountOk() (*float32, bool)`
+
+GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitAmount
+
+`func (o *PricePrice) SetPriceUnitAmount(v float32)`
+
+SetPriceUnitAmount sets PriceUnitAmount field to given value.
+
+### HasPriceUnitAmount
+
+`func (o *PricePrice) HasPriceUnitAmount() bool`
+
+HasPriceUnitAmount returns a boolean if a field has been set.
+
+### GetPriceUnitId
+
+`func (o *PricePrice) GetPriceUnitId() string`
+
+GetPriceUnitId returns the PriceUnitId field if non-nil, zero value otherwise.
+
+### GetPriceUnitIdOk
+
+`func (o *PricePrice) GetPriceUnitIdOk() (*string, bool)`
+
+GetPriceUnitIdOk returns a tuple with the PriceUnitId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitId
+
+`func (o *PricePrice) SetPriceUnitId(v string)`
+
+SetPriceUnitId sets PriceUnitId field to given value.
+
+### HasPriceUnitId
+
+`func (o *PricePrice) HasPriceUnitId() bool`
+
+HasPriceUnitId returns a boolean if a field has been set.
+
+### GetPriceUnitTiers
+
+`func (o *PricePrice) GetPriceUnitTiers() []PricePriceTier`
+
+GetPriceUnitTiers returns the PriceUnitTiers field if non-nil, zero value otherwise.
+
+### GetPriceUnitTiersOk
+
+`func (o *PricePrice) GetPriceUnitTiersOk() (*[]PricePriceTier, bool)`
+
+GetPriceUnitTiersOk returns a tuple with the PriceUnitTiers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitTiers
+
+`func (o *PricePrice) SetPriceUnitTiers(v []PricePriceTier)`
+
+SetPriceUnitTiers sets PriceUnitTiers field to given value.
+
+### HasPriceUnitTiers
+
+`func (o *PricePrice) HasPriceUnitTiers() bool`
+
+HasPriceUnitTiers returns a boolean if a field has been set.
+
+### GetPriceUnitType
+
+`func (o *PricePrice) GetPriceUnitType() TypesPriceUnitType`
+
+GetPriceUnitType returns the PriceUnitType field if non-nil, zero value otherwise.
+
+### GetPriceUnitTypeOk
+
+`func (o *PricePrice) GetPriceUnitTypeOk() (*TypesPriceUnitType, bool)`
+
+GetPriceUnitTypeOk returns a tuple with the PriceUnitType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitType
+
+`func (o *PricePrice) SetPriceUnitType(v TypesPriceUnitType)`
+
+SetPriceUnitType sets PriceUnitType field to given value.
+
+### HasPriceUnitType
+
+`func (o *PricePrice) HasPriceUnitType() bool`
+
+HasPriceUnitType returns a boolean if a field has been set.
+
+### GetStartDate
+
+`func (o *PricePrice) GetStartDate() string`
+
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
+
+### GetStartDateOk
+
+`func (o *PricePrice) GetStartDateOk() (*string, bool)`
+
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStartDate
+
+`func (o *PricePrice) SetStartDate(v string)`
+
+SetStartDate sets StartDate field to given value.
+
+### HasStartDate
+
+`func (o *PricePrice) HasStartDate() bool`
+
+HasStartDate returns a boolean if a field has been set.
 
 ### GetStatus
 

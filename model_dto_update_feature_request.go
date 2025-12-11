@@ -19,6 +19,7 @@ var _ MappedNullable = &DtoUpdateFeatureRequest{}
 
 // DtoUpdateFeatureRequest struct for DtoUpdateFeatureRequest
 type DtoUpdateFeatureRequest struct {
+	AlertSettings *TypesAlertSettings `json:"alert_settings,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Filters []MeterFilter `json:"filters,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
@@ -42,6 +43,38 @@ func NewDtoUpdateFeatureRequest() *DtoUpdateFeatureRequest {
 func NewDtoUpdateFeatureRequestWithDefaults() *DtoUpdateFeatureRequest {
 	this := DtoUpdateFeatureRequest{}
 	return &this
+}
+
+// GetAlertSettings returns the AlertSettings field value if set, zero value otherwise.
+func (o *DtoUpdateFeatureRequest) GetAlertSettings() TypesAlertSettings {
+	if o == nil || IsNil(o.AlertSettings) {
+		var ret TypesAlertSettings
+		return ret
+	}
+	return *o.AlertSettings
+}
+
+// GetAlertSettingsOk returns a tuple with the AlertSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdateFeatureRequest) GetAlertSettingsOk() (*TypesAlertSettings, bool) {
+	if o == nil || IsNil(o.AlertSettings) {
+		return nil, false
+	}
+	return o.AlertSettings, true
+}
+
+// HasAlertSettings returns a boolean if a field has been set.
+func (o *DtoUpdateFeatureRequest) HasAlertSettings() bool {
+	if o != nil && !IsNil(o.AlertSettings) {
+		return true
+	}
+
+	return false
+}
+
+// SetAlertSettings gets a reference to the given TypesAlertSettings and assigns it to the AlertSettings field.
+func (o *DtoUpdateFeatureRequest) SetAlertSettings(v TypesAlertSettings) {
+	o.AlertSettings = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -246,6 +279,9 @@ func (o DtoUpdateFeatureRequest) MarshalJSON() ([]byte, error) {
 
 func (o DtoUpdateFeatureRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AlertSettings) {
+		toSerialize["alert_settings"] = o.AlertSettings
+	}
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}

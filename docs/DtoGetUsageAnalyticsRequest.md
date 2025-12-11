@@ -5,9 +5,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **EndTime** | Pointer to **string** |  | [optional] 
+**Expand** | Pointer to **[]string** | allowed values: \&quot;price\&quot;, \&quot;meter\&quot;, \&quot;feature\&quot;, \&quot;subscription_line_item\&quot;,\&quot;plan\&quot;,\&quot;addon\&quot; | [optional] 
 **ExternalCustomerId** | **string** |  | 
 **FeatureIds** | Pointer to **[]string** |  | [optional] 
-**GroupBy** | Pointer to **[]string** | allowed values: \&quot;source\&quot;, \&quot;feature_id\&quot; | [optional] 
+**GroupBy** | Pointer to **[]string** | allowed values: \&quot;source\&quot;, \&quot;feature_id\&quot;, \&quot;properties.&lt;field_name&gt;\&quot; | [optional] 
+**PropertyFilters** | Pointer to **map[string][]string** | Property filters to filter the events by the keys in &#x60;properties&#x60; field of the event | [optional] 
 **Sources** | Pointer to **[]string** |  | [optional] 
 **StartTime** | Pointer to **string** |  | [optional] 
 **WindowSize** | Pointer to [**TypesWindowSize**](TypesWindowSize.md) |  | [optional] 
@@ -55,6 +57,31 @@ SetEndTime sets EndTime field to given value.
 `func (o *DtoGetUsageAnalyticsRequest) HasEndTime() bool`
 
 HasEndTime returns a boolean if a field has been set.
+
+### GetExpand
+
+`func (o *DtoGetUsageAnalyticsRequest) GetExpand() []string`
+
+GetExpand returns the Expand field if non-nil, zero value otherwise.
+
+### GetExpandOk
+
+`func (o *DtoGetUsageAnalyticsRequest) GetExpandOk() (*[]string, bool)`
+
+GetExpandOk returns a tuple with the Expand field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetExpand
+
+`func (o *DtoGetUsageAnalyticsRequest) SetExpand(v []string)`
+
+SetExpand sets Expand field to given value.
+
+### HasExpand
+
+`func (o *DtoGetUsageAnalyticsRequest) HasExpand() bool`
+
+HasExpand returns a boolean if a field has been set.
 
 ### GetExternalCustomerId
 
@@ -125,6 +152,31 @@ SetGroupBy sets GroupBy field to given value.
 `func (o *DtoGetUsageAnalyticsRequest) HasGroupBy() bool`
 
 HasGroupBy returns a boolean if a field has been set.
+
+### GetPropertyFilters
+
+`func (o *DtoGetUsageAnalyticsRequest) GetPropertyFilters() map[string][]string`
+
+GetPropertyFilters returns the PropertyFilters field if non-nil, zero value otherwise.
+
+### GetPropertyFiltersOk
+
+`func (o *DtoGetUsageAnalyticsRequest) GetPropertyFiltersOk() (*map[string][]string, bool)`
+
+GetPropertyFiltersOk returns a tuple with the PropertyFilters field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPropertyFilters
+
+`func (o *DtoGetUsageAnalyticsRequest) SetPropertyFilters(v map[string][]string)`
+
+SetPropertyFilters sets PropertyFilters field to given value.
+
+### HasPropertyFilters
+
+`func (o *DtoGetUsageAnalyticsRequest) HasPropertyFilters() bool`
+
+HasPropertyFilters returns a boolean if a field has been set.
 
 ### GetSources
 

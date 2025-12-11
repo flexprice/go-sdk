@@ -22,10 +22,14 @@ var _ MappedNullable = &DtoGetUsageAnalyticsRequest{}
 // DtoGetUsageAnalyticsRequest struct for DtoGetUsageAnalyticsRequest
 type DtoGetUsageAnalyticsRequest struct {
 	EndTime *string `json:"end_time,omitempty"`
+	// allowed values: \"price\", \"meter\", \"feature\", \"subscription_line_item\",\"plan\",\"addon\"
+	Expand []string `json:"expand,omitempty"`
 	ExternalCustomerId string `json:"external_customer_id"`
 	FeatureIds []string `json:"feature_ids,omitempty"`
-	// allowed values: \"source\", \"feature_id\"
+	// allowed values: \"source\", \"feature_id\", \"properties.<field_name>\"
 	GroupBy []string `json:"group_by,omitempty"`
+	// Property filters to filter the events by the keys in `properties` field of the event
+	PropertyFilters *map[string][]string `json:"property_filters,omitempty"`
 	Sources []string `json:"sources,omitempty"`
 	StartTime *string `json:"start_time,omitempty"`
 	WindowSize *TypesWindowSize `json:"window_size,omitempty"`
@@ -81,6 +85,38 @@ func (o *DtoGetUsageAnalyticsRequest) HasEndTime() bool {
 // SetEndTime gets a reference to the given string and assigns it to the EndTime field.
 func (o *DtoGetUsageAnalyticsRequest) SetEndTime(v string) {
 	o.EndTime = &v
+}
+
+// GetExpand returns the Expand field value if set, zero value otherwise.
+func (o *DtoGetUsageAnalyticsRequest) GetExpand() []string {
+	if o == nil || IsNil(o.Expand) {
+		var ret []string
+		return ret
+	}
+	return o.Expand
+}
+
+// GetExpandOk returns a tuple with the Expand field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageAnalyticsRequest) GetExpandOk() ([]string, bool) {
+	if o == nil || IsNil(o.Expand) {
+		return nil, false
+	}
+	return o.Expand, true
+}
+
+// HasExpand returns a boolean if a field has been set.
+func (o *DtoGetUsageAnalyticsRequest) HasExpand() bool {
+	if o != nil && !IsNil(o.Expand) {
+		return true
+	}
+
+	return false
+}
+
+// SetExpand gets a reference to the given []string and assigns it to the Expand field.
+func (o *DtoGetUsageAnalyticsRequest) SetExpand(v []string) {
+	o.Expand = v
 }
 
 // GetExternalCustomerId returns the ExternalCustomerId field value
@@ -169,6 +205,38 @@ func (o *DtoGetUsageAnalyticsRequest) HasGroupBy() bool {
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
 func (o *DtoGetUsageAnalyticsRequest) SetGroupBy(v []string) {
 	o.GroupBy = v
+}
+
+// GetPropertyFilters returns the PropertyFilters field value if set, zero value otherwise.
+func (o *DtoGetUsageAnalyticsRequest) GetPropertyFilters() map[string][]string {
+	if o == nil || IsNil(o.PropertyFilters) {
+		var ret map[string][]string
+		return ret
+	}
+	return *o.PropertyFilters
+}
+
+// GetPropertyFiltersOk returns a tuple with the PropertyFilters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageAnalyticsRequest) GetPropertyFiltersOk() (*map[string][]string, bool) {
+	if o == nil || IsNil(o.PropertyFilters) {
+		return nil, false
+	}
+	return o.PropertyFilters, true
+}
+
+// HasPropertyFilters returns a boolean if a field has been set.
+func (o *DtoGetUsageAnalyticsRequest) HasPropertyFilters() bool {
+	if o != nil && !IsNil(o.PropertyFilters) {
+		return true
+	}
+
+	return false
+}
+
+// SetPropertyFilters gets a reference to the given map[string][]string and assigns it to the PropertyFilters field.
+func (o *DtoGetUsageAnalyticsRequest) SetPropertyFilters(v map[string][]string) {
+	o.PropertyFilters = &v
 }
 
 // GetSources returns the Sources field value if set, zero value otherwise.
@@ -280,12 +348,18 @@ func (o DtoGetUsageAnalyticsRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.EndTime) {
 		toSerialize["end_time"] = o.EndTime
 	}
+	if !IsNil(o.Expand) {
+		toSerialize["expand"] = o.Expand
+	}
 	toSerialize["external_customer_id"] = o.ExternalCustomerId
 	if !IsNil(o.FeatureIds) {
 		toSerialize["feature_ids"] = o.FeatureIds
 	}
 	if !IsNil(o.GroupBy) {
 		toSerialize["group_by"] = o.GroupBy
+	}
+	if !IsNil(o.PropertyFilters) {
+		toSerialize["property_filters"] = o.PropertyFilters
 	}
 	if !IsNil(o.Sources) {
 		toSerialize["sources"] = o.Sources

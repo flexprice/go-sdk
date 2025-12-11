@@ -19,39 +19,81 @@ var _ MappedNullable = &DtoInvoiceResponse{}
 
 // DtoInvoiceResponse struct for DtoInvoiceResponse
 type DtoInvoiceResponse struct {
-	AmountDue *float32 `json:"amount_due,omitempty"`
-	AmountPaid *float32 `json:"amount_paid,omitempty"`
-	AmountRemaining *float32 `json:"amount_remaining,omitempty"`
+	// amount_due is the total amount that needs to be paid for this invoice
+	AmountDue *string `json:"amount_due,omitempty"`
+	// amount_paid is the amount that has been paid towards this invoice
+	AmountPaid *string `json:"amount_paid,omitempty"`
+	// amount_remaining is the amount still outstanding on this invoice
+	AmountRemaining *string `json:"amount_remaining,omitempty"`
+	// billing_period is the period this invoice covers (e.g., \"monthly\", \"yearly\")
 	BillingPeriod *string `json:"billing_period,omitempty"`
+	// billing_reason indicates why this invoice was created (subscription_cycle, manual, etc.)
 	BillingReason *string `json:"billing_reason,omitempty"`
+	// billing_sequence is the optional sequence number for billing cycles
 	BillingSequence *int32 `json:"billing_sequence,omitempty"`
+	// coupon_applications contains the coupon applications associated with this invoice
+	CouponApplications []DtoCouponApplicationResponse `json:"coupon_applications,omitempty"`
+	// created_at is the timestamp when this invoice was created
 	CreatedAt *string `json:"created_at,omitempty"`
+	// created_by is the identifier of the user who created this invoice
 	CreatedBy *string `json:"created_by,omitempty"`
+	// currency is the three-letter ISO currency code (e.g., USD, EUR) for the invoice
 	Currency *string `json:"currency,omitempty"`
 	Customer *DtoCustomerResponse `json:"customer,omitempty"`
+	// customer_id is the unique identifier of the customer this invoice belongs to
 	CustomerId *string `json:"customer_id,omitempty"`
+	// description is the optional text description of the invoice
 	Description *string `json:"description,omitempty"`
+	// due_date is the date by which payment is expected
 	DueDate *string `json:"due_date,omitempty"`
+	// finalized_at is the timestamp when this invoice was finalized
 	FinalizedAt *string `json:"finalized_at,omitempty"`
+	// id is the unique identifier for this invoice
 	Id *string `json:"id,omitempty"`
+	// idempotency_key is the optional key used to prevent duplicate invoice creation
 	IdempotencyKey *string `json:"idempotency_key,omitempty"`
+	// invoice_number is the optional human-readable identifier for the invoice
 	InvoiceNumber *string `json:"invoice_number,omitempty"`
+	// invoice_pdf_url is the optional URL to the PDF version of this invoice
 	InvoicePdfUrl *string `json:"invoice_pdf_url,omitempty"`
 	InvoiceStatus *TypesInvoiceStatus `json:"invoice_status,omitempty"`
 	InvoiceType *TypesInvoiceType `json:"invoice_type,omitempty"`
+	// line_items contains the individual items that make up this invoice
 	LineItems []DtoInvoiceLineItemResponse `json:"line_items,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	// overpaid_amount is the amount overpaid if payment_status is OVERPAID (amount_paid - total)
+	OverpaidAmount *string `json:"overpaid_amount,omitempty"`
+	// paid_at is the timestamp when this invoice was paid
 	PaidAt *string `json:"paid_at,omitempty"`
 	PaymentStatus *TypesPaymentStatus `json:"payment_status,omitempty"`
+	// period_end is the end date of the billing period
 	PeriodEnd *string `json:"period_end,omitempty"`
+	// period_start is the start date of the billing period
 	PeriodStart *string `json:"period_start,omitempty"`
+	// status represents the current status of this invoice
 	Status *string `json:"status,omitempty"`
 	Subscription *DtoSubscriptionResponse `json:"subscription,omitempty"`
+	// subscription_id is the optional unique identifier of the subscription associated with this invoice
 	SubscriptionId *string `json:"subscription_id,omitempty"`
+	// subtotal is the amount before taxes and discounts are applied
+	Subtotal *string `json:"subtotal,omitempty"`
+	// tax_applied_records contains the tax applied records associated with this invoice
+	Taxes []DtoTaxAppliedResponse `json:"taxes,omitempty"`
+	// tenant_id is the unique identifier of the tenant this invoice belongs to
 	TenantId *string `json:"tenant_id,omitempty"`
+	// total is the total amount of the invoice including taxes and discounts
+	Total *string `json:"total,omitempty"`
+	// total_discount is the total discount amount from coupon applications
+	TotalDiscount *string `json:"total_discount,omitempty"`
+	// total_tax is the total tax amount for this invoice
+	TotalTax *string `json:"total_tax,omitempty"`
+	// updated_at is the timestamp when this invoice was last updated
 	UpdatedAt *string `json:"updated_at,omitempty"`
+	// updated_by is the identifier of the user who last updated this invoice
 	UpdatedBy *string `json:"updated_by,omitempty"`
+	// version is the version number of this invoice
 	Version *int32 `json:"version,omitempty"`
+	// voided_at is the timestamp when this invoice was voided
 	VoidedAt *string `json:"voided_at,omitempty"`
 }
 
@@ -73,9 +115,9 @@ func NewDtoInvoiceResponseWithDefaults() *DtoInvoiceResponse {
 }
 
 // GetAmountDue returns the AmountDue field value if set, zero value otherwise.
-func (o *DtoInvoiceResponse) GetAmountDue() float32 {
+func (o *DtoInvoiceResponse) GetAmountDue() string {
 	if o == nil || IsNil(o.AmountDue) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.AmountDue
@@ -83,7 +125,7 @@ func (o *DtoInvoiceResponse) GetAmountDue() float32 {
 
 // GetAmountDueOk returns a tuple with the AmountDue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoInvoiceResponse) GetAmountDueOk() (*float32, bool) {
+func (o *DtoInvoiceResponse) GetAmountDueOk() (*string, bool) {
 	if o == nil || IsNil(o.AmountDue) {
 		return nil, false
 	}
@@ -99,15 +141,15 @@ func (o *DtoInvoiceResponse) HasAmountDue() bool {
 	return false
 }
 
-// SetAmountDue gets a reference to the given float32 and assigns it to the AmountDue field.
-func (o *DtoInvoiceResponse) SetAmountDue(v float32) {
+// SetAmountDue gets a reference to the given string and assigns it to the AmountDue field.
+func (o *DtoInvoiceResponse) SetAmountDue(v string) {
 	o.AmountDue = &v
 }
 
 // GetAmountPaid returns the AmountPaid field value if set, zero value otherwise.
-func (o *DtoInvoiceResponse) GetAmountPaid() float32 {
+func (o *DtoInvoiceResponse) GetAmountPaid() string {
 	if o == nil || IsNil(o.AmountPaid) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.AmountPaid
@@ -115,7 +157,7 @@ func (o *DtoInvoiceResponse) GetAmountPaid() float32 {
 
 // GetAmountPaidOk returns a tuple with the AmountPaid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoInvoiceResponse) GetAmountPaidOk() (*float32, bool) {
+func (o *DtoInvoiceResponse) GetAmountPaidOk() (*string, bool) {
 	if o == nil || IsNil(o.AmountPaid) {
 		return nil, false
 	}
@@ -131,15 +173,15 @@ func (o *DtoInvoiceResponse) HasAmountPaid() bool {
 	return false
 }
 
-// SetAmountPaid gets a reference to the given float32 and assigns it to the AmountPaid field.
-func (o *DtoInvoiceResponse) SetAmountPaid(v float32) {
+// SetAmountPaid gets a reference to the given string and assigns it to the AmountPaid field.
+func (o *DtoInvoiceResponse) SetAmountPaid(v string) {
 	o.AmountPaid = &v
 }
 
 // GetAmountRemaining returns the AmountRemaining field value if set, zero value otherwise.
-func (o *DtoInvoiceResponse) GetAmountRemaining() float32 {
+func (o *DtoInvoiceResponse) GetAmountRemaining() string {
 	if o == nil || IsNil(o.AmountRemaining) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.AmountRemaining
@@ -147,7 +189,7 @@ func (o *DtoInvoiceResponse) GetAmountRemaining() float32 {
 
 // GetAmountRemainingOk returns a tuple with the AmountRemaining field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoInvoiceResponse) GetAmountRemainingOk() (*float32, bool) {
+func (o *DtoInvoiceResponse) GetAmountRemainingOk() (*string, bool) {
 	if o == nil || IsNil(o.AmountRemaining) {
 		return nil, false
 	}
@@ -163,8 +205,8 @@ func (o *DtoInvoiceResponse) HasAmountRemaining() bool {
 	return false
 }
 
-// SetAmountRemaining gets a reference to the given float32 and assigns it to the AmountRemaining field.
-func (o *DtoInvoiceResponse) SetAmountRemaining(v float32) {
+// SetAmountRemaining gets a reference to the given string and assigns it to the AmountRemaining field.
+func (o *DtoInvoiceResponse) SetAmountRemaining(v string) {
 	o.AmountRemaining = &v
 }
 
@@ -262,6 +304,38 @@ func (o *DtoInvoiceResponse) HasBillingSequence() bool {
 // SetBillingSequence gets a reference to the given int32 and assigns it to the BillingSequence field.
 func (o *DtoInvoiceResponse) SetBillingSequence(v int32) {
 	o.BillingSequence = &v
+}
+
+// GetCouponApplications returns the CouponApplications field value if set, zero value otherwise.
+func (o *DtoInvoiceResponse) GetCouponApplications() []DtoCouponApplicationResponse {
+	if o == nil || IsNil(o.CouponApplications) {
+		var ret []DtoCouponApplicationResponse
+		return ret
+	}
+	return o.CouponApplications
+}
+
+// GetCouponApplicationsOk returns a tuple with the CouponApplications field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceResponse) GetCouponApplicationsOk() ([]DtoCouponApplicationResponse, bool) {
+	if o == nil || IsNil(o.CouponApplications) {
+		return nil, false
+	}
+	return o.CouponApplications, true
+}
+
+// HasCouponApplications returns a boolean if a field has been set.
+func (o *DtoInvoiceResponse) HasCouponApplications() bool {
+	if o != nil && !IsNil(o.CouponApplications) {
+		return true
+	}
+
+	return false
+}
+
+// SetCouponApplications gets a reference to the given []DtoCouponApplicationResponse and assigns it to the CouponApplications field.
+func (o *DtoInvoiceResponse) SetCouponApplications(v []DtoCouponApplicationResponse) {
+	o.CouponApplications = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -776,6 +850,38 @@ func (o *DtoInvoiceResponse) SetMetadata(v map[string]string) {
 	o.Metadata = &v
 }
 
+// GetOverpaidAmount returns the OverpaidAmount field value if set, zero value otherwise.
+func (o *DtoInvoiceResponse) GetOverpaidAmount() string {
+	if o == nil || IsNil(o.OverpaidAmount) {
+		var ret string
+		return ret
+	}
+	return *o.OverpaidAmount
+}
+
+// GetOverpaidAmountOk returns a tuple with the OverpaidAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceResponse) GetOverpaidAmountOk() (*string, bool) {
+	if o == nil || IsNil(o.OverpaidAmount) {
+		return nil, false
+	}
+	return o.OverpaidAmount, true
+}
+
+// HasOverpaidAmount returns a boolean if a field has been set.
+func (o *DtoInvoiceResponse) HasOverpaidAmount() bool {
+	if o != nil && !IsNil(o.OverpaidAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetOverpaidAmount gets a reference to the given string and assigns it to the OverpaidAmount field.
+func (o *DtoInvoiceResponse) SetOverpaidAmount(v string) {
+	o.OverpaidAmount = &v
+}
+
 // GetPaidAt returns the PaidAt field value if set, zero value otherwise.
 func (o *DtoInvoiceResponse) GetPaidAt() string {
 	if o == nil || IsNil(o.PaidAt) {
@@ -1000,6 +1106,70 @@ func (o *DtoInvoiceResponse) SetSubscriptionId(v string) {
 	o.SubscriptionId = &v
 }
 
+// GetSubtotal returns the Subtotal field value if set, zero value otherwise.
+func (o *DtoInvoiceResponse) GetSubtotal() string {
+	if o == nil || IsNil(o.Subtotal) {
+		var ret string
+		return ret
+	}
+	return *o.Subtotal
+}
+
+// GetSubtotalOk returns a tuple with the Subtotal field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceResponse) GetSubtotalOk() (*string, bool) {
+	if o == nil || IsNil(o.Subtotal) {
+		return nil, false
+	}
+	return o.Subtotal, true
+}
+
+// HasSubtotal returns a boolean if a field has been set.
+func (o *DtoInvoiceResponse) HasSubtotal() bool {
+	if o != nil && !IsNil(o.Subtotal) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubtotal gets a reference to the given string and assigns it to the Subtotal field.
+func (o *DtoInvoiceResponse) SetSubtotal(v string) {
+	o.Subtotal = &v
+}
+
+// GetTaxes returns the Taxes field value if set, zero value otherwise.
+func (o *DtoInvoiceResponse) GetTaxes() []DtoTaxAppliedResponse {
+	if o == nil || IsNil(o.Taxes) {
+		var ret []DtoTaxAppliedResponse
+		return ret
+	}
+	return o.Taxes
+}
+
+// GetTaxesOk returns a tuple with the Taxes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceResponse) GetTaxesOk() ([]DtoTaxAppliedResponse, bool) {
+	if o == nil || IsNil(o.Taxes) {
+		return nil, false
+	}
+	return o.Taxes, true
+}
+
+// HasTaxes returns a boolean if a field has been set.
+func (o *DtoInvoiceResponse) HasTaxes() bool {
+	if o != nil && !IsNil(o.Taxes) {
+		return true
+	}
+
+	return false
+}
+
+// SetTaxes gets a reference to the given []DtoTaxAppliedResponse and assigns it to the Taxes field.
+func (o *DtoInvoiceResponse) SetTaxes(v []DtoTaxAppliedResponse) {
+	o.Taxes = v
+}
+
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
 func (o *DtoInvoiceResponse) GetTenantId() string {
 	if o == nil || IsNil(o.TenantId) {
@@ -1030,6 +1200,102 @@ func (o *DtoInvoiceResponse) HasTenantId() bool {
 // SetTenantId gets a reference to the given string and assigns it to the TenantId field.
 func (o *DtoInvoiceResponse) SetTenantId(v string) {
 	o.TenantId = &v
+}
+
+// GetTotal returns the Total field value if set, zero value otherwise.
+func (o *DtoInvoiceResponse) GetTotal() string {
+	if o == nil || IsNil(o.Total) {
+		var ret string
+		return ret
+	}
+	return *o.Total
+}
+
+// GetTotalOk returns a tuple with the Total field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceResponse) GetTotalOk() (*string, bool) {
+	if o == nil || IsNil(o.Total) {
+		return nil, false
+	}
+	return o.Total, true
+}
+
+// HasTotal returns a boolean if a field has been set.
+func (o *DtoInvoiceResponse) HasTotal() bool {
+	if o != nil && !IsNil(o.Total) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotal gets a reference to the given string and assigns it to the Total field.
+func (o *DtoInvoiceResponse) SetTotal(v string) {
+	o.Total = &v
+}
+
+// GetTotalDiscount returns the TotalDiscount field value if set, zero value otherwise.
+func (o *DtoInvoiceResponse) GetTotalDiscount() string {
+	if o == nil || IsNil(o.TotalDiscount) {
+		var ret string
+		return ret
+	}
+	return *o.TotalDiscount
+}
+
+// GetTotalDiscountOk returns a tuple with the TotalDiscount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceResponse) GetTotalDiscountOk() (*string, bool) {
+	if o == nil || IsNil(o.TotalDiscount) {
+		return nil, false
+	}
+	return o.TotalDiscount, true
+}
+
+// HasTotalDiscount returns a boolean if a field has been set.
+func (o *DtoInvoiceResponse) HasTotalDiscount() bool {
+	if o != nil && !IsNil(o.TotalDiscount) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalDiscount gets a reference to the given string and assigns it to the TotalDiscount field.
+func (o *DtoInvoiceResponse) SetTotalDiscount(v string) {
+	o.TotalDiscount = &v
+}
+
+// GetTotalTax returns the TotalTax field value if set, zero value otherwise.
+func (o *DtoInvoiceResponse) GetTotalTax() string {
+	if o == nil || IsNil(o.TotalTax) {
+		var ret string
+		return ret
+	}
+	return *o.TotalTax
+}
+
+// GetTotalTaxOk returns a tuple with the TotalTax field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceResponse) GetTotalTaxOk() (*string, bool) {
+	if o == nil || IsNil(o.TotalTax) {
+		return nil, false
+	}
+	return o.TotalTax, true
+}
+
+// HasTotalTax returns a boolean if a field has been set.
+func (o *DtoInvoiceResponse) HasTotalTax() bool {
+	if o != nil && !IsNil(o.TotalTax) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalTax gets a reference to the given string and assigns it to the TotalTax field.
+func (o *DtoInvoiceResponse) SetTotalTax(v string) {
+	o.TotalTax = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -1188,6 +1454,9 @@ func (o DtoInvoiceResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BillingSequence) {
 		toSerialize["billing_sequence"] = o.BillingSequence
 	}
+	if !IsNil(o.CouponApplications) {
+		toSerialize["coupon_applications"] = o.CouponApplications
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -1236,6 +1505,9 @@ func (o DtoInvoiceResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
+	if !IsNil(o.OverpaidAmount) {
+		toSerialize["overpaid_amount"] = o.OverpaidAmount
+	}
 	if !IsNil(o.PaidAt) {
 		toSerialize["paid_at"] = o.PaidAt
 	}
@@ -1257,8 +1529,23 @@ func (o DtoInvoiceResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.SubscriptionId) {
 		toSerialize["subscription_id"] = o.SubscriptionId
 	}
+	if !IsNil(o.Subtotal) {
+		toSerialize["subtotal"] = o.Subtotal
+	}
+	if !IsNil(o.Taxes) {
+		toSerialize["taxes"] = o.Taxes
+	}
 	if !IsNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId
+	}
+	if !IsNil(o.Total) {
+		toSerialize["total"] = o.Total
+	}
+	if !IsNil(o.TotalDiscount) {
+		toSerialize["total_discount"] = o.TotalDiscount
+	}
+	if !IsNil(o.TotalTax) {
+		toSerialize["total_tax"] = o.TotalTax
 	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt

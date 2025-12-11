@@ -19,13 +19,15 @@ var _ MappedNullable = &DtoFeatureUsageSummary{}
 
 // DtoFeatureUsageSummary struct for DtoFeatureUsageSummary
 type DtoFeatureUsageSummary struct {
-	CurrentUsage *float32 `json:"current_usage,omitempty"`
+	CurrentUsage *string `json:"current_usage,omitempty"`
 	Feature *DtoFeatureResponse `json:"feature,omitempty"`
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	IsSoftLimit *bool `json:"is_soft_limit,omitempty"`
+	IsUnlimited *bool `json:"is_unlimited,omitempty"`
+	NextUsageResetAt *string `json:"next_usage_reset_at,omitempty"`
 	Sources []DtoEntitlementSource `json:"sources,omitempty"`
 	TotalLimit *int32 `json:"total_limit,omitempty"`
-	UsagePercent *float32 `json:"usage_percent,omitempty"`
+	UsagePercent *string `json:"usage_percent,omitempty"`
 }
 
 // NewDtoFeatureUsageSummary instantiates a new DtoFeatureUsageSummary object
@@ -46,9 +48,9 @@ func NewDtoFeatureUsageSummaryWithDefaults() *DtoFeatureUsageSummary {
 }
 
 // GetCurrentUsage returns the CurrentUsage field value if set, zero value otherwise.
-func (o *DtoFeatureUsageSummary) GetCurrentUsage() float32 {
+func (o *DtoFeatureUsageSummary) GetCurrentUsage() string {
 	if o == nil || IsNil(o.CurrentUsage) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.CurrentUsage
@@ -56,7 +58,7 @@ func (o *DtoFeatureUsageSummary) GetCurrentUsage() float32 {
 
 // GetCurrentUsageOk returns a tuple with the CurrentUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoFeatureUsageSummary) GetCurrentUsageOk() (*float32, bool) {
+func (o *DtoFeatureUsageSummary) GetCurrentUsageOk() (*string, bool) {
 	if o == nil || IsNil(o.CurrentUsage) {
 		return nil, false
 	}
@@ -72,8 +74,8 @@ func (o *DtoFeatureUsageSummary) HasCurrentUsage() bool {
 	return false
 }
 
-// SetCurrentUsage gets a reference to the given float32 and assigns it to the CurrentUsage field.
-func (o *DtoFeatureUsageSummary) SetCurrentUsage(v float32) {
+// SetCurrentUsage gets a reference to the given string and assigns it to the CurrentUsage field.
+func (o *DtoFeatureUsageSummary) SetCurrentUsage(v string) {
 	o.CurrentUsage = &v
 }
 
@@ -173,6 +175,70 @@ func (o *DtoFeatureUsageSummary) SetIsSoftLimit(v bool) {
 	o.IsSoftLimit = &v
 }
 
+// GetIsUnlimited returns the IsUnlimited field value if set, zero value otherwise.
+func (o *DtoFeatureUsageSummary) GetIsUnlimited() bool {
+	if o == nil || IsNil(o.IsUnlimited) {
+		var ret bool
+		return ret
+	}
+	return *o.IsUnlimited
+}
+
+// GetIsUnlimitedOk returns a tuple with the IsUnlimited field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoFeatureUsageSummary) GetIsUnlimitedOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsUnlimited) {
+		return nil, false
+	}
+	return o.IsUnlimited, true
+}
+
+// HasIsUnlimited returns a boolean if a field has been set.
+func (o *DtoFeatureUsageSummary) HasIsUnlimited() bool {
+	if o != nil && !IsNil(o.IsUnlimited) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsUnlimited gets a reference to the given bool and assigns it to the IsUnlimited field.
+func (o *DtoFeatureUsageSummary) SetIsUnlimited(v bool) {
+	o.IsUnlimited = &v
+}
+
+// GetNextUsageResetAt returns the NextUsageResetAt field value if set, zero value otherwise.
+func (o *DtoFeatureUsageSummary) GetNextUsageResetAt() string {
+	if o == nil || IsNil(o.NextUsageResetAt) {
+		var ret string
+		return ret
+	}
+	return *o.NextUsageResetAt
+}
+
+// GetNextUsageResetAtOk returns a tuple with the NextUsageResetAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoFeatureUsageSummary) GetNextUsageResetAtOk() (*string, bool) {
+	if o == nil || IsNil(o.NextUsageResetAt) {
+		return nil, false
+	}
+	return o.NextUsageResetAt, true
+}
+
+// HasNextUsageResetAt returns a boolean if a field has been set.
+func (o *DtoFeatureUsageSummary) HasNextUsageResetAt() bool {
+	if o != nil && !IsNil(o.NextUsageResetAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetNextUsageResetAt gets a reference to the given string and assigns it to the NextUsageResetAt field.
+func (o *DtoFeatureUsageSummary) SetNextUsageResetAt(v string) {
+	o.NextUsageResetAt = &v
+}
+
 // GetSources returns the Sources field value if set, zero value otherwise.
 func (o *DtoFeatureUsageSummary) GetSources() []DtoEntitlementSource {
 	if o == nil || IsNil(o.Sources) {
@@ -238,9 +304,9 @@ func (o *DtoFeatureUsageSummary) SetTotalLimit(v int32) {
 }
 
 // GetUsagePercent returns the UsagePercent field value if set, zero value otherwise.
-func (o *DtoFeatureUsageSummary) GetUsagePercent() float32 {
+func (o *DtoFeatureUsageSummary) GetUsagePercent() string {
 	if o == nil || IsNil(o.UsagePercent) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.UsagePercent
@@ -248,7 +314,7 @@ func (o *DtoFeatureUsageSummary) GetUsagePercent() float32 {
 
 // GetUsagePercentOk returns a tuple with the UsagePercent field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoFeatureUsageSummary) GetUsagePercentOk() (*float32, bool) {
+func (o *DtoFeatureUsageSummary) GetUsagePercentOk() (*string, bool) {
 	if o == nil || IsNil(o.UsagePercent) {
 		return nil, false
 	}
@@ -264,8 +330,8 @@ func (o *DtoFeatureUsageSummary) HasUsagePercent() bool {
 	return false
 }
 
-// SetUsagePercent gets a reference to the given float32 and assigns it to the UsagePercent field.
-func (o *DtoFeatureUsageSummary) SetUsagePercent(v float32) {
+// SetUsagePercent gets a reference to the given string and assigns it to the UsagePercent field.
+func (o *DtoFeatureUsageSummary) SetUsagePercent(v string) {
 	o.UsagePercent = &v
 }
 
@@ -290,6 +356,12 @@ func (o DtoFeatureUsageSummary) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.IsSoftLimit) {
 		toSerialize["is_soft_limit"] = o.IsSoftLimit
+	}
+	if !IsNil(o.IsUnlimited) {
+		toSerialize["is_unlimited"] = o.IsUnlimited
+	}
+	if !IsNil(o.NextUsageResetAt) {
+		toSerialize["next_usage_reset_at"] = o.NextUsageResetAt
 	}
 	if !IsNil(o.Sources) {
 		toSerialize["sources"] = o.Sources

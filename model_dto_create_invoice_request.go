@@ -21,25 +21,57 @@ var _ MappedNullable = &DtoCreateInvoiceRequest{}
 
 // DtoCreateInvoiceRequest struct for DtoCreateInvoiceRequest
 type DtoCreateInvoiceRequest struct {
-	AmountDue float32 `json:"amount_due"`
-	AmountPaid *float32 `json:"amount_paid,omitempty"`
+	// amount_due is the total amount that needs to be paid for this invoice
+	AmountDue string `json:"amount_due"`
+	// amount_paid is the amount that has been paid towards this invoice
+	AmountPaid *string `json:"amount_paid,omitempty"`
+	// billing_period is the period this invoice covers (e.g., \"monthly\", \"yearly\")
 	BillingPeriod *string `json:"billing_period,omitempty"`
 	BillingReason *TypesInvoiceBillingReason `json:"billing_reason,omitempty"`
+	// coupons
+	Coupons []string `json:"coupons,omitempty"`
+	// currency is the three-letter ISO currency code (e.g., USD, EUR) for the invoice
 	Currency string `json:"currency"`
+	// customer_id is the unique identifier of the customer this invoice belongs to
 	CustomerId string `json:"customer_id"`
+	// description is an optional text description of the invoice
 	Description *string `json:"description,omitempty"`
+	// due_date is the date by which payment is expected
 	DueDate *string `json:"due_date,omitempty"`
+	// environment_id is the unique identifier of the environment this invoice belongs to
 	EnvironmentId *string `json:"environment_id,omitempty"`
+	// idempotency_key is an optional key used to prevent duplicate invoice creation
 	IdempotencyKey *string `json:"idempotency_key,omitempty"`
+	// Invoice Coupns
+	InvoiceCoupons []DtoInvoiceCoupon `json:"invoice_coupons,omitempty"`
+	// invoice_number is an optional human-readable identifier for the invoice
 	InvoiceNumber *string `json:"invoice_number,omitempty"`
+	// invoice_pdf_url is the URL where customers can download the PDF version of this invoice
+	InvoicePdfUrl *string `json:"invoice_pdf_url,omitempty"`
 	InvoiceStatus *TypesInvoiceStatus `json:"invoice_status,omitempty"`
 	InvoiceType *TypesInvoiceType `json:"invoice_type,omitempty"`
+	// Invoice Line Item Coupons
+	LineItemCoupons []DtoInvoiceLineItemCoupon `json:"line_item_coupons,omitempty"`
+	// line_items contains the individual items that make up this invoice
 	LineItems []DtoCreateInvoiceLineItemRequest `json:"line_items,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	PaymentStatus *TypesPaymentStatus `json:"payment_status,omitempty"`
+	// period_end is the end date of the billing period
 	PeriodEnd *string `json:"period_end,omitempty"`
+	// period_start is the start date of the billing period
 	PeriodStart *string `json:"period_start,omitempty"`
+	// prepared_tax_rates contains the tax rates pre-resolved by the caller (e.g., billing service) These are applied at invoice level by the invoice service without further resolution
+	PreparedTaxRates []DtoTaxRateResponse `json:"prepared_tax_rates,omitempty"`
+	// subscription_id is the optional unique identifier of the subscription associated with this invoice
 	SubscriptionId *string `json:"subscription_id,omitempty"`
+	// subtotal is the amount before taxes and discounts are applied
+	Subtotal string `json:"subtotal"`
+	// tax_rate_overrides is the tax rate overrides to be applied to the invoice
+	TaxRateOverrides []DtoTaxRateOverride `json:"tax_rate_overrides,omitempty"`
+	// tax_rates
+	TaxRates []string `json:"tax_rates,omitempty"`
+	// total is the total amount of the invoice including taxes and discounts
+	Total string `json:"total"`
 }
 
 type _DtoCreateInvoiceRequest DtoCreateInvoiceRequest
@@ -48,11 +80,13 @@ type _DtoCreateInvoiceRequest DtoCreateInvoiceRequest
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewDtoCreateInvoiceRequest(amountDue float32, currency string, customerId string) *DtoCreateInvoiceRequest {
+func NewDtoCreateInvoiceRequest(amountDue string, currency string, customerId string, subtotal string, total string) *DtoCreateInvoiceRequest {
 	this := DtoCreateInvoiceRequest{}
 	this.AmountDue = amountDue
 	this.Currency = currency
 	this.CustomerId = customerId
+	this.Subtotal = subtotal
+	this.Total = total
 	return &this
 }
 
@@ -65,9 +99,9 @@ func NewDtoCreateInvoiceRequestWithDefaults() *DtoCreateInvoiceRequest {
 }
 
 // GetAmountDue returns the AmountDue field value
-func (o *DtoCreateInvoiceRequest) GetAmountDue() float32 {
+func (o *DtoCreateInvoiceRequest) GetAmountDue() string {
 	if o == nil {
-		var ret float32
+		var ret string
 		return ret
 	}
 
@@ -76,7 +110,7 @@ func (o *DtoCreateInvoiceRequest) GetAmountDue() float32 {
 
 // GetAmountDueOk returns a tuple with the AmountDue field value
 // and a boolean to check if the value has been set.
-func (o *DtoCreateInvoiceRequest) GetAmountDueOk() (*float32, bool) {
+func (o *DtoCreateInvoiceRequest) GetAmountDueOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,14 +118,14 @@ func (o *DtoCreateInvoiceRequest) GetAmountDueOk() (*float32, bool) {
 }
 
 // SetAmountDue sets field value
-func (o *DtoCreateInvoiceRequest) SetAmountDue(v float32) {
+func (o *DtoCreateInvoiceRequest) SetAmountDue(v string) {
 	o.AmountDue = v
 }
 
 // GetAmountPaid returns the AmountPaid field value if set, zero value otherwise.
-func (o *DtoCreateInvoiceRequest) GetAmountPaid() float32 {
+func (o *DtoCreateInvoiceRequest) GetAmountPaid() string {
 	if o == nil || IsNil(o.AmountPaid) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.AmountPaid
@@ -99,7 +133,7 @@ func (o *DtoCreateInvoiceRequest) GetAmountPaid() float32 {
 
 // GetAmountPaidOk returns a tuple with the AmountPaid field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCreateInvoiceRequest) GetAmountPaidOk() (*float32, bool) {
+func (o *DtoCreateInvoiceRequest) GetAmountPaidOk() (*string, bool) {
 	if o == nil || IsNil(o.AmountPaid) {
 		return nil, false
 	}
@@ -115,8 +149,8 @@ func (o *DtoCreateInvoiceRequest) HasAmountPaid() bool {
 	return false
 }
 
-// SetAmountPaid gets a reference to the given float32 and assigns it to the AmountPaid field.
-func (o *DtoCreateInvoiceRequest) SetAmountPaid(v float32) {
+// SetAmountPaid gets a reference to the given string and assigns it to the AmountPaid field.
+func (o *DtoCreateInvoiceRequest) SetAmountPaid(v string) {
 	o.AmountPaid = &v
 }
 
@@ -182,6 +216,38 @@ func (o *DtoCreateInvoiceRequest) HasBillingReason() bool {
 // SetBillingReason gets a reference to the given TypesInvoiceBillingReason and assigns it to the BillingReason field.
 func (o *DtoCreateInvoiceRequest) SetBillingReason(v TypesInvoiceBillingReason) {
 	o.BillingReason = &v
+}
+
+// GetCoupons returns the Coupons field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceRequest) GetCoupons() []string {
+	if o == nil || IsNil(o.Coupons) {
+		var ret []string
+		return ret
+	}
+	return o.Coupons
+}
+
+// GetCouponsOk returns a tuple with the Coupons field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceRequest) GetCouponsOk() ([]string, bool) {
+	if o == nil || IsNil(o.Coupons) {
+		return nil, false
+	}
+	return o.Coupons, true
+}
+
+// HasCoupons returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceRequest) HasCoupons() bool {
+	if o != nil && !IsNil(o.Coupons) {
+		return true
+	}
+
+	return false
+}
+
+// SetCoupons gets a reference to the given []string and assigns it to the Coupons field.
+func (o *DtoCreateInvoiceRequest) SetCoupons(v []string) {
+	o.Coupons = v
 }
 
 // GetCurrency returns the Currency field value
@@ -360,6 +426,38 @@ func (o *DtoCreateInvoiceRequest) SetIdempotencyKey(v string) {
 	o.IdempotencyKey = &v
 }
 
+// GetInvoiceCoupons returns the InvoiceCoupons field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceRequest) GetInvoiceCoupons() []DtoInvoiceCoupon {
+	if o == nil || IsNil(o.InvoiceCoupons) {
+		var ret []DtoInvoiceCoupon
+		return ret
+	}
+	return o.InvoiceCoupons
+}
+
+// GetInvoiceCouponsOk returns a tuple with the InvoiceCoupons field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceRequest) GetInvoiceCouponsOk() ([]DtoInvoiceCoupon, bool) {
+	if o == nil || IsNil(o.InvoiceCoupons) {
+		return nil, false
+	}
+	return o.InvoiceCoupons, true
+}
+
+// HasInvoiceCoupons returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceRequest) HasInvoiceCoupons() bool {
+	if o != nil && !IsNil(o.InvoiceCoupons) {
+		return true
+	}
+
+	return false
+}
+
+// SetInvoiceCoupons gets a reference to the given []DtoInvoiceCoupon and assigns it to the InvoiceCoupons field.
+func (o *DtoCreateInvoiceRequest) SetInvoiceCoupons(v []DtoInvoiceCoupon) {
+	o.InvoiceCoupons = v
+}
+
 // GetInvoiceNumber returns the InvoiceNumber field value if set, zero value otherwise.
 func (o *DtoCreateInvoiceRequest) GetInvoiceNumber() string {
 	if o == nil || IsNil(o.InvoiceNumber) {
@@ -390,6 +488,38 @@ func (o *DtoCreateInvoiceRequest) HasInvoiceNumber() bool {
 // SetInvoiceNumber gets a reference to the given string and assigns it to the InvoiceNumber field.
 func (o *DtoCreateInvoiceRequest) SetInvoiceNumber(v string) {
 	o.InvoiceNumber = &v
+}
+
+// GetInvoicePdfUrl returns the InvoicePdfUrl field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceRequest) GetInvoicePdfUrl() string {
+	if o == nil || IsNil(o.InvoicePdfUrl) {
+		var ret string
+		return ret
+	}
+	return *o.InvoicePdfUrl
+}
+
+// GetInvoicePdfUrlOk returns a tuple with the InvoicePdfUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceRequest) GetInvoicePdfUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.InvoicePdfUrl) {
+		return nil, false
+	}
+	return o.InvoicePdfUrl, true
+}
+
+// HasInvoicePdfUrl returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceRequest) HasInvoicePdfUrl() bool {
+	if o != nil && !IsNil(o.InvoicePdfUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetInvoicePdfUrl gets a reference to the given string and assigns it to the InvoicePdfUrl field.
+func (o *DtoCreateInvoiceRequest) SetInvoicePdfUrl(v string) {
+	o.InvoicePdfUrl = &v
 }
 
 // GetInvoiceStatus returns the InvoiceStatus field value if set, zero value otherwise.
@@ -454,6 +584,38 @@ func (o *DtoCreateInvoiceRequest) HasInvoiceType() bool {
 // SetInvoiceType gets a reference to the given TypesInvoiceType and assigns it to the InvoiceType field.
 func (o *DtoCreateInvoiceRequest) SetInvoiceType(v TypesInvoiceType) {
 	o.InvoiceType = &v
+}
+
+// GetLineItemCoupons returns the LineItemCoupons field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceRequest) GetLineItemCoupons() []DtoInvoiceLineItemCoupon {
+	if o == nil || IsNil(o.LineItemCoupons) {
+		var ret []DtoInvoiceLineItemCoupon
+		return ret
+	}
+	return o.LineItemCoupons
+}
+
+// GetLineItemCouponsOk returns a tuple with the LineItemCoupons field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceRequest) GetLineItemCouponsOk() ([]DtoInvoiceLineItemCoupon, bool) {
+	if o == nil || IsNil(o.LineItemCoupons) {
+		return nil, false
+	}
+	return o.LineItemCoupons, true
+}
+
+// HasLineItemCoupons returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceRequest) HasLineItemCoupons() bool {
+	if o != nil && !IsNil(o.LineItemCoupons) {
+		return true
+	}
+
+	return false
+}
+
+// SetLineItemCoupons gets a reference to the given []DtoInvoiceLineItemCoupon and assigns it to the LineItemCoupons field.
+func (o *DtoCreateInvoiceRequest) SetLineItemCoupons(v []DtoInvoiceLineItemCoupon) {
+	o.LineItemCoupons = v
 }
 
 // GetLineItems returns the LineItems field value if set, zero value otherwise.
@@ -616,6 +778,38 @@ func (o *DtoCreateInvoiceRequest) SetPeriodStart(v string) {
 	o.PeriodStart = &v
 }
 
+// GetPreparedTaxRates returns the PreparedTaxRates field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceRequest) GetPreparedTaxRates() []DtoTaxRateResponse {
+	if o == nil || IsNil(o.PreparedTaxRates) {
+		var ret []DtoTaxRateResponse
+		return ret
+	}
+	return o.PreparedTaxRates
+}
+
+// GetPreparedTaxRatesOk returns a tuple with the PreparedTaxRates field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceRequest) GetPreparedTaxRatesOk() ([]DtoTaxRateResponse, bool) {
+	if o == nil || IsNil(o.PreparedTaxRates) {
+		return nil, false
+	}
+	return o.PreparedTaxRates, true
+}
+
+// HasPreparedTaxRates returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceRequest) HasPreparedTaxRates() bool {
+	if o != nil && !IsNil(o.PreparedTaxRates) {
+		return true
+	}
+
+	return false
+}
+
+// SetPreparedTaxRates gets a reference to the given []DtoTaxRateResponse and assigns it to the PreparedTaxRates field.
+func (o *DtoCreateInvoiceRequest) SetPreparedTaxRates(v []DtoTaxRateResponse) {
+	o.PreparedTaxRates = v
+}
+
 // GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
 func (o *DtoCreateInvoiceRequest) GetSubscriptionId() string {
 	if o == nil || IsNil(o.SubscriptionId) {
@@ -648,6 +842,118 @@ func (o *DtoCreateInvoiceRequest) SetSubscriptionId(v string) {
 	o.SubscriptionId = &v
 }
 
+// GetSubtotal returns the Subtotal field value
+func (o *DtoCreateInvoiceRequest) GetSubtotal() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Subtotal
+}
+
+// GetSubtotalOk returns a tuple with the Subtotal field value
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceRequest) GetSubtotalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Subtotal, true
+}
+
+// SetSubtotal sets field value
+func (o *DtoCreateInvoiceRequest) SetSubtotal(v string) {
+	o.Subtotal = v
+}
+
+// GetTaxRateOverrides returns the TaxRateOverrides field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceRequest) GetTaxRateOverrides() []DtoTaxRateOverride {
+	if o == nil || IsNil(o.TaxRateOverrides) {
+		var ret []DtoTaxRateOverride
+		return ret
+	}
+	return o.TaxRateOverrides
+}
+
+// GetTaxRateOverridesOk returns a tuple with the TaxRateOverrides field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceRequest) GetTaxRateOverridesOk() ([]DtoTaxRateOverride, bool) {
+	if o == nil || IsNil(o.TaxRateOverrides) {
+		return nil, false
+	}
+	return o.TaxRateOverrides, true
+}
+
+// HasTaxRateOverrides returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceRequest) HasTaxRateOverrides() bool {
+	if o != nil && !IsNil(o.TaxRateOverrides) {
+		return true
+	}
+
+	return false
+}
+
+// SetTaxRateOverrides gets a reference to the given []DtoTaxRateOverride and assigns it to the TaxRateOverrides field.
+func (o *DtoCreateInvoiceRequest) SetTaxRateOverrides(v []DtoTaxRateOverride) {
+	o.TaxRateOverrides = v
+}
+
+// GetTaxRates returns the TaxRates field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceRequest) GetTaxRates() []string {
+	if o == nil || IsNil(o.TaxRates) {
+		var ret []string
+		return ret
+	}
+	return o.TaxRates
+}
+
+// GetTaxRatesOk returns a tuple with the TaxRates field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceRequest) GetTaxRatesOk() ([]string, bool) {
+	if o == nil || IsNil(o.TaxRates) {
+		return nil, false
+	}
+	return o.TaxRates, true
+}
+
+// HasTaxRates returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceRequest) HasTaxRates() bool {
+	if o != nil && !IsNil(o.TaxRates) {
+		return true
+	}
+
+	return false
+}
+
+// SetTaxRates gets a reference to the given []string and assigns it to the TaxRates field.
+func (o *DtoCreateInvoiceRequest) SetTaxRates(v []string) {
+	o.TaxRates = v
+}
+
+// GetTotal returns the Total field value
+func (o *DtoCreateInvoiceRequest) GetTotal() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+
+	return o.Total
+}
+
+// GetTotalOk returns a tuple with the Total field value
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceRequest) GetTotalOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Total, true
+}
+
+// SetTotal sets field value
+func (o *DtoCreateInvoiceRequest) SetTotal(v string) {
+	o.Total = v
+}
+
 func (o DtoCreateInvoiceRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -668,6 +974,9 @@ func (o DtoCreateInvoiceRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.BillingReason) {
 		toSerialize["billing_reason"] = o.BillingReason
 	}
+	if !IsNil(o.Coupons) {
+		toSerialize["coupons"] = o.Coupons
+	}
 	toSerialize["currency"] = o.Currency
 	toSerialize["customer_id"] = o.CustomerId
 	if !IsNil(o.Description) {
@@ -682,14 +991,23 @@ func (o DtoCreateInvoiceRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.IdempotencyKey) {
 		toSerialize["idempotency_key"] = o.IdempotencyKey
 	}
+	if !IsNil(o.InvoiceCoupons) {
+		toSerialize["invoice_coupons"] = o.InvoiceCoupons
+	}
 	if !IsNil(o.InvoiceNumber) {
 		toSerialize["invoice_number"] = o.InvoiceNumber
+	}
+	if !IsNil(o.InvoicePdfUrl) {
+		toSerialize["invoice_pdf_url"] = o.InvoicePdfUrl
 	}
 	if !IsNil(o.InvoiceStatus) {
 		toSerialize["invoice_status"] = o.InvoiceStatus
 	}
 	if !IsNil(o.InvoiceType) {
 		toSerialize["invoice_type"] = o.InvoiceType
+	}
+	if !IsNil(o.LineItemCoupons) {
+		toSerialize["line_item_coupons"] = o.LineItemCoupons
 	}
 	if !IsNil(o.LineItems) {
 		toSerialize["line_items"] = o.LineItems
@@ -706,9 +1024,20 @@ func (o DtoCreateInvoiceRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PeriodStart) {
 		toSerialize["period_start"] = o.PeriodStart
 	}
+	if !IsNil(o.PreparedTaxRates) {
+		toSerialize["prepared_tax_rates"] = o.PreparedTaxRates
+	}
 	if !IsNil(o.SubscriptionId) {
 		toSerialize["subscription_id"] = o.SubscriptionId
 	}
+	toSerialize["subtotal"] = o.Subtotal
+	if !IsNil(o.TaxRateOverrides) {
+		toSerialize["tax_rate_overrides"] = o.TaxRateOverrides
+	}
+	if !IsNil(o.TaxRates) {
+		toSerialize["tax_rates"] = o.TaxRates
+	}
+	toSerialize["total"] = o.Total
 	return toSerialize, nil
 }
 
@@ -720,6 +1049,8 @@ func (o *DtoCreateInvoiceRequest) UnmarshalJSON(data []byte) (err error) {
 		"amount_due",
 		"currency",
 		"customer_id",
+		"subtotal",
+		"total",
 	}
 
 	allProperties := make(map[string]interface{})

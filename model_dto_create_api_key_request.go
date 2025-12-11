@@ -23,7 +23,7 @@ var _ MappedNullable = &DtoCreateAPIKeyRequest{}
 type DtoCreateAPIKeyRequest struct {
 	ExpiresAt *string `json:"expires_at,omitempty"`
 	Name string `json:"name"`
-	Permissions []string `json:"permissions,omitempty"`
+	ServiceAccountId *string `json:"service_account_id,omitempty"`
 	Type TypesSecretType `json:"type"`
 }
 
@@ -104,36 +104,36 @@ func (o *DtoCreateAPIKeyRequest) SetName(v string) {
 	o.Name = v
 }
 
-// GetPermissions returns the Permissions field value if set, zero value otherwise.
-func (o *DtoCreateAPIKeyRequest) GetPermissions() []string {
-	if o == nil || IsNil(o.Permissions) {
-		var ret []string
+// GetServiceAccountId returns the ServiceAccountId field value if set, zero value otherwise.
+func (o *DtoCreateAPIKeyRequest) GetServiceAccountId() string {
+	if o == nil || IsNil(o.ServiceAccountId) {
+		var ret string
 		return ret
 	}
-	return o.Permissions
+	return *o.ServiceAccountId
 }
 
-// GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
+// GetServiceAccountIdOk returns a tuple with the ServiceAccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCreateAPIKeyRequest) GetPermissionsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Permissions) {
+func (o *DtoCreateAPIKeyRequest) GetServiceAccountIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ServiceAccountId) {
 		return nil, false
 	}
-	return o.Permissions, true
+	return o.ServiceAccountId, true
 }
 
-// HasPermissions returns a boolean if a field has been set.
-func (o *DtoCreateAPIKeyRequest) HasPermissions() bool {
-	if o != nil && !IsNil(o.Permissions) {
+// HasServiceAccountId returns a boolean if a field has been set.
+func (o *DtoCreateAPIKeyRequest) HasServiceAccountId() bool {
+	if o != nil && !IsNil(o.ServiceAccountId) {
 		return true
 	}
 
 	return false
 }
 
-// SetPermissions gets a reference to the given []string and assigns it to the Permissions field.
-func (o *DtoCreateAPIKeyRequest) SetPermissions(v []string) {
-	o.Permissions = v
+// SetServiceAccountId gets a reference to the given string and assigns it to the ServiceAccountId field.
+func (o *DtoCreateAPIKeyRequest) SetServiceAccountId(v string) {
+	o.ServiceAccountId = &v
 }
 
 // GetType returns the Type field value
@@ -174,8 +174,8 @@ func (o DtoCreateAPIKeyRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["expires_at"] = o.ExpiresAt
 	}
 	toSerialize["name"] = o.Name
-	if !IsNil(o.Permissions) {
-		toSerialize["permissions"] = o.Permissions
+	if !IsNil(o.ServiceAccountId) {
+		toSerialize["service_account_id"] = o.ServiceAccountId
 	}
 	toSerialize["type"] = o.Type
 	return toSerialize, nil

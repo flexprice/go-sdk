@@ -24,6 +24,10 @@ const (
 	TYPESAGGREGATIONTYPE_AggregationSum TypesAggregationType = "SUM"
 	TYPESAGGREGATIONTYPE_AggregationAvg TypesAggregationType = "AVG"
 	TYPESAGGREGATIONTYPE_AggregationCountUnique TypesAggregationType = "COUNT_UNIQUE"
+	TYPESAGGREGATIONTYPE_AggregationLatest TypesAggregationType = "LATEST"
+	TYPESAGGREGATIONTYPE_AggregationSumWithMultiplier TypesAggregationType = "SUM_WITH_MULTIPLIER"
+	TYPESAGGREGATIONTYPE_AggregationMax TypesAggregationType = "MAX"
+	TYPESAGGREGATIONTYPE_AggregationWeightedSum TypesAggregationType = "WEIGHTED_SUM"
 )
 
 // All allowed values of TypesAggregationType enum
@@ -32,6 +36,10 @@ var AllowedTypesAggregationTypeEnumValues = []TypesAggregationType{
 	"SUM",
 	"AVG",
 	"COUNT_UNIQUE",
+	"LATEST",
+	"SUM_WITH_MULTIPLIER",
+	"MAX",
+	"WEIGHTED_SUM",
 }
 
 func (v *TypesAggregationType) UnmarshalJSON(src []byte) error {

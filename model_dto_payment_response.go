@@ -19,7 +19,7 @@ var _ MappedNullable = &DtoPaymentResponse{}
 
 // DtoPaymentResponse struct for DtoPaymentResponse
 type DtoPaymentResponse struct {
-	Amount *float32 `json:"amount,omitempty"`
+	Amount *string `json:"amount,omitempty"`
 	Attempts []DtoPaymentAttemptResponse `json:"attempts,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
@@ -28,14 +28,20 @@ type DtoPaymentResponse struct {
 	DestinationType *TypesPaymentDestinationType `json:"destination_type,omitempty"`
 	ErrorMessage *string `json:"error_message,omitempty"`
 	FailedAt *string `json:"failed_at,omitempty"`
+	GatewayMetadata *map[string]string `json:"gateway_metadata,omitempty"`
+	GatewayPaymentId *string `json:"gateway_payment_id,omitempty"`
+	GatewayTrackingId *string `json:"gateway_tracking_id,omitempty"`
 	Id *string `json:"id,omitempty"`
 	IdempotencyKey *string `json:"idempotency_key,omitempty"`
 	InvoiceNumber *string `json:"invoice_number,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	PaymentGateway *string `json:"payment_gateway,omitempty"`
 	PaymentMethodId *string `json:"payment_method_id,omitempty"`
 	PaymentMethodType *TypesPaymentMethodType `json:"payment_method_type,omitempty"`
 	PaymentStatus *TypesPaymentStatus `json:"payment_status,omitempty"`
+	PaymentUrl *string `json:"payment_url,omitempty"`
 	RefundedAt *string `json:"refunded_at,omitempty"`
+	SaveCardAndMakeDefault *bool `json:"save_card_and_make_default,omitempty"`
 	SucceededAt *string `json:"succeeded_at,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
 	TrackAttempts *bool `json:"track_attempts,omitempty"`
@@ -61,9 +67,9 @@ func NewDtoPaymentResponseWithDefaults() *DtoPaymentResponse {
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *DtoPaymentResponse) GetAmount() float32 {
+func (o *DtoPaymentResponse) GetAmount() string {
 	if o == nil || IsNil(o.Amount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Amount
@@ -71,7 +77,7 @@ func (o *DtoPaymentResponse) GetAmount() float32 {
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoPaymentResponse) GetAmountOk() (*float32, bool) {
+func (o *DtoPaymentResponse) GetAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
@@ -87,8 +93,8 @@ func (o *DtoPaymentResponse) HasAmount() bool {
 	return false
 }
 
-// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
-func (o *DtoPaymentResponse) SetAmount(v float32) {
+// SetAmount gets a reference to the given string and assigns it to the Amount field.
+func (o *DtoPaymentResponse) SetAmount(v string) {
 	o.Amount = &v
 }
 
@@ -348,6 +354,102 @@ func (o *DtoPaymentResponse) SetFailedAt(v string) {
 	o.FailedAt = &v
 }
 
+// GetGatewayMetadata returns the GatewayMetadata field value if set, zero value otherwise.
+func (o *DtoPaymentResponse) GetGatewayMetadata() map[string]string {
+	if o == nil || IsNil(o.GatewayMetadata) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.GatewayMetadata
+}
+
+// GetGatewayMetadataOk returns a tuple with the GatewayMetadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoPaymentResponse) GetGatewayMetadataOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.GatewayMetadata) {
+		return nil, false
+	}
+	return o.GatewayMetadata, true
+}
+
+// HasGatewayMetadata returns a boolean if a field has been set.
+func (o *DtoPaymentResponse) HasGatewayMetadata() bool {
+	if o != nil && !IsNil(o.GatewayMetadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetGatewayMetadata gets a reference to the given map[string]string and assigns it to the GatewayMetadata field.
+func (o *DtoPaymentResponse) SetGatewayMetadata(v map[string]string) {
+	o.GatewayMetadata = &v
+}
+
+// GetGatewayPaymentId returns the GatewayPaymentId field value if set, zero value otherwise.
+func (o *DtoPaymentResponse) GetGatewayPaymentId() string {
+	if o == nil || IsNil(o.GatewayPaymentId) {
+		var ret string
+		return ret
+	}
+	return *o.GatewayPaymentId
+}
+
+// GetGatewayPaymentIdOk returns a tuple with the GatewayPaymentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoPaymentResponse) GetGatewayPaymentIdOk() (*string, bool) {
+	if o == nil || IsNil(o.GatewayPaymentId) {
+		return nil, false
+	}
+	return o.GatewayPaymentId, true
+}
+
+// HasGatewayPaymentId returns a boolean if a field has been set.
+func (o *DtoPaymentResponse) HasGatewayPaymentId() bool {
+	if o != nil && !IsNil(o.GatewayPaymentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGatewayPaymentId gets a reference to the given string and assigns it to the GatewayPaymentId field.
+func (o *DtoPaymentResponse) SetGatewayPaymentId(v string) {
+	o.GatewayPaymentId = &v
+}
+
+// GetGatewayTrackingId returns the GatewayTrackingId field value if set, zero value otherwise.
+func (o *DtoPaymentResponse) GetGatewayTrackingId() string {
+	if o == nil || IsNil(o.GatewayTrackingId) {
+		var ret string
+		return ret
+	}
+	return *o.GatewayTrackingId
+}
+
+// GetGatewayTrackingIdOk returns a tuple with the GatewayTrackingId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoPaymentResponse) GetGatewayTrackingIdOk() (*string, bool) {
+	if o == nil || IsNil(o.GatewayTrackingId) {
+		return nil, false
+	}
+	return o.GatewayTrackingId, true
+}
+
+// HasGatewayTrackingId returns a boolean if a field has been set.
+func (o *DtoPaymentResponse) HasGatewayTrackingId() bool {
+	if o != nil && !IsNil(o.GatewayTrackingId) {
+		return true
+	}
+
+	return false
+}
+
+// SetGatewayTrackingId gets a reference to the given string and assigns it to the GatewayTrackingId field.
+func (o *DtoPaymentResponse) SetGatewayTrackingId(v string) {
+	o.GatewayTrackingId = &v
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DtoPaymentResponse) GetId() string {
 	if o == nil || IsNil(o.Id) {
@@ -476,6 +578,38 @@ func (o *DtoPaymentResponse) SetMetadata(v map[string]string) {
 	o.Metadata = &v
 }
 
+// GetPaymentGateway returns the PaymentGateway field value if set, zero value otherwise.
+func (o *DtoPaymentResponse) GetPaymentGateway() string {
+	if o == nil || IsNil(o.PaymentGateway) {
+		var ret string
+		return ret
+	}
+	return *o.PaymentGateway
+}
+
+// GetPaymentGatewayOk returns a tuple with the PaymentGateway field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoPaymentResponse) GetPaymentGatewayOk() (*string, bool) {
+	if o == nil || IsNil(o.PaymentGateway) {
+		return nil, false
+	}
+	return o.PaymentGateway, true
+}
+
+// HasPaymentGateway returns a boolean if a field has been set.
+func (o *DtoPaymentResponse) HasPaymentGateway() bool {
+	if o != nil && !IsNil(o.PaymentGateway) {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentGateway gets a reference to the given string and assigns it to the PaymentGateway field.
+func (o *DtoPaymentResponse) SetPaymentGateway(v string) {
+	o.PaymentGateway = &v
+}
+
 // GetPaymentMethodId returns the PaymentMethodId field value if set, zero value otherwise.
 func (o *DtoPaymentResponse) GetPaymentMethodId() string {
 	if o == nil || IsNil(o.PaymentMethodId) {
@@ -572,6 +706,38 @@ func (o *DtoPaymentResponse) SetPaymentStatus(v TypesPaymentStatus) {
 	o.PaymentStatus = &v
 }
 
+// GetPaymentUrl returns the PaymentUrl field value if set, zero value otherwise.
+func (o *DtoPaymentResponse) GetPaymentUrl() string {
+	if o == nil || IsNil(o.PaymentUrl) {
+		var ret string
+		return ret
+	}
+	return *o.PaymentUrl
+}
+
+// GetPaymentUrlOk returns a tuple with the PaymentUrl field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoPaymentResponse) GetPaymentUrlOk() (*string, bool) {
+	if o == nil || IsNil(o.PaymentUrl) {
+		return nil, false
+	}
+	return o.PaymentUrl, true
+}
+
+// HasPaymentUrl returns a boolean if a field has been set.
+func (o *DtoPaymentResponse) HasPaymentUrl() bool {
+	if o != nil && !IsNil(o.PaymentUrl) {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentUrl gets a reference to the given string and assigns it to the PaymentUrl field.
+func (o *DtoPaymentResponse) SetPaymentUrl(v string) {
+	o.PaymentUrl = &v
+}
+
 // GetRefundedAt returns the RefundedAt field value if set, zero value otherwise.
 func (o *DtoPaymentResponse) GetRefundedAt() string {
 	if o == nil || IsNil(o.RefundedAt) {
@@ -602,6 +768,38 @@ func (o *DtoPaymentResponse) HasRefundedAt() bool {
 // SetRefundedAt gets a reference to the given string and assigns it to the RefundedAt field.
 func (o *DtoPaymentResponse) SetRefundedAt(v string) {
 	o.RefundedAt = &v
+}
+
+// GetSaveCardAndMakeDefault returns the SaveCardAndMakeDefault field value if set, zero value otherwise.
+func (o *DtoPaymentResponse) GetSaveCardAndMakeDefault() bool {
+	if o == nil || IsNil(o.SaveCardAndMakeDefault) {
+		var ret bool
+		return ret
+	}
+	return *o.SaveCardAndMakeDefault
+}
+
+// GetSaveCardAndMakeDefaultOk returns a tuple with the SaveCardAndMakeDefault field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoPaymentResponse) GetSaveCardAndMakeDefaultOk() (*bool, bool) {
+	if o == nil || IsNil(o.SaveCardAndMakeDefault) {
+		return nil, false
+	}
+	return o.SaveCardAndMakeDefault, true
+}
+
+// HasSaveCardAndMakeDefault returns a boolean if a field has been set.
+func (o *DtoPaymentResponse) HasSaveCardAndMakeDefault() bool {
+	if o != nil && !IsNil(o.SaveCardAndMakeDefault) {
+		return true
+	}
+
+	return false
+}
+
+// SetSaveCardAndMakeDefault gets a reference to the given bool and assigns it to the SaveCardAndMakeDefault field.
+func (o *DtoPaymentResponse) SetSaveCardAndMakeDefault(v bool) {
+	o.SaveCardAndMakeDefault = &v
 }
 
 // GetSucceededAt returns the SucceededAt field value if set, zero value otherwise.
@@ -801,6 +999,15 @@ func (o DtoPaymentResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.FailedAt) {
 		toSerialize["failed_at"] = o.FailedAt
 	}
+	if !IsNil(o.GatewayMetadata) {
+		toSerialize["gateway_metadata"] = o.GatewayMetadata
+	}
+	if !IsNil(o.GatewayPaymentId) {
+		toSerialize["gateway_payment_id"] = o.GatewayPaymentId
+	}
+	if !IsNil(o.GatewayTrackingId) {
+		toSerialize["gateway_tracking_id"] = o.GatewayTrackingId
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
@@ -813,6 +1020,9 @@ func (o DtoPaymentResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
+	if !IsNil(o.PaymentGateway) {
+		toSerialize["payment_gateway"] = o.PaymentGateway
+	}
 	if !IsNil(o.PaymentMethodId) {
 		toSerialize["payment_method_id"] = o.PaymentMethodId
 	}
@@ -822,8 +1032,14 @@ func (o DtoPaymentResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.PaymentStatus) {
 		toSerialize["payment_status"] = o.PaymentStatus
 	}
+	if !IsNil(o.PaymentUrl) {
+		toSerialize["payment_url"] = o.PaymentUrl
+	}
 	if !IsNil(o.RefundedAt) {
 		toSerialize["refunded_at"] = o.RefundedAt
+	}
+	if !IsNil(o.SaveCardAndMakeDefault) {
+		toSerialize["save_card_and_make_default"] = o.SaveCardAndMakeDefault
 	}
 	if !IsNil(o.SucceededAt) {
 		toSerialize["succeeded_at"] = o.SucceededAt

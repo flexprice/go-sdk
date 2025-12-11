@@ -4,16 +4,19 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AddressCity** | Pointer to **string** |  | [optional] 
-**AddressCountry** | Pointer to **string** |  | [optional] 
-**AddressLine1** | Pointer to **string** |  | [optional] 
-**AddressLine2** | Pointer to **string** |  | [optional] 
-**AddressPostalCode** | Pointer to **string** |  | [optional] 
-**AddressState** | Pointer to **string** |  | [optional] 
-**Email** | Pointer to **string** |  | [optional] 
-**ExternalId** | Pointer to **string** |  | [optional] 
-**Metadata** | Pointer to **map[string]string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
+**AddressCity** | Pointer to **string** | address_city is the updated city name with maximum 100 characters | [optional] 
+**AddressCountry** | Pointer to **string** | address_country is the updated two-letter ISO 3166-1 alpha-2 country code | [optional] 
+**AddressLine1** | Pointer to **string** | address_line1 is the updated primary address line with maximum 255 characters | [optional] 
+**AddressLine2** | Pointer to **string** | address_line2 is the updated secondary address line with maximum 255 characters | [optional] 
+**AddressPostalCode** | Pointer to **string** | address_postal_code is the updated postal code with maximum 20 characters | [optional] 
+**AddressState** | Pointer to **string** | address_state is the updated state, province, or region name with maximum 100 characters | [optional] 
+**Email** | Pointer to **string** | email is the updated email address and must be a valid email format if provided | [optional] 
+**ExternalId** | Pointer to **string** | external_id is the updated external identifier for the customer | [optional] 
+**IntegrationEntityMapping** | Pointer to [**[]DtoIntegrationEntityMapping**](DtoIntegrationEntityMapping.md) | integration_entity_mapping contains provider integration mappings for this customer | [optional] 
+**Metadata** | Pointer to **map[string]string** | metadata contains updated key-value pairs that will replace existing metadata | [optional] 
+**Name** | Pointer to **string** | name is the updated name or company name for the customer | [optional] 
+**ParentCustomerExternalId** | Pointer to **string** | parent_customer_external_id is the external ID of the parent customer from your system Exactly one of parent_customer_id or parent_customer_external_id may be provided If you provide the external ID, the parent customer value will be ignored | [optional] 
+**ParentCustomerId** | Pointer to **string** | parent_customer_id is the internal FlexPrice ID of the parent customer | [optional] 
 
 ## Methods
 
@@ -234,6 +237,31 @@ SetExternalId sets ExternalId field to given value.
 
 HasExternalId returns a boolean if a field has been set.
 
+### GetIntegrationEntityMapping
+
+`func (o *DtoUpdateCustomerRequest) GetIntegrationEntityMapping() []DtoIntegrationEntityMapping`
+
+GetIntegrationEntityMapping returns the IntegrationEntityMapping field if non-nil, zero value otherwise.
+
+### GetIntegrationEntityMappingOk
+
+`func (o *DtoUpdateCustomerRequest) GetIntegrationEntityMappingOk() (*[]DtoIntegrationEntityMapping, bool)`
+
+GetIntegrationEntityMappingOk returns a tuple with the IntegrationEntityMapping field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIntegrationEntityMapping
+
+`func (o *DtoUpdateCustomerRequest) SetIntegrationEntityMapping(v []DtoIntegrationEntityMapping)`
+
+SetIntegrationEntityMapping sets IntegrationEntityMapping field to given value.
+
+### HasIntegrationEntityMapping
+
+`func (o *DtoUpdateCustomerRequest) HasIntegrationEntityMapping() bool`
+
+HasIntegrationEntityMapping returns a boolean if a field has been set.
+
 ### GetMetadata
 
 `func (o *DtoUpdateCustomerRequest) GetMetadata() map[string]string`
@@ -283,6 +311,56 @@ SetName sets Name field to given value.
 `func (o *DtoUpdateCustomerRequest) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetParentCustomerExternalId
+
+`func (o *DtoUpdateCustomerRequest) GetParentCustomerExternalId() string`
+
+GetParentCustomerExternalId returns the ParentCustomerExternalId field if non-nil, zero value otherwise.
+
+### GetParentCustomerExternalIdOk
+
+`func (o *DtoUpdateCustomerRequest) GetParentCustomerExternalIdOk() (*string, bool)`
+
+GetParentCustomerExternalIdOk returns a tuple with the ParentCustomerExternalId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentCustomerExternalId
+
+`func (o *DtoUpdateCustomerRequest) SetParentCustomerExternalId(v string)`
+
+SetParentCustomerExternalId sets ParentCustomerExternalId field to given value.
+
+### HasParentCustomerExternalId
+
+`func (o *DtoUpdateCustomerRequest) HasParentCustomerExternalId() bool`
+
+HasParentCustomerExternalId returns a boolean if a field has been set.
+
+### GetParentCustomerId
+
+`func (o *DtoUpdateCustomerRequest) GetParentCustomerId() string`
+
+GetParentCustomerId returns the ParentCustomerId field if non-nil, zero value otherwise.
+
+### GetParentCustomerIdOk
+
+`func (o *DtoUpdateCustomerRequest) GetParentCustomerIdOk() (*string, bool)`
+
+GetParentCustomerIdOk returns a tuple with the ParentCustomerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentCustomerId
+
+`func (o *DtoUpdateCustomerRequest) SetParentCustomerId(v string)`
+
+SetParentCustomerId sets ParentCustomerId field to given value.
+
+### HasParentCustomerId
+
+`func (o *DtoUpdateCustomerRequest) HasParentCustomerId() bool`
+
+HasParentCustomerId returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

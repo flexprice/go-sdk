@@ -25,11 +25,13 @@ type DtoSecretResponse struct {
 	Id *string `json:"id,omitempty"`
 	LastUsedAt *string `json:"last_used_at,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Permissions []string `json:"permissions,omitempty"`
 	Provider *TypesSecretProvider `json:"provider,omitempty"`
+	// RBAC roles
+	Roles []string `json:"roles,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	Type *TypesSecretType `json:"type,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
+	UserType *TypesUserType `json:"user_type,omitempty"`
 }
 
 // NewDtoSecretResponse instantiates a new DtoSecretResponse object
@@ -241,38 +243,6 @@ func (o *DtoSecretResponse) SetName(v string) {
 	o.Name = &v
 }
 
-// GetPermissions returns the Permissions field value if set, zero value otherwise.
-func (o *DtoSecretResponse) GetPermissions() []string {
-	if o == nil || IsNil(o.Permissions) {
-		var ret []string
-		return ret
-	}
-	return o.Permissions
-}
-
-// GetPermissionsOk returns a tuple with the Permissions field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoSecretResponse) GetPermissionsOk() ([]string, bool) {
-	if o == nil || IsNil(o.Permissions) {
-		return nil, false
-	}
-	return o.Permissions, true
-}
-
-// HasPermissions returns a boolean if a field has been set.
-func (o *DtoSecretResponse) HasPermissions() bool {
-	if o != nil && !IsNil(o.Permissions) {
-		return true
-	}
-
-	return false
-}
-
-// SetPermissions gets a reference to the given []string and assigns it to the Permissions field.
-func (o *DtoSecretResponse) SetPermissions(v []string) {
-	o.Permissions = v
-}
-
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *DtoSecretResponse) GetProvider() TypesSecretProvider {
 	if o == nil || IsNil(o.Provider) {
@@ -303,6 +273,38 @@ func (o *DtoSecretResponse) HasProvider() bool {
 // SetProvider gets a reference to the given TypesSecretProvider and assigns it to the Provider field.
 func (o *DtoSecretResponse) SetProvider(v TypesSecretProvider) {
 	o.Provider = &v
+}
+
+// GetRoles returns the Roles field value if set, zero value otherwise.
+func (o *DtoSecretResponse) GetRoles() []string {
+	if o == nil || IsNil(o.Roles) {
+		var ret []string
+		return ret
+	}
+	return o.Roles
+}
+
+// GetRolesOk returns a tuple with the Roles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSecretResponse) GetRolesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Roles) {
+		return nil, false
+	}
+	return o.Roles, true
+}
+
+// HasRoles returns a boolean if a field has been set.
+func (o *DtoSecretResponse) HasRoles() bool {
+	if o != nil && !IsNil(o.Roles) {
+		return true
+	}
+
+	return false
+}
+
+// SetRoles gets a reference to the given []string and assigns it to the Roles field.
+func (o *DtoSecretResponse) SetRoles(v []string) {
+	o.Roles = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -401,6 +403,38 @@ func (o *DtoSecretResponse) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
+// GetUserType returns the UserType field value if set, zero value otherwise.
+func (o *DtoSecretResponse) GetUserType() TypesUserType {
+	if o == nil || IsNil(o.UserType) {
+		var ret TypesUserType
+		return ret
+	}
+	return *o.UserType
+}
+
+// GetUserTypeOk returns a tuple with the UserType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSecretResponse) GetUserTypeOk() (*TypesUserType, bool) {
+	if o == nil || IsNil(o.UserType) {
+		return nil, false
+	}
+	return o.UserType, true
+}
+
+// HasUserType returns a boolean if a field has been set.
+func (o *DtoSecretResponse) HasUserType() bool {
+	if o != nil && !IsNil(o.UserType) {
+		return true
+	}
+
+	return false
+}
+
+// SetUserType gets a reference to the given TypesUserType and assigns it to the UserType field.
+func (o *DtoSecretResponse) SetUserType(v TypesUserType) {
+	o.UserType = &v
+}
+
 func (o DtoSecretResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -429,11 +463,11 @@ func (o DtoSecretResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
-	if !IsNil(o.Permissions) {
-		toSerialize["permissions"] = o.Permissions
-	}
 	if !IsNil(o.Provider) {
 		toSerialize["provider"] = o.Provider
+	}
+	if !IsNil(o.Roles) {
+		toSerialize["roles"] = o.Roles
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
@@ -443,6 +477,9 @@ func (o DtoSecretResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.UserType) {
+		toSerialize["user_type"] = o.UserType
 	}
 	return toSerialize, nil
 }

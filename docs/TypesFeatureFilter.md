@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Filters** | Pointer to [**[]TypesFilterCondition**](TypesFilterCondition.md) | filters allows complex filtering based on multiple fields | [optional] 
 **Limit** | Pointer to **int32** |  | [optional] 
 **LookupKey** | Pointer to **string** |  | [optional] 
+**LookupKeys** | Pointer to **[]string** |  | [optional] 
 **MeterIds** | Pointer to **[]string** |  | [optional] 
 **NameContains** | Pointer to **string** |  | [optional] 
 **Offset** | Pointer to **int32** |  | [optional] 
@@ -186,6 +187,31 @@ SetLookupKey sets LookupKey field to given value.
 `func (o *TypesFeatureFilter) HasLookupKey() bool`
 
 HasLookupKey returns a boolean if a field has been set.
+
+### GetLookupKeys
+
+`func (o *TypesFeatureFilter) GetLookupKeys() []string`
+
+GetLookupKeys returns the LookupKeys field if non-nil, zero value otherwise.
+
+### GetLookupKeysOk
+
+`func (o *TypesFeatureFilter) GetLookupKeysOk() (*[]string, bool)`
+
+GetLookupKeysOk returns a tuple with the LookupKeys field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLookupKeys
+
+`func (o *TypesFeatureFilter) SetLookupKeys(v []string)`
+
+SetLookupKeys sets LookupKeys field to given value.
+
+### HasLookupKeys
+
+`func (o *TypesFeatureFilter) HasLookupKeys() bool`
+
+HasLookupKeys returns a boolean if a field has been set.
 
 ### GetMeterIds
 

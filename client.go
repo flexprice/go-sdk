@@ -49,17 +49,35 @@ type APIClient struct {
 
 	// API Services
 
+	AddonsAPI *AddonsAPIService
+
+	AlertLogsAPI *AlertLogsAPIService
+
 	AuthAPI *AuthAPIService
+
+	ConnectionsAPI *ConnectionsAPIService
+
+	CostsAPI *CostsAPIService
+
+	CouponsAPI *CouponsAPIService
+
+	CreditGrantsAPI *CreditGrantsAPIService
+
+	CreditNotesAPI *CreditNotesAPIService
 
 	CustomersAPI *CustomersAPIService
 
 	EntitlementsAPI *EntitlementsAPIService
+
+	EntityIntegrationMappingsAPI *EntityIntegrationMappingsAPIService
 
 	EnvironmentsAPI *EnvironmentsAPIService
 
 	EventsAPI *EventsAPIService
 
 	FeaturesAPI *FeaturesAPIService
+
+	GroupsAPI *GroupsAPIService
 
 	IntegrationsAPI *IntegrationsAPIService
 
@@ -69,7 +87,13 @@ type APIClient struct {
 
 	PlansAPI *PlansAPIService
 
+	PriceUnitsAPI *PriceUnitsAPIService
+
 	PricesAPI *PricesAPIService
+
+	RBACAPI *RBACAPIService
+
+	ScheduledTasksAPI *ScheduledTasksAPIService
 
 	SecretsAPI *SecretsAPIService
 
@@ -77,11 +101,17 @@ type APIClient struct {
 
 	TasksAPI *TasksAPIService
 
+	TaxAssociationsAPI *TaxAssociationsAPIService
+
+	TaxRatesAPI *TaxRatesAPIService
+
 	TenantsAPI *TenantsAPIService
 
 	UsersAPI *UsersAPIService
 
 	WalletsAPI *WalletsAPIService
+
+	WebhooksAPI *WebhooksAPIService
 }
 
 type service struct {
@@ -100,23 +130,38 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.AddonsAPI = (*AddonsAPIService)(&c.common)
+	c.AlertLogsAPI = (*AlertLogsAPIService)(&c.common)
 	c.AuthAPI = (*AuthAPIService)(&c.common)
+	c.ConnectionsAPI = (*ConnectionsAPIService)(&c.common)
+	c.CostsAPI = (*CostsAPIService)(&c.common)
+	c.CouponsAPI = (*CouponsAPIService)(&c.common)
+	c.CreditGrantsAPI = (*CreditGrantsAPIService)(&c.common)
+	c.CreditNotesAPI = (*CreditNotesAPIService)(&c.common)
 	c.CustomersAPI = (*CustomersAPIService)(&c.common)
 	c.EntitlementsAPI = (*EntitlementsAPIService)(&c.common)
+	c.EntityIntegrationMappingsAPI = (*EntityIntegrationMappingsAPIService)(&c.common)
 	c.EnvironmentsAPI = (*EnvironmentsAPIService)(&c.common)
 	c.EventsAPI = (*EventsAPIService)(&c.common)
 	c.FeaturesAPI = (*FeaturesAPIService)(&c.common)
+	c.GroupsAPI = (*GroupsAPIService)(&c.common)
 	c.IntegrationsAPI = (*IntegrationsAPIService)(&c.common)
 	c.InvoicesAPI = (*InvoicesAPIService)(&c.common)
 	c.PaymentsAPI = (*PaymentsAPIService)(&c.common)
 	c.PlansAPI = (*PlansAPIService)(&c.common)
+	c.PriceUnitsAPI = (*PriceUnitsAPIService)(&c.common)
 	c.PricesAPI = (*PricesAPIService)(&c.common)
+	c.RBACAPI = (*RBACAPIService)(&c.common)
+	c.ScheduledTasksAPI = (*ScheduledTasksAPIService)(&c.common)
 	c.SecretsAPI = (*SecretsAPIService)(&c.common)
 	c.SubscriptionsAPI = (*SubscriptionsAPIService)(&c.common)
 	c.TasksAPI = (*TasksAPIService)(&c.common)
+	c.TaxAssociationsAPI = (*TaxAssociationsAPIService)(&c.common)
+	c.TaxRatesAPI = (*TaxRatesAPIService)(&c.common)
 	c.TenantsAPI = (*TenantsAPIService)(&c.common)
 	c.UsersAPI = (*UsersAPIService)(&c.common)
 	c.WalletsAPI = (*WalletsAPIService)(&c.common)
+	c.WebhooksAPI = (*WebhooksAPIService)(&c.common)
 
 	return c
 }

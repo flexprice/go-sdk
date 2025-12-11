@@ -28,6 +28,7 @@ const (
 	TYPESSUBSCRIPTIONSTATUS_SubscriptionStatusPastDue TypesSubscriptionStatus = "past_due"
 	TYPESSUBSCRIPTIONSTATUS_SubscriptionStatusTrialing TypesSubscriptionStatus = "trialing"
 	TYPESSUBSCRIPTIONSTATUS_SubscriptionStatusUnpaid TypesSubscriptionStatus = "unpaid"
+	TYPESSUBSCRIPTIONSTATUS_SubscriptionStatusDraft TypesSubscriptionStatus = "draft"
 )
 
 // All allowed values of TypesSubscriptionStatus enum
@@ -40,6 +41,7 @@ var AllowedTypesSubscriptionStatusEnumValues = []TypesSubscriptionStatus{
 	"past_due",
 	"trialing",
 	"unpaid",
+	"draft",
 }
 
 func (v *TypesSubscriptionStatus) UnmarshalJSON(src []byte) error {

@@ -20,9 +20,11 @@ type TypesPaymentStatus string
 
 // List of types.PaymentStatus
 const (
+	TYPESPAYMENTSTATUS_PaymentStatusInitiated TypesPaymentStatus = "INITIATED"
 	TYPESPAYMENTSTATUS_PaymentStatusPending TypesPaymentStatus = "PENDING"
 	TYPESPAYMENTSTATUS_PaymentStatusProcessing TypesPaymentStatus = "PROCESSING"
 	TYPESPAYMENTSTATUS_PaymentStatusSucceeded TypesPaymentStatus = "SUCCEEDED"
+	TYPESPAYMENTSTATUS_PaymentStatusOverpaid TypesPaymentStatus = "OVERPAID"
 	TYPESPAYMENTSTATUS_PaymentStatusFailed TypesPaymentStatus = "FAILED"
 	TYPESPAYMENTSTATUS_PaymentStatusRefunded TypesPaymentStatus = "REFUNDED"
 	TYPESPAYMENTSTATUS_PaymentStatusPartiallyRefunded TypesPaymentStatus = "PARTIALLY_REFUNDED"
@@ -30,9 +32,11 @@ const (
 
 // All allowed values of TypesPaymentStatus enum
 var AllowedTypesPaymentStatusEnumValues = []TypesPaymentStatus{
+	"INITIATED",
 	"PENDING",
 	"PROCESSING",
 	"SUCCEEDED",
+	"OVERPAID",
 	"FAILED",
 	"REFUNDED",
 	"PARTIALLY_REFUNDED",

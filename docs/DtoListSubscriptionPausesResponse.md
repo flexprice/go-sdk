@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Items** | Pointer to [**[]DtoSubscriptionPauseResponse**](DtoSubscriptionPauseResponse.md) |  | [optional] 
-**Total** | Pointer to **int32** |  | [optional] 
+**Items** | Pointer to [**[]DtoSubscriptionPauseResponse**](DtoSubscriptionPauseResponse.md) | List of subscription pause objects @Description Array of subscription pauses | [optional] 
+**Total** | Pointer to **int32** | Total number of pauses @Description Total count of subscription pauses in the response | [optional] 
 
 ## Methods
 

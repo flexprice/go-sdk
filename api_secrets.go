@@ -115,6 +115,20 @@ func (a *SecretsAPIService) SecretsApiKeysGetExecute(r SecretsAPISecretsApiKeysG
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -237,6 +251,20 @@ func (a *SecretsAPIService) SecretsApiKeysIdDeleteExecute(r SecretsAPISecretsApi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return nil, err
@@ -292,7 +320,7 @@ type SecretsAPISecretsApiKeysPostRequest struct {
 	request *DtoCreateAPIKeyRequest
 }
 
-// API key creation request
+// API key creation request\\
 func (r SecretsAPISecretsApiKeysPostRequest) Request(request DtoCreateAPIKeyRequest) SecretsAPISecretsApiKeysPostRequest {
 	r.request = &request
 	return r
@@ -305,7 +333,7 @@ func (r SecretsAPISecretsApiKeysPostRequest) Execute() (*DtoCreateAPIKeyResponse
 /*
 SecretsApiKeysPost Create a new API key
 
-Create a new API key with the specified type and permissions
+Create a new API key. Provide 'service_account_id' in body to create API key for a service account, otherwise creates for authenticated user.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return SecretsAPISecretsApiKeysPostRequest
@@ -360,6 +388,20 @@ func (a *SecretsAPIService) SecretsApiKeysPostExecute(r SecretsAPISecretsApiKeys
 	}
 	// body params
 	localVarPostBody = r.request
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
 	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
 	if err != nil {
 		return localVarReturnValue, nil, err

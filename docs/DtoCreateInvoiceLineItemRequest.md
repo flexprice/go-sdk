@@ -4,24 +4,28 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | **float32** |  | 
-**DisplayName** | Pointer to **string** |  | [optional] 
+**Amount** | **string** | amount is the monetary amount for this line item | 
+**DisplayName** | Pointer to **string** | display_name is the optional human-readable name for this line item | [optional] 
+**EntityId** | Pointer to **string** | entity_id is the optional unique identifier of the entity associated with this line item | [optional] 
+**EntityType** | Pointer to **string** | entity_type is the optional type of the entity associated with this line item | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
-**MeterDisplayName** | Pointer to **string** |  | [optional] 
-**MeterId** | Pointer to **string** |  | [optional] 
-**PeriodEnd** | Pointer to **string** |  | [optional] 
-**PeriodStart** | Pointer to **string** |  | [optional] 
-**PlanDisplayName** | Pointer to **string** |  | [optional] 
-**PlanId** | Pointer to **string** |  | [optional] 
-**PriceId** | Pointer to **string** |  | [optional] 
-**PriceType** | Pointer to **string** |  | [optional] 
-**Quantity** | **float32** |  | 
+**MeterDisplayName** | Pointer to **string** | meter_display_name is the optional human-readable name of the meter | [optional] 
+**MeterId** | Pointer to **string** | meter_id is the optional unique identifier of the meter used for usage tracking | [optional] 
+**PeriodEnd** | Pointer to **string** | period_end is the optional end date of the period this line item covers | [optional] 
+**PeriodStart** | Pointer to **string** | period_start is the optional start date of the period this line item covers | [optional] 
+**PlanDisplayName** | Pointer to **string** | plan_display_name is the optional human-readable name of the plan | [optional] 
+**PlanId** | Pointer to **string** | TODO: !REMOVE after migration plan_id is the optional unique identifier of the plan associated with this line item | [optional] 
+**PriceId** | Pointer to **string** | price_id is the optional unique identifier of the price associated with this line item | [optional] 
+**PriceType** | Pointer to **string** | price_type indicates the type of pricing (fixed, usage, tiered, etc.) | [optional] 
+**PriceUnit** | Pointer to **string** | price_unit is the optional 3-digit ISO code of the price unit associated with this line item | [optional] 
+**PriceUnitAmount** | Pointer to **string** | price_unit_amount is the optional amount converted to the price unit currency | [optional] 
+**Quantity** | **string** | quantity is the quantity of units for this line item | 
 
 ## Methods
 
 ### NewDtoCreateInvoiceLineItemRequest
 
-`func NewDtoCreateInvoiceLineItemRequest(amount float32, quantity float32, ) *DtoCreateInvoiceLineItemRequest`
+`func NewDtoCreateInvoiceLineItemRequest(amount string, quantity string, ) *DtoCreateInvoiceLineItemRequest`
 
 NewDtoCreateInvoiceLineItemRequest instantiates a new DtoCreateInvoiceLineItemRequest object
 This constructor will assign default values to properties that have it defined,
@@ -38,20 +42,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *DtoCreateInvoiceLineItemRequest) GetAmount() float32`
+`func (o *DtoCreateInvoiceLineItemRequest) GetAmount() string`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *DtoCreateInvoiceLineItemRequest) GetAmountOk() (*float32, bool)`
+`func (o *DtoCreateInvoiceLineItemRequest) GetAmountOk() (*string, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *DtoCreateInvoiceLineItemRequest) SetAmount(v float32)`
+`func (o *DtoCreateInvoiceLineItemRequest) SetAmount(v string)`
 
 SetAmount sets Amount field to given value.
 
@@ -80,6 +84,56 @@ SetDisplayName sets DisplayName field to given value.
 `func (o *DtoCreateInvoiceLineItemRequest) HasDisplayName() bool`
 
 HasDisplayName returns a boolean if a field has been set.
+
+### GetEntityId
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetEntityId() string`
+
+GetEntityId returns the EntityId field if non-nil, zero value otherwise.
+
+### GetEntityIdOk
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetEntityIdOk() (*string, bool)`
+
+GetEntityIdOk returns a tuple with the EntityId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityId
+
+`func (o *DtoCreateInvoiceLineItemRequest) SetEntityId(v string)`
+
+SetEntityId sets EntityId field to given value.
+
+### HasEntityId
+
+`func (o *DtoCreateInvoiceLineItemRequest) HasEntityId() bool`
+
+HasEntityId returns a boolean if a field has been set.
+
+### GetEntityType
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetEntityType() string`
+
+GetEntityType returns the EntityType field if non-nil, zero value otherwise.
+
+### GetEntityTypeOk
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetEntityTypeOk() (*string, bool)`
+
+GetEntityTypeOk returns a tuple with the EntityType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEntityType
+
+`func (o *DtoCreateInvoiceLineItemRequest) SetEntityType(v string)`
+
+SetEntityType sets EntityType field to given value.
+
+### HasEntityType
+
+`func (o *DtoCreateInvoiceLineItemRequest) HasEntityType() bool`
+
+HasEntityType returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -306,22 +360,72 @@ SetPriceType sets PriceType field to given value.
 
 HasPriceType returns a boolean if a field has been set.
 
+### GetPriceUnit
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetPriceUnit() string`
+
+GetPriceUnit returns the PriceUnit field if non-nil, zero value otherwise.
+
+### GetPriceUnitOk
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetPriceUnitOk() (*string, bool)`
+
+GetPriceUnitOk returns a tuple with the PriceUnit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnit
+
+`func (o *DtoCreateInvoiceLineItemRequest) SetPriceUnit(v string)`
+
+SetPriceUnit sets PriceUnit field to given value.
+
+### HasPriceUnit
+
+`func (o *DtoCreateInvoiceLineItemRequest) HasPriceUnit() bool`
+
+HasPriceUnit returns a boolean if a field has been set.
+
+### GetPriceUnitAmount
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetPriceUnitAmount() string`
+
+GetPriceUnitAmount returns the PriceUnitAmount field if non-nil, zero value otherwise.
+
+### GetPriceUnitAmountOk
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetPriceUnitAmountOk() (*string, bool)`
+
+GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitAmount
+
+`func (o *DtoCreateInvoiceLineItemRequest) SetPriceUnitAmount(v string)`
+
+SetPriceUnitAmount sets PriceUnitAmount field to given value.
+
+### HasPriceUnitAmount
+
+`func (o *DtoCreateInvoiceLineItemRequest) HasPriceUnitAmount() bool`
+
+HasPriceUnitAmount returns a boolean if a field has been set.
+
 ### GetQuantity
 
-`func (o *DtoCreateInvoiceLineItemRequest) GetQuantity() float32`
+`func (o *DtoCreateInvoiceLineItemRequest) GetQuantity() string`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *DtoCreateInvoiceLineItemRequest) GetQuantityOk() (*float32, bool)`
+`func (o *DtoCreateInvoiceLineItemRequest) GetQuantityOk() (*string, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *DtoCreateInvoiceLineItemRequest) SetQuantity(v float32)`
+`func (o *DtoCreateInvoiceLineItemRequest) SetQuantity(v string)`
 
 SetQuantity sets Quantity field to given value.
 

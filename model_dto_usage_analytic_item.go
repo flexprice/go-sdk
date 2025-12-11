@@ -19,15 +19,35 @@ var _ MappedNullable = &DtoUsageAnalyticItem{}
 
 // DtoUsageAnalyticItem struct for DtoUsageAnalyticItem
 type DtoUsageAnalyticItem struct {
+	AddOnId *string `json:"add_on_id,omitempty"`
+	Addon *GithubComFlexpriceFlexpriceInternalDomainAddonAddon `json:"addon,omitempty"`
 	AggregationType *TypesAggregationType `json:"aggregation_type,omitempty"`
 	Currency *string `json:"currency,omitempty"`
+	// Number of events that contributed to this aggregation
+	EventCount *int32 `json:"event_count,omitempty"`
 	EventName *string `json:"event_name,omitempty"`
+	Feature *GithubComFlexpriceFlexpriceInternalDomainFeatureFeature `json:"feature,omitempty"`
 	FeatureId *string `json:"feature_id,omitempty"`
+	Meter *MeterMeter `json:"meter,omitempty"`
+	// Meter ID
+	MeterId *string `json:"meter_id,omitempty"`
 	Name *string `json:"name,omitempty"`
+	Plan *GithubComFlexpriceFlexpriceInternalDomainPlanPlan `json:"plan,omitempty"`
+	PlanId *string `json:"plan_id,omitempty"`
 	Points []DtoUsageAnalyticPoint `json:"points,omitempty"`
+	Price *DtoPriceResponse `json:"price,omitempty"`
+	// Price ID used for this usage
+	PriceId *string `json:"price_id,omitempty"`
+	// Stores property values for flexible grouping (e.g., org_id -> \"org123\")
+	Properties *map[string]string `json:"properties,omitempty"`
 	Source *string `json:"source,omitempty"`
-	TotalCost *float32 `json:"total_cost,omitempty"`
-	TotalUsage *float32 `json:"total_usage,omitempty"`
+	// Subscription line item ID
+	SubLineItemId *string `json:"sub_line_item_id,omitempty"`
+	// Subscription ID
+	SubscriptionId *string `json:"subscription_id,omitempty"`
+	SubscriptionLineItem *SubscriptionSubscriptionLineItem `json:"subscription_line_item,omitempty"`
+	TotalCost *string `json:"total_cost,omitempty"`
+	TotalUsage *string `json:"total_usage,omitempty"`
 	Unit *string `json:"unit,omitempty"`
 	UnitPlural *string `json:"unit_plural,omitempty"`
 }
@@ -47,6 +67,70 @@ func NewDtoUsageAnalyticItem() *DtoUsageAnalyticItem {
 func NewDtoUsageAnalyticItemWithDefaults() *DtoUsageAnalyticItem {
 	this := DtoUsageAnalyticItem{}
 	return &this
+}
+
+// GetAddOnId returns the AddOnId field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetAddOnId() string {
+	if o == nil || IsNil(o.AddOnId) {
+		var ret string
+		return ret
+	}
+	return *o.AddOnId
+}
+
+// GetAddOnIdOk returns a tuple with the AddOnId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetAddOnIdOk() (*string, bool) {
+	if o == nil || IsNil(o.AddOnId) {
+		return nil, false
+	}
+	return o.AddOnId, true
+}
+
+// HasAddOnId returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasAddOnId() bool {
+	if o != nil && !IsNil(o.AddOnId) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddOnId gets a reference to the given string and assigns it to the AddOnId field.
+func (o *DtoUsageAnalyticItem) SetAddOnId(v string) {
+	o.AddOnId = &v
+}
+
+// GetAddon returns the Addon field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetAddon() GithubComFlexpriceFlexpriceInternalDomainAddonAddon {
+	if o == nil || IsNil(o.Addon) {
+		var ret GithubComFlexpriceFlexpriceInternalDomainAddonAddon
+		return ret
+	}
+	return *o.Addon
+}
+
+// GetAddonOk returns a tuple with the Addon field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetAddonOk() (*GithubComFlexpriceFlexpriceInternalDomainAddonAddon, bool) {
+	if o == nil || IsNil(o.Addon) {
+		return nil, false
+	}
+	return o.Addon, true
+}
+
+// HasAddon returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasAddon() bool {
+	if o != nil && !IsNil(o.Addon) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddon gets a reference to the given GithubComFlexpriceFlexpriceInternalDomainAddonAddon and assigns it to the Addon field.
+func (o *DtoUsageAnalyticItem) SetAddon(v GithubComFlexpriceFlexpriceInternalDomainAddonAddon) {
+	o.Addon = &v
 }
 
 // GetAggregationType returns the AggregationType field value if set, zero value otherwise.
@@ -113,6 +197,38 @@ func (o *DtoUsageAnalyticItem) SetCurrency(v string) {
 	o.Currency = &v
 }
 
+// GetEventCount returns the EventCount field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetEventCount() int32 {
+	if o == nil || IsNil(o.EventCount) {
+		var ret int32
+		return ret
+	}
+	return *o.EventCount
+}
+
+// GetEventCountOk returns a tuple with the EventCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetEventCountOk() (*int32, bool) {
+	if o == nil || IsNil(o.EventCount) {
+		return nil, false
+	}
+	return o.EventCount, true
+}
+
+// HasEventCount returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasEventCount() bool {
+	if o != nil && !IsNil(o.EventCount) {
+		return true
+	}
+
+	return false
+}
+
+// SetEventCount gets a reference to the given int32 and assigns it to the EventCount field.
+func (o *DtoUsageAnalyticItem) SetEventCount(v int32) {
+	o.EventCount = &v
+}
+
 // GetEventName returns the EventName field value if set, zero value otherwise.
 func (o *DtoUsageAnalyticItem) GetEventName() string {
 	if o == nil || IsNil(o.EventName) {
@@ -143,6 +259,38 @@ func (o *DtoUsageAnalyticItem) HasEventName() bool {
 // SetEventName gets a reference to the given string and assigns it to the EventName field.
 func (o *DtoUsageAnalyticItem) SetEventName(v string) {
 	o.EventName = &v
+}
+
+// GetFeature returns the Feature field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetFeature() GithubComFlexpriceFlexpriceInternalDomainFeatureFeature {
+	if o == nil || IsNil(o.Feature) {
+		var ret GithubComFlexpriceFlexpriceInternalDomainFeatureFeature
+		return ret
+	}
+	return *o.Feature
+}
+
+// GetFeatureOk returns a tuple with the Feature field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetFeatureOk() (*GithubComFlexpriceFlexpriceInternalDomainFeatureFeature, bool) {
+	if o == nil || IsNil(o.Feature) {
+		return nil, false
+	}
+	return o.Feature, true
+}
+
+// HasFeature returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasFeature() bool {
+	if o != nil && !IsNil(o.Feature) {
+		return true
+	}
+
+	return false
+}
+
+// SetFeature gets a reference to the given GithubComFlexpriceFlexpriceInternalDomainFeatureFeature and assigns it to the Feature field.
+func (o *DtoUsageAnalyticItem) SetFeature(v GithubComFlexpriceFlexpriceInternalDomainFeatureFeature) {
+	o.Feature = &v
 }
 
 // GetFeatureId returns the FeatureId field value if set, zero value otherwise.
@@ -177,6 +325,70 @@ func (o *DtoUsageAnalyticItem) SetFeatureId(v string) {
 	o.FeatureId = &v
 }
 
+// GetMeter returns the Meter field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetMeter() MeterMeter {
+	if o == nil || IsNil(o.Meter) {
+		var ret MeterMeter
+		return ret
+	}
+	return *o.Meter
+}
+
+// GetMeterOk returns a tuple with the Meter field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetMeterOk() (*MeterMeter, bool) {
+	if o == nil || IsNil(o.Meter) {
+		return nil, false
+	}
+	return o.Meter, true
+}
+
+// HasMeter returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasMeter() bool {
+	if o != nil && !IsNil(o.Meter) {
+		return true
+	}
+
+	return false
+}
+
+// SetMeter gets a reference to the given MeterMeter and assigns it to the Meter field.
+func (o *DtoUsageAnalyticItem) SetMeter(v MeterMeter) {
+	o.Meter = &v
+}
+
+// GetMeterId returns the MeterId field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetMeterId() string {
+	if o == nil || IsNil(o.MeterId) {
+		var ret string
+		return ret
+	}
+	return *o.MeterId
+}
+
+// GetMeterIdOk returns a tuple with the MeterId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetMeterIdOk() (*string, bool) {
+	if o == nil || IsNil(o.MeterId) {
+		return nil, false
+	}
+	return o.MeterId, true
+}
+
+// HasMeterId returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasMeterId() bool {
+	if o != nil && !IsNil(o.MeterId) {
+		return true
+	}
+
+	return false
+}
+
+// SetMeterId gets a reference to the given string and assigns it to the MeterId field.
+func (o *DtoUsageAnalyticItem) SetMeterId(v string) {
+	o.MeterId = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DtoUsageAnalyticItem) GetName() string {
 	if o == nil || IsNil(o.Name) {
@@ -207,6 +419,70 @@ func (o *DtoUsageAnalyticItem) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *DtoUsageAnalyticItem) SetName(v string) {
 	o.Name = &v
+}
+
+// GetPlan returns the Plan field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetPlan() GithubComFlexpriceFlexpriceInternalDomainPlanPlan {
+	if o == nil || IsNil(o.Plan) {
+		var ret GithubComFlexpriceFlexpriceInternalDomainPlanPlan
+		return ret
+	}
+	return *o.Plan
+}
+
+// GetPlanOk returns a tuple with the Plan field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetPlanOk() (*GithubComFlexpriceFlexpriceInternalDomainPlanPlan, bool) {
+	if o == nil || IsNil(o.Plan) {
+		return nil, false
+	}
+	return o.Plan, true
+}
+
+// HasPlan returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasPlan() bool {
+	if o != nil && !IsNil(o.Plan) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlan gets a reference to the given GithubComFlexpriceFlexpriceInternalDomainPlanPlan and assigns it to the Plan field.
+func (o *DtoUsageAnalyticItem) SetPlan(v GithubComFlexpriceFlexpriceInternalDomainPlanPlan) {
+	o.Plan = &v
+}
+
+// GetPlanId returns the PlanId field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetPlanId() string {
+	if o == nil || IsNil(o.PlanId) {
+		var ret string
+		return ret
+	}
+	return *o.PlanId
+}
+
+// GetPlanIdOk returns a tuple with the PlanId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetPlanIdOk() (*string, bool) {
+	if o == nil || IsNil(o.PlanId) {
+		return nil, false
+	}
+	return o.PlanId, true
+}
+
+// HasPlanId returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasPlanId() bool {
+	if o != nil && !IsNil(o.PlanId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPlanId gets a reference to the given string and assigns it to the PlanId field.
+func (o *DtoUsageAnalyticItem) SetPlanId(v string) {
+	o.PlanId = &v
 }
 
 // GetPoints returns the Points field value if set, zero value otherwise.
@@ -241,6 +517,102 @@ func (o *DtoUsageAnalyticItem) SetPoints(v []DtoUsageAnalyticPoint) {
 	o.Points = v
 }
 
+// GetPrice returns the Price field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetPrice() DtoPriceResponse {
+	if o == nil || IsNil(o.Price) {
+		var ret DtoPriceResponse
+		return ret
+	}
+	return *o.Price
+}
+
+// GetPriceOk returns a tuple with the Price field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetPriceOk() (*DtoPriceResponse, bool) {
+	if o == nil || IsNil(o.Price) {
+		return nil, false
+	}
+	return o.Price, true
+}
+
+// HasPrice returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasPrice() bool {
+	if o != nil && !IsNil(o.Price) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrice gets a reference to the given DtoPriceResponse and assigns it to the Price field.
+func (o *DtoUsageAnalyticItem) SetPrice(v DtoPriceResponse) {
+	o.Price = &v
+}
+
+// GetPriceId returns the PriceId field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetPriceId() string {
+	if o == nil || IsNil(o.PriceId) {
+		var ret string
+		return ret
+	}
+	return *o.PriceId
+}
+
+// GetPriceIdOk returns a tuple with the PriceId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetPriceIdOk() (*string, bool) {
+	if o == nil || IsNil(o.PriceId) {
+		return nil, false
+	}
+	return o.PriceId, true
+}
+
+// HasPriceId returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasPriceId() bool {
+	if o != nil && !IsNil(o.PriceId) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceId gets a reference to the given string and assigns it to the PriceId field.
+func (o *DtoUsageAnalyticItem) SetPriceId(v string) {
+	o.PriceId = &v
+}
+
+// GetProperties returns the Properties field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetProperties() map[string]string {
+	if o == nil || IsNil(o.Properties) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Properties
+}
+
+// GetPropertiesOk returns a tuple with the Properties field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetPropertiesOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Properties) {
+		return nil, false
+	}
+	return o.Properties, true
+}
+
+// HasProperties returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasProperties() bool {
+	if o != nil && !IsNil(o.Properties) {
+		return true
+	}
+
+	return false
+}
+
+// SetProperties gets a reference to the given map[string]string and assigns it to the Properties field.
+func (o *DtoUsageAnalyticItem) SetProperties(v map[string]string) {
+	o.Properties = &v
+}
+
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *DtoUsageAnalyticItem) GetSource() string {
 	if o == nil || IsNil(o.Source) {
@@ -273,10 +645,106 @@ func (o *DtoUsageAnalyticItem) SetSource(v string) {
 	o.Source = &v
 }
 
+// GetSubLineItemId returns the SubLineItemId field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetSubLineItemId() string {
+	if o == nil || IsNil(o.SubLineItemId) {
+		var ret string
+		return ret
+	}
+	return *o.SubLineItemId
+}
+
+// GetSubLineItemIdOk returns a tuple with the SubLineItemId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetSubLineItemIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SubLineItemId) {
+		return nil, false
+	}
+	return o.SubLineItemId, true
+}
+
+// HasSubLineItemId returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasSubLineItemId() bool {
+	if o != nil && !IsNil(o.SubLineItemId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubLineItemId gets a reference to the given string and assigns it to the SubLineItemId field.
+func (o *DtoUsageAnalyticItem) SetSubLineItemId(v string) {
+	o.SubLineItemId = &v
+}
+
+// GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetSubscriptionId() string {
+	if o == nil || IsNil(o.SubscriptionId) {
+		var ret string
+		return ret
+	}
+	return *o.SubscriptionId
+}
+
+// GetSubscriptionIdOk returns a tuple with the SubscriptionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetSubscriptionIdOk() (*string, bool) {
+	if o == nil || IsNil(o.SubscriptionId) {
+		return nil, false
+	}
+	return o.SubscriptionId, true
+}
+
+// HasSubscriptionId returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasSubscriptionId() bool {
+	if o != nil && !IsNil(o.SubscriptionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionId gets a reference to the given string and assigns it to the SubscriptionId field.
+func (o *DtoUsageAnalyticItem) SetSubscriptionId(v string) {
+	o.SubscriptionId = &v
+}
+
+// GetSubscriptionLineItem returns the SubscriptionLineItem field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetSubscriptionLineItem() SubscriptionSubscriptionLineItem {
+	if o == nil || IsNil(o.SubscriptionLineItem) {
+		var ret SubscriptionSubscriptionLineItem
+		return ret
+	}
+	return *o.SubscriptionLineItem
+}
+
+// GetSubscriptionLineItemOk returns a tuple with the SubscriptionLineItem field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetSubscriptionLineItemOk() (*SubscriptionSubscriptionLineItem, bool) {
+	if o == nil || IsNil(o.SubscriptionLineItem) {
+		return nil, false
+	}
+	return o.SubscriptionLineItem, true
+}
+
+// HasSubscriptionLineItem returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasSubscriptionLineItem() bool {
+	if o != nil && !IsNil(o.SubscriptionLineItem) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscriptionLineItem gets a reference to the given SubscriptionSubscriptionLineItem and assigns it to the SubscriptionLineItem field.
+func (o *DtoUsageAnalyticItem) SetSubscriptionLineItem(v SubscriptionSubscriptionLineItem) {
+	o.SubscriptionLineItem = &v
+}
+
 // GetTotalCost returns the TotalCost field value if set, zero value otherwise.
-func (o *DtoUsageAnalyticItem) GetTotalCost() float32 {
+func (o *DtoUsageAnalyticItem) GetTotalCost() string {
 	if o == nil || IsNil(o.TotalCost) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.TotalCost
@@ -284,7 +752,7 @@ func (o *DtoUsageAnalyticItem) GetTotalCost() float32 {
 
 // GetTotalCostOk returns a tuple with the TotalCost field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoUsageAnalyticItem) GetTotalCostOk() (*float32, bool) {
+func (o *DtoUsageAnalyticItem) GetTotalCostOk() (*string, bool) {
 	if o == nil || IsNil(o.TotalCost) {
 		return nil, false
 	}
@@ -300,15 +768,15 @@ func (o *DtoUsageAnalyticItem) HasTotalCost() bool {
 	return false
 }
 
-// SetTotalCost gets a reference to the given float32 and assigns it to the TotalCost field.
-func (o *DtoUsageAnalyticItem) SetTotalCost(v float32) {
+// SetTotalCost gets a reference to the given string and assigns it to the TotalCost field.
+func (o *DtoUsageAnalyticItem) SetTotalCost(v string) {
 	o.TotalCost = &v
 }
 
 // GetTotalUsage returns the TotalUsage field value if set, zero value otherwise.
-func (o *DtoUsageAnalyticItem) GetTotalUsage() float32 {
+func (o *DtoUsageAnalyticItem) GetTotalUsage() string {
 	if o == nil || IsNil(o.TotalUsage) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.TotalUsage
@@ -316,7 +784,7 @@ func (o *DtoUsageAnalyticItem) GetTotalUsage() float32 {
 
 // GetTotalUsageOk returns a tuple with the TotalUsage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoUsageAnalyticItem) GetTotalUsageOk() (*float32, bool) {
+func (o *DtoUsageAnalyticItem) GetTotalUsageOk() (*string, bool) {
 	if o == nil || IsNil(o.TotalUsage) {
 		return nil, false
 	}
@@ -332,8 +800,8 @@ func (o *DtoUsageAnalyticItem) HasTotalUsage() bool {
 	return false
 }
 
-// SetTotalUsage gets a reference to the given float32 and assigns it to the TotalUsage field.
-func (o *DtoUsageAnalyticItem) SetTotalUsage(v float32) {
+// SetTotalUsage gets a reference to the given string and assigns it to the TotalUsage field.
+func (o *DtoUsageAnalyticItem) SetTotalUsage(v string) {
 	o.TotalUsage = &v
 }
 
@@ -411,26 +879,68 @@ func (o DtoUsageAnalyticItem) MarshalJSON() ([]byte, error) {
 
 func (o DtoUsageAnalyticItem) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.AddOnId) {
+		toSerialize["add_on_id"] = o.AddOnId
+	}
+	if !IsNil(o.Addon) {
+		toSerialize["addon"] = o.Addon
+	}
 	if !IsNil(o.AggregationType) {
 		toSerialize["aggregation_type"] = o.AggregationType
 	}
 	if !IsNil(o.Currency) {
 		toSerialize["currency"] = o.Currency
 	}
+	if !IsNil(o.EventCount) {
+		toSerialize["event_count"] = o.EventCount
+	}
 	if !IsNil(o.EventName) {
 		toSerialize["event_name"] = o.EventName
+	}
+	if !IsNil(o.Feature) {
+		toSerialize["feature"] = o.Feature
 	}
 	if !IsNil(o.FeatureId) {
 		toSerialize["feature_id"] = o.FeatureId
 	}
+	if !IsNil(o.Meter) {
+		toSerialize["meter"] = o.Meter
+	}
+	if !IsNil(o.MeterId) {
+		toSerialize["meter_id"] = o.MeterId
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.Plan) {
+		toSerialize["plan"] = o.Plan
+	}
+	if !IsNil(o.PlanId) {
+		toSerialize["plan_id"] = o.PlanId
 	}
 	if !IsNil(o.Points) {
 		toSerialize["points"] = o.Points
 	}
+	if !IsNil(o.Price) {
+		toSerialize["price"] = o.Price
+	}
+	if !IsNil(o.PriceId) {
+		toSerialize["price_id"] = o.PriceId
+	}
+	if !IsNil(o.Properties) {
+		toSerialize["properties"] = o.Properties
+	}
 	if !IsNil(o.Source) {
 		toSerialize["source"] = o.Source
+	}
+	if !IsNil(o.SubLineItemId) {
+		toSerialize["sub_line_item_id"] = o.SubLineItemId
+	}
+	if !IsNil(o.SubscriptionId) {
+		toSerialize["subscription_id"] = o.SubscriptionId
+	}
+	if !IsNil(o.SubscriptionLineItem) {
+		toSerialize["subscription_line_item"] = o.SubscriptionLineItem
 	}
 	if !IsNil(o.TotalCost) {
 		toSerialize["total_cost"] = o.TotalCost
