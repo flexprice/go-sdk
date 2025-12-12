@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AmountOff** | Pointer to **float32** |  | [optional] 
+**AmountOff** | Pointer to **string** |  | [optional] 
 **Cadence** | Pointer to [**TypesCouponCadence**](TypesCouponCadence.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
@@ -15,7 +15,7 @@ Name | Type | Description | Notes
 **MaxRedemptions** | Pointer to **int32** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**PercentageOff** | Pointer to **float32** |  | [optional] 
+**PercentageOff** | Pointer to **string** |  | [optional] 
 **RedeemAfter** | Pointer to **string** |  | [optional] 
 **RedeemBefore** | Pointer to **string** |  | [optional] 
 **Rules** | Pointer to **map[string]interface{}** |  | [optional] 
@@ -47,20 +47,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmountOff
 
-`func (o *GithubComFlexpriceFlexpriceInternalDomainCouponCoupon) GetAmountOff() float32`
+`func (o *GithubComFlexpriceFlexpriceInternalDomainCouponCoupon) GetAmountOff() string`
 
 GetAmountOff returns the AmountOff field if non-nil, zero value otherwise.
 
 ### GetAmountOffOk
 
-`func (o *GithubComFlexpriceFlexpriceInternalDomainCouponCoupon) GetAmountOffOk() (*float32, bool)`
+`func (o *GithubComFlexpriceFlexpriceInternalDomainCouponCoupon) GetAmountOffOk() (*string, bool)`
 
 GetAmountOffOk returns a tuple with the AmountOff field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmountOff
 
-`func (o *GithubComFlexpriceFlexpriceInternalDomainCouponCoupon) SetAmountOff(v float32)`
+`func (o *GithubComFlexpriceFlexpriceInternalDomainCouponCoupon) SetAmountOff(v string)`
 
 SetAmountOff sets AmountOff field to given value.
 
@@ -322,20 +322,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetPercentageOff
 
-`func (o *GithubComFlexpriceFlexpriceInternalDomainCouponCoupon) GetPercentageOff() float32`
+`func (o *GithubComFlexpriceFlexpriceInternalDomainCouponCoupon) GetPercentageOff() string`
 
 GetPercentageOff returns the PercentageOff field if non-nil, zero value otherwise.
 
 ### GetPercentageOffOk
 
-`func (o *GithubComFlexpriceFlexpriceInternalDomainCouponCoupon) GetPercentageOffOk() (*float32, bool)`
+`func (o *GithubComFlexpriceFlexpriceInternalDomainCouponCoupon) GetPercentageOffOk() (*string, bool)`
 
 GetPercentageOffOk returns a tuple with the PercentageOff field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPercentageOff
 
-`func (o *GithubComFlexpriceFlexpriceInternalDomainCouponCoupon) SetPercentageOff(v float32)`
+`func (o *GithubComFlexpriceFlexpriceInternalDomainCouponCoupon) SetPercentageOff(v string)`
 
 SetPercentageOff sets PercentageOff field to given value.
 

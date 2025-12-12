@@ -40,7 +40,7 @@ type DtoSubscriptionLineItemResponse struct {
 	PriceType *TypesPriceType `json:"price_type,omitempty"`
 	PriceUnit *string `json:"price_unit,omitempty"`
 	PriceUnitId *string `json:"price_unit_id,omitempty"`
-	Quantity *float32 `json:"quantity,omitempty"`
+	Quantity *string `json:"quantity,omitempty"`
 	StartDate *string `json:"start_date,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
@@ -741,9 +741,9 @@ func (o *DtoSubscriptionLineItemResponse) SetPriceUnitId(v string) {
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *DtoSubscriptionLineItemResponse) GetQuantity() float32 {
+func (o *DtoSubscriptionLineItemResponse) GetQuantity() string {
 	if o == nil || IsNil(o.Quantity) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Quantity
@@ -751,7 +751,7 @@ func (o *DtoSubscriptionLineItemResponse) GetQuantity() float32 {
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoSubscriptionLineItemResponse) GetQuantityOk() (*float32, bool) {
+func (o *DtoSubscriptionLineItemResponse) GetQuantityOk() (*string, bool) {
 	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
@@ -767,8 +767,8 @@ func (o *DtoSubscriptionLineItemResponse) HasQuantity() bool {
 	return false
 }
 
-// SetQuantity gets a reference to the given float32 and assigns it to the Quantity field.
-func (o *DtoSubscriptionLineItemResponse) SetQuantity(v float32) {
+// SetQuantity gets a reference to the given string and assigns it to the Quantity field.
+func (o *DtoSubscriptionLineItemResponse) SetQuantity(v string) {
 	o.Quantity = &v
 }
 

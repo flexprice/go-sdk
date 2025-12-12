@@ -21,7 +21,7 @@ var _ MappedNullable = &DtoPriceUnitResponse{}
 type DtoPriceUnitResponse struct {
 	BaseCurrency *string `json:"base_currency,omitempty"`
 	Code *string `json:"code,omitempty"`
-	ConversionRate *float32 `json:"conversion_rate,omitempty"`
+	ConversionRate *string `json:"conversion_rate,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
 	EnvironmentId *string `json:"environment_id,omitempty"`
@@ -117,9 +117,9 @@ func (o *DtoPriceUnitResponse) SetCode(v string) {
 }
 
 // GetConversionRate returns the ConversionRate field value if set, zero value otherwise.
-func (o *DtoPriceUnitResponse) GetConversionRate() float32 {
+func (o *DtoPriceUnitResponse) GetConversionRate() string {
 	if o == nil || IsNil(o.ConversionRate) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.ConversionRate
@@ -127,7 +127,7 @@ func (o *DtoPriceUnitResponse) GetConversionRate() float32 {
 
 // GetConversionRateOk returns a tuple with the ConversionRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoPriceUnitResponse) GetConversionRateOk() (*float32, bool) {
+func (o *DtoPriceUnitResponse) GetConversionRateOk() (*string, bool) {
 	if o == nil || IsNil(o.ConversionRate) {
 		return nil, false
 	}
@@ -143,8 +143,8 @@ func (o *DtoPriceUnitResponse) HasConversionRate() bool {
 	return false
 }
 
-// SetConversionRate gets a reference to the given float32 and assigns it to the ConversionRate field.
-func (o *DtoPriceUnitResponse) SetConversionRate(v float32) {
+// SetConversionRate gets a reference to the given string and assigns it to the ConversionRate field.
+func (o *DtoPriceUnitResponse) SetConversionRate(v string) {
 	o.ConversionRate = &v
 }
 

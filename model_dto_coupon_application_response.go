@@ -26,16 +26,16 @@ type DtoCouponApplicationResponse struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
 	Currency *string `json:"currency,omitempty"`
-	DiscountPercentage *float32 `json:"discount_percentage,omitempty"`
+	DiscountPercentage *string `json:"discount_percentage,omitempty"`
 	DiscountType *TypesCouponType `json:"discount_type,omitempty"`
-	DiscountedAmount *float32 `json:"discounted_amount,omitempty"`
+	DiscountedAmount *string `json:"discounted_amount,omitempty"`
 	EnvironmentId *string `json:"environment_id,omitempty"`
-	FinalPrice *float32 `json:"final_price,omitempty"`
+	FinalPrice *string `json:"final_price,omitempty"`
 	Id *string `json:"id,omitempty"`
 	InvoiceId *string `json:"invoice_id,omitempty"`
 	InvoiceLineItemId *string `json:"invoice_line_item_id,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
-	OriginalPrice *float32 `json:"original_price,omitempty"`
+	OriginalPrice *string `json:"original_price,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
@@ -285,9 +285,9 @@ func (o *DtoCouponApplicationResponse) SetCurrency(v string) {
 }
 
 // GetDiscountPercentage returns the DiscountPercentage field value if set, zero value otherwise.
-func (o *DtoCouponApplicationResponse) GetDiscountPercentage() float32 {
+func (o *DtoCouponApplicationResponse) GetDiscountPercentage() string {
 	if o == nil || IsNil(o.DiscountPercentage) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.DiscountPercentage
@@ -295,7 +295,7 @@ func (o *DtoCouponApplicationResponse) GetDiscountPercentage() float32 {
 
 // GetDiscountPercentageOk returns a tuple with the DiscountPercentage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCouponApplicationResponse) GetDiscountPercentageOk() (*float32, bool) {
+func (o *DtoCouponApplicationResponse) GetDiscountPercentageOk() (*string, bool) {
 	if o == nil || IsNil(o.DiscountPercentage) {
 		return nil, false
 	}
@@ -311,8 +311,8 @@ func (o *DtoCouponApplicationResponse) HasDiscountPercentage() bool {
 	return false
 }
 
-// SetDiscountPercentage gets a reference to the given float32 and assigns it to the DiscountPercentage field.
-func (o *DtoCouponApplicationResponse) SetDiscountPercentage(v float32) {
+// SetDiscountPercentage gets a reference to the given string and assigns it to the DiscountPercentage field.
+func (o *DtoCouponApplicationResponse) SetDiscountPercentage(v string) {
 	o.DiscountPercentage = &v
 }
 
@@ -349,9 +349,9 @@ func (o *DtoCouponApplicationResponse) SetDiscountType(v TypesCouponType) {
 }
 
 // GetDiscountedAmount returns the DiscountedAmount field value if set, zero value otherwise.
-func (o *DtoCouponApplicationResponse) GetDiscountedAmount() float32 {
+func (o *DtoCouponApplicationResponse) GetDiscountedAmount() string {
 	if o == nil || IsNil(o.DiscountedAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.DiscountedAmount
@@ -359,7 +359,7 @@ func (o *DtoCouponApplicationResponse) GetDiscountedAmount() float32 {
 
 // GetDiscountedAmountOk returns a tuple with the DiscountedAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCouponApplicationResponse) GetDiscountedAmountOk() (*float32, bool) {
+func (o *DtoCouponApplicationResponse) GetDiscountedAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.DiscountedAmount) {
 		return nil, false
 	}
@@ -375,8 +375,8 @@ func (o *DtoCouponApplicationResponse) HasDiscountedAmount() bool {
 	return false
 }
 
-// SetDiscountedAmount gets a reference to the given float32 and assigns it to the DiscountedAmount field.
-func (o *DtoCouponApplicationResponse) SetDiscountedAmount(v float32) {
+// SetDiscountedAmount gets a reference to the given string and assigns it to the DiscountedAmount field.
+func (o *DtoCouponApplicationResponse) SetDiscountedAmount(v string) {
 	o.DiscountedAmount = &v
 }
 
@@ -413,9 +413,9 @@ func (o *DtoCouponApplicationResponse) SetEnvironmentId(v string) {
 }
 
 // GetFinalPrice returns the FinalPrice field value if set, zero value otherwise.
-func (o *DtoCouponApplicationResponse) GetFinalPrice() float32 {
+func (o *DtoCouponApplicationResponse) GetFinalPrice() string {
 	if o == nil || IsNil(o.FinalPrice) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.FinalPrice
@@ -423,7 +423,7 @@ func (o *DtoCouponApplicationResponse) GetFinalPrice() float32 {
 
 // GetFinalPriceOk returns a tuple with the FinalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCouponApplicationResponse) GetFinalPriceOk() (*float32, bool) {
+func (o *DtoCouponApplicationResponse) GetFinalPriceOk() (*string, bool) {
 	if o == nil || IsNil(o.FinalPrice) {
 		return nil, false
 	}
@@ -439,8 +439,8 @@ func (o *DtoCouponApplicationResponse) HasFinalPrice() bool {
 	return false
 }
 
-// SetFinalPrice gets a reference to the given float32 and assigns it to the FinalPrice field.
-func (o *DtoCouponApplicationResponse) SetFinalPrice(v float32) {
+// SetFinalPrice gets a reference to the given string and assigns it to the FinalPrice field.
+func (o *DtoCouponApplicationResponse) SetFinalPrice(v string) {
 	o.FinalPrice = &v
 }
 
@@ -573,9 +573,9 @@ func (o *DtoCouponApplicationResponse) SetMetadata(v map[string]string) {
 }
 
 // GetOriginalPrice returns the OriginalPrice field value if set, zero value otherwise.
-func (o *DtoCouponApplicationResponse) GetOriginalPrice() float32 {
+func (o *DtoCouponApplicationResponse) GetOriginalPrice() string {
 	if o == nil || IsNil(o.OriginalPrice) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.OriginalPrice
@@ -583,7 +583,7 @@ func (o *DtoCouponApplicationResponse) GetOriginalPrice() float32 {
 
 // GetOriginalPriceOk returns a tuple with the OriginalPrice field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCouponApplicationResponse) GetOriginalPriceOk() (*float32, bool) {
+func (o *DtoCouponApplicationResponse) GetOriginalPriceOk() (*string, bool) {
 	if o == nil || IsNil(o.OriginalPrice) {
 		return nil, false
 	}
@@ -599,8 +599,8 @@ func (o *DtoCouponApplicationResponse) HasOriginalPrice() bool {
 	return false
 }
 
-// SetOriginalPrice gets a reference to the given float32 and assigns it to the OriginalPrice field.
-func (o *DtoCouponApplicationResponse) SetOriginalPrice(v float32) {
+// SetOriginalPrice gets a reference to the given string and assigns it to the OriginalPrice field.
+func (o *DtoCouponApplicationResponse) SetOriginalPrice(v string) {
 	o.OriginalPrice = &v
 }
 

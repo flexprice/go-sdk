@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BaseCurrency** | Pointer to **string** |  | [optional] 
 **Code** | Pointer to **string** |  | [optional] 
-**ConversionRate** | Pointer to **float32** |  | [optional] 
+**ConversionRate** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **EnvironmentId** | Pointer to **string** |  | [optional] 
@@ -90,20 +90,20 @@ HasCode returns a boolean if a field has been set.
 
 ### GetConversionRate
 
-`func (o *DtoPriceUnitResponse) GetConversionRate() float32`
+`func (o *DtoPriceUnitResponse) GetConversionRate() string`
 
 GetConversionRate returns the ConversionRate field if non-nil, zero value otherwise.
 
 ### GetConversionRateOk
 
-`func (o *DtoPriceUnitResponse) GetConversionRateOk() (*float32, bool)`
+`func (o *DtoPriceUnitResponse) GetConversionRateOk() (*string, bool)`
 
 GetConversionRateOk returns a tuple with the ConversionRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConversionRate
 
-`func (o *DtoPriceUnitResponse) SetConversionRate(v float32)`
+`func (o *DtoPriceUnitResponse) SetConversionRate(v string)`
 
 SetConversionRate sets ConversionRate field to given value.
 

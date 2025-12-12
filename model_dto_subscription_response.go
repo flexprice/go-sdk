@@ -37,7 +37,7 @@ type DtoSubscriptionResponse struct {
 	// CollectionMethod determines how invoices are collected
 	CollectionMethod *string `json:"collection_method,omitempty"`
 	// CommitmentAmount is the minimum amount a customer commits to paying for a billing period
-	CommitmentAmount *float32 `json:"commitment_amount,omitempty"`
+	CommitmentAmount *string `json:"commitment_amount,omitempty"`
 	// CouponAssociations are the coupon associations for this subscription
 	CouponAssociations []DtoCouponAssociationResponse `json:"coupon_associations,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
@@ -71,7 +71,7 @@ type DtoSubscriptionResponse struct {
 	LookupKey *string `json:"lookup_key,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	// OverageFactor is a multiplier applied to usage beyond the commitment amount
-	OverageFactor *float32 `json:"overage_factor,omitempty"`
+	OverageFactor *string `json:"overage_factor,omitempty"`
 	PauseStatus *TypesPauseStatus `json:"pause_status,omitempty"`
 	Pauses []SubscriptionSubscriptionPause `json:"pauses,omitempty"`
 	// PaymentBehavior determines how subscription payments are handled
@@ -435,9 +435,9 @@ func (o *DtoSubscriptionResponse) SetCollectionMethod(v string) {
 }
 
 // GetCommitmentAmount returns the CommitmentAmount field value if set, zero value otherwise.
-func (o *DtoSubscriptionResponse) GetCommitmentAmount() float32 {
+func (o *DtoSubscriptionResponse) GetCommitmentAmount() string {
 	if o == nil || IsNil(o.CommitmentAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.CommitmentAmount
@@ -445,7 +445,7 @@ func (o *DtoSubscriptionResponse) GetCommitmentAmount() float32 {
 
 // GetCommitmentAmountOk returns a tuple with the CommitmentAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoSubscriptionResponse) GetCommitmentAmountOk() (*float32, bool) {
+func (o *DtoSubscriptionResponse) GetCommitmentAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.CommitmentAmount) {
 		return nil, false
 	}
@@ -461,8 +461,8 @@ func (o *DtoSubscriptionResponse) HasCommitmentAmount() bool {
 	return false
 }
 
-// SetCommitmentAmount gets a reference to the given float32 and assigns it to the CommitmentAmount field.
-func (o *DtoSubscriptionResponse) SetCommitmentAmount(v float32) {
+// SetCommitmentAmount gets a reference to the given string and assigns it to the CommitmentAmount field.
+func (o *DtoSubscriptionResponse) SetCommitmentAmount(v string) {
 	o.CommitmentAmount = &v
 }
 
@@ -1107,9 +1107,9 @@ func (o *DtoSubscriptionResponse) SetMetadata(v map[string]string) {
 }
 
 // GetOverageFactor returns the OverageFactor field value if set, zero value otherwise.
-func (o *DtoSubscriptionResponse) GetOverageFactor() float32 {
+func (o *DtoSubscriptionResponse) GetOverageFactor() string {
 	if o == nil || IsNil(o.OverageFactor) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.OverageFactor
@@ -1117,7 +1117,7 @@ func (o *DtoSubscriptionResponse) GetOverageFactor() float32 {
 
 // GetOverageFactorOk returns a tuple with the OverageFactor field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoSubscriptionResponse) GetOverageFactorOk() (*float32, bool) {
+func (o *DtoSubscriptionResponse) GetOverageFactorOk() (*string, bool) {
 	if o == nil || IsNil(o.OverageFactor) {
 		return nil, false
 	}
@@ -1133,8 +1133,8 @@ func (o *DtoSubscriptionResponse) HasOverageFactor() bool {
 	return false
 }
 
-// SetOverageFactor gets a reference to the given float32 and assigns it to the OverageFactor field.
-func (o *DtoSubscriptionResponse) SetOverageFactor(v float32) {
+// SetOverageFactor gets a reference to the given string and assigns it to the OverageFactor field.
+func (o *DtoSubscriptionResponse) SetOverageFactor(v string) {
 	o.OverageFactor = &v
 }
 

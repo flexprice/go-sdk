@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **CancelAtPeriodEnd** | Pointer to **bool** | CancelAtPeriodEnd is whether the subscription was canceled at the end of the current period | [optional] 
 **CancelledAt** | Pointer to **string** | CanceledAt is the date the subscription was canceled | [optional] 
 **CollectionMethod** | Pointer to **string** | CollectionMethod determines how invoices are collected | [optional] 
-**CommitmentAmount** | Pointer to **float32** | CommitmentAmount is the minimum amount a customer commits to paying for a billing period | [optional] 
+**CommitmentAmount** | Pointer to **string** | CommitmentAmount is the minimum amount a customer commits to paying for a billing period | [optional] 
 **CouponAssociations** | Pointer to [**[]DtoCouponAssociationResponse**](DtoCouponAssociationResponse.md) | CouponAssociations are the coupon associations for this subscription | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
@@ -35,7 +35,7 @@ Name | Type | Description | Notes
 **LineItems** | Pointer to [**[]SubscriptionSubscriptionLineItem**](SubscriptionSubscriptionLineItem.md) |  | [optional] 
 **LookupKey** | Pointer to **string** | LookupKey is the key used to lookup the subscription in our system | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
-**OverageFactor** | Pointer to **float32** | OverageFactor is a multiplier applied to usage beyond the commitment amount | [optional] 
+**OverageFactor** | Pointer to **string** | OverageFactor is a multiplier applied to usage beyond the commitment amount | [optional] 
 **PauseStatus** | Pointer to [**TypesPauseStatus**](TypesPauseStatus.md) |  | [optional] 
 **Pauses** | Pointer to [**[]SubscriptionSubscriptionPause**](SubscriptionSubscriptionPause.md) |  | [optional] 
 **PaymentBehavior** | Pointer to **string** | PaymentBehavior determines how subscription payments are handled | [optional] 
@@ -324,20 +324,20 @@ HasCollectionMethod returns a boolean if a field has been set.
 
 ### GetCommitmentAmount
 
-`func (o *DtoSubscriptionResponse) GetCommitmentAmount() float32`
+`func (o *DtoSubscriptionResponse) GetCommitmentAmount() string`
 
 GetCommitmentAmount returns the CommitmentAmount field if non-nil, zero value otherwise.
 
 ### GetCommitmentAmountOk
 
-`func (o *DtoSubscriptionResponse) GetCommitmentAmountOk() (*float32, bool)`
+`func (o *DtoSubscriptionResponse) GetCommitmentAmountOk() (*string, bool)`
 
 GetCommitmentAmountOk returns a tuple with the CommitmentAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCommitmentAmount
 
-`func (o *DtoSubscriptionResponse) SetCommitmentAmount(v float32)`
+`func (o *DtoSubscriptionResponse) SetCommitmentAmount(v string)`
 
 SetCommitmentAmount sets CommitmentAmount field to given value.
 
@@ -849,20 +849,20 @@ HasMetadata returns a boolean if a field has been set.
 
 ### GetOverageFactor
 
-`func (o *DtoSubscriptionResponse) GetOverageFactor() float32`
+`func (o *DtoSubscriptionResponse) GetOverageFactor() string`
 
 GetOverageFactor returns the OverageFactor field if non-nil, zero value otherwise.
 
 ### GetOverageFactorOk
 
-`func (o *DtoSubscriptionResponse) GetOverageFactorOk() (*float32, bool)`
+`func (o *DtoSubscriptionResponse) GetOverageFactorOk() (*string, bool)`
 
 GetOverageFactorOk returns a tuple with the OverageFactor field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOverageFactor
 
-`func (o *DtoSubscriptionResponse) SetOverageFactor(v float32)`
+`func (o *DtoSubscriptionResponse) SetOverageFactor(v string)`
 
 SetOverageFactor sets OverageFactor field to given value.
 

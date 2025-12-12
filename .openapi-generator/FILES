@@ -1,7 +1,5 @@
 .gitignore
-.openapi-generator-ignore
 .travis.yml
-README.md
 api/openapi.yaml
 api_addons.go
 api_alert_logs.go
@@ -420,8 +418,6 @@ docs/UsersAPI.md
 docs/WalletsAPI.md
 docs/WebhooksAPI.md
 git_push.sh
-go.mod
-go.sum
 model_costsheet_filter.go
 model_coupon_association_coupon_association.go
 model_creditnote_credit_note_line_item.go

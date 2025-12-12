@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **float32** | Amount stored in main currency units (e.g., dollars, not cents) For USD: 12.50 means $12.50 | [optional] 
+**Amount** | Pointer to **string** | Amount stored in main currency units (e.g., dollars, not cents) For USD: 12.50 means $12.50 | [optional] 
 **BillingCadence** | Pointer to [**TypesBillingCadence**](TypesBillingCadence.md) |  | [optional] 
 **BillingModel** | Pointer to [**TypesBillingModel**](TypesBillingModel.md) |  | [optional] 
 **BillingPeriod** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
 **BillingPeriodCount** | Pointer to **int32** | BillingPeriodCount is the count of the billing period ex 1, 3, 6, 12 | [optional] 
-**ConversionRate** | Pointer to **float32** | ConversionRate is the rate of the price unit to the base currency For BTC: 1 BTC &#x3D; 100000000 USD | [optional] 
+**ConversionRate** | Pointer to **string** | ConversionRate is the rate of the price unit to the base currency For BTC: 1 BTC &#x3D; 100000000 USD | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **Currency** | Pointer to **string** | Currency 3 digit ISO currency code in lowercase ex usd, eur, gbp | [optional] 
@@ -28,7 +28,7 @@ Name | Type | Description | Notes
 **MeterId** | Pointer to **string** | MeterID is the id of the meter for usage based pricing | [optional] 
 **ParentPriceId** | Pointer to **string** | ParentPriceID references the root price (always set for price lineage tracking) | [optional] 
 **PriceUnit** | Pointer to **string** | PriceUnit 3 digit ISO currency code in lowercase ex btc For BTC: btc | [optional] 
-**PriceUnitAmount** | Pointer to **float32** | PriceUnitAmount is the amount stored in price unit For BTC: 0.00000001 means 0.00000001 BTC | [optional] 
+**PriceUnitAmount** | Pointer to **string** | PriceUnitAmount is the amount stored in price unit For BTC: 0.00000001 means 0.00000001 BTC | [optional] 
 **PriceUnitId** | Pointer to **string** | PriceUnitID is the id of the price unit | [optional] 
 **PriceUnitTiers** | Pointer to [**[]PricePriceTier**](PricePriceTier.md) | PriceUnitTiers are the tiers for the price unit | [optional] 
 **PriceUnitType** | Pointer to [**TypesPriceUnitType**](TypesPriceUnitType.md) |  | [optional] 
@@ -64,20 +64,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *PricePrice) GetAmount() float32`
+`func (o *PricePrice) GetAmount() string`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *PricePrice) GetAmountOk() (*float32, bool)`
+`func (o *PricePrice) GetAmountOk() (*string, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *PricePrice) SetAmount(v float32)`
+`func (o *PricePrice) SetAmount(v string)`
 
 SetAmount sets Amount field to given value.
 
@@ -189,20 +189,20 @@ HasBillingPeriodCount returns a boolean if a field has been set.
 
 ### GetConversionRate
 
-`func (o *PricePrice) GetConversionRate() float32`
+`func (o *PricePrice) GetConversionRate() string`
 
 GetConversionRate returns the ConversionRate field if non-nil, zero value otherwise.
 
 ### GetConversionRateOk
 
-`func (o *PricePrice) GetConversionRateOk() (*float32, bool)`
+`func (o *PricePrice) GetConversionRateOk() (*string, bool)`
 
 GetConversionRateOk returns a tuple with the ConversionRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConversionRate
 
-`func (o *PricePrice) SetConversionRate(v float32)`
+`func (o *PricePrice) SetConversionRate(v string)`
 
 SetConversionRate sets ConversionRate field to given value.
 
@@ -664,20 +664,20 @@ HasPriceUnit returns a boolean if a field has been set.
 
 ### GetPriceUnitAmount
 
-`func (o *PricePrice) GetPriceUnitAmount() float32`
+`func (o *PricePrice) GetPriceUnitAmount() string`
 
 GetPriceUnitAmount returns the PriceUnitAmount field if non-nil, zero value otherwise.
 
 ### GetPriceUnitAmountOk
 
-`func (o *PricePrice) GetPriceUnitAmountOk() (*float32, bool)`
+`func (o *PricePrice) GetPriceUnitAmountOk() (*string, bool)`
 
 GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriceUnitAmount
 
-`func (o *PricePrice) SetPriceUnitAmount(v float32)`
+`func (o *PricePrice) SetPriceUnitAmount(v string)`
 
 SetPriceUnitAmount sets PriceUnitAmount field to given value.
 

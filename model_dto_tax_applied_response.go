@@ -30,11 +30,11 @@ type DtoTaxAppliedResponse struct {
 	IdempotencyKey *string `json:"idempotency_key,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
-	TaxAmount *float32 `json:"tax_amount,omitempty"`
+	TaxAmount *string `json:"tax_amount,omitempty"`
 	TaxAssociationId *string `json:"tax_association_id,omitempty"`
 	TaxRate *DtoTaxRateResponse `json:"tax_rate,omitempty"`
 	TaxRateId *string `json:"tax_rate_id,omitempty"`
-	TaxableAmount *float32 `json:"taxable_amount,omitempty"`
+	TaxableAmount *string `json:"taxable_amount,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	UpdatedBy *string `json:"updated_by,omitempty"`
@@ -410,9 +410,9 @@ func (o *DtoTaxAppliedResponse) SetStatus(v TypesStatus) {
 }
 
 // GetTaxAmount returns the TaxAmount field value if set, zero value otherwise.
-func (o *DtoTaxAppliedResponse) GetTaxAmount() float32 {
+func (o *DtoTaxAppliedResponse) GetTaxAmount() string {
 	if o == nil || IsNil(o.TaxAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.TaxAmount
@@ -420,7 +420,7 @@ func (o *DtoTaxAppliedResponse) GetTaxAmount() float32 {
 
 // GetTaxAmountOk returns a tuple with the TaxAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoTaxAppliedResponse) GetTaxAmountOk() (*float32, bool) {
+func (o *DtoTaxAppliedResponse) GetTaxAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.TaxAmount) {
 		return nil, false
 	}
@@ -436,8 +436,8 @@ func (o *DtoTaxAppliedResponse) HasTaxAmount() bool {
 	return false
 }
 
-// SetTaxAmount gets a reference to the given float32 and assigns it to the TaxAmount field.
-func (o *DtoTaxAppliedResponse) SetTaxAmount(v float32) {
+// SetTaxAmount gets a reference to the given string and assigns it to the TaxAmount field.
+func (o *DtoTaxAppliedResponse) SetTaxAmount(v string) {
 	o.TaxAmount = &v
 }
 
@@ -538,9 +538,9 @@ func (o *DtoTaxAppliedResponse) SetTaxRateId(v string) {
 }
 
 // GetTaxableAmount returns the TaxableAmount field value if set, zero value otherwise.
-func (o *DtoTaxAppliedResponse) GetTaxableAmount() float32 {
+func (o *DtoTaxAppliedResponse) GetTaxableAmount() string {
 	if o == nil || IsNil(o.TaxableAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.TaxableAmount
@@ -548,7 +548,7 @@ func (o *DtoTaxAppliedResponse) GetTaxableAmount() float32 {
 
 // GetTaxableAmountOk returns a tuple with the TaxableAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoTaxAppliedResponse) GetTaxableAmountOk() (*float32, bool) {
+func (o *DtoTaxAppliedResponse) GetTaxableAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.TaxableAmount) {
 		return nil, false
 	}
@@ -564,8 +564,8 @@ func (o *DtoTaxAppliedResponse) HasTaxableAmount() bool {
 	return false
 }
 
-// SetTaxableAmount gets a reference to the given float32 and assigns it to the TaxableAmount field.
-func (o *DtoTaxAppliedResponse) SetTaxableAmount(v float32) {
+// SetTaxableAmount gets a reference to the given string and assigns it to the TaxableAmount field.
+func (o *DtoTaxAppliedResponse) SetTaxableAmount(v string) {
 	o.TaxableAmount = &v
 }
 

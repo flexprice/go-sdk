@@ -23,7 +23,7 @@ type MeterAggregation struct {
 	// Field is the key in $event.properties on which the aggregation is to be applied For ex if the aggregation type is sum for API usage, the field could be \"duration_ms\"
 	Field *string `json:"field,omitempty"`
 	// Multiplier is the multiplier for the aggregation For ex if the aggregation type is sum_with_multiplier for API usage, the multiplier could be 1000 to scale up by a factor of 1000. If not provided, it will be null.
-	Multiplier *float32 `json:"multiplier,omitempty"`
+	Multiplier *string `json:"multiplier,omitempty"`
 	Type *TypesAggregationType `json:"type,omitempty"`
 }
 
@@ -109,9 +109,9 @@ func (o *MeterAggregation) SetField(v string) {
 }
 
 // GetMultiplier returns the Multiplier field value if set, zero value otherwise.
-func (o *MeterAggregation) GetMultiplier() float32 {
+func (o *MeterAggregation) GetMultiplier() string {
 	if o == nil || IsNil(o.Multiplier) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Multiplier
@@ -119,7 +119,7 @@ func (o *MeterAggregation) GetMultiplier() float32 {
 
 // GetMultiplierOk returns a tuple with the Multiplier field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MeterAggregation) GetMultiplierOk() (*float32, bool) {
+func (o *MeterAggregation) GetMultiplierOk() (*string, bool) {
 	if o == nil || IsNil(o.Multiplier) {
 		return nil, false
 	}
@@ -135,8 +135,8 @@ func (o *MeterAggregation) HasMultiplier() bool {
 	return false
 }
 
-// SetMultiplier gets a reference to the given float32 and assigns it to the Multiplier field.
-func (o *MeterAggregation) SetMultiplier(v float32) {
+// SetMultiplier gets a reference to the given string and assigns it to the Multiplier field.
+func (o *MeterAggregation) SetMultiplier(v string) {
 	o.Multiplier = &v
 }
 

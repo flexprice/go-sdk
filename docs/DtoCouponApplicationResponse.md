@@ -11,16 +11,16 @@ Name | Type | Description | Notes
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **Currency** | Pointer to **string** |  | [optional] 
-**DiscountPercentage** | Pointer to **float32** |  | [optional] 
+**DiscountPercentage** | Pointer to **string** |  | [optional] 
 **DiscountType** | Pointer to [**TypesCouponType**](TypesCouponType.md) |  | [optional] 
-**DiscountedAmount** | Pointer to **float32** |  | [optional] 
+**DiscountedAmount** | Pointer to **string** |  | [optional] 
 **EnvironmentId** | Pointer to **string** |  | [optional] 
-**FinalPrice** | Pointer to **float32** |  | [optional] 
+**FinalPrice** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **InvoiceId** | Pointer to **string** |  | [optional] 
 **InvoiceLineItemId** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
-**OriginalPrice** | Pointer to **float32** |  | [optional] 
+**OriginalPrice** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **SubscriptionId** | Pointer to **string** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
@@ -223,20 +223,20 @@ HasCurrency returns a boolean if a field has been set.
 
 ### GetDiscountPercentage
 
-`func (o *DtoCouponApplicationResponse) GetDiscountPercentage() float32`
+`func (o *DtoCouponApplicationResponse) GetDiscountPercentage() string`
 
 GetDiscountPercentage returns the DiscountPercentage field if non-nil, zero value otherwise.
 
 ### GetDiscountPercentageOk
 
-`func (o *DtoCouponApplicationResponse) GetDiscountPercentageOk() (*float32, bool)`
+`func (o *DtoCouponApplicationResponse) GetDiscountPercentageOk() (*string, bool)`
 
 GetDiscountPercentageOk returns a tuple with the DiscountPercentage field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDiscountPercentage
 
-`func (o *DtoCouponApplicationResponse) SetDiscountPercentage(v float32)`
+`func (o *DtoCouponApplicationResponse) SetDiscountPercentage(v string)`
 
 SetDiscountPercentage sets DiscountPercentage field to given value.
 
@@ -273,20 +273,20 @@ HasDiscountType returns a boolean if a field has been set.
 
 ### GetDiscountedAmount
 
-`func (o *DtoCouponApplicationResponse) GetDiscountedAmount() float32`
+`func (o *DtoCouponApplicationResponse) GetDiscountedAmount() string`
 
 GetDiscountedAmount returns the DiscountedAmount field if non-nil, zero value otherwise.
 
 ### GetDiscountedAmountOk
 
-`func (o *DtoCouponApplicationResponse) GetDiscountedAmountOk() (*float32, bool)`
+`func (o *DtoCouponApplicationResponse) GetDiscountedAmountOk() (*string, bool)`
 
 GetDiscountedAmountOk returns a tuple with the DiscountedAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDiscountedAmount
 
-`func (o *DtoCouponApplicationResponse) SetDiscountedAmount(v float32)`
+`func (o *DtoCouponApplicationResponse) SetDiscountedAmount(v string)`
 
 SetDiscountedAmount sets DiscountedAmount field to given value.
 
@@ -323,20 +323,20 @@ HasEnvironmentId returns a boolean if a field has been set.
 
 ### GetFinalPrice
 
-`func (o *DtoCouponApplicationResponse) GetFinalPrice() float32`
+`func (o *DtoCouponApplicationResponse) GetFinalPrice() string`
 
 GetFinalPrice returns the FinalPrice field if non-nil, zero value otherwise.
 
 ### GetFinalPriceOk
 
-`func (o *DtoCouponApplicationResponse) GetFinalPriceOk() (*float32, bool)`
+`func (o *DtoCouponApplicationResponse) GetFinalPriceOk() (*string, bool)`
 
 GetFinalPriceOk returns a tuple with the FinalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFinalPrice
 
-`func (o *DtoCouponApplicationResponse) SetFinalPrice(v float32)`
+`func (o *DtoCouponApplicationResponse) SetFinalPrice(v string)`
 
 SetFinalPrice sets FinalPrice field to given value.
 
@@ -448,20 +448,20 @@ HasMetadata returns a boolean if a field has been set.
 
 ### GetOriginalPrice
 
-`func (o *DtoCouponApplicationResponse) GetOriginalPrice() float32`
+`func (o *DtoCouponApplicationResponse) GetOriginalPrice() string`
 
 GetOriginalPrice returns the OriginalPrice field if non-nil, zero value otherwise.
 
 ### GetOriginalPriceOk
 
-`func (o *DtoCouponApplicationResponse) GetOriginalPriceOk() (*float32, bool)`
+`func (o *DtoCouponApplicationResponse) GetOriginalPriceOk() (*string, bool)`
 
 GetOriginalPriceOk returns a tuple with the OriginalPrice field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOriginalPrice
 
-`func (o *DtoCouponApplicationResponse) SetOriginalPrice(v float32)`
+`func (o *DtoCouponApplicationResponse) SetOriginalPrice(v string)`
 
 SetOriginalPrice sets OriginalPrice field to given value.
 

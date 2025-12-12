@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BucketSize** | Pointer to [**TypesWindowSize**](TypesWindowSize.md) |  | [optional] 
 **Field** | Pointer to **string** | Field is the key in $event.properties on which the aggregation is to be applied For ex if the aggregation type is sum for API usage, the field could be \&quot;duration_ms\&quot; | [optional] 
-**Multiplier** | Pointer to **float32** | Multiplier is the multiplier for the aggregation For ex if the aggregation type is sum_with_multiplier for API usage, the multiplier could be 1000 to scale up by a factor of 1000. If not provided, it will be null. | [optional] 
+**Multiplier** | Pointer to **string** | Multiplier is the multiplier for the aggregation For ex if the aggregation type is sum_with_multiplier for API usage, the multiplier could be 1000 to scale up by a factor of 1000. If not provided, it will be null. | [optional] 
 **Type** | Pointer to [**TypesAggregationType**](TypesAggregationType.md) |  | [optional] 
 
 ## Methods
@@ -80,20 +80,20 @@ HasField returns a boolean if a field has been set.
 
 ### GetMultiplier
 
-`func (o *MeterAggregation) GetMultiplier() float32`
+`func (o *MeterAggregation) GetMultiplier() string`
 
 GetMultiplier returns the Multiplier field if non-nil, zero value otherwise.
 
 ### GetMultiplierOk
 
-`func (o *MeterAggregation) GetMultiplierOk() (*float32, bool)`
+`func (o *MeterAggregation) GetMultiplierOk() (*string, bool)`
 
 GetMultiplierOk returns a tuple with the Multiplier field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMultiplier
 
-`func (o *MeterAggregation) SetMultiplier(v float32)`
+`func (o *MeterAggregation) SetMultiplier(v string)`
 
 SetMultiplier sets Multiplier field to given value.
 

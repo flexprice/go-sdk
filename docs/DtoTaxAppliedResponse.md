@@ -15,11 +15,11 @@ Name | Type | Description | Notes
 **IdempotencyKey** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
-**TaxAmount** | Pointer to **float32** |  | [optional] 
+**TaxAmount** | Pointer to **string** |  | [optional] 
 **TaxAssociationId** | Pointer to **string** |  | [optional] 
 **TaxRate** | Pointer to [**DtoTaxRateResponse**](DtoTaxRateResponse.md) |  | [optional] 
 **TaxRateId** | Pointer to **string** |  | [optional] 
-**TaxableAmount** | Pointer to **float32** |  | [optional] 
+**TaxableAmount** | Pointer to **string** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedBy** | Pointer to **string** |  | [optional] 
@@ -320,20 +320,20 @@ HasStatus returns a boolean if a field has been set.
 
 ### GetTaxAmount
 
-`func (o *DtoTaxAppliedResponse) GetTaxAmount() float32`
+`func (o *DtoTaxAppliedResponse) GetTaxAmount() string`
 
 GetTaxAmount returns the TaxAmount field if non-nil, zero value otherwise.
 
 ### GetTaxAmountOk
 
-`func (o *DtoTaxAppliedResponse) GetTaxAmountOk() (*float32, bool)`
+`func (o *DtoTaxAppliedResponse) GetTaxAmountOk() (*string, bool)`
 
 GetTaxAmountOk returns a tuple with the TaxAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxAmount
 
-`func (o *DtoTaxAppliedResponse) SetTaxAmount(v float32)`
+`func (o *DtoTaxAppliedResponse) SetTaxAmount(v string)`
 
 SetTaxAmount sets TaxAmount field to given value.
 
@@ -420,20 +420,20 @@ HasTaxRateId returns a boolean if a field has been set.
 
 ### GetTaxableAmount
 
-`func (o *DtoTaxAppliedResponse) GetTaxableAmount() float32`
+`func (o *DtoTaxAppliedResponse) GetTaxableAmount() string`
 
 GetTaxableAmount returns the TaxableAmount field if non-nil, zero value otherwise.
 
 ### GetTaxableAmountOk
 
-`func (o *DtoTaxAppliedResponse) GetTaxableAmountOk() (*float32, bool)`
+`func (o *DtoTaxAppliedResponse) GetTaxableAmountOk() (*string, bool)`
 
 GetTaxableAmountOk returns a tuple with the TaxableAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTaxableAmount
 
-`func (o *DtoTaxAppliedResponse) SetTaxableAmount(v float32)`
+`func (o *DtoTaxAppliedResponse) SetTaxableAmount(v string)`
 
 SetTaxableAmount sets TaxableAmount field to given value.
 

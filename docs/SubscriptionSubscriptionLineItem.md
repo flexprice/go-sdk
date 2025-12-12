@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **PriceType** | Pointer to [**TypesPriceType**](TypesPriceType.md) |  | [optional] 
 **PriceUnit** | Pointer to **string** |  | [optional] 
 **PriceUnitId** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **float32** |  | [optional] 
+**Quantity** | Pointer to **string** |  | [optional] 
 **StartDate** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **SubscriptionId** | Pointer to **string** |  | [optional] 
@@ -581,20 +581,20 @@ HasPriceUnitId returns a boolean if a field has been set.
 
 ### GetQuantity
 
-`func (o *SubscriptionSubscriptionLineItem) GetQuantity() float32`
+`func (o *SubscriptionSubscriptionLineItem) GetQuantity() string`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *SubscriptionSubscriptionLineItem) GetQuantityOk() (*float32, bool)`
+`func (o *SubscriptionSubscriptionLineItem) GetQuantityOk() (*string, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *SubscriptionSubscriptionLineItem) SetQuantity(v float32)`
+`func (o *SubscriptionSubscriptionLineItem) SetQuantity(v string)`
 
 SetQuantity sets Quantity field to given value.
 

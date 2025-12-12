@@ -20,14 +20,14 @@ var _ MappedNullable = &PricePrice{}
 // PricePrice struct for PricePrice
 type PricePrice struct {
 	// Amount stored in main currency units (e.g., dollars, not cents) For USD: 12.50 means $12.50
-	Amount *float32 `json:"amount,omitempty"`
+	Amount *string `json:"amount,omitempty"`
 	BillingCadence *TypesBillingCadence `json:"billing_cadence,omitempty"`
 	BillingModel *TypesBillingModel `json:"billing_model,omitempty"`
 	BillingPeriod *TypesBillingPeriod `json:"billing_period,omitempty"`
 	// BillingPeriodCount is the count of the billing period ex 1, 3, 6, 12
 	BillingPeriodCount *int32 `json:"billing_period_count,omitempty"`
 	// ConversionRate is the rate of the price unit to the base currency For BTC: 1 BTC = 100000000 USD
-	ConversionRate *float32 `json:"conversion_rate,omitempty"`
+	ConversionRate *string `json:"conversion_rate,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
 	// Currency 3 digit ISO currency code in lowercase ex usd, eur, gbp
@@ -60,7 +60,7 @@ type PricePrice struct {
 	// PriceUnit 3 digit ISO currency code in lowercase ex btc For BTC: btc
 	PriceUnit *string `json:"price_unit,omitempty"`
 	// PriceUnitAmount is the amount stored in price unit For BTC: 0.00000001 means 0.00000001 BTC
-	PriceUnitAmount *float32 `json:"price_unit_amount,omitempty"`
+	PriceUnitAmount *string `json:"price_unit_amount,omitempty"`
 	// PriceUnitID is the id of the price unit
 	PriceUnitId *string `json:"price_unit_id,omitempty"`
 	// PriceUnitTiers are the tiers for the price unit
@@ -98,9 +98,9 @@ func NewPricePriceWithDefaults() *PricePrice {
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *PricePrice) GetAmount() float32 {
+func (o *PricePrice) GetAmount() string {
 	if o == nil || IsNil(o.Amount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Amount
@@ -108,7 +108,7 @@ func (o *PricePrice) GetAmount() float32 {
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PricePrice) GetAmountOk() (*float32, bool) {
+func (o *PricePrice) GetAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
@@ -124,8 +124,8 @@ func (o *PricePrice) HasAmount() bool {
 	return false
 }
 
-// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
-func (o *PricePrice) SetAmount(v float32) {
+// SetAmount gets a reference to the given string and assigns it to the Amount field.
+func (o *PricePrice) SetAmount(v string) {
 	o.Amount = &v
 }
 
@@ -258,9 +258,9 @@ func (o *PricePrice) SetBillingPeriodCount(v int32) {
 }
 
 // GetConversionRate returns the ConversionRate field value if set, zero value otherwise.
-func (o *PricePrice) GetConversionRate() float32 {
+func (o *PricePrice) GetConversionRate() string {
 	if o == nil || IsNil(o.ConversionRate) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.ConversionRate
@@ -268,7 +268,7 @@ func (o *PricePrice) GetConversionRate() float32 {
 
 // GetConversionRateOk returns a tuple with the ConversionRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PricePrice) GetConversionRateOk() (*float32, bool) {
+func (o *PricePrice) GetConversionRateOk() (*string, bool) {
 	if o == nil || IsNil(o.ConversionRate) {
 		return nil, false
 	}
@@ -284,8 +284,8 @@ func (o *PricePrice) HasConversionRate() bool {
 	return false
 }
 
-// SetConversionRate gets a reference to the given float32 and assigns it to the ConversionRate field.
-func (o *PricePrice) SetConversionRate(v float32) {
+// SetConversionRate gets a reference to the given string and assigns it to the ConversionRate field.
+func (o *PricePrice) SetConversionRate(v string) {
 	o.ConversionRate = &v
 }
 
@@ -866,9 +866,9 @@ func (o *PricePrice) SetPriceUnit(v string) {
 }
 
 // GetPriceUnitAmount returns the PriceUnitAmount field value if set, zero value otherwise.
-func (o *PricePrice) GetPriceUnitAmount() float32 {
+func (o *PricePrice) GetPriceUnitAmount() string {
 	if o == nil || IsNil(o.PriceUnitAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.PriceUnitAmount
@@ -876,7 +876,7 @@ func (o *PricePrice) GetPriceUnitAmount() float32 {
 
 // GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PricePrice) GetPriceUnitAmountOk() (*float32, bool) {
+func (o *PricePrice) GetPriceUnitAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.PriceUnitAmount) {
 		return nil, false
 	}
@@ -892,8 +892,8 @@ func (o *PricePrice) HasPriceUnitAmount() bool {
 	return false
 }
 
-// SetPriceUnitAmount gets a reference to the given float32 and assigns it to the PriceUnitAmount field.
-func (o *PricePrice) SetPriceUnitAmount(v float32) {
+// SetPriceUnitAmount gets a reference to the given string and assigns it to the PriceUnitAmount field.
+func (o *PricePrice) SetPriceUnitAmount(v string) {
 	o.PriceUnitAmount = &v
 }
 

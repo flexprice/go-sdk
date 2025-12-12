@@ -20,9 +20,9 @@ var _ MappedNullable = &PricePriceTier{}
 // PricePriceTier struct for PricePriceTier
 type PricePriceTier struct {
 	// flat_amount is the flat amount for the given tier (optional) Applied on top of unit_amount*quantity. Useful for cases like \"2.7$ + 5c\"
-	FlatAmount *float32 `json:"flat_amount,omitempty"`
+	FlatAmount *string `json:"flat_amount,omitempty"`
 	// unit_amount is the amount per unit for the given tier
-	UnitAmount *float32 `json:"unit_amount,omitempty"`
+	UnitAmount *string `json:"unit_amount,omitempty"`
 	// up_to is the quantity up to which this tier applies. It is null for the last tier. IMPORTANT: Tier boundaries are INCLUSIVE. - If up_to is 1000, then quantity less than or equal to 1000 belongs to this tier - This behavior is consistent across both VOLUME and SLAB tier modes
 	UpTo *int32 `json:"up_to,omitempty"`
 }
@@ -45,9 +45,9 @@ func NewPricePriceTierWithDefaults() *PricePriceTier {
 }
 
 // GetFlatAmount returns the FlatAmount field value if set, zero value otherwise.
-func (o *PricePriceTier) GetFlatAmount() float32 {
+func (o *PricePriceTier) GetFlatAmount() string {
 	if o == nil || IsNil(o.FlatAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.FlatAmount
@@ -55,7 +55,7 @@ func (o *PricePriceTier) GetFlatAmount() float32 {
 
 // GetFlatAmountOk returns a tuple with the FlatAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PricePriceTier) GetFlatAmountOk() (*float32, bool) {
+func (o *PricePriceTier) GetFlatAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.FlatAmount) {
 		return nil, false
 	}
@@ -71,15 +71,15 @@ func (o *PricePriceTier) HasFlatAmount() bool {
 	return false
 }
 
-// SetFlatAmount gets a reference to the given float32 and assigns it to the FlatAmount field.
-func (o *PricePriceTier) SetFlatAmount(v float32) {
+// SetFlatAmount gets a reference to the given string and assigns it to the FlatAmount field.
+func (o *PricePriceTier) SetFlatAmount(v string) {
 	o.FlatAmount = &v
 }
 
 // GetUnitAmount returns the UnitAmount field value if set, zero value otherwise.
-func (o *PricePriceTier) GetUnitAmount() float32 {
+func (o *PricePriceTier) GetUnitAmount() string {
 	if o == nil || IsNil(o.UnitAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.UnitAmount
@@ -87,7 +87,7 @@ func (o *PricePriceTier) GetUnitAmount() float32 {
 
 // GetUnitAmountOk returns a tuple with the UnitAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PricePriceTier) GetUnitAmountOk() (*float32, bool) {
+func (o *PricePriceTier) GetUnitAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.UnitAmount) {
 		return nil, false
 	}
@@ -103,8 +103,8 @@ func (o *PricePriceTier) HasUnitAmount() bool {
 	return false
 }
 
-// SetUnitAmount gets a reference to the given float32 and assigns it to the UnitAmount field.
-func (o *PricePriceTier) SetUnitAmount(v float32) {
+// SetUnitAmount gets a reference to the given string and assigns it to the UnitAmount field.
+func (o *PricePriceTier) SetUnitAmount(v string) {
 	o.UnitAmount = &v
 }
 

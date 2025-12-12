@@ -4,8 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**FlatAmount** | Pointer to **float32** | flat_amount is the flat amount for the given tier (optional) Applied on top of unit_amount*quantity. Useful for cases like \&quot;2.7$ + 5c\&quot; | [optional] 
-**UnitAmount** | Pointer to **float32** | unit_amount is the amount per unit for the given tier | [optional] 
+**FlatAmount** | Pointer to **string** | flat_amount is the flat amount for the given tier (optional) Applied on top of unit_amount*quantity. Useful for cases like \&quot;2.7$ + 5c\&quot; | [optional] 
+**UnitAmount** | Pointer to **string** | unit_amount is the amount per unit for the given tier | [optional] 
 **UpTo** | Pointer to **int32** | up_to is the quantity up to which this tier applies. It is null for the last tier. IMPORTANT: Tier boundaries are INCLUSIVE. - If up_to is 1000, then quantity less than or equal to 1000 belongs to this tier - This behavior is consistent across both VOLUME and SLAB tier modes | [optional] 
 
 ## Methods
@@ -29,20 +29,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetFlatAmount
 
-`func (o *PricePriceTier) GetFlatAmount() float32`
+`func (o *PricePriceTier) GetFlatAmount() string`
 
 GetFlatAmount returns the FlatAmount field if non-nil, zero value otherwise.
 
 ### GetFlatAmountOk
 
-`func (o *PricePriceTier) GetFlatAmountOk() (*float32, bool)`
+`func (o *PricePriceTier) GetFlatAmountOk() (*string, bool)`
 
 GetFlatAmountOk returns a tuple with the FlatAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFlatAmount
 
-`func (o *PricePriceTier) SetFlatAmount(v float32)`
+`func (o *PricePriceTier) SetFlatAmount(v string)`
 
 SetFlatAmount sets FlatAmount field to given value.
 
@@ -54,20 +54,20 @@ HasFlatAmount returns a boolean if a field has been set.
 
 ### GetUnitAmount
 
-`func (o *PricePriceTier) GetUnitAmount() float32`
+`func (o *PricePriceTier) GetUnitAmount() string`
 
 GetUnitAmount returns the UnitAmount field if non-nil, zero value otherwise.
 
 ### GetUnitAmountOk
 
-`func (o *PricePriceTier) GetUnitAmountOk() (*float32, bool)`
+`func (o *PricePriceTier) GetUnitAmountOk() (*string, bool)`
 
 GetUnitAmountOk returns a tuple with the UnitAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetUnitAmount
 
-`func (o *PricePriceTier) SetUnitAmount(v float32)`
+`func (o *PricePriceTier) SetUnitAmount(v string)`
 
 SetUnitAmount sets UnitAmount field to given value.
 

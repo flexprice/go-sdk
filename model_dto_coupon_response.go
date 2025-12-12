@@ -19,7 +19,7 @@ var _ MappedNullable = &DtoCouponResponse{}
 
 // DtoCouponResponse struct for DtoCouponResponse
 type DtoCouponResponse struct {
-	AmountOff *float32 `json:"amount_off,omitempty"`
+	AmountOff *string `json:"amount_off,omitempty"`
 	Cadence *TypesCouponCadence `json:"cadence,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
@@ -30,7 +30,7 @@ type DtoCouponResponse struct {
 	MaxRedemptions *int32 `json:"max_redemptions,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	Name *string `json:"name,omitempty"`
-	PercentageOff *float32 `json:"percentage_off,omitempty"`
+	PercentageOff *string `json:"percentage_off,omitempty"`
 	RedeemAfter *string `json:"redeem_after,omitempty"`
 	RedeemBefore *string `json:"redeem_before,omitempty"`
 	Rules map[string]interface{} `json:"rules,omitempty"`
@@ -60,9 +60,9 @@ func NewDtoCouponResponseWithDefaults() *DtoCouponResponse {
 }
 
 // GetAmountOff returns the AmountOff field value if set, zero value otherwise.
-func (o *DtoCouponResponse) GetAmountOff() float32 {
+func (o *DtoCouponResponse) GetAmountOff() string {
 	if o == nil || IsNil(o.AmountOff) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.AmountOff
@@ -70,7 +70,7 @@ func (o *DtoCouponResponse) GetAmountOff() float32 {
 
 // GetAmountOffOk returns a tuple with the AmountOff field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCouponResponse) GetAmountOffOk() (*float32, bool) {
+func (o *DtoCouponResponse) GetAmountOffOk() (*string, bool) {
 	if o == nil || IsNil(o.AmountOff) {
 		return nil, false
 	}
@@ -86,8 +86,8 @@ func (o *DtoCouponResponse) HasAmountOff() bool {
 	return false
 }
 
-// SetAmountOff gets a reference to the given float32 and assigns it to the AmountOff field.
-func (o *DtoCouponResponse) SetAmountOff(v float32) {
+// SetAmountOff gets a reference to the given string and assigns it to the AmountOff field.
+func (o *DtoCouponResponse) SetAmountOff(v string) {
 	o.AmountOff = &v
 }
 
@@ -412,9 +412,9 @@ func (o *DtoCouponResponse) SetName(v string) {
 }
 
 // GetPercentageOff returns the PercentageOff field value if set, zero value otherwise.
-func (o *DtoCouponResponse) GetPercentageOff() float32 {
+func (o *DtoCouponResponse) GetPercentageOff() string {
 	if o == nil || IsNil(o.PercentageOff) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.PercentageOff
@@ -422,7 +422,7 @@ func (o *DtoCouponResponse) GetPercentageOff() float32 {
 
 // GetPercentageOffOk returns a tuple with the PercentageOff field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCouponResponse) GetPercentageOffOk() (*float32, bool) {
+func (o *DtoCouponResponse) GetPercentageOffOk() (*string, bool) {
 	if o == nil || IsNil(o.PercentageOff) {
 		return nil, false
 	}
@@ -438,8 +438,8 @@ func (o *DtoCouponResponse) HasPercentageOff() bool {
 	return false
 }
 
-// SetPercentageOff gets a reference to the given float32 and assigns it to the PercentageOff field.
-func (o *DtoCouponResponse) SetPercentageOff(v float32) {
+// SetPercentageOff gets a reference to the given string and assigns it to the PercentageOff field.
+func (o *DtoCouponResponse) SetPercentageOff(v string) {
 	o.PercentageOff = &v
 }
 

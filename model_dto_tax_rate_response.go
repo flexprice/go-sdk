@@ -24,11 +24,11 @@ type DtoTaxRateResponse struct {
 	CreatedBy *string `json:"created_by,omitempty"`
 	Description *string `json:"description,omitempty"`
 	EnvironmentId *string `json:"environment_id,omitempty"`
-	FixedValue *float32 `json:"fixed_value,omitempty"`
+	FixedValue *string `json:"fixed_value,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	Name *string `json:"name,omitempty"`
-	PercentageValue *float32 `json:"percentage_value,omitempty"`
+	PercentageValue *string `json:"percentage_value,omitempty"`
 	Scope *TypesTaxRateScope `json:"scope,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	TaxRateStatus *TypesTaxRateStatus `json:"tax_rate_status,omitempty"`
@@ -216,9 +216,9 @@ func (o *DtoTaxRateResponse) SetEnvironmentId(v string) {
 }
 
 // GetFixedValue returns the FixedValue field value if set, zero value otherwise.
-func (o *DtoTaxRateResponse) GetFixedValue() float32 {
+func (o *DtoTaxRateResponse) GetFixedValue() string {
 	if o == nil || IsNil(o.FixedValue) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.FixedValue
@@ -226,7 +226,7 @@ func (o *DtoTaxRateResponse) GetFixedValue() float32 {
 
 // GetFixedValueOk returns a tuple with the FixedValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoTaxRateResponse) GetFixedValueOk() (*float32, bool) {
+func (o *DtoTaxRateResponse) GetFixedValueOk() (*string, bool) {
 	if o == nil || IsNil(o.FixedValue) {
 		return nil, false
 	}
@@ -242,8 +242,8 @@ func (o *DtoTaxRateResponse) HasFixedValue() bool {
 	return false
 }
 
-// SetFixedValue gets a reference to the given float32 and assigns it to the FixedValue field.
-func (o *DtoTaxRateResponse) SetFixedValue(v float32) {
+// SetFixedValue gets a reference to the given string and assigns it to the FixedValue field.
+func (o *DtoTaxRateResponse) SetFixedValue(v string) {
 	o.FixedValue = &v
 }
 
@@ -344,9 +344,9 @@ func (o *DtoTaxRateResponse) SetName(v string) {
 }
 
 // GetPercentageValue returns the PercentageValue field value if set, zero value otherwise.
-func (o *DtoTaxRateResponse) GetPercentageValue() float32 {
+func (o *DtoTaxRateResponse) GetPercentageValue() string {
 	if o == nil || IsNil(o.PercentageValue) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.PercentageValue
@@ -354,7 +354,7 @@ func (o *DtoTaxRateResponse) GetPercentageValue() float32 {
 
 // GetPercentageValueOk returns a tuple with the PercentageValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoTaxRateResponse) GetPercentageValueOk() (*float32, bool) {
+func (o *DtoTaxRateResponse) GetPercentageValueOk() (*string, bool) {
 	if o == nil || IsNil(o.PercentageValue) {
 		return nil, false
 	}
@@ -370,8 +370,8 @@ func (o *DtoTaxRateResponse) HasPercentageValue() bool {
 	return false
 }
 
-// SetPercentageValue gets a reference to the given float32 and assigns it to the PercentageValue field.
-func (o *DtoTaxRateResponse) SetPercentageValue(v float32) {
+// SetPercentageValue gets a reference to the given string and assigns it to the PercentageValue field.
+func (o *DtoTaxRateResponse) SetPercentageValue(v string) {
 	o.PercentageValue = &v
 }
 

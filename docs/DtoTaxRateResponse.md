@@ -9,11 +9,11 @@ Name | Type | Description | Notes
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **EnvironmentId** | Pointer to **string** |  | [optional] 
-**FixedValue** | Pointer to **float32** |  | [optional] 
+**FixedValue** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**PercentageValue** | Pointer to **float32** |  | [optional] 
+**PercentageValue** | Pointer to **string** |  | [optional] 
 **Scope** | Pointer to [**TypesTaxRateScope**](TypesTaxRateScope.md) |  | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **TaxRateStatus** | Pointer to [**TypesTaxRateStatus**](TypesTaxRateStatus.md) |  | [optional] 
@@ -168,20 +168,20 @@ HasEnvironmentId returns a boolean if a field has been set.
 
 ### GetFixedValue
 
-`func (o *DtoTaxRateResponse) GetFixedValue() float32`
+`func (o *DtoTaxRateResponse) GetFixedValue() string`
 
 GetFixedValue returns the FixedValue field if non-nil, zero value otherwise.
 
 ### GetFixedValueOk
 
-`func (o *DtoTaxRateResponse) GetFixedValueOk() (*float32, bool)`
+`func (o *DtoTaxRateResponse) GetFixedValueOk() (*string, bool)`
 
 GetFixedValueOk returns a tuple with the FixedValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetFixedValue
 
-`func (o *DtoTaxRateResponse) SetFixedValue(v float32)`
+`func (o *DtoTaxRateResponse) SetFixedValue(v string)`
 
 SetFixedValue sets FixedValue field to given value.
 
@@ -268,20 +268,20 @@ HasName returns a boolean if a field has been set.
 
 ### GetPercentageValue
 
-`func (o *DtoTaxRateResponse) GetPercentageValue() float32`
+`func (o *DtoTaxRateResponse) GetPercentageValue() string`
 
 GetPercentageValue returns the PercentageValue field if non-nil, zero value otherwise.
 
 ### GetPercentageValueOk
 
-`func (o *DtoTaxRateResponse) GetPercentageValueOk() (*float32, bool)`
+`func (o *DtoTaxRateResponse) GetPercentageValueOk() (*string, bool)`
 
 GetPercentageValueOk returns a tuple with the PercentageValue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPercentageValue
 
-`func (o *DtoTaxRateResponse) SetPercentageValue(v float32)`
+`func (o *DtoTaxRateResponse) SetPercentageValue(v string)`
 
 SetPercentageValue sets PercentageValue field to given value.
 
