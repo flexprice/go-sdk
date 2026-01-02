@@ -21,6 +21,7 @@ var _ MappedNullable = &DtoInvoiceLineItemResponse{}
 type DtoInvoiceLineItemResponse struct {
 	// amount is the monetary amount for this line item
 	Amount *string `json:"amount,omitempty"`
+	CommitmentInfo *TypesCommitmentInfo `json:"commitment_info,omitempty"`
 	// created_at is the timestamp when this line item was created
 	CreatedAt *string `json:"created_at,omitempty"`
 	// created_by is the identifier of the user who created this line item
@@ -127,6 +128,38 @@ func (o *DtoInvoiceLineItemResponse) HasAmount() bool {
 // SetAmount gets a reference to the given string and assigns it to the Amount field.
 func (o *DtoInvoiceLineItemResponse) SetAmount(v string) {
 	o.Amount = &v
+}
+
+// GetCommitmentInfo returns the CommitmentInfo field value if set, zero value otherwise.
+func (o *DtoInvoiceLineItemResponse) GetCommitmentInfo() TypesCommitmentInfo {
+	if o == nil || IsNil(o.CommitmentInfo) {
+		var ret TypesCommitmentInfo
+		return ret
+	}
+	return *o.CommitmentInfo
+}
+
+// GetCommitmentInfoOk returns a tuple with the CommitmentInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoInvoiceLineItemResponse) GetCommitmentInfoOk() (*TypesCommitmentInfo, bool) {
+	if o == nil || IsNil(o.CommitmentInfo) {
+		return nil, false
+	}
+	return o.CommitmentInfo, true
+}
+
+// HasCommitmentInfo returns a boolean if a field has been set.
+func (o *DtoInvoiceLineItemResponse) HasCommitmentInfo() bool {
+	if o != nil && !IsNil(o.CommitmentInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentInfo gets a reference to the given TypesCommitmentInfo and assigns it to the CommitmentInfo field.
+func (o *DtoInvoiceLineItemResponse) SetCommitmentInfo(v TypesCommitmentInfo) {
+	o.CommitmentInfo = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -1069,6 +1102,9 @@ func (o DtoInvoiceLineItemResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
+	}
+	if !IsNil(o.CommitmentInfo) {
+		toSerialize["commitment_info"] = o.CommitmentInfo
 	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt

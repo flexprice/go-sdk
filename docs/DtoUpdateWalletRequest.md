@@ -6,9 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AlertConfig** | Pointer to [**DtoAlertConfig**](DtoAlertConfig.md) |  | [optional] 
 **AlertEnabled** | Pointer to **bool** |  | [optional] 
-**AutoTopupAmount** | Pointer to **string** |  | [optional] 
-**AutoTopupMinBalance** | Pointer to **string** |  | [optional] 
-**AutoTopupTrigger** | Pointer to [**TypesAutoTopupTrigger**](TypesAutoTopupTrigger.md) |  | [optional] 
+**AutoTopup** | Pointer to [**TypesAutoTopup**](TypesAutoTopup.md) |  | [optional] 
 **Config** | Pointer to [**TypesWalletConfig**](TypesWalletConfig.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
@@ -83,80 +81,30 @@ SetAlertEnabled sets AlertEnabled field to given value.
 
 HasAlertEnabled returns a boolean if a field has been set.
 
-### GetAutoTopupAmount
+### GetAutoTopup
 
-`func (o *DtoUpdateWalletRequest) GetAutoTopupAmount() string`
+`func (o *DtoUpdateWalletRequest) GetAutoTopup() TypesAutoTopup`
 
-GetAutoTopupAmount returns the AutoTopupAmount field if non-nil, zero value otherwise.
+GetAutoTopup returns the AutoTopup field if non-nil, zero value otherwise.
 
-### GetAutoTopupAmountOk
+### GetAutoTopupOk
 
-`func (o *DtoUpdateWalletRequest) GetAutoTopupAmountOk() (*string, bool)`
+`func (o *DtoUpdateWalletRequest) GetAutoTopupOk() (*TypesAutoTopup, bool)`
 
-GetAutoTopupAmountOk returns a tuple with the AutoTopupAmount field if it's non-nil, zero value otherwise
+GetAutoTopupOk returns a tuple with the AutoTopup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAutoTopupAmount
+### SetAutoTopup
 
-`func (o *DtoUpdateWalletRequest) SetAutoTopupAmount(v string)`
+`func (o *DtoUpdateWalletRequest) SetAutoTopup(v TypesAutoTopup)`
 
-SetAutoTopupAmount sets AutoTopupAmount field to given value.
+SetAutoTopup sets AutoTopup field to given value.
 
-### HasAutoTopupAmount
+### HasAutoTopup
 
-`func (o *DtoUpdateWalletRequest) HasAutoTopupAmount() bool`
+`func (o *DtoUpdateWalletRequest) HasAutoTopup() bool`
 
-HasAutoTopupAmount returns a boolean if a field has been set.
-
-### GetAutoTopupMinBalance
-
-`func (o *DtoUpdateWalletRequest) GetAutoTopupMinBalance() string`
-
-GetAutoTopupMinBalance returns the AutoTopupMinBalance field if non-nil, zero value otherwise.
-
-### GetAutoTopupMinBalanceOk
-
-`func (o *DtoUpdateWalletRequest) GetAutoTopupMinBalanceOk() (*string, bool)`
-
-GetAutoTopupMinBalanceOk returns a tuple with the AutoTopupMinBalance field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAutoTopupMinBalance
-
-`func (o *DtoUpdateWalletRequest) SetAutoTopupMinBalance(v string)`
-
-SetAutoTopupMinBalance sets AutoTopupMinBalance field to given value.
-
-### HasAutoTopupMinBalance
-
-`func (o *DtoUpdateWalletRequest) HasAutoTopupMinBalance() bool`
-
-HasAutoTopupMinBalance returns a boolean if a field has been set.
-
-### GetAutoTopupTrigger
-
-`func (o *DtoUpdateWalletRequest) GetAutoTopupTrigger() TypesAutoTopupTrigger`
-
-GetAutoTopupTrigger returns the AutoTopupTrigger field if non-nil, zero value otherwise.
-
-### GetAutoTopupTriggerOk
-
-`func (o *DtoUpdateWalletRequest) GetAutoTopupTriggerOk() (*TypesAutoTopupTrigger, bool)`
-
-GetAutoTopupTriggerOk returns a tuple with the AutoTopupTrigger field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAutoTopupTrigger
-
-`func (o *DtoUpdateWalletRequest) SetAutoTopupTrigger(v TypesAutoTopupTrigger)`
-
-SetAutoTopupTrigger sets AutoTopupTrigger field to given value.
-
-### HasAutoTopupTrigger
-
-`func (o *DtoUpdateWalletRequest) HasAutoTopupTrigger() bool`
-
-HasAutoTopupTrigger returns a boolean if a field has been set.
+HasAutoTopup returns a boolean if a field has been set.
 
 ### GetConfig
 

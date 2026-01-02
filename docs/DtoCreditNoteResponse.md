@@ -27,7 +27,7 @@ Name | Type | Description | Notes
 **Subscription** | Pointer to [**DtoSubscriptionResponse**](DtoSubscriptionResponse.md) |  | [optional] 
 **SubscriptionId** | Pointer to **string** | subscription_id is the optional unique identifier of the subscription related to this credit note | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
-**TotalAmount** | Pointer to **float32** | total_amount is the total including creditable invoice-level discounts or minimums, and tax | [optional] 
+**TotalAmount** | Pointer to **string** | total_amount is the total including creditable invoice-level discounts or minimums, and tax | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedBy** | Pointer to **string** |  | [optional] 
 **VoidedAt** | Pointer to **string** | voided_at is the timestamp when the credit note was voided | [optional] 
@@ -628,20 +628,20 @@ HasTenantId returns a boolean if a field has been set.
 
 ### GetTotalAmount
 
-`func (o *DtoCreditNoteResponse) GetTotalAmount() float32`
+`func (o *DtoCreditNoteResponse) GetTotalAmount() string`
 
 GetTotalAmount returns the TotalAmount field if non-nil, zero value otherwise.
 
 ### GetTotalAmountOk
 
-`func (o *DtoCreditNoteResponse) GetTotalAmountOk() (*float32, bool)`
+`func (o *DtoCreditNoteResponse) GetTotalAmountOk() (*string, bool)`
 
 GetTotalAmountOk returns a tuple with the TotalAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalAmount
 
-`func (o *DtoCreditNoteResponse) SetTotalAmount(v float32)`
+`func (o *DtoCreditNoteResponse) SetTotalAmount(v string)`
 
 SetTotalAmount sets TotalAmount field to given value.
 

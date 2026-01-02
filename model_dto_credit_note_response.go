@@ -54,7 +54,7 @@ type DtoCreditNoteResponse struct {
 	SubscriptionId *string `json:"subscription_id,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
 	// total_amount is the total including creditable invoice-level discounts or minimums, and tax
-	TotalAmount *float32 `json:"total_amount,omitempty"`
+	TotalAmount *string `json:"total_amount,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// voided_at is the timestamp when the credit note was voided
@@ -815,9 +815,9 @@ func (o *DtoCreditNoteResponse) SetTenantId(v string) {
 }
 
 // GetTotalAmount returns the TotalAmount field value if set, zero value otherwise.
-func (o *DtoCreditNoteResponse) GetTotalAmount() float32 {
+func (o *DtoCreditNoteResponse) GetTotalAmount() string {
 	if o == nil || IsNil(o.TotalAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.TotalAmount
@@ -825,7 +825,7 @@ func (o *DtoCreditNoteResponse) GetTotalAmount() float32 {
 
 // GetTotalAmountOk returns a tuple with the TotalAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCreditNoteResponse) GetTotalAmountOk() (*float32, bool) {
+func (o *DtoCreditNoteResponse) GetTotalAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.TotalAmount) {
 		return nil, false
 	}
@@ -841,8 +841,8 @@ func (o *DtoCreditNoteResponse) HasTotalAmount() bool {
 	return false
 }
 
-// SetTotalAmount gets a reference to the given float32 and assigns it to the TotalAmount field.
-func (o *DtoCreditNoteResponse) SetTotalAmount(v float32) {
+// SetTotalAmount gets a reference to the given string and assigns it to the TotalAmount field.
+func (o *DtoCreditNoteResponse) SetTotalAmount(v string) {
 	o.TotalAmount = &v
 }
 

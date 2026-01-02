@@ -22,7 +22,6 @@ var _ MappedNullable = &DtoAddAddonToSubscriptionRequest{}
 // DtoAddAddonToSubscriptionRequest struct for DtoAddAddonToSubscriptionRequest
 type DtoAddAddonToSubscriptionRequest struct {
 	AddonId string `json:"addon_id"`
-	EndDate *string `json:"end_date,omitempty"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	StartDate *string `json:"start_date,omitempty"`
 }
@@ -69,38 +68,6 @@ func (o *DtoAddAddonToSubscriptionRequest) GetAddonIdOk() (*string, bool) {
 // SetAddonId sets field value
 func (o *DtoAddAddonToSubscriptionRequest) SetAddonId(v string) {
 	o.AddonId = v
-}
-
-// GetEndDate returns the EndDate field value if set, zero value otherwise.
-func (o *DtoAddAddonToSubscriptionRequest) GetEndDate() string {
-	if o == nil || IsNil(o.EndDate) {
-		var ret string
-		return ret
-	}
-	return *o.EndDate
-}
-
-// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoAddAddonToSubscriptionRequest) GetEndDateOk() (*string, bool) {
-	if o == nil || IsNil(o.EndDate) {
-		return nil, false
-	}
-	return o.EndDate, true
-}
-
-// HasEndDate returns a boolean if a field has been set.
-func (o *DtoAddAddonToSubscriptionRequest) HasEndDate() bool {
-	if o != nil && !IsNil(o.EndDate) {
-		return true
-	}
-
-	return false
-}
-
-// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
-func (o *DtoAddAddonToSubscriptionRequest) SetEndDate(v string) {
-	o.EndDate = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -178,9 +145,6 @@ func (o DtoAddAddonToSubscriptionRequest) MarshalJSON() ([]byte, error) {
 func (o DtoAddAddonToSubscriptionRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["addon_id"] = o.AddonId
-	if !IsNil(o.EndDate) {
-		toSerialize["end_date"] = o.EndDate
-	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}

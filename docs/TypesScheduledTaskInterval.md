@@ -3,6 +3,8 @@
 ## Enum
 
 
+* `ScheduledTaskIntervalEvery15Minutes` (value: `"15MIN"`)
+
 * `ScheduledTaskIntervalCustom` (value: `"custom"`)
 
 * `ScheduledTaskIntervalHourly` (value: `"hourly"`)

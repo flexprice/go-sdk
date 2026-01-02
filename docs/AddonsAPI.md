@@ -100,7 +100,7 @@ Name | Type | Description  | Notes
 
 ## AddonsIdDelete
 
-> map[string]map[string]interface{} AddonsIdDelete(ctx, id).Execute()
+> DtoSuccessResponse AddonsIdDelete(ctx, id).Execute()
 
 Delete addon
 
@@ -128,7 +128,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `AddonsAPI.AddonsIdDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `AddonsIdDelete`: map[string]map[string]interface{}
+	// response from `AddonsIdDelete`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `AddonsAPI.AddonsIdDelete`: %v\n", resp)
 }
 ```
@@ -152,7 +152,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 

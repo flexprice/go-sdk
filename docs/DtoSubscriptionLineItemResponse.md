@@ -5,6 +5,12 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BillingPeriod** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
+**CommitmentAmount** | Pointer to **float32** | Commitment fields | [optional] 
+**CommitmentOverageFactor** | Pointer to **float32** |  | [optional] 
+**CommitmentQuantity** | Pointer to **float32** |  | [optional] 
+**CommitmentTrueUpEnabled** | Pointer to **bool** |  | [optional] 
+**CommitmentType** | Pointer to [**TypesCommitmentType**](TypesCommitmentType.md) |  | [optional] 
+**CommitmentWindowed** | Pointer to **bool** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **Currency** | Pointer to **string** |  | [optional] 
@@ -78,6 +84,156 @@ SetBillingPeriod sets BillingPeriod field to given value.
 `func (o *DtoSubscriptionLineItemResponse) HasBillingPeriod() bool`
 
 HasBillingPeriod returns a boolean if a field has been set.
+
+### GetCommitmentAmount
+
+`func (o *DtoSubscriptionLineItemResponse) GetCommitmentAmount() float32`
+
+GetCommitmentAmount returns the CommitmentAmount field if non-nil, zero value otherwise.
+
+### GetCommitmentAmountOk
+
+`func (o *DtoSubscriptionLineItemResponse) GetCommitmentAmountOk() (*float32, bool)`
+
+GetCommitmentAmountOk returns a tuple with the CommitmentAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentAmount
+
+`func (o *DtoSubscriptionLineItemResponse) SetCommitmentAmount(v float32)`
+
+SetCommitmentAmount sets CommitmentAmount field to given value.
+
+### HasCommitmentAmount
+
+`func (o *DtoSubscriptionLineItemResponse) HasCommitmentAmount() bool`
+
+HasCommitmentAmount returns a boolean if a field has been set.
+
+### GetCommitmentOverageFactor
+
+`func (o *DtoSubscriptionLineItemResponse) GetCommitmentOverageFactor() float32`
+
+GetCommitmentOverageFactor returns the CommitmentOverageFactor field if non-nil, zero value otherwise.
+
+### GetCommitmentOverageFactorOk
+
+`func (o *DtoSubscriptionLineItemResponse) GetCommitmentOverageFactorOk() (*float32, bool)`
+
+GetCommitmentOverageFactorOk returns a tuple with the CommitmentOverageFactor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentOverageFactor
+
+`func (o *DtoSubscriptionLineItemResponse) SetCommitmentOverageFactor(v float32)`
+
+SetCommitmentOverageFactor sets CommitmentOverageFactor field to given value.
+
+### HasCommitmentOverageFactor
+
+`func (o *DtoSubscriptionLineItemResponse) HasCommitmentOverageFactor() bool`
+
+HasCommitmentOverageFactor returns a boolean if a field has been set.
+
+### GetCommitmentQuantity
+
+`func (o *DtoSubscriptionLineItemResponse) GetCommitmentQuantity() float32`
+
+GetCommitmentQuantity returns the CommitmentQuantity field if non-nil, zero value otherwise.
+
+### GetCommitmentQuantityOk
+
+`func (o *DtoSubscriptionLineItemResponse) GetCommitmentQuantityOk() (*float32, bool)`
+
+GetCommitmentQuantityOk returns a tuple with the CommitmentQuantity field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentQuantity
+
+`func (o *DtoSubscriptionLineItemResponse) SetCommitmentQuantity(v float32)`
+
+SetCommitmentQuantity sets CommitmentQuantity field to given value.
+
+### HasCommitmentQuantity
+
+`func (o *DtoSubscriptionLineItemResponse) HasCommitmentQuantity() bool`
+
+HasCommitmentQuantity returns a boolean if a field has been set.
+
+### GetCommitmentTrueUpEnabled
+
+`func (o *DtoSubscriptionLineItemResponse) GetCommitmentTrueUpEnabled() bool`
+
+GetCommitmentTrueUpEnabled returns the CommitmentTrueUpEnabled field if non-nil, zero value otherwise.
+
+### GetCommitmentTrueUpEnabledOk
+
+`func (o *DtoSubscriptionLineItemResponse) GetCommitmentTrueUpEnabledOk() (*bool, bool)`
+
+GetCommitmentTrueUpEnabledOk returns a tuple with the CommitmentTrueUpEnabled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentTrueUpEnabled
+
+`func (o *DtoSubscriptionLineItemResponse) SetCommitmentTrueUpEnabled(v bool)`
+
+SetCommitmentTrueUpEnabled sets CommitmentTrueUpEnabled field to given value.
+
+### HasCommitmentTrueUpEnabled
+
+`func (o *DtoSubscriptionLineItemResponse) HasCommitmentTrueUpEnabled() bool`
+
+HasCommitmentTrueUpEnabled returns a boolean if a field has been set.
+
+### GetCommitmentType
+
+`func (o *DtoSubscriptionLineItemResponse) GetCommitmentType() TypesCommitmentType`
+
+GetCommitmentType returns the CommitmentType field if non-nil, zero value otherwise.
+
+### GetCommitmentTypeOk
+
+`func (o *DtoSubscriptionLineItemResponse) GetCommitmentTypeOk() (*TypesCommitmentType, bool)`
+
+GetCommitmentTypeOk returns a tuple with the CommitmentType field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentType
+
+`func (o *DtoSubscriptionLineItemResponse) SetCommitmentType(v TypesCommitmentType)`
+
+SetCommitmentType sets CommitmentType field to given value.
+
+### HasCommitmentType
+
+`func (o *DtoSubscriptionLineItemResponse) HasCommitmentType() bool`
+
+HasCommitmentType returns a boolean if a field has been set.
+
+### GetCommitmentWindowed
+
+`func (o *DtoSubscriptionLineItemResponse) GetCommitmentWindowed() bool`
+
+GetCommitmentWindowed returns the CommitmentWindowed field if non-nil, zero value otherwise.
+
+### GetCommitmentWindowedOk
+
+`func (o *DtoSubscriptionLineItemResponse) GetCommitmentWindowedOk() (*bool, bool)`
+
+GetCommitmentWindowedOk returns a tuple with the CommitmentWindowed field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentWindowed
+
+`func (o *DtoSubscriptionLineItemResponse) SetCommitmentWindowed(v bool)`
+
+SetCommitmentWindowed sets CommitmentWindowed field to given value.
+
+### HasCommitmentWindowed
+
+`func (o *DtoSubscriptionLineItemResponse) HasCommitmentWindowed() bool`
+
+HasCommitmentWindowed returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

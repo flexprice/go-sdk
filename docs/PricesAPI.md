@@ -34,7 +34,7 @@ import (
 )
 
 func main() {
-	prices := *openapiclient.NewDtoCreateBulkPriceRequest([]openapiclient.DtoCreatePriceRequest{*openapiclient.NewDtoCreatePriceRequest(openapiclient.types.BillingCadence("RECURRING"), openapiclient.types.BillingModel("FLAT_FEE"), openapiclient.types.BillingPeriod("MONTHLY"), "Currency_example", openapiclient.types.InvoiceCadence("ARREAR"), openapiclient.types.PriceUnitType("FIAT"), openapiclient.types.PriceType("USAGE"))}) // DtoCreateBulkPriceRequest | Bulk price configuration
+	prices := *openapiclient.NewDtoCreateBulkPriceRequest([]openapiclient.DtoCreatePriceRequest{*openapiclient.NewDtoCreatePriceRequest(openapiclient.types.BillingCadence("RECURRING"), openapiclient.types.BillingModel("FLAT_FEE"), openapiclient.types.BillingPeriod("MONTHLY"), "Currency_example", "EntityId_example", openapiclient.types.PriceEntityType("PLAN"), openapiclient.types.InvoiceCadence("ARREAR"), openapiclient.types.PriceUnitType("FIAT"), openapiclient.types.PriceType("USAGE"))}) // DtoCreateBulkPriceRequest | Bulk price configuration
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 
 ## PricesIdDelete
 
-> map[string]map[string]interface{} PricesIdDelete(ctx, id).Execute()
+> DtoSuccessResponse PricesIdDelete(ctx, id).Request(request).Execute()
 
 Delete a price
 
@@ -199,15 +199,16 @@ import (
 
 func main() {
 	id := "id_example" // string | Price ID
+	request := *openapiclient.NewDtoDeletePriceRequest() // DtoDeletePriceRequest | Delete Price Request
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PricesAPI.PricesIdDelete(context.Background(), id).Execute()
+	resp, r, err := apiClient.PricesAPI.PricesIdDelete(context.Background(), id).Request(request).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PricesAPI.PricesIdDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PricesIdDelete`: map[string]map[string]interface{}
+	// response from `PricesIdDelete`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `PricesAPI.PricesIdDelete`: %v\n", resp)
 }
 ```
@@ -228,10 +229,11 @@ Other parameters are passed through a pointer to a apiPricesIdDeleteRequest stru
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **request** | [**DtoDeletePriceRequest**](DtoDeletePriceRequest.md) | Delete Price Request | 
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 
@@ -239,7 +241,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -410,7 +412,7 @@ import (
 )
 
 func main() {
-	price := *openapiclient.NewDtoCreatePriceRequest(openapiclient.types.BillingCadence("RECURRING"), openapiclient.types.BillingModel("FLAT_FEE"), openapiclient.types.BillingPeriod("MONTHLY"), "Currency_example", openapiclient.types.InvoiceCadence("ARREAR"), openapiclient.types.PriceUnitType("FIAT"), openapiclient.types.PriceType("USAGE")) // DtoCreatePriceRequest | Price configuration
+	price := *openapiclient.NewDtoCreatePriceRequest(openapiclient.types.BillingCadence("RECURRING"), openapiclient.types.BillingModel("FLAT_FEE"), openapiclient.types.BillingPeriod("MONTHLY"), "Currency_example", "EntityId_example", openapiclient.types.PriceEntityType("PLAN"), openapiclient.types.InvoiceCadence("ARREAR"), openapiclient.types.PriceUnitType("FIAT"), openapiclient.types.PriceType("USAGE")) // DtoCreatePriceRequest | Price configuration
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

@@ -21,11 +21,13 @@ var _ MappedNullable = &DtoCreatePriceUnitRequest{}
 
 // DtoCreatePriceUnitRequest struct for DtoCreatePriceUnitRequest
 type DtoCreatePriceUnitRequest struct {
+	// base_currency  is the currency that the price unit is based on
 	BaseCurrency string `json:"base_currency"`
 	Code string `json:"code"`
+	// ConversionRate defines the exchange rate from this price unit to the base currency. This rate is used to convert amounts in the custom price unit to the base currency for storage and billing.  Conversion formula:   price_unit_amount * conversion_rate = base_currency_amount  Example:   If conversion_rate = \"0.01\" and base_currency = \"usd\":   100 price_unit tokens * 0.01 = 1.00 USD  Note: Rounding precision is determined by the base currency (e.g., USD uses 2 decimal places, JPY uses 0).
 	ConversionRate string `json:"conversion_rate"`
+	Metadata *map[string]string `json:"metadata,omitempty"`
 	Name string `json:"name"`
-	Precision *int32 `json:"precision,omitempty"`
 	Symbol string `json:"symbol"`
 }
 
@@ -125,6 +127,38 @@ func (o *DtoCreatePriceUnitRequest) SetConversionRate(v string) {
 	o.ConversionRate = v
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *DtoCreatePriceUnitRequest) GetMetadata() map[string]string {
+	if o == nil || IsNil(o.Metadata) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreatePriceUnitRequest) GetMetadataOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *DtoCreatePriceUnitRequest) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
+func (o *DtoCreatePriceUnitRequest) SetMetadata(v map[string]string) {
+	o.Metadata = &v
+}
+
 // GetName returns the Name field value
 func (o *DtoCreatePriceUnitRequest) GetName() string {
 	if o == nil {
@@ -147,38 +181,6 @@ func (o *DtoCreatePriceUnitRequest) GetNameOk() (*string, bool) {
 // SetName sets field value
 func (o *DtoCreatePriceUnitRequest) SetName(v string) {
 	o.Name = v
-}
-
-// GetPrecision returns the Precision field value if set, zero value otherwise.
-func (o *DtoCreatePriceUnitRequest) GetPrecision() int32 {
-	if o == nil || IsNil(o.Precision) {
-		var ret int32
-		return ret
-	}
-	return *o.Precision
-}
-
-// GetPrecisionOk returns a tuple with the Precision field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoCreatePriceUnitRequest) GetPrecisionOk() (*int32, bool) {
-	if o == nil || IsNil(o.Precision) {
-		return nil, false
-	}
-	return o.Precision, true
-}
-
-// HasPrecision returns a boolean if a field has been set.
-func (o *DtoCreatePriceUnitRequest) HasPrecision() bool {
-	if o != nil && !IsNil(o.Precision) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrecision gets a reference to the given int32 and assigns it to the Precision field.
-func (o *DtoCreatePriceUnitRequest) SetPrecision(v int32) {
-	o.Precision = &v
 }
 
 // GetSymbol returns the Symbol field value
@@ -218,10 +220,10 @@ func (o DtoCreatePriceUnitRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["base_currency"] = o.BaseCurrency
 	toSerialize["code"] = o.Code
 	toSerialize["conversion_rate"] = o.ConversionRate
-	toSerialize["name"] = o.Name
-	if !IsNil(o.Precision) {
-		toSerialize["precision"] = o.Precision
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
 	}
+	toSerialize["name"] = o.Name
 	toSerialize["symbol"] = o.Symbol
 	return toSerialize, nil
 }

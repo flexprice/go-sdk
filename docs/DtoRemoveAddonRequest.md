@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AddonAssociationId** | **string** |  | 
-**EffectiveFrom** | Pointer to **string** |  | [optional] 
 **Reason** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -46,31 +45,6 @@ and a boolean to check if the value has been set.
 
 SetAddonAssociationId sets AddonAssociationId field to given value.
 
-
-### GetEffectiveFrom
-
-`func (o *DtoRemoveAddonRequest) GetEffectiveFrom() string`
-
-GetEffectiveFrom returns the EffectiveFrom field if non-nil, zero value otherwise.
-
-### GetEffectiveFromOk
-
-`func (o *DtoRemoveAddonRequest) GetEffectiveFromOk() (*string, bool)`
-
-GetEffectiveFromOk returns a tuple with the EffectiveFrom field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEffectiveFrom
-
-`func (o *DtoRemoveAddonRequest) SetEffectiveFrom(v string)`
-
-SetEffectiveFrom sets EffectiveFrom field to given value.
-
-### HasEffectiveFrom
-
-`func (o *DtoRemoveAddonRequest) HasEffectiveFrom() bool`
-
-HasEffectiveFrom returns a boolean if a field has been set.
 
 ### GetReason
 

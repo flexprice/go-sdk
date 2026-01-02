@@ -136,6 +136,17 @@ func (a *PriceUnitsAPIService) PricesUnitsCodeCodeGetExecute(r PriceUnitsAPIPric
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
 		if localVarHTTPResponse.StatusCode == 500 {
 			var v ErrorsErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
@@ -340,14 +351,14 @@ type PriceUnitsAPIPricesUnitsIdDeleteRequest struct {
 	id string
 }
 
-func (r PriceUnitsAPIPricesUnitsIdDeleteRequest) Execute() (map[string]map[string]interface{}, *http.Response, error) {
+func (r PriceUnitsAPIPricesUnitsIdDeleteRequest) Execute() (*DtoSuccessResponse, *http.Response, error) {
 	return r.ApiService.PricesUnitsIdDeleteExecute(r)
 }
 
 /*
-PricesUnitsIdDelete Archive a price unit
+PricesUnitsIdDelete Delete a price unit
 
-Archive an existing price unit. The unit will be marked as archived and cannot be used in new prices.
+Delete an existing price unit.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Price unit ID
@@ -362,13 +373,13 @@ func (a *PriceUnitsAPIService) PricesUnitsIdDelete(ctx context.Context, id strin
 }
 
 // Execute executes the request
-//  @return map[string]map[string]interface{}
-func (a *PriceUnitsAPIService) PricesUnitsIdDeleteExecute(r PriceUnitsAPIPricesUnitsIdDeleteRequest) (map[string]map[string]interface{}, *http.Response, error) {
+//  @return DtoSuccessResponse
+func (a *PriceUnitsAPIService) PricesUnitsIdDeleteExecute(r PriceUnitsAPIPricesUnitsIdDeleteRequest) (*DtoSuccessResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]map[string]interface{}
+		localVarReturnValue  *DtoSuccessResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PriceUnitsAPIService.PricesUnitsIdDelete")
@@ -585,7 +596,7 @@ func (a *PriceUnitsAPIService) PricesUnitsIdGetExecute(r PriceUnitsAPIPricesUnit
 					newErr.model = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
-		if localVarHTTPResponse.StatusCode == 500 {
+		if localVarHTTPResponse.StatusCode == 404 {
 			var v ErrorsErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -630,7 +641,7 @@ func (r PriceUnitsAPIPricesUnitsIdPutRequest) Execute() (*DtoPriceUnitResponse, 
 /*
 PricesUnitsIdPut Update a price unit
 
-Update an existing price unit with the provided details. Only name, symbol, precision, and conversion_rate can be updated. Status changes are not allowed.
+Update an existing price unit with the provided details. Only name and metadata can be updated.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Price unit ID
@@ -772,7 +783,7 @@ func (r PriceUnitsAPIPricesUnitsPostRequest) Body(body DtoCreatePriceUnitRequest
 	return r
 }
 
-func (r PriceUnitsAPIPricesUnitsPostRequest) Execute() (*DtoPriceUnitResponse, *http.Response, error) {
+func (r PriceUnitsAPIPricesUnitsPostRequest) Execute() (*DtoCreatePriceUnitResponse, *http.Response, error) {
 	return r.ApiService.PricesUnitsPostExecute(r)
 }
 
@@ -792,13 +803,13 @@ func (a *PriceUnitsAPIService) PricesUnitsPost(ctx context.Context) PriceUnitsAP
 }
 
 // Execute executes the request
-//  @return DtoPriceUnitResponse
-func (a *PriceUnitsAPIService) PricesUnitsPostExecute(r PriceUnitsAPIPricesUnitsPostRequest) (*DtoPriceUnitResponse, *http.Response, error) {
+//  @return DtoCreatePriceUnitResponse
+func (a *PriceUnitsAPIService) PricesUnitsPostExecute(r PriceUnitsAPIPricesUnitsPostRequest) (*DtoCreatePriceUnitResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  *DtoPriceUnitResponse
+		localVarReturnValue  *DtoCreatePriceUnitResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PriceUnitsAPIService.PricesUnitsPost")
@@ -898,11 +909,11 @@ func (a *PriceUnitsAPIService) PricesUnitsPostExecute(r PriceUnitsAPIPricesUnits
 type PriceUnitsAPIPricesUnitsSearchPostRequest struct {
 	ctx context.Context
 	ApiService *PriceUnitsAPIService
-	filter *PriceunitPriceUnitFilter
+	filter *TypesPriceUnitFilter
 }
 
 // Filter
-func (r PriceUnitsAPIPricesUnitsSearchPostRequest) Filter(filter PriceunitPriceUnitFilter) PriceUnitsAPIPricesUnitsSearchPostRequest {
+func (r PriceUnitsAPIPricesUnitsSearchPostRequest) Filter(filter TypesPriceUnitFilter) PriceUnitsAPIPricesUnitsSearchPostRequest {
 	r.filter = &filter
 	return r
 }

@@ -45,6 +45,8 @@ type DtoCreateSubscriptionRequest struct {
 	ExternalCustomerId *string `json:"external_customer_id,omitempty"`
 	GatewayPaymentMethodId *string `json:"gateway_payment_method_id,omitempty"`
 	InvoiceBilling *TypesInvoiceBilling `json:"invoice_billing,omitempty"`
+	// LineItemCommitments allows setting commitment configuration per line item (keyed by price_id)
+	LineItemCommitments *map[string]DtoLineItemCommitmentConfig `json:"line_item_commitments,omitempty"`
 	LineItemCoupons *map[string][]string `json:"line_item_coupons,omitempty"`
 	LookupKey *string `json:"lookup_key,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
@@ -610,6 +612,38 @@ func (o *DtoCreateSubscriptionRequest) SetInvoiceBilling(v TypesInvoiceBilling) 
 	o.InvoiceBilling = &v
 }
 
+// GetLineItemCommitments returns the LineItemCommitments field value if set, zero value otherwise.
+func (o *DtoCreateSubscriptionRequest) GetLineItemCommitments() map[string]DtoLineItemCommitmentConfig {
+	if o == nil || IsNil(o.LineItemCommitments) {
+		var ret map[string]DtoLineItemCommitmentConfig
+		return ret
+	}
+	return *o.LineItemCommitments
+}
+
+// GetLineItemCommitmentsOk returns a tuple with the LineItemCommitments field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateSubscriptionRequest) GetLineItemCommitmentsOk() (*map[string]DtoLineItemCommitmentConfig, bool) {
+	if o == nil || IsNil(o.LineItemCommitments) {
+		return nil, false
+	}
+	return o.LineItemCommitments, true
+}
+
+// HasLineItemCommitments returns a boolean if a field has been set.
+func (o *DtoCreateSubscriptionRequest) HasLineItemCommitments() bool {
+	if o != nil && !IsNil(o.LineItemCommitments) {
+		return true
+	}
+
+	return false
+}
+
+// SetLineItemCommitments gets a reference to the given map[string]DtoLineItemCommitmentConfig and assigns it to the LineItemCommitments field.
+func (o *DtoCreateSubscriptionRequest) SetLineItemCommitments(v map[string]DtoLineItemCommitmentConfig) {
+	o.LineItemCommitments = &v
+}
+
 // GetLineItemCoupons returns the LineItemCoupons field value if set, zero value otherwise.
 func (o *DtoCreateSubscriptionRequest) GetLineItemCoupons() map[string][]string {
 	if o == nil || IsNil(o.LineItemCoupons) {
@@ -1136,6 +1170,9 @@ func (o DtoCreateSubscriptionRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.InvoiceBilling) {
 		toSerialize["invoice_billing"] = o.InvoiceBilling
+	}
+	if !IsNil(o.LineItemCommitments) {
+		toSerialize["line_item_commitments"] = o.LineItemCommitments
 	}
 	if !IsNil(o.LineItemCoupons) {
 		toSerialize["line_item_coupons"] = o.LineItemCoupons

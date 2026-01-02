@@ -47,6 +47,8 @@ type DtoCreateCustomerRequest struct {
 	ParentCustomerExternalId *string `json:"parent_customer_external_id,omitempty"`
 	// parent_customer_id is the internal FlexPrice ID of the parent customer
 	ParentCustomerId *string `json:"parent_customer_id,omitempty"`
+	// skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered This is used internally when a customer is created via a workflow to prevent infinite loops Default: false
+	SkipOnboardingWorkflow *bool `json:"skip_onboarding_workflow,omitempty"`
 	// tax_rate_overrides contains tax rate configurations to be linked to this customer
 	TaxRateOverrides []DtoTaxRateOverride `json:"tax_rate_overrides,omitempty"`
 }
@@ -479,6 +481,38 @@ func (o *DtoCreateCustomerRequest) SetParentCustomerId(v string) {
 	o.ParentCustomerId = &v
 }
 
+// GetSkipOnboardingWorkflow returns the SkipOnboardingWorkflow field value if set, zero value otherwise.
+func (o *DtoCreateCustomerRequest) GetSkipOnboardingWorkflow() bool {
+	if o == nil || IsNil(o.SkipOnboardingWorkflow) {
+		var ret bool
+		return ret
+	}
+	return *o.SkipOnboardingWorkflow
+}
+
+// GetSkipOnboardingWorkflowOk returns a tuple with the SkipOnboardingWorkflow field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateCustomerRequest) GetSkipOnboardingWorkflowOk() (*bool, bool) {
+	if o == nil || IsNil(o.SkipOnboardingWorkflow) {
+		return nil, false
+	}
+	return o.SkipOnboardingWorkflow, true
+}
+
+// HasSkipOnboardingWorkflow returns a boolean if a field has been set.
+func (o *DtoCreateCustomerRequest) HasSkipOnboardingWorkflow() bool {
+	if o != nil && !IsNil(o.SkipOnboardingWorkflow) {
+		return true
+	}
+
+	return false
+}
+
+// SetSkipOnboardingWorkflow gets a reference to the given bool and assigns it to the SkipOnboardingWorkflow field.
+func (o *DtoCreateCustomerRequest) SetSkipOnboardingWorkflow(v bool) {
+	o.SkipOnboardingWorkflow = &v
+}
+
 // GetTaxRateOverrides returns the TaxRateOverrides field value if set, zero value otherwise.
 func (o *DtoCreateCustomerRequest) GetTaxRateOverrides() []DtoTaxRateOverride {
 	if o == nil || IsNil(o.TaxRateOverrides) {
@@ -557,6 +591,9 @@ func (o DtoCreateCustomerRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ParentCustomerId) {
 		toSerialize["parent_customer_id"] = o.ParentCustomerId
+	}
+	if !IsNil(o.SkipOnboardingWorkflow) {
+		toSerialize["skip_onboarding_workflow"] = o.SkipOnboardingWorkflow
 	}
 	if !IsNil(o.TaxRateOverrides) {
 		toSerialize["tax_rate_overrides"] = o.TaxRateOverrides

@@ -253,7 +253,7 @@ type AddonsAPIAddonsIdDeleteRequest struct {
 	id string
 }
 
-func (r AddonsAPIAddonsIdDeleteRequest) Execute() (map[string]map[string]interface{}, *http.Response, error) {
+func (r AddonsAPIAddonsIdDeleteRequest) Execute() (*DtoSuccessResponse, *http.Response, error) {
 	return r.ApiService.AddonsIdDeleteExecute(r)
 }
 
@@ -275,13 +275,13 @@ func (a *AddonsAPIService) AddonsIdDelete(ctx context.Context, id string) Addons
 }
 
 // Execute executes the request
-//  @return map[string]map[string]interface{}
-func (a *AddonsAPIService) AddonsIdDeleteExecute(r AddonsAPIAddonsIdDeleteRequest) (map[string]map[string]interface{}, *http.Response, error) {
+//  @return DtoSuccessResponse
+func (a *AddonsAPIService) AddonsIdDeleteExecute(r AddonsAPIAddonsIdDeleteRequest) (*DtoSuccessResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]map[string]interface{}
+		localVarReturnValue  *DtoSuccessResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AddonsAPIService.AddonsIdDelete")

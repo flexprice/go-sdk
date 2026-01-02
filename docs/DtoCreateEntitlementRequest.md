@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**EndDate** | Pointer to **string** |  | [optional] 
 **EntityId** | Pointer to **string** |  | [optional] 
 **EntityType** | Pointer to [**TypesEntitlementEntityType**](TypesEntitlementEntityType.md) |  | [optional] 
 **FeatureId** | **string** |  | 
@@ -12,6 +13,7 @@ Name | Type | Description | Notes
 **IsSoftLimit** | Pointer to **bool** |  | [optional] 
 **ParentEntitlementId** | Pointer to **string** |  | [optional] 
 **PlanId** | Pointer to **string** |  | [optional] 
+**StartDate** | Pointer to **string** |  | [optional] 
 **StaticValue** | Pointer to **string** |  | [optional] 
 **UsageLimit** | Pointer to **int32** |  | [optional] 
 **UsageResetPeriod** | Pointer to [**TypesEntitlementUsageResetPeriod**](TypesEntitlementUsageResetPeriod.md) |  | [optional] 
@@ -34,6 +36,31 @@ will change when the set of required properties is changed
 NewDtoCreateEntitlementRequestWithDefaults instantiates a new DtoCreateEntitlementRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetEndDate
+
+`func (o *DtoCreateEntitlementRequest) GetEndDate() string`
+
+GetEndDate returns the EndDate field if non-nil, zero value otherwise.
+
+### GetEndDateOk
+
+`func (o *DtoCreateEntitlementRequest) GetEndDateOk() (*string, bool)`
+
+GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndDate
+
+`func (o *DtoCreateEntitlementRequest) SetEndDate(v string)`
+
+SetEndDate sets EndDate field to given value.
+
+### HasEndDate
+
+`func (o *DtoCreateEntitlementRequest) HasEndDate() bool`
+
+HasEndDate returns a boolean if a field has been set.
 
 ### GetEntityId
 
@@ -224,6 +251,31 @@ SetPlanId sets PlanId field to given value.
 `func (o *DtoCreateEntitlementRequest) HasPlanId() bool`
 
 HasPlanId returns a boolean if a field has been set.
+
+### GetStartDate
+
+`func (o *DtoCreateEntitlementRequest) GetStartDate() string`
+
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
+
+### GetStartDateOk
+
+`func (o *DtoCreateEntitlementRequest) GetStartDateOk() (*string, bool)`
+
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStartDate
+
+`func (o *DtoCreateEntitlementRequest) SetStartDate(v string)`
+
+SetStartDate sets StartDate field to given value.
+
+### HasStartDate
+
+`func (o *DtoCreateEntitlementRequest) HasStartDate() bool`
+
+HasStartDate returns a boolean if a field has been set.
 
 ### GetStaticValue
 

@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **ExternalCustomerId** | Pointer to **string** | external_customer_id is the customer id in your DB and must be same as what you provided as external_id while creating the customer in flexprice. | [optional] 
 **GatewayPaymentMethodId** | Pointer to **string** |  | [optional] 
 **InvoiceBilling** | Pointer to [**TypesInvoiceBilling**](TypesInvoiceBilling.md) |  | [optional] 
+**LineItemCommitments** | Pointer to [**map[string]DtoLineItemCommitmentConfig**](DtoLineItemCommitmentConfig.md) | LineItemCommitments allows setting commitment configuration per line item (keyed by price_id) | [optional] 
 **LineItemCoupons** | Pointer to **map[string][]string** |  | [optional] 
 **LookupKey** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
@@ -465,6 +466,31 @@ SetInvoiceBilling sets InvoiceBilling field to given value.
 `func (o *DtoCreateSubscriptionRequest) HasInvoiceBilling() bool`
 
 HasInvoiceBilling returns a boolean if a field has been set.
+
+### GetLineItemCommitments
+
+`func (o *DtoCreateSubscriptionRequest) GetLineItemCommitments() map[string]DtoLineItemCommitmentConfig`
+
+GetLineItemCommitments returns the LineItemCommitments field if non-nil, zero value otherwise.
+
+### GetLineItemCommitmentsOk
+
+`func (o *DtoCreateSubscriptionRequest) GetLineItemCommitmentsOk() (*map[string]DtoLineItemCommitmentConfig, bool)`
+
+GetLineItemCommitmentsOk returns a tuple with the LineItemCommitments field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLineItemCommitments
+
+`func (o *DtoCreateSubscriptionRequest) SetLineItemCommitments(v map[string]DtoLineItemCommitmentConfig)`
+
+SetLineItemCommitments sets LineItemCommitments field to given value.
+
+### HasLineItemCommitments
+
+`func (o *DtoCreateSubscriptionRequest) HasLineItemCommitments() bool`
+
+HasLineItemCommitments returns a boolean if a field has been set.
 
 ### GetLineItemCoupons
 

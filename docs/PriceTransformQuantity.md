@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **DivideBy** | Pointer to **int32** | Divide quantity by this number | [optional] 
-**Round** | Pointer to **string** | up or down | [optional] 
+**Round** | Pointer to [**TypesRoundType**](TypesRoundType.md) |  | [optional] 
 
 ## Methods
 
@@ -53,20 +53,20 @@ HasDivideBy returns a boolean if a field has been set.
 
 ### GetRound
 
-`func (o *PriceTransformQuantity) GetRound() string`
+`func (o *PriceTransformQuantity) GetRound() TypesRoundType`
 
 GetRound returns the Round field if non-nil, zero value otherwise.
 
 ### GetRoundOk
 
-`func (o *PriceTransformQuantity) GetRoundOk() (*string, bool)`
+`func (o *PriceTransformQuantity) GetRoundOk() (*TypesRoundType, bool)`
 
 GetRoundOk returns a tuple with the Round field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRound
 
-`func (o *PriceTransformQuantity) SetRound(v string)`
+`func (o *PriceTransformQuantity) SetRound(v TypesRoundType)`
 
 SetRound sets Round field to given value.
 

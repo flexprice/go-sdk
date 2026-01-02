@@ -21,9 +21,7 @@ var _ MappedNullable = &DtoUpdateWalletRequest{}
 type DtoUpdateWalletRequest struct {
 	AlertConfig *DtoAlertConfig `json:"alert_config,omitempty"`
 	AlertEnabled *bool `json:"alert_enabled,omitempty"`
-	AutoTopupAmount *string `json:"auto_topup_amount,omitempty"`
-	AutoTopupMinBalance *string `json:"auto_topup_min_balance,omitempty"`
-	AutoTopupTrigger *TypesAutoTopupTrigger `json:"auto_topup_trigger,omitempty"`
+	AutoTopup *TypesAutoTopup `json:"auto_topup,omitempty"`
 	Config *TypesWalletConfig `json:"config,omitempty"`
 	Description *string `json:"description,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
@@ -111,100 +109,36 @@ func (o *DtoUpdateWalletRequest) SetAlertEnabled(v bool) {
 	o.AlertEnabled = &v
 }
 
-// GetAutoTopupAmount returns the AutoTopupAmount field value if set, zero value otherwise.
-func (o *DtoUpdateWalletRequest) GetAutoTopupAmount() string {
-	if o == nil || IsNil(o.AutoTopupAmount) {
-		var ret string
+// GetAutoTopup returns the AutoTopup field value if set, zero value otherwise.
+func (o *DtoUpdateWalletRequest) GetAutoTopup() TypesAutoTopup {
+	if o == nil || IsNil(o.AutoTopup) {
+		var ret TypesAutoTopup
 		return ret
 	}
-	return *o.AutoTopupAmount
+	return *o.AutoTopup
 }
 
-// GetAutoTopupAmountOk returns a tuple with the AutoTopupAmount field value if set, nil otherwise
+// GetAutoTopupOk returns a tuple with the AutoTopup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoUpdateWalletRequest) GetAutoTopupAmountOk() (*string, bool) {
-	if o == nil || IsNil(o.AutoTopupAmount) {
+func (o *DtoUpdateWalletRequest) GetAutoTopupOk() (*TypesAutoTopup, bool) {
+	if o == nil || IsNil(o.AutoTopup) {
 		return nil, false
 	}
-	return o.AutoTopupAmount, true
+	return o.AutoTopup, true
 }
 
-// HasAutoTopupAmount returns a boolean if a field has been set.
-func (o *DtoUpdateWalletRequest) HasAutoTopupAmount() bool {
-	if o != nil && !IsNil(o.AutoTopupAmount) {
+// HasAutoTopup returns a boolean if a field has been set.
+func (o *DtoUpdateWalletRequest) HasAutoTopup() bool {
+	if o != nil && !IsNil(o.AutoTopup) {
 		return true
 	}
 
 	return false
 }
 
-// SetAutoTopupAmount gets a reference to the given string and assigns it to the AutoTopupAmount field.
-func (o *DtoUpdateWalletRequest) SetAutoTopupAmount(v string) {
-	o.AutoTopupAmount = &v
-}
-
-// GetAutoTopupMinBalance returns the AutoTopupMinBalance field value if set, zero value otherwise.
-func (o *DtoUpdateWalletRequest) GetAutoTopupMinBalance() string {
-	if o == nil || IsNil(o.AutoTopupMinBalance) {
-		var ret string
-		return ret
-	}
-	return *o.AutoTopupMinBalance
-}
-
-// GetAutoTopupMinBalanceOk returns a tuple with the AutoTopupMinBalance field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoUpdateWalletRequest) GetAutoTopupMinBalanceOk() (*string, bool) {
-	if o == nil || IsNil(o.AutoTopupMinBalance) {
-		return nil, false
-	}
-	return o.AutoTopupMinBalance, true
-}
-
-// HasAutoTopupMinBalance returns a boolean if a field has been set.
-func (o *DtoUpdateWalletRequest) HasAutoTopupMinBalance() bool {
-	if o != nil && !IsNil(o.AutoTopupMinBalance) {
-		return true
-	}
-
-	return false
-}
-
-// SetAutoTopupMinBalance gets a reference to the given string and assigns it to the AutoTopupMinBalance field.
-func (o *DtoUpdateWalletRequest) SetAutoTopupMinBalance(v string) {
-	o.AutoTopupMinBalance = &v
-}
-
-// GetAutoTopupTrigger returns the AutoTopupTrigger field value if set, zero value otherwise.
-func (o *DtoUpdateWalletRequest) GetAutoTopupTrigger() TypesAutoTopupTrigger {
-	if o == nil || IsNil(o.AutoTopupTrigger) {
-		var ret TypesAutoTopupTrigger
-		return ret
-	}
-	return *o.AutoTopupTrigger
-}
-
-// GetAutoTopupTriggerOk returns a tuple with the AutoTopupTrigger field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoUpdateWalletRequest) GetAutoTopupTriggerOk() (*TypesAutoTopupTrigger, bool) {
-	if o == nil || IsNil(o.AutoTopupTrigger) {
-		return nil, false
-	}
-	return o.AutoTopupTrigger, true
-}
-
-// HasAutoTopupTrigger returns a boolean if a field has been set.
-func (o *DtoUpdateWalletRequest) HasAutoTopupTrigger() bool {
-	if o != nil && !IsNil(o.AutoTopupTrigger) {
-		return true
-	}
-
-	return false
-}
-
-// SetAutoTopupTrigger gets a reference to the given TypesAutoTopupTrigger and assigns it to the AutoTopupTrigger field.
-func (o *DtoUpdateWalletRequest) SetAutoTopupTrigger(v TypesAutoTopupTrigger) {
-	o.AutoTopupTrigger = &v
+// SetAutoTopup gets a reference to the given TypesAutoTopup and assigns it to the AutoTopup field.
+func (o *DtoUpdateWalletRequest) SetAutoTopup(v TypesAutoTopup) {
+	o.AutoTopup = &v
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
@@ -351,14 +285,8 @@ func (o DtoUpdateWalletRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AlertEnabled) {
 		toSerialize["alert_enabled"] = o.AlertEnabled
 	}
-	if !IsNil(o.AutoTopupAmount) {
-		toSerialize["auto_topup_amount"] = o.AutoTopupAmount
-	}
-	if !IsNil(o.AutoTopupMinBalance) {
-		toSerialize["auto_topup_min_balance"] = o.AutoTopupMinBalance
-	}
-	if !IsNil(o.AutoTopupTrigger) {
-		toSerialize["auto_topup_trigger"] = o.AutoTopupTrigger
+	if !IsNil(o.AutoTopup) {
+		toSerialize["auto_topup"] = o.AutoTopup
 	}
 	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config

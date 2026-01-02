@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**SubscriptionsAddonPost**](SubscriptionsAPI.md#SubscriptionsAddonPost) | **Post** /subscriptions/addon | Add addon to subscription
 [**SubscriptionsGet**](SubscriptionsAPI.md#SubscriptionsGet) | **Get** /subscriptions | List subscriptions
 [**SubscriptionsIdActivatePost**](SubscriptionsAPI.md#SubscriptionsIdActivatePost) | **Post** /subscriptions/{id}/activate | Activate draft subscription
+[**SubscriptionsIdAddonsAssociationsGet**](SubscriptionsAPI.md#SubscriptionsIdAddonsAssociationsGet) | **Get** /subscriptions/{id}/addons/associations | Get active addon associations
 [**SubscriptionsIdCancelPost**](SubscriptionsAPI.md#SubscriptionsIdCancelPost) | **Post** /subscriptions/{id}/cancel | Cancel subscription
 [**SubscriptionsIdChangeExecutePost**](SubscriptionsAPI.md#SubscriptionsIdChangeExecutePost) | **Post** /subscriptions/{id}/change/execute | Execute subscription plan change
 [**SubscriptionsIdChangePreviewPost**](SubscriptionsAPI.md#SubscriptionsIdChangePreviewPost) | **Post** /subscriptions/{id}/change/preview | Preview subscription plan change
@@ -27,7 +28,7 @@ Method | HTTP request | Description
 
 ## SubscriptionsAddonDelete
 
-> map[string]map[string]interface{} SubscriptionsAddonDelete(ctx).Request(request).Execute()
+> DtoSuccessResponse SubscriptionsAddonDelete(ctx).Request(request).Execute()
 
 Remove addon from subscription
 
@@ -55,7 +56,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionsAddonDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `SubscriptionsAddonDelete`: map[string]map[string]interface{}
+	// response from `SubscriptionsAddonDelete`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionsAddonDelete`: %v\n", resp)
 }
 ```
@@ -75,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 
@@ -112,7 +113,7 @@ import (
 )
 
 func main() {
-	request := *openapiclient.NewDtoAddAddonToSubscriptionRequest("AddonId_example") // DtoAddAddonToSubscriptionRequest | Add Addon Request
+	request := *openapiclient.NewDtoAddAddonRequest("AddonId_example", "SubscriptionId_example") // DtoAddAddonRequest | Add Addon Request
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -137,7 +138,7 @@ Other parameters are passed through a pointer to a apiSubscriptionsAddonPostRequ
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **request** | [**DtoAddAddonToSubscriptionRequest**](DtoAddAddonToSubscriptionRequest.md) | Add Addon Request | 
+ **request** | [**DtoAddAddonRequest**](DtoAddAddonRequest.md) | Add Addon Request | 
 
 ### Return type
 
@@ -320,6 +321,76 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SubscriptionsIdAddonsAssociationsGet
+
+> []DtoAddonAssociationResponse SubscriptionsIdAddonsAssociationsGet(ctx, id).Execute()
+
+Get active addon associations
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	id := "id_example" // string | Subscription ID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscriptionsAPI.SubscriptionsIdAddonsAssociationsGet(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionsIdAddonsAssociationsGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SubscriptionsIdAddonsAssociationsGet`: []DtoAddonAssociationResponse
+	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionsIdAddonsAssociationsGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Subscription ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSubscriptionsIdAddonsAssociationsGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**[]DtoAddonAssociationResponse**](DtoAddonAssociationResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **AddOnId** | Pointer to **string** |  | [optional] 
 **Addon** | Pointer to [**GithubComFlexpriceFlexpriceInternalDomainAddonAddon**](GithubComFlexpriceFlexpriceInternalDomainAddonAddon.md) |  | [optional] 
 **AggregationType** | Pointer to [**TypesAggregationType**](TypesAggregationType.md) |  | [optional] 
+**CommitmentInfo** | Pointer to [**TypesCommitmentInfo**](TypesCommitmentInfo.md) |  | [optional] 
 **Currency** | Pointer to **string** |  | [optional] 
 **EventCount** | Pointer to **int32** | Number of events that contributed to this aggregation | [optional] 
 **EventName** | Pointer to **string** |  | [optional] 
@@ -22,6 +23,7 @@ Name | Type | Description | Notes
 **PriceId** | Pointer to **string** | Price ID used for this usage | [optional] 
 **Properties** | Pointer to **map[string]string** | Stores property values for flexible grouping (e.g., org_id -&gt; \&quot;org123\&quot;) | [optional] 
 **Source** | Pointer to **string** |  | [optional] 
+**Sources** | Pointer to **[]string** | List of sources when not grouping by source | [optional] 
 **SubLineItemId** | Pointer to **string** | Subscription line item ID | [optional] 
 **SubscriptionId** | Pointer to **string** | Subscription ID | [optional] 
 **SubscriptionLineItem** | Pointer to [**SubscriptionSubscriptionLineItem**](SubscriptionSubscriptionLineItem.md) |  | [optional] 
@@ -29,6 +31,7 @@ Name | Type | Description | Notes
 **TotalUsage** | Pointer to **string** |  | [optional] 
 **Unit** | Pointer to **string** |  | [optional] 
 **UnitPlural** | Pointer to **string** |  | [optional] 
+**WindowSize** | Pointer to [**TypesWindowSize**](TypesWindowSize.md) |  | [optional] 
 
 ## Methods
 
@@ -123,6 +126,31 @@ SetAggregationType sets AggregationType field to given value.
 `func (o *DtoUsageAnalyticItem) HasAggregationType() bool`
 
 HasAggregationType returns a boolean if a field has been set.
+
+### GetCommitmentInfo
+
+`func (o *DtoUsageAnalyticItem) GetCommitmentInfo() TypesCommitmentInfo`
+
+GetCommitmentInfo returns the CommitmentInfo field if non-nil, zero value otherwise.
+
+### GetCommitmentInfoOk
+
+`func (o *DtoUsageAnalyticItem) GetCommitmentInfoOk() (*TypesCommitmentInfo, bool)`
+
+GetCommitmentInfoOk returns a tuple with the CommitmentInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentInfo
+
+`func (o *DtoUsageAnalyticItem) SetCommitmentInfo(v TypesCommitmentInfo)`
+
+SetCommitmentInfo sets CommitmentInfo field to given value.
+
+### HasCommitmentInfo
+
+`func (o *DtoUsageAnalyticItem) HasCommitmentInfo() bool`
+
+HasCommitmentInfo returns a boolean if a field has been set.
 
 ### GetCurrency
 
@@ -499,6 +527,31 @@ SetSource sets Source field to given value.
 
 HasSource returns a boolean if a field has been set.
 
+### GetSources
+
+`func (o *DtoUsageAnalyticItem) GetSources() []string`
+
+GetSources returns the Sources field if non-nil, zero value otherwise.
+
+### GetSourcesOk
+
+`func (o *DtoUsageAnalyticItem) GetSourcesOk() (*[]string, bool)`
+
+GetSourcesOk returns a tuple with the Sources field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSources
+
+`func (o *DtoUsageAnalyticItem) SetSources(v []string)`
+
+SetSources sets Sources field to given value.
+
+### HasSources
+
+`func (o *DtoUsageAnalyticItem) HasSources() bool`
+
+HasSources returns a boolean if a field has been set.
+
 ### GetSubLineItemId
 
 `func (o *DtoUsageAnalyticItem) GetSubLineItemId() string`
@@ -673,6 +726,31 @@ SetUnitPlural sets UnitPlural field to given value.
 `func (o *DtoUsageAnalyticItem) HasUnitPlural() bool`
 
 HasUnitPlural returns a boolean if a field has been set.
+
+### GetWindowSize
+
+`func (o *DtoUsageAnalyticItem) GetWindowSize() TypesWindowSize`
+
+GetWindowSize returns the WindowSize field if non-nil, zero value otherwise.
+
+### GetWindowSizeOk
+
+`func (o *DtoUsageAnalyticItem) GetWindowSizeOk() (*TypesWindowSize, bool)`
+
+GetWindowSizeOk returns a tuple with the WindowSize field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWindowSize
+
+`func (o *DtoUsageAnalyticItem) SetWindowSize(v TypesWindowSize)`
+
+SetWindowSize sets WindowSize field to given value.
+
+### HasWindowSize
+
+`func (o *DtoUsageAnalyticItem) HasWindowSize() bool`
+
+HasWindowSize returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

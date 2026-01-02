@@ -174,7 +174,7 @@ Name | Type | Description  | Notes
 
 ## TasksIdStatusPut
 
-> map[string]map[string]interface{} TasksIdStatusPut(ctx, id).Status(status).Execute()
+> DtoSuccessResponse TasksIdStatusPut(ctx, id).Status(status).Execute()
 
 Update task status
 
@@ -203,7 +203,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksIdStatusPut``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `TasksIdStatusPut`: map[string]map[string]interface{}
+	// response from `TasksIdStatusPut`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksIdStatusPut`: %v\n", resp)
 }
 ```
@@ -228,7 +228,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 

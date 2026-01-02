@@ -19,6 +19,7 @@ var _ MappedNullable = &DtoAddonAssociationResponse{}
 
 // DtoAddonAssociationResponse struct for DtoAddonAssociationResponse
 type DtoAddonAssociationResponse struct {
+	Addon *DtoAddonResponse `json:"addon,omitempty"`
 	AddonId *string `json:"addon_id,omitempty"`
 	AddonStatus *TypesAddonStatus `json:"addon_status,omitempty"`
 	CancellationReason *string `json:"cancellation_reason,omitempty"`
@@ -33,6 +34,7 @@ type DtoAddonAssociationResponse struct {
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	StartDate *string `json:"start_date,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
+	Subscription *DtoSubscriptionResponse `json:"subscription,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	UpdatedBy *string `json:"updated_by,omitempty"`
@@ -53,6 +55,38 @@ func NewDtoAddonAssociationResponse() *DtoAddonAssociationResponse {
 func NewDtoAddonAssociationResponseWithDefaults() *DtoAddonAssociationResponse {
 	this := DtoAddonAssociationResponse{}
 	return &this
+}
+
+// GetAddon returns the Addon field value if set, zero value otherwise.
+func (o *DtoAddonAssociationResponse) GetAddon() DtoAddonResponse {
+	if o == nil || IsNil(o.Addon) {
+		var ret DtoAddonResponse
+		return ret
+	}
+	return *o.Addon
+}
+
+// GetAddonOk returns a tuple with the Addon field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoAddonAssociationResponse) GetAddonOk() (*DtoAddonResponse, bool) {
+	if o == nil || IsNil(o.Addon) {
+		return nil, false
+	}
+	return o.Addon, true
+}
+
+// HasAddon returns a boolean if a field has been set.
+func (o *DtoAddonAssociationResponse) HasAddon() bool {
+	if o != nil && !IsNil(o.Addon) {
+		return true
+	}
+
+	return false
+}
+
+// SetAddon gets a reference to the given DtoAddonResponse and assigns it to the Addon field.
+func (o *DtoAddonAssociationResponse) SetAddon(v DtoAddonResponse) {
+	o.Addon = &v
 }
 
 // GetAddonId returns the AddonId field value if set, zero value otherwise.
@@ -503,6 +537,38 @@ func (o *DtoAddonAssociationResponse) SetStatus(v TypesStatus) {
 	o.Status = &v
 }
 
+// GetSubscription returns the Subscription field value if set, zero value otherwise.
+func (o *DtoAddonAssociationResponse) GetSubscription() DtoSubscriptionResponse {
+	if o == nil || IsNil(o.Subscription) {
+		var ret DtoSubscriptionResponse
+		return ret
+	}
+	return *o.Subscription
+}
+
+// GetSubscriptionOk returns a tuple with the Subscription field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoAddonAssociationResponse) GetSubscriptionOk() (*DtoSubscriptionResponse, bool) {
+	if o == nil || IsNil(o.Subscription) {
+		return nil, false
+	}
+	return o.Subscription, true
+}
+
+// HasSubscription returns a boolean if a field has been set.
+func (o *DtoAddonAssociationResponse) HasSubscription() bool {
+	if o != nil && !IsNil(o.Subscription) {
+		return true
+	}
+
+	return false
+}
+
+// SetSubscription gets a reference to the given DtoSubscriptionResponse and assigns it to the Subscription field.
+func (o *DtoAddonAssociationResponse) SetSubscription(v DtoSubscriptionResponse) {
+	o.Subscription = &v
+}
+
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
 func (o *DtoAddonAssociationResponse) GetTenantId() string {
 	if o == nil || IsNil(o.TenantId) {
@@ -609,6 +675,9 @@ func (o DtoAddonAssociationResponse) MarshalJSON() ([]byte, error) {
 
 func (o DtoAddonAssociationResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.Addon) {
+		toSerialize["addon"] = o.Addon
+	}
 	if !IsNil(o.AddonId) {
 		toSerialize["addon_id"] = o.AddonId
 	}
@@ -650,6 +719,9 @@ func (o DtoAddonAssociationResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.Subscription) {
+		toSerialize["subscription"] = o.Subscription
 	}
 	if !IsNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId

@@ -5,7 +5,6 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AddonId** | **string** |  | 
-**EndDate** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **StartDate** | Pointer to **string** |  | [optional] 
 
@@ -47,31 +46,6 @@ and a boolean to check if the value has been set.
 
 SetAddonId sets AddonId field to given value.
 
-
-### GetEndDate
-
-`func (o *DtoAddAddonToSubscriptionRequest) GetEndDate() string`
-
-GetEndDate returns the EndDate field if non-nil, zero value otherwise.
-
-### GetEndDateOk
-
-`func (o *DtoAddAddonToSubscriptionRequest) GetEndDateOk() (*string, bool)`
-
-GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEndDate
-
-`func (o *DtoAddAddonToSubscriptionRequest) SetEndDate(v string)`
-
-SetEndDate sets EndDate field to given value.
-
-### HasEndDate
-
-`func (o *DtoAddAddonToSubscriptionRequest) HasEndDate() bool`
-
-HasEndDate returns a boolean if a field has been set.
 
 ### GetMetadata
 

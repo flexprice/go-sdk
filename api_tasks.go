@@ -436,7 +436,7 @@ func (r TasksAPITasksIdStatusPutRequest) Status(status DtoUpdateTaskStatusReques
 	return r
 }
 
-func (r TasksAPITasksIdStatusPutRequest) Execute() (map[string]map[string]interface{}, *http.Response, error) {
+func (r TasksAPITasksIdStatusPutRequest) Execute() (*DtoSuccessResponse, *http.Response, error) {
 	return r.ApiService.TasksIdStatusPutExecute(r)
 }
 
@@ -458,13 +458,13 @@ func (a *TasksAPIService) TasksIdStatusPut(ctx context.Context, id string) Tasks
 }
 
 // Execute executes the request
-//  @return map[string]map[string]interface{}
-func (a *TasksAPIService) TasksIdStatusPutExecute(r TasksAPITasksIdStatusPutRequest) (map[string]map[string]interface{}, *http.Response, error) {
+//  @return DtoSuccessResponse
+func (a *TasksAPIService) TasksIdStatusPutExecute(r TasksAPITasksIdStatusPutRequest) (*DtoSuccessResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]map[string]interface{}
+		localVarReturnValue  *DtoSuccessResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "TasksAPIService.TasksIdStatusPut")

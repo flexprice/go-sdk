@@ -575,7 +575,7 @@ type EntitlementsAPIEntitlementsIdDeleteRequest struct {
 	id string
 }
 
-func (r EntitlementsAPIEntitlementsIdDeleteRequest) Execute() (map[string]map[string]interface{}, *http.Response, error) {
+func (r EntitlementsAPIEntitlementsIdDeleteRequest) Execute() (*DtoSuccessResponse, *http.Response, error) {
 	return r.ApiService.EntitlementsIdDeleteExecute(r)
 }
 
@@ -597,13 +597,13 @@ func (a *EntitlementsAPIService) EntitlementsIdDelete(ctx context.Context, id st
 }
 
 // Execute executes the request
-//  @return map[string]map[string]interface{}
-func (a *EntitlementsAPIService) EntitlementsIdDeleteExecute(r EntitlementsAPIEntitlementsIdDeleteRequest) (map[string]map[string]interface{}, *http.Response, error) {
+//  @return DtoSuccessResponse
+func (a *EntitlementsAPIService) EntitlementsIdDeleteExecute(r EntitlementsAPIEntitlementsIdDeleteRequest) (*DtoSuccessResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]map[string]interface{}
+		localVarReturnValue  *DtoSuccessResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EntitlementsAPIService.EntitlementsIdDelete")

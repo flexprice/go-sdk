@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**Addon** | Pointer to [**DtoAddonResponse**](DtoAddonResponse.md) |  | [optional] 
 **AddonId** | Pointer to **string** |  | [optional] 
 **AddonStatus** | Pointer to [**TypesAddonStatus**](TypesAddonStatus.md) |  | [optional] 
 **CancellationReason** | Pointer to **string** |  | [optional] 
@@ -18,6 +19,7 @@ Name | Type | Description | Notes
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **StartDate** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
+**Subscription** | Pointer to [**DtoSubscriptionResponse**](DtoSubscriptionResponse.md) |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedBy** | Pointer to **string** |  | [optional] 
@@ -40,6 +42,31 @@ will change when the set of required properties is changed
 NewDtoAddonAssociationResponseWithDefaults instantiates a new DtoAddonAssociationResponse object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetAddon
+
+`func (o *DtoAddonAssociationResponse) GetAddon() DtoAddonResponse`
+
+GetAddon returns the Addon field if non-nil, zero value otherwise.
+
+### GetAddonOk
+
+`func (o *DtoAddonAssociationResponse) GetAddonOk() (*DtoAddonResponse, bool)`
+
+GetAddonOk returns a tuple with the Addon field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetAddon
+
+`func (o *DtoAddonAssociationResponse) SetAddon(v DtoAddonResponse)`
+
+SetAddon sets Addon field to given value.
+
+### HasAddon
+
+`func (o *DtoAddonAssociationResponse) HasAddon() bool`
+
+HasAddon returns a boolean if a field has been set.
 
 ### GetAddonId
 
@@ -390,6 +417,31 @@ SetStatus sets Status field to given value.
 `func (o *DtoAddonAssociationResponse) HasStatus() bool`
 
 HasStatus returns a boolean if a field has been set.
+
+### GetSubscription
+
+`func (o *DtoAddonAssociationResponse) GetSubscription() DtoSubscriptionResponse`
+
+GetSubscription returns the Subscription field if non-nil, zero value otherwise.
+
+### GetSubscriptionOk
+
+`func (o *DtoAddonAssociationResponse) GetSubscriptionOk() (*DtoSubscriptionResponse, bool)`
+
+GetSubscriptionOk returns a tuple with the Subscription field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSubscription
+
+`func (o *DtoAddonAssociationResponse) SetSubscription(v DtoSubscriptionResponse)`
+
+SetSubscription sets Subscription field to given value.
+
+### HasSubscription
+
+`func (o *DtoAddonAssociationResponse) HasSubscription() bool`
+
+HasSubscription returns a boolean if a field has been set.
 
 ### GetTenantId
 

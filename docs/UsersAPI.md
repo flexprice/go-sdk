@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**UsersMeGet**](UsersAPI.md#UsersMeGet) | **Get** /users/me | Get user info
 [**UsersPost**](UsersAPI.md#UsersPost) | **Post** /users | Create service account
-[**UsersSearchPost**](UsersAPI.md#UsersSearchPost) | **Post** /users/search | List service accounts with filters
+[**UsersSearchPost**](UsersAPI.md#UsersSearchPost) | **Post** /users/search | List users with filters
 
 
 
@@ -141,7 +141,7 @@ Name | Type | Description  | Notes
 
 > DtoListUsersResponse UsersSearchPost(ctx).Filter(filter).Execute()
 
-List service accounts with filters
+List users with filters
 
 
 

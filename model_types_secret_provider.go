@@ -27,6 +27,7 @@ const (
 	TYPESSECRETPROVIDER_SecretProviderRazorpay TypesSecretProvider = "razorpay"
 	TYPESSECRETPROVIDER_SecretProviderChargebee TypesSecretProvider = "chargebee"
 	TYPESSECRETPROVIDER_SecretProviderQuickBooks TypesSecretProvider = "quickbooks"
+	TYPESSECRETPROVIDER_SecretProviderNomod TypesSecretProvider = "nomod"
 )
 
 // All allowed values of TypesSecretProvider enum
@@ -38,6 +39,7 @@ var AllowedTypesSecretProviderEnumValues = []TypesSecretProvider{
 	"razorpay",
 	"chargebee",
 	"quickbooks",
+	"nomod",
 }
 
 func (v *TypesSecretProvider) UnmarshalJSON(src []byte) error {

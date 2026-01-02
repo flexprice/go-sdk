@@ -4,17 +4,87 @@ All URIs are relative to */v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**CustomersExternalExternalIdGet**](CustomersAPI.md#CustomersExternalExternalIdGet) | **Get** /customers/external/{external_id} | Get a customer by external id
 [**CustomersGet**](CustomersAPI.md#CustomersGet) | **Get** /customers | Get customers
 [**CustomersIdDelete**](CustomersAPI.md#CustomersIdDelete) | **Delete** /customers/{id} | Delete a customer
 [**CustomersIdEntitlementsGet**](CustomersAPI.md#CustomersIdEntitlementsGet) | **Get** /customers/{id}/entitlements | Get customer entitlements
 [**CustomersIdGet**](CustomersAPI.md#CustomersIdGet) | **Get** /customers/{id} | Get a customer
 [**CustomersIdGrantsUpcomingGet**](CustomersAPI.md#CustomersIdGrantsUpcomingGet) | **Get** /customers/{id}/grants/upcoming | Get upcoming credit grant applications
 [**CustomersIdPut**](CustomersAPI.md#CustomersIdPut) | **Put** /customers/{id} | Update a customer
-[**CustomersLookupLookupKeyGet**](CustomersAPI.md#CustomersLookupLookupKeyGet) | **Get** /customers/lookup/{lookup_key} | Get a customer by lookup key
 [**CustomersPost**](CustomersAPI.md#CustomersPost) | **Post** /customers | Create a customer
 [**CustomersSearchPost**](CustomersAPI.md#CustomersSearchPost) | **Post** /customers/search | List customers by filter
 [**CustomersUsageGet**](CustomersAPI.md#CustomersUsageGet) | **Get** /customers/usage | Get customer usage summary
 
+
+
+## CustomersExternalExternalIdGet
+
+> DtoCustomerResponse CustomersExternalExternalIdGet(ctx, externalId).Execute()
+
+Get a customer by external id
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	externalId := "externalId_example" // string | Customer External ID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CustomersAPI.CustomersExternalExternalIdGet(context.Background(), externalId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CustomersExternalExternalIdGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CustomersExternalExternalIdGet`: DtoCustomerResponse
+	fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.CustomersExternalExternalIdGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**externalId** | **string** | Customer External ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCustomersExternalExternalIdGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DtoCustomerResponse**](DtoCustomerResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 
 ## CustomersGet
@@ -452,76 +522,6 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
-## CustomersLookupLookupKeyGet
-
-> DtoCustomerResponse CustomersLookupLookupKeyGet(ctx, lookupKey).Execute()
-
-Get a customer by lookup key
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/flexprice/go-sdk/flexprice"
-)
-
-func main() {
-	lookupKey := "lookupKey_example" // string | Customer Lookup Key (external_id)
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomersAPI.CustomersLookupLookupKeyGet(context.Background(), lookupKey).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CustomersLookupLookupKeyGet``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CustomersLookupLookupKeyGet`: DtoCustomerResponse
-	fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.CustomersLookupLookupKeyGet`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**lookupKey** | **string** | Customer Lookup Key (external_id) | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCustomersLookupLookupKeyGetRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
-
-### Return type
-
-[**DtoCustomerResponse**](DtoCustomerResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

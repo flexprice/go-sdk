@@ -19,6 +19,10 @@ var _ MappedNullable = &DtoUsageAnalyticPoint{}
 
 // DtoUsageAnalyticPoint struct for DtoUsageAnalyticPoint
 type DtoUsageAnalyticPoint struct {
+	// Commitment breakdown (only populated for windowed commitments)
+	ComputedCommitmentUtilizedAmount *string `json:"computed_commitment_utilized_amount,omitempty"`
+	ComputedOverageAmount *string `json:"computed_overage_amount,omitempty"`
+	ComputedTrueUpAmount *string `json:"computed_true_up_amount,omitempty"`
 	Cost *string `json:"cost,omitempty"`
 	// Number of events in this time window
 	EventCount *int32 `json:"event_count,omitempty"`
@@ -41,6 +45,102 @@ func NewDtoUsageAnalyticPoint() *DtoUsageAnalyticPoint {
 func NewDtoUsageAnalyticPointWithDefaults() *DtoUsageAnalyticPoint {
 	this := DtoUsageAnalyticPoint{}
 	return &this
+}
+
+// GetComputedCommitmentUtilizedAmount returns the ComputedCommitmentUtilizedAmount field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticPoint) GetComputedCommitmentUtilizedAmount() string {
+	if o == nil || IsNil(o.ComputedCommitmentUtilizedAmount) {
+		var ret string
+		return ret
+	}
+	return *o.ComputedCommitmentUtilizedAmount
+}
+
+// GetComputedCommitmentUtilizedAmountOk returns a tuple with the ComputedCommitmentUtilizedAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticPoint) GetComputedCommitmentUtilizedAmountOk() (*string, bool) {
+	if o == nil || IsNil(o.ComputedCommitmentUtilizedAmount) {
+		return nil, false
+	}
+	return o.ComputedCommitmentUtilizedAmount, true
+}
+
+// HasComputedCommitmentUtilizedAmount returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticPoint) HasComputedCommitmentUtilizedAmount() bool {
+	if o != nil && !IsNil(o.ComputedCommitmentUtilizedAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetComputedCommitmentUtilizedAmount gets a reference to the given string and assigns it to the ComputedCommitmentUtilizedAmount field.
+func (o *DtoUsageAnalyticPoint) SetComputedCommitmentUtilizedAmount(v string) {
+	o.ComputedCommitmentUtilizedAmount = &v
+}
+
+// GetComputedOverageAmount returns the ComputedOverageAmount field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticPoint) GetComputedOverageAmount() string {
+	if o == nil || IsNil(o.ComputedOverageAmount) {
+		var ret string
+		return ret
+	}
+	return *o.ComputedOverageAmount
+}
+
+// GetComputedOverageAmountOk returns a tuple with the ComputedOverageAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticPoint) GetComputedOverageAmountOk() (*string, bool) {
+	if o == nil || IsNil(o.ComputedOverageAmount) {
+		return nil, false
+	}
+	return o.ComputedOverageAmount, true
+}
+
+// HasComputedOverageAmount returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticPoint) HasComputedOverageAmount() bool {
+	if o != nil && !IsNil(o.ComputedOverageAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetComputedOverageAmount gets a reference to the given string and assigns it to the ComputedOverageAmount field.
+func (o *DtoUsageAnalyticPoint) SetComputedOverageAmount(v string) {
+	o.ComputedOverageAmount = &v
+}
+
+// GetComputedTrueUpAmount returns the ComputedTrueUpAmount field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticPoint) GetComputedTrueUpAmount() string {
+	if o == nil || IsNil(o.ComputedTrueUpAmount) {
+		var ret string
+		return ret
+	}
+	return *o.ComputedTrueUpAmount
+}
+
+// GetComputedTrueUpAmountOk returns a tuple with the ComputedTrueUpAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticPoint) GetComputedTrueUpAmountOk() (*string, bool) {
+	if o == nil || IsNil(o.ComputedTrueUpAmount) {
+		return nil, false
+	}
+	return o.ComputedTrueUpAmount, true
+}
+
+// HasComputedTrueUpAmount returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticPoint) HasComputedTrueUpAmount() bool {
+	if o != nil && !IsNil(o.ComputedTrueUpAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetComputedTrueUpAmount gets a reference to the given string and assigns it to the ComputedTrueUpAmount field.
+func (o *DtoUsageAnalyticPoint) SetComputedTrueUpAmount(v string) {
+	o.ComputedTrueUpAmount = &v
 }
 
 // GetCost returns the Cost field value if set, zero value otherwise.
@@ -181,6 +281,15 @@ func (o DtoUsageAnalyticPoint) MarshalJSON() ([]byte, error) {
 
 func (o DtoUsageAnalyticPoint) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.ComputedCommitmentUtilizedAmount) {
+		toSerialize["computed_commitment_utilized_amount"] = o.ComputedCommitmentUtilizedAmount
+	}
+	if !IsNil(o.ComputedOverageAmount) {
+		toSerialize["computed_overage_amount"] = o.ComputedOverageAmount
+	}
+	if !IsNil(o.ComputedTrueUpAmount) {
+		toSerialize["computed_true_up_amount"] = o.ComputedTrueUpAmount
+	}
 	if !IsNil(o.Cost) {
 		toSerialize["cost"] = o.Cost
 	}

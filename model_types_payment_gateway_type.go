@@ -22,12 +22,14 @@ type TypesPaymentGatewayType string
 const (
 	TYPESPAYMENTGATEWAYTYPE_PaymentGatewayTypeStripe TypesPaymentGatewayType = "stripe"
 	TYPESPAYMENTGATEWAYTYPE_PaymentGatewayTypeRazorpay TypesPaymentGatewayType = "razorpay"
+	TYPESPAYMENTGATEWAYTYPE_PaymentGatewayTypeNomod TypesPaymentGatewayType = "nomod"
 )
 
 // All allowed values of TypesPaymentGatewayType enum
 var AllowedTypesPaymentGatewayTypeEnumValues = []TypesPaymentGatewayType{
 	"stripe",
 	"razorpay",
+	"nomod",
 }
 
 func (v *TypesPaymentGatewayType) UnmarshalJSON(src []byte) error {

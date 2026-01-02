@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**CostsActiveGet**](CostsAPI.md#CostsActiveGet) | **Get** /costs/active | Get active costsheet for tenant
 [**CostsAnalyticsPost**](CostsAPI.md#CostsAnalyticsPost) | **Post** /costs/analytics | Get combined revenue and cost analytics
+[**CostsAnalyticsV2Post**](CostsAPI.md#CostsAnalyticsV2Post) | **Post** /costs/analytics-v2 | Get combined revenue and cost analytics
 [**CostsIdDelete**](CostsAPI.md#CostsIdDelete) | **Delete** /costs/{id} | Delete a costsheet
 [**CostsIdGet**](CostsAPI.md#CostsIdGet) | **Get** /costs/{id} | Get a costsheet by ID
 [**CostsIdPut**](CostsAPI.md#CostsIdPut) | **Put** /costs/{id} | Update a costsheet
@@ -117,6 +118,72 @@ func main() {
 ### Other Parameters
 
 Other parameters are passed through a pointer to a apiCostsAnalyticsPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | [**DtoGetCostAnalyticsRequest**](DtoGetCostAnalyticsRequest.md) | Combined analytics request (start_time/end_time optional - defaults to last 7 days) | 
+
+### Return type
+
+[**DtoGetDetailedCostAnalyticsResponse**](DtoGetDetailedCostAnalyticsResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CostsAnalyticsV2Post
+
+> DtoGetDetailedCostAnalyticsResponse CostsAnalyticsV2Post(ctx).Request(request).Execute()
+
+Get combined revenue and cost analytics
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	request := *openapiclient.NewDtoGetCostAnalyticsRequest() // DtoGetCostAnalyticsRequest | Combined analytics request (start_time/end_time optional - defaults to last 7 days)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CostsAPI.CostsAnalyticsV2Post(context.Background()).Request(request).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CostsAPI.CostsAnalyticsV2Post``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CostsAnalyticsV2Post`: DtoGetDetailedCostAnalyticsResponse
+	fmt.Fprintf(os.Stdout, "Response from `CostsAPI.CostsAnalyticsV2Post`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCostsAnalyticsV2PostRequest struct via the builder pattern
 
 
 Name | Type | Description  | Notes

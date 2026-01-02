@@ -4,6 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**ComputedCommitmentUtilizedAmount** | Pointer to **string** | Commitment breakdown (only populated for windowed commitments) | [optional] 
+**ComputedOverageAmount** | Pointer to **string** |  | [optional] 
+**ComputedTrueUpAmount** | Pointer to **string** |  | [optional] 
 **Cost** | Pointer to **string** |  | [optional] 
 **EventCount** | Pointer to **int32** | Number of events in this time window | [optional] 
 **Timestamp** | Pointer to **string** |  | [optional] 
@@ -27,6 +30,81 @@ will change when the set of required properties is changed
 NewDtoUsageAnalyticPointWithDefaults instantiates a new DtoUsageAnalyticPoint object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetComputedCommitmentUtilizedAmount
+
+`func (o *DtoUsageAnalyticPoint) GetComputedCommitmentUtilizedAmount() string`
+
+GetComputedCommitmentUtilizedAmount returns the ComputedCommitmentUtilizedAmount field if non-nil, zero value otherwise.
+
+### GetComputedCommitmentUtilizedAmountOk
+
+`func (o *DtoUsageAnalyticPoint) GetComputedCommitmentUtilizedAmountOk() (*string, bool)`
+
+GetComputedCommitmentUtilizedAmountOk returns a tuple with the ComputedCommitmentUtilizedAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetComputedCommitmentUtilizedAmount
+
+`func (o *DtoUsageAnalyticPoint) SetComputedCommitmentUtilizedAmount(v string)`
+
+SetComputedCommitmentUtilizedAmount sets ComputedCommitmentUtilizedAmount field to given value.
+
+### HasComputedCommitmentUtilizedAmount
+
+`func (o *DtoUsageAnalyticPoint) HasComputedCommitmentUtilizedAmount() bool`
+
+HasComputedCommitmentUtilizedAmount returns a boolean if a field has been set.
+
+### GetComputedOverageAmount
+
+`func (o *DtoUsageAnalyticPoint) GetComputedOverageAmount() string`
+
+GetComputedOverageAmount returns the ComputedOverageAmount field if non-nil, zero value otherwise.
+
+### GetComputedOverageAmountOk
+
+`func (o *DtoUsageAnalyticPoint) GetComputedOverageAmountOk() (*string, bool)`
+
+GetComputedOverageAmountOk returns a tuple with the ComputedOverageAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetComputedOverageAmount
+
+`func (o *DtoUsageAnalyticPoint) SetComputedOverageAmount(v string)`
+
+SetComputedOverageAmount sets ComputedOverageAmount field to given value.
+
+### HasComputedOverageAmount
+
+`func (o *DtoUsageAnalyticPoint) HasComputedOverageAmount() bool`
+
+HasComputedOverageAmount returns a boolean if a field has been set.
+
+### GetComputedTrueUpAmount
+
+`func (o *DtoUsageAnalyticPoint) GetComputedTrueUpAmount() string`
+
+GetComputedTrueUpAmount returns the ComputedTrueUpAmount field if non-nil, zero value otherwise.
+
+### GetComputedTrueUpAmountOk
+
+`func (o *DtoUsageAnalyticPoint) GetComputedTrueUpAmountOk() (*string, bool)`
+
+GetComputedTrueUpAmountOk returns a tuple with the ComputedTrueUpAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetComputedTrueUpAmount
+
+`func (o *DtoUsageAnalyticPoint) SetComputedTrueUpAmount(v string)`
+
+SetComputedTrueUpAmount sets ComputedTrueUpAmount field to given value.
+
+### HasComputedTrueUpAmount
+
+`func (o *DtoUsageAnalyticPoint) HasComputedTrueUpAmount() bool`
+
+HasComputedTrueUpAmount returns a boolean if a field has been set.
 
 ### GetCost
 

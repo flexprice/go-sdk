@@ -23,6 +23,7 @@ var _ MappedNullable = &DtoCreateInvoiceLineItemRequest{}
 type DtoCreateInvoiceLineItemRequest struct {
 	// amount is the monetary amount for this line item
 	Amount string `json:"amount"`
+	CommitmentInfo *TypesCommitmentInfo `json:"commitment_info,omitempty"`
 	// display_name is the optional human-readable name for this line item
 	DisplayName *string `json:"display_name,omitempty"`
 	// entity_id is the optional unique identifier of the entity associated with this line item
@@ -97,6 +98,38 @@ func (o *DtoCreateInvoiceLineItemRequest) GetAmountOk() (*string, bool) {
 // SetAmount sets field value
 func (o *DtoCreateInvoiceLineItemRequest) SetAmount(v string) {
 	o.Amount = v
+}
+
+// GetCommitmentInfo returns the CommitmentInfo field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceLineItemRequest) GetCommitmentInfo() TypesCommitmentInfo {
+	if o == nil || IsNil(o.CommitmentInfo) {
+		var ret TypesCommitmentInfo
+		return ret
+	}
+	return *o.CommitmentInfo
+}
+
+// GetCommitmentInfoOk returns a tuple with the CommitmentInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceLineItemRequest) GetCommitmentInfoOk() (*TypesCommitmentInfo, bool) {
+	if o == nil || IsNil(o.CommitmentInfo) {
+		return nil, false
+	}
+	return o.CommitmentInfo, true
+}
+
+// HasCommitmentInfo returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceLineItemRequest) HasCommitmentInfo() bool {
+	if o != nil && !IsNil(o.CommitmentInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentInfo gets a reference to the given TypesCommitmentInfo and assigns it to the CommitmentInfo field.
+func (o *DtoCreateInvoiceLineItemRequest) SetCommitmentInfo(v TypesCommitmentInfo) {
+	o.CommitmentInfo = &v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
@@ -582,6 +615,9 @@ func (o DtoCreateInvoiceLineItemRequest) MarshalJSON() ([]byte, error) {
 func (o DtoCreateInvoiceLineItemRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["amount"] = o.Amount
+	if !IsNil(o.CommitmentInfo) {
+		toSerialize["commitment_info"] = o.CommitmentInfo
+	}
 	if !IsNil(o.DisplayName) {
 		toSerialize["display_name"] = o.DisplayName
 	}

@@ -20,6 +20,7 @@ type TypesScheduledTaskInterval string
 
 // List of types.ScheduledTaskInterval
 const (
+	TYPESSCHEDULEDTASKINTERVAL_ScheduledTaskIntervalEvery15Minutes TypesScheduledTaskInterval = "15MIN"
 	TYPESSCHEDULEDTASKINTERVAL_ScheduledTaskIntervalCustom TypesScheduledTaskInterval = "custom"
 	TYPESSCHEDULEDTASKINTERVAL_ScheduledTaskIntervalHourly TypesScheduledTaskInterval = "hourly"
 	TYPESSCHEDULEDTASKINTERVAL_ScheduledTaskIntervalDaily TypesScheduledTaskInterval = "daily"
@@ -27,6 +28,7 @@ const (
 
 // All allowed values of TypesScheduledTaskInterval enum
 var AllowedTypesScheduledTaskIntervalEnumValues = []TypesScheduledTaskInterval{
+	"15MIN",
 	"custom",
 	"hourly",
 	"daily",

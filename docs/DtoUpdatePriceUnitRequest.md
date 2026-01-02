@@ -4,10 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ConversionRate** | Pointer to **string** |  | [optional] 
+**Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Precision** | Pointer to **int32** |  | [optional] 
-**Symbol** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -28,30 +26,30 @@ NewDtoUpdatePriceUnitRequestWithDefaults instantiates a new DtoUpdatePriceUnitRe
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetConversionRate
+### GetMetadata
 
-`func (o *DtoUpdatePriceUnitRequest) GetConversionRate() string`
+`func (o *DtoUpdatePriceUnitRequest) GetMetadata() map[string]string`
 
-GetConversionRate returns the ConversionRate field if non-nil, zero value otherwise.
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
 
-### GetConversionRateOk
+### GetMetadataOk
 
-`func (o *DtoUpdatePriceUnitRequest) GetConversionRateOk() (*string, bool)`
+`func (o *DtoUpdatePriceUnitRequest) GetMetadataOk() (*map[string]string, bool)`
 
-GetConversionRateOk returns a tuple with the ConversionRate field if it's non-nil, zero value otherwise
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetConversionRate
+### SetMetadata
 
-`func (o *DtoUpdatePriceUnitRequest) SetConversionRate(v string)`
+`func (o *DtoUpdatePriceUnitRequest) SetMetadata(v map[string]string)`
 
-SetConversionRate sets ConversionRate field to given value.
+SetMetadata sets Metadata field to given value.
 
-### HasConversionRate
+### HasMetadata
 
-`func (o *DtoUpdatePriceUnitRequest) HasConversionRate() bool`
+`func (o *DtoUpdatePriceUnitRequest) HasMetadata() bool`
 
-HasConversionRate returns a boolean if a field has been set.
+HasMetadata returns a boolean if a field has been set.
 
 ### GetName
 
@@ -77,56 +75,6 @@ SetName sets Name field to given value.
 `func (o *DtoUpdatePriceUnitRequest) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### GetPrecision
-
-`func (o *DtoUpdatePriceUnitRequest) GetPrecision() int32`
-
-GetPrecision returns the Precision field if non-nil, zero value otherwise.
-
-### GetPrecisionOk
-
-`func (o *DtoUpdatePriceUnitRequest) GetPrecisionOk() (*int32, bool)`
-
-GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrecision
-
-`func (o *DtoUpdatePriceUnitRequest) SetPrecision(v int32)`
-
-SetPrecision sets Precision field to given value.
-
-### HasPrecision
-
-`func (o *DtoUpdatePriceUnitRequest) HasPrecision() bool`
-
-HasPrecision returns a boolean if a field has been set.
-
-### GetSymbol
-
-`func (o *DtoUpdatePriceUnitRequest) GetSymbol() string`
-
-GetSymbol returns the Symbol field if non-nil, zero value otherwise.
-
-### GetSymbolOk
-
-`func (o *DtoUpdatePriceUnitRequest) GetSymbolOk() (*string, bool)`
-
-GetSymbolOk returns a tuple with the Symbol field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetSymbol
-
-`func (o *DtoUpdatePriceUnitRequest) SetSymbol(v string)`
-
-SetSymbol sets Symbol field to given value.
-
-### HasSymbol
-
-`func (o *DtoUpdatePriceUnitRequest) HasSymbol() bool`
-
-HasSymbol returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

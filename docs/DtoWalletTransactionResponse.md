@@ -6,21 +6,32 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **string** |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
+**CreatedBy** | Pointer to **string** |  | [optional] 
+**CreatedByUser** | Pointer to [**DtoUserResponse**](DtoUserResponse.md) |  | [optional] 
 **CreditAmount** | Pointer to **string** |  | [optional] 
 **CreditBalanceAfter** | Pointer to **string** |  | [optional] 
 **CreditBalanceBefore** | Pointer to **string** |  | [optional] 
 **CreditsAvailable** | Pointer to **string** |  | [optional] 
+**Currency** | Pointer to **string** |  | [optional] 
+**Customer** | Pointer to [**DtoCustomerResponse**](DtoCustomerResponse.md) |  | [optional] 
+**CustomerId** | Pointer to **string** |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
+**EnvironmentId** | Pointer to **string** |  | [optional] 
 **ExpiryDate** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
+**IdempotencyKey** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Priority** | Pointer to **int32** |  | [optional] 
 **ReferenceId** | Pointer to **string** |  | [optional] 
 **ReferenceType** | Pointer to [**TypesWalletTxReferenceType**](TypesWalletTxReferenceType.md) |  | [optional] 
+**Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
+**TenantId** | Pointer to **string** |  | [optional] 
 **TransactionReason** | Pointer to [**TypesTransactionReason**](TypesTransactionReason.md) |  | [optional] 
 **TransactionStatus** | Pointer to [**TypesTransactionStatus**](TypesTransactionStatus.md) |  | [optional] 
-**Type** | Pointer to **string** |  | [optional] 
+**Type** | Pointer to [**TypesTransactionType**](TypesTransactionType.md) |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
+**UpdatedBy** | Pointer to **string** |  | [optional] 
+**Wallet** | Pointer to [**DtoWalletResponse**](DtoWalletResponse.md) |  | [optional] 
 **WalletId** | Pointer to **string** |  | [optional] 
 
 ## Methods
@@ -91,6 +102,56 @@ SetCreatedAt sets CreatedAt field to given value.
 `func (o *DtoWalletTransactionResponse) HasCreatedAt() bool`
 
 HasCreatedAt returns a boolean if a field has been set.
+
+### GetCreatedBy
+
+`func (o *DtoWalletTransactionResponse) GetCreatedBy() string`
+
+GetCreatedBy returns the CreatedBy field if non-nil, zero value otherwise.
+
+### GetCreatedByOk
+
+`func (o *DtoWalletTransactionResponse) GetCreatedByOk() (*string, bool)`
+
+GetCreatedByOk returns a tuple with the CreatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedBy
+
+`func (o *DtoWalletTransactionResponse) SetCreatedBy(v string)`
+
+SetCreatedBy sets CreatedBy field to given value.
+
+### HasCreatedBy
+
+`func (o *DtoWalletTransactionResponse) HasCreatedBy() bool`
+
+HasCreatedBy returns a boolean if a field has been set.
+
+### GetCreatedByUser
+
+`func (o *DtoWalletTransactionResponse) GetCreatedByUser() DtoUserResponse`
+
+GetCreatedByUser returns the CreatedByUser field if non-nil, zero value otherwise.
+
+### GetCreatedByUserOk
+
+`func (o *DtoWalletTransactionResponse) GetCreatedByUserOk() (*DtoUserResponse, bool)`
+
+GetCreatedByUserOk returns a tuple with the CreatedByUser field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreatedByUser
+
+`func (o *DtoWalletTransactionResponse) SetCreatedByUser(v DtoUserResponse)`
+
+SetCreatedByUser sets CreatedByUser field to given value.
+
+### HasCreatedByUser
+
+`func (o *DtoWalletTransactionResponse) HasCreatedByUser() bool`
+
+HasCreatedByUser returns a boolean if a field has been set.
 
 ### GetCreditAmount
 
@@ -192,6 +253,81 @@ SetCreditsAvailable sets CreditsAvailable field to given value.
 
 HasCreditsAvailable returns a boolean if a field has been set.
 
+### GetCurrency
+
+`func (o *DtoWalletTransactionResponse) GetCurrency() string`
+
+GetCurrency returns the Currency field if non-nil, zero value otherwise.
+
+### GetCurrencyOk
+
+`func (o *DtoWalletTransactionResponse) GetCurrencyOk() (*string, bool)`
+
+GetCurrencyOk returns a tuple with the Currency field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCurrency
+
+`func (o *DtoWalletTransactionResponse) SetCurrency(v string)`
+
+SetCurrency sets Currency field to given value.
+
+### HasCurrency
+
+`func (o *DtoWalletTransactionResponse) HasCurrency() bool`
+
+HasCurrency returns a boolean if a field has been set.
+
+### GetCustomer
+
+`func (o *DtoWalletTransactionResponse) GetCustomer() DtoCustomerResponse`
+
+GetCustomer returns the Customer field if non-nil, zero value otherwise.
+
+### GetCustomerOk
+
+`func (o *DtoWalletTransactionResponse) GetCustomerOk() (*DtoCustomerResponse, bool)`
+
+GetCustomerOk returns a tuple with the Customer field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomer
+
+`func (o *DtoWalletTransactionResponse) SetCustomer(v DtoCustomerResponse)`
+
+SetCustomer sets Customer field to given value.
+
+### HasCustomer
+
+`func (o *DtoWalletTransactionResponse) HasCustomer() bool`
+
+HasCustomer returns a boolean if a field has been set.
+
+### GetCustomerId
+
+`func (o *DtoWalletTransactionResponse) GetCustomerId() string`
+
+GetCustomerId returns the CustomerId field if non-nil, zero value otherwise.
+
+### GetCustomerIdOk
+
+`func (o *DtoWalletTransactionResponse) GetCustomerIdOk() (*string, bool)`
+
+GetCustomerIdOk returns a tuple with the CustomerId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomerId
+
+`func (o *DtoWalletTransactionResponse) SetCustomerId(v string)`
+
+SetCustomerId sets CustomerId field to given value.
+
+### HasCustomerId
+
+`func (o *DtoWalletTransactionResponse) HasCustomerId() bool`
+
+HasCustomerId returns a boolean if a field has been set.
+
 ### GetDescription
 
 `func (o *DtoWalletTransactionResponse) GetDescription() string`
@@ -216,6 +352,31 @@ SetDescription sets Description field to given value.
 `func (o *DtoWalletTransactionResponse) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetEnvironmentId
+
+`func (o *DtoWalletTransactionResponse) GetEnvironmentId() string`
+
+GetEnvironmentId returns the EnvironmentId field if non-nil, zero value otherwise.
+
+### GetEnvironmentIdOk
+
+`func (o *DtoWalletTransactionResponse) GetEnvironmentIdOk() (*string, bool)`
+
+GetEnvironmentIdOk returns a tuple with the EnvironmentId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEnvironmentId
+
+`func (o *DtoWalletTransactionResponse) SetEnvironmentId(v string)`
+
+SetEnvironmentId sets EnvironmentId field to given value.
+
+### HasEnvironmentId
+
+`func (o *DtoWalletTransactionResponse) HasEnvironmentId() bool`
+
+HasEnvironmentId returns a boolean if a field has been set.
 
 ### GetExpiryDate
 
@@ -266,6 +427,31 @@ SetId sets Id field to given value.
 `func (o *DtoWalletTransactionResponse) HasId() bool`
 
 HasId returns a boolean if a field has been set.
+
+### GetIdempotencyKey
+
+`func (o *DtoWalletTransactionResponse) GetIdempotencyKey() string`
+
+GetIdempotencyKey returns the IdempotencyKey field if non-nil, zero value otherwise.
+
+### GetIdempotencyKeyOk
+
+`func (o *DtoWalletTransactionResponse) GetIdempotencyKeyOk() (*string, bool)`
+
+GetIdempotencyKeyOk returns a tuple with the IdempotencyKey field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIdempotencyKey
+
+`func (o *DtoWalletTransactionResponse) SetIdempotencyKey(v string)`
+
+SetIdempotencyKey sets IdempotencyKey field to given value.
+
+### HasIdempotencyKey
+
+`func (o *DtoWalletTransactionResponse) HasIdempotencyKey() bool`
+
+HasIdempotencyKey returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -367,6 +553,56 @@ SetReferenceType sets ReferenceType field to given value.
 
 HasReferenceType returns a boolean if a field has been set.
 
+### GetStatus
+
+`func (o *DtoWalletTransactionResponse) GetStatus() TypesStatus`
+
+GetStatus returns the Status field if non-nil, zero value otherwise.
+
+### GetStatusOk
+
+`func (o *DtoWalletTransactionResponse) GetStatusOk() (*TypesStatus, bool)`
+
+GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStatus
+
+`func (o *DtoWalletTransactionResponse) SetStatus(v TypesStatus)`
+
+SetStatus sets Status field to given value.
+
+### HasStatus
+
+`func (o *DtoWalletTransactionResponse) HasStatus() bool`
+
+HasStatus returns a boolean if a field has been set.
+
+### GetTenantId
+
+`func (o *DtoWalletTransactionResponse) GetTenantId() string`
+
+GetTenantId returns the TenantId field if non-nil, zero value otherwise.
+
+### GetTenantIdOk
+
+`func (o *DtoWalletTransactionResponse) GetTenantIdOk() (*string, bool)`
+
+GetTenantIdOk returns a tuple with the TenantId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTenantId
+
+`func (o *DtoWalletTransactionResponse) SetTenantId(v string)`
+
+SetTenantId sets TenantId field to given value.
+
+### HasTenantId
+
+`func (o *DtoWalletTransactionResponse) HasTenantId() bool`
+
+HasTenantId returns a boolean if a field has been set.
+
 ### GetTransactionReason
 
 `func (o *DtoWalletTransactionResponse) GetTransactionReason() TypesTransactionReason`
@@ -419,20 +655,20 @@ HasTransactionStatus returns a boolean if a field has been set.
 
 ### GetType
 
-`func (o *DtoWalletTransactionResponse) GetType() string`
+`func (o *DtoWalletTransactionResponse) GetType() TypesTransactionType`
 
 GetType returns the Type field if non-nil, zero value otherwise.
 
 ### GetTypeOk
 
-`func (o *DtoWalletTransactionResponse) GetTypeOk() (*string, bool)`
+`func (o *DtoWalletTransactionResponse) GetTypeOk() (*TypesTransactionType, bool)`
 
 GetTypeOk returns a tuple with the Type field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetType
 
-`func (o *DtoWalletTransactionResponse) SetType(v string)`
+`func (o *DtoWalletTransactionResponse) SetType(v TypesTransactionType)`
 
 SetType sets Type field to given value.
 
@@ -466,6 +702,56 @@ SetUpdatedAt sets UpdatedAt field to given value.
 `func (o *DtoWalletTransactionResponse) HasUpdatedAt() bool`
 
 HasUpdatedAt returns a boolean if a field has been set.
+
+### GetUpdatedBy
+
+`func (o *DtoWalletTransactionResponse) GetUpdatedBy() string`
+
+GetUpdatedBy returns the UpdatedBy field if non-nil, zero value otherwise.
+
+### GetUpdatedByOk
+
+`func (o *DtoWalletTransactionResponse) GetUpdatedByOk() (*string, bool)`
+
+GetUpdatedByOk returns a tuple with the UpdatedBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetUpdatedBy
+
+`func (o *DtoWalletTransactionResponse) SetUpdatedBy(v string)`
+
+SetUpdatedBy sets UpdatedBy field to given value.
+
+### HasUpdatedBy
+
+`func (o *DtoWalletTransactionResponse) HasUpdatedBy() bool`
+
+HasUpdatedBy returns a boolean if a field has been set.
+
+### GetWallet
+
+`func (o *DtoWalletTransactionResponse) GetWallet() DtoWalletResponse`
+
+GetWallet returns the Wallet field if non-nil, zero value otherwise.
+
+### GetWalletOk
+
+`func (o *DtoWalletTransactionResponse) GetWalletOk() (*DtoWalletResponse, bool)`
+
+GetWalletOk returns a tuple with the Wallet field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetWallet
+
+`func (o *DtoWalletTransactionResponse) SetWallet(v DtoWalletResponse)`
+
+SetWallet sets Wallet field to given value.
+
+### HasWallet
+
+`func (o *DtoWalletTransactionResponse) HasWallet() bool`
+
+HasWallet returns a boolean if a field has been set.
 
 ### GetWalletId
 

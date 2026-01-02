@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**WebhooksChargebeeTenantIdEnvironmentIdPost**](WebhooksAPI.md#WebhooksChargebeeTenantIdEnvironmentIdPost) | **Post** /webhooks/chargebee/{tenant_id}/{environment_id} | Handle Chargebee webhook events
 [**WebhooksHubspotTenantIdEnvironmentIdPost**](WebhooksAPI.md#WebhooksHubspotTenantIdEnvironmentIdPost) | **Post** /webhooks/hubspot/{tenant_id}/{environment_id} | Handle HubSpot webhook events
+[**WebhooksNomodTenantIdEnvironmentIdPost**](WebhooksAPI.md#WebhooksNomodTenantIdEnvironmentIdPost) | **Post** /webhooks/nomod/{tenant_id}/{environment_id} | Handle Nomod webhook events
 [**WebhooksQuickbooksTenantIdEnvironmentIdPost**](WebhooksAPI.md#WebhooksQuickbooksTenantIdEnvironmentIdPost) | **Post** /webhooks/quickbooks/{tenant_id}/{environment_id} | Handle QuickBooks webhook events
 [**WebhooksRazorpayTenantIdEnvironmentIdPost**](WebhooksAPI.md#WebhooksRazorpayTenantIdEnvironmentIdPost) | **Post** /webhooks/razorpay/{tenant_id}/{environment_id} | Handle Razorpay webhook events
 [**WebhooksStripeTenantIdEnvironmentIdPost**](WebhooksAPI.md#WebhooksStripeTenantIdEnvironmentIdPost) | **Post** /webhooks/stripe/{tenant_id}/{environment_id} | Handle Stripe webhook events
@@ -143,6 +144,81 @@ Name | Type | Description  | Notes
 
 
  **xHubSpotSignatureV3** | **string** | HubSpot webhook signature | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## WebhooksNomodTenantIdEnvironmentIdPost
+
+> map[string]interface{} WebhooksNomodTenantIdEnvironmentIdPost(ctx, tenantId, environmentId).XAPIKEY(xAPIKEY).Execute()
+
+Handle Nomod webhook events
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	tenantId := "tenantId_example" // string | Tenant ID
+	environmentId := "environmentId_example" // string | Environment ID
+	xAPIKEY := "xAPIKEY_example" // string | Nomod webhook secret (if configured) (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WebhooksAPI.WebhooksNomodTenantIdEnvironmentIdPost(context.Background(), tenantId, environmentId).XAPIKEY(xAPIKEY).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.WebhooksNomodTenantIdEnvironmentIdPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `WebhooksNomodTenantIdEnvironmentIdPost`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.WebhooksNomodTenantIdEnvironmentIdPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**tenantId** | **string** | Tenant ID | 
+**environmentId** | **string** | Environment ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiWebhooksNomodTenantIdEnvironmentIdPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xAPIKEY** | **string** | Nomod webhook secret (if configured) | 
 
 ### Return type
 

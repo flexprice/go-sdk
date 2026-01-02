@@ -191,7 +191,7 @@ Name | Type | Description  | Notes
 
 ## InvoicesIdCommsTriggerPost
 
-> map[string]map[string]interface{} InvoicesIdCommsTriggerPost(ctx, id).Execute()
+> DtoSuccessResponse InvoicesIdCommsTriggerPost(ctx, id).Execute()
 
 Trigger communication webhook for an invoice
 
@@ -219,7 +219,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `InvoicesAPI.InvoicesIdCommsTriggerPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `InvoicesIdCommsTriggerPost`: map[string]map[string]interface{}
+	// response from `InvoicesIdCommsTriggerPost`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `InvoicesAPI.InvoicesIdCommsTriggerPost`: %v\n", resp)
 }
 ```
@@ -243,7 +243,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 
@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 
 ## InvoicesIdFinalizePost
 
-> map[string]map[string]interface{} InvoicesIdFinalizePost(ctx, id).Execute()
+> DtoSuccessResponse InvoicesIdFinalizePost(ctx, id).Execute()
 
 Finalize an invoice
 
@@ -289,7 +289,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `InvoicesAPI.InvoicesIdFinalizePost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `InvoicesIdFinalizePost`: map[string]map[string]interface{}
+	// response from `InvoicesIdFinalizePost`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `InvoicesAPI.InvoicesIdFinalizePost`: %v\n", resp)
 }
 ```
@@ -313,7 +313,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 
@@ -405,7 +405,7 @@ Name | Type | Description  | Notes
 
 ## InvoicesIdPaymentAttemptPost
 
-> map[string]map[string]interface{} InvoicesIdPaymentAttemptPost(ctx, id).Execute()
+> DtoSuccessResponse InvoicesIdPaymentAttemptPost(ctx, id).Execute()
 
 Attempt payment for an invoice
 
@@ -433,7 +433,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `InvoicesAPI.InvoicesIdPaymentAttemptPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `InvoicesIdPaymentAttemptPost`: map[string]map[string]interface{}
+	// response from `InvoicesIdPaymentAttemptPost`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `InvoicesAPI.InvoicesIdPaymentAttemptPost`: %v\n", resp)
 }
 ```
@@ -457,7 +457,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 
@@ -763,7 +763,7 @@ Name | Type | Description  | Notes
 
 ## InvoicesIdVoidPost
 
-> map[string]map[string]interface{} InvoicesIdVoidPost(ctx, id).Execute()
+> DtoSuccessResponse InvoicesIdVoidPost(ctx, id).Execute()
 
 Void an invoice
 
@@ -791,7 +791,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `InvoicesAPI.InvoicesIdVoidPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `InvoicesIdVoidPost`: map[string]map[string]interface{}
+	// response from `InvoicesIdVoidPost`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `InvoicesAPI.InvoicesIdVoidPost`: %v\n", resp)
 }
 ```
@@ -815,7 +815,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 

@@ -22,7 +22,6 @@ var _ MappedNullable = &DtoRemoveAddonRequest{}
 // DtoRemoveAddonRequest struct for DtoRemoveAddonRequest
 type DtoRemoveAddonRequest struct {
 	AddonAssociationId string `json:"addon_association_id"`
-	EffectiveFrom *string `json:"effective_from,omitempty"`
 	Reason *string `json:"reason,omitempty"`
 }
 
@@ -70,38 +69,6 @@ func (o *DtoRemoveAddonRequest) SetAddonAssociationId(v string) {
 	o.AddonAssociationId = v
 }
 
-// GetEffectiveFrom returns the EffectiveFrom field value if set, zero value otherwise.
-func (o *DtoRemoveAddonRequest) GetEffectiveFrom() string {
-	if o == nil || IsNil(o.EffectiveFrom) {
-		var ret string
-		return ret
-	}
-	return *o.EffectiveFrom
-}
-
-// GetEffectiveFromOk returns a tuple with the EffectiveFrom field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoRemoveAddonRequest) GetEffectiveFromOk() (*string, bool) {
-	if o == nil || IsNil(o.EffectiveFrom) {
-		return nil, false
-	}
-	return o.EffectiveFrom, true
-}
-
-// HasEffectiveFrom returns a boolean if a field has been set.
-func (o *DtoRemoveAddonRequest) HasEffectiveFrom() bool {
-	if o != nil && !IsNil(o.EffectiveFrom) {
-		return true
-	}
-
-	return false
-}
-
-// SetEffectiveFrom gets a reference to the given string and assigns it to the EffectiveFrom field.
-func (o *DtoRemoveAddonRequest) SetEffectiveFrom(v string) {
-	o.EffectiveFrom = &v
-}
-
 // GetReason returns the Reason field value if set, zero value otherwise.
 func (o *DtoRemoveAddonRequest) GetReason() string {
 	if o == nil || IsNil(o.Reason) {
@@ -145,9 +112,6 @@ func (o DtoRemoveAddonRequest) MarshalJSON() ([]byte, error) {
 func (o DtoRemoveAddonRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["addon_association_id"] = o.AddonAssociationId
-	if !IsNil(o.EffectiveFrom) {
-		toSerialize["effective_from"] = o.EffectiveFrom
-	}
 	if !IsNil(o.Reason) {
 		toSerialize["reason"] = o.Reason
 	}

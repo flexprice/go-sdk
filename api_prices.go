@@ -464,9 +464,16 @@ type PricesAPIPricesIdDeleteRequest struct {
 	ctx context.Context
 	ApiService *PricesAPIService
 	id string
+	request *DtoDeletePriceRequest
 }
 
-func (r PricesAPIPricesIdDeleteRequest) Execute() (map[string]map[string]interface{}, *http.Response, error) {
+// Delete Price Request
+func (r PricesAPIPricesIdDeleteRequest) Request(request DtoDeletePriceRequest) PricesAPIPricesIdDeleteRequest {
+	r.request = &request
+	return r
+}
+
+func (r PricesAPIPricesIdDeleteRequest) Execute() (*DtoSuccessResponse, *http.Response, error) {
 	return r.ApiService.PricesIdDeleteExecute(r)
 }
 
@@ -488,13 +495,13 @@ func (a *PricesAPIService) PricesIdDelete(ctx context.Context, id string) Prices
 }
 
 // Execute executes the request
-//  @return map[string]map[string]interface{}
-func (a *PricesAPIService) PricesIdDeleteExecute(r PricesAPIPricesIdDeleteRequest) (map[string]map[string]interface{}, *http.Response, error) {
+//  @return DtoSuccessResponse
+func (a *PricesAPIService) PricesIdDeleteExecute(r PricesAPIPricesIdDeleteRequest) (*DtoSuccessResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]map[string]interface{}
+		localVarReturnValue  *DtoSuccessResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PricesAPIService.PricesIdDelete")
@@ -508,9 +515,12 @@ func (a *PricesAPIService) PricesIdDeleteExecute(r PricesAPIPricesIdDeleteReques
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
+	}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -526,6 +536,8 @@ func (a *PricesAPIService) PricesIdDeleteExecute(r PricesAPIPricesIdDeleteReques
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

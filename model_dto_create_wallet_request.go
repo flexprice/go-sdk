@@ -24,9 +24,7 @@ type DtoCreateWalletRequest struct {
 	AlertConfig *DtoAlertConfig `json:"alert_config,omitempty"`
 	// alert_enabled is the flag to enable alerts for the wallet defaults to true, can be explicitly set to false to disable alerts
 	AlertEnabled *bool `json:"alert_enabled,omitempty"`
-	AutoTopupAmount *string `json:"auto_topup_amount,omitempty"`
-	AutoTopupMinBalance *string `json:"auto_topup_min_balance,omitempty"`
-	AutoTopupTrigger *TypesAutoTopupTrigger `json:"auto_topup_trigger,omitempty"`
+	AutoTopup *TypesAutoTopup `json:"auto_topup,omitempty"`
 	Config *TypesWalletConfig `json:"config,omitempty"`
 	// amount in the currency =  number of credits * conversion_rate ex if conversion_rate is 1, then 1 USD = 1 credit ex if conversion_rate is 2, then 1 USD = 0.5 credits ex if conversion_rate is 0.5, then 1 USD = 2 credits
 	ConversionRate *string `json:"conversion_rate,omitempty"`
@@ -43,6 +41,8 @@ type DtoCreateWalletRequest struct {
 	InitialCreditsToLoadExpiryDate *int32 `json:"initial_credits_to_load_expiry_date,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	Name *string `json:"name,omitempty"`
+	// price_unit is the code of the price unit to use for wallet creation If provided, the price unit will be used to set the currency and conversion rate of the wallet: - currency: set to price unit's base_currency - conversion_rate: set to price unit's conversion_rate
+	PriceUnit *string `json:"price_unit,omitempty"`
 	WalletType *TypesWalletType `json:"wallet_type,omitempty"`
 }
 
@@ -138,100 +138,36 @@ func (o *DtoCreateWalletRequest) SetAlertEnabled(v bool) {
 	o.AlertEnabled = &v
 }
 
-// GetAutoTopupAmount returns the AutoTopupAmount field value if set, zero value otherwise.
-func (o *DtoCreateWalletRequest) GetAutoTopupAmount() string {
-	if o == nil || IsNil(o.AutoTopupAmount) {
-		var ret string
+// GetAutoTopup returns the AutoTopup field value if set, zero value otherwise.
+func (o *DtoCreateWalletRequest) GetAutoTopup() TypesAutoTopup {
+	if o == nil || IsNil(o.AutoTopup) {
+		var ret TypesAutoTopup
 		return ret
 	}
-	return *o.AutoTopupAmount
+	return *o.AutoTopup
 }
 
-// GetAutoTopupAmountOk returns a tuple with the AutoTopupAmount field value if set, nil otherwise
+// GetAutoTopupOk returns a tuple with the AutoTopup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCreateWalletRequest) GetAutoTopupAmountOk() (*string, bool) {
-	if o == nil || IsNil(o.AutoTopupAmount) {
+func (o *DtoCreateWalletRequest) GetAutoTopupOk() (*TypesAutoTopup, bool) {
+	if o == nil || IsNil(o.AutoTopup) {
 		return nil, false
 	}
-	return o.AutoTopupAmount, true
+	return o.AutoTopup, true
 }
 
-// HasAutoTopupAmount returns a boolean if a field has been set.
-func (o *DtoCreateWalletRequest) HasAutoTopupAmount() bool {
-	if o != nil && !IsNil(o.AutoTopupAmount) {
+// HasAutoTopup returns a boolean if a field has been set.
+func (o *DtoCreateWalletRequest) HasAutoTopup() bool {
+	if o != nil && !IsNil(o.AutoTopup) {
 		return true
 	}
 
 	return false
 }
 
-// SetAutoTopupAmount gets a reference to the given string and assigns it to the AutoTopupAmount field.
-func (o *DtoCreateWalletRequest) SetAutoTopupAmount(v string) {
-	o.AutoTopupAmount = &v
-}
-
-// GetAutoTopupMinBalance returns the AutoTopupMinBalance field value if set, zero value otherwise.
-func (o *DtoCreateWalletRequest) GetAutoTopupMinBalance() string {
-	if o == nil || IsNil(o.AutoTopupMinBalance) {
-		var ret string
-		return ret
-	}
-	return *o.AutoTopupMinBalance
-}
-
-// GetAutoTopupMinBalanceOk returns a tuple with the AutoTopupMinBalance field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoCreateWalletRequest) GetAutoTopupMinBalanceOk() (*string, bool) {
-	if o == nil || IsNil(o.AutoTopupMinBalance) {
-		return nil, false
-	}
-	return o.AutoTopupMinBalance, true
-}
-
-// HasAutoTopupMinBalance returns a boolean if a field has been set.
-func (o *DtoCreateWalletRequest) HasAutoTopupMinBalance() bool {
-	if o != nil && !IsNil(o.AutoTopupMinBalance) {
-		return true
-	}
-
-	return false
-}
-
-// SetAutoTopupMinBalance gets a reference to the given string and assigns it to the AutoTopupMinBalance field.
-func (o *DtoCreateWalletRequest) SetAutoTopupMinBalance(v string) {
-	o.AutoTopupMinBalance = &v
-}
-
-// GetAutoTopupTrigger returns the AutoTopupTrigger field value if set, zero value otherwise.
-func (o *DtoCreateWalletRequest) GetAutoTopupTrigger() TypesAutoTopupTrigger {
-	if o == nil || IsNil(o.AutoTopupTrigger) {
-		var ret TypesAutoTopupTrigger
-		return ret
-	}
-	return *o.AutoTopupTrigger
-}
-
-// GetAutoTopupTriggerOk returns a tuple with the AutoTopupTrigger field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoCreateWalletRequest) GetAutoTopupTriggerOk() (*TypesAutoTopupTrigger, bool) {
-	if o == nil || IsNil(o.AutoTopupTrigger) {
-		return nil, false
-	}
-	return o.AutoTopupTrigger, true
-}
-
-// HasAutoTopupTrigger returns a boolean if a field has been set.
-func (o *DtoCreateWalletRequest) HasAutoTopupTrigger() bool {
-	if o != nil && !IsNil(o.AutoTopupTrigger) {
-		return true
-	}
-
-	return false
-}
-
-// SetAutoTopupTrigger gets a reference to the given TypesAutoTopupTrigger and assigns it to the AutoTopupTrigger field.
-func (o *DtoCreateWalletRequest) SetAutoTopupTrigger(v TypesAutoTopupTrigger) {
-	o.AutoTopupTrigger = &v
+// SetAutoTopup gets a reference to the given TypesAutoTopup and assigns it to the AutoTopup field.
+func (o *DtoCreateWalletRequest) SetAutoTopup(v TypesAutoTopup) {
+	o.AutoTopup = &v
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
@@ -578,6 +514,38 @@ func (o *DtoCreateWalletRequest) SetName(v string) {
 	o.Name = &v
 }
 
+// GetPriceUnit returns the PriceUnit field value if set, zero value otherwise.
+func (o *DtoCreateWalletRequest) GetPriceUnit() string {
+	if o == nil || IsNil(o.PriceUnit) {
+		var ret string
+		return ret
+	}
+	return *o.PriceUnit
+}
+
+// GetPriceUnitOk returns a tuple with the PriceUnit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateWalletRequest) GetPriceUnitOk() (*string, bool) {
+	if o == nil || IsNil(o.PriceUnit) {
+		return nil, false
+	}
+	return o.PriceUnit, true
+}
+
+// HasPriceUnit returns a boolean if a field has been set.
+func (o *DtoCreateWalletRequest) HasPriceUnit() bool {
+	if o != nil && !IsNil(o.PriceUnit) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnit gets a reference to the given string and assigns it to the PriceUnit field.
+func (o *DtoCreateWalletRequest) SetPriceUnit(v string) {
+	o.PriceUnit = &v
+}
+
 // GetWalletType returns the WalletType field value if set, zero value otherwise.
 func (o *DtoCreateWalletRequest) GetWalletType() TypesWalletType {
 	if o == nil || IsNil(o.WalletType) {
@@ -626,14 +594,8 @@ func (o DtoCreateWalletRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.AlertEnabled) {
 		toSerialize["alert_enabled"] = o.AlertEnabled
 	}
-	if !IsNil(o.AutoTopupAmount) {
-		toSerialize["auto_topup_amount"] = o.AutoTopupAmount
-	}
-	if !IsNil(o.AutoTopupMinBalance) {
-		toSerialize["auto_topup_min_balance"] = o.AutoTopupMinBalance
-	}
-	if !IsNil(o.AutoTopupTrigger) {
-		toSerialize["auto_topup_trigger"] = o.AutoTopupTrigger
+	if !IsNil(o.AutoTopup) {
+		toSerialize["auto_topup"] = o.AutoTopup
 	}
 	if !IsNil(o.Config) {
 		toSerialize["config"] = o.Config
@@ -665,6 +627,9 @@ func (o DtoCreateWalletRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
+	}
+	if !IsNil(o.PriceUnit) {
+		toSerialize["price_unit"] = o.PriceUnit
 	}
 	if !IsNil(o.WalletType) {
 		toSerialize["wallet_type"] = o.WalletType

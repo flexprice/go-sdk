@@ -22,6 +22,7 @@ type TypesConnectionMetadata struct {
 	Chargebee *TypesChargebeeConnectionMetadata `json:"chargebee,omitempty"`
 	Generic *TypesGenericConnectionMetadata `json:"generic,omitempty"`
 	Hubspot *TypesHubSpotConnectionMetadata `json:"hubspot,omitempty"`
+	Nomod *TypesNomodConnectionMetadata `json:"nomod,omitempty"`
 	Quickbooks *TypesQuickBooksConnectionMetadata `json:"quickbooks,omitempty"`
 	Razorpay *TypesRazorpayConnectionMetadata `json:"razorpay,omitempty"`
 	S3 *TypesS3ConnectionMetadata `json:"s3,omitempty"`
@@ -140,6 +141,38 @@ func (o *TypesConnectionMetadata) HasHubspot() bool {
 // SetHubspot gets a reference to the given TypesHubSpotConnectionMetadata and assigns it to the Hubspot field.
 func (o *TypesConnectionMetadata) SetHubspot(v TypesHubSpotConnectionMetadata) {
 	o.Hubspot = &v
+}
+
+// GetNomod returns the Nomod field value if set, zero value otherwise.
+func (o *TypesConnectionMetadata) GetNomod() TypesNomodConnectionMetadata {
+	if o == nil || IsNil(o.Nomod) {
+		var ret TypesNomodConnectionMetadata
+		return ret
+	}
+	return *o.Nomod
+}
+
+// GetNomodOk returns a tuple with the Nomod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TypesConnectionMetadata) GetNomodOk() (*TypesNomodConnectionMetadata, bool) {
+	if o == nil || IsNil(o.Nomod) {
+		return nil, false
+	}
+	return o.Nomod, true
+}
+
+// HasNomod returns a boolean if a field has been set.
+func (o *TypesConnectionMetadata) HasNomod() bool {
+	if o != nil && !IsNil(o.Nomod) {
+		return true
+	}
+
+	return false
+}
+
+// SetNomod gets a reference to the given TypesNomodConnectionMetadata and assigns it to the Nomod field.
+func (o *TypesConnectionMetadata) SetNomod(v TypesNomodConnectionMetadata) {
+	o.Nomod = &v
 }
 
 // GetQuickbooks returns the Quickbooks field value if set, zero value otherwise.
@@ -320,6 +353,9 @@ func (o TypesConnectionMetadata) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Hubspot) {
 		toSerialize["hubspot"] = o.Hubspot
+	}
+	if !IsNil(o.Nomod) {
+		toSerialize["nomod"] = o.Nomod
 	}
 	if !IsNil(o.Quickbooks) {
 		toSerialize["quickbooks"] = o.Quickbooks

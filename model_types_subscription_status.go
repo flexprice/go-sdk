@@ -24,10 +24,7 @@ const (
 	TYPESSUBSCRIPTIONSTATUS_SubscriptionStatusPaused TypesSubscriptionStatus = "paused"
 	TYPESSUBSCRIPTIONSTATUS_SubscriptionStatusCancelled TypesSubscriptionStatus = "cancelled"
 	TYPESSUBSCRIPTIONSTATUS_SubscriptionStatusIncomplete TypesSubscriptionStatus = "incomplete"
-	TYPESSUBSCRIPTIONSTATUS_SubscriptionStatusIncompleteExpired TypesSubscriptionStatus = "incomplete_expired"
-	TYPESSUBSCRIPTIONSTATUS_SubscriptionStatusPastDue TypesSubscriptionStatus = "past_due"
 	TYPESSUBSCRIPTIONSTATUS_SubscriptionStatusTrialing TypesSubscriptionStatus = "trialing"
-	TYPESSUBSCRIPTIONSTATUS_SubscriptionStatusUnpaid TypesSubscriptionStatus = "unpaid"
 	TYPESSUBSCRIPTIONSTATUS_SubscriptionStatusDraft TypesSubscriptionStatus = "draft"
 )
 
@@ -37,10 +34,7 @@ var AllowedTypesSubscriptionStatusEnumValues = []TypesSubscriptionStatus{
 	"paused",
 	"cancelled",
 	"incomplete",
-	"incomplete_expired",
-	"past_due",
 	"trialing",
-	"unpaid",
 	"draft",
 }
 

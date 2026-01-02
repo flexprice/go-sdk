@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Chargebee** | Pointer to [**TypesChargebeeConnectionMetadata**](TypesChargebeeConnectionMetadata.md) |  | [optional] 
 **Generic** | Pointer to [**TypesGenericConnectionMetadata**](TypesGenericConnectionMetadata.md) |  | [optional] 
 **Hubspot** | Pointer to [**TypesHubSpotConnectionMetadata**](TypesHubSpotConnectionMetadata.md) |  | [optional] 
+**Nomod** | Pointer to [**TypesNomodConnectionMetadata**](TypesNomodConnectionMetadata.md) |  | [optional] 
 **Quickbooks** | Pointer to [**TypesQuickBooksConnectionMetadata**](TypesQuickBooksConnectionMetadata.md) |  | [optional] 
 **Razorpay** | Pointer to [**TypesRazorpayConnectionMetadata**](TypesRazorpayConnectionMetadata.md) |  | [optional] 
 **S3** | Pointer to [**TypesS3ConnectionMetadata**](TypesS3ConnectionMetadata.md) |  | [optional] 
@@ -106,6 +107,31 @@ SetHubspot sets Hubspot field to given value.
 `func (o *TypesConnectionMetadata) HasHubspot() bool`
 
 HasHubspot returns a boolean if a field has been set.
+
+### GetNomod
+
+`func (o *TypesConnectionMetadata) GetNomod() TypesNomodConnectionMetadata`
+
+GetNomod returns the Nomod field if non-nil, zero value otherwise.
+
+### GetNomodOk
+
+`func (o *TypesConnectionMetadata) GetNomodOk() (*TypesNomodConnectionMetadata, bool)`
+
+GetNomodOk returns a tuple with the Nomod field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetNomod
+
+`func (o *TypesConnectionMetadata) SetNomod(v TypesNomodConnectionMetadata)`
+
+SetNomod sets Nomod field to given value.
+
+### HasNomod
+
+`func (o *TypesConnectionMetadata) HasNomod() bool`
+
+HasNomod returns a boolean if a field has been set.
 
 ### GetQuickbooks
 

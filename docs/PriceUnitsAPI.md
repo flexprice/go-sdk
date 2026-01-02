@@ -6,7 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**PricesUnitsCodeCodeGet**](PriceUnitsAPI.md#PricesUnitsCodeCodeGet) | **Get** /prices/units/code/{code} | Get a price unit by code
 [**PricesUnitsGet**](PriceUnitsAPI.md#PricesUnitsGet) | **Get** /prices/units | List price units
-[**PricesUnitsIdDelete**](PriceUnitsAPI.md#PricesUnitsIdDelete) | **Delete** /prices/units/{id} | Archive a price unit
+[**PricesUnitsIdDelete**](PriceUnitsAPI.md#PricesUnitsIdDelete) | **Delete** /prices/units/{id} | Delete a price unit
 [**PricesUnitsIdGet**](PriceUnitsAPI.md#PricesUnitsIdGet) | **Get** /prices/units/{id} | Get a price unit by ID
 [**PricesUnitsIdPut**](PriceUnitsAPI.md#PricesUnitsIdPut) | **Put** /prices/units/{id} | Update a price unit
 [**PricesUnitsPost**](PriceUnitsAPI.md#PricesUnitsPost) | **Post** /prices/units | Create a new price unit
@@ -160,9 +160,9 @@ Name | Type | Description  | Notes
 
 ## PricesUnitsIdDelete
 
-> map[string]map[string]interface{} PricesUnitsIdDelete(ctx, id).Execute()
+> DtoSuccessResponse PricesUnitsIdDelete(ctx, id).Execute()
 
-Archive a price unit
+Delete a price unit
 
 
 
@@ -188,7 +188,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PriceUnitsAPI.PricesUnitsIdDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PricesUnitsIdDelete`: map[string]map[string]interface{}
+	// response from `PricesUnitsIdDelete`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `PriceUnitsAPI.PricesUnitsIdDelete`: %v\n", resp)
 }
 ```
@@ -212,7 +212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 
@@ -372,7 +372,7 @@ Name | Type | Description  | Notes
 
 ## PricesUnitsPost
 
-> DtoPriceUnitResponse PricesUnitsPost(ctx).Body(body).Execute()
+> DtoCreatePriceUnitResponse PricesUnitsPost(ctx).Body(body).Execute()
 
 Create a new price unit
 
@@ -400,7 +400,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PriceUnitsAPI.PricesUnitsPost``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PricesUnitsPost`: DtoPriceUnitResponse
+	// response from `PricesUnitsPost`: DtoCreatePriceUnitResponse
 	fmt.Fprintf(os.Stdout, "Response from `PriceUnitsAPI.PricesUnitsPost`: %v\n", resp)
 }
 ```
@@ -420,7 +420,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DtoPriceUnitResponse**](DtoPriceUnitResponse.md)
+[**DtoCreatePriceUnitResponse**](DtoCreatePriceUnitResponse.md)
 
 ### Authorization
 
@@ -457,7 +457,7 @@ import (
 )
 
 func main() {
-	filter := *openapiclient.NewPriceunitPriceUnitFilter() // PriceunitPriceUnitFilter | Filter
+	filter := *openapiclient.NewTypesPriceUnitFilter() // TypesPriceUnitFilter | Filter
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -482,7 +482,7 @@ Other parameters are passed through a pointer to a apiPricesUnitsSearchPostReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**PriceunitPriceUnitFilter**](PriceunitPriceUnitFilter.md) | Filter | 
+ **filter** | [**TypesPriceUnitFilter**](TypesPriceUnitFilter.md) | Filter | 
 
 ### Return type
 

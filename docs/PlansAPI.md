@@ -98,7 +98,7 @@ Name | Type | Description  | Notes
 
 ## PlansIdDelete
 
-> map[string]map[string]interface{} PlansIdDelete(ctx, id).Execute()
+> DtoSuccessResponse PlansIdDelete(ctx, id).Execute()
 
 Delete a plan
 
@@ -126,7 +126,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PlansAPI.PlansIdDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PlansIdDelete`: map[string]map[string]interface{}
+	// response from `PlansIdDelete`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `PlansAPI.PlansIdDelete`: %v\n", resp)
 }
 ```
@@ -150,7 +150,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 

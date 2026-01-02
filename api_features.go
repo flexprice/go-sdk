@@ -272,7 +272,7 @@ type FeaturesAPIFeaturesIdDeleteRequest struct {
 	id string
 }
 
-func (r FeaturesAPIFeaturesIdDeleteRequest) Execute() (map[string]map[string]interface{}, *http.Response, error) {
+func (r FeaturesAPIFeaturesIdDeleteRequest) Execute() (*DtoSuccessResponse, *http.Response, error) {
 	return r.ApiService.FeaturesIdDeleteExecute(r)
 }
 
@@ -294,13 +294,13 @@ func (a *FeaturesAPIService) FeaturesIdDelete(ctx context.Context, id string) Fe
 }
 
 // Execute executes the request
-//  @return map[string]map[string]interface{}
-func (a *FeaturesAPIService) FeaturesIdDeleteExecute(r FeaturesAPIFeaturesIdDeleteRequest) (map[string]map[string]interface{}, *http.Response, error) {
+//  @return DtoSuccessResponse
+func (a *FeaturesAPIService) FeaturesIdDeleteExecute(r FeaturesAPIFeaturesIdDeleteRequest) (*DtoSuccessResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]map[string]interface{}
+		localVarReturnValue  *DtoSuccessResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "FeaturesAPIService.FeaturesIdDelete")

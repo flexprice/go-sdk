@@ -336,6 +336,212 @@ func (a *WalletsAPIService) CustomersWalletsGetExecute(r WalletsAPICustomersWall
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type WalletsAPIWalletsGetRequest struct {
+	ctx context.Context
+	ApiService *WalletsAPIService
+	alertEnabled *bool
+	expand *string
+	limit *int32
+	offset *int32
+	order *string
+	sort *string
+	status *string
+	walletIds *[]string
+}
+
+func (r WalletsAPIWalletsGetRequest) AlertEnabled(alertEnabled bool) WalletsAPIWalletsGetRequest {
+	r.alertEnabled = &alertEnabled
+	return r
+}
+
+func (r WalletsAPIWalletsGetRequest) Expand(expand string) WalletsAPIWalletsGetRequest {
+	r.expand = &expand
+	return r
+}
+
+func (r WalletsAPIWalletsGetRequest) Limit(limit int32) WalletsAPIWalletsGetRequest {
+	r.limit = &limit
+	return r
+}
+
+func (r WalletsAPIWalletsGetRequest) Offset(offset int32) WalletsAPIWalletsGetRequest {
+	r.offset = &offset
+	return r
+}
+
+func (r WalletsAPIWalletsGetRequest) Order(order string) WalletsAPIWalletsGetRequest {
+	r.order = &order
+	return r
+}
+
+func (r WalletsAPIWalletsGetRequest) Sort(sort string) WalletsAPIWalletsGetRequest {
+	r.sort = &sort
+	return r
+}
+
+func (r WalletsAPIWalletsGetRequest) Status(status string) WalletsAPIWalletsGetRequest {
+	r.status = &status
+	return r
+}
+
+func (r WalletsAPIWalletsGetRequest) WalletIds(walletIds []string) WalletsAPIWalletsGetRequest {
+	r.walletIds = &walletIds
+	return r
+}
+
+func (r WalletsAPIWalletsGetRequest) Execute() (*TypesListResponseDtoWalletResponse, *http.Response, error) {
+	return r.ApiService.WalletsGetExecute(r)
+}
+
+/*
+WalletsGet List wallets
+
+List wallets with optional filtering
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return WalletsAPIWalletsGetRequest
+*/
+func (a *WalletsAPIService) WalletsGet(ctx context.Context) WalletsAPIWalletsGetRequest {
+	return WalletsAPIWalletsGetRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TypesListResponseDtoWalletResponse
+func (a *WalletsAPIService) WalletsGetExecute(r WalletsAPIWalletsGetRequest) (*TypesListResponseDtoWalletResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TypesListResponseDtoWalletResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WalletsAPIService.WalletsGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/wallets"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.alertEnabled != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "alert_enabled", r.alertEnabled, "form", "")
+	}
+	if r.expand != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expand", r.expand, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+	}
+	if r.order != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "order", r.order, "form", "")
+	}
+	if r.sort != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "form", "")
+	}
+	if r.status != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "status", r.status, "form", "")
+	}
+	if r.walletIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "wallet_ids", r.walletIds, "form", "csv")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type WalletsAPIWalletsIdBalanceRealTimeGetRequest struct {
 	ctx context.Context
 	ApiService *WalletsAPIService
@@ -402,167 +608,6 @@ func (a *WalletsAPIService) WalletsIdBalanceRealTimeGetExecute(r WalletsAPIWalle
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	if r.ctx != nil {
-		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-			if apiKey, ok := auth["ApiKeyAuth"]; ok {
-				var key string
-				if apiKey.Prefix != "" {
-					key = apiKey.Prefix + " " + apiKey.Key
-				} else {
-					key = apiKey.Key
-				}
-				localVarHeaderParams["x-api-key"] = key
-			}
-		}
-	}
-	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
-	if err != nil {
-		return localVarReturnValue, nil, err
-	}
-
-	localVarHTTPResponse, err := a.client.callAPI(req)
-	if err != nil || localVarHTTPResponse == nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
-	localVarHTTPResponse.Body.Close()
-	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
-	if err != nil {
-		return localVarReturnValue, localVarHTTPResponse, err
-	}
-
-	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
-		}
-		if localVarHTTPResponse.StatusCode == 400 {
-			var v ErrorsErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 404 {
-			var v ErrorsErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-			return localVarReturnValue, localVarHTTPResponse, newErr
-		}
-		if localVarHTTPResponse.StatusCode == 500 {
-			var v ErrorsErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-			if err != nil {
-				newErr.error = err.Error()
-				return localVarReturnValue, localVarHTTPResponse, newErr
-			}
-					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
-					newErr.model = v
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
-	if err != nil {
-		newErr := &GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
-		}
-		return localVarReturnValue, localVarHTTPResponse, newErr
-	}
-
-	return localVarReturnValue, localVarHTTPResponse, nil
-}
-
-type WalletsAPIWalletsIdDebitPostRequest struct {
-	ctx context.Context
-	ApiService *WalletsAPIService
-	id string
-	request *DtoManualBalanceDebitRequest
-}
-
-// Debit wallet request
-func (r WalletsAPIWalletsIdDebitPostRequest) Request(request DtoManualBalanceDebitRequest) WalletsAPIWalletsIdDebitPostRequest {
-	r.request = &request
-	return r
-}
-
-func (r WalletsAPIWalletsIdDebitPostRequest) Execute() (*DtoWalletResponse, *http.Response, error) {
-	return r.ApiService.WalletsIdDebitPostExecute(r)
-}
-
-/*
-WalletsIdDebitPost Debit a wallet
-
-Debit a wallet by debiting credits from a wallet
-
- @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Wallet ID
- @return WalletsAPIWalletsIdDebitPostRequest
-*/
-func (a *WalletsAPIService) WalletsIdDebitPost(ctx context.Context, id string) WalletsAPIWalletsIdDebitPostRequest {
-	return WalletsAPIWalletsIdDebitPostRequest{
-		ApiService: a,
-		ctx: ctx,
-		id: id,
-	}
-}
-
-// Execute executes the request
-//  @return DtoWalletResponse
-func (a *WalletsAPIService) WalletsIdDebitPostExecute(r WalletsAPIWalletsIdDebitPostRequest) (*DtoWalletResponse, *http.Response, error) {
-	var (
-		localVarHTTPMethod   = http.MethodPost
-		localVarPostBody     interface{}
-		formFiles            []formFile
-		localVarReturnValue  *DtoWalletResponse
-	)
-
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WalletsAPIService.WalletsIdDebitPost")
-	if err != nil {
-		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
-	}
-
-	localVarPath := localBasePath + "/wallets/{id}/debit"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
-
-	localVarHeaderParams := make(map[string]string)
-	localVarQueryParams := url.Values{}
-	localVarFormParams := url.Values{}
-	if r.request == nil {
-		return localVarReturnValue, nil, reportError("request is required and must be specified")
-	}
-
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
-	// body params
-	localVarPostBody = r.request
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1270,6 +1315,7 @@ type WalletsAPIWalletsIdTransactionsGetRequest struct {
 	ctx context.Context
 	ApiService *WalletsAPIService
 	id string
+	createdBy *string
 	creditsAvailableGt *float32
 	endTime *string
 	expand *string
@@ -1282,12 +1328,16 @@ type WalletsAPIWalletsIdTransactionsGetRequest struct {
 	priority *int32
 	referenceId *string
 	referenceType *string
-	sort *string
 	startTime *string
 	status *string
 	transactionReason *string
 	transactionStatus *string
 	type_ *string
+}
+
+func (r WalletsAPIWalletsIdTransactionsGetRequest) CreatedBy(createdBy string) WalletsAPIWalletsIdTransactionsGetRequest {
+	r.createdBy = &createdBy
+	return r
 }
 
 func (r WalletsAPIWalletsIdTransactionsGetRequest) CreditsAvailableGt(creditsAvailableGt float32) WalletsAPIWalletsIdTransactionsGetRequest {
@@ -1347,11 +1397,6 @@ func (r WalletsAPIWalletsIdTransactionsGetRequest) ReferenceId(referenceId strin
 
 func (r WalletsAPIWalletsIdTransactionsGetRequest) ReferenceType(referenceType string) WalletsAPIWalletsIdTransactionsGetRequest {
 	r.referenceType = &referenceType
-	return r
-}
-
-func (r WalletsAPIWalletsIdTransactionsGetRequest) Sort(sort string) WalletsAPIWalletsIdTransactionsGetRequest {
-	r.sort = &sort
 	return r
 }
 
@@ -1423,6 +1468,9 @@ func (a *WalletsAPIService) WalletsIdTransactionsGetExecute(r WalletsAPIWalletsI
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.createdBy != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "created_by", r.createdBy, "form", "")
+	}
 	if r.creditsAvailableGt != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "credits_available_gt", r.creditsAvailableGt, "form", "")
 	}
@@ -1458,9 +1506,6 @@ func (a *WalletsAPIService) WalletsIdTransactionsGetExecute(r WalletsAPIWalletsI
 	}
 	if r.referenceType != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "reference_type", r.referenceType, "form", "")
-	}
-	if r.sort != nil {
-		parameterAddToHeaderOrQuery(localVarQueryParams, "sort", r.sort, "form", "")
 	}
 	if r.startTime != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "start_time", r.startTime, "form", "")
@@ -1651,6 +1696,302 @@ func (a *WalletsAPIService) WalletsPostExecute(r WalletsAPIWalletsPostRequest) (
 	}
 	// body params
 	localVarPostBody = r.request
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type WalletsAPIWalletsSearchPostRequest struct {
+	ctx context.Context
+	ApiService *WalletsAPIService
+	filter *TypesWalletFilter
+}
+
+// Filter
+func (r WalletsAPIWalletsSearchPostRequest) Filter(filter TypesWalletFilter) WalletsAPIWalletsSearchPostRequest {
+	r.filter = &filter
+	return r
+}
+
+func (r WalletsAPIWalletsSearchPostRequest) Execute() (*TypesListResponseDtoWalletResponse, *http.Response, error) {
+	return r.ApiService.WalletsSearchPostExecute(r)
+}
+
+/*
+WalletsSearchPost List wallets by filter
+
+List wallets by filter
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return WalletsAPIWalletsSearchPostRequest
+*/
+func (a *WalletsAPIService) WalletsSearchPost(ctx context.Context) WalletsAPIWalletsSearchPostRequest {
+	return WalletsAPIWalletsSearchPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return TypesListResponseDtoWalletResponse
+func (a *WalletsAPIService) WalletsSearchPostExecute(r WalletsAPIWalletsSearchPostRequest) (*TypesListResponseDtoWalletResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *TypesListResponseDtoWalletResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WalletsAPIService.WalletsSearchPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/wallets/search"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.filter
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type WalletsAPIWalletsTransactionsSearchPostRequest struct {
+	ctx context.Context
+	ApiService *WalletsAPIService
+	expand *string
+	filter *TypesWalletTransactionFilter
+}
+
+// Expand fields (e.g., customer,created_by_user,wallet)
+func (r WalletsAPIWalletsTransactionsSearchPostRequest) Expand(expand string) WalletsAPIWalletsTransactionsSearchPostRequest {
+	r.expand = &expand
+	return r
+}
+
+// Filter
+func (r WalletsAPIWalletsTransactionsSearchPostRequest) Filter(filter TypesWalletTransactionFilter) WalletsAPIWalletsTransactionsSearchPostRequest {
+	r.filter = &filter
+	return r
+}
+
+func (r WalletsAPIWalletsTransactionsSearchPostRequest) Execute() (*DtoListWalletTransactionsResponse, *http.Response, error) {
+	return r.ApiService.WalletsTransactionsSearchPostExecute(r)
+}
+
+/*
+WalletsTransactionsSearchPost List wallet transactions by filter
+
+List wallet transactions by filter
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return WalletsAPIWalletsTransactionsSearchPostRequest
+*/
+func (a *WalletsAPIService) WalletsTransactionsSearchPost(ctx context.Context) WalletsAPIWalletsTransactionsSearchPostRequest {
+	return WalletsAPIWalletsTransactionsSearchPostRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return DtoListWalletTransactionsResponse
+func (a *WalletsAPIService) WalletsTransactionsSearchPostExecute(r WalletsAPIWalletsTransactionsSearchPostRequest) (*DtoListWalletTransactionsResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DtoListWalletTransactionsResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WalletsAPIService.WalletsTransactionsSearchPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/wallets/transactions/search"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.expand != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expand", r.expand, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.filter
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

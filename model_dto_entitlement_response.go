@@ -23,6 +23,7 @@ type DtoEntitlementResponse struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
 	DisplayOrder *int32 `json:"display_order,omitempty"`
+	EndDate *string `json:"end_date,omitempty"`
 	EntityId *string `json:"entity_id,omitempty"`
 	EntityType *TypesEntitlementEntityType `json:"entity_type,omitempty"`
 	EnvironmentId *string `json:"environment_id,omitempty"`
@@ -36,6 +37,7 @@ type DtoEntitlementResponse struct {
 	Plan *DtoPlanResponse `json:"plan,omitempty"`
 	// TODO: Remove this once we have a proper entitlement entity type
 	PlanId *string `json:"plan_id,omitempty"`
+	StartDate *string `json:"start_date,omitempty"`
 	StaticValue *string `json:"static_value,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
@@ -188,6 +190,38 @@ func (o *DtoEntitlementResponse) HasDisplayOrder() bool {
 // SetDisplayOrder gets a reference to the given int32 and assigns it to the DisplayOrder field.
 func (o *DtoEntitlementResponse) SetDisplayOrder(v int32) {
 	o.DisplayOrder = &v
+}
+
+// GetEndDate returns the EndDate field value if set, zero value otherwise.
+func (o *DtoEntitlementResponse) GetEndDate() string {
+	if o == nil || IsNil(o.EndDate) {
+		var ret string
+		return ret
+	}
+	return *o.EndDate
+}
+
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoEntitlementResponse) GetEndDateOk() (*string, bool) {
+	if o == nil || IsNil(o.EndDate) {
+		return nil, false
+	}
+	return o.EndDate, true
+}
+
+// HasEndDate returns a boolean if a field has been set.
+func (o *DtoEntitlementResponse) HasEndDate() bool {
+	if o != nil && !IsNil(o.EndDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
+func (o *DtoEntitlementResponse) SetEndDate(v string) {
+	o.EndDate = &v
 }
 
 // GetEntityId returns the EntityId field value if set, zero value otherwise.
@@ -574,6 +608,38 @@ func (o *DtoEntitlementResponse) SetPlanId(v string) {
 	o.PlanId = &v
 }
 
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
+func (o *DtoEntitlementResponse) GetStartDate() string {
+	if o == nil || IsNil(o.StartDate) {
+		var ret string
+		return ret
+	}
+	return *o.StartDate
+}
+
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoEntitlementResponse) GetStartDateOk() (*string, bool) {
+	if o == nil || IsNil(o.StartDate) {
+		return nil, false
+	}
+	return o.StartDate, true
+}
+
+// HasStartDate returns a boolean if a field has been set.
+func (o *DtoEntitlementResponse) HasStartDate() bool {
+	if o != nil && !IsNil(o.StartDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given string and assigns it to the StartDate field.
+func (o *DtoEntitlementResponse) SetStartDate(v string) {
+	o.StartDate = &v
+}
+
 // GetStaticValue returns the StaticValue field value if set, zero value otherwise.
 func (o *DtoEntitlementResponse) GetStaticValue() string {
 	if o == nil || IsNil(o.StaticValue) {
@@ -820,6 +886,9 @@ func (o DtoEntitlementResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.DisplayOrder) {
 		toSerialize["display_order"] = o.DisplayOrder
 	}
+	if !IsNil(o.EndDate) {
+		toSerialize["end_date"] = o.EndDate
+	}
 	if !IsNil(o.EntityId) {
 		toSerialize["entity_id"] = o.EntityId
 	}
@@ -855,6 +924,9 @@ func (o DtoEntitlementResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PlanId) {
 		toSerialize["plan_id"] = o.PlanId
+	}
+	if !IsNil(o.StartDate) {
+		toSerialize["start_date"] = o.StartDate
 	}
 	if !IsNil(o.StaticValue) {
 		toSerialize["static_value"] = o.StaticValue

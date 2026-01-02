@@ -17,6 +17,7 @@ Name | Type | Description | Notes
 **Name** | Pointer to **string** | name is the full name or company name of the customer | [optional] 
 **ParentCustomerExternalId** | Pointer to **string** | parent_customer_external_id is the external ID of the parent customer from your system Exactly one of parent_customer_id or parent_customer_external_id may be provided | [optional] 
 **ParentCustomerId** | Pointer to **string** | parent_customer_id is the internal FlexPrice ID of the parent customer | [optional] 
+**SkipOnboardingWorkflow** | Pointer to **bool** | skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered This is used internally when a customer is created via a workflow to prevent infinite loops Default: false | [optional] 
 **TaxRateOverrides** | Pointer to [**[]DtoTaxRateOverride**](DtoTaxRateOverride.md) | tax_rate_overrides contains tax rate configurations to be linked to this customer | [optional] 
 
 ## Methods
@@ -357,6 +358,31 @@ SetParentCustomerId sets ParentCustomerId field to given value.
 `func (o *DtoCreateCustomerRequest) HasParentCustomerId() bool`
 
 HasParentCustomerId returns a boolean if a field has been set.
+
+### GetSkipOnboardingWorkflow
+
+`func (o *DtoCreateCustomerRequest) GetSkipOnboardingWorkflow() bool`
+
+GetSkipOnboardingWorkflow returns the SkipOnboardingWorkflow field if non-nil, zero value otherwise.
+
+### GetSkipOnboardingWorkflowOk
+
+`func (o *DtoCreateCustomerRequest) GetSkipOnboardingWorkflowOk() (*bool, bool)`
+
+GetSkipOnboardingWorkflowOk returns a tuple with the SkipOnboardingWorkflow field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetSkipOnboardingWorkflow
+
+`func (o *DtoCreateCustomerRequest) SetSkipOnboardingWorkflow(v bool)`
+
+SetSkipOnboardingWorkflow sets SkipOnboardingWorkflow field to given value.
+
+### HasSkipOnboardingWorkflow
+
+`func (o *DtoCreateCustomerRequest) HasSkipOnboardingWorkflow() bool`
+
+HasSkipOnboardingWorkflow returns a boolean if a field has been set.
 
 ### GetTaxRateOverrides
 

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **string** | amount is the monetary amount for this line item | [optional] 
+**CommitmentInfo** | Pointer to [**TypesCommitmentInfo**](TypesCommitmentInfo.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** | created_at is the timestamp when this line item was created | [optional] 
 **CreatedBy** | Pointer to **string** | created_by is the identifier of the user who created this line item | [optional] 
 **Currency** | Pointer to **string** | currency is the three-letter ISO currency code for this line item | [optional] 
@@ -78,6 +79,31 @@ SetAmount sets Amount field to given value.
 `func (o *DtoInvoiceLineItemResponse) HasAmount() bool`
 
 HasAmount returns a boolean if a field has been set.
+
+### GetCommitmentInfo
+
+`func (o *DtoInvoiceLineItemResponse) GetCommitmentInfo() TypesCommitmentInfo`
+
+GetCommitmentInfo returns the CommitmentInfo field if non-nil, zero value otherwise.
+
+### GetCommitmentInfoOk
+
+`func (o *DtoInvoiceLineItemResponse) GetCommitmentInfoOk() (*TypesCommitmentInfo, bool)`
+
+GetCommitmentInfoOk returns a tuple with the CommitmentInfo field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentInfo
+
+`func (o *DtoInvoiceLineItemResponse) SetCommitmentInfo(v TypesCommitmentInfo)`
+
+SetCommitmentInfo sets CommitmentInfo field to given value.
+
+### HasCommitmentInfo
+
+`func (o *DtoInvoiceLineItemResponse) HasCommitmentInfo() bool`
+
+HasCommitmentInfo returns a boolean if a field has been set.
 
 ### GetCreatedAt
 

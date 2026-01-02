@@ -21,8 +21,7 @@ var _ MappedNullable = &PriceJSONBTransformQuantity{}
 type PriceJSONBTransformQuantity struct {
 	// Divide quantity by this number
 	DivideBy *int32 `json:"divide_by,omitempty"`
-	// up or down
-	Round *string `json:"round,omitempty"`
+	Round *TypesRoundType `json:"round,omitempty"`
 }
 
 // NewPriceJSONBTransformQuantity instantiates a new PriceJSONBTransformQuantity object
@@ -75,9 +74,9 @@ func (o *PriceJSONBTransformQuantity) SetDivideBy(v int32) {
 }
 
 // GetRound returns the Round field value if set, zero value otherwise.
-func (o *PriceJSONBTransformQuantity) GetRound() string {
+func (o *PriceJSONBTransformQuantity) GetRound() TypesRoundType {
 	if o == nil || IsNil(o.Round) {
-		var ret string
+		var ret TypesRoundType
 		return ret
 	}
 	return *o.Round
@@ -85,7 +84,7 @@ func (o *PriceJSONBTransformQuantity) GetRound() string {
 
 // GetRoundOk returns a tuple with the Round field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *PriceJSONBTransformQuantity) GetRoundOk() (*string, bool) {
+func (o *PriceJSONBTransformQuantity) GetRoundOk() (*TypesRoundType, bool) {
 	if o == nil || IsNil(o.Round) {
 		return nil, false
 	}
@@ -101,8 +100,8 @@ func (o *PriceJSONBTransformQuantity) HasRound() bool {
 	return false
 }
 
-// SetRound gets a reference to the given string and assigns it to the Round field.
-func (o *PriceJSONBTransformQuantity) SetRound(v string) {
+// SetRound gets a reference to the given TypesRoundType and assigns it to the Round field.
+func (o *PriceJSONBTransformQuantity) SetRound(v TypesRoundType) {
 	o.Round = &v
 }
 

@@ -22,6 +22,7 @@ type DtoUsageAnalyticItem struct {
 	AddOnId *string `json:"add_on_id,omitempty"`
 	Addon *GithubComFlexpriceFlexpriceInternalDomainAddonAddon `json:"addon,omitempty"`
 	AggregationType *TypesAggregationType `json:"aggregation_type,omitempty"`
+	CommitmentInfo *TypesCommitmentInfo `json:"commitment_info,omitempty"`
 	Currency *string `json:"currency,omitempty"`
 	// Number of events that contributed to this aggregation
 	EventCount *int32 `json:"event_count,omitempty"`
@@ -41,6 +42,8 @@ type DtoUsageAnalyticItem struct {
 	// Stores property values for flexible grouping (e.g., org_id -> \"org123\")
 	Properties *map[string]string `json:"properties,omitempty"`
 	Source *string `json:"source,omitempty"`
+	// List of sources when not grouping by source
+	Sources []string `json:"sources,omitempty"`
 	// Subscription line item ID
 	SubLineItemId *string `json:"sub_line_item_id,omitempty"`
 	// Subscription ID
@@ -50,6 +53,7 @@ type DtoUsageAnalyticItem struct {
 	TotalUsage *string `json:"total_usage,omitempty"`
 	Unit *string `json:"unit,omitempty"`
 	UnitPlural *string `json:"unit_plural,omitempty"`
+	WindowSize *TypesWindowSize `json:"window_size,omitempty"`
 }
 
 // NewDtoUsageAnalyticItem instantiates a new DtoUsageAnalyticItem object
@@ -163,6 +167,38 @@ func (o *DtoUsageAnalyticItem) HasAggregationType() bool {
 // SetAggregationType gets a reference to the given TypesAggregationType and assigns it to the AggregationType field.
 func (o *DtoUsageAnalyticItem) SetAggregationType(v TypesAggregationType) {
 	o.AggregationType = &v
+}
+
+// GetCommitmentInfo returns the CommitmentInfo field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetCommitmentInfo() TypesCommitmentInfo {
+	if o == nil || IsNil(o.CommitmentInfo) {
+		var ret TypesCommitmentInfo
+		return ret
+	}
+	return *o.CommitmentInfo
+}
+
+// GetCommitmentInfoOk returns a tuple with the CommitmentInfo field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetCommitmentInfoOk() (*TypesCommitmentInfo, bool) {
+	if o == nil || IsNil(o.CommitmentInfo) {
+		return nil, false
+	}
+	return o.CommitmentInfo, true
+}
+
+// HasCommitmentInfo returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasCommitmentInfo() bool {
+	if o != nil && !IsNil(o.CommitmentInfo) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentInfo gets a reference to the given TypesCommitmentInfo and assigns it to the CommitmentInfo field.
+func (o *DtoUsageAnalyticItem) SetCommitmentInfo(v TypesCommitmentInfo) {
+	o.CommitmentInfo = &v
 }
 
 // GetCurrency returns the Currency field value if set, zero value otherwise.
@@ -645,6 +681,38 @@ func (o *DtoUsageAnalyticItem) SetSource(v string) {
 	o.Source = &v
 }
 
+// GetSources returns the Sources field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetSources() []string {
+	if o == nil || IsNil(o.Sources) {
+		var ret []string
+		return ret
+	}
+	return o.Sources
+}
+
+// GetSourcesOk returns a tuple with the Sources field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetSourcesOk() ([]string, bool) {
+	if o == nil || IsNil(o.Sources) {
+		return nil, false
+	}
+	return o.Sources, true
+}
+
+// HasSources returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasSources() bool {
+	if o != nil && !IsNil(o.Sources) {
+		return true
+	}
+
+	return false
+}
+
+// SetSources gets a reference to the given []string and assigns it to the Sources field.
+func (o *DtoUsageAnalyticItem) SetSources(v []string) {
+	o.Sources = v
+}
+
 // GetSubLineItemId returns the SubLineItemId field value if set, zero value otherwise.
 func (o *DtoUsageAnalyticItem) GetSubLineItemId() string {
 	if o == nil || IsNil(o.SubLineItemId) {
@@ -869,6 +937,38 @@ func (o *DtoUsageAnalyticItem) SetUnitPlural(v string) {
 	o.UnitPlural = &v
 }
 
+// GetWindowSize returns the WindowSize field value if set, zero value otherwise.
+func (o *DtoUsageAnalyticItem) GetWindowSize() TypesWindowSize {
+	if o == nil || IsNil(o.WindowSize) {
+		var ret TypesWindowSize
+		return ret
+	}
+	return *o.WindowSize
+}
+
+// GetWindowSizeOk returns a tuple with the WindowSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUsageAnalyticItem) GetWindowSizeOk() (*TypesWindowSize, bool) {
+	if o == nil || IsNil(o.WindowSize) {
+		return nil, false
+	}
+	return o.WindowSize, true
+}
+
+// HasWindowSize returns a boolean if a field has been set.
+func (o *DtoUsageAnalyticItem) HasWindowSize() bool {
+	if o != nil && !IsNil(o.WindowSize) {
+		return true
+	}
+
+	return false
+}
+
+// SetWindowSize gets a reference to the given TypesWindowSize and assigns it to the WindowSize field.
+func (o *DtoUsageAnalyticItem) SetWindowSize(v TypesWindowSize) {
+	o.WindowSize = &v
+}
+
 func (o DtoUsageAnalyticItem) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -887,6 +987,9 @@ func (o DtoUsageAnalyticItem) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.AggregationType) {
 		toSerialize["aggregation_type"] = o.AggregationType
+	}
+	if !IsNil(o.CommitmentInfo) {
+		toSerialize["commitment_info"] = o.CommitmentInfo
 	}
 	if !IsNil(o.Currency) {
 		toSerialize["currency"] = o.Currency
@@ -933,6 +1036,9 @@ func (o DtoUsageAnalyticItem) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Source) {
 		toSerialize["source"] = o.Source
 	}
+	if !IsNil(o.Sources) {
+		toSerialize["sources"] = o.Sources
+	}
 	if !IsNil(o.SubLineItemId) {
 		toSerialize["sub_line_item_id"] = o.SubLineItemId
 	}
@@ -953,6 +1059,9 @@ func (o DtoUsageAnalyticItem) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.UnitPlural) {
 		toSerialize["unit_plural"] = o.UnitPlural
+	}
+	if !IsNil(o.WindowSize) {
+		toSerialize["window_size"] = o.WindowSize
 	}
 	return toSerialize, nil
 }

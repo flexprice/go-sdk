@@ -19,7 +19,6 @@ var _ MappedNullable = &ErrorsErrorDetail{}
 
 // ErrorsErrorDetail struct for ErrorsErrorDetail
 type ErrorsErrorDetail struct {
-	Details map[string]map[string]interface{} `json:"details,omitempty"`
 	InternalError *string `json:"internal_error,omitempty"`
 	Message *string `json:"message,omitempty"`
 }
@@ -39,38 +38,6 @@ func NewErrorsErrorDetail() *ErrorsErrorDetail {
 func NewErrorsErrorDetailWithDefaults() *ErrorsErrorDetail {
 	this := ErrorsErrorDetail{}
 	return &this
-}
-
-// GetDetails returns the Details field value if set, zero value otherwise.
-func (o *ErrorsErrorDetail) GetDetails() map[string]map[string]interface{} {
-	if o == nil || IsNil(o.Details) {
-		var ret map[string]map[string]interface{}
-		return ret
-	}
-	return o.Details
-}
-
-// GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ErrorsErrorDetail) GetDetailsOk() (map[string]map[string]interface{}, bool) {
-	if o == nil || IsNil(o.Details) {
-		return map[string]map[string]interface{}{}, false
-	}
-	return o.Details, true
-}
-
-// HasDetails returns a boolean if a field has been set.
-func (o *ErrorsErrorDetail) HasDetails() bool {
-	if o != nil && !IsNil(o.Details) {
-		return true
-	}
-
-	return false
-}
-
-// SetDetails gets a reference to the given map[string]map[string]interface{} and assigns it to the Details field.
-func (o *ErrorsErrorDetail) SetDetails(v map[string]map[string]interface{}) {
-	o.Details = v
 }
 
 // GetInternalError returns the InternalError field value if set, zero value otherwise.
@@ -147,9 +114,6 @@ func (o ErrorsErrorDetail) MarshalJSON() ([]byte, error) {
 
 func (o ErrorsErrorDetail) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.Details) {
-		toSerialize["details"] = o.Details
-	}
 	if !IsNil(o.InternalError) {
 		toSerialize["internal_error"] = o.InternalError
 	}

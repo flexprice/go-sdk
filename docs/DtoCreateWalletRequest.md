@@ -6,9 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AlertConfig** | Pointer to [**DtoAlertConfig**](DtoAlertConfig.md) |  | [optional] 
 **AlertEnabled** | Pointer to **bool** | alert_enabled is the flag to enable alerts for the wallet defaults to true, can be explicitly set to false to disable alerts | [optional] 
-**AutoTopupAmount** | Pointer to **string** |  | [optional] 
-**AutoTopupMinBalance** | Pointer to **string** |  | [optional] 
-**AutoTopupTrigger** | Pointer to [**TypesAutoTopupTrigger**](TypesAutoTopupTrigger.md) |  | [optional] 
+**AutoTopup** | Pointer to [**TypesAutoTopup**](TypesAutoTopup.md) |  | [optional] 
 **Config** | Pointer to [**TypesWalletConfig**](TypesWalletConfig.md) |  | [optional] 
 **ConversionRate** | Pointer to **string** | amount in the currency &#x3D;  number of credits * conversion_rate ex if conversion_rate is 1, then 1 USD &#x3D; 1 credit ex if conversion_rate is 2, then 1 USD &#x3D; 0.5 credits ex if conversion_rate is 0.5, then 1 USD &#x3D; 2 credits | [optional] [default to "1"]
 **Currency** | **string** |  | 
@@ -20,6 +18,7 @@ Name | Type | Description | Notes
 **InitialCreditsToLoadExpiryDate** | Pointer to **int32** | initial_credits_to_load_expiry_date YYYYMMDD format in UTC timezone (optional to set nil means no expiry) for ex 20250101 means the credits will expire on 2025-01-01 00:00:00 UTC hence they will be available for use until 2024-12-31 23:59:59 UTC | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
+**PriceUnit** | Pointer to **string** | price_unit is the code of the price unit to use for wallet creation If provided, the price unit will be used to set the currency and conversion rate of the wallet: - currency: set to price unit&#39;s base_currency - conversion_rate: set to price unit&#39;s conversion_rate | [optional] 
 **WalletType** | Pointer to [**TypesWalletType**](TypesWalletType.md) |  | [optional] 
 
 ## Methods
@@ -91,80 +90,30 @@ SetAlertEnabled sets AlertEnabled field to given value.
 
 HasAlertEnabled returns a boolean if a field has been set.
 
-### GetAutoTopupAmount
+### GetAutoTopup
 
-`func (o *DtoCreateWalletRequest) GetAutoTopupAmount() string`
+`func (o *DtoCreateWalletRequest) GetAutoTopup() TypesAutoTopup`
 
-GetAutoTopupAmount returns the AutoTopupAmount field if non-nil, zero value otherwise.
+GetAutoTopup returns the AutoTopup field if non-nil, zero value otherwise.
 
-### GetAutoTopupAmountOk
+### GetAutoTopupOk
 
-`func (o *DtoCreateWalletRequest) GetAutoTopupAmountOk() (*string, bool)`
+`func (o *DtoCreateWalletRequest) GetAutoTopupOk() (*TypesAutoTopup, bool)`
 
-GetAutoTopupAmountOk returns a tuple with the AutoTopupAmount field if it's non-nil, zero value otherwise
+GetAutoTopupOk returns a tuple with the AutoTopup field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAutoTopupAmount
+### SetAutoTopup
 
-`func (o *DtoCreateWalletRequest) SetAutoTopupAmount(v string)`
+`func (o *DtoCreateWalletRequest) SetAutoTopup(v TypesAutoTopup)`
 
-SetAutoTopupAmount sets AutoTopupAmount field to given value.
+SetAutoTopup sets AutoTopup field to given value.
 
-### HasAutoTopupAmount
+### HasAutoTopup
 
-`func (o *DtoCreateWalletRequest) HasAutoTopupAmount() bool`
+`func (o *DtoCreateWalletRequest) HasAutoTopup() bool`
 
-HasAutoTopupAmount returns a boolean if a field has been set.
-
-### GetAutoTopupMinBalance
-
-`func (o *DtoCreateWalletRequest) GetAutoTopupMinBalance() string`
-
-GetAutoTopupMinBalance returns the AutoTopupMinBalance field if non-nil, zero value otherwise.
-
-### GetAutoTopupMinBalanceOk
-
-`func (o *DtoCreateWalletRequest) GetAutoTopupMinBalanceOk() (*string, bool)`
-
-GetAutoTopupMinBalanceOk returns a tuple with the AutoTopupMinBalance field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAutoTopupMinBalance
-
-`func (o *DtoCreateWalletRequest) SetAutoTopupMinBalance(v string)`
-
-SetAutoTopupMinBalance sets AutoTopupMinBalance field to given value.
-
-### HasAutoTopupMinBalance
-
-`func (o *DtoCreateWalletRequest) HasAutoTopupMinBalance() bool`
-
-HasAutoTopupMinBalance returns a boolean if a field has been set.
-
-### GetAutoTopupTrigger
-
-`func (o *DtoCreateWalletRequest) GetAutoTopupTrigger() TypesAutoTopupTrigger`
-
-GetAutoTopupTrigger returns the AutoTopupTrigger field if non-nil, zero value otherwise.
-
-### GetAutoTopupTriggerOk
-
-`func (o *DtoCreateWalletRequest) GetAutoTopupTriggerOk() (*TypesAutoTopupTrigger, bool)`
-
-GetAutoTopupTriggerOk returns a tuple with the AutoTopupTrigger field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAutoTopupTrigger
-
-`func (o *DtoCreateWalletRequest) SetAutoTopupTrigger(v TypesAutoTopupTrigger)`
-
-SetAutoTopupTrigger sets AutoTopupTrigger field to given value.
-
-### HasAutoTopupTrigger
-
-`func (o *DtoCreateWalletRequest) HasAutoTopupTrigger() bool`
-
-HasAutoTopupTrigger returns a boolean if a field has been set.
+HasAutoTopup returns a boolean if a field has been set.
 
 ### GetConfig
 
@@ -435,6 +384,31 @@ SetName sets Name field to given value.
 `func (o *DtoCreateWalletRequest) HasName() bool`
 
 HasName returns a boolean if a field has been set.
+
+### GetPriceUnit
+
+`func (o *DtoCreateWalletRequest) GetPriceUnit() string`
+
+GetPriceUnit returns the PriceUnit field if non-nil, zero value otherwise.
+
+### GetPriceUnitOk
+
+`func (o *DtoCreateWalletRequest) GetPriceUnitOk() (*string, bool)`
+
+GetPriceUnitOk returns a tuple with the PriceUnit field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnit
+
+`func (o *DtoCreateWalletRequest) SetPriceUnit(v string)`
+
+SetPriceUnit sets PriceUnit field to given value.
+
+### HasPriceUnit
+
+`func (o *DtoCreateWalletRequest) HasPriceUnit() bool`
+
+HasPriceUnit returns a boolean if a field has been set.
 
 ### GetWalletType
 

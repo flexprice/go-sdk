@@ -20,6 +20,13 @@ var _ MappedNullable = &SubscriptionSubscriptionLineItem{}
 // SubscriptionSubscriptionLineItem struct for SubscriptionSubscriptionLineItem
 type SubscriptionSubscriptionLineItem struct {
 	BillingPeriod *TypesBillingPeriod `json:"billing_period,omitempty"`
+	// Commitment fields
+	CommitmentAmount *float32 `json:"commitment_amount,omitempty"`
+	CommitmentOverageFactor *float32 `json:"commitment_overage_factor,omitempty"`
+	CommitmentQuantity *float32 `json:"commitment_quantity,omitempty"`
+	CommitmentTrueUpEnabled *bool `json:"commitment_true_up_enabled,omitempty"`
+	CommitmentType *TypesCommitmentType `json:"commitment_type,omitempty"`
+	CommitmentWindowed *bool `json:"commitment_windowed,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
 	Currency *string `json:"currency,omitempty"`
@@ -98,6 +105,198 @@ func (o *SubscriptionSubscriptionLineItem) HasBillingPeriod() bool {
 // SetBillingPeriod gets a reference to the given TypesBillingPeriod and assigns it to the BillingPeriod field.
 func (o *SubscriptionSubscriptionLineItem) SetBillingPeriod(v TypesBillingPeriod) {
 	o.BillingPeriod = &v
+}
+
+// GetCommitmentAmount returns the CommitmentAmount field value if set, zero value otherwise.
+func (o *SubscriptionSubscriptionLineItem) GetCommitmentAmount() float32 {
+	if o == nil || IsNil(o.CommitmentAmount) {
+		var ret float32
+		return ret
+	}
+	return *o.CommitmentAmount
+}
+
+// GetCommitmentAmountOk returns a tuple with the CommitmentAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionSubscriptionLineItem) GetCommitmentAmountOk() (*float32, bool) {
+	if o == nil || IsNil(o.CommitmentAmount) {
+		return nil, false
+	}
+	return o.CommitmentAmount, true
+}
+
+// HasCommitmentAmount returns a boolean if a field has been set.
+func (o *SubscriptionSubscriptionLineItem) HasCommitmentAmount() bool {
+	if o != nil && !IsNil(o.CommitmentAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentAmount gets a reference to the given float32 and assigns it to the CommitmentAmount field.
+func (o *SubscriptionSubscriptionLineItem) SetCommitmentAmount(v float32) {
+	o.CommitmentAmount = &v
+}
+
+// GetCommitmentOverageFactor returns the CommitmentOverageFactor field value if set, zero value otherwise.
+func (o *SubscriptionSubscriptionLineItem) GetCommitmentOverageFactor() float32 {
+	if o == nil || IsNil(o.CommitmentOverageFactor) {
+		var ret float32
+		return ret
+	}
+	return *o.CommitmentOverageFactor
+}
+
+// GetCommitmentOverageFactorOk returns a tuple with the CommitmentOverageFactor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionSubscriptionLineItem) GetCommitmentOverageFactorOk() (*float32, bool) {
+	if o == nil || IsNil(o.CommitmentOverageFactor) {
+		return nil, false
+	}
+	return o.CommitmentOverageFactor, true
+}
+
+// HasCommitmentOverageFactor returns a boolean if a field has been set.
+func (o *SubscriptionSubscriptionLineItem) HasCommitmentOverageFactor() bool {
+	if o != nil && !IsNil(o.CommitmentOverageFactor) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentOverageFactor gets a reference to the given float32 and assigns it to the CommitmentOverageFactor field.
+func (o *SubscriptionSubscriptionLineItem) SetCommitmentOverageFactor(v float32) {
+	o.CommitmentOverageFactor = &v
+}
+
+// GetCommitmentQuantity returns the CommitmentQuantity field value if set, zero value otherwise.
+func (o *SubscriptionSubscriptionLineItem) GetCommitmentQuantity() float32 {
+	if o == nil || IsNil(o.CommitmentQuantity) {
+		var ret float32
+		return ret
+	}
+	return *o.CommitmentQuantity
+}
+
+// GetCommitmentQuantityOk returns a tuple with the CommitmentQuantity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionSubscriptionLineItem) GetCommitmentQuantityOk() (*float32, bool) {
+	if o == nil || IsNil(o.CommitmentQuantity) {
+		return nil, false
+	}
+	return o.CommitmentQuantity, true
+}
+
+// HasCommitmentQuantity returns a boolean if a field has been set.
+func (o *SubscriptionSubscriptionLineItem) HasCommitmentQuantity() bool {
+	if o != nil && !IsNil(o.CommitmentQuantity) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentQuantity gets a reference to the given float32 and assigns it to the CommitmentQuantity field.
+func (o *SubscriptionSubscriptionLineItem) SetCommitmentQuantity(v float32) {
+	o.CommitmentQuantity = &v
+}
+
+// GetCommitmentTrueUpEnabled returns the CommitmentTrueUpEnabled field value if set, zero value otherwise.
+func (o *SubscriptionSubscriptionLineItem) GetCommitmentTrueUpEnabled() bool {
+	if o == nil || IsNil(o.CommitmentTrueUpEnabled) {
+		var ret bool
+		return ret
+	}
+	return *o.CommitmentTrueUpEnabled
+}
+
+// GetCommitmentTrueUpEnabledOk returns a tuple with the CommitmentTrueUpEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionSubscriptionLineItem) GetCommitmentTrueUpEnabledOk() (*bool, bool) {
+	if o == nil || IsNil(o.CommitmentTrueUpEnabled) {
+		return nil, false
+	}
+	return o.CommitmentTrueUpEnabled, true
+}
+
+// HasCommitmentTrueUpEnabled returns a boolean if a field has been set.
+func (o *SubscriptionSubscriptionLineItem) HasCommitmentTrueUpEnabled() bool {
+	if o != nil && !IsNil(o.CommitmentTrueUpEnabled) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentTrueUpEnabled gets a reference to the given bool and assigns it to the CommitmentTrueUpEnabled field.
+func (o *SubscriptionSubscriptionLineItem) SetCommitmentTrueUpEnabled(v bool) {
+	o.CommitmentTrueUpEnabled = &v
+}
+
+// GetCommitmentType returns the CommitmentType field value if set, zero value otherwise.
+func (o *SubscriptionSubscriptionLineItem) GetCommitmentType() TypesCommitmentType {
+	if o == nil || IsNil(o.CommitmentType) {
+		var ret TypesCommitmentType
+		return ret
+	}
+	return *o.CommitmentType
+}
+
+// GetCommitmentTypeOk returns a tuple with the CommitmentType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionSubscriptionLineItem) GetCommitmentTypeOk() (*TypesCommitmentType, bool) {
+	if o == nil || IsNil(o.CommitmentType) {
+		return nil, false
+	}
+	return o.CommitmentType, true
+}
+
+// HasCommitmentType returns a boolean if a field has been set.
+func (o *SubscriptionSubscriptionLineItem) HasCommitmentType() bool {
+	if o != nil && !IsNil(o.CommitmentType) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentType gets a reference to the given TypesCommitmentType and assigns it to the CommitmentType field.
+func (o *SubscriptionSubscriptionLineItem) SetCommitmentType(v TypesCommitmentType) {
+	o.CommitmentType = &v
+}
+
+// GetCommitmentWindowed returns the CommitmentWindowed field value if set, zero value otherwise.
+func (o *SubscriptionSubscriptionLineItem) GetCommitmentWindowed() bool {
+	if o == nil || IsNil(o.CommitmentWindowed) {
+		var ret bool
+		return ret
+	}
+	return *o.CommitmentWindowed
+}
+
+// GetCommitmentWindowedOk returns a tuple with the CommitmentWindowed field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SubscriptionSubscriptionLineItem) GetCommitmentWindowedOk() (*bool, bool) {
+	if o == nil || IsNil(o.CommitmentWindowed) {
+		return nil, false
+	}
+	return o.CommitmentWindowed, true
+}
+
+// HasCommitmentWindowed returns a boolean if a field has been set.
+func (o *SubscriptionSubscriptionLineItem) HasCommitmentWindowed() bool {
+	if o != nil && !IsNil(o.CommitmentWindowed) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentWindowed gets a reference to the given bool and assigns it to the CommitmentWindowed field.
+func (o *SubscriptionSubscriptionLineItem) SetCommitmentWindowed(v bool) {
+	o.CommitmentWindowed = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -1040,6 +1239,24 @@ func (o SubscriptionSubscriptionLineItem) ToMap() (map[string]interface{}, error
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.BillingPeriod) {
 		toSerialize["billing_period"] = o.BillingPeriod
+	}
+	if !IsNil(o.CommitmentAmount) {
+		toSerialize["commitment_amount"] = o.CommitmentAmount
+	}
+	if !IsNil(o.CommitmentOverageFactor) {
+		toSerialize["commitment_overage_factor"] = o.CommitmentOverageFactor
+	}
+	if !IsNil(o.CommitmentQuantity) {
+		toSerialize["commitment_quantity"] = o.CommitmentQuantity
+	}
+	if !IsNil(o.CommitmentTrueUpEnabled) {
+		toSerialize["commitment_true_up_enabled"] = o.CommitmentTrueUpEnabled
+	}
+	if !IsNil(o.CommitmentType) {
+		toSerialize["commitment_type"] = o.CommitmentType
+	}
+	if !IsNil(o.CommitmentWindowed) {
+		toSerialize["commitment_windowed"] = o.CommitmentWindowed
 	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt

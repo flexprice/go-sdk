@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
 
 ## CreditgrantsIdDelete
 
-> map[string]map[string]interface{} CreditgrantsIdDelete(ctx, id).Execute()
+> DtoSuccessResponse CreditgrantsIdDelete(ctx, id).Execute()
 
 Delete a credit grant
 
@@ -129,7 +129,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreditGrantsAPI.CreditgrantsIdDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `CreditgrantsIdDelete`: map[string]map[string]interface{}
+	// response from `CreditgrantsIdDelete`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `CreditGrantsAPI.CreditgrantsIdDelete`: %v\n", resp)
 }
 ```
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 

@@ -4,11 +4,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**BaseCurrency** | **string** |  | 
+**BaseCurrency** | **string** | base_currency  is the currency that the price unit is based on | 
 **Code** | **string** |  | 
-**ConversionRate** | **string** |  | 
+**ConversionRate** | **string** | ConversionRate defines the exchange rate from this price unit to the base currency. This rate is used to convert amounts in the custom price unit to the base currency for storage and billing.  Conversion formula:   price_unit_amount * conversion_rate &#x3D; base_currency_amount  Example:   If conversion_rate &#x3D; \&quot;0.01\&quot; and base_currency &#x3D; \&quot;usd\&quot;:   100 price_unit tokens * 0.01 &#x3D; 1.00 USD  Note: Rounding precision is determined by the base currency (e.g., USD uses 2 decimal places, JPY uses 0). | 
+**Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Name** | **string** |  | 
-**Precision** | Pointer to **int32** |  | [optional] 
 **Symbol** | **string** |  | 
 
 ## Methods
@@ -90,6 +90,31 @@ and a boolean to check if the value has been set.
 SetConversionRate sets ConversionRate field to given value.
 
 
+### GetMetadata
+
+`func (o *DtoCreatePriceUnitRequest) GetMetadata() map[string]string`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *DtoCreatePriceUnitRequest) GetMetadataOk() (*map[string]string, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *DtoCreatePriceUnitRequest) SetMetadata(v map[string]string)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *DtoCreatePriceUnitRequest) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *DtoCreatePriceUnitRequest) GetName() string`
@@ -109,31 +134,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
-### GetPrecision
-
-`func (o *DtoCreatePriceUnitRequest) GetPrecision() int32`
-
-GetPrecision returns the Precision field if non-nil, zero value otherwise.
-
-### GetPrecisionOk
-
-`func (o *DtoCreatePriceUnitRequest) GetPrecisionOk() (*int32, bool)`
-
-GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrecision
-
-`func (o *DtoCreatePriceUnitRequest) SetPrecision(v int32)`
-
-SetPrecision sets Precision field to given value.
-
-### HasPrecision
-
-`func (o *DtoCreatePriceUnitRequest) HasPrecision() bool`
-
-HasPrecision returns a boolean if a field has been set.
 
 ### GetSymbol
 

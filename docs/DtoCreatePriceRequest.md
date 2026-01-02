@@ -11,16 +11,17 @@ Name | Type | Description | Notes
 **BillingPeriodCount** | Pointer to **int32** |  | [optional] 
 **Currency** | **string** |  | 
 **Description** | Pointer to **string** |  | [optional] 
+**DisplayName** | Pointer to **string** |  | [optional] 
 **EndDate** | Pointer to **string** |  | [optional] 
-**EntityId** | Pointer to **string** | TODO: this will be required in the future as we will not allow prices to be created without an entity id | [optional] 
-**EntityType** | Pointer to [**TypesPriceEntityType**](TypesPriceEntityType.md) |  | [optional] 
+**EntityId** | **string** |  | 
+**EntityType** | [**TypesPriceEntityType**](TypesPriceEntityType.md) |  | 
 **FilterValues** | Pointer to **map[string][]string** |  | [optional] 
 **GroupId** | Pointer to **string** | GroupID is the id of the group to add the price to | [optional] 
 **InvoiceCadence** | [**TypesInvoiceCadence**](TypesInvoiceCadence.md) |  | 
 **LookupKey** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **MeterId** | Pointer to **string** |  | [optional] 
-**PlanId** | Pointer to **string** | TODO: This is deprecated and will be removed in the future | [optional] 
+**MinQuantity** | Pointer to **int32** | MinQuantity is the minimum quantity of the price | [optional] 
 **PriceUnitConfig** | Pointer to [**DtoPriceUnitConfig**](DtoPriceUnitConfig.md) |  | [optional] 
 **PriceUnitType** | [**TypesPriceUnitType**](TypesPriceUnitType.md) |  | 
 **StartDate** | Pointer to **string** |  | [optional] 
@@ -34,7 +35,7 @@ Name | Type | Description | Notes
 
 ### NewDtoCreatePriceRequest
 
-`func NewDtoCreatePriceRequest(billingCadence TypesBillingCadence, billingModel TypesBillingModel, billingPeriod TypesBillingPeriod, currency string, invoiceCadence TypesInvoiceCadence, priceUnitType TypesPriceUnitType, type_ TypesPriceType, ) *DtoCreatePriceRequest`
+`func NewDtoCreatePriceRequest(billingCadence TypesBillingCadence, billingModel TypesBillingModel, billingPeriod TypesBillingPeriod, currency string, entityId string, entityType TypesPriceEntityType, invoiceCadence TypesInvoiceCadence, priceUnitType TypesPriceUnitType, type_ TypesPriceType, ) *DtoCreatePriceRequest`
 
 NewDtoCreatePriceRequest instantiates a new DtoCreatePriceRequest object
 This constructor will assign default values to properties that have it defined,
@@ -204,6 +205,31 @@ SetDescription sets Description field to given value.
 
 HasDescription returns a boolean if a field has been set.
 
+### GetDisplayName
+
+`func (o *DtoCreatePriceRequest) GetDisplayName() string`
+
+GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+
+### GetDisplayNameOk
+
+`func (o *DtoCreatePriceRequest) GetDisplayNameOk() (*string, bool)`
+
+GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayName
+
+`func (o *DtoCreatePriceRequest) SetDisplayName(v string)`
+
+SetDisplayName sets DisplayName field to given value.
+
+### HasDisplayName
+
+`func (o *DtoCreatePriceRequest) HasDisplayName() bool`
+
+HasDisplayName returns a boolean if a field has been set.
+
 ### GetEndDate
 
 `func (o *DtoCreatePriceRequest) GetEndDate() string`
@@ -248,11 +274,6 @@ and a boolean to check if the value has been set.
 
 SetEntityId sets EntityId field to given value.
 
-### HasEntityId
-
-`func (o *DtoCreatePriceRequest) HasEntityId() bool`
-
-HasEntityId returns a boolean if a field has been set.
 
 ### GetEntityType
 
@@ -273,11 +294,6 @@ and a boolean to check if the value has been set.
 
 SetEntityType sets EntityType field to given value.
 
-### HasEntityType
-
-`func (o *DtoCreatePriceRequest) HasEntityType() bool`
-
-HasEntityType returns a boolean if a field has been set.
 
 ### GetFilterValues
 
@@ -424,30 +440,30 @@ SetMeterId sets MeterId field to given value.
 
 HasMeterId returns a boolean if a field has been set.
 
-### GetPlanId
+### GetMinQuantity
 
-`func (o *DtoCreatePriceRequest) GetPlanId() string`
+`func (o *DtoCreatePriceRequest) GetMinQuantity() int32`
 
-GetPlanId returns the PlanId field if non-nil, zero value otherwise.
+GetMinQuantity returns the MinQuantity field if non-nil, zero value otherwise.
 
-### GetPlanIdOk
+### GetMinQuantityOk
 
-`func (o *DtoCreatePriceRequest) GetPlanIdOk() (*string, bool)`
+`func (o *DtoCreatePriceRequest) GetMinQuantityOk() (*int32, bool)`
 
-GetPlanIdOk returns a tuple with the PlanId field if it's non-nil, zero value otherwise
+GetMinQuantityOk returns a tuple with the MinQuantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetPlanId
+### SetMinQuantity
 
-`func (o *DtoCreatePriceRequest) SetPlanId(v string)`
+`func (o *DtoCreatePriceRequest) SetMinQuantity(v int32)`
 
-SetPlanId sets PlanId field to given value.
+SetMinQuantity sets MinQuantity field to given value.
 
-### HasPlanId
+### HasMinQuantity
 
-`func (o *DtoCreatePriceRequest) HasPlanId() bool`
+`func (o *DtoCreatePriceRequest) HasMinQuantity() bool`
 
-HasPlanId returns a boolean if a field has been set.
+HasMinQuantity returns a boolean if a field has been set.
 
 ### GetPriceUnitConfig
 

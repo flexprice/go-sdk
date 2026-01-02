@@ -11,8 +11,8 @@ Name | Type | Description | Notes
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **EnvironmentId** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
+**Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Name** | Pointer to **string** |  | [optional] 
-**Precision** | Pointer to **int32** |  | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **Symbol** | Pointer to **string** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
@@ -213,6 +213,31 @@ SetId sets Id field to given value.
 
 HasId returns a boolean if a field has been set.
 
+### GetMetadata
+
+`func (o *DtoPriceUnitResponse) GetMetadata() map[string]string`
+
+GetMetadata returns the Metadata field if non-nil, zero value otherwise.
+
+### GetMetadataOk
+
+`func (o *DtoPriceUnitResponse) GetMetadataOk() (*map[string]string, bool)`
+
+GetMetadataOk returns a tuple with the Metadata field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMetadata
+
+`func (o *DtoPriceUnitResponse) SetMetadata(v map[string]string)`
+
+SetMetadata sets Metadata field to given value.
+
+### HasMetadata
+
+`func (o *DtoPriceUnitResponse) HasMetadata() bool`
+
+HasMetadata returns a boolean if a field has been set.
+
 ### GetName
 
 `func (o *DtoPriceUnitResponse) GetName() string`
@@ -237,31 +262,6 @@ SetName sets Name field to given value.
 `func (o *DtoPriceUnitResponse) HasName() bool`
 
 HasName returns a boolean if a field has been set.
-
-### GetPrecision
-
-`func (o *DtoPriceUnitResponse) GetPrecision() int32`
-
-GetPrecision returns the Precision field if non-nil, zero value otherwise.
-
-### GetPrecisionOk
-
-`func (o *DtoPriceUnitResponse) GetPrecisionOk() (*int32, bool)`
-
-GetPrecisionOk returns a tuple with the Precision field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPrecision
-
-`func (o *DtoPriceUnitResponse) SetPrecision(v int32)`
-
-SetPrecision sets Precision field to given value.
-
-### HasPrecision
-
-`func (o *DtoPriceUnitResponse) HasPrecision() bool`
-
-HasPrecision returns a boolean if a field has been set.
 
 ### GetStatus
 

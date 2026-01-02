@@ -32,6 +32,7 @@ type PaymentsAPIPaymentsGetRequest struct {
 	endTime *string
 	expand *string
 	gatewayPaymentId *string
+	gatewayTrackingId *string
 	limit *int32
 	offset *int32
 	order *string
@@ -71,6 +72,12 @@ func (r PaymentsAPIPaymentsGetRequest) Expand(expand string) PaymentsAPIPayments
 
 func (r PaymentsAPIPaymentsGetRequest) GatewayPaymentId(gatewayPaymentId string) PaymentsAPIPaymentsGetRequest {
 	r.gatewayPaymentId = &gatewayPaymentId
+	return r
+}
+
+// For filtering by gateway tracking ID
+func (r PaymentsAPIPaymentsGetRequest) GatewayTrackingId(gatewayTrackingId string) PaymentsAPIPaymentsGetRequest {
+	r.gatewayTrackingId = &gatewayTrackingId
 	return r
 }
 
@@ -181,6 +188,9 @@ func (a *PaymentsAPIService) PaymentsGetExecute(r PaymentsAPIPaymentsGetRequest)
 	}
 	if r.gatewayPaymentId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "gateway_payment_id", r.gatewayPaymentId, "form", "")
+	}
+	if r.gatewayTrackingId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "gateway_tracking_id", r.gatewayTrackingId, "form", "")
 	}
 	if r.limit != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
@@ -307,7 +317,7 @@ type PaymentsAPIPaymentsIdDeleteRequest struct {
 	id string
 }
 
-func (r PaymentsAPIPaymentsIdDeleteRequest) Execute() (map[string]map[string]interface{}, *http.Response, error) {
+func (r PaymentsAPIPaymentsIdDeleteRequest) Execute() (*DtoSuccessResponse, *http.Response, error) {
 	return r.ApiService.PaymentsIdDeleteExecute(r)
 }
 
@@ -329,13 +339,13 @@ func (a *PaymentsAPIService) PaymentsIdDelete(ctx context.Context, id string) Pa
 }
 
 // Execute executes the request
-//  @return map[string]map[string]interface{}
-func (a *PaymentsAPIService) PaymentsIdDeleteExecute(r PaymentsAPIPaymentsIdDeleteRequest) (map[string]map[string]interface{}, *http.Response, error) {
+//  @return DtoSuccessResponse
+func (a *PaymentsAPIService) PaymentsIdDeleteExecute(r PaymentsAPIPaymentsIdDeleteRequest) (*DtoSuccessResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]map[string]interface{}
+		localVarReturnValue  *DtoSuccessResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PaymentsAPIService.PaymentsIdDelete")

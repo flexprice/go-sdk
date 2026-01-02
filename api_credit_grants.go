@@ -263,7 +263,7 @@ type CreditGrantsAPICreditgrantsIdDeleteRequest struct {
 	id string
 }
 
-func (r CreditGrantsAPICreditgrantsIdDeleteRequest) Execute() (map[string]map[string]interface{}, *http.Response, error) {
+func (r CreditGrantsAPICreditgrantsIdDeleteRequest) Execute() (*DtoSuccessResponse, *http.Response, error) {
 	return r.ApiService.CreditgrantsIdDeleteExecute(r)
 }
 
@@ -285,13 +285,13 @@ func (a *CreditGrantsAPIService) CreditgrantsIdDelete(ctx context.Context, id st
 }
 
 // Execute executes the request
-//  @return map[string]map[string]interface{}
-func (a *CreditGrantsAPIService) CreditgrantsIdDeleteExecute(r CreditGrantsAPICreditgrantsIdDeleteRequest) (map[string]map[string]interface{}, *http.Response, error) {
+//  @return DtoSuccessResponse
+func (a *CreditGrantsAPIService) CreditgrantsIdDeleteExecute(r CreditGrantsAPICreditgrantsIdDeleteRequest) (*DtoSuccessResponse, *http.Response, error) {
 	var (
 		localVarHTTPMethod   = http.MethodDelete
 		localVarPostBody     interface{}
 		formFiles            []formFile
-		localVarReturnValue  map[string]map[string]interface{}
+		localVarReturnValue  *DtoSuccessResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CreditGrantsAPIService.CreditgrantsIdDelete")

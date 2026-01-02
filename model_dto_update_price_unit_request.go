@@ -19,10 +19,8 @@ var _ MappedNullable = &DtoUpdatePriceUnitRequest{}
 
 // DtoUpdatePriceUnitRequest struct for DtoUpdatePriceUnitRequest
 type DtoUpdatePriceUnitRequest struct {
-	ConversionRate *string `json:"conversion_rate,omitempty"`
+	Metadata *map[string]string `json:"metadata,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Precision *int32 `json:"precision,omitempty"`
-	Symbol *string `json:"symbol,omitempty"`
 }
 
 // NewDtoUpdatePriceUnitRequest instantiates a new DtoUpdatePriceUnitRequest object
@@ -42,36 +40,36 @@ func NewDtoUpdatePriceUnitRequestWithDefaults() *DtoUpdatePriceUnitRequest {
 	return &this
 }
 
-// GetConversionRate returns the ConversionRate field value if set, zero value otherwise.
-func (o *DtoUpdatePriceUnitRequest) GetConversionRate() string {
-	if o == nil || IsNil(o.ConversionRate) {
-		var ret string
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *DtoUpdatePriceUnitRequest) GetMetadata() map[string]string {
+	if o == nil || IsNil(o.Metadata) {
+		var ret map[string]string
 		return ret
 	}
-	return *o.ConversionRate
+	return *o.Metadata
 }
 
-// GetConversionRateOk returns a tuple with the ConversionRate field value if set, nil otherwise
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoUpdatePriceUnitRequest) GetConversionRateOk() (*string, bool) {
-	if o == nil || IsNil(o.ConversionRate) {
+func (o *DtoUpdatePriceUnitRequest) GetMetadataOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Metadata) {
 		return nil, false
 	}
-	return o.ConversionRate, true
+	return o.Metadata, true
 }
 
-// HasConversionRate returns a boolean if a field has been set.
-func (o *DtoUpdatePriceUnitRequest) HasConversionRate() bool {
-	if o != nil && !IsNil(o.ConversionRate) {
+// HasMetadata returns a boolean if a field has been set.
+func (o *DtoUpdatePriceUnitRequest) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
 		return true
 	}
 
 	return false
 }
 
-// SetConversionRate gets a reference to the given string and assigns it to the ConversionRate field.
-func (o *DtoUpdatePriceUnitRequest) SetConversionRate(v string) {
-	o.ConversionRate = &v
+// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
+func (o *DtoUpdatePriceUnitRequest) SetMetadata(v map[string]string) {
+	o.Metadata = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -106,70 +104,6 @@ func (o *DtoUpdatePriceUnitRequest) SetName(v string) {
 	o.Name = &v
 }
 
-// GetPrecision returns the Precision field value if set, zero value otherwise.
-func (o *DtoUpdatePriceUnitRequest) GetPrecision() int32 {
-	if o == nil || IsNil(o.Precision) {
-		var ret int32
-		return ret
-	}
-	return *o.Precision
-}
-
-// GetPrecisionOk returns a tuple with the Precision field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoUpdatePriceUnitRequest) GetPrecisionOk() (*int32, bool) {
-	if o == nil || IsNil(o.Precision) {
-		return nil, false
-	}
-	return o.Precision, true
-}
-
-// HasPrecision returns a boolean if a field has been set.
-func (o *DtoUpdatePriceUnitRequest) HasPrecision() bool {
-	if o != nil && !IsNil(o.Precision) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrecision gets a reference to the given int32 and assigns it to the Precision field.
-func (o *DtoUpdatePriceUnitRequest) SetPrecision(v int32) {
-	o.Precision = &v
-}
-
-// GetSymbol returns the Symbol field value if set, zero value otherwise.
-func (o *DtoUpdatePriceUnitRequest) GetSymbol() string {
-	if o == nil || IsNil(o.Symbol) {
-		var ret string
-		return ret
-	}
-	return *o.Symbol
-}
-
-// GetSymbolOk returns a tuple with the Symbol field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoUpdatePriceUnitRequest) GetSymbolOk() (*string, bool) {
-	if o == nil || IsNil(o.Symbol) {
-		return nil, false
-	}
-	return o.Symbol, true
-}
-
-// HasSymbol returns a boolean if a field has been set.
-func (o *DtoUpdatePriceUnitRequest) HasSymbol() bool {
-	if o != nil && !IsNil(o.Symbol) {
-		return true
-	}
-
-	return false
-}
-
-// SetSymbol gets a reference to the given string and assigns it to the Symbol field.
-func (o *DtoUpdatePriceUnitRequest) SetSymbol(v string) {
-	o.Symbol = &v
-}
-
 func (o DtoUpdatePriceUnitRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -180,17 +114,11 @@ func (o DtoUpdatePriceUnitRequest) MarshalJSON() ([]byte, error) {
 
 func (o DtoUpdatePriceUnitRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.ConversionRate) {
-		toSerialize["conversion_rate"] = o.ConversionRate
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
 	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.Precision) {
-		toSerialize["precision"] = o.Precision
-	}
-	if !IsNil(o.Symbol) {
-		toSerialize["symbol"] = o.Symbol
 	}
 	return toSerialize, nil
 }

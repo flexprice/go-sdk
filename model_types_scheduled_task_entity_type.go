@@ -23,6 +23,7 @@ const (
 	TYPESSCHEDULEDTASKENTITYTYPE_ScheduledTaskEntityTypeEvents TypesScheduledTaskEntityType = "events"
 	TYPESSCHEDULEDTASKENTITYTYPE_ScheduledTaskEntityTypeInvoice TypesScheduledTaskEntityType = "invoice"
 	TYPESSCHEDULEDTASKENTITYTYPE_ScheduledTaskEntityTypeCreditTopups TypesScheduledTaskEntityType = "credit_topups"
+	TYPESSCHEDULEDTASKENTITYTYPE_ScheduledTaskEntityTypeCreditUsage TypesScheduledTaskEntityType = "credit_usage"
 )
 
 // All allowed values of TypesScheduledTaskEntityType enum
@@ -30,6 +31,7 @@ var AllowedTypesScheduledTaskEntityTypeEnumValues = []TypesScheduledTaskEntityTy
 	"events",
 	"invoice",
 	"credit_topups",
+	"credit_usage",
 }
 
 func (v *TypesScheduledTaskEntityType) UnmarshalJSON(src []byte) error {

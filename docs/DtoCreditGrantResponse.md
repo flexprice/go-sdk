@@ -7,7 +7,9 @@ Name | Type | Description | Notes
 **Cadence** | Pointer to [**TypesCreditGrantCadence**](TypesCreditGrantCadence.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
-**Credits** | Pointer to **float32** |  | [optional] 
+**CreditGrantAnchor** | Pointer to **string** |  | [optional] 
+**Credits** | Pointer to **string** |  | [optional] 
+**EndDate** | Pointer to **string** |  | [optional] 
 **EnvironmentId** | Pointer to **string** |  | [optional] 
 **ExpirationDuration** | Pointer to **int32** |  | [optional] 
 **ExpirationDurationUnit** | Pointer to [**TypesCreditGrantExpiryDurationUnit**](TypesCreditGrantExpiryDurationUnit.md) |  | [optional] 
@@ -20,6 +22,7 @@ Name | Type | Description | Notes
 **PlanId** | Pointer to **string** |  | [optional] 
 **Priority** | Pointer to **int32** |  | [optional] 
 **Scope** | Pointer to [**TypesCreditGrantScope**](TypesCreditGrantScope.md) |  | [optional] 
+**StartDate** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **SubscriptionId** | Pointer to **string** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
@@ -120,22 +123,47 @@ SetCreatedBy sets CreatedBy field to given value.
 
 HasCreatedBy returns a boolean if a field has been set.
 
+### GetCreditGrantAnchor
+
+`func (o *DtoCreditGrantResponse) GetCreditGrantAnchor() string`
+
+GetCreditGrantAnchor returns the CreditGrantAnchor field if non-nil, zero value otherwise.
+
+### GetCreditGrantAnchorOk
+
+`func (o *DtoCreditGrantResponse) GetCreditGrantAnchorOk() (*string, bool)`
+
+GetCreditGrantAnchorOk returns a tuple with the CreditGrantAnchor field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCreditGrantAnchor
+
+`func (o *DtoCreditGrantResponse) SetCreditGrantAnchor(v string)`
+
+SetCreditGrantAnchor sets CreditGrantAnchor field to given value.
+
+### HasCreditGrantAnchor
+
+`func (o *DtoCreditGrantResponse) HasCreditGrantAnchor() bool`
+
+HasCreditGrantAnchor returns a boolean if a field has been set.
+
 ### GetCredits
 
-`func (o *DtoCreditGrantResponse) GetCredits() float32`
+`func (o *DtoCreditGrantResponse) GetCredits() string`
 
 GetCredits returns the Credits field if non-nil, zero value otherwise.
 
 ### GetCreditsOk
 
-`func (o *DtoCreditGrantResponse) GetCreditsOk() (*float32, bool)`
+`func (o *DtoCreditGrantResponse) GetCreditsOk() (*string, bool)`
 
 GetCreditsOk returns a tuple with the Credits field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCredits
 
-`func (o *DtoCreditGrantResponse) SetCredits(v float32)`
+`func (o *DtoCreditGrantResponse) SetCredits(v string)`
 
 SetCredits sets Credits field to given value.
 
@@ -144,6 +172,31 @@ SetCredits sets Credits field to given value.
 `func (o *DtoCreditGrantResponse) HasCredits() bool`
 
 HasCredits returns a boolean if a field has been set.
+
+### GetEndDate
+
+`func (o *DtoCreditGrantResponse) GetEndDate() string`
+
+GetEndDate returns the EndDate field if non-nil, zero value otherwise.
+
+### GetEndDateOk
+
+`func (o *DtoCreditGrantResponse) GetEndDateOk() (*string, bool)`
+
+GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndDate
+
+`func (o *DtoCreditGrantResponse) SetEndDate(v string)`
+
+SetEndDate sets EndDate field to given value.
+
+### HasEndDate
+
+`func (o *DtoCreditGrantResponse) HasEndDate() bool`
+
+HasEndDate returns a boolean if a field has been set.
 
 ### GetEnvironmentId
 
@@ -444,6 +497,31 @@ SetScope sets Scope field to given value.
 `func (o *DtoCreditGrantResponse) HasScope() bool`
 
 HasScope returns a boolean if a field has been set.
+
+### GetStartDate
+
+`func (o *DtoCreditGrantResponse) GetStartDate() string`
+
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
+
+### GetStartDateOk
+
+`func (o *DtoCreditGrantResponse) GetStartDateOk() (*string, bool)`
+
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStartDate
+
+`func (o *DtoCreditGrantResponse) SetStartDate(v string)`
+
+SetStartDate sets StartDate field to given value.
+
+### HasStartDate
+
+`func (o *DtoCreditGrantResponse) HasStartDate() bool`
+
+HasStartDate returns a boolean if a field has been set.
 
 ### GetStatus
 

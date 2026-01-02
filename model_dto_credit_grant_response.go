@@ -22,7 +22,9 @@ type DtoCreditGrantResponse struct {
 	Cadence *TypesCreditGrantCadence `json:"cadence,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
-	Credits *float32 `json:"credits,omitempty"`
+	CreditGrantAnchor *string `json:"credit_grant_anchor,omitempty"`
+	Credits *string `json:"credits,omitempty"`
+	EndDate *string `json:"end_date,omitempty"`
 	EnvironmentId *string `json:"environment_id,omitempty"`
 	ExpirationDuration *int32 `json:"expiration_duration,omitempty"`
 	ExpirationDurationUnit *TypesCreditGrantExpiryDurationUnit `json:"expiration_duration_unit,omitempty"`
@@ -35,6 +37,7 @@ type DtoCreditGrantResponse struct {
 	PlanId *string `json:"plan_id,omitempty"`
 	Priority *int32 `json:"priority,omitempty"`
 	Scope *TypesCreditGrantScope `json:"scope,omitempty"`
+	StartDate *string `json:"start_date,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
@@ -155,10 +158,42 @@ func (o *DtoCreditGrantResponse) SetCreatedBy(v string) {
 	o.CreatedBy = &v
 }
 
+// GetCreditGrantAnchor returns the CreditGrantAnchor field value if set, zero value otherwise.
+func (o *DtoCreditGrantResponse) GetCreditGrantAnchor() string {
+	if o == nil || IsNil(o.CreditGrantAnchor) {
+		var ret string
+		return ret
+	}
+	return *o.CreditGrantAnchor
+}
+
+// GetCreditGrantAnchorOk returns a tuple with the CreditGrantAnchor field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreditGrantResponse) GetCreditGrantAnchorOk() (*string, bool) {
+	if o == nil || IsNil(o.CreditGrantAnchor) {
+		return nil, false
+	}
+	return o.CreditGrantAnchor, true
+}
+
+// HasCreditGrantAnchor returns a boolean if a field has been set.
+func (o *DtoCreditGrantResponse) HasCreditGrantAnchor() bool {
+	if o != nil && !IsNil(o.CreditGrantAnchor) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreditGrantAnchor gets a reference to the given string and assigns it to the CreditGrantAnchor field.
+func (o *DtoCreditGrantResponse) SetCreditGrantAnchor(v string) {
+	o.CreditGrantAnchor = &v
+}
+
 // GetCredits returns the Credits field value if set, zero value otherwise.
-func (o *DtoCreditGrantResponse) GetCredits() float32 {
+func (o *DtoCreditGrantResponse) GetCredits() string {
 	if o == nil || IsNil(o.Credits) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Credits
@@ -166,7 +201,7 @@ func (o *DtoCreditGrantResponse) GetCredits() float32 {
 
 // GetCreditsOk returns a tuple with the Credits field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCreditGrantResponse) GetCreditsOk() (*float32, bool) {
+func (o *DtoCreditGrantResponse) GetCreditsOk() (*string, bool) {
 	if o == nil || IsNil(o.Credits) {
 		return nil, false
 	}
@@ -182,9 +217,41 @@ func (o *DtoCreditGrantResponse) HasCredits() bool {
 	return false
 }
 
-// SetCredits gets a reference to the given float32 and assigns it to the Credits field.
-func (o *DtoCreditGrantResponse) SetCredits(v float32) {
+// SetCredits gets a reference to the given string and assigns it to the Credits field.
+func (o *DtoCreditGrantResponse) SetCredits(v string) {
 	o.Credits = &v
+}
+
+// GetEndDate returns the EndDate field value if set, zero value otherwise.
+func (o *DtoCreditGrantResponse) GetEndDate() string {
+	if o == nil || IsNil(o.EndDate) {
+		var ret string
+		return ret
+	}
+	return *o.EndDate
+}
+
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreditGrantResponse) GetEndDateOk() (*string, bool) {
+	if o == nil || IsNil(o.EndDate) {
+		return nil, false
+	}
+	return o.EndDate, true
+}
+
+// HasEndDate returns a boolean if a field has been set.
+func (o *DtoCreditGrantResponse) HasEndDate() bool {
+	if o != nil && !IsNil(o.EndDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
+func (o *DtoCreditGrantResponse) SetEndDate(v string) {
+	o.EndDate = &v
 }
 
 // GetEnvironmentId returns the EnvironmentId field value if set, zero value otherwise.
@@ -571,6 +638,38 @@ func (o *DtoCreditGrantResponse) SetScope(v TypesCreditGrantScope) {
 	o.Scope = &v
 }
 
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
+func (o *DtoCreditGrantResponse) GetStartDate() string {
+	if o == nil || IsNil(o.StartDate) {
+		var ret string
+		return ret
+	}
+	return *o.StartDate
+}
+
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreditGrantResponse) GetStartDateOk() (*string, bool) {
+	if o == nil || IsNil(o.StartDate) {
+		return nil, false
+	}
+	return o.StartDate, true
+}
+
+// HasStartDate returns a boolean if a field has been set.
+func (o *DtoCreditGrantResponse) HasStartDate() bool {
+	if o != nil && !IsNil(o.StartDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given string and assigns it to the StartDate field.
+func (o *DtoCreditGrantResponse) SetStartDate(v string) {
+	o.StartDate = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *DtoCreditGrantResponse) GetStatus() TypesStatus {
 	if o == nil || IsNil(o.Status) {
@@ -750,8 +849,14 @@ func (o DtoCreditGrantResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CreatedBy) {
 		toSerialize["created_by"] = o.CreatedBy
 	}
+	if !IsNil(o.CreditGrantAnchor) {
+		toSerialize["credit_grant_anchor"] = o.CreditGrantAnchor
+	}
 	if !IsNil(o.Credits) {
 		toSerialize["credits"] = o.Credits
+	}
+	if !IsNil(o.EndDate) {
+		toSerialize["end_date"] = o.EndDate
 	}
 	if !IsNil(o.EnvironmentId) {
 		toSerialize["environment_id"] = o.EnvironmentId
@@ -788,6 +893,9 @@ func (o DtoCreditGrantResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Scope) {
 		toSerialize["scope"] = o.Scope
+	}
+	if !IsNil(o.StartDate) {
+		toSerialize["start_date"] = o.StartDate
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status

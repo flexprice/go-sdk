@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## PaymentsGet
 
-> DtoListPaymentsResponse PaymentsGet(ctx).Currency(currency).DestinationId(destinationId).DestinationType(destinationType).EndTime(endTime).Expand(expand).GatewayPaymentId(gatewayPaymentId).Limit(limit).Offset(offset).Order(order).PaymentGateway(paymentGateway).PaymentIds(paymentIds).PaymentMethodType(paymentMethodType).PaymentStatus(paymentStatus).Sort(sort).StartTime(startTime).Status(status).Execute()
+> DtoListPaymentsResponse PaymentsGet(ctx).Currency(currency).DestinationId(destinationId).DestinationType(destinationType).EndTime(endTime).Expand(expand).GatewayPaymentId(gatewayPaymentId).GatewayTrackingId(gatewayTrackingId).Limit(limit).Offset(offset).Order(order).PaymentGateway(paymentGateway).PaymentIds(paymentIds).PaymentMethodType(paymentMethodType).PaymentStatus(paymentStatus).Sort(sort).StartTime(startTime).Status(status).Execute()
 
 List payments
 
@@ -40,6 +40,7 @@ func main() {
 	endTime := "endTime_example" // string |  (optional)
 	expand := "expand_example" // string |  (optional)
 	gatewayPaymentId := "gatewayPaymentId_example" // string |  (optional)
+	gatewayTrackingId := "gatewayTrackingId_example" // string | For filtering by gateway tracking ID (optional)
 	limit := int32(56) // int32 |  (optional)
 	offset := int32(56) // int32 |  (optional)
 	order := "order_example" // string |  (optional)
@@ -53,7 +54,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.PaymentsAPI.PaymentsGet(context.Background()).Currency(currency).DestinationId(destinationId).DestinationType(destinationType).EndTime(endTime).Expand(expand).GatewayPaymentId(gatewayPaymentId).Limit(limit).Offset(offset).Order(order).PaymentGateway(paymentGateway).PaymentIds(paymentIds).PaymentMethodType(paymentMethodType).PaymentStatus(paymentStatus).Sort(sort).StartTime(startTime).Status(status).Execute()
+	resp, r, err := apiClient.PaymentsAPI.PaymentsGet(context.Background()).Currency(currency).DestinationId(destinationId).DestinationType(destinationType).EndTime(endTime).Expand(expand).GatewayPaymentId(gatewayPaymentId).GatewayTrackingId(gatewayTrackingId).Limit(limit).Offset(offset).Order(order).PaymentGateway(paymentGateway).PaymentIds(paymentIds).PaymentMethodType(paymentMethodType).PaymentStatus(paymentStatus).Sort(sort).StartTime(startTime).Status(status).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentsAPI.PaymentsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -80,6 +81,7 @@ Name | Type | Description  | Notes
  **endTime** | **string** |  | 
  **expand** | **string** |  | 
  **gatewayPaymentId** | **string** |  | 
+ **gatewayTrackingId** | **string** | For filtering by gateway tracking ID | 
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
  **order** | **string** |  | 
@@ -111,7 +113,7 @@ Name | Type | Description  | Notes
 
 ## PaymentsIdDelete
 
-> map[string]map[string]interface{} PaymentsIdDelete(ctx, id).Execute()
+> DtoSuccessResponse PaymentsIdDelete(ctx, id).Execute()
 
 Delete a payment
 
@@ -139,7 +141,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `PaymentsAPI.PaymentsIdDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `PaymentsIdDelete`: map[string]map[string]interface{}
+	// response from `PaymentsIdDelete`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `PaymentsAPI.PaymentsIdDelete`: %v\n", resp)
 }
 ```
@@ -163,7 +165,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 

@@ -26,8 +26,8 @@ type DtoPriceUnitResponse struct {
 	CreatedBy *string `json:"created_by,omitempty"`
 	EnvironmentId *string `json:"environment_id,omitempty"`
 	Id *string `json:"id,omitempty"`
+	Metadata *map[string]string `json:"metadata,omitempty"`
 	Name *string `json:"name,omitempty"`
-	Precision *int32 `json:"precision,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	Symbol *string `json:"symbol,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
@@ -276,6 +276,38 @@ func (o *DtoPriceUnitResponse) SetId(v string) {
 	o.Id = &v
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *DtoPriceUnitResponse) GetMetadata() map[string]string {
+	if o == nil || IsNil(o.Metadata) {
+		var ret map[string]string
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoPriceUnitResponse) GetMetadataOk() (*map[string]string, bool) {
+	if o == nil || IsNil(o.Metadata) {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *DtoPriceUnitResponse) HasMetadata() bool {
+	if o != nil && !IsNil(o.Metadata) {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
+func (o *DtoPriceUnitResponse) SetMetadata(v map[string]string) {
+	o.Metadata = &v
+}
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DtoPriceUnitResponse) GetName() string {
 	if o == nil || IsNil(o.Name) {
@@ -306,38 +338,6 @@ func (o *DtoPriceUnitResponse) HasName() bool {
 // SetName gets a reference to the given string and assigns it to the Name field.
 func (o *DtoPriceUnitResponse) SetName(v string) {
 	o.Name = &v
-}
-
-// GetPrecision returns the Precision field value if set, zero value otherwise.
-func (o *DtoPriceUnitResponse) GetPrecision() int32 {
-	if o == nil || IsNil(o.Precision) {
-		var ret int32
-		return ret
-	}
-	return *o.Precision
-}
-
-// GetPrecisionOk returns a tuple with the Precision field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoPriceUnitResponse) GetPrecisionOk() (*int32, bool) {
-	if o == nil || IsNil(o.Precision) {
-		return nil, false
-	}
-	return o.Precision, true
-}
-
-// HasPrecision returns a boolean if a field has been set.
-func (o *DtoPriceUnitResponse) HasPrecision() bool {
-	if o != nil && !IsNil(o.Precision) {
-		return true
-	}
-
-	return false
-}
-
-// SetPrecision gets a reference to the given int32 and assigns it to the Precision field.
-func (o *DtoPriceUnitResponse) SetPrecision(v int32) {
-	o.Precision = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -531,11 +531,11 @@ func (o DtoPriceUnitResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
+	if !IsNil(o.Metadata) {
+		toSerialize["metadata"] = o.Metadata
+	}
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
-	}
-	if !IsNil(o.Precision) {
-		toSerialize["precision"] = o.Precision
 	}
 	if !IsNil(o.Status) {
 		toSerialize["status"] = o.Status

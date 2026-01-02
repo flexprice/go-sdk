@@ -392,7 +392,7 @@ import (
 )
 
 func main() {
-	scheduledTask := *openapiclient.NewDtoCreateScheduledTaskRequest("ConnectionId_example", openapiclient.types.ScheduledTaskEntityType("events"), openapiclient.types.ScheduledTaskInterval("custom"), *openapiclient.NewTypesS3JobConfig()) // DtoCreateScheduledTaskRequest | Scheduled Task
+	scheduledTask := *openapiclient.NewDtoCreateScheduledTaskRequest("ConnectionId_example", openapiclient.types.ScheduledTaskEntityType("events"), openapiclient.types.ScheduledTaskInterval("15MIN"), *openapiclient.NewTypesS3JobConfig()) // DtoCreateScheduledTaskRequest | Scheduled Task
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)

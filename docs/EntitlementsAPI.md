@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 ## EntitlementsIdDelete
 
-> map[string]map[string]interface{} EntitlementsIdDelete(ctx, id).Execute()
+> DtoSuccessResponse EntitlementsIdDelete(ctx, id).Execute()
 
 Delete an entitlement
 
@@ -272,7 +272,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `EntitlementsAPI.EntitlementsIdDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
-	// response from `EntitlementsIdDelete`: map[string]map[string]interface{}
+	// response from `EntitlementsIdDelete`: DtoSuccessResponse
 	fmt.Fprintf(os.Stdout, "Response from `EntitlementsAPI.EntitlementsIdDelete`: %v\n", resp)
 }
 ```
@@ -296,7 +296,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**map[string]map[string]interface{}**
+[**DtoSuccessResponse**](DtoSuccessResponse.md)
 
 ### Authorization
 

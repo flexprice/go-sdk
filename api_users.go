@@ -319,9 +319,9 @@ func (r UsersAPIUsersSearchPostRequest) Execute() (*DtoListUsersResponse, *http.
 }
 
 /*
-UsersSearchPost List service accounts with filters
+UsersSearchPost List users with filters
 
-Search and filter service accounts by type, roles, etc.
+Search and filter users by type (user/service_account), roles, etc.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @return UsersAPIUsersSearchPostRequest
