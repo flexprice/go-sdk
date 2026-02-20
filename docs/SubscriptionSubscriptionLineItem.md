@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BillingPeriod** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
 **CommitmentAmount** | Pointer to **float32** | Commitment fields | [optional] 
+**CommitmentDuration** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
 **CommitmentOverageFactor** | Pointer to **float32** |  | [optional] 
 **CommitmentQuantity** | Pointer to **float32** |  | [optional] 
 **CommitmentTrueUpEnabled** | Pointer to **bool** |  | [optional] 
@@ -109,6 +110,31 @@ SetCommitmentAmount sets CommitmentAmount field to given value.
 `func (o *SubscriptionSubscriptionLineItem) HasCommitmentAmount() bool`
 
 HasCommitmentAmount returns a boolean if a field has been set.
+
+### GetCommitmentDuration
+
+`func (o *SubscriptionSubscriptionLineItem) GetCommitmentDuration() TypesBillingPeriod`
+
+GetCommitmentDuration returns the CommitmentDuration field if non-nil, zero value otherwise.
+
+### GetCommitmentDurationOk
+
+`func (o *SubscriptionSubscriptionLineItem) GetCommitmentDurationOk() (*TypesBillingPeriod, bool)`
+
+GetCommitmentDurationOk returns a tuple with the CommitmentDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentDuration
+
+`func (o *SubscriptionSubscriptionLineItem) SetCommitmentDuration(v TypesBillingPeriod)`
+
+SetCommitmentDuration sets CommitmentDuration field to given value.
+
+### HasCommitmentDuration
+
+`func (o *SubscriptionSubscriptionLineItem) HasCommitmentDuration() bool`
+
+HasCommitmentDuration returns a boolean if a field has been set.
 
 ### GetCommitmentOverageFactor
 

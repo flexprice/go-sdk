@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **BillingPeriodCount** | Pointer to **int32** |  | [optional] 
 **CollectionMethod** | Pointer to [**TypesCollectionMethod**](TypesCollectionMethod.md) |  | [optional] 
 **CommitmentAmount** | Pointer to **string** | CommitmentAmount is the minimum amount a customer commits to paying for a billing period | [optional] 
+**CommitmentDuration** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
 **Coupons** | Pointer to **[]string** |  | [optional] 
 **CreditGrants** | Pointer to [**[]DtoCreateCreditGrantRequest**](DtoCreateCreditGrantRequest.md) | Credit grants to be applied when subscription is created | [optional] 
 **Currency** | **string** |  | 
@@ -23,12 +24,15 @@ Name | Type | Description | Notes
 **InvoiceBilling** | Pointer to [**TypesInvoiceBilling**](TypesInvoiceBilling.md) |  | [optional] 
 **LineItemCommitments** | Pointer to [**map[string]DtoLineItemCommitmentConfig**](DtoLineItemCommitmentConfig.md) | LineItemCommitments allows setting commitment configuration per line item (keyed by price_id) | [optional] 
 **LineItemCoupons** | Pointer to **map[string][]string** |  | [optional] 
+**LineItems** | Pointer to [**[]DtoCreateSubscriptionLineItemRequest**](DtoCreateSubscriptionLineItemRequest.md) | LineItems are extra line items to add at creation (each with price_id or price), in addition to plan prices | [optional] 
 **LookupKey** | Pointer to **string** |  | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **OverageFactor** | Pointer to **string** | OverageFactor is a multiplier applied to usage beyond the commitment amount | [optional] 
 **OverrideEntitlements** | Pointer to [**[]DtoOverrideEntitlementRequest**](DtoOverrideEntitlementRequest.md) | OverrideEntitlements allows customizing specific entitlements for this subscription | [optional] 
 **OverrideLineItems** | Pointer to [**[]DtoOverrideLineItemRequest**](DtoOverrideLineItemRequest.md) | OverrideLineItems allows customizing specific prices for this subscription | [optional] 
+**ParentSubscriptionId** | Pointer to **string** | ParentSubscriptionID is the parent subscription ID for hierarchy (e.g. child subscription under a parent) | [optional] 
 **PaymentBehavior** | Pointer to [**TypesPaymentBehavior**](TypesPaymentBehavior.md) |  | [optional] 
+**PaymentTerms** | Pointer to [**TypesPaymentTerms**](TypesPaymentTerms.md) |  | [optional] 
 **Phases** | Pointer to [**[]DtoSubscriptionPhaseCreateRequest**](DtoSubscriptionPhaseCreateRequest.md) | Phases represents subscription phases to be created with the subscription | [optional] 
 **PlanId** | **string** |  | 
 **ProrationBehavior** | Pointer to [**TypesProrationBehavior**](TypesProrationBehavior.md) |  | [optional] 
@@ -221,6 +225,31 @@ SetCommitmentAmount sets CommitmentAmount field to given value.
 `func (o *DtoCreateSubscriptionRequest) HasCommitmentAmount() bool`
 
 HasCommitmentAmount returns a boolean if a field has been set.
+
+### GetCommitmentDuration
+
+`func (o *DtoCreateSubscriptionRequest) GetCommitmentDuration() TypesBillingPeriod`
+
+GetCommitmentDuration returns the CommitmentDuration field if non-nil, zero value otherwise.
+
+### GetCommitmentDurationOk
+
+`func (o *DtoCreateSubscriptionRequest) GetCommitmentDurationOk() (*TypesBillingPeriod, bool)`
+
+GetCommitmentDurationOk returns a tuple with the CommitmentDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentDuration
+
+`func (o *DtoCreateSubscriptionRequest) SetCommitmentDuration(v TypesBillingPeriod)`
+
+SetCommitmentDuration sets CommitmentDuration field to given value.
+
+### HasCommitmentDuration
+
+`func (o *DtoCreateSubscriptionRequest) HasCommitmentDuration() bool`
+
+HasCommitmentDuration returns a boolean if a field has been set.
 
 ### GetCoupons
 
@@ -517,6 +546,31 @@ SetLineItemCoupons sets LineItemCoupons field to given value.
 
 HasLineItemCoupons returns a boolean if a field has been set.
 
+### GetLineItems
+
+`func (o *DtoCreateSubscriptionRequest) GetLineItems() []DtoCreateSubscriptionLineItemRequest`
+
+GetLineItems returns the LineItems field if non-nil, zero value otherwise.
+
+### GetLineItemsOk
+
+`func (o *DtoCreateSubscriptionRequest) GetLineItemsOk() (*[]DtoCreateSubscriptionLineItemRequest, bool)`
+
+GetLineItemsOk returns a tuple with the LineItems field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLineItems
+
+`func (o *DtoCreateSubscriptionRequest) SetLineItems(v []DtoCreateSubscriptionLineItemRequest)`
+
+SetLineItems sets LineItems field to given value.
+
+### HasLineItems
+
+`func (o *DtoCreateSubscriptionRequest) HasLineItems() bool`
+
+HasLineItems returns a boolean if a field has been set.
+
 ### GetLookupKey
 
 `func (o *DtoCreateSubscriptionRequest) GetLookupKey() string`
@@ -642,6 +696,31 @@ SetOverrideLineItems sets OverrideLineItems field to given value.
 
 HasOverrideLineItems returns a boolean if a field has been set.
 
+### GetParentSubscriptionId
+
+`func (o *DtoCreateSubscriptionRequest) GetParentSubscriptionId() string`
+
+GetParentSubscriptionId returns the ParentSubscriptionId field if non-nil, zero value otherwise.
+
+### GetParentSubscriptionIdOk
+
+`func (o *DtoCreateSubscriptionRequest) GetParentSubscriptionIdOk() (*string, bool)`
+
+GetParentSubscriptionIdOk returns a tuple with the ParentSubscriptionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentSubscriptionId
+
+`func (o *DtoCreateSubscriptionRequest) SetParentSubscriptionId(v string)`
+
+SetParentSubscriptionId sets ParentSubscriptionId field to given value.
+
+### HasParentSubscriptionId
+
+`func (o *DtoCreateSubscriptionRequest) HasParentSubscriptionId() bool`
+
+HasParentSubscriptionId returns a boolean if a field has been set.
+
 ### GetPaymentBehavior
 
 `func (o *DtoCreateSubscriptionRequest) GetPaymentBehavior() TypesPaymentBehavior`
@@ -666,6 +745,31 @@ SetPaymentBehavior sets PaymentBehavior field to given value.
 `func (o *DtoCreateSubscriptionRequest) HasPaymentBehavior() bool`
 
 HasPaymentBehavior returns a boolean if a field has been set.
+
+### GetPaymentTerms
+
+`func (o *DtoCreateSubscriptionRequest) GetPaymentTerms() TypesPaymentTerms`
+
+GetPaymentTerms returns the PaymentTerms field if non-nil, zero value otherwise.
+
+### GetPaymentTermsOk
+
+`func (o *DtoCreateSubscriptionRequest) GetPaymentTermsOk() (*TypesPaymentTerms, bool)`
+
+GetPaymentTermsOk returns a tuple with the PaymentTerms field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPaymentTerms
+
+`func (o *DtoCreateSubscriptionRequest) SetPaymentTerms(v TypesPaymentTerms)`
+
+SetPaymentTerms sets PaymentTerms field to given value.
+
+### HasPaymentTerms
+
+`func (o *DtoCreateSubscriptionRequest) HasPaymentTerms() bool`
+
+HasPaymentTerms returns a boolean if a field has been set.
 
 ### GetPhases
 

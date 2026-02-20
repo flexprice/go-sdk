@@ -4,10 +4,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AlertConfig** | Pointer to [**DtoAlertConfig**](DtoAlertConfig.md) |  | [optional] 
-**AlertEnabled** | Pointer to **bool** | alert_enabled is the flag to enable alerts for the wallet defaults to true, can be explicitly set to false to disable alerts | [optional] 
+**AlertSettings** | Pointer to [**TypesAlertSettings**](TypesAlertSettings.md) |  | [optional] 
 **AutoTopup** | Pointer to [**TypesAutoTopup**](TypesAutoTopup.md) |  | [optional] 
-**Config** | Pointer to [**TypesWalletConfig**](TypesWalletConfig.md) |  | [optional] 
 **ConversionRate** | Pointer to **string** | amount in the currency &#x3D;  number of credits * conversion_rate ex if conversion_rate is 1, then 1 USD &#x3D; 1 credit ex if conversion_rate is 2, then 1 USD &#x3D; 0.5 credits ex if conversion_rate is 0.5, then 1 USD &#x3D; 2 credits | [optional] [default to "1"]
 **Currency** | **string** |  | 
 **CustomerId** | Pointer to **string** |  | [optional] 
@@ -17,8 +15,8 @@ Name | Type | Description | Notes
 **InitialCreditsToLoad** | Pointer to **string** | initial_credits_to_load is the number of credits to load to the wallet if not provided, the wallet will be created with 0 balance NOTE: this is not the amount in the currency, but the number of credits | [optional] [default to "0"]
 **InitialCreditsToLoadExpiryDate** | Pointer to **int32** | initial_credits_to_load_expiry_date YYYYMMDD format in UTC timezone (optional to set nil means no expiry) for ex 20250101 means the credits will expire on 2025-01-01 00:00:00 UTC hence they will be available for use until 2024-12-31 23:59:59 UTC | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
-**Name** | Pointer to **string** |  | [optional] 
 **PriceUnit** | Pointer to **string** | price_unit is the code of the price unit to use for wallet creation If provided, the price unit will be used to set the currency and conversion rate of the wallet: - currency: set to price unit&#39;s base_currency - conversion_rate: set to price unit&#39;s conversion_rate | [optional] 
+**TopupConversionRate** | Pointer to **string** | topup_conversion_rate is the conversion rate for the topup to the currency ex if topup_conversion_rate is 1, then 1 USD &#x3D; 1 credit ex if topup_conversion_rate is 2, then 1 USD &#x3D; 0.5 credits ex if topup_conversion_rate is 0.5, then 1 USD &#x3D; 2 credits | [optional] 
 **WalletType** | Pointer to [**TypesWalletType**](TypesWalletType.md) |  | [optional] 
 
 ## Methods
@@ -40,55 +38,30 @@ NewDtoCreateWalletRequestWithDefaults instantiates a new DtoCreateWalletRequest 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAlertConfig
+### GetAlertSettings
 
-`func (o *DtoCreateWalletRequest) GetAlertConfig() DtoAlertConfig`
+`func (o *DtoCreateWalletRequest) GetAlertSettings() TypesAlertSettings`
 
-GetAlertConfig returns the AlertConfig field if non-nil, zero value otherwise.
+GetAlertSettings returns the AlertSettings field if non-nil, zero value otherwise.
 
-### GetAlertConfigOk
+### GetAlertSettingsOk
 
-`func (o *DtoCreateWalletRequest) GetAlertConfigOk() (*DtoAlertConfig, bool)`
+`func (o *DtoCreateWalletRequest) GetAlertSettingsOk() (*TypesAlertSettings, bool)`
 
-GetAlertConfigOk returns a tuple with the AlertConfig field if it's non-nil, zero value otherwise
+GetAlertSettingsOk returns a tuple with the AlertSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAlertConfig
+### SetAlertSettings
 
-`func (o *DtoCreateWalletRequest) SetAlertConfig(v DtoAlertConfig)`
+`func (o *DtoCreateWalletRequest) SetAlertSettings(v TypesAlertSettings)`
 
-SetAlertConfig sets AlertConfig field to given value.
+SetAlertSettings sets AlertSettings field to given value.
 
-### HasAlertConfig
+### HasAlertSettings
 
-`func (o *DtoCreateWalletRequest) HasAlertConfig() bool`
+`func (o *DtoCreateWalletRequest) HasAlertSettings() bool`
 
-HasAlertConfig returns a boolean if a field has been set.
-
-### GetAlertEnabled
-
-`func (o *DtoCreateWalletRequest) GetAlertEnabled() bool`
-
-GetAlertEnabled returns the AlertEnabled field if non-nil, zero value otherwise.
-
-### GetAlertEnabledOk
-
-`func (o *DtoCreateWalletRequest) GetAlertEnabledOk() (*bool, bool)`
-
-GetAlertEnabledOk returns a tuple with the AlertEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAlertEnabled
-
-`func (o *DtoCreateWalletRequest) SetAlertEnabled(v bool)`
-
-SetAlertEnabled sets AlertEnabled field to given value.
-
-### HasAlertEnabled
-
-`func (o *DtoCreateWalletRequest) HasAlertEnabled() bool`
-
-HasAlertEnabled returns a boolean if a field has been set.
+HasAlertSettings returns a boolean if a field has been set.
 
 ### GetAutoTopup
 
@@ -114,31 +87,6 @@ SetAutoTopup sets AutoTopup field to given value.
 `func (o *DtoCreateWalletRequest) HasAutoTopup() bool`
 
 HasAutoTopup returns a boolean if a field has been set.
-
-### GetConfig
-
-`func (o *DtoCreateWalletRequest) GetConfig() TypesWalletConfig`
-
-GetConfig returns the Config field if non-nil, zero value otherwise.
-
-### GetConfigOk
-
-`func (o *DtoCreateWalletRequest) GetConfigOk() (*TypesWalletConfig, bool)`
-
-GetConfigOk returns a tuple with the Config field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetConfig
-
-`func (o *DtoCreateWalletRequest) SetConfig(v TypesWalletConfig)`
-
-SetConfig sets Config field to given value.
-
-### HasConfig
-
-`func (o *DtoCreateWalletRequest) HasConfig() bool`
-
-HasConfig returns a boolean if a field has been set.
 
 ### GetConversionRate
 
@@ -360,31 +308,6 @@ SetMetadata sets Metadata field to given value.
 
 HasMetadata returns a boolean if a field has been set.
 
-### GetName
-
-`func (o *DtoCreateWalletRequest) GetName() string`
-
-GetName returns the Name field if non-nil, zero value otherwise.
-
-### GetNameOk
-
-`func (o *DtoCreateWalletRequest) GetNameOk() (*string, bool)`
-
-GetNameOk returns a tuple with the Name field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetName
-
-`func (o *DtoCreateWalletRequest) SetName(v string)`
-
-SetName sets Name field to given value.
-
-### HasName
-
-`func (o *DtoCreateWalletRequest) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
 ### GetPriceUnit
 
 `func (o *DtoCreateWalletRequest) GetPriceUnit() string`
@@ -409,6 +332,31 @@ SetPriceUnit sets PriceUnit field to given value.
 `func (o *DtoCreateWalletRequest) HasPriceUnit() bool`
 
 HasPriceUnit returns a boolean if a field has been set.
+
+### GetTopupConversionRate
+
+`func (o *DtoCreateWalletRequest) GetTopupConversionRate() string`
+
+GetTopupConversionRate returns the TopupConversionRate field if non-nil, zero value otherwise.
+
+### GetTopupConversionRateOk
+
+`func (o *DtoCreateWalletRequest) GetTopupConversionRateOk() (*string, bool)`
+
+GetTopupConversionRateOk returns a tuple with the TopupConversionRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTopupConversionRate
+
+`func (o *DtoCreateWalletRequest) SetTopupConversionRate(v string)`
+
+SetTopupConversionRate sets TopupConversionRate field to given value.
+
+### HasTopupConversionRate
+
+`func (o *DtoCreateWalletRequest) HasTopupConversionRate() bool`
+
+HasTopupConversionRate returns a boolean if a field has been set.
 
 ### GetWalletType
 

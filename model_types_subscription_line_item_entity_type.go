@@ -22,12 +22,14 @@ type TypesSubscriptionLineItemEntityType string
 const (
 	TYPESSUBSCRIPTIONLINEITEMENTITYTYPE_SubscriptionLineItemEntityTypePlan TypesSubscriptionLineItemEntityType = "plan"
 	TYPESSUBSCRIPTIONLINEITEMENTITYTYPE_SubscriptionLineItemEntityTypeAddon TypesSubscriptionLineItemEntityType = "addon"
+	TYPESSUBSCRIPTIONLINEITEMENTITYTYPE_SubscriptionLineItemEntityTypeSubscription TypesSubscriptionLineItemEntityType = "subscription"
 )
 
 // All allowed values of TypesSubscriptionLineItemEntityType enum
 var AllowedTypesSubscriptionLineItemEntityTypeEnumValues = []TypesSubscriptionLineItemEntityType{
 	"plan",
 	"addon",
+	"subscription",
 }
 
 func (v *TypesSubscriptionLineItemEntityType) UnmarshalJSON(src []byte) error {

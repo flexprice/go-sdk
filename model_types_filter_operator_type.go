@@ -22,6 +22,7 @@ type TypesFilterOperatorType string
 const (
 	TYPESFILTEROPERATORTYPE_EQUAL TypesFilterOperatorType = "eq"
 	TYPESFILTEROPERATORTYPE_CONTAINS TypesFilterOperatorType = "contains"
+	TYPESFILTEROPERATORTYPE_NOT_CONTAINS TypesFilterOperatorType = "not_contains"
 	TYPESFILTEROPERATORTYPE_GREATER_THAN TypesFilterOperatorType = "gt"
 	TYPESFILTEROPERATORTYPE_LESS_THAN TypesFilterOperatorType = "lt"
 	TYPESFILTEROPERATORTYPE_IN TypesFilterOperatorType = "in"
@@ -34,6 +35,7 @@ const (
 var AllowedTypesFilterOperatorTypeEnumValues = []TypesFilterOperatorType{
 	"eq",
 	"contains",
+	"not_contains",
 	"gt",
 	"lt",
 	"in",

@@ -4,24 +4,22 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AutoApply** | Pointer to **bool** |  | [optional] 
+**AutoApply** | Pointer to **bool** | Whether this tax should be automatically applied | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
-**Currency** | Pointer to **string** |  | [optional] 
-**EntityId** | Pointer to **string** |  | [optional] 
+**Currency** | Pointer to **string** | Currency | [optional] 
+**EntityId** | Pointer to **string** | ID of the entity this tax rate applies to | [optional] 
 **EntityType** | Pointer to [**TypesTaxRateEntityType**](TypesTaxRateEntityType.md) |  | [optional] 
-**EnvironmentId** | Pointer to **string** |  | [optional] 
-**Id** | Pointer to **string** |  | [optional] 
-**Metadata** | Pointer to **map[string]string** |  | [optional] 
-**Priority** | Pointer to **int32** |  | [optional] 
-**Status** | Pointer to **string** |  | [optional] 
+**EnvironmentId** | Pointer to **string** | EnvironmentID is the ID of the environment this tax rate config belongs to | [optional] 
+**Id** | Pointer to **string** | ID of the ent. | [optional] 
+**Metadata** | Pointer to **map[string]string** | Metadata holds the value of the \&quot;metadata\&quot; field. | [optional] 
+**Priority** | Pointer to **int32** | Priority for tax resolution (lower number &#x3D; higher priority) | [optional] 
+**Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **TaxRate** | Pointer to [**DtoTaxRateResponse**](DtoTaxRateResponse.md) |  | [optional] 
-**TaxRateId** | Pointer to **string** |  | [optional] 
+**TaxRateId** | Pointer to **string** | Reference to the TaxRate entity | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedBy** | Pointer to **string** |  | [optional] 
-**ValidFrom** | Pointer to **string** |  | [optional] 
-**ValidTo** | Pointer to **string** |  | [optional] 
 
 ## Methods
 
@@ -294,20 +292,20 @@ HasPriority returns a boolean if a field has been set.
 
 ### GetStatus
 
-`func (o *DtoTaxAssociationResponse) GetStatus() string`
+`func (o *DtoTaxAssociationResponse) GetStatus() TypesStatus`
 
 GetStatus returns the Status field if non-nil, zero value otherwise.
 
 ### GetStatusOk
 
-`func (o *DtoTaxAssociationResponse) GetStatusOk() (*string, bool)`
+`func (o *DtoTaxAssociationResponse) GetStatusOk() (*TypesStatus, bool)`
 
 GetStatusOk returns a tuple with the Status field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStatus
 
-`func (o *DtoTaxAssociationResponse) SetStatus(v string)`
+`func (o *DtoTaxAssociationResponse) SetStatus(v TypesStatus)`
 
 SetStatus sets Status field to given value.
 
@@ -441,56 +439,6 @@ SetUpdatedBy sets UpdatedBy field to given value.
 `func (o *DtoTaxAssociationResponse) HasUpdatedBy() bool`
 
 HasUpdatedBy returns a boolean if a field has been set.
-
-### GetValidFrom
-
-`func (o *DtoTaxAssociationResponse) GetValidFrom() string`
-
-GetValidFrom returns the ValidFrom field if non-nil, zero value otherwise.
-
-### GetValidFromOk
-
-`func (o *DtoTaxAssociationResponse) GetValidFromOk() (*string, bool)`
-
-GetValidFromOk returns a tuple with the ValidFrom field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetValidFrom
-
-`func (o *DtoTaxAssociationResponse) SetValidFrom(v string)`
-
-SetValidFrom sets ValidFrom field to given value.
-
-### HasValidFrom
-
-`func (o *DtoTaxAssociationResponse) HasValidFrom() bool`
-
-HasValidFrom returns a boolean if a field has been set.
-
-### GetValidTo
-
-`func (o *DtoTaxAssociationResponse) GetValidTo() string`
-
-GetValidTo returns the ValidTo field if non-nil, zero value otherwise.
-
-### GetValidToOk
-
-`func (o *DtoTaxAssociationResponse) GetValidToOk() (*string, bool)`
-
-GetValidToOk returns a tuple with the ValidTo field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetValidTo
-
-`func (o *DtoTaxAssociationResponse) SetValidTo(v string)`
-
-SetValidTo sets ValidTo field to given value.
-
-### HasValidTo
-
-`func (o *DtoTaxAssociationResponse) HasValidTo() bool`
-
-HasValidTo returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

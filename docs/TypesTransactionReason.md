@@ -21,6 +21,8 @@
 
 * `TransactionReasonManualBalanceDebit` (value: `"MANUAL_BALANCE_DEBIT"`)
 
+* `TransactionReasonCreditAdjustment` (value: `"CREDIT_ADJUSTMENT"`)
+
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

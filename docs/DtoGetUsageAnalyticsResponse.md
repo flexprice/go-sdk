@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Currency** | Pointer to **string** |  | [optional] 
+**CustomAnalytics** | Pointer to [**[]DtoCustomAnalyticItem**](DtoCustomAnalyticItem.md) |  | [optional] 
 **Items** | Pointer to [**[]DtoUsageAnalyticItem**](DtoUsageAnalyticItem.md) |  | [optional] 
 **TotalCost** | Pointer to **string** |  | [optional] 
 
@@ -51,6 +52,31 @@ SetCurrency sets Currency field to given value.
 `func (o *DtoGetUsageAnalyticsResponse) HasCurrency() bool`
 
 HasCurrency returns a boolean if a field has been set.
+
+### GetCustomAnalytics
+
+`func (o *DtoGetUsageAnalyticsResponse) GetCustomAnalytics() []DtoCustomAnalyticItem`
+
+GetCustomAnalytics returns the CustomAnalytics field if non-nil, zero value otherwise.
+
+### GetCustomAnalyticsOk
+
+`func (o *DtoGetUsageAnalyticsResponse) GetCustomAnalyticsOk() (*[]DtoCustomAnalyticItem, bool)`
+
+GetCustomAnalyticsOk returns a tuple with the CustomAnalytics field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCustomAnalytics
+
+`func (o *DtoGetUsageAnalyticsResponse) SetCustomAnalytics(v []DtoCustomAnalyticItem)`
+
+SetCustomAnalytics sets CustomAnalytics field to given value.
+
+### HasCustomAnalytics
+
+`func (o *DtoGetUsageAnalyticsResponse) HasCustomAnalytics() bool`
+
+HasCustomAnalytics returns a boolean if a field has been set.
 
 ### GetItems
 

@@ -37,6 +37,8 @@ type TypesSubscriptionFilter struct {
 	Limit *int32 `json:"limit,omitempty"`
 	Offset *int32 `json:"offset,omitempty"`
 	Order *string `json:"order,omitempty"`
+	// ParentSubscriptionIDs filters by parent subscription IDs
+	ParentSubscriptionIds []string `json:"parent_subscription_ids,omitempty"`
 	// PlanID filters by plan ID
 	PlanId *string `json:"plan_id,omitempty"`
 	Sort []TypesSortCondition `json:"sort,omitempty"`
@@ -450,6 +452,38 @@ func (o *TypesSubscriptionFilter) SetOrder(v string) {
 	o.Order = &v
 }
 
+// GetParentSubscriptionIds returns the ParentSubscriptionIds field value if set, zero value otherwise.
+func (o *TypesSubscriptionFilter) GetParentSubscriptionIds() []string {
+	if o == nil || IsNil(o.ParentSubscriptionIds) {
+		var ret []string
+		return ret
+	}
+	return o.ParentSubscriptionIds
+}
+
+// GetParentSubscriptionIdsOk returns a tuple with the ParentSubscriptionIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TypesSubscriptionFilter) GetParentSubscriptionIdsOk() ([]string, bool) {
+	if o == nil || IsNil(o.ParentSubscriptionIds) {
+		return nil, false
+	}
+	return o.ParentSubscriptionIds, true
+}
+
+// HasParentSubscriptionIds returns a boolean if a field has been set.
+func (o *TypesSubscriptionFilter) HasParentSubscriptionIds() bool {
+	if o != nil && !IsNil(o.ParentSubscriptionIds) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentSubscriptionIds gets a reference to the given []string and assigns it to the ParentSubscriptionIds field.
+func (o *TypesSubscriptionFilter) SetParentSubscriptionIds(v []string) {
+	o.ParentSubscriptionIds = v
+}
+
 // GetPlanId returns the PlanId field value if set, zero value otherwise.
 func (o *TypesSubscriptionFilter) GetPlanId() string {
 	if o == nil || IsNil(o.PlanId) {
@@ -719,6 +753,9 @@ func (o TypesSubscriptionFilter) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Order) {
 		toSerialize["order"] = o.Order
+	}
+	if !IsNil(o.ParentSubscriptionIds) {
+		toSerialize["parent_subscription_ids"] = o.ParentSubscriptionIds
 	}
 	if !IsNil(o.PlanId) {
 		toSerialize["plan_id"] = o.PlanId

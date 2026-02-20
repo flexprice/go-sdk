@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **Payment** | Pointer to [**TypesEntitySyncConfig**](TypesEntitySyncConfig.md) |  | [optional] 
 **Plan** | Pointer to [**TypesEntitySyncConfig**](TypesEntitySyncConfig.md) |  | [optional] 
 **Quote** | Pointer to [**TypesEntitySyncConfig**](TypesEntitySyncConfig.md) |  | [optional] 
+**S3** | Pointer to [**TypesS3ExportConfig**](TypesS3ExportConfig.md) |  | [optional] 
 **Subscription** | Pointer to [**TypesEntitySyncConfig**](TypesEntitySyncConfig.md) |  | [optional] 
 
 ## Methods
@@ -154,6 +155,31 @@ SetQuote sets Quote field to given value.
 `func (o *TypesSyncConfig) HasQuote() bool`
 
 HasQuote returns a boolean if a field has been set.
+
+### GetS3
+
+`func (o *TypesSyncConfig) GetS3() TypesS3ExportConfig`
+
+GetS3 returns the S3 field if non-nil, zero value otherwise.
+
+### GetS3Ok
+
+`func (o *TypesSyncConfig) GetS3Ok() (*TypesS3ExportConfig, bool)`
+
+GetS3Ok returns a tuple with the S3 field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetS3
+
+`func (o *TypesSyncConfig) SetS3(v TypesS3ExportConfig)`
+
+SetS3 sets S3 field to given value.
+
+### HasS3
+
+`func (o *TypesSyncConfig) HasS3() bool`
+
+HasS3 returns a boolean if a field has been set.
 
 ### GetSubscription
 

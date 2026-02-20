@@ -23,12 +23,17 @@ type DtoUpdatePriceRequest struct {
 	Amount *string `json:"amount,omitempty"`
 	BillingModel *TypesBillingModel `json:"billing_model,omitempty"`
 	Description *string `json:"description,omitempty"`
+	DisplayName *string `json:"display_name,omitempty"`
 	EffectiveFrom *string `json:"effective_from,omitempty"`
 	// GroupID is the id of the group to update the price in
 	GroupId *string `json:"group_id,omitempty"`
 	// All price fields that can be updated Non-critical fields (can be updated directly)
 	LookupKey *string `json:"lookup_key,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	// PriceUnitAmount is the price unit amount (for CUSTOM price unit type, FLAT_FEE/PACKAGE billing models)
+	PriceUnitAmount *string `json:"price_unit_amount,omitempty"`
+	// PriceUnitTiers are the price unit tiers (for CUSTOM price unit type, TIERED billing model)
+	PriceUnitTiers []DtoCreatePriceTier `json:"price_unit_tiers,omitempty"`
 	TierMode *TypesBillingTier `json:"tier_mode,omitempty"`
 	// Tiers determines the pricing tiers for this line item
 	Tiers []DtoCreatePriceTier `json:"tiers,omitempty"`
@@ -146,6 +151,38 @@ func (o *DtoUpdatePriceRequest) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *DtoUpdatePriceRequest) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *DtoUpdatePriceRequest) GetDisplayName() string {
+	if o == nil || IsNil(o.DisplayName) {
+		var ret string
+		return ret
+	}
+	return *o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePriceRequest) GetDisplayNameOk() (*string, bool) {
+	if o == nil || IsNil(o.DisplayName) {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *DtoUpdatePriceRequest) HasDisplayName() bool {
+	if o != nil && !IsNil(o.DisplayName) {
+		return true
+	}
+
+	return false
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+func (o *DtoUpdatePriceRequest) SetDisplayName(v string) {
+	o.DisplayName = &v
 }
 
 // GetEffectiveFrom returns the EffectiveFrom field value if set, zero value otherwise.
@@ -276,6 +313,70 @@ func (o *DtoUpdatePriceRequest) SetMetadata(v map[string]string) {
 	o.Metadata = &v
 }
 
+// GetPriceUnitAmount returns the PriceUnitAmount field value if set, zero value otherwise.
+func (o *DtoUpdatePriceRequest) GetPriceUnitAmount() string {
+	if o == nil || IsNil(o.PriceUnitAmount) {
+		var ret string
+		return ret
+	}
+	return *o.PriceUnitAmount
+}
+
+// GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePriceRequest) GetPriceUnitAmountOk() (*string, bool) {
+	if o == nil || IsNil(o.PriceUnitAmount) {
+		return nil, false
+	}
+	return o.PriceUnitAmount, true
+}
+
+// HasPriceUnitAmount returns a boolean if a field has been set.
+func (o *DtoUpdatePriceRequest) HasPriceUnitAmount() bool {
+	if o != nil && !IsNil(o.PriceUnitAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnitAmount gets a reference to the given string and assigns it to the PriceUnitAmount field.
+func (o *DtoUpdatePriceRequest) SetPriceUnitAmount(v string) {
+	o.PriceUnitAmount = &v
+}
+
+// GetPriceUnitTiers returns the PriceUnitTiers field value if set, zero value otherwise.
+func (o *DtoUpdatePriceRequest) GetPriceUnitTiers() []DtoCreatePriceTier {
+	if o == nil || IsNil(o.PriceUnitTiers) {
+		var ret []DtoCreatePriceTier
+		return ret
+	}
+	return o.PriceUnitTiers
+}
+
+// GetPriceUnitTiersOk returns a tuple with the PriceUnitTiers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdatePriceRequest) GetPriceUnitTiersOk() ([]DtoCreatePriceTier, bool) {
+	if o == nil || IsNil(o.PriceUnitTiers) {
+		return nil, false
+	}
+	return o.PriceUnitTiers, true
+}
+
+// HasPriceUnitTiers returns a boolean if a field has been set.
+func (o *DtoUpdatePriceRequest) HasPriceUnitTiers() bool {
+	if o != nil && !IsNil(o.PriceUnitTiers) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnitTiers gets a reference to the given []DtoCreatePriceTier and assigns it to the PriceUnitTiers field.
+func (o *DtoUpdatePriceRequest) SetPriceUnitTiers(v []DtoCreatePriceTier) {
+	o.PriceUnitTiers = v
+}
+
 // GetTierMode returns the TierMode field value if set, zero value otherwise.
 func (o *DtoUpdatePriceRequest) GetTierMode() TypesBillingTier {
 	if o == nil || IsNil(o.TierMode) {
@@ -391,6 +492,9 @@ func (o DtoUpdatePriceRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	if !IsNil(o.DisplayName) {
+		toSerialize["display_name"] = o.DisplayName
+	}
 	if !IsNil(o.EffectiveFrom) {
 		toSerialize["effective_from"] = o.EffectiveFrom
 	}
@@ -402,6 +506,12 @@ func (o DtoUpdatePriceRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
+	}
+	if !IsNil(o.PriceUnitAmount) {
+		toSerialize["price_unit_amount"] = o.PriceUnitAmount
+	}
+	if !IsNil(o.PriceUnitTiers) {
+		toSerialize["price_unit_tiers"] = o.PriceUnitTiers
 	}
 	if !IsNil(o.TierMode) {
 		toSerialize["tier_mode"] = o.TierMode

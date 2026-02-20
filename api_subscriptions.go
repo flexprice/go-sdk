@@ -329,6 +329,7 @@ type SubscriptionsAPISubscriptionsGetRequest struct {
 	limit *int32
 	offset *int32
 	order *string
+	parentSubscriptionIds *[]string
 	planId *string
 	startTime *string
 	status *string
@@ -395,6 +396,12 @@ func (r SubscriptionsAPISubscriptionsGetRequest) Offset(offset int32) Subscripti
 
 func (r SubscriptionsAPISubscriptionsGetRequest) Order(order string) SubscriptionsAPISubscriptionsGetRequest {
 	r.order = &order
+	return r
+}
+
+// ParentSubscriptionIDs filters by parent subscription IDs
+func (r SubscriptionsAPISubscriptionsGetRequest) ParentSubscriptionIds(parentSubscriptionIds []string) SubscriptionsAPISubscriptionsGetRequest {
+	r.parentSubscriptionIds = &parentSubscriptionIds
 	return r
 }
 
@@ -503,6 +510,9 @@ func (a *SubscriptionsAPIService) SubscriptionsGetExecute(r SubscriptionsAPISubs
 	}
 	if r.order != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "order", r.order, "form", "")
+	}
+	if r.parentSubscriptionIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "parent_subscription_ids", r.parentSubscriptionIds, "form", "csv")
 	}
 	if r.planId != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "plan_id", r.planId, "form", "")
@@ -1828,6 +1838,167 @@ func (a *SubscriptionsAPIService) SubscriptionsIdGrantsUpcomingGetExecute(r Subs
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type SubscriptionsAPISubscriptionsIdLineitemsPostRequest struct {
+	ctx context.Context
+	ApiService *SubscriptionsAPIService
+	id string
+	request *DtoCreateSubscriptionLineItemRequest
+}
+
+// Create Line Item Request
+func (r SubscriptionsAPISubscriptionsIdLineitemsPostRequest) Request(request DtoCreateSubscriptionLineItemRequest) SubscriptionsAPISubscriptionsIdLineitemsPostRequest {
+	r.request = &request
+	return r
+}
+
+func (r SubscriptionsAPISubscriptionsIdLineitemsPostRequest) Execute() (*DtoSubscriptionLineItemResponse, *http.Response, error) {
+	return r.ApiService.SubscriptionsIdLineitemsPostExecute(r)
+}
+
+/*
+SubscriptionsIdLineitemsPost Create subscription line item
+
+Add a new line item to an existing subscription (price_id or inline price)
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Subscription ID
+ @return SubscriptionsAPISubscriptionsIdLineitemsPostRequest
+*/
+func (a *SubscriptionsAPIService) SubscriptionsIdLineitemsPost(ctx context.Context, id string) SubscriptionsAPISubscriptionsIdLineitemsPostRequest {
+	return SubscriptionsAPISubscriptionsIdLineitemsPostRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return DtoSubscriptionLineItemResponse
+func (a *SubscriptionsAPIService) SubscriptionsIdLineitemsPostExecute(r SubscriptionsAPISubscriptionsIdLineitemsPostRequest) (*DtoSubscriptionLineItemResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DtoSubscriptionLineItemResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsIdLineitemsPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/subscriptions/{id}/lineitems"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.request
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type SubscriptionsAPISubscriptionsIdPausePostRequest struct {
 	ctx context.Context
 	ApiService *SubscriptionsAPIService
@@ -2124,6 +2295,156 @@ func (a *SubscriptionsAPIService) SubscriptionsIdPausesGetExecute(r Subscription
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type SubscriptionsAPISubscriptionsIdPutRequest struct {
+	ctx context.Context
+	ApiService *SubscriptionsAPIService
+	id string
+	request *DtoUpdateSubscriptionRequest
+}
+
+// Update Subscription Request
+func (r SubscriptionsAPISubscriptionsIdPutRequest) Request(request DtoUpdateSubscriptionRequest) SubscriptionsAPISubscriptionsIdPutRequest {
+	r.request = &request
+	return r
+}
+
+func (r SubscriptionsAPISubscriptionsIdPutRequest) Execute() (*DtoSubscriptionResponse, *http.Response, error) {
+	return r.ApiService.SubscriptionsIdPutExecute(r)
+}
+
+/*
+SubscriptionsIdPut Update subscription
+
+Update a subscription. parent_subscription_id can be set to another subscription ID, cleared by sending "", or left unchanged if omitted.
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Subscription ID
+ @return SubscriptionsAPISubscriptionsIdPutRequest
+*/
+func (a *SubscriptionsAPIService) SubscriptionsIdPut(ctx context.Context, id string) SubscriptionsAPISubscriptionsIdPutRequest {
+	return SubscriptionsAPISubscriptionsIdPutRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return DtoSubscriptionResponse
+func (a *SubscriptionsAPIService) SubscriptionsIdPutExecute(r SubscriptionsAPISubscriptionsIdPutRequest) (*DtoSubscriptionResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPut
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DtoSubscriptionResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsIdPut")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/subscriptions/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+	if r.request == nil {
+		return localVarReturnValue, nil, reportError("request is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.request
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type SubscriptionsAPISubscriptionsIdResumePostRequest struct {
 	ctx context.Context
 	ApiService *SubscriptionsAPIService
@@ -2250,6 +2571,154 @@ func (a *SubscriptionsAPIService) SubscriptionsIdResumePostExecute(r Subscriptio
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 404 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 500 {
+			var v ErrorsErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
+					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SubscriptionsAPISubscriptionsIdV2GetRequest struct {
+	ctx context.Context
+	ApiService *SubscriptionsAPIService
+	id string
+	expand *string
+}
+
+// Comma-separated list of fields to expand (e.g., &#39;subscription_line_items,prices,plan&#39;)
+func (r SubscriptionsAPISubscriptionsIdV2GetRequest) Expand(expand string) SubscriptionsAPISubscriptionsIdV2GetRequest {
+	r.expand = &expand
+	return r
+}
+
+func (r SubscriptionsAPISubscriptionsIdV2GetRequest) Execute() (*DtoSubscriptionResponseV2, *http.Response, error) {
+	return r.ApiService.SubscriptionsIdV2GetExecute(r)
+}
+
+/*
+SubscriptionsIdV2Get Get subscription V2
+
+Get a subscription by ID with optional expand parameters
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Subscription ID
+ @return SubscriptionsAPISubscriptionsIdV2GetRequest
+*/
+func (a *SubscriptionsAPIService) SubscriptionsIdV2Get(ctx context.Context, id string) SubscriptionsAPISubscriptionsIdV2GetRequest {
+	return SubscriptionsAPISubscriptionsIdV2GetRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return DtoSubscriptionResponseV2
+func (a *SubscriptionsAPIService) SubscriptionsIdV2GetExecute(r SubscriptionsAPISubscriptionsIdV2GetRequest) (*DtoSubscriptionResponseV2, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DtoSubscriptionResponseV2
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.SubscriptionsIdV2Get")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/subscriptions/{id}/v2"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.expand != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expand", r.expand, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["ApiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["x-api-key"] = key
+			}
+		}
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
 			var v ErrorsErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -3007,6 +3476,463 @@ func (a *SubscriptionsAPIService) SubscriptionsUsagePostExecute(r SubscriptionsA
 			}
 					newErr.error = formatErrorMessage(localVarHTTPResponse.Status, &v)
 					newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SubscriptionsAPIV1SubscriptionSchedulesGetRequest struct {
+	ctx context.Context
+	ApiService *SubscriptionsAPIService
+	pendingOnly *bool
+	subscriptionId *string
+	limit *int32
+	offset *int32
+}
+
+// Filter to pending schedules only
+func (r SubscriptionsAPIV1SubscriptionSchedulesGetRequest) PendingOnly(pendingOnly bool) SubscriptionsAPIV1SubscriptionSchedulesGetRequest {
+	r.pendingOnly = &pendingOnly
+	return r
+}
+
+// Filter by subscription ID
+func (r SubscriptionsAPIV1SubscriptionSchedulesGetRequest) SubscriptionId(subscriptionId string) SubscriptionsAPIV1SubscriptionSchedulesGetRequest {
+	r.subscriptionId = &subscriptionId
+	return r
+}
+
+// Limit results
+func (r SubscriptionsAPIV1SubscriptionSchedulesGetRequest) Limit(limit int32) SubscriptionsAPIV1SubscriptionSchedulesGetRequest {
+	r.limit = &limit
+	return r
+}
+
+// Offset for pagination
+func (r SubscriptionsAPIV1SubscriptionSchedulesGetRequest) Offset(offset int32) SubscriptionsAPIV1SubscriptionSchedulesGetRequest {
+	r.offset = &offset
+	return r
+}
+
+func (r SubscriptionsAPIV1SubscriptionSchedulesGetRequest) Execute() (*DtoGetPendingSchedulesResponse, *http.Response, error) {
+	return r.ApiService.V1SubscriptionSchedulesGetExecute(r)
+}
+
+/*
+V1SubscriptionSchedulesGet List all subscription schedules
+
+Retrieves subscription schedules with optional filtering
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @return SubscriptionsAPIV1SubscriptionSchedulesGetRequest
+*/
+func (a *SubscriptionsAPIService) V1SubscriptionSchedulesGet(ctx context.Context) SubscriptionsAPIV1SubscriptionSchedulesGetRequest {
+	return SubscriptionsAPIV1SubscriptionSchedulesGetRequest{
+		ApiService: a,
+		ctx: ctx,
+	}
+}
+
+// Execute executes the request
+//  @return DtoGetPendingSchedulesResponse
+func (a *SubscriptionsAPIService) V1SubscriptionSchedulesGetExecute(r SubscriptionsAPIV1SubscriptionSchedulesGetRequest) (*DtoGetPendingSchedulesResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DtoGetPendingSchedulesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.V1SubscriptionSchedulesGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/subscription-schedules"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	if r.pendingOnly != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "pending_only", r.pendingOnly, "form", "")
+	}
+	if r.subscriptionId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "subscription_id", r.subscriptionId, "form", "")
+	}
+	if r.limit != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "limit", r.limit, "form", "")
+	}
+	if r.offset != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "offset", r.offset, "form", "")
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SubscriptionsAPIV1SubscriptionSchedulesIdGetRequest struct {
+	ctx context.Context
+	ApiService *SubscriptionsAPIService
+	id string
+}
+
+func (r SubscriptionsAPIV1SubscriptionSchedulesIdGetRequest) Execute() (*DtoSubscriptionScheduleResponse, *http.Response, error) {
+	return r.ApiService.V1SubscriptionSchedulesIdGetExecute(r)
+}
+
+/*
+V1SubscriptionSchedulesIdGet Get subscription schedule
+
+Retrieves details of a specific subscription schedule
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param id Schedule ID
+ @return SubscriptionsAPIV1SubscriptionSchedulesIdGetRequest
+*/
+func (a *SubscriptionsAPIService) V1SubscriptionSchedulesIdGet(ctx context.Context, id string) SubscriptionsAPIV1SubscriptionSchedulesIdGetRequest {
+	return SubscriptionsAPIV1SubscriptionSchedulesIdGetRequest{
+		ApiService: a,
+		ctx: ctx,
+		id: id,
+	}
+}
+
+// Execute executes the request
+//  @return DtoSubscriptionScheduleResponse
+func (a *SubscriptionsAPIService) V1SubscriptionSchedulesIdGetExecute(r SubscriptionsAPIV1SubscriptionSchedulesIdGetRequest) (*DtoSubscriptionScheduleResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DtoSubscriptionScheduleResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.V1SubscriptionSchedulesIdGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/subscription-schedules/{id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SubscriptionsAPIV1SubscriptionsSchedulesScheduleIdCancelPostRequest struct {
+	ctx context.Context
+	ApiService *SubscriptionsAPIService
+	scheduleId string
+	request *DtoCancelScheduleRequest
+}
+
+// Cancel request (optional if using path parameter)
+func (r SubscriptionsAPIV1SubscriptionsSchedulesScheduleIdCancelPostRequest) Request(request DtoCancelScheduleRequest) SubscriptionsAPIV1SubscriptionsSchedulesScheduleIdCancelPostRequest {
+	r.request = &request
+	return r
+}
+
+func (r SubscriptionsAPIV1SubscriptionsSchedulesScheduleIdCancelPostRequest) Execute() (*DtoCancelScheduleResponse, *http.Response, error) {
+	return r.ApiService.V1SubscriptionsSchedulesScheduleIdCancelPostExecute(r)
+}
+
+/*
+V1SubscriptionsSchedulesScheduleIdCancelPost Cancel subscription schedule
+
+Cancels a pending subscription schedule. Supports two modes: 1) By schedule ID in path, or 2) By subscription ID + schedule type in request body
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param scheduleId Schedule ID (optional if using request body)
+ @return SubscriptionsAPIV1SubscriptionsSchedulesScheduleIdCancelPostRequest
+*/
+func (a *SubscriptionsAPIService) V1SubscriptionsSchedulesScheduleIdCancelPost(ctx context.Context, scheduleId string) SubscriptionsAPIV1SubscriptionsSchedulesScheduleIdCancelPostRequest {
+	return SubscriptionsAPIV1SubscriptionsSchedulesScheduleIdCancelPostRequest{
+		ApiService: a,
+		ctx: ctx,
+		scheduleId: scheduleId,
+	}
+}
+
+// Execute executes the request
+//  @return DtoCancelScheduleResponse
+func (a *SubscriptionsAPIService) V1SubscriptionsSchedulesScheduleIdCancelPostExecute(r SubscriptionsAPIV1SubscriptionsSchedulesScheduleIdCancelPostRequest) (*DtoCancelScheduleResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DtoCancelScheduleResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.V1SubscriptionsSchedulesScheduleIdCancelPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/subscriptions/schedules/{schedule_id}/cancel"
+	localVarPath = strings.Replace(localVarPath, "{"+"schedule_id"+"}", url.PathEscape(parameterValueToString(r.scheduleId, "scheduleId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	// body params
+	localVarPostBody = r.request
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type SubscriptionsAPIV1SubscriptionsSubscriptionIdSchedulesGetRequest struct {
+	ctx context.Context
+	ApiService *SubscriptionsAPIService
+	subscriptionId string
+}
+
+func (r SubscriptionsAPIV1SubscriptionsSubscriptionIdSchedulesGetRequest) Execute() (*DtoGetPendingSchedulesResponse, *http.Response, error) {
+	return r.ApiService.V1SubscriptionsSubscriptionIdSchedulesGetExecute(r)
+}
+
+/*
+V1SubscriptionsSubscriptionIdSchedulesGet List subscription schedules
+
+Retrieves all schedules for a specific subscription
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param subscriptionId Subscription ID
+ @return SubscriptionsAPIV1SubscriptionsSubscriptionIdSchedulesGetRequest
+*/
+func (a *SubscriptionsAPIService) V1SubscriptionsSubscriptionIdSchedulesGet(ctx context.Context, subscriptionId string) SubscriptionsAPIV1SubscriptionsSubscriptionIdSchedulesGetRequest {
+	return SubscriptionsAPIV1SubscriptionsSubscriptionIdSchedulesGetRequest{
+		ApiService: a,
+		ctx: ctx,
+		subscriptionId: subscriptionId,
+	}
+}
+
+// Execute executes the request
+//  @return DtoGetPendingSchedulesResponse
+func (a *SubscriptionsAPIService) V1SubscriptionsSubscriptionIdSchedulesGetExecute(r SubscriptionsAPIV1SubscriptionsSubscriptionIdSchedulesGetRequest) (*DtoGetPendingSchedulesResponse, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodGet
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  *DtoGetPendingSchedulesResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SubscriptionsAPIService.V1SubscriptionsSubscriptionIdSchedulesGet")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/v1/subscriptions/{subscription_id}/schedules"
+	localVarPath = strings.Replace(localVarPath, "{"+"subscription_id"+"}", url.PathEscape(parameterValueToString(r.subscriptionId, "subscriptionId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}

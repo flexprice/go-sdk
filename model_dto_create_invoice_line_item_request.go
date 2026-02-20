@@ -30,6 +30,10 @@ type DtoCreateInvoiceLineItemRequest struct {
 	EntityId *string `json:"entity_id,omitempty"`
 	// entity_type is the optional type of the entity associated with this line item
 	EntityType *string `json:"entity_type,omitempty"`
+	// invoice_level_discount is the discount amount in invoice currency applied to all line items on the invoice.
+	InvoiceLevelDiscount *string `json:"invoice_level_discount,omitempty"`
+	// line_item_discount is the discount amount in invoice currency applied directly to this line item.
+	LineItemDiscount *string `json:"line_item_discount,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	// meter_display_name is the optional human-readable name of the meter
 	MeterDisplayName *string `json:"meter_display_name,omitempty"`
@@ -43,6 +47,8 @@ type DtoCreateInvoiceLineItemRequest struct {
 	PlanDisplayName *string `json:"plan_display_name,omitempty"`
 	// TODO: !REMOVE after migration plan_id is the optional unique identifier of the plan associated with this line item
 	PlanId *string `json:"plan_id,omitempty"`
+	// prepaid_credits_applied is the amount in invoice currency reduced from this line item due to prepaid credits application.
+	PrepaidCreditsApplied *string `json:"prepaid_credits_applied,omitempty"`
 	// price_id is the optional unique identifier of the price associated with this line item
 	PriceId *string `json:"price_id,omitempty"`
 	// price_type indicates the type of pricing (fixed, usage, tiered, etc.)
@@ -226,6 +232,70 @@ func (o *DtoCreateInvoiceLineItemRequest) HasEntityType() bool {
 // SetEntityType gets a reference to the given string and assigns it to the EntityType field.
 func (o *DtoCreateInvoiceLineItemRequest) SetEntityType(v string) {
 	o.EntityType = &v
+}
+
+// GetInvoiceLevelDiscount returns the InvoiceLevelDiscount field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceLineItemRequest) GetInvoiceLevelDiscount() string {
+	if o == nil || IsNil(o.InvoiceLevelDiscount) {
+		var ret string
+		return ret
+	}
+	return *o.InvoiceLevelDiscount
+}
+
+// GetInvoiceLevelDiscountOk returns a tuple with the InvoiceLevelDiscount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceLineItemRequest) GetInvoiceLevelDiscountOk() (*string, bool) {
+	if o == nil || IsNil(o.InvoiceLevelDiscount) {
+		return nil, false
+	}
+	return o.InvoiceLevelDiscount, true
+}
+
+// HasInvoiceLevelDiscount returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceLineItemRequest) HasInvoiceLevelDiscount() bool {
+	if o != nil && !IsNil(o.InvoiceLevelDiscount) {
+		return true
+	}
+
+	return false
+}
+
+// SetInvoiceLevelDiscount gets a reference to the given string and assigns it to the InvoiceLevelDiscount field.
+func (o *DtoCreateInvoiceLineItemRequest) SetInvoiceLevelDiscount(v string) {
+	o.InvoiceLevelDiscount = &v
+}
+
+// GetLineItemDiscount returns the LineItemDiscount field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceLineItemRequest) GetLineItemDiscount() string {
+	if o == nil || IsNil(o.LineItemDiscount) {
+		var ret string
+		return ret
+	}
+	return *o.LineItemDiscount
+}
+
+// GetLineItemDiscountOk returns a tuple with the LineItemDiscount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceLineItemRequest) GetLineItemDiscountOk() (*string, bool) {
+	if o == nil || IsNil(o.LineItemDiscount) {
+		return nil, false
+	}
+	return o.LineItemDiscount, true
+}
+
+// HasLineItemDiscount returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceLineItemRequest) HasLineItemDiscount() bool {
+	if o != nil && !IsNil(o.LineItemDiscount) {
+		return true
+	}
+
+	return false
+}
+
+// SetLineItemDiscount gets a reference to the given string and assigns it to the LineItemDiscount field.
+func (o *DtoCreateInvoiceLineItemRequest) SetLineItemDiscount(v string) {
+	o.LineItemDiscount = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -452,6 +522,38 @@ func (o *DtoCreateInvoiceLineItemRequest) SetPlanId(v string) {
 	o.PlanId = &v
 }
 
+// GetPrepaidCreditsApplied returns the PrepaidCreditsApplied field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceLineItemRequest) GetPrepaidCreditsApplied() string {
+	if o == nil || IsNil(o.PrepaidCreditsApplied) {
+		var ret string
+		return ret
+	}
+	return *o.PrepaidCreditsApplied
+}
+
+// GetPrepaidCreditsAppliedOk returns a tuple with the PrepaidCreditsApplied field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceLineItemRequest) GetPrepaidCreditsAppliedOk() (*string, bool) {
+	if o == nil || IsNil(o.PrepaidCreditsApplied) {
+		return nil, false
+	}
+	return o.PrepaidCreditsApplied, true
+}
+
+// HasPrepaidCreditsApplied returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceLineItemRequest) HasPrepaidCreditsApplied() bool {
+	if o != nil && !IsNil(o.PrepaidCreditsApplied) {
+		return true
+	}
+
+	return false
+}
+
+// SetPrepaidCreditsApplied gets a reference to the given string and assigns it to the PrepaidCreditsApplied field.
+func (o *DtoCreateInvoiceLineItemRequest) SetPrepaidCreditsApplied(v string) {
+	o.PrepaidCreditsApplied = &v
+}
+
 // GetPriceId returns the PriceId field value if set, zero value otherwise.
 func (o *DtoCreateInvoiceLineItemRequest) GetPriceId() string {
 	if o == nil || IsNil(o.PriceId) {
@@ -627,6 +729,12 @@ func (o DtoCreateInvoiceLineItemRequest) ToMap() (map[string]interface{}, error)
 	if !IsNil(o.EntityType) {
 		toSerialize["entity_type"] = o.EntityType
 	}
+	if !IsNil(o.InvoiceLevelDiscount) {
+		toSerialize["invoice_level_discount"] = o.InvoiceLevelDiscount
+	}
+	if !IsNil(o.LineItemDiscount) {
+		toSerialize["line_item_discount"] = o.LineItemDiscount
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
@@ -647,6 +755,9 @@ func (o DtoCreateInvoiceLineItemRequest) ToMap() (map[string]interface{}, error)
 	}
 	if !IsNil(o.PlanId) {
 		toSerialize["plan_id"] = o.PlanId
+	}
+	if !IsNil(o.PrepaidCreditsApplied) {
+		toSerialize["prepaid_credits_applied"] = o.PrepaidCreditsApplied
 	}
 	if !IsNil(o.PriceId) {
 		toSerialize["price_id"] = o.PriceId

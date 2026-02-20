@@ -4,6 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**CancelImmediatelyInovicePolicy** | Pointer to [**TypesCancelImmediatelyInvoicePolicy**](TypesCancelImmediatelyInvoicePolicy.md) |  | [optional] 
 **CancellationType** | [**TypesCancellationType**](TypesCancellationType.md) |  | 
 **ProrationBehavior** | Pointer to [**TypesProrationBehavior**](TypesProrationBehavior.md) |  | [optional] 
 **Reason** | Pointer to **string** | Reason for cancellation (for audit and business intelligence) | [optional] 
@@ -26,6 +27,31 @@ will change when the set of required properties is changed
 NewDtoCancelSubscriptionRequestWithDefaults instantiates a new DtoCancelSubscriptionRequest object
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
+
+### GetCancelImmediatelyInovicePolicy
+
+`func (o *DtoCancelSubscriptionRequest) GetCancelImmediatelyInovicePolicy() TypesCancelImmediatelyInvoicePolicy`
+
+GetCancelImmediatelyInovicePolicy returns the CancelImmediatelyInovicePolicy field if non-nil, zero value otherwise.
+
+### GetCancelImmediatelyInovicePolicyOk
+
+`func (o *DtoCancelSubscriptionRequest) GetCancelImmediatelyInovicePolicyOk() (*TypesCancelImmediatelyInvoicePolicy, bool)`
+
+GetCancelImmediatelyInovicePolicyOk returns a tuple with the CancelImmediatelyInovicePolicy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCancelImmediatelyInovicePolicy
+
+`func (o *DtoCancelSubscriptionRequest) SetCancelImmediatelyInovicePolicy(v TypesCancelImmediatelyInvoicePolicy)`
+
+SetCancelImmediatelyInovicePolicy sets CancelImmediatelyInovicePolicy field to given value.
+
+### HasCancelImmediatelyInovicePolicy
+
+`func (o *DtoCancelSubscriptionRequest) HasCancelImmediatelyInovicePolicy() bool`
+
+HasCancelImmediatelyInovicePolicy returns a boolean if a field has been set.
 
 ### GetCancellationType
 

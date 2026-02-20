@@ -457,7 +457,7 @@ import (
 )
 
 func main() {
-	filter := *openapiclient.NewTypesPriceUnitFilter() // TypesPriceUnitFilter | Filter
+	filter := *openapiclient.NewTypesFilter() // TypesFilter | Filter
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
@@ -482,7 +482,7 @@ Other parameters are passed through a pointer to a apiPricesUnitsSearchPostReque
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **filter** | [**TypesPriceUnitFilter**](TypesPriceUnitFilter.md) | Filter | 
+ **filter** | [**TypesFilter**](TypesFilter.md) | Filter | 
 
 ### Return type
 

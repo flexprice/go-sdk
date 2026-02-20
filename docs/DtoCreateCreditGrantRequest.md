@@ -5,7 +5,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cadence** | [**TypesCreditGrantCadence**](TypesCreditGrantCadence.md) |  | 
+**ConversionRate** | Pointer to **string** | amount in the currency &#x3D;  number of credits * conversion_rate ex if conversion_rate is 1, then 1 USD &#x3D; 1 credit ex if conversion_rate is 2, then 1 USD &#x3D; 0.5 credits ex if conversion_rate is 0.5, then 1 USD &#x3D; 2 credits | [optional] 
 **Credits** | **string** |  | 
+**EndDate** | Pointer to **string** |  | [optional] 
 **ExpirationDuration** | Pointer to **int32** |  | [optional] 
 **ExpirationDurationUnit** | Pointer to [**TypesCreditGrantExpiryDurationUnit**](TypesCreditGrantExpiryDurationUnit.md) |  | [optional] 
 **ExpirationType** | Pointer to [**TypesCreditGrantExpiryType**](TypesCreditGrantExpiryType.md) |  | [optional] 
@@ -16,7 +18,9 @@ Name | Type | Description | Notes
 **PlanId** | Pointer to **string** |  | [optional] 
 **Priority** | Pointer to **int32** |  | [optional] 
 **Scope** | [**TypesCreditGrantScope**](TypesCreditGrantScope.md) |  | 
+**StartDate** | Pointer to **string** |  | [optional] 
 **SubscriptionId** | Pointer to **string** |  | [optional] 
+**TopupConversionRate** | Pointer to **string** | topup_conversion_rate is the conversion rate for the topup to the currency ex if topup_conversion_rate is 1, then 1 USD &#x3D; 1 credit ex if topup_conversion_rate is 2, then 1 USD &#x3D; 0.5 credits ex if topup_conversion_rate is 0.5, then 1 USD &#x3D; 2 credits | [optional] 
 
 ## Methods
 
@@ -57,6 +61,31 @@ and a boolean to check if the value has been set.
 SetCadence sets Cadence field to given value.
 
 
+### GetConversionRate
+
+`func (o *DtoCreateCreditGrantRequest) GetConversionRate() string`
+
+GetConversionRate returns the ConversionRate field if non-nil, zero value otherwise.
+
+### GetConversionRateOk
+
+`func (o *DtoCreateCreditGrantRequest) GetConversionRateOk() (*string, bool)`
+
+GetConversionRateOk returns a tuple with the ConversionRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConversionRate
+
+`func (o *DtoCreateCreditGrantRequest) SetConversionRate(v string)`
+
+SetConversionRate sets ConversionRate field to given value.
+
+### HasConversionRate
+
+`func (o *DtoCreateCreditGrantRequest) HasConversionRate() bool`
+
+HasConversionRate returns a boolean if a field has been set.
+
 ### GetCredits
 
 `func (o *DtoCreateCreditGrantRequest) GetCredits() string`
@@ -76,6 +105,31 @@ and a boolean to check if the value has been set.
 
 SetCredits sets Credits field to given value.
 
+
+### GetEndDate
+
+`func (o *DtoCreateCreditGrantRequest) GetEndDate() string`
+
+GetEndDate returns the EndDate field if non-nil, zero value otherwise.
+
+### GetEndDateOk
+
+`func (o *DtoCreateCreditGrantRequest) GetEndDateOk() (*string, bool)`
+
+GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEndDate
+
+`func (o *DtoCreateCreditGrantRequest) SetEndDate(v string)`
+
+SetEndDate sets EndDate field to given value.
+
+### HasEndDate
+
+`func (o *DtoCreateCreditGrantRequest) HasEndDate() bool`
+
+HasEndDate returns a boolean if a field has been set.
 
 ### GetExpirationDuration
 
@@ -317,6 +371,31 @@ and a boolean to check if the value has been set.
 SetScope sets Scope field to given value.
 
 
+### GetStartDate
+
+`func (o *DtoCreateCreditGrantRequest) GetStartDate() string`
+
+GetStartDate returns the StartDate field if non-nil, zero value otherwise.
+
+### GetStartDateOk
+
+`func (o *DtoCreateCreditGrantRequest) GetStartDateOk() (*string, bool)`
+
+GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetStartDate
+
+`func (o *DtoCreateCreditGrantRequest) SetStartDate(v string)`
+
+SetStartDate sets StartDate field to given value.
+
+### HasStartDate
+
+`func (o *DtoCreateCreditGrantRequest) HasStartDate() bool`
+
+HasStartDate returns a boolean if a field has been set.
+
 ### GetSubscriptionId
 
 `func (o *DtoCreateCreditGrantRequest) GetSubscriptionId() string`
@@ -341,6 +420,31 @@ SetSubscriptionId sets SubscriptionId field to given value.
 `func (o *DtoCreateCreditGrantRequest) HasSubscriptionId() bool`
 
 HasSubscriptionId returns a boolean if a field has been set.
+
+### GetTopupConversionRate
+
+`func (o *DtoCreateCreditGrantRequest) GetTopupConversionRate() string`
+
+GetTopupConversionRate returns the TopupConversionRate field if non-nil, zero value otherwise.
+
+### GetTopupConversionRateOk
+
+`func (o *DtoCreateCreditGrantRequest) GetTopupConversionRateOk() (*string, bool)`
+
+GetTopupConversionRateOk returns a tuple with the TopupConversionRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTopupConversionRate
+
+`func (o *DtoCreateCreditGrantRequest) SetTopupConversionRate(v string)`
+
+SetTopupConversionRate sets TopupConversionRate field to given value.
+
+### HasTopupConversionRate
+
+`func (o *DtoCreateCreditGrantRequest) HasTopupConversionRate() bool`
+
+HasTopupConversionRate returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

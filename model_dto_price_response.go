@@ -28,7 +28,7 @@ type DtoPriceResponse struct {
 	// BillingPeriodCount is the count of the billing period ex 1, 3, 6, 12
 	BillingPeriodCount *int32 `json:"billing_period_count,omitempty"`
 	// ConversionRate is the conversion rate of the price unit to the fiat currency
-	ConversionRate *float32 `json:"conversion_rate,omitempty"`
+	ConversionRate *string `json:"conversion_rate,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
 	// Currency 3 digit ISO currency code in lowercase ex usd, eur, gbp
@@ -61,14 +61,14 @@ type DtoPriceResponse struct {
 	// MeterID is the id of the meter for usage based pricing
 	MeterId *string `json:"meter_id,omitempty"`
 	// MinQuantity is the minimum quantity of the price
-	MinQuantity *string `json:"min_quantity,omitempty"`
+	MinQuantity NullableString `json:"min_quantity,omitempty"`
 	// ParentPriceID references the root price (always set for price lineage tracking)
 	ParentPriceId *string `json:"parent_price_id,omitempty"`
 	Plan *DtoPlanResponse `json:"plan,omitempty"`
 	// PriceUnit is the code of the price unit (e.g., 'btc', 'eth')
 	PriceUnit *string `json:"price_unit,omitempty"`
 	// PriceUnitAmount is the amount of the price unit
-	PriceUnitAmount *float32 `json:"price_unit_amount,omitempty"`
+	PriceUnitAmount *string `json:"price_unit_amount,omitempty"`
 	// PriceUnitID is the id of the price unit (for CUSTOM type)
 	PriceUnitId *string `json:"price_unit_id,omitempty"`
 	// PriceUnitTiers are the tiers for the price unit when BillingModel is TIERED
@@ -299,9 +299,9 @@ func (o *DtoPriceResponse) SetBillingPeriodCount(v int32) {
 }
 
 // GetConversionRate returns the ConversionRate field value if set, zero value otherwise.
-func (o *DtoPriceResponse) GetConversionRate() float32 {
+func (o *DtoPriceResponse) GetConversionRate() string {
 	if o == nil || IsNil(o.ConversionRate) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.ConversionRate
@@ -309,7 +309,7 @@ func (o *DtoPriceResponse) GetConversionRate() float32 {
 
 // GetConversionRateOk returns a tuple with the ConversionRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoPriceResponse) GetConversionRateOk() (*float32, bool) {
+func (o *DtoPriceResponse) GetConversionRateOk() (*string, bool) {
 	if o == nil || IsNil(o.ConversionRate) {
 		return nil, false
 	}
@@ -325,8 +325,8 @@ func (o *DtoPriceResponse) HasConversionRate() bool {
 	return false
 }
 
-// SetConversionRate gets a reference to the given float32 and assigns it to the ConversionRate field.
-func (o *DtoPriceResponse) SetConversionRate(v float32) {
+// SetConversionRate gets a reference to the given string and assigns it to the ConversionRate field.
+func (o *DtoPriceResponse) SetConversionRate(v string) {
 	o.ConversionRate = &v
 }
 
@@ -938,36 +938,46 @@ func (o *DtoPriceResponse) SetMeterId(v string) {
 	o.MeterId = &v
 }
 
-// GetMinQuantity returns the MinQuantity field value if set, zero value otherwise.
+// GetMinQuantity returns the MinQuantity field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DtoPriceResponse) GetMinQuantity() string {
-	if o == nil || IsNil(o.MinQuantity) {
+	if o == nil || IsNil(o.MinQuantity.Get()) {
 		var ret string
 		return ret
 	}
-	return *o.MinQuantity
+	return *o.MinQuantity.Get()
 }
 
 // GetMinQuantityOk returns a tuple with the MinQuantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DtoPriceResponse) GetMinQuantityOk() (*string, bool) {
-	if o == nil || IsNil(o.MinQuantity) {
+	if o == nil {
 		return nil, false
 	}
-	return o.MinQuantity, true
+	return o.MinQuantity.Get(), o.MinQuantity.IsSet()
 }
 
 // HasMinQuantity returns a boolean if a field has been set.
 func (o *DtoPriceResponse) HasMinQuantity() bool {
-	if o != nil && !IsNil(o.MinQuantity) {
+	if o != nil && o.MinQuantity.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetMinQuantity gets a reference to the given string and assigns it to the MinQuantity field.
+// SetMinQuantity gets a reference to the given NullableString and assigns it to the MinQuantity field.
 func (o *DtoPriceResponse) SetMinQuantity(v string) {
-	o.MinQuantity = &v
+	o.MinQuantity.Set(&v)
+}
+// SetMinQuantityNil sets the value for MinQuantity to be an explicit nil
+func (o *DtoPriceResponse) SetMinQuantityNil() {
+	o.MinQuantity.Set(nil)
+}
+
+// UnsetMinQuantity ensures that no value is present for MinQuantity, not even an explicit nil
+func (o *DtoPriceResponse) UnsetMinQuantity() {
+	o.MinQuantity.Unset()
 }
 
 // GetParentPriceId returns the ParentPriceId field value if set, zero value otherwise.
@@ -1067,9 +1077,9 @@ func (o *DtoPriceResponse) SetPriceUnit(v string) {
 }
 
 // GetPriceUnitAmount returns the PriceUnitAmount field value if set, zero value otherwise.
-func (o *DtoPriceResponse) GetPriceUnitAmount() float32 {
+func (o *DtoPriceResponse) GetPriceUnitAmount() string {
 	if o == nil || IsNil(o.PriceUnitAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.PriceUnitAmount
@@ -1077,7 +1087,7 @@ func (o *DtoPriceResponse) GetPriceUnitAmount() float32 {
 
 // GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoPriceResponse) GetPriceUnitAmountOk() (*float32, bool) {
+func (o *DtoPriceResponse) GetPriceUnitAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.PriceUnitAmount) {
 		return nil, false
 	}
@@ -1093,8 +1103,8 @@ func (o *DtoPriceResponse) HasPriceUnitAmount() bool {
 	return false
 }
 
-// SetPriceUnitAmount gets a reference to the given float32 and assigns it to the PriceUnitAmount field.
-func (o *DtoPriceResponse) SetPriceUnitAmount(v float32) {
+// SetPriceUnitAmount gets a reference to the given string and assigns it to the PriceUnitAmount field.
+func (o *DtoPriceResponse) SetPriceUnitAmount(v string) {
 	o.PriceUnitAmount = &v
 }
 
@@ -1634,8 +1644,8 @@ func (o DtoPriceResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.MeterId) {
 		toSerialize["meter_id"] = o.MeterId
 	}
-	if !IsNil(o.MinQuantity) {
-		toSerialize["min_quantity"] = o.MinQuantity
+	if o.MinQuantity.IsSet() {
+		toSerialize["min_quantity"] = o.MinQuantity.Get()
 	}
 	if !IsNil(o.ParentPriceId) {
 		toSerialize["parent_price_id"] = o.ParentPriceId

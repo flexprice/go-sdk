@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **BillingCycle** | [**TypesBillingCycle**](TypesBillingCycle.md) |  | 
 **BillingPeriod** | [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | 
 **BillingPeriodCount** | Pointer to **int32** | billing_period_count is the billing period count for the new subscription | [optional] 
+**ChangeAt** | Pointer to [**TypesScheduleType**](TypesScheduleType.md) |  | [optional] 
 **Metadata** | Pointer to **map[string]string** | metadata contains additional key-value pairs for storing extra information | [optional] 
 **ProrationBehavior** | [**TypesProrationBehavior**](TypesProrationBehavior.md) |  | 
 **TargetPlanId** | **string** | target_plan_id is the ID of the new plan to change to (required) | 
@@ -115,6 +116,31 @@ SetBillingPeriodCount sets BillingPeriodCount field to given value.
 `func (o *DtoSubscriptionChangeRequest) HasBillingPeriodCount() bool`
 
 HasBillingPeriodCount returns a boolean if a field has been set.
+
+### GetChangeAt
+
+`func (o *DtoSubscriptionChangeRequest) GetChangeAt() TypesScheduleType`
+
+GetChangeAt returns the ChangeAt field if non-nil, zero value otherwise.
+
+### GetChangeAtOk
+
+`func (o *DtoSubscriptionChangeRequest) GetChangeAtOk() (*TypesScheduleType, bool)`
+
+GetChangeAtOk returns a tuple with the ChangeAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetChangeAt
+
+`func (o *DtoSubscriptionChangeRequest) SetChangeAt(v TypesScheduleType)`
+
+SetChangeAt sets ChangeAt field to given value.
+
+### HasChangeAt
+
+`func (o *DtoSubscriptionChangeRequest) HasChangeAt() bool`
+
+HasChangeAt returns a boolean if a field has been set.
 
 ### GetMetadata
 

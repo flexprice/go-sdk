@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **EventName** | **string** |  | 
 **ExternalCustomerId** | Pointer to **string** |  | [optional] 
 **Filters** | Pointer to **map[string][]string** |  | [optional] 
+**GroupByProperty** | Pointer to **string** | GroupByProperty is the property name in event.properties to group by before aggregating. When set, aggregation is applied per unique value of this property within each bucket, then the per-group results are summed to produce the bucket total. | [optional] 
 **Multiplier** | Pointer to **string** |  | [optional] 
 **PropertyName** | Pointer to **string** | will be empty/ignored in case of COUNT | [optional] 
 **StartTime** | Pointer to **string** |  | [optional] 
@@ -225,6 +226,31 @@ SetFilters sets Filters field to given value.
 `func (o *DtoGetUsageRequest) HasFilters() bool`
 
 HasFilters returns a boolean if a field has been set.
+
+### GetGroupByProperty
+
+`func (o *DtoGetUsageRequest) GetGroupByProperty() string`
+
+GetGroupByProperty returns the GroupByProperty field if non-nil, zero value otherwise.
+
+### GetGroupByPropertyOk
+
+`func (o *DtoGetUsageRequest) GetGroupByPropertyOk() (*string, bool)`
+
+GetGroupByPropertyOk returns a tuple with the GroupByProperty field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupByProperty
+
+`func (o *DtoGetUsageRequest) SetGroupByProperty(v string)`
+
+SetGroupByProperty sets GroupByProperty field to given value.
+
+### HasGroupByProperty
+
+`func (o *DtoGetUsageRequest) HasGroupByProperty() bool`
+
+HasGroupByProperty returns a boolean if a field has been set.
 
 ### GetMultiplier
 

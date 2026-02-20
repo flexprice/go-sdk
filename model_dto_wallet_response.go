@@ -19,22 +19,30 @@ var _ MappedNullable = &DtoWalletResponse{}
 
 // DtoWalletResponse struct for DtoWalletResponse
 type DtoWalletResponse struct {
-	AlertConfig *TypesAlertConfig `json:"alert_config,omitempty"`
-	AlertEnabled *bool `json:"alert_enabled,omitempty"`
-	AlertState *string `json:"alert_state,omitempty"`
+	AlertSettings *TypesAlertSettings `json:"alert_settings,omitempty"`
+	AlertState *TypesAlertState `json:"alert_state,omitempty"`
 	AutoTopup *TypesAutoTopup `json:"auto_topup,omitempty"`
 	Balance *string `json:"balance,omitempty"`
 	Config *TypesWalletConfig `json:"config,omitempty"`
+	// amount in the currency =  number of credits * conversion_rate ex if conversion_rate is 1, then 1 USD = 1 credit ex if conversion_rate is 2, then 1 USD = 0.5 credits ex if conversion_rate is 0.5, then 1 USD = 2 credits
 	ConversionRate *string `json:"conversion_rate,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
+	CreatedBy *string `json:"created_by,omitempty"`
 	CreditBalance *string `json:"credit_balance,omitempty"`
+	CreditsAvailableBreakdown *TypesCreditBreakdown `json:"credits_available_breakdown,omitempty"`
 	Currency *string `json:"currency,omitempty"`
 	CustomerId *string `json:"customer_id,omitempty"`
 	Description *string `json:"description,omitempty"`
+	EnvironmentId *string `json:"environment_id,omitempty"`
 	Id *string `json:"id,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	Name *string `json:"name,omitempty"`
+	Status *TypesStatus `json:"status,omitempty"`
+	TenantId *string `json:"tenant_id,omitempty"`
+	// topup_conversion_rate is the conversion rate for the topup to the currency ex if topup_conversion_rate is 1, then 1 USD = 1 credit ex if topup_conversion_rate is 2, then 1 USD = 0.5 credits ex if topup_conversion_rate is 0.5, then 1 USD = 2 credits
+	TopupConversionRate *string `json:"topup_conversion_rate,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
+	UpdatedBy *string `json:"updated_by,omitempty"`
 	WalletStatus *TypesWalletStatus `json:"wallet_status,omitempty"`
 	WalletType *TypesWalletType `json:"wallet_type,omitempty"`
 }
@@ -56,74 +64,42 @@ func NewDtoWalletResponseWithDefaults() *DtoWalletResponse {
 	return &this
 }
 
-// GetAlertConfig returns the AlertConfig field value if set, zero value otherwise.
-func (o *DtoWalletResponse) GetAlertConfig() TypesAlertConfig {
-	if o == nil || IsNil(o.AlertConfig) {
-		var ret TypesAlertConfig
+// GetAlertSettings returns the AlertSettings field value if set, zero value otherwise.
+func (o *DtoWalletResponse) GetAlertSettings() TypesAlertSettings {
+	if o == nil || IsNil(o.AlertSettings) {
+		var ret TypesAlertSettings
 		return ret
 	}
-	return *o.AlertConfig
+	return *o.AlertSettings
 }
 
-// GetAlertConfigOk returns a tuple with the AlertConfig field value if set, nil otherwise
+// GetAlertSettingsOk returns a tuple with the AlertSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoWalletResponse) GetAlertConfigOk() (*TypesAlertConfig, bool) {
-	if o == nil || IsNil(o.AlertConfig) {
+func (o *DtoWalletResponse) GetAlertSettingsOk() (*TypesAlertSettings, bool) {
+	if o == nil || IsNil(o.AlertSettings) {
 		return nil, false
 	}
-	return o.AlertConfig, true
+	return o.AlertSettings, true
 }
 
-// HasAlertConfig returns a boolean if a field has been set.
-func (o *DtoWalletResponse) HasAlertConfig() bool {
-	if o != nil && !IsNil(o.AlertConfig) {
+// HasAlertSettings returns a boolean if a field has been set.
+func (o *DtoWalletResponse) HasAlertSettings() bool {
+	if o != nil && !IsNil(o.AlertSettings) {
 		return true
 	}
 
 	return false
 }
 
-// SetAlertConfig gets a reference to the given TypesAlertConfig and assigns it to the AlertConfig field.
-func (o *DtoWalletResponse) SetAlertConfig(v TypesAlertConfig) {
-	o.AlertConfig = &v
-}
-
-// GetAlertEnabled returns the AlertEnabled field value if set, zero value otherwise.
-func (o *DtoWalletResponse) GetAlertEnabled() bool {
-	if o == nil || IsNil(o.AlertEnabled) {
-		var ret bool
-		return ret
-	}
-	return *o.AlertEnabled
-}
-
-// GetAlertEnabledOk returns a tuple with the AlertEnabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoWalletResponse) GetAlertEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.AlertEnabled) {
-		return nil, false
-	}
-	return o.AlertEnabled, true
-}
-
-// HasAlertEnabled returns a boolean if a field has been set.
-func (o *DtoWalletResponse) HasAlertEnabled() bool {
-	if o != nil && !IsNil(o.AlertEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetAlertEnabled gets a reference to the given bool and assigns it to the AlertEnabled field.
-func (o *DtoWalletResponse) SetAlertEnabled(v bool) {
-	o.AlertEnabled = &v
+// SetAlertSettings gets a reference to the given TypesAlertSettings and assigns it to the AlertSettings field.
+func (o *DtoWalletResponse) SetAlertSettings(v TypesAlertSettings) {
+	o.AlertSettings = &v
 }
 
 // GetAlertState returns the AlertState field value if set, zero value otherwise.
-func (o *DtoWalletResponse) GetAlertState() string {
+func (o *DtoWalletResponse) GetAlertState() TypesAlertState {
 	if o == nil || IsNil(o.AlertState) {
-		var ret string
+		var ret TypesAlertState
 		return ret
 	}
 	return *o.AlertState
@@ -131,7 +107,7 @@ func (o *DtoWalletResponse) GetAlertState() string {
 
 // GetAlertStateOk returns a tuple with the AlertState field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoWalletResponse) GetAlertStateOk() (*string, bool) {
+func (o *DtoWalletResponse) GetAlertStateOk() (*TypesAlertState, bool) {
 	if o == nil || IsNil(o.AlertState) {
 		return nil, false
 	}
@@ -147,8 +123,8 @@ func (o *DtoWalletResponse) HasAlertState() bool {
 	return false
 }
 
-// SetAlertState gets a reference to the given string and assigns it to the AlertState field.
-func (o *DtoWalletResponse) SetAlertState(v string) {
+// SetAlertState gets a reference to the given TypesAlertState and assigns it to the AlertState field.
+func (o *DtoWalletResponse) SetAlertState(v TypesAlertState) {
 	o.AlertState = &v
 }
 
@@ -312,6 +288,38 @@ func (o *DtoWalletResponse) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
 
+// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
+func (o *DtoWalletResponse) GetCreatedBy() string {
+	if o == nil || IsNil(o.CreatedBy) {
+		var ret string
+		return ret
+	}
+	return *o.CreatedBy
+}
+
+// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletResponse) GetCreatedByOk() (*string, bool) {
+	if o == nil || IsNil(o.CreatedBy) {
+		return nil, false
+	}
+	return o.CreatedBy, true
+}
+
+// HasCreatedBy returns a boolean if a field has been set.
+func (o *DtoWalletResponse) HasCreatedBy() bool {
+	if o != nil && !IsNil(o.CreatedBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
+func (o *DtoWalletResponse) SetCreatedBy(v string) {
+	o.CreatedBy = &v
+}
+
 // GetCreditBalance returns the CreditBalance field value if set, zero value otherwise.
 func (o *DtoWalletResponse) GetCreditBalance() string {
 	if o == nil || IsNil(o.CreditBalance) {
@@ -342,6 +350,38 @@ func (o *DtoWalletResponse) HasCreditBalance() bool {
 // SetCreditBalance gets a reference to the given string and assigns it to the CreditBalance field.
 func (o *DtoWalletResponse) SetCreditBalance(v string) {
 	o.CreditBalance = &v
+}
+
+// GetCreditsAvailableBreakdown returns the CreditsAvailableBreakdown field value if set, zero value otherwise.
+func (o *DtoWalletResponse) GetCreditsAvailableBreakdown() TypesCreditBreakdown {
+	if o == nil || IsNil(o.CreditsAvailableBreakdown) {
+		var ret TypesCreditBreakdown
+		return ret
+	}
+	return *o.CreditsAvailableBreakdown
+}
+
+// GetCreditsAvailableBreakdownOk returns a tuple with the CreditsAvailableBreakdown field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletResponse) GetCreditsAvailableBreakdownOk() (*TypesCreditBreakdown, bool) {
+	if o == nil || IsNil(o.CreditsAvailableBreakdown) {
+		return nil, false
+	}
+	return o.CreditsAvailableBreakdown, true
+}
+
+// HasCreditsAvailableBreakdown returns a boolean if a field has been set.
+func (o *DtoWalletResponse) HasCreditsAvailableBreakdown() bool {
+	if o != nil && !IsNil(o.CreditsAvailableBreakdown) {
+		return true
+	}
+
+	return false
+}
+
+// SetCreditsAvailableBreakdown gets a reference to the given TypesCreditBreakdown and assigns it to the CreditsAvailableBreakdown field.
+func (o *DtoWalletResponse) SetCreditsAvailableBreakdown(v TypesCreditBreakdown) {
+	o.CreditsAvailableBreakdown = &v
 }
 
 // GetCurrency returns the Currency field value if set, zero value otherwise.
@@ -440,6 +480,38 @@ func (o *DtoWalletResponse) SetDescription(v string) {
 	o.Description = &v
 }
 
+// GetEnvironmentId returns the EnvironmentId field value if set, zero value otherwise.
+func (o *DtoWalletResponse) GetEnvironmentId() string {
+	if o == nil || IsNil(o.EnvironmentId) {
+		var ret string
+		return ret
+	}
+	return *o.EnvironmentId
+}
+
+// GetEnvironmentIdOk returns a tuple with the EnvironmentId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletResponse) GetEnvironmentIdOk() (*string, bool) {
+	if o == nil || IsNil(o.EnvironmentId) {
+		return nil, false
+	}
+	return o.EnvironmentId, true
+}
+
+// HasEnvironmentId returns a boolean if a field has been set.
+func (o *DtoWalletResponse) HasEnvironmentId() bool {
+	if o != nil && !IsNil(o.EnvironmentId) {
+		return true
+	}
+
+	return false
+}
+
+// SetEnvironmentId gets a reference to the given string and assigns it to the EnvironmentId field.
+func (o *DtoWalletResponse) SetEnvironmentId(v string) {
+	o.EnvironmentId = &v
+}
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DtoWalletResponse) GetId() string {
 	if o == nil || IsNil(o.Id) {
@@ -536,6 +608,102 @@ func (o *DtoWalletResponse) SetName(v string) {
 	o.Name = &v
 }
 
+// GetStatus returns the Status field value if set, zero value otherwise.
+func (o *DtoWalletResponse) GetStatus() TypesStatus {
+	if o == nil || IsNil(o.Status) {
+		var ret TypesStatus
+		return ret
+	}
+	return *o.Status
+}
+
+// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletResponse) GetStatusOk() (*TypesStatus, bool) {
+	if o == nil || IsNil(o.Status) {
+		return nil, false
+	}
+	return o.Status, true
+}
+
+// HasStatus returns a boolean if a field has been set.
+func (o *DtoWalletResponse) HasStatus() bool {
+	if o != nil && !IsNil(o.Status) {
+		return true
+	}
+
+	return false
+}
+
+// SetStatus gets a reference to the given TypesStatus and assigns it to the Status field.
+func (o *DtoWalletResponse) SetStatus(v TypesStatus) {
+	o.Status = &v
+}
+
+// GetTenantId returns the TenantId field value if set, zero value otherwise.
+func (o *DtoWalletResponse) GetTenantId() string {
+	if o == nil || IsNil(o.TenantId) {
+		var ret string
+		return ret
+	}
+	return *o.TenantId
+}
+
+// GetTenantIdOk returns a tuple with the TenantId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletResponse) GetTenantIdOk() (*string, bool) {
+	if o == nil || IsNil(o.TenantId) {
+		return nil, false
+	}
+	return o.TenantId, true
+}
+
+// HasTenantId returns a boolean if a field has been set.
+func (o *DtoWalletResponse) HasTenantId() bool {
+	if o != nil && !IsNil(o.TenantId) {
+		return true
+	}
+
+	return false
+}
+
+// SetTenantId gets a reference to the given string and assigns it to the TenantId field.
+func (o *DtoWalletResponse) SetTenantId(v string) {
+	o.TenantId = &v
+}
+
+// GetTopupConversionRate returns the TopupConversionRate field value if set, zero value otherwise.
+func (o *DtoWalletResponse) GetTopupConversionRate() string {
+	if o == nil || IsNil(o.TopupConversionRate) {
+		var ret string
+		return ret
+	}
+	return *o.TopupConversionRate
+}
+
+// GetTopupConversionRateOk returns a tuple with the TopupConversionRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletResponse) GetTopupConversionRateOk() (*string, bool) {
+	if o == nil || IsNil(o.TopupConversionRate) {
+		return nil, false
+	}
+	return o.TopupConversionRate, true
+}
+
+// HasTopupConversionRate returns a boolean if a field has been set.
+func (o *DtoWalletResponse) HasTopupConversionRate() bool {
+	if o != nil && !IsNil(o.TopupConversionRate) {
+		return true
+	}
+
+	return false
+}
+
+// SetTopupConversionRate gets a reference to the given string and assigns it to the TopupConversionRate field.
+func (o *DtoWalletResponse) SetTopupConversionRate(v string) {
+	o.TopupConversionRate = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *DtoWalletResponse) GetUpdatedAt() string {
 	if o == nil || IsNil(o.UpdatedAt) {
@@ -566,6 +734,38 @@ func (o *DtoWalletResponse) HasUpdatedAt() bool {
 // SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.
 func (o *DtoWalletResponse) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
+}
+
+// GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
+func (o *DtoWalletResponse) GetUpdatedBy() string {
+	if o == nil || IsNil(o.UpdatedBy) {
+		var ret string
+		return ret
+	}
+	return *o.UpdatedBy
+}
+
+// GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletResponse) GetUpdatedByOk() (*string, bool) {
+	if o == nil || IsNil(o.UpdatedBy) {
+		return nil, false
+	}
+	return o.UpdatedBy, true
+}
+
+// HasUpdatedBy returns a boolean if a field has been set.
+func (o *DtoWalletResponse) HasUpdatedBy() bool {
+	if o != nil && !IsNil(o.UpdatedBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetUpdatedBy gets a reference to the given string and assigns it to the UpdatedBy field.
+func (o *DtoWalletResponse) SetUpdatedBy(v string) {
+	o.UpdatedBy = &v
 }
 
 // GetWalletStatus returns the WalletStatus field value if set, zero value otherwise.
@@ -642,11 +842,8 @@ func (o DtoWalletResponse) MarshalJSON() ([]byte, error) {
 
 func (o DtoWalletResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AlertConfig) {
-		toSerialize["alert_config"] = o.AlertConfig
-	}
-	if !IsNil(o.AlertEnabled) {
-		toSerialize["alert_enabled"] = o.AlertEnabled
+	if !IsNil(o.AlertSettings) {
+		toSerialize["alert_settings"] = o.AlertSettings
 	}
 	if !IsNil(o.AlertState) {
 		toSerialize["alert_state"] = o.AlertState
@@ -666,8 +863,14 @@ func (o DtoWalletResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
+	if !IsNil(o.CreatedBy) {
+		toSerialize["created_by"] = o.CreatedBy
+	}
 	if !IsNil(o.CreditBalance) {
 		toSerialize["credit_balance"] = o.CreditBalance
+	}
+	if !IsNil(o.CreditsAvailableBreakdown) {
+		toSerialize["credits_available_breakdown"] = o.CreditsAvailableBreakdown
 	}
 	if !IsNil(o.Currency) {
 		toSerialize["currency"] = o.Currency
@@ -678,6 +881,9 @@ func (o DtoWalletResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Description) {
 		toSerialize["description"] = o.Description
 	}
+	if !IsNil(o.EnvironmentId) {
+		toSerialize["environment_id"] = o.EnvironmentId
+	}
 	if !IsNil(o.Id) {
 		toSerialize["id"] = o.Id
 	}
@@ -687,8 +893,20 @@ func (o DtoWalletResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Name) {
 		toSerialize["name"] = o.Name
 	}
+	if !IsNil(o.Status) {
+		toSerialize["status"] = o.Status
+	}
+	if !IsNil(o.TenantId) {
+		toSerialize["tenant_id"] = o.TenantId
+	}
+	if !IsNil(o.TopupConversionRate) {
+		toSerialize["topup_conversion_rate"] = o.TopupConversionRate
+	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt
+	}
+	if !IsNil(o.UpdatedBy) {
+		toSerialize["updated_by"] = o.UpdatedBy
 	}
 	if !IsNil(o.WalletStatus) {
 		toSerialize["wallet_status"] = o.WalletStatus

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Cadence** | Pointer to [**TypesCreditGrantCadence**](TypesCreditGrantCadence.md) |  | [optional] 
+**ConversionRate** | Pointer to **string** | amount in the currency &#x3D;  number of credits * conversion_rate ex if conversion_rate is 1, then 1 USD &#x3D; 1 credit ex if conversion_rate is 2, then 1 USD &#x3D; 0.5 credits ex if conversion_rate is 0.5, then 1 USD &#x3D; 2 credits | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **CreditGrantAnchor** | Pointer to **string** |  | [optional] 
@@ -26,6 +27,7 @@ Name | Type | Description | Notes
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **SubscriptionId** | Pointer to **string** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
+**TopupConversionRate** | Pointer to **string** | topup_conversion_rate is the conversion rate for the topup to the currency ex if topup_conversion_rate is 1, then 1 USD &#x3D; 1 credit ex if topup_conversion_rate is 2, then 1 USD &#x3D; 0.5 credits ex if topup_conversion_rate is 0.5, then 1 USD &#x3D; 2 credits | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedBy** | Pointer to **string** |  | [optional] 
 
@@ -72,6 +74,31 @@ SetCadence sets Cadence field to given value.
 `func (o *DtoCreditGrantResponse) HasCadence() bool`
 
 HasCadence returns a boolean if a field has been set.
+
+### GetConversionRate
+
+`func (o *DtoCreditGrantResponse) GetConversionRate() string`
+
+GetConversionRate returns the ConversionRate field if non-nil, zero value otherwise.
+
+### GetConversionRateOk
+
+`func (o *DtoCreditGrantResponse) GetConversionRateOk() (*string, bool)`
+
+GetConversionRateOk returns a tuple with the ConversionRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConversionRate
+
+`func (o *DtoCreditGrantResponse) SetConversionRate(v string)`
+
+SetConversionRate sets ConversionRate field to given value.
+
+### HasConversionRate
+
+`func (o *DtoCreditGrantResponse) HasConversionRate() bool`
+
+HasConversionRate returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -597,6 +624,31 @@ SetTenantId sets TenantId field to given value.
 `func (o *DtoCreditGrantResponse) HasTenantId() bool`
 
 HasTenantId returns a boolean if a field has been set.
+
+### GetTopupConversionRate
+
+`func (o *DtoCreditGrantResponse) GetTopupConversionRate() string`
+
+GetTopupConversionRate returns the TopupConversionRate field if non-nil, zero value otherwise.
+
+### GetTopupConversionRateOk
+
+`func (o *DtoCreditGrantResponse) GetTopupConversionRateOk() (*string, bool)`
+
+GetTopupConversionRateOk returns a tuple with the TopupConversionRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTopupConversionRate
+
+`func (o *DtoCreditGrantResponse) SetTopupConversionRate(v string)`
+
+SetTopupConversionRate sets TopupConversionRate field to given value.
+
+### HasTopupConversionRate
+
+`func (o *DtoCreditGrantResponse) HasTopupConversionRate() bool`
+
+HasTopupConversionRate returns a boolean if a field has been set.
 
 ### GetUpdatedAt
 

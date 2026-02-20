@@ -22,6 +22,8 @@ var _ MappedNullable = &DtoAddAddonRequest{}
 // DtoAddAddonRequest struct for DtoAddAddonRequest
 type DtoAddAddonRequest struct {
 	AddonId string `json:"addon_id"`
+	// LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
+	LineItemCommitments *map[string]DtoLineItemCommitmentConfig `json:"line_item_commitments,omitempty"`
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	StartDate *string `json:"start_date,omitempty"`
 	SubscriptionId string `json:"subscription_id"`
@@ -70,6 +72,38 @@ func (o *DtoAddAddonRequest) GetAddonIdOk() (*string, bool) {
 // SetAddonId sets field value
 func (o *DtoAddAddonRequest) SetAddonId(v string) {
 	o.AddonId = v
+}
+
+// GetLineItemCommitments returns the LineItemCommitments field value if set, zero value otherwise.
+func (o *DtoAddAddonRequest) GetLineItemCommitments() map[string]DtoLineItemCommitmentConfig {
+	if o == nil || IsNil(o.LineItemCommitments) {
+		var ret map[string]DtoLineItemCommitmentConfig
+		return ret
+	}
+	return *o.LineItemCommitments
+}
+
+// GetLineItemCommitmentsOk returns a tuple with the LineItemCommitments field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoAddAddonRequest) GetLineItemCommitmentsOk() (*map[string]DtoLineItemCommitmentConfig, bool) {
+	if o == nil || IsNil(o.LineItemCommitments) {
+		return nil, false
+	}
+	return o.LineItemCommitments, true
+}
+
+// HasLineItemCommitments returns a boolean if a field has been set.
+func (o *DtoAddAddonRequest) HasLineItemCommitments() bool {
+	if o != nil && !IsNil(o.LineItemCommitments) {
+		return true
+	}
+
+	return false
+}
+
+// SetLineItemCommitments gets a reference to the given map[string]DtoLineItemCommitmentConfig and assigns it to the LineItemCommitments field.
+func (o *DtoAddAddonRequest) SetLineItemCommitments(v map[string]DtoLineItemCommitmentConfig) {
+	o.LineItemCommitments = &v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -171,6 +205,9 @@ func (o DtoAddAddonRequest) MarshalJSON() ([]byte, error) {
 func (o DtoAddAddonRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["addon_id"] = o.AddonId
+	if !IsNil(o.LineItemCommitments) {
+		toSerialize["line_item_commitments"] = o.LineItemCommitments
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}

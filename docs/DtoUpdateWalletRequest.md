@@ -4,8 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AlertConfig** | Pointer to [**DtoAlertConfig**](DtoAlertConfig.md) |  | [optional] 
-**AlertEnabled** | Pointer to **bool** |  | [optional] 
+**AlertSettings** | Pointer to [**TypesAlertSettings**](TypesAlertSettings.md) |  | [optional] 
 **AutoTopup** | Pointer to [**TypesAutoTopup**](TypesAutoTopup.md) |  | [optional] 
 **Config** | Pointer to [**TypesWalletConfig**](TypesWalletConfig.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
@@ -31,55 +30,30 @@ NewDtoUpdateWalletRequestWithDefaults instantiates a new DtoUpdateWalletRequest 
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set
 
-### GetAlertConfig
+### GetAlertSettings
 
-`func (o *DtoUpdateWalletRequest) GetAlertConfig() DtoAlertConfig`
+`func (o *DtoUpdateWalletRequest) GetAlertSettings() TypesAlertSettings`
 
-GetAlertConfig returns the AlertConfig field if non-nil, zero value otherwise.
+GetAlertSettings returns the AlertSettings field if non-nil, zero value otherwise.
 
-### GetAlertConfigOk
+### GetAlertSettingsOk
 
-`func (o *DtoUpdateWalletRequest) GetAlertConfigOk() (*DtoAlertConfig, bool)`
+`func (o *DtoUpdateWalletRequest) GetAlertSettingsOk() (*TypesAlertSettings, bool)`
 
-GetAlertConfigOk returns a tuple with the AlertConfig field if it's non-nil, zero value otherwise
+GetAlertSettingsOk returns a tuple with the AlertSettings field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetAlertConfig
+### SetAlertSettings
 
-`func (o *DtoUpdateWalletRequest) SetAlertConfig(v DtoAlertConfig)`
+`func (o *DtoUpdateWalletRequest) SetAlertSettings(v TypesAlertSettings)`
 
-SetAlertConfig sets AlertConfig field to given value.
+SetAlertSettings sets AlertSettings field to given value.
 
-### HasAlertConfig
+### HasAlertSettings
 
-`func (o *DtoUpdateWalletRequest) HasAlertConfig() bool`
+`func (o *DtoUpdateWalletRequest) HasAlertSettings() bool`
 
-HasAlertConfig returns a boolean if a field has been set.
-
-### GetAlertEnabled
-
-`func (o *DtoUpdateWalletRequest) GetAlertEnabled() bool`
-
-GetAlertEnabled returns the AlertEnabled field if non-nil, zero value otherwise.
-
-### GetAlertEnabledOk
-
-`func (o *DtoUpdateWalletRequest) GetAlertEnabledOk() (*bool, bool)`
-
-GetAlertEnabledOk returns a tuple with the AlertEnabled field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAlertEnabled
-
-`func (o *DtoUpdateWalletRequest) SetAlertEnabled(v bool)`
-
-SetAlertEnabled sets AlertEnabled field to given value.
-
-### HasAlertEnabled
-
-`func (o *DtoUpdateWalletRequest) HasAlertEnabled() bool`
-
-HasAlertEnabled returns a boolean if a field has been set.
+HasAlertSettings returns a boolean if a field has been set.
 
 ### GetAutoTopup
 

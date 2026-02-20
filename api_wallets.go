@@ -164,9 +164,21 @@ func (a *WalletsAPIService) CustomersIdWalletsGetExecute(r WalletsAPICustomersId
 type WalletsAPICustomersWalletsGetRequest struct {
 	ctx context.Context
 	ApiService *WalletsAPIService
+	expand *string
+	fromCache *bool
 	id *string
 	includeRealTimeBalance *bool
 	lookupKey *string
+}
+
+func (r WalletsAPICustomersWalletsGetRequest) Expand(expand string) WalletsAPICustomersWalletsGetRequest {
+	r.expand = &expand
+	return r
+}
+
+func (r WalletsAPICustomersWalletsGetRequest) FromCache(fromCache bool) WalletsAPICustomersWalletsGetRequest {
+	r.fromCache = &fromCache
+	return r
 }
 
 func (r WalletsAPICustomersWalletsGetRequest) Id(id string) WalletsAPICustomersWalletsGetRequest {
@@ -224,6 +236,15 @@ func (a *WalletsAPIService) CustomersWalletsGetExecute(r WalletsAPICustomersWall
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.expand != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expand", r.expand, "form", "")
+	}
+	if r.fromCache != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "from_cache", r.fromCache, "form", "")
+	} else {
+		var defaultValue bool = false
+		r.fromCache = &defaultValue
+	}
 	if r.id != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
 	}
@@ -546,6 +567,13 @@ type WalletsAPIWalletsIdBalanceRealTimeGetRequest struct {
 	ctx context.Context
 	ApiService *WalletsAPIService
 	id string
+	expand *string
+}
+
+// Expand fields (e.g., credits_available_breakdown)
+func (r WalletsAPIWalletsIdBalanceRealTimeGetRequest) Expand(expand string) WalletsAPIWalletsIdBalanceRealTimeGetRequest {
+	r.expand = &expand
+	return r
 }
 
 func (r WalletsAPIWalletsIdBalanceRealTimeGetRequest) Execute() (*DtoWalletBalanceResponse, *http.Response, error) {
@@ -591,6 +619,9 @@ func (a *WalletsAPIService) WalletsIdBalanceRealTimeGetExecute(r WalletsAPIWalle
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.expand != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "expand", r.expand, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 

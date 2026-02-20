@@ -7,6 +7,8 @@ Name | Type | Description | Notes
 **Amount** | Pointer to **string** | Amount is the new price amount that overrides the original price (optional) | [optional] 
 **BillingModel** | Pointer to [**TypesBillingModel**](TypesBillingModel.md) |  | [optional] 
 **PriceId** | **string** | PriceID references the plan price to override | 
+**PriceUnitAmount** | Pointer to **string** | PriceUnitAmount is the amount of the price unit (for CUSTOM type, FLAT_FEE/PACKAGE billing models) | [optional] 
+**PriceUnitTiers** | Pointer to [**[]DtoCreatePriceTier**](DtoCreatePriceTier.md) | PriceUnitTiers are the tiers for the price unit (for CUSTOM type, TIERED billing model) | [optional] 
 **Quantity** | Pointer to **string** | Quantity for this line item (optional) | [optional] 
 **TierMode** | Pointer to [**TypesBillingTier**](TypesBillingTier.md) |  | [optional] 
 **Tiers** | Pointer to [**[]DtoCreatePriceTier**](DtoCreatePriceTier.md) | Tiers determines the pricing tiers for this line item | [optional] 
@@ -100,6 +102,56 @@ and a boolean to check if the value has been set.
 
 SetPriceId sets PriceId field to given value.
 
+
+### GetPriceUnitAmount
+
+`func (o *DtoOverrideLineItemRequest) GetPriceUnitAmount() string`
+
+GetPriceUnitAmount returns the PriceUnitAmount field if non-nil, zero value otherwise.
+
+### GetPriceUnitAmountOk
+
+`func (o *DtoOverrideLineItemRequest) GetPriceUnitAmountOk() (*string, bool)`
+
+GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitAmount
+
+`func (o *DtoOverrideLineItemRequest) SetPriceUnitAmount(v string)`
+
+SetPriceUnitAmount sets PriceUnitAmount field to given value.
+
+### HasPriceUnitAmount
+
+`func (o *DtoOverrideLineItemRequest) HasPriceUnitAmount() bool`
+
+HasPriceUnitAmount returns a boolean if a field has been set.
+
+### GetPriceUnitTiers
+
+`func (o *DtoOverrideLineItemRequest) GetPriceUnitTiers() []DtoCreatePriceTier`
+
+GetPriceUnitTiers returns the PriceUnitTiers field if non-nil, zero value otherwise.
+
+### GetPriceUnitTiersOk
+
+`func (o *DtoOverrideLineItemRequest) GetPriceUnitTiersOk() (*[]DtoCreatePriceTier, bool)`
+
+GetPriceUnitTiersOk returns a tuple with the PriceUnitTiers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitTiers
+
+`func (o *DtoOverrideLineItemRequest) SetPriceUnitTiers(v []DtoCreatePriceTier)`
+
+SetPriceUnitTiers sets PriceUnitTiers field to given value.
+
+### HasPriceUnitTiers
+
+`func (o *DtoOverrideLineItemRequest) HasPriceUnitTiers() bool`
+
+HasPriceUnitTiers returns a boolean if a field has been set.
 
 ### GetQuantity
 

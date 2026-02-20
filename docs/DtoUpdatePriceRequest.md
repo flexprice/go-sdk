@@ -7,10 +7,13 @@ Name | Type | Description | Notes
 **Amount** | Pointer to **string** | Amount is the new price amount that overrides the original price (optional) | [optional] 
 **BillingModel** | Pointer to [**TypesBillingModel**](TypesBillingModel.md) |  | [optional] 
 **Description** | Pointer to **string** |  | [optional] 
+**DisplayName** | Pointer to **string** |  | [optional] 
 **EffectiveFrom** | Pointer to **string** |  | [optional] 
 **GroupId** | Pointer to **string** | GroupID is the id of the group to update the price in | [optional] 
 **LookupKey** | Pointer to **string** | All price fields that can be updated Non-critical fields (can be updated directly) | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
+**PriceUnitAmount** | Pointer to **string** | PriceUnitAmount is the price unit amount (for CUSTOM price unit type, FLAT_FEE/PACKAGE billing models) | [optional] 
+**PriceUnitTiers** | Pointer to [**[]DtoCreatePriceTier**](DtoCreatePriceTier.md) | PriceUnitTiers are the price unit tiers (for CUSTOM price unit type, TIERED billing model) | [optional] 
 **TierMode** | Pointer to [**TypesBillingTier**](TypesBillingTier.md) |  | [optional] 
 **Tiers** | Pointer to [**[]DtoCreatePriceTier**](DtoCreatePriceTier.md) | Tiers determines the pricing tiers for this line item | [optional] 
 **TransformQuantity** | Pointer to [**PriceTransformQuantity**](PriceTransformQuantity.md) |  | [optional] 
@@ -108,6 +111,31 @@ SetDescription sets Description field to given value.
 `func (o *DtoUpdatePriceRequest) HasDescription() bool`
 
 HasDescription returns a boolean if a field has been set.
+
+### GetDisplayName
+
+`func (o *DtoUpdatePriceRequest) GetDisplayName() string`
+
+GetDisplayName returns the DisplayName field if non-nil, zero value otherwise.
+
+### GetDisplayNameOk
+
+`func (o *DtoUpdatePriceRequest) GetDisplayNameOk() (*string, bool)`
+
+GetDisplayNameOk returns a tuple with the DisplayName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDisplayName
+
+`func (o *DtoUpdatePriceRequest) SetDisplayName(v string)`
+
+SetDisplayName sets DisplayName field to given value.
+
+### HasDisplayName
+
+`func (o *DtoUpdatePriceRequest) HasDisplayName() bool`
+
+HasDisplayName returns a boolean if a field has been set.
 
 ### GetEffectiveFrom
 
@@ -208,6 +236,56 @@ SetMetadata sets Metadata field to given value.
 `func (o *DtoUpdatePriceRequest) HasMetadata() bool`
 
 HasMetadata returns a boolean if a field has been set.
+
+### GetPriceUnitAmount
+
+`func (o *DtoUpdatePriceRequest) GetPriceUnitAmount() string`
+
+GetPriceUnitAmount returns the PriceUnitAmount field if non-nil, zero value otherwise.
+
+### GetPriceUnitAmountOk
+
+`func (o *DtoUpdatePriceRequest) GetPriceUnitAmountOk() (*string, bool)`
+
+GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitAmount
+
+`func (o *DtoUpdatePriceRequest) SetPriceUnitAmount(v string)`
+
+SetPriceUnitAmount sets PriceUnitAmount field to given value.
+
+### HasPriceUnitAmount
+
+`func (o *DtoUpdatePriceRequest) HasPriceUnitAmount() bool`
+
+HasPriceUnitAmount returns a boolean if a field has been set.
+
+### GetPriceUnitTiers
+
+`func (o *DtoUpdatePriceRequest) GetPriceUnitTiers() []DtoCreatePriceTier`
+
+GetPriceUnitTiers returns the PriceUnitTiers field if non-nil, zero value otherwise.
+
+### GetPriceUnitTiersOk
+
+`func (o *DtoUpdatePriceRequest) GetPriceUnitTiersOk() (*[]DtoCreatePriceTier, bool)`
+
+GetPriceUnitTiersOk returns a tuple with the PriceUnitTiers field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPriceUnitTiers
+
+`func (o *DtoUpdatePriceRequest) SetPriceUnitTiers(v []DtoCreatePriceTier)`
+
+SetPriceUnitTiers sets PriceUnitTiers field to given value.
+
+### HasPriceUnitTiers
+
+`func (o *DtoUpdatePriceRequest) HasPriceUnitTiers() bool`
+
+HasPriceUnitTiers returns a boolean if a field has been set.
 
 ### GetTierMode
 

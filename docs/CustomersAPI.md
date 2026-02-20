@@ -10,8 +10,8 @@ Method | HTTP request | Description
 [**CustomersIdEntitlementsGet**](CustomersAPI.md#CustomersIdEntitlementsGet) | **Get** /customers/{id}/entitlements | Get customer entitlements
 [**CustomersIdGet**](CustomersAPI.md#CustomersIdGet) | **Get** /customers/{id} | Get a customer
 [**CustomersIdGrantsUpcomingGet**](CustomersAPI.md#CustomersIdGrantsUpcomingGet) | **Get** /customers/{id}/grants/upcoming | Get upcoming credit grant applications
-[**CustomersIdPut**](CustomersAPI.md#CustomersIdPut) | **Put** /customers/{id} | Update a customer
 [**CustomersPost**](CustomersAPI.md#CustomersPost) | **Post** /customers | Create a customer
+[**CustomersPut**](CustomersAPI.md#CustomersPut) | **Put** /customers | Update a customer
 [**CustomersSearchPost**](CustomersAPI.md#CustomersSearchPost) | **Post** /customers/search | List customers by filter
 [**CustomersUsageGet**](CustomersAPI.md#CustomersUsageGet) | **Get** /customers/usage | Get customer usage summary
 
@@ -457,78 +457,6 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
-## CustomersIdPut
-
-> DtoCustomerResponse CustomersIdPut(ctx, id).Customer(customer).Execute()
-
-Update a customer
-
-
-
-### Example
-
-```go
-package main
-
-import (
-	"context"
-	"fmt"
-	"os"
-	openapiclient "github.com/flexprice/go-sdk/flexprice"
-)
-
-func main() {
-	id := "id_example" // string | Customer ID
-	customer := *openapiclient.NewDtoUpdateCustomerRequest() // DtoUpdateCustomerRequest | Customer
-
-	configuration := openapiclient.NewConfiguration()
-	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CustomersAPI.CustomersIdPut(context.Background(), id).Customer(customer).Execute()
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CustomersIdPut``: %v\n", err)
-		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
-	}
-	// response from `CustomersIdPut`: DtoCustomerResponse
-	fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.CustomersIdPut`: %v\n", resp)
-}
-```
-
-### Path Parameters
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
-**id** | **string** | Customer ID | 
-
-### Other Parameters
-
-Other parameters are passed through a pointer to a apiCustomersIdPutRequest struct via the builder pattern
-
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
-
- **customer** | [**DtoUpdateCustomerRequest**](DtoUpdateCustomerRequest.md) | Customer | 
-
-### Return type
-
-[**DtoCustomerResponse**](DtoCustomerResponse.md)
-
-### Authorization
-
-[ApiKeyAuth](../README.md#ApiKeyAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
-[[Back to Model list]](../README.md#documentation-for-models)
-[[Back to README]](../README.md)
-
-
 ## CustomersPost
 
 > DtoCustomerResponse CustomersPost(ctx).Customer(customer).Execute()
@@ -576,6 +504,76 @@ Other parameters are passed through a pointer to a apiCustomersPostRequest struc
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **customer** | [**DtoCreateCustomerRequest**](DtoCreateCustomerRequest.md) | Customer | 
+
+### Return type
+
+[**DtoCustomerResponse**](DtoCustomerResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## CustomersPut
+
+> DtoCustomerResponse CustomersPut(ctx).Customer(customer).Id(id).ExternalCustomerId(externalCustomerId).Execute()
+
+Update a customer
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	customer := *openapiclient.NewDtoUpdateCustomerRequest() // DtoUpdateCustomerRequest | Customer
+	id := "id_example" // string | Customer ID (optional)
+	externalCustomerId := "externalCustomerId_example" // string | Customer External ID (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.CustomersAPI.CustomersPut(context.Background()).Customer(customer).Id(id).ExternalCustomerId(externalCustomerId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `CustomersAPI.CustomersPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `CustomersPut`: DtoCustomerResponse
+	fmt.Fprintf(os.Stdout, "Response from `CustomersAPI.CustomersPut`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiCustomersPutRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **customer** | [**DtoUpdateCustomerRequest**](DtoUpdateCustomerRequest.md) | Customer | 
+ **id** | **string** | Customer ID | 
+ **externalCustomerId** | **string** | Customer External ID | 
 
 ### Return type
 

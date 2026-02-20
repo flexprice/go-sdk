@@ -984,57 +984,53 @@ func (a *CustomersAPIService) CustomersIdGrantsUpcomingGetExecute(r CustomersAPI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type CustomersAPICustomersIdPutRequest struct {
+type CustomersAPICustomersPostRequest struct {
 	ctx context.Context
 	ApiService *CustomersAPIService
-	id string
-	customer *DtoUpdateCustomerRequest
+	customer *DtoCreateCustomerRequest
 }
 
 // Customer
-func (r CustomersAPICustomersIdPutRequest) Customer(customer DtoUpdateCustomerRequest) CustomersAPICustomersIdPutRequest {
+func (r CustomersAPICustomersPostRequest) Customer(customer DtoCreateCustomerRequest) CustomersAPICustomersPostRequest {
 	r.customer = &customer
 	return r
 }
 
-func (r CustomersAPICustomersIdPutRequest) Execute() (*DtoCustomerResponse, *http.Response, error) {
-	return r.ApiService.CustomersIdPutExecute(r)
+func (r CustomersAPICustomersPostRequest) Execute() (*DtoCustomerResponse, *http.Response, error) {
+	return r.ApiService.CustomersPostExecute(r)
 }
 
 /*
-CustomersIdPut Update a customer
+CustomersPost Create a customer
 
-Update a customer
+Create a customer
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @param id Customer ID
- @return CustomersAPICustomersIdPutRequest
+ @return CustomersAPICustomersPostRequest
 */
-func (a *CustomersAPIService) CustomersIdPut(ctx context.Context, id string) CustomersAPICustomersIdPutRequest {
-	return CustomersAPICustomersIdPutRequest{
+func (a *CustomersAPIService) CustomersPost(ctx context.Context) CustomersAPICustomersPostRequest {
+	return CustomersAPICustomersPostRequest{
 		ApiService: a,
 		ctx: ctx,
-		id: id,
 	}
 }
 
 // Execute executes the request
 //  @return DtoCustomerResponse
-func (a *CustomersAPIService) CustomersIdPutExecute(r CustomersAPICustomersIdPutRequest) (*DtoCustomerResponse, *http.Response, error) {
+func (a *CustomersAPIService) CustomersPostExecute(r CustomersAPICustomersPostRequest) (*DtoCustomerResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPut
+		localVarHTTPMethod   = http.MethodPost
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *DtoCustomerResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.CustomersIdPut")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.CustomersPost")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/customers/{id}"
-	localVarPath = strings.Replace(localVarPath, "{"+"id"+"}", url.PathEscape(parameterValueToString(r.id, "id")), -1)
+	localVarPath := localBasePath + "/customers"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
@@ -1134,32 +1130,46 @@ func (a *CustomersAPIService) CustomersIdPutExecute(r CustomersAPICustomersIdPut
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-type CustomersAPICustomersPostRequest struct {
+type CustomersAPICustomersPutRequest struct {
 	ctx context.Context
 	ApiService *CustomersAPIService
-	customer *DtoCreateCustomerRequest
+	customer *DtoUpdateCustomerRequest
+	id *string
+	externalCustomerId *string
 }
 
 // Customer
-func (r CustomersAPICustomersPostRequest) Customer(customer DtoCreateCustomerRequest) CustomersAPICustomersPostRequest {
+func (r CustomersAPICustomersPutRequest) Customer(customer DtoUpdateCustomerRequest) CustomersAPICustomersPutRequest {
 	r.customer = &customer
 	return r
 }
 
-func (r CustomersAPICustomersPostRequest) Execute() (*DtoCustomerResponse, *http.Response, error) {
-	return r.ApiService.CustomersPostExecute(r)
+// Customer ID
+func (r CustomersAPICustomersPutRequest) Id(id string) CustomersAPICustomersPutRequest {
+	r.id = &id
+	return r
+}
+
+// Customer External ID
+func (r CustomersAPICustomersPutRequest) ExternalCustomerId(externalCustomerId string) CustomersAPICustomersPutRequest {
+	r.externalCustomerId = &externalCustomerId
+	return r
+}
+
+func (r CustomersAPICustomersPutRequest) Execute() (*DtoCustomerResponse, *http.Response, error) {
+	return r.ApiService.CustomersPutExecute(r)
 }
 
 /*
-CustomersPost Create a customer
+CustomersPut Update a customer
 
-Create a customer
+Update a customer by id or external_customer_id
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
- @return CustomersAPICustomersPostRequest
+ @return CustomersAPICustomersPutRequest
 */
-func (a *CustomersAPIService) CustomersPost(ctx context.Context) CustomersAPICustomersPostRequest {
-	return CustomersAPICustomersPostRequest{
+func (a *CustomersAPIService) CustomersPut(ctx context.Context) CustomersAPICustomersPutRequest {
+	return CustomersAPICustomersPutRequest{
 		ApiService: a,
 		ctx: ctx,
 	}
@@ -1167,15 +1177,15 @@ func (a *CustomersAPIService) CustomersPost(ctx context.Context) CustomersAPICus
 
 // Execute executes the request
 //  @return DtoCustomerResponse
-func (a *CustomersAPIService) CustomersPostExecute(r CustomersAPICustomersPostRequest) (*DtoCustomerResponse, *http.Response, error) {
+func (a *CustomersAPIService) CustomersPutExecute(r CustomersAPICustomersPutRequest) (*DtoCustomerResponse, *http.Response, error) {
 	var (
-		localVarHTTPMethod   = http.MethodPost
+		localVarHTTPMethod   = http.MethodPut
 		localVarPostBody     interface{}
 		formFiles            []formFile
 		localVarReturnValue  *DtoCustomerResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.CustomersPost")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CustomersAPIService.CustomersPut")
 	if err != nil {
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
@@ -1189,6 +1199,12 @@ func (a *CustomersAPIService) CustomersPostExecute(r CustomersAPICustomersPostRe
 		return localVarReturnValue, nil, reportError("customer is required and must be specified")
 	}
 
+	if r.id != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "id", r.id, "form", "")
+	}
+	if r.externalCustomerId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "external_customer_id", r.externalCustomerId, "form", "")
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

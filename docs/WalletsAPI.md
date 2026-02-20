@@ -91,7 +91,7 @@ Name | Type | Description  | Notes
 
 ## CustomersWalletsGet
 
-> []DtoWalletResponse CustomersWalletsGet(ctx).Id(id).IncludeRealTimeBalance(includeRealTimeBalance).LookupKey(lookupKey).Execute()
+> []DtoWalletResponse CustomersWalletsGet(ctx).Expand(expand).FromCache(fromCache).Id(id).IncludeRealTimeBalance(includeRealTimeBalance).LookupKey(lookupKey).Execute()
 
 Get Customer Wallets
 
@@ -110,13 +110,15 @@ import (
 )
 
 func main() {
+	expand := "expand_example" // string |  (optional)
+	fromCache := true // bool |  (optional) (default to false)
 	id := "id_example" // string |  (optional)
 	includeRealTimeBalance := true // bool |  (optional) (default to false)
 	lookupKey := "lookupKey_example" // string |  (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WalletsAPI.CustomersWalletsGet(context.Background()).Id(id).IncludeRealTimeBalance(includeRealTimeBalance).LookupKey(lookupKey).Execute()
+	resp, r, err := apiClient.WalletsAPI.CustomersWalletsGet(context.Background()).Expand(expand).FromCache(fromCache).Id(id).IncludeRealTimeBalance(includeRealTimeBalance).LookupKey(lookupKey).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.CustomersWalletsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -137,6 +139,8 @@ Other parameters are passed through a pointer to a apiCustomersWalletsGetRequest
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **expand** | **string** |  | 
+ **fromCache** | **bool** |  | [default to false]
  **id** | **string** |  | 
  **includeRealTimeBalance** | **bool** |  | [default to false]
  **lookupKey** | **string** |  | 
@@ -241,7 +245,7 @@ Name | Type | Description  | Notes
 
 ## WalletsIdBalanceRealTimeGet
 
-> DtoWalletBalanceResponse WalletsIdBalanceRealTimeGet(ctx, id).Execute()
+> DtoWalletBalanceResponse WalletsIdBalanceRealTimeGet(ctx, id).Expand(expand).Execute()
 
 Get wallet balance
 
@@ -261,10 +265,11 @@ import (
 
 func main() {
 	id := "id_example" // string | Wallet ID
+	expand := "expand_example" // string | Expand fields (e.g., credits_available_breakdown) (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.WalletsAPI.WalletsIdBalanceRealTimeGet(context.Background(), id).Execute()
+	resp, r, err := apiClient.WalletsAPI.WalletsIdBalanceRealTimeGet(context.Background(), id).Expand(expand).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WalletsAPI.WalletsIdBalanceRealTimeGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -290,6 +295,7 @@ Other parameters are passed through a pointer to a apiWalletsIdBalanceRealTimeGe
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **expand** | **string** | Expand fields (e.g., credits_available_breakdown) | 
 
 ### Return type
 

@@ -26,6 +26,10 @@ type DtoOverrideLineItemRequest struct {
 	BillingModel *TypesBillingModel `json:"billing_model,omitempty"`
 	// PriceID references the plan price to override
 	PriceId string `json:"price_id"`
+	// PriceUnitAmount is the amount of the price unit (for CUSTOM type, FLAT_FEE/PACKAGE billing models)
+	PriceUnitAmount *string `json:"price_unit_amount,omitempty"`
+	// PriceUnitTiers are the tiers for the price unit (for CUSTOM type, TIERED billing model)
+	PriceUnitTiers []DtoCreatePriceTier `json:"price_unit_tiers,omitempty"`
 	// Quantity for this line item (optional)
 	Quantity *string `json:"quantity,omitempty"`
 	TierMode *TypesBillingTier `json:"tier_mode,omitempty"`
@@ -140,6 +144,70 @@ func (o *DtoOverrideLineItemRequest) GetPriceIdOk() (*string, bool) {
 // SetPriceId sets field value
 func (o *DtoOverrideLineItemRequest) SetPriceId(v string) {
 	o.PriceId = v
+}
+
+// GetPriceUnitAmount returns the PriceUnitAmount field value if set, zero value otherwise.
+func (o *DtoOverrideLineItemRequest) GetPriceUnitAmount() string {
+	if o == nil || IsNil(o.PriceUnitAmount) {
+		var ret string
+		return ret
+	}
+	return *o.PriceUnitAmount
+}
+
+// GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoOverrideLineItemRequest) GetPriceUnitAmountOk() (*string, bool) {
+	if o == nil || IsNil(o.PriceUnitAmount) {
+		return nil, false
+	}
+	return o.PriceUnitAmount, true
+}
+
+// HasPriceUnitAmount returns a boolean if a field has been set.
+func (o *DtoOverrideLineItemRequest) HasPriceUnitAmount() bool {
+	if o != nil && !IsNil(o.PriceUnitAmount) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnitAmount gets a reference to the given string and assigns it to the PriceUnitAmount field.
+func (o *DtoOverrideLineItemRequest) SetPriceUnitAmount(v string) {
+	o.PriceUnitAmount = &v
+}
+
+// GetPriceUnitTiers returns the PriceUnitTiers field value if set, zero value otherwise.
+func (o *DtoOverrideLineItemRequest) GetPriceUnitTiers() []DtoCreatePriceTier {
+	if o == nil || IsNil(o.PriceUnitTiers) {
+		var ret []DtoCreatePriceTier
+		return ret
+	}
+	return o.PriceUnitTiers
+}
+
+// GetPriceUnitTiersOk returns a tuple with the PriceUnitTiers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoOverrideLineItemRequest) GetPriceUnitTiersOk() ([]DtoCreatePriceTier, bool) {
+	if o == nil || IsNil(o.PriceUnitTiers) {
+		return nil, false
+	}
+	return o.PriceUnitTiers, true
+}
+
+// HasPriceUnitTiers returns a boolean if a field has been set.
+func (o *DtoOverrideLineItemRequest) HasPriceUnitTiers() bool {
+	if o != nil && !IsNil(o.PriceUnitTiers) {
+		return true
+	}
+
+	return false
+}
+
+// SetPriceUnitTiers gets a reference to the given []DtoCreatePriceTier and assigns it to the PriceUnitTiers field.
+func (o *DtoOverrideLineItemRequest) SetPriceUnitTiers(v []DtoCreatePriceTier) {
+	o.PriceUnitTiers = v
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
@@ -287,6 +355,12 @@ func (o DtoOverrideLineItemRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["billing_model"] = o.BillingModel
 	}
 	toSerialize["price_id"] = o.PriceId
+	if !IsNil(o.PriceUnitAmount) {
+		toSerialize["price_unit_amount"] = o.PriceUnitAmount
+	}
+	if !IsNil(o.PriceUnitTiers) {
+		toSerialize["price_unit_tiers"] = o.PriceUnitTiers
+	}
 	if !IsNil(o.Quantity) {
 		toSerialize["quantity"] = o.Quantity
 	}

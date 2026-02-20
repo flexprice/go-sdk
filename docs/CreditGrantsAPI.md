@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 ## CreditgrantsGet
 
-> DtoListCreditGrantsResponse CreditgrantsGet(ctx).EndTime(endTime).Expand(expand).Limit(limit).Offset(offset).Order(order).PlanIds(planIds).Scope(scope).Sort(sort).StartTime(startTime).Status(status).SubscriptionIds(subscriptionIds).Execute()
+> DtoListCreditGrantsResponse CreditgrantsGet(ctx).CreditGrantIds(creditGrantIds).EndTime(endTime).Expand(expand).Limit(limit).Offset(offset).Order(order).PlanIds(planIds).Scope(scope).Sort(sort).StartTime(startTime).Status(status).SubscriptionIds(subscriptionIds).Execute()
 
 Get credit grants
 
@@ -34,6 +34,7 @@ import (
 )
 
 func main() {
+	creditGrantIds := []string{"Inner_example"} // []string |  (optional)
 	endTime := "endTime_example" // string |  (optional)
 	expand := "expand_example" // string |  (optional)
 	limit := int32(56) // int32 |  (optional)
@@ -48,7 +49,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CreditGrantsAPI.CreditgrantsGet(context.Background()).EndTime(endTime).Expand(expand).Limit(limit).Offset(offset).Order(order).PlanIds(planIds).Scope(scope).Sort(sort).StartTime(startTime).Status(status).SubscriptionIds(subscriptionIds).Execute()
+	resp, r, err := apiClient.CreditGrantsAPI.CreditgrantsGet(context.Background()).CreditGrantIds(creditGrantIds).EndTime(endTime).Expand(expand).Limit(limit).Offset(offset).Order(order).PlanIds(planIds).Scope(scope).Sort(sort).StartTime(startTime).Status(status).SubscriptionIds(subscriptionIds).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreditGrantsAPI.CreditgrantsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -69,6 +70,7 @@ Other parameters are passed through a pointer to a apiCreditgrantsGetRequest str
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **creditGrantIds** | **[]string** |  | 
  **endTime** | **string** |  | 
  **expand** | **string** |  | 
  **limit** | **int32** |  | 
@@ -101,7 +103,7 @@ Name | Type | Description  | Notes
 
 ## CreditgrantsIdDelete
 
-> DtoSuccessResponse CreditgrantsIdDelete(ctx, id).Execute()
+> DtoSuccessResponse CreditgrantsIdDelete(ctx, id).Body(body).Execute()
 
 Delete a credit grant
 
@@ -121,10 +123,11 @@ import (
 
 func main() {
 	id := "id_example" // string | Credit Grant ID
+	body := *openapiclient.NewDtoDeleteCreditGrantRequest() // DtoDeleteCreditGrantRequest | Optional: effective_date for subscription-scoped grants (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.CreditGrantsAPI.CreditgrantsIdDelete(context.Background(), id).Execute()
+	resp, r, err := apiClient.CreditGrantsAPI.CreditgrantsIdDelete(context.Background(), id).Body(body).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CreditGrantsAPI.CreditgrantsIdDelete``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -150,6 +153,7 @@ Other parameters are passed through a pointer to a apiCreditgrantsIdDeleteReques
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
 
+ **body** | [**DtoDeleteCreditGrantRequest**](DtoDeleteCreditGrantRequest.md) | Optional: effective_date for subscription-scoped grants | 
 
 ### Return type
 
@@ -161,7 +165,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
+- **Content-Type**: application/json
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

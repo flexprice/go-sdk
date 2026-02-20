@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **AddonId** | **string** |  | 
+**LineItemCommitments** | Pointer to [**map[string]DtoLineItemCommitmentConfig**](DtoLineItemCommitmentConfig.md) | LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id) | [optional] 
 **Metadata** | Pointer to **map[string]interface{}** |  | [optional] 
 **StartDate** | Pointer to **string** |  | [optional] 
 
@@ -46,6 +47,31 @@ and a boolean to check if the value has been set.
 
 SetAddonId sets AddonId field to given value.
 
+
+### GetLineItemCommitments
+
+`func (o *DtoAddAddonToSubscriptionRequest) GetLineItemCommitments() map[string]DtoLineItemCommitmentConfig`
+
+GetLineItemCommitments returns the LineItemCommitments field if non-nil, zero value otherwise.
+
+### GetLineItemCommitmentsOk
+
+`func (o *DtoAddAddonToSubscriptionRequest) GetLineItemCommitmentsOk() (*map[string]DtoLineItemCommitmentConfig, bool)`
+
+GetLineItemCommitmentsOk returns a tuple with the LineItemCommitments field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLineItemCommitments
+
+`func (o *DtoAddAddonToSubscriptionRequest) SetLineItemCommitments(v map[string]DtoLineItemCommitmentConfig)`
+
+SetLineItemCommitments sets LineItemCommitments field to given value.
+
+### HasLineItemCommitments
+
+`func (o *DtoAddAddonToSubscriptionRequest) HasLineItemCommitments() bool`
+
+HasLineItemCommitments returns a boolean if a field has been set.
 
 ### GetMetadata
 

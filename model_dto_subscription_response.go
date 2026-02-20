@@ -38,6 +38,7 @@ type DtoSubscriptionResponse struct {
 	CollectionMethod *string `json:"collection_method,omitempty"`
 	// CommitmentAmount is the minimum amount a customer commits to paying for a billing period
 	CommitmentAmount *string `json:"commitment_amount,omitempty"`
+	CommitmentDuration *TypesBillingPeriod `json:"commitment_duration,omitempty"`
 	// CouponAssociations are the coupon associations for this subscription
 	CouponAssociations []DtoCouponAssociationResponse `json:"coupon_associations,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
@@ -72,10 +73,13 @@ type DtoSubscriptionResponse struct {
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	// OverageFactor is a multiplier applied to usage beyond the commitment amount
 	OverageFactor *string `json:"overage_factor,omitempty"`
+	// ParentSubscriptionID is the parent subscription ID for hierarchy (e.g. child subscription under a parent)
+	ParentSubscriptionId *string `json:"parent_subscription_id,omitempty"`
 	PauseStatus *TypesPauseStatus `json:"pause_status,omitempty"`
 	Pauses []SubscriptionSubscriptionPause `json:"pauses,omitempty"`
 	// PaymentBehavior determines how subscription payments are handled
 	PaymentBehavior *string `json:"payment_behavior,omitempty"`
+	PaymentTerms *TypesPaymentTerms `json:"payment_terms,omitempty"`
 	// Phases are the subscription phases for this subscription
 	Phases []DtoSubscriptionPhaseResponse `json:"phases,omitempty"`
 	Plan *DtoPlanResponse `json:"plan,omitempty"`
@@ -464,6 +468,38 @@ func (o *DtoSubscriptionResponse) HasCommitmentAmount() bool {
 // SetCommitmentAmount gets a reference to the given string and assigns it to the CommitmentAmount field.
 func (o *DtoSubscriptionResponse) SetCommitmentAmount(v string) {
 	o.CommitmentAmount = &v
+}
+
+// GetCommitmentDuration returns the CommitmentDuration field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetCommitmentDuration() TypesBillingPeriod {
+	if o == nil || IsNil(o.CommitmentDuration) {
+		var ret TypesBillingPeriod
+		return ret
+	}
+	return *o.CommitmentDuration
+}
+
+// GetCommitmentDurationOk returns a tuple with the CommitmentDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetCommitmentDurationOk() (*TypesBillingPeriod, bool) {
+	if o == nil || IsNil(o.CommitmentDuration) {
+		return nil, false
+	}
+	return o.CommitmentDuration, true
+}
+
+// HasCommitmentDuration returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasCommitmentDuration() bool {
+	if o != nil && !IsNil(o.CommitmentDuration) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentDuration gets a reference to the given TypesBillingPeriod and assigns it to the CommitmentDuration field.
+func (o *DtoSubscriptionResponse) SetCommitmentDuration(v TypesBillingPeriod) {
+	o.CommitmentDuration = &v
 }
 
 // GetCouponAssociations returns the CouponAssociations field value if set, zero value otherwise.
@@ -1138,6 +1174,38 @@ func (o *DtoSubscriptionResponse) SetOverageFactor(v string) {
 	o.OverageFactor = &v
 }
 
+// GetParentSubscriptionId returns the ParentSubscriptionId field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetParentSubscriptionId() string {
+	if o == nil || IsNil(o.ParentSubscriptionId) {
+		var ret string
+		return ret
+	}
+	return *o.ParentSubscriptionId
+}
+
+// GetParentSubscriptionIdOk returns a tuple with the ParentSubscriptionId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetParentSubscriptionIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ParentSubscriptionId) {
+		return nil, false
+	}
+	return o.ParentSubscriptionId, true
+}
+
+// HasParentSubscriptionId returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasParentSubscriptionId() bool {
+	if o != nil && !IsNil(o.ParentSubscriptionId) {
+		return true
+	}
+
+	return false
+}
+
+// SetParentSubscriptionId gets a reference to the given string and assigns it to the ParentSubscriptionId field.
+func (o *DtoSubscriptionResponse) SetParentSubscriptionId(v string) {
+	o.ParentSubscriptionId = &v
+}
+
 // GetPauseStatus returns the PauseStatus field value if set, zero value otherwise.
 func (o *DtoSubscriptionResponse) GetPauseStatus() TypesPauseStatus {
 	if o == nil || IsNil(o.PauseStatus) {
@@ -1232,6 +1300,38 @@ func (o *DtoSubscriptionResponse) HasPaymentBehavior() bool {
 // SetPaymentBehavior gets a reference to the given string and assigns it to the PaymentBehavior field.
 func (o *DtoSubscriptionResponse) SetPaymentBehavior(v string) {
 	o.PaymentBehavior = &v
+}
+
+// GetPaymentTerms returns the PaymentTerms field value if set, zero value otherwise.
+func (o *DtoSubscriptionResponse) GetPaymentTerms() TypesPaymentTerms {
+	if o == nil || IsNil(o.PaymentTerms) {
+		var ret TypesPaymentTerms
+		return ret
+	}
+	return *o.PaymentTerms
+}
+
+// GetPaymentTermsOk returns a tuple with the PaymentTerms field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionResponse) GetPaymentTermsOk() (*TypesPaymentTerms, bool) {
+	if o == nil || IsNil(o.PaymentTerms) {
+		return nil, false
+	}
+	return o.PaymentTerms, true
+}
+
+// HasPaymentTerms returns a boolean if a field has been set.
+func (o *DtoSubscriptionResponse) HasPaymentTerms() bool {
+	if o != nil && !IsNil(o.PaymentTerms) {
+		return true
+	}
+
+	return false
+}
+
+// SetPaymentTerms gets a reference to the given TypesPaymentTerms and assigns it to the PaymentTerms field.
+func (o *DtoSubscriptionResponse) SetPaymentTerms(v TypesPaymentTerms) {
+	o.PaymentTerms = &v
 }
 
 // GetPhases returns the Phases field value if set, zero value otherwise.
@@ -1693,6 +1793,9 @@ func (o DtoSubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.CommitmentAmount) {
 		toSerialize["commitment_amount"] = o.CommitmentAmount
 	}
+	if !IsNil(o.CommitmentDuration) {
+		toSerialize["commitment_duration"] = o.CommitmentDuration
+	}
 	if !IsNil(o.CouponAssociations) {
 		toSerialize["coupon_associations"] = o.CouponAssociations
 	}
@@ -1756,6 +1859,9 @@ func (o DtoSubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.OverageFactor) {
 		toSerialize["overage_factor"] = o.OverageFactor
 	}
+	if !IsNil(o.ParentSubscriptionId) {
+		toSerialize["parent_subscription_id"] = o.ParentSubscriptionId
+	}
 	if !IsNil(o.PauseStatus) {
 		toSerialize["pause_status"] = o.PauseStatus
 	}
@@ -1764,6 +1870,9 @@ func (o DtoSubscriptionResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PaymentBehavior) {
 		toSerialize["payment_behavior"] = o.PaymentBehavior
+	}
+	if !IsNil(o.PaymentTerms) {
+		toSerialize["payment_terms"] = o.PaymentTerms
 	}
 	if !IsNil(o.Phases) {
 		toSerialize["phases"] = o.Phases

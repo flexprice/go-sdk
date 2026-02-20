@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **BillingModel** | Pointer to [**TypesBillingModel**](TypesBillingModel.md) |  | [optional] 
 **BillingPeriod** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
 **BillingPeriodCount** | Pointer to **int32** | BillingPeriodCount is the count of the billing period ex 1, 3, 6, 12 | [optional] 
-**ConversionRate** | Pointer to **float32** | ConversionRate is the conversion rate of the price unit to the fiat currency | [optional] 
+**ConversionRate** | Pointer to **string** | ConversionRate is the conversion rate of the price unit to the fiat currency | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **Currency** | Pointer to **string** | Currency 3 digit ISO currency code in lowercase ex usd, eur, gbp | [optional] 
@@ -30,11 +30,11 @@ Name | Type | Description | Notes
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **Meter** | Pointer to [**DtoMeterResponse**](DtoMeterResponse.md) |  | [optional] 
 **MeterId** | Pointer to **string** | MeterID is the id of the meter for usage based pricing | [optional] 
-**MinQuantity** | Pointer to **string** | MinQuantity is the minimum quantity of the price | [optional] 
+**MinQuantity** | Pointer to **NullableString** | MinQuantity is the minimum quantity of the price | [optional] 
 **ParentPriceId** | Pointer to **string** | ParentPriceID references the root price (always set for price lineage tracking) | [optional] 
 **Plan** | Pointer to [**DtoPlanResponse**](DtoPlanResponse.md) |  | [optional] 
 **PriceUnit** | Pointer to **string** | PriceUnit is the code of the price unit (e.g., &#39;btc&#39;, &#39;eth&#39;) | [optional] 
-**PriceUnitAmount** | Pointer to **float32** | PriceUnitAmount is the amount of the price unit | [optional] 
+**PriceUnitAmount** | Pointer to **string** | PriceUnitAmount is the amount of the price unit | [optional] 
 **PriceUnitId** | Pointer to **string** | PriceUnitID is the id of the price unit (for CUSTOM type) | [optional] 
 **PriceUnitTiers** | Pointer to [**[]PricePriceTier**](PricePriceTier.md) | PriceUnitTiers are the tiers for the price unit when BillingModel is TIERED | [optional] 
 **PriceUnitType** | Pointer to [**TypesPriceUnitType**](TypesPriceUnitType.md) |  | [optional] 
@@ -221,20 +221,20 @@ HasBillingPeriodCount returns a boolean if a field has been set.
 
 ### GetConversionRate
 
-`func (o *DtoPriceResponse) GetConversionRate() float32`
+`func (o *DtoPriceResponse) GetConversionRate() string`
 
 GetConversionRate returns the ConversionRate field if non-nil, zero value otherwise.
 
 ### GetConversionRateOk
 
-`func (o *DtoPriceResponse) GetConversionRateOk() (*float32, bool)`
+`func (o *DtoPriceResponse) GetConversionRateOk() (*string, bool)`
 
 GetConversionRateOk returns a tuple with the ConversionRate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetConversionRate
 
-`func (o *DtoPriceResponse) SetConversionRate(v float32)`
+`func (o *DtoPriceResponse) SetConversionRate(v string)`
 
 SetConversionRate sets ConversionRate field to given value.
 
@@ -744,6 +744,16 @@ SetMinQuantity sets MinQuantity field to given value.
 
 HasMinQuantity returns a boolean if a field has been set.
 
+### SetMinQuantityNil
+
+`func (o *DtoPriceResponse) SetMinQuantityNil(b bool)`
+
+ SetMinQuantityNil sets the value for MinQuantity to be an explicit nil
+
+### UnsetMinQuantity
+`func (o *DtoPriceResponse) UnsetMinQuantity()`
+
+UnsetMinQuantity ensures that no value is present for MinQuantity, not even an explicit nil
 ### GetParentPriceId
 
 `func (o *DtoPriceResponse) GetParentPriceId() string`
@@ -821,20 +831,20 @@ HasPriceUnit returns a boolean if a field has been set.
 
 ### GetPriceUnitAmount
 
-`func (o *DtoPriceResponse) GetPriceUnitAmount() float32`
+`func (o *DtoPriceResponse) GetPriceUnitAmount() string`
 
 GetPriceUnitAmount returns the PriceUnitAmount field if non-nil, zero value otherwise.
 
 ### GetPriceUnitAmountOk
 
-`func (o *DtoPriceResponse) GetPriceUnitAmountOk() (*float32, bool)`
+`func (o *DtoPriceResponse) GetPriceUnitAmountOk() (*string, bool)`
 
 GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriceUnitAmount
 
-`func (o *DtoPriceResponse) SetPriceUnitAmount(v float32)`
+`func (o *DtoPriceResponse) SetPriceUnitAmount(v string)`
 
 SetPriceUnitAmount sets PriceUnitAmount field to given value.
 

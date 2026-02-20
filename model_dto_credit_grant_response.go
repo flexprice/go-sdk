@@ -20,6 +20,8 @@ var _ MappedNullable = &DtoCreditGrantResponse{}
 // DtoCreditGrantResponse struct for DtoCreditGrantResponse
 type DtoCreditGrantResponse struct {
 	Cadence *TypesCreditGrantCadence `json:"cadence,omitempty"`
+	// amount in the currency =  number of credits * conversion_rate ex if conversion_rate is 1, then 1 USD = 1 credit ex if conversion_rate is 2, then 1 USD = 0.5 credits ex if conversion_rate is 0.5, then 1 USD = 2 credits
+	ConversionRate *string `json:"conversion_rate,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
 	CreditGrantAnchor *string `json:"credit_grant_anchor,omitempty"`
@@ -41,6 +43,8 @@ type DtoCreditGrantResponse struct {
 	Status *TypesStatus `json:"status,omitempty"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
+	// topup_conversion_rate is the conversion rate for the topup to the currency ex if topup_conversion_rate is 1, then 1 USD = 1 credit ex if topup_conversion_rate is 2, then 1 USD = 0.5 credits ex if topup_conversion_rate is 0.5, then 1 USD = 2 credits
+	TopupConversionRate *string `json:"topup_conversion_rate,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	UpdatedBy *string `json:"updated_by,omitempty"`
 }
@@ -92,6 +96,38 @@ func (o *DtoCreditGrantResponse) HasCadence() bool {
 // SetCadence gets a reference to the given TypesCreditGrantCadence and assigns it to the Cadence field.
 func (o *DtoCreditGrantResponse) SetCadence(v TypesCreditGrantCadence) {
 	o.Cadence = &v
+}
+
+// GetConversionRate returns the ConversionRate field value if set, zero value otherwise.
+func (o *DtoCreditGrantResponse) GetConversionRate() string {
+	if o == nil || IsNil(o.ConversionRate) {
+		var ret string
+		return ret
+	}
+	return *o.ConversionRate
+}
+
+// GetConversionRateOk returns a tuple with the ConversionRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreditGrantResponse) GetConversionRateOk() (*string, bool) {
+	if o == nil || IsNil(o.ConversionRate) {
+		return nil, false
+	}
+	return o.ConversionRate, true
+}
+
+// HasConversionRate returns a boolean if a field has been set.
+func (o *DtoCreditGrantResponse) HasConversionRate() bool {
+	if o != nil && !IsNil(o.ConversionRate) {
+		return true
+	}
+
+	return false
+}
+
+// SetConversionRate gets a reference to the given string and assigns it to the ConversionRate field.
+func (o *DtoCreditGrantResponse) SetConversionRate(v string) {
+	o.ConversionRate = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -766,6 +802,38 @@ func (o *DtoCreditGrantResponse) SetTenantId(v string) {
 	o.TenantId = &v
 }
 
+// GetTopupConversionRate returns the TopupConversionRate field value if set, zero value otherwise.
+func (o *DtoCreditGrantResponse) GetTopupConversionRate() string {
+	if o == nil || IsNil(o.TopupConversionRate) {
+		var ret string
+		return ret
+	}
+	return *o.TopupConversionRate
+}
+
+// GetTopupConversionRateOk returns a tuple with the TopupConversionRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreditGrantResponse) GetTopupConversionRateOk() (*string, bool) {
+	if o == nil || IsNil(o.TopupConversionRate) {
+		return nil, false
+	}
+	return o.TopupConversionRate, true
+}
+
+// HasTopupConversionRate returns a boolean if a field has been set.
+func (o *DtoCreditGrantResponse) HasTopupConversionRate() bool {
+	if o != nil && !IsNil(o.TopupConversionRate) {
+		return true
+	}
+
+	return false
+}
+
+// SetTopupConversionRate gets a reference to the given string and assigns it to the TopupConversionRate field.
+func (o *DtoCreditGrantResponse) SetTopupConversionRate(v string) {
+	o.TopupConversionRate = &v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *DtoCreditGrantResponse) GetUpdatedAt() string {
 	if o == nil || IsNil(o.UpdatedAt) {
@@ -843,6 +911,9 @@ func (o DtoCreditGrantResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Cadence) {
 		toSerialize["cadence"] = o.Cadence
 	}
+	if !IsNil(o.ConversionRate) {
+		toSerialize["conversion_rate"] = o.ConversionRate
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -905,6 +976,9 @@ func (o DtoCreditGrantResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId
+	}
+	if !IsNil(o.TopupConversionRate) {
+		toSerialize["topup_conversion_rate"] = o.TopupConversionRate
 	}
 	if !IsNil(o.UpdatedAt) {
 		toSerialize["updated_at"] = o.UpdatedAt

@@ -23,6 +23,7 @@ const (
 	TYPESENTITYTYPE_EntityTypeEvents TypesEntityType = "EVENTS"
 	TYPESENTITYTYPE_EntityTypePrices TypesEntityType = "PRICES"
 	TYPESENTITYTYPE_EntityTypeCustomers TypesEntityType = "CUSTOMERS"
+	TYPESENTITYTYPE_EntityTypeFeatures TypesEntityType = "FEATURES"
 )
 
 // All allowed values of TypesEntityType enum
@@ -30,6 +31,7 @@ var AllowedTypesEntityTypeEnumValues = []TypesEntityType{
 	"EVENTS",
 	"PRICES",
 	"CUSTOMERS",
+	"FEATURES",
 }
 
 func (v *TypesEntityType) UnmarshalJSON(src []byte) error {

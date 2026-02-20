@@ -20,6 +20,8 @@ var _ MappedNullable = &DtoWalletTransactionResponse{}
 // DtoWalletTransactionResponse struct for DtoWalletTransactionResponse
 type DtoWalletTransactionResponse struct {
 	Amount *string `json:"amount,omitempty"`
+	// conversion_rate is the conversion rate for the transaction to the currency
+	ConversionRate *string `json:"conversion_rate,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
 	CreatedByUser *DtoUserResponse `json:"created_by_user,omitempty"`
@@ -41,6 +43,8 @@ type DtoWalletTransactionResponse struct {
 	ReferenceType *TypesWalletTxReferenceType `json:"reference_type,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
+	// topup_conversion_rate is the conversion rate for the topup to the currency
+	TopupConversionRate *string `json:"topup_conversion_rate,omitempty"`
 	TransactionReason *TypesTransactionReason `json:"transaction_reason,omitempty"`
 	TransactionStatus *TypesTransactionStatus `json:"transaction_status,omitempty"`
 	Type *TypesTransactionType `json:"type,omitempty"`
@@ -97,6 +101,38 @@ func (o *DtoWalletTransactionResponse) HasAmount() bool {
 // SetAmount gets a reference to the given string and assigns it to the Amount field.
 func (o *DtoWalletTransactionResponse) SetAmount(v string) {
 	o.Amount = &v
+}
+
+// GetConversionRate returns the ConversionRate field value if set, zero value otherwise.
+func (o *DtoWalletTransactionResponse) GetConversionRate() string {
+	if o == nil || IsNil(o.ConversionRate) {
+		var ret string
+		return ret
+	}
+	return *o.ConversionRate
+}
+
+// GetConversionRateOk returns a tuple with the ConversionRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletTransactionResponse) GetConversionRateOk() (*string, bool) {
+	if o == nil || IsNil(o.ConversionRate) {
+		return nil, false
+	}
+	return o.ConversionRate, true
+}
+
+// HasConversionRate returns a boolean if a field has been set.
+func (o *DtoWalletTransactionResponse) HasConversionRate() bool {
+	if o != nil && !IsNil(o.ConversionRate) {
+		return true
+	}
+
+	return false
+}
+
+// SetConversionRate gets a reference to the given string and assigns it to the ConversionRate field.
+func (o *DtoWalletTransactionResponse) SetConversionRate(v string) {
+	o.ConversionRate = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -771,6 +807,38 @@ func (o *DtoWalletTransactionResponse) SetTenantId(v string) {
 	o.TenantId = &v
 }
 
+// GetTopupConversionRate returns the TopupConversionRate field value if set, zero value otherwise.
+func (o *DtoWalletTransactionResponse) GetTopupConversionRate() string {
+	if o == nil || IsNil(o.TopupConversionRate) {
+		var ret string
+		return ret
+	}
+	return *o.TopupConversionRate
+}
+
+// GetTopupConversionRateOk returns a tuple with the TopupConversionRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoWalletTransactionResponse) GetTopupConversionRateOk() (*string, bool) {
+	if o == nil || IsNil(o.TopupConversionRate) {
+		return nil, false
+	}
+	return o.TopupConversionRate, true
+}
+
+// HasTopupConversionRate returns a boolean if a field has been set.
+func (o *DtoWalletTransactionResponse) HasTopupConversionRate() bool {
+	if o != nil && !IsNil(o.TopupConversionRate) {
+		return true
+	}
+
+	return false
+}
+
+// SetTopupConversionRate gets a reference to the given string and assigns it to the TopupConversionRate field.
+func (o *DtoWalletTransactionResponse) SetTopupConversionRate(v string) {
+	o.TopupConversionRate = &v
+}
+
 // GetTransactionReason returns the TransactionReason field value if set, zero value otherwise.
 func (o *DtoWalletTransactionResponse) GetTransactionReason() TypesTransactionReason {
 	if o == nil || IsNil(o.TransactionReason) {
@@ -1008,6 +1076,9 @@ func (o DtoWalletTransactionResponse) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Amount) {
 		toSerialize["amount"] = o.Amount
 	}
+	if !IsNil(o.ConversionRate) {
+		toSerialize["conversion_rate"] = o.ConversionRate
+	}
 	if !IsNil(o.CreatedAt) {
 		toSerialize["created_at"] = o.CreatedAt
 	}
@@ -1070,6 +1141,9 @@ func (o DtoWalletTransactionResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.TenantId) {
 		toSerialize["tenant_id"] = o.TenantId
+	}
+	if !IsNil(o.TopupConversionRate) {
+		toSerialize["topup_conversion_rate"] = o.TopupConversionRate
 	}
 	if !IsNil(o.TransactionReason) {
 		toSerialize["transaction_reason"] = o.TransactionReason

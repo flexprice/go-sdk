@@ -25,11 +25,17 @@ type DtoSubscriptionChangeExecuteResponse struct {
 	// effective_date is when the change took effect
 	EffectiveDate *string `json:"effective_date,omitempty"`
 	Invoice *DtoInvoiceResponse `json:"invoice,omitempty"`
+	// is_scheduled indicates if the change was scheduled or executed immediately
+	IsScheduled *bool `json:"is_scheduled,omitempty"`
 	// metadata from the request
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	NewSubscription *DtoSubscriptionSummary `json:"new_subscription,omitempty"`
 	OldSubscription *DtoSubscriptionSummary `json:"old_subscription,omitempty"`
 	ProrationApplied *DtoProrationDetails `json:"proration_applied,omitempty"`
+	// schedule_id is the ID of the created schedule (only if is_scheduled=true)
+	ScheduleId *string `json:"schedule_id,omitempty"`
+	// scheduled_at is when the change will execute (only if is_scheduled=true)
+	ScheduledAt *string `json:"scheduled_at,omitempty"`
 }
 
 // NewDtoSubscriptionChangeExecuteResponse instantiates a new DtoSubscriptionChangeExecuteResponse object
@@ -177,6 +183,38 @@ func (o *DtoSubscriptionChangeExecuteResponse) SetInvoice(v DtoInvoiceResponse) 
 	o.Invoice = &v
 }
 
+// GetIsScheduled returns the IsScheduled field value if set, zero value otherwise.
+func (o *DtoSubscriptionChangeExecuteResponse) GetIsScheduled() bool {
+	if o == nil || IsNil(o.IsScheduled) {
+		var ret bool
+		return ret
+	}
+	return *o.IsScheduled
+}
+
+// GetIsScheduledOk returns a tuple with the IsScheduled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionChangeExecuteResponse) GetIsScheduledOk() (*bool, bool) {
+	if o == nil || IsNil(o.IsScheduled) {
+		return nil, false
+	}
+	return o.IsScheduled, true
+}
+
+// HasIsScheduled returns a boolean if a field has been set.
+func (o *DtoSubscriptionChangeExecuteResponse) HasIsScheduled() bool {
+	if o != nil && !IsNil(o.IsScheduled) {
+		return true
+	}
+
+	return false
+}
+
+// SetIsScheduled gets a reference to the given bool and assigns it to the IsScheduled field.
+func (o *DtoSubscriptionChangeExecuteResponse) SetIsScheduled(v bool) {
+	o.IsScheduled = &v
+}
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *DtoSubscriptionChangeExecuteResponse) GetMetadata() map[string]string {
 	if o == nil || IsNil(o.Metadata) {
@@ -305,6 +343,70 @@ func (o *DtoSubscriptionChangeExecuteResponse) SetProrationApplied(v DtoProratio
 	o.ProrationApplied = &v
 }
 
+// GetScheduleId returns the ScheduleId field value if set, zero value otherwise.
+func (o *DtoSubscriptionChangeExecuteResponse) GetScheduleId() string {
+	if o == nil || IsNil(o.ScheduleId) {
+		var ret string
+		return ret
+	}
+	return *o.ScheduleId
+}
+
+// GetScheduleIdOk returns a tuple with the ScheduleId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionChangeExecuteResponse) GetScheduleIdOk() (*string, bool) {
+	if o == nil || IsNil(o.ScheduleId) {
+		return nil, false
+	}
+	return o.ScheduleId, true
+}
+
+// HasScheduleId returns a boolean if a field has been set.
+func (o *DtoSubscriptionChangeExecuteResponse) HasScheduleId() bool {
+	if o != nil && !IsNil(o.ScheduleId) {
+		return true
+	}
+
+	return false
+}
+
+// SetScheduleId gets a reference to the given string and assigns it to the ScheduleId field.
+func (o *DtoSubscriptionChangeExecuteResponse) SetScheduleId(v string) {
+	o.ScheduleId = &v
+}
+
+// GetScheduledAt returns the ScheduledAt field value if set, zero value otherwise.
+func (o *DtoSubscriptionChangeExecuteResponse) GetScheduledAt() string {
+	if o == nil || IsNil(o.ScheduledAt) {
+		var ret string
+		return ret
+	}
+	return *o.ScheduledAt
+}
+
+// GetScheduledAtOk returns a tuple with the ScheduledAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionChangeExecuteResponse) GetScheduledAtOk() (*string, bool) {
+	if o == nil || IsNil(o.ScheduledAt) {
+		return nil, false
+	}
+	return o.ScheduledAt, true
+}
+
+// HasScheduledAt returns a boolean if a field has been set.
+func (o *DtoSubscriptionChangeExecuteResponse) HasScheduledAt() bool {
+	if o != nil && !IsNil(o.ScheduledAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetScheduledAt gets a reference to the given string and assigns it to the ScheduledAt field.
+func (o *DtoSubscriptionChangeExecuteResponse) SetScheduledAt(v string) {
+	o.ScheduledAt = &v
+}
+
 func (o DtoSubscriptionChangeExecuteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -327,6 +429,9 @@ func (o DtoSubscriptionChangeExecuteResponse) ToMap() (map[string]interface{}, e
 	if !IsNil(o.Invoice) {
 		toSerialize["invoice"] = o.Invoice
 	}
+	if !IsNil(o.IsScheduled) {
+		toSerialize["is_scheduled"] = o.IsScheduled
+	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
@@ -338,6 +443,12 @@ func (o DtoSubscriptionChangeExecuteResponse) ToMap() (map[string]interface{}, e
 	}
 	if !IsNil(o.ProrationApplied) {
 		toSerialize["proration_applied"] = o.ProrationApplied
+	}
+	if !IsNil(o.ScheduleId) {
+		toSerialize["schedule_id"] = o.ScheduleId
+	}
+	if !IsNil(o.ScheduledAt) {
+		toSerialize["scheduled_at"] = o.ScheduledAt
 	}
 	return toSerialize, nil
 }

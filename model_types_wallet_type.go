@@ -20,14 +20,14 @@ type TypesWalletType string
 
 // List of types.WalletType
 const (
-	TYPESWALLETTYPE_WalletTypePromotional TypesWalletType = "PROMOTIONAL"
 	TYPESWALLETTYPE_WalletTypePrePaid TypesWalletType = "PRE_PAID"
+	TYPESWALLETTYPE_WalletTypePostPaid TypesWalletType = "POST_PAID"
 )
 
 // All allowed values of TypesWalletType enum
 var AllowedTypesWalletTypeEnumValues = []TypesWalletType{
-	"PROMOTIONAL",
 	"PRE_PAID",
+	"POST_PAID",
 }
 
 func (v *TypesWalletType) UnmarshalJSON(src []byte) error {

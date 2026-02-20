@@ -93,7 +93,7 @@ Name | Type | Description  | Notes
 
 ## InvoicesGet
 
-> DtoListInvoicesResponse InvoicesGet(ctx).AmountDueGt(amountDueGt).AmountRemainingGt(amountRemainingGt).CustomerId(customerId).EndTime(endTime).Expand(expand).ExternalCustomerId(externalCustomerId).InvoiceIds(invoiceIds).InvoiceStatus(invoiceStatus).InvoiceType(invoiceType).Limit(limit).Offset(offset).Order(order).PaymentStatus(paymentStatus).SkipLineItems(skipLineItems).StartTime(startTime).Status(status).SubscriptionId(subscriptionId).Execute()
+> DtoListInvoicesResponse InvoicesGet(ctx).AmountDueGt(amountDueGt).AmountRemainingGt(amountRemainingGt).CustomerId(customerId).EndTime(endTime).Expand(expand).ExternalCustomerId(externalCustomerId).InvoiceIds(invoiceIds).InvoiceStatus(invoiceStatus).InvoiceType(invoiceType).Limit(limit).Offset(offset).Order(order).PaymentStatus(paymentStatus).PeriodEndGte(periodEndGte).PeriodEndLte(periodEndLte).PeriodStartGte(periodStartGte).PeriodStartLte(periodStartLte).SkipLineItems(skipLineItems).StartTime(startTime).Status(status).SubscriptionId(subscriptionId).Execute()
 
 List invoices
 
@@ -125,6 +125,10 @@ func main() {
 	offset := int32(56) // int32 |  (optional)
 	order := "order_example" // string |  (optional)
 	paymentStatus := []string{"PaymentStatus_example"} // []string | payment_status filters by the payment state of invoices Multiple statuses can be specified to include invoices with any of the listed payment states (optional)
+	periodEndGte := "periodEndGte_example" // string | period_end_gte filters invoices with period_end >= value (optional)
+	periodEndLte := "periodEndLte_example" // string | period_end_lte filters invoices with period_end <= value (optional)
+	periodStartGte := "periodStartGte_example" // string | period_start_gte filters invoices with period_start >= value (optional)
+	periodStartLte := "periodStartLte_example" // string | period_start_lte filters invoices with period_start <= value (optional)
 	skipLineItems := true // bool | SkipLineItems if true, will not include line items in the response (optional)
 	startTime := "startTime_example" // string |  (optional)
 	status := "status_example" // string |  (optional)
@@ -132,7 +136,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.InvoicesAPI.InvoicesGet(context.Background()).AmountDueGt(amountDueGt).AmountRemainingGt(amountRemainingGt).CustomerId(customerId).EndTime(endTime).Expand(expand).ExternalCustomerId(externalCustomerId).InvoiceIds(invoiceIds).InvoiceStatus(invoiceStatus).InvoiceType(invoiceType).Limit(limit).Offset(offset).Order(order).PaymentStatus(paymentStatus).SkipLineItems(skipLineItems).StartTime(startTime).Status(status).SubscriptionId(subscriptionId).Execute()
+	resp, r, err := apiClient.InvoicesAPI.InvoicesGet(context.Background()).AmountDueGt(amountDueGt).AmountRemainingGt(amountRemainingGt).CustomerId(customerId).EndTime(endTime).Expand(expand).ExternalCustomerId(externalCustomerId).InvoiceIds(invoiceIds).InvoiceStatus(invoiceStatus).InvoiceType(invoiceType).Limit(limit).Offset(offset).Order(order).PaymentStatus(paymentStatus).PeriodEndGte(periodEndGte).PeriodEndLte(periodEndLte).PeriodStartGte(periodStartGte).PeriodStartLte(periodStartLte).SkipLineItems(skipLineItems).StartTime(startTime).Status(status).SubscriptionId(subscriptionId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `InvoicesAPI.InvoicesGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -166,6 +170,10 @@ Name | Type | Description  | Notes
  **offset** | **int32** |  | 
  **order** | **string** |  | 
  **paymentStatus** | **[]string** | payment_status filters by the payment state of invoices Multiple statuses can be specified to include invoices with any of the listed payment states | 
+ **periodEndGte** | **string** | period_end_gte filters invoices with period_end &gt;&#x3D; value | 
+ **periodEndLte** | **string** | period_end_lte filters invoices with period_end &lt;&#x3D; value | 
+ **periodStartGte** | **string** | period_start_gte filters invoices with period_start &gt;&#x3D; value | 
+ **periodStartLte** | **string** | period_start_lte filters invoices with period_start &lt;&#x3D; value | 
  **skipLineItems** | **bool** | SkipLineItems if true, will not include line items in the response | 
  **startTime** | **string** |  | 
  **status** | **string** |  | 

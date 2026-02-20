@@ -13,9 +13,8 @@ Name | Type | Description | Notes
 **CustomerId** | **string** | customer_id is the unique identifier of the customer this invoice belongs to | 
 **Description** | Pointer to **string** | description is an optional text description of the invoice | [optional] 
 **DueDate** | Pointer to **string** | due_date is the date by which payment is expected | [optional] 
-**EnvironmentId** | Pointer to **string** | environment_id is the unique identifier of the environment this invoice belongs to | [optional] 
 **IdempotencyKey** | Pointer to **string** | idempotency_key is an optional key used to prevent duplicate invoice creation | [optional] 
-**InvoiceCoupons** | Pointer to [**[]DtoInvoiceCoupon**](DtoInvoiceCoupon.md) | Invoice Coupns | [optional] 
+**InvoiceCoupons** | Pointer to [**[]DtoInvoiceCoupon**](DtoInvoiceCoupon.md) | Invoice Coupons | [optional] 
 **InvoiceNumber** | Pointer to **string** | invoice_number is an optional human-readable identifier for the invoice | [optional] 
 **InvoicePdfUrl** | Pointer to **string** | invoice_pdf_url is the URL where customers can download the PDF version of this invoice | [optional] 
 **InvoiceStatus** | Pointer to [**TypesInvoiceStatus**](TypesInvoiceStatus.md) |  | [optional] 
@@ -26,12 +25,13 @@ Name | Type | Description | Notes
 **PaymentStatus** | Pointer to [**TypesPaymentStatus**](TypesPaymentStatus.md) |  | [optional] 
 **PeriodEnd** | Pointer to **string** | period_end is the end date of the billing period | [optional] 
 **PeriodStart** | Pointer to **string** | period_start is the start date of the billing period | [optional] 
-**PreparedTaxRates** | Pointer to [**[]DtoTaxRateResponse**](DtoTaxRateResponse.md) | prepared_tax_rates contains the tax rates pre-resolved by the caller (e.g., billing service) These are applied at invoice level by the invoice service without further resolution | [optional] 
+**PreparedTaxRates** | Pointer to [**[]DtoTaxRateResponse**](DtoTaxRateResponse.md) | prepared_tax_rates contains the tax rates pre-resolved by the caller (e.g., billing service) | [optional] 
 **SubscriptionId** | Pointer to **string** | subscription_id is the optional unique identifier of the subscription associated with this invoice | [optional] 
 **Subtotal** | **string** | subtotal is the amount before taxes and discounts are applied | 
 **TaxRateOverrides** | Pointer to [**[]DtoTaxRateOverride**](DtoTaxRateOverride.md) | tax_rate_overrides is the tax rate overrides to be applied to the invoice | [optional] 
 **TaxRates** | Pointer to **[]string** | tax_rates | [optional] 
 **Total** | **string** | total is the total amount of the invoice including taxes and discounts | 
+**TotalPrepaidApplied** | Pointer to **string** | total_prepaid_applied is the total amount of prepaid applied to this invoice. | [optional] 
 
 ## Methods
 
@@ -261,31 +261,6 @@ SetDueDate sets DueDate field to given value.
 `func (o *DtoCreateInvoiceRequest) HasDueDate() bool`
 
 HasDueDate returns a boolean if a field has been set.
-
-### GetEnvironmentId
-
-`func (o *DtoCreateInvoiceRequest) GetEnvironmentId() string`
-
-GetEnvironmentId returns the EnvironmentId field if non-nil, zero value otherwise.
-
-### GetEnvironmentIdOk
-
-`func (o *DtoCreateInvoiceRequest) GetEnvironmentIdOk() (*string, bool)`
-
-GetEnvironmentIdOk returns a tuple with the EnvironmentId field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetEnvironmentId
-
-`func (o *DtoCreateInvoiceRequest) SetEnvironmentId(v string)`
-
-SetEnvironmentId sets EnvironmentId field to given value.
-
-### HasEnvironmentId
-
-`func (o *DtoCreateInvoiceRequest) HasEnvironmentId() bool`
-
-HasEnvironmentId returns a boolean if a field has been set.
 
 ### GetIdempotencyKey
 
@@ -726,6 +701,31 @@ and a boolean to check if the value has been set.
 
 SetTotal sets Total field to given value.
 
+
+### GetTotalPrepaidApplied
+
+`func (o *DtoCreateInvoiceRequest) GetTotalPrepaidApplied() string`
+
+GetTotalPrepaidApplied returns the TotalPrepaidApplied field if non-nil, zero value otherwise.
+
+### GetTotalPrepaidAppliedOk
+
+`func (o *DtoCreateInvoiceRequest) GetTotalPrepaidAppliedOk() (*string, bool)`
+
+GetTotalPrepaidAppliedOk returns a tuple with the TotalPrepaidApplied field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTotalPrepaidApplied
+
+`func (o *DtoCreateInvoiceRequest) SetTotalPrepaidApplied(v string)`
+
+SetTotalPrepaidApplied sets TotalPrepaidApplied field to given value.
+
+### HasTotalPrepaidApplied
+
+`func (o *DtoCreateInvoiceRequest) HasTotalPrepaidApplied() bool`
+
+HasTotalPrepaidApplied returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

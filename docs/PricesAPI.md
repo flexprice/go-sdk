@@ -9,7 +9,9 @@ Method | HTTP request | Description
 [**PricesIdDelete**](PricesAPI.md#PricesIdDelete) | **Delete** /prices/{id} | Delete a price
 [**PricesIdGet**](PricesAPI.md#PricesIdGet) | **Get** /prices/{id} | Get a price by ID
 [**PricesIdPut**](PricesAPI.md#PricesIdPut) | **Put** /prices/{id} | Update a price
+[**PricesLookupLookupKeyGet**](PricesAPI.md#PricesLookupLookupKeyGet) | **Get** /prices/lookup/{lookup_key} | Get price by lookup key
 [**PricesPost**](PricesAPI.md#PricesPost) | **Post** /prices | Create a new price
+[**PricesSearchPost**](PricesAPI.md#PricesSearchPost) | **Post** /prices/search | List prices by filter
 
 
 
@@ -391,6 +393,76 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## PricesLookupLookupKeyGet
+
+> DtoPriceResponse PricesLookupLookupKeyGet(ctx, lookupKey).Execute()
+
+Get price by lookup key
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	lookupKey := "lookupKey_example" // string | Lookup key
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PricesAPI.PricesLookupLookupKeyGet(context.Background(), lookupKey).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PricesAPI.PricesLookupLookupKeyGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PricesLookupLookupKeyGet`: DtoPriceResponse
+	fmt.Fprintf(os.Stdout, "Response from `PricesAPI.PricesLookupLookupKeyGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**lookupKey** | **string** | Lookup key | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPricesLookupLookupKeyGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DtoPriceResponse**](DtoPriceResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## PricesPost
 
 > DtoPriceResponse PricesPost(ctx).Price(price).Execute()
@@ -442,6 +514,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DtoPriceResponse**](DtoPriceResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## PricesSearchPost
+
+> DtoListPricesResponse PricesSearchPost(ctx).Filter(filter).Execute()
+
+List prices by filter
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	filter := *openapiclient.NewTypesPriceFilter() // TypesPriceFilter | Filter with DSL support
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.PricesAPI.PricesSearchPost(context.Background()).Filter(filter).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `PricesAPI.PricesSearchPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `PricesSearchPost`: DtoListPricesResponse
+	fmt.Fprintf(os.Stdout, "Response from `PricesAPI.PricesSearchPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiPricesSearchPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **filter** | [**TypesPriceFilter**](TypesPriceFilter.md) | Filter with DSL support | 
+
+### Return type
+
+[**DtoListPricesResponse**](DtoListPricesResponse.md)
 
 ### Authorization
 

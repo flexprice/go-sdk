@@ -21,11 +21,13 @@ type TypesAddonType string
 // List of types.AddonType
 const (
 	TYPESADDONTYPE_AddonTypeOnetime TypesAddonType = "onetime"
+	TYPESADDONTYPE_AddonTypeMultipleInstance TypesAddonType = "multiple_instance"
 )
 
 // All allowed values of TypesAddonType enum
 var AllowedTypesAddonTypeEnumValues = []TypesAddonType{
 	"onetime",
+	"multiple_instance",
 }
 
 func (v *TypesAddonType) UnmarshalJSON(src []byte) error {

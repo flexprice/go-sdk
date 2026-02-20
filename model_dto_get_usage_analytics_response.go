@@ -20,6 +20,7 @@ var _ MappedNullable = &DtoGetUsageAnalyticsResponse{}
 // DtoGetUsageAnalyticsResponse struct for DtoGetUsageAnalyticsResponse
 type DtoGetUsageAnalyticsResponse struct {
 	Currency *string `json:"currency,omitempty"`
+	CustomAnalytics []DtoCustomAnalyticItem `json:"custom_analytics,omitempty"`
 	Items []DtoUsageAnalyticItem `json:"items,omitempty"`
 	TotalCost *string `json:"total_cost,omitempty"`
 }
@@ -71,6 +72,38 @@ func (o *DtoGetUsageAnalyticsResponse) HasCurrency() bool {
 // SetCurrency gets a reference to the given string and assigns it to the Currency field.
 func (o *DtoGetUsageAnalyticsResponse) SetCurrency(v string) {
 	o.Currency = &v
+}
+
+// GetCustomAnalytics returns the CustomAnalytics field value if set, zero value otherwise.
+func (o *DtoGetUsageAnalyticsResponse) GetCustomAnalytics() []DtoCustomAnalyticItem {
+	if o == nil || IsNil(o.CustomAnalytics) {
+		var ret []DtoCustomAnalyticItem
+		return ret
+	}
+	return o.CustomAnalytics
+}
+
+// GetCustomAnalyticsOk returns a tuple with the CustomAnalytics field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageAnalyticsResponse) GetCustomAnalyticsOk() ([]DtoCustomAnalyticItem, bool) {
+	if o == nil || IsNil(o.CustomAnalytics) {
+		return nil, false
+	}
+	return o.CustomAnalytics, true
+}
+
+// HasCustomAnalytics returns a boolean if a field has been set.
+func (o *DtoGetUsageAnalyticsResponse) HasCustomAnalytics() bool {
+	if o != nil && !IsNil(o.CustomAnalytics) {
+		return true
+	}
+
+	return false
+}
+
+// SetCustomAnalytics gets a reference to the given []DtoCustomAnalyticItem and assigns it to the CustomAnalytics field.
+func (o *DtoGetUsageAnalyticsResponse) SetCustomAnalytics(v []DtoCustomAnalyticItem) {
+	o.CustomAnalytics = v
 }
 
 // GetItems returns the Items field value if set, zero value otherwise.
@@ -149,6 +182,9 @@ func (o DtoGetUsageAnalyticsResponse) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	if !IsNil(o.Currency) {
 		toSerialize["currency"] = o.Currency
+	}
+	if !IsNil(o.CustomAnalytics) {
+		toSerialize["custom_analytics"] = o.CustomAnalytics
 	}
 	if !IsNil(o.Items) {
 		toSerialize["items"] = o.Items

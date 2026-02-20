@@ -178,6 +178,10 @@ type InvoicesAPIInvoicesGetRequest struct {
 	offset *int32
 	order *string
 	paymentStatus *[]string
+	periodEndGte *string
+	periodEndLte *string
+	periodStartGte *string
+	periodStartLte *string
 	skipLineItems *bool
 	startTime *string
 	status *string
@@ -254,6 +258,30 @@ func (r InvoicesAPIInvoicesGetRequest) Order(order string) InvoicesAPIInvoicesGe
 // payment_status filters by the payment state of invoices Multiple statuses can be specified to include invoices with any of the listed payment states
 func (r InvoicesAPIInvoicesGetRequest) PaymentStatus(paymentStatus []string) InvoicesAPIInvoicesGetRequest {
 	r.paymentStatus = &paymentStatus
+	return r
+}
+
+// period_end_gte filters invoices with period_end &gt;&#x3D; value
+func (r InvoicesAPIInvoicesGetRequest) PeriodEndGte(periodEndGte string) InvoicesAPIInvoicesGetRequest {
+	r.periodEndGte = &periodEndGte
+	return r
+}
+
+// period_end_lte filters invoices with period_end &lt;&#x3D; value
+func (r InvoicesAPIInvoicesGetRequest) PeriodEndLte(periodEndLte string) InvoicesAPIInvoicesGetRequest {
+	r.periodEndLte = &periodEndLte
+	return r
+}
+
+// period_start_gte filters invoices with period_start &gt;&#x3D; value
+func (r InvoicesAPIInvoicesGetRequest) PeriodStartGte(periodStartGte string) InvoicesAPIInvoicesGetRequest {
+	r.periodStartGte = &periodStartGte
+	return r
+}
+
+// period_start_lte filters invoices with period_start &lt;&#x3D; value
+func (r InvoicesAPIInvoicesGetRequest) PeriodStartLte(periodStartLte string) InvoicesAPIInvoicesGetRequest {
+	r.periodStartLte = &periodStartLte
 	return r
 }
 
@@ -357,6 +385,18 @@ func (a *InvoicesAPIService) InvoicesGetExecute(r InvoicesAPIInvoicesGetRequest)
 	}
 	if r.paymentStatus != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "payment_status", r.paymentStatus, "form", "csv")
+	}
+	if r.periodEndGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "period_end_gte", r.periodEndGte, "form", "")
+	}
+	if r.periodEndLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "period_end_lte", r.periodEndLte, "form", "")
+	}
+	if r.periodStartGte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "period_start_gte", r.periodStartGte, "form", "")
+	}
+	if r.periodStartLte != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "period_start_lte", r.periodStartLte, "form", "")
 	}
 	if r.skipLineItems != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "skip_line_items", r.skipLineItems, "form", "")

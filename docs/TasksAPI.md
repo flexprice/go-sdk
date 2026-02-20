@@ -5,6 +5,7 @@ All URIs are relative to */v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**TasksGet**](TasksAPI.md#TasksGet) | **Get** /tasks | List tasks
+[**TasksIdDownloadGet**](TasksAPI.md#TasksIdDownloadGet) | **Get** /tasks/{id}/download | Download task export file
 [**TasksIdGet**](TasksAPI.md#TasksIdGet) | **Get** /tasks/{id} | Get a task
 [**TasksIdStatusPut**](TasksAPI.md#TasksIdStatusPut) | **Put** /tasks/{id}/status | Update task status
 [**TasksPost**](TasksAPI.md#TasksPost) | **Post** /tasks | Create a new task
@@ -87,6 +88,76 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DtoListTasksResponse**](DtoListTasksResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TasksIdDownloadGet
+
+> map[string]string TasksIdDownloadGet(ctx, id).Execute()
+
+Download task export file
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	id := "id_example" // string | Task ID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.TasksAPI.TasksIdDownloadGet(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TasksAPI.TasksIdDownloadGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TasksIdDownloadGet`: map[string]string
+	fmt.Fprintf(os.Stdout, "Response from `TasksAPI.TasksIdDownloadGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Task ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTasksIdDownloadGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+**map[string]string**
 
 ### Authorization
 

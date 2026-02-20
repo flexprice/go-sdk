@@ -21,11 +21,8 @@ var _ MappedNullable = &DtoCreateWalletRequest{}
 
 // DtoCreateWalletRequest struct for DtoCreateWalletRequest
 type DtoCreateWalletRequest struct {
-	AlertConfig *DtoAlertConfig `json:"alert_config,omitempty"`
-	// alert_enabled is the flag to enable alerts for the wallet defaults to true, can be explicitly set to false to disable alerts
-	AlertEnabled *bool `json:"alert_enabled,omitempty"`
+	AlertSettings *TypesAlertSettings `json:"alert_settings,omitempty"`
 	AutoTopup *TypesAutoTopup `json:"auto_topup,omitempty"`
-	Config *TypesWalletConfig `json:"config,omitempty"`
 	// amount in the currency =  number of credits * conversion_rate ex if conversion_rate is 1, then 1 USD = 1 credit ex if conversion_rate is 2, then 1 USD = 0.5 credits ex if conversion_rate is 0.5, then 1 USD = 2 credits
 	ConversionRate *string `json:"conversion_rate,omitempty"`
 	Currency string `json:"currency"`
@@ -40,9 +37,10 @@ type DtoCreateWalletRequest struct {
 	// initial_credits_to_load_expiry_date YYYYMMDD format in UTC timezone (optional to set nil means no expiry) for ex 20250101 means the credits will expire on 2025-01-01 00:00:00 UTC hence they will be available for use until 2024-12-31 23:59:59 UTC
 	InitialCreditsToLoadExpiryDate *int32 `json:"initial_credits_to_load_expiry_date,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
-	Name *string `json:"name,omitempty"`
 	// price_unit is the code of the price unit to use for wallet creation If provided, the price unit will be used to set the currency and conversion rate of the wallet: - currency: set to price unit's base_currency - conversion_rate: set to price unit's conversion_rate
 	PriceUnit *string `json:"price_unit,omitempty"`
+	// topup_conversion_rate is the conversion rate for the topup to the currency ex if topup_conversion_rate is 1, then 1 USD = 1 credit ex if topup_conversion_rate is 2, then 1 USD = 0.5 credits ex if topup_conversion_rate is 0.5, then 1 USD = 2 credits
+	TopupConversionRate *string `json:"topup_conversion_rate,omitempty"`
 	WalletType *TypesWalletType `json:"wallet_type,omitempty"`
 }
 
@@ -74,68 +72,36 @@ func NewDtoCreateWalletRequestWithDefaults() *DtoCreateWalletRequest {
 	return &this
 }
 
-// GetAlertConfig returns the AlertConfig field value if set, zero value otherwise.
-func (o *DtoCreateWalletRequest) GetAlertConfig() DtoAlertConfig {
-	if o == nil || IsNil(o.AlertConfig) {
-		var ret DtoAlertConfig
+// GetAlertSettings returns the AlertSettings field value if set, zero value otherwise.
+func (o *DtoCreateWalletRequest) GetAlertSettings() TypesAlertSettings {
+	if o == nil || IsNil(o.AlertSettings) {
+		var ret TypesAlertSettings
 		return ret
 	}
-	return *o.AlertConfig
+	return *o.AlertSettings
 }
 
-// GetAlertConfigOk returns a tuple with the AlertConfig field value if set, nil otherwise
+// GetAlertSettingsOk returns a tuple with the AlertSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoCreateWalletRequest) GetAlertConfigOk() (*DtoAlertConfig, bool) {
-	if o == nil || IsNil(o.AlertConfig) {
+func (o *DtoCreateWalletRequest) GetAlertSettingsOk() (*TypesAlertSettings, bool) {
+	if o == nil || IsNil(o.AlertSettings) {
 		return nil, false
 	}
-	return o.AlertConfig, true
+	return o.AlertSettings, true
 }
 
-// HasAlertConfig returns a boolean if a field has been set.
-func (o *DtoCreateWalletRequest) HasAlertConfig() bool {
-	if o != nil && !IsNil(o.AlertConfig) {
+// HasAlertSettings returns a boolean if a field has been set.
+func (o *DtoCreateWalletRequest) HasAlertSettings() bool {
+	if o != nil && !IsNil(o.AlertSettings) {
 		return true
 	}
 
 	return false
 }
 
-// SetAlertConfig gets a reference to the given DtoAlertConfig and assigns it to the AlertConfig field.
-func (o *DtoCreateWalletRequest) SetAlertConfig(v DtoAlertConfig) {
-	o.AlertConfig = &v
-}
-
-// GetAlertEnabled returns the AlertEnabled field value if set, zero value otherwise.
-func (o *DtoCreateWalletRequest) GetAlertEnabled() bool {
-	if o == nil || IsNil(o.AlertEnabled) {
-		var ret bool
-		return ret
-	}
-	return *o.AlertEnabled
-}
-
-// GetAlertEnabledOk returns a tuple with the AlertEnabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoCreateWalletRequest) GetAlertEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.AlertEnabled) {
-		return nil, false
-	}
-	return o.AlertEnabled, true
-}
-
-// HasAlertEnabled returns a boolean if a field has been set.
-func (o *DtoCreateWalletRequest) HasAlertEnabled() bool {
-	if o != nil && !IsNil(o.AlertEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetAlertEnabled gets a reference to the given bool and assigns it to the AlertEnabled field.
-func (o *DtoCreateWalletRequest) SetAlertEnabled(v bool) {
-	o.AlertEnabled = &v
+// SetAlertSettings gets a reference to the given TypesAlertSettings and assigns it to the AlertSettings field.
+func (o *DtoCreateWalletRequest) SetAlertSettings(v TypesAlertSettings) {
+	o.AlertSettings = &v
 }
 
 // GetAutoTopup returns the AutoTopup field value if set, zero value otherwise.
@@ -168,38 +134,6 @@ func (o *DtoCreateWalletRequest) HasAutoTopup() bool {
 // SetAutoTopup gets a reference to the given TypesAutoTopup and assigns it to the AutoTopup field.
 func (o *DtoCreateWalletRequest) SetAutoTopup(v TypesAutoTopup) {
 	o.AutoTopup = &v
-}
-
-// GetConfig returns the Config field value if set, zero value otherwise.
-func (o *DtoCreateWalletRequest) GetConfig() TypesWalletConfig {
-	if o == nil || IsNil(o.Config) {
-		var ret TypesWalletConfig
-		return ret
-	}
-	return *o.Config
-}
-
-// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoCreateWalletRequest) GetConfigOk() (*TypesWalletConfig, bool) {
-	if o == nil || IsNil(o.Config) {
-		return nil, false
-	}
-	return o.Config, true
-}
-
-// HasConfig returns a boolean if a field has been set.
-func (o *DtoCreateWalletRequest) HasConfig() bool {
-	if o != nil && !IsNil(o.Config) {
-		return true
-	}
-
-	return false
-}
-
-// SetConfig gets a reference to the given TypesWalletConfig and assigns it to the Config field.
-func (o *DtoCreateWalletRequest) SetConfig(v TypesWalletConfig) {
-	o.Config = &v
 }
 
 // GetConversionRate returns the ConversionRate field value if set, zero value otherwise.
@@ -482,38 +416,6 @@ func (o *DtoCreateWalletRequest) SetMetadata(v map[string]string) {
 	o.Metadata = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *DtoCreateWalletRequest) GetName() string {
-	if o == nil || IsNil(o.Name) {
-		var ret string
-		return ret
-	}
-	return *o.Name
-}
-
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoCreateWalletRequest) GetNameOk() (*string, bool) {
-	if o == nil || IsNil(o.Name) {
-		return nil, false
-	}
-	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *DtoCreateWalletRequest) HasName() bool {
-	if o != nil && !IsNil(o.Name) {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
-func (o *DtoCreateWalletRequest) SetName(v string) {
-	o.Name = &v
-}
-
 // GetPriceUnit returns the PriceUnit field value if set, zero value otherwise.
 func (o *DtoCreateWalletRequest) GetPriceUnit() string {
 	if o == nil || IsNil(o.PriceUnit) {
@@ -544,6 +446,38 @@ func (o *DtoCreateWalletRequest) HasPriceUnit() bool {
 // SetPriceUnit gets a reference to the given string and assigns it to the PriceUnit field.
 func (o *DtoCreateWalletRequest) SetPriceUnit(v string) {
 	o.PriceUnit = &v
+}
+
+// GetTopupConversionRate returns the TopupConversionRate field value if set, zero value otherwise.
+func (o *DtoCreateWalletRequest) GetTopupConversionRate() string {
+	if o == nil || IsNil(o.TopupConversionRate) {
+		var ret string
+		return ret
+	}
+	return *o.TopupConversionRate
+}
+
+// GetTopupConversionRateOk returns a tuple with the TopupConversionRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateWalletRequest) GetTopupConversionRateOk() (*string, bool) {
+	if o == nil || IsNil(o.TopupConversionRate) {
+		return nil, false
+	}
+	return o.TopupConversionRate, true
+}
+
+// HasTopupConversionRate returns a boolean if a field has been set.
+func (o *DtoCreateWalletRequest) HasTopupConversionRate() bool {
+	if o != nil && !IsNil(o.TopupConversionRate) {
+		return true
+	}
+
+	return false
+}
+
+// SetTopupConversionRate gets a reference to the given string and assigns it to the TopupConversionRate field.
+func (o *DtoCreateWalletRequest) SetTopupConversionRate(v string) {
+	o.TopupConversionRate = &v
 }
 
 // GetWalletType returns the WalletType field value if set, zero value otherwise.
@@ -588,17 +522,11 @@ func (o DtoCreateWalletRequest) MarshalJSON() ([]byte, error) {
 
 func (o DtoCreateWalletRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AlertConfig) {
-		toSerialize["alert_config"] = o.AlertConfig
-	}
-	if !IsNil(o.AlertEnabled) {
-		toSerialize["alert_enabled"] = o.AlertEnabled
+	if !IsNil(o.AlertSettings) {
+		toSerialize["alert_settings"] = o.AlertSettings
 	}
 	if !IsNil(o.AutoTopup) {
 		toSerialize["auto_topup"] = o.AutoTopup
-	}
-	if !IsNil(o.Config) {
-		toSerialize["config"] = o.Config
 	}
 	if !IsNil(o.ConversionRate) {
 		toSerialize["conversion_rate"] = o.ConversionRate
@@ -625,11 +553,11 @@ func (o DtoCreateWalletRequest) ToMap() (map[string]interface{}, error) {
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata
 	}
-	if !IsNil(o.Name) {
-		toSerialize["name"] = o.Name
-	}
 	if !IsNil(o.PriceUnit) {
 		toSerialize["price_unit"] = o.PriceUnit
+	}
+	if !IsNil(o.TopupConversionRate) {
+		toSerialize["topup_conversion_rate"] = o.TopupConversionRate
 	}
 	if !IsNil(o.WalletType) {
 		toSerialize["wallet_type"] = o.WalletType

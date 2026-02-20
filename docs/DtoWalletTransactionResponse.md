@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Amount** | Pointer to **string** |  | [optional] 
+**ConversionRate** | Pointer to **string** | conversion_rate is the conversion rate for the transaction to the currency | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
 **CreatedByUser** | Pointer to [**DtoUserResponse**](DtoUserResponse.md) |  | [optional] 
@@ -26,6 +27,7 @@ Name | Type | Description | Notes
 **ReferenceType** | Pointer to [**TypesWalletTxReferenceType**](TypesWalletTxReferenceType.md) |  | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
+**TopupConversionRate** | Pointer to **string** | topup_conversion_rate is the conversion rate for the topup to the currency | [optional] 
 **TransactionReason** | Pointer to [**TypesTransactionReason**](TypesTransactionReason.md) |  | [optional] 
 **TransactionStatus** | Pointer to [**TypesTransactionStatus**](TypesTransactionStatus.md) |  | [optional] 
 **Type** | Pointer to [**TypesTransactionType**](TypesTransactionType.md) |  | [optional] 
@@ -77,6 +79,31 @@ SetAmount sets Amount field to given value.
 `func (o *DtoWalletTransactionResponse) HasAmount() bool`
 
 HasAmount returns a boolean if a field has been set.
+
+### GetConversionRate
+
+`func (o *DtoWalletTransactionResponse) GetConversionRate() string`
+
+GetConversionRate returns the ConversionRate field if non-nil, zero value otherwise.
+
+### GetConversionRateOk
+
+`func (o *DtoWalletTransactionResponse) GetConversionRateOk() (*string, bool)`
+
+GetConversionRateOk returns a tuple with the ConversionRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetConversionRate
+
+`func (o *DtoWalletTransactionResponse) SetConversionRate(v string)`
+
+SetConversionRate sets ConversionRate field to given value.
+
+### HasConversionRate
+
+`func (o *DtoWalletTransactionResponse) HasConversionRate() bool`
+
+HasConversionRate returns a boolean if a field has been set.
 
 ### GetCreatedAt
 
@@ -602,6 +629,31 @@ SetTenantId sets TenantId field to given value.
 `func (o *DtoWalletTransactionResponse) HasTenantId() bool`
 
 HasTenantId returns a boolean if a field has been set.
+
+### GetTopupConversionRate
+
+`func (o *DtoWalletTransactionResponse) GetTopupConversionRate() string`
+
+GetTopupConversionRate returns the TopupConversionRate field if non-nil, zero value otherwise.
+
+### GetTopupConversionRateOk
+
+`func (o *DtoWalletTransactionResponse) GetTopupConversionRateOk() (*string, bool)`
+
+GetTopupConversionRateOk returns a tuple with the TopupConversionRate field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetTopupConversionRate
+
+`func (o *DtoWalletTransactionResponse) SetTopupConversionRate(v string)`
+
+SetTopupConversionRate sets TopupConversionRate field to given value.
+
+### HasTopupConversionRate
+
+`func (o *DtoWalletTransactionResponse) HasTopupConversionRate() bool`
+
+HasTopupConversionRate returns a boolean if a field has been set.
 
 ### GetTransactionReason
 

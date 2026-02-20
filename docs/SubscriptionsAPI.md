@@ -15,14 +15,21 @@ Method | HTTP request | Description
 [**SubscriptionsIdEntitlementsGet**](SubscriptionsAPI.md#SubscriptionsIdEntitlementsGet) | **Get** /subscriptions/{id}/entitlements | Get subscription entitlements
 [**SubscriptionsIdGet**](SubscriptionsAPI.md#SubscriptionsIdGet) | **Get** /subscriptions/{id} | Get subscription
 [**SubscriptionsIdGrantsUpcomingGet**](SubscriptionsAPI.md#SubscriptionsIdGrantsUpcomingGet) | **Get** /subscriptions/{id}/grants/upcoming | Get upcoming credit grant applications
+[**SubscriptionsIdLineitemsPost**](SubscriptionsAPI.md#SubscriptionsIdLineitemsPost) | **Post** /subscriptions/{id}/lineitems | Create subscription line item
 [**SubscriptionsIdPausePost**](SubscriptionsAPI.md#SubscriptionsIdPausePost) | **Post** /subscriptions/{id}/pause | Pause a subscription
 [**SubscriptionsIdPausesGet**](SubscriptionsAPI.md#SubscriptionsIdPausesGet) | **Get** /subscriptions/{id}/pauses | List all pauses for a subscription
+[**SubscriptionsIdPut**](SubscriptionsAPI.md#SubscriptionsIdPut) | **Put** /subscriptions/{id} | Update subscription
 [**SubscriptionsIdResumePost**](SubscriptionsAPI.md#SubscriptionsIdResumePost) | **Post** /subscriptions/{id}/resume | Resume a paused subscription
+[**SubscriptionsIdV2Get**](SubscriptionsAPI.md#SubscriptionsIdV2Get) | **Get** /subscriptions/{id}/v2 | Get subscription V2
 [**SubscriptionsLineitemsIdDelete**](SubscriptionsAPI.md#SubscriptionsLineitemsIdDelete) | **Delete** /subscriptions/lineitems/{id} | Delete subscription line item
 [**SubscriptionsLineitemsIdPut**](SubscriptionsAPI.md#SubscriptionsLineitemsIdPut) | **Put** /subscriptions/lineitems/{id} | Update subscription line item
 [**SubscriptionsPost**](SubscriptionsAPI.md#SubscriptionsPost) | **Post** /subscriptions | Create subscription
 [**SubscriptionsSearchPost**](SubscriptionsAPI.md#SubscriptionsSearchPost) | **Post** /subscriptions/search | List subscriptions by filter
 [**SubscriptionsUsagePost**](SubscriptionsAPI.md#SubscriptionsUsagePost) | **Post** /subscriptions/usage | Get usage by subscription
+[**V1SubscriptionSchedulesGet**](SubscriptionsAPI.md#V1SubscriptionSchedulesGet) | **Get** /v1/subscription-schedules | List all subscription schedules
+[**V1SubscriptionSchedulesIdGet**](SubscriptionsAPI.md#V1SubscriptionSchedulesIdGet) | **Get** /v1/subscription-schedules/{id} | Get subscription schedule
+[**V1SubscriptionsSchedulesScheduleIdCancelPost**](SubscriptionsAPI.md#V1SubscriptionsSchedulesScheduleIdCancelPost) | **Post** /v1/subscriptions/schedules/{schedule_id}/cancel | Cancel subscription schedule
+[**V1SubscriptionsSubscriptionIdSchedulesGet**](SubscriptionsAPI.md#V1SubscriptionsSubscriptionIdSchedulesGet) | **Get** /v1/subscriptions/{subscription_id}/schedules | List subscription schedules
 
 
 
@@ -160,7 +167,7 @@ Name | Type | Description  | Notes
 
 ## SubscriptionsGet
 
-> DtoListSubscriptionsResponse SubscriptionsGet(ctx).ActiveAt(activeAt).BillingCadence(billingCadence).BillingPeriod(billingPeriod).CustomerId(customerId).EndTime(endTime).Expand(expand).ExternalCustomerId(externalCustomerId).InvoicingCustomerIds(invoicingCustomerIds).Limit(limit).Offset(offset).Order(order).PlanId(planId).StartTime(startTime).Status(status).SubscriptionIds(subscriptionIds).SubscriptionStatus(subscriptionStatus).WithLineItems(withLineItems).Execute()
+> DtoListSubscriptionsResponse SubscriptionsGet(ctx).ActiveAt(activeAt).BillingCadence(billingCadence).BillingPeriod(billingPeriod).CustomerId(customerId).EndTime(endTime).Expand(expand).ExternalCustomerId(externalCustomerId).InvoicingCustomerIds(invoicingCustomerIds).Limit(limit).Offset(offset).Order(order).ParentSubscriptionIds(parentSubscriptionIds).PlanId(planId).StartTime(startTime).Status(status).SubscriptionIds(subscriptionIds).SubscriptionStatus(subscriptionStatus).WithLineItems(withLineItems).Execute()
 
 List subscriptions
 
@@ -190,6 +197,7 @@ func main() {
 	limit := int32(56) // int32 |  (optional)
 	offset := int32(56) // int32 |  (optional)
 	order := "order_example" // string |  (optional)
+	parentSubscriptionIds := []string{"Inner_example"} // []string | ParentSubscriptionIDs filters by parent subscription IDs (optional)
 	planId := "planId_example" // string | PlanID filters by plan ID (optional)
 	startTime := "startTime_example" // string |  (optional)
 	status := "status_example" // string |  (optional)
@@ -199,7 +207,7 @@ func main() {
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.SubscriptionsAPI.SubscriptionsGet(context.Background()).ActiveAt(activeAt).BillingCadence(billingCadence).BillingPeriod(billingPeriod).CustomerId(customerId).EndTime(endTime).Expand(expand).ExternalCustomerId(externalCustomerId).InvoicingCustomerIds(invoicingCustomerIds).Limit(limit).Offset(offset).Order(order).PlanId(planId).StartTime(startTime).Status(status).SubscriptionIds(subscriptionIds).SubscriptionStatus(subscriptionStatus).WithLineItems(withLineItems).Execute()
+	resp, r, err := apiClient.SubscriptionsAPI.SubscriptionsGet(context.Background()).ActiveAt(activeAt).BillingCadence(billingCadence).BillingPeriod(billingPeriod).CustomerId(customerId).EndTime(endTime).Expand(expand).ExternalCustomerId(externalCustomerId).InvoicingCustomerIds(invoicingCustomerIds).Limit(limit).Offset(offset).Order(order).ParentSubscriptionIds(parentSubscriptionIds).PlanId(planId).StartTime(startTime).Status(status).SubscriptionIds(subscriptionIds).SubscriptionStatus(subscriptionStatus).WithLineItems(withLineItems).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -231,6 +239,7 @@ Name | Type | Description  | Notes
  **limit** | **int32** |  | 
  **offset** | **int32** |  | 
  **order** | **string** |  | 
+ **parentSubscriptionIds** | **[]string** | ParentSubscriptionIDs filters by parent subscription IDs | 
  **planId** | **string** | PlanID filters by plan ID | 
  **startTime** | **string** |  | 
  **status** | **string** |  | 
@@ -826,6 +835,78 @@ Name | Type | Description  | Notes
 [[Back to README]](../README.md)
 
 
+## SubscriptionsIdLineitemsPost
+
+> DtoSubscriptionLineItemResponse SubscriptionsIdLineitemsPost(ctx, id).Request(request).Execute()
+
+Create subscription line item
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	id := "id_example" // string | Subscription ID
+	request := *openapiclient.NewDtoCreateSubscriptionLineItemRequest() // DtoCreateSubscriptionLineItemRequest | Create Line Item Request
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscriptionsAPI.SubscriptionsIdLineitemsPost(context.Background(), id).Request(request).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionsIdLineitemsPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SubscriptionsIdLineitemsPost`: DtoSubscriptionLineItemResponse
+	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionsIdLineitemsPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Subscription ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSubscriptionsIdLineitemsPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **request** | [**DtoCreateSubscriptionLineItemRequest**](DtoCreateSubscriptionLineItemRequest.md) | Create Line Item Request | 
+
+### Return type
+
+[**DtoSubscriptionLineItemResponse**](DtoSubscriptionLineItemResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## SubscriptionsIdPausePost
 
 > DtoSubscriptionPauseResponse SubscriptionsIdPausePost(ctx, id).Request(request).Execute()
@@ -968,6 +1049,78 @@ No authorization required
 [[Back to README]](../README.md)
 
 
+## SubscriptionsIdPut
+
+> DtoSubscriptionResponse SubscriptionsIdPut(ctx, id).Request(request).Execute()
+
+Update subscription
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	id := "id_example" // string | Subscription ID
+	request := *openapiclient.NewDtoUpdateSubscriptionRequest() // DtoUpdateSubscriptionRequest | Update Subscription Request
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscriptionsAPI.SubscriptionsIdPut(context.Background(), id).Request(request).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionsIdPut``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SubscriptionsIdPut`: DtoSubscriptionResponse
+	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionsIdPut`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Subscription ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSubscriptionsIdPutRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **request** | [**DtoUpdateSubscriptionRequest**](DtoUpdateSubscriptionRequest.md) | Update Subscription Request | 
+
+### Return type
+
+[**DtoSubscriptionResponse**](DtoSubscriptionResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
 ## SubscriptionsIdResumePost
 
 > DtoSubscriptionPauseResponse SubscriptionsIdResumePost(ctx, id).Request(request).Execute()
@@ -1033,6 +1186,78 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## SubscriptionsIdV2Get
+
+> DtoSubscriptionResponseV2 SubscriptionsIdV2Get(ctx, id).Expand(expand).Execute()
+
+Get subscription V2
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	id := "id_example" // string | Subscription ID
+	expand := "expand_example" // string | Comma-separated list of fields to expand (e.g., 'subscription_line_items,prices,plan') (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscriptionsAPI.SubscriptionsIdV2Get(context.Background(), id).Expand(expand).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.SubscriptionsIdV2Get``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `SubscriptionsIdV2Get`: DtoSubscriptionResponseV2
+	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.SubscriptionsIdV2Get`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Subscription ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiSubscriptionsIdV2GetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **expand** | **string** | Comma-separated list of fields to expand (e.g., &#39;subscription_line_items,prices,plan&#39;) | 
+
+### Return type
+
+[**DtoSubscriptionResponseV2**](DtoSubscriptionResponseV2.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
@@ -1375,6 +1600,290 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1SubscriptionSchedulesGet
+
+> DtoGetPendingSchedulesResponse V1SubscriptionSchedulesGet(ctx).PendingOnly(pendingOnly).SubscriptionId(subscriptionId).Limit(limit).Offset(offset).Execute()
+
+List all subscription schedules
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	pendingOnly := true // bool | Filter to pending schedules only (optional)
+	subscriptionId := "subscriptionId_example" // string | Filter by subscription ID (optional)
+	limit := int32(56) // int32 | Limit results (optional)
+	offset := int32(56) // int32 | Offset for pagination (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscriptionsAPI.V1SubscriptionSchedulesGet(context.Background()).PendingOnly(pendingOnly).SubscriptionId(subscriptionId).Limit(limit).Offset(offset).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.V1SubscriptionSchedulesGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `V1SubscriptionSchedulesGet`: DtoGetPendingSchedulesResponse
+	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.V1SubscriptionSchedulesGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1SubscriptionSchedulesGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **pendingOnly** | **bool** | Filter to pending schedules only | 
+ **subscriptionId** | **string** | Filter by subscription ID | 
+ **limit** | **int32** | Limit results | 
+ **offset** | **int32** | Offset for pagination | 
+
+### Return type
+
+[**DtoGetPendingSchedulesResponse**](DtoGetPendingSchedulesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1SubscriptionSchedulesIdGet
+
+> DtoSubscriptionScheduleResponse V1SubscriptionSchedulesIdGet(ctx, id).Execute()
+
+Get subscription schedule
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	id := "id_example" // string | Schedule ID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscriptionsAPI.V1SubscriptionSchedulesIdGet(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.V1SubscriptionSchedulesIdGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `V1SubscriptionSchedulesIdGet`: DtoSubscriptionScheduleResponse
+	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.V1SubscriptionSchedulesIdGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Schedule ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1SubscriptionSchedulesIdGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DtoSubscriptionScheduleResponse**](DtoSubscriptionScheduleResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1SubscriptionsSchedulesScheduleIdCancelPost
+
+> DtoCancelScheduleResponse V1SubscriptionsSchedulesScheduleIdCancelPost(ctx, scheduleId).Request(request).Execute()
+
+Cancel subscription schedule
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	scheduleId := "scheduleId_example" // string | Schedule ID (optional if using request body)
+	request := *openapiclient.NewDtoCancelScheduleRequest() // DtoCancelScheduleRequest | Cancel request (optional if using path parameter) (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscriptionsAPI.V1SubscriptionsSchedulesScheduleIdCancelPost(context.Background(), scheduleId).Request(request).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.V1SubscriptionsSchedulesScheduleIdCancelPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `V1SubscriptionsSchedulesScheduleIdCancelPost`: DtoCancelScheduleResponse
+	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.V1SubscriptionsSchedulesScheduleIdCancelPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**scheduleId** | **string** | Schedule ID (optional if using request body) | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1SubscriptionsSchedulesScheduleIdCancelPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+ **request** | [**DtoCancelScheduleRequest**](DtoCancelScheduleRequest.md) | Cancel request (optional if using path parameter) | 
+
+### Return type
+
+[**DtoCancelScheduleResponse**](DtoCancelScheduleResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## V1SubscriptionsSubscriptionIdSchedulesGet
+
+> DtoGetPendingSchedulesResponse V1SubscriptionsSubscriptionIdSchedulesGet(ctx, subscriptionId).Execute()
+
+List subscription schedules
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	subscriptionId := "subscriptionId_example" // string | Subscription ID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.SubscriptionsAPI.V1SubscriptionsSubscriptionIdSchedulesGet(context.Background(), subscriptionId).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `SubscriptionsAPI.V1SubscriptionsSubscriptionIdSchedulesGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `V1SubscriptionsSubscriptionIdSchedulesGet`: DtoGetPendingSchedulesResponse
+	fmt.Fprintf(os.Stdout, "Response from `SubscriptionsAPI.V1SubscriptionsSubscriptionIdSchedulesGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**subscriptionId** | **string** | Subscription ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiV1SubscriptionsSubscriptionIdSchedulesGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DtoGetPendingSchedulesResponse**](DtoGetPendingSchedulesResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

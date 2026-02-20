@@ -21,6 +21,7 @@ var _ MappedNullable = &DtoCancelSubscriptionRequest{}
 
 // DtoCancelSubscriptionRequest struct for DtoCancelSubscriptionRequest
 type DtoCancelSubscriptionRequest struct {
+	CancelImmediatelyInovicePolicy *TypesCancelImmediatelyInvoicePolicy `json:"cancel_immediately_inovice_policy,omitempty"`
 	CancellationType TypesCancellationType `json:"cancellation_type"`
 	ProrationBehavior *TypesProrationBehavior `json:"proration_behavior,omitempty"`
 	// Reason for cancellation (for audit and business intelligence)
@@ -45,6 +46,38 @@ func NewDtoCancelSubscriptionRequest(cancellationType TypesCancellationType) *Dt
 func NewDtoCancelSubscriptionRequestWithDefaults() *DtoCancelSubscriptionRequest {
 	this := DtoCancelSubscriptionRequest{}
 	return &this
+}
+
+// GetCancelImmediatelyInovicePolicy returns the CancelImmediatelyInovicePolicy field value if set, zero value otherwise.
+func (o *DtoCancelSubscriptionRequest) GetCancelImmediatelyInovicePolicy() TypesCancelImmediatelyInvoicePolicy {
+	if o == nil || IsNil(o.CancelImmediatelyInovicePolicy) {
+		var ret TypesCancelImmediatelyInvoicePolicy
+		return ret
+	}
+	return *o.CancelImmediatelyInovicePolicy
+}
+
+// GetCancelImmediatelyInovicePolicyOk returns a tuple with the CancelImmediatelyInovicePolicy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCancelSubscriptionRequest) GetCancelImmediatelyInovicePolicyOk() (*TypesCancelImmediatelyInvoicePolicy, bool) {
+	if o == nil || IsNil(o.CancelImmediatelyInovicePolicy) {
+		return nil, false
+	}
+	return o.CancelImmediatelyInovicePolicy, true
+}
+
+// HasCancelImmediatelyInovicePolicy returns a boolean if a field has been set.
+func (o *DtoCancelSubscriptionRequest) HasCancelImmediatelyInovicePolicy() bool {
+	if o != nil && !IsNil(o.CancelImmediatelyInovicePolicy) {
+		return true
+	}
+
+	return false
+}
+
+// SetCancelImmediatelyInovicePolicy gets a reference to the given TypesCancelImmediatelyInvoicePolicy and assigns it to the CancelImmediatelyInovicePolicy field.
+func (o *DtoCancelSubscriptionRequest) SetCancelImmediatelyInovicePolicy(v TypesCancelImmediatelyInvoicePolicy) {
+	o.CancelImmediatelyInovicePolicy = &v
 }
 
 // GetCancellationType returns the CancellationType field value
@@ -145,6 +178,9 @@ func (o DtoCancelSubscriptionRequest) MarshalJSON() ([]byte, error) {
 
 func (o DtoCancelSubscriptionRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
+	if !IsNil(o.CancelImmediatelyInovicePolicy) {
+		toSerialize["cancel_immediately_inovice_policy"] = o.CancelImmediatelyInovicePolicy
+	}
 	toSerialize["cancellation_type"] = o.CancellationType
 	if !IsNil(o.ProrationBehavior) {
 		toSerialize["proration_behavior"] = o.ProrationBehavior

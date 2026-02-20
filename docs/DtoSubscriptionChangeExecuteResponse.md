@@ -8,10 +8,13 @@ Name | Type | Description | Notes
 **CreditGrants** | Pointer to [**[]DtoCreditGrantResponse**](DtoCreditGrantResponse.md) | credit_grants contains any credit grants created for proration credits | [optional] 
 **EffectiveDate** | Pointer to **string** | effective_date is when the change took effect | [optional] 
 **Invoice** | Pointer to [**DtoInvoiceResponse**](DtoInvoiceResponse.md) |  | [optional] 
+**IsScheduled** | Pointer to **bool** | is_scheduled indicates if the change was scheduled or executed immediately | [optional] 
 **Metadata** | Pointer to **map[string]string** | metadata from the request | [optional] 
 **NewSubscription** | Pointer to [**DtoSubscriptionSummary**](DtoSubscriptionSummary.md) |  | [optional] 
 **OldSubscription** | Pointer to [**DtoSubscriptionSummary**](DtoSubscriptionSummary.md) |  | [optional] 
 **ProrationApplied** | Pointer to [**DtoProrationDetails**](DtoProrationDetails.md) |  | [optional] 
+**ScheduleId** | Pointer to **string** | schedule_id is the ID of the created schedule (only if is_scheduled&#x3D;true) | [optional] 
+**ScheduledAt** | Pointer to **string** | scheduled_at is when the change will execute (only if is_scheduled&#x3D;true) | [optional] 
 
 ## Methods
 
@@ -132,6 +135,31 @@ SetInvoice sets Invoice field to given value.
 
 HasInvoice returns a boolean if a field has been set.
 
+### GetIsScheduled
+
+`func (o *DtoSubscriptionChangeExecuteResponse) GetIsScheduled() bool`
+
+GetIsScheduled returns the IsScheduled field if non-nil, zero value otherwise.
+
+### GetIsScheduledOk
+
+`func (o *DtoSubscriptionChangeExecuteResponse) GetIsScheduledOk() (*bool, bool)`
+
+GetIsScheduledOk returns a tuple with the IsScheduled field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsScheduled
+
+`func (o *DtoSubscriptionChangeExecuteResponse) SetIsScheduled(v bool)`
+
+SetIsScheduled sets IsScheduled field to given value.
+
+### HasIsScheduled
+
+`func (o *DtoSubscriptionChangeExecuteResponse) HasIsScheduled() bool`
+
+HasIsScheduled returns a boolean if a field has been set.
+
 ### GetMetadata
 
 `func (o *DtoSubscriptionChangeExecuteResponse) GetMetadata() map[string]string`
@@ -231,6 +259,56 @@ SetProrationApplied sets ProrationApplied field to given value.
 `func (o *DtoSubscriptionChangeExecuteResponse) HasProrationApplied() bool`
 
 HasProrationApplied returns a boolean if a field has been set.
+
+### GetScheduleId
+
+`func (o *DtoSubscriptionChangeExecuteResponse) GetScheduleId() string`
+
+GetScheduleId returns the ScheduleId field if non-nil, zero value otherwise.
+
+### GetScheduleIdOk
+
+`func (o *DtoSubscriptionChangeExecuteResponse) GetScheduleIdOk() (*string, bool)`
+
+GetScheduleIdOk returns a tuple with the ScheduleId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScheduleId
+
+`func (o *DtoSubscriptionChangeExecuteResponse) SetScheduleId(v string)`
+
+SetScheduleId sets ScheduleId field to given value.
+
+### HasScheduleId
+
+`func (o *DtoSubscriptionChangeExecuteResponse) HasScheduleId() bool`
+
+HasScheduleId returns a boolean if a field has been set.
+
+### GetScheduledAt
+
+`func (o *DtoSubscriptionChangeExecuteResponse) GetScheduledAt() string`
+
+GetScheduledAt returns the ScheduledAt field if non-nil, zero value otherwise.
+
+### GetScheduledAtOk
+
+`func (o *DtoSubscriptionChangeExecuteResponse) GetScheduledAtOk() (*string, bool)`
+
+GetScheduledAtOk returns a tuple with the ScheduledAt field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScheduledAt
+
+`func (o *DtoSubscriptionChangeExecuteResponse) SetScheduledAt(v string)`
+
+SetScheduledAt sets ScheduledAt field to given value.
+
+### HasScheduledAt
+
+`func (o *DtoSubscriptionChangeExecuteResponse) HasScheduledAt() bool`
+
+HasScheduledAt returns a boolean if a field has been set.
 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

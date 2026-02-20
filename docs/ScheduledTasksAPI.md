@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**TasksScheduledIdPut**](ScheduledTasksAPI.md#TasksScheduledIdPut) | **Put** /tasks/scheduled/{id} | Update a scheduled task
 [**TasksScheduledIdRunPost**](ScheduledTasksAPI.md#TasksScheduledIdRunPost) | **Post** /tasks/scheduled/{id}/run | Trigger force run
 [**TasksScheduledPost**](ScheduledTasksAPI.md#TasksScheduledPost) | **Post** /tasks/scheduled | Create a scheduled task
+[**TasksScheduledScheduleUpdateBillingPeriodPost**](ScheduledTasksAPI.md#TasksScheduledScheduleUpdateBillingPeriodPost) | **Post** /tasks/scheduled/schedule-update-billing-period | Schedule update billing period
 
 
 
@@ -422,6 +423,72 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**DtoScheduledTaskResponse**](DtoScheduledTaskResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## TasksScheduledScheduleUpdateBillingPeriodPost
+
+> map[string]interface{} TasksScheduledScheduleUpdateBillingPeriodPost(ctx).Request(request).Execute()
+
+Schedule update billing period
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	request := map[string]interface{}{ ... } // map[string]interface{} | Schedule Update Billing Period Request
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.ScheduledTasksAPI.TasksScheduledScheduleUpdateBillingPeriodPost(context.Background()).Request(request).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `ScheduledTasksAPI.TasksScheduledScheduleUpdateBillingPeriodPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `TasksScheduledScheduleUpdateBillingPeriodPost`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `ScheduledTasksAPI.TasksScheduledScheduleUpdateBillingPeriodPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiTasksScheduledScheduleUpdateBillingPeriodPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **request** | **map[string]interface{}** | Schedule Update Billing Period Request | 
+
+### Return type
+
+**map[string]interface{}**
 
 ### Authorization
 

@@ -22,6 +22,8 @@ type MeterAggregation struct {
 	BucketSize *TypesWindowSize `json:"bucket_size,omitempty"`
 	// Field is the key in $event.properties on which the aggregation is to be applied For ex if the aggregation type is sum for API usage, the field could be \"duration_ms\"
 	Field *string `json:"field,omitempty"`
+	// GroupBy is the property name in event.properties to group by before aggregating. Currently only supported for MAX aggregation with bucket_size. When set, aggregation is applied per unique value of this property within each bucket, then the per-group results are summed to produce the bucket total.
+	GroupBy *string `json:"group_by,omitempty"`
 	// Multiplier is the multiplier for the aggregation For ex if the aggregation type is sum_with_multiplier for API usage, the multiplier could be 1000 to scale up by a factor of 1000. If not provided, it will be null.
 	Multiplier *string `json:"multiplier,omitempty"`
 	Type *TypesAggregationType `json:"type,omitempty"`
@@ -108,6 +110,38 @@ func (o *MeterAggregation) SetField(v string) {
 	o.Field = &v
 }
 
+// GetGroupBy returns the GroupBy field value if set, zero value otherwise.
+func (o *MeterAggregation) GetGroupBy() string {
+	if o == nil || IsNil(o.GroupBy) {
+		var ret string
+		return ret
+	}
+	return *o.GroupBy
+}
+
+// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MeterAggregation) GetGroupByOk() (*string, bool) {
+	if o == nil || IsNil(o.GroupBy) {
+		return nil, false
+	}
+	return o.GroupBy, true
+}
+
+// HasGroupBy returns a boolean if a field has been set.
+func (o *MeterAggregation) HasGroupBy() bool {
+	if o != nil && !IsNil(o.GroupBy) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupBy gets a reference to the given string and assigns it to the GroupBy field.
+func (o *MeterAggregation) SetGroupBy(v string) {
+	o.GroupBy = &v
+}
+
 // GetMultiplier returns the Multiplier field value if set, zero value otherwise.
 func (o *MeterAggregation) GetMultiplier() string {
 	if o == nil || IsNil(o.Multiplier) {
@@ -187,6 +221,9 @@ func (o MeterAggregation) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Field) {
 		toSerialize["field"] = o.Field
+	}
+	if !IsNil(o.GroupBy) {
+		toSerialize["group_by"] = o.GroupBy
 	}
 	if !IsNil(o.Multiplier) {
 		toSerialize["multiplier"] = o.Multiplier

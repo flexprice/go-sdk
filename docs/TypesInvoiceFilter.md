@@ -18,6 +18,10 @@ Name | Type | Description | Notes
 **Offset** | Pointer to **int32** |  | [optional] 
 **Order** | Pointer to **string** |  | [optional] 
 **PaymentStatus** | Pointer to [**[]TypesPaymentStatus**](TypesPaymentStatus.md) | payment_status filters by the payment state of invoices Multiple statuses can be specified to include invoices with any of the listed payment states | [optional] 
+**PeriodEndGte** | Pointer to **string** | period_end_gte filters invoices with period_end &gt;&#x3D; value | [optional] 
+**PeriodEndLte** | Pointer to **string** | period_end_lte filters invoices with period_end &lt;&#x3D; value | [optional] 
+**PeriodStartGte** | Pointer to **string** | period_start_gte filters invoices with period_start &gt;&#x3D; value | [optional] 
+**PeriodStartLte** | Pointer to **string** | period_start_lte filters invoices with period_start &lt;&#x3D; value | [optional] 
 **SkipLineItems** | Pointer to **bool** | SkipLineItems if true, will not include line items in the response | [optional] 
 **Sort** | Pointer to [**[]TypesSortCondition**](TypesSortCondition.md) |  | [optional] 
 **StartTime** | Pointer to **string** |  | [optional] 
@@ -392,6 +396,106 @@ SetPaymentStatus sets PaymentStatus field to given value.
 `func (o *TypesInvoiceFilter) HasPaymentStatus() bool`
 
 HasPaymentStatus returns a boolean if a field has been set.
+
+### GetPeriodEndGte
+
+`func (o *TypesInvoiceFilter) GetPeriodEndGte() string`
+
+GetPeriodEndGte returns the PeriodEndGte field if non-nil, zero value otherwise.
+
+### GetPeriodEndGteOk
+
+`func (o *TypesInvoiceFilter) GetPeriodEndGteOk() (*string, bool)`
+
+GetPeriodEndGteOk returns a tuple with the PeriodEndGte field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPeriodEndGte
+
+`func (o *TypesInvoiceFilter) SetPeriodEndGte(v string)`
+
+SetPeriodEndGte sets PeriodEndGte field to given value.
+
+### HasPeriodEndGte
+
+`func (o *TypesInvoiceFilter) HasPeriodEndGte() bool`
+
+HasPeriodEndGte returns a boolean if a field has been set.
+
+### GetPeriodEndLte
+
+`func (o *TypesInvoiceFilter) GetPeriodEndLte() string`
+
+GetPeriodEndLte returns the PeriodEndLte field if non-nil, zero value otherwise.
+
+### GetPeriodEndLteOk
+
+`func (o *TypesInvoiceFilter) GetPeriodEndLteOk() (*string, bool)`
+
+GetPeriodEndLteOk returns a tuple with the PeriodEndLte field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPeriodEndLte
+
+`func (o *TypesInvoiceFilter) SetPeriodEndLte(v string)`
+
+SetPeriodEndLte sets PeriodEndLte field to given value.
+
+### HasPeriodEndLte
+
+`func (o *TypesInvoiceFilter) HasPeriodEndLte() bool`
+
+HasPeriodEndLte returns a boolean if a field has been set.
+
+### GetPeriodStartGte
+
+`func (o *TypesInvoiceFilter) GetPeriodStartGte() string`
+
+GetPeriodStartGte returns the PeriodStartGte field if non-nil, zero value otherwise.
+
+### GetPeriodStartGteOk
+
+`func (o *TypesInvoiceFilter) GetPeriodStartGteOk() (*string, bool)`
+
+GetPeriodStartGteOk returns a tuple with the PeriodStartGte field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPeriodStartGte
+
+`func (o *TypesInvoiceFilter) SetPeriodStartGte(v string)`
+
+SetPeriodStartGte sets PeriodStartGte field to given value.
+
+### HasPeriodStartGte
+
+`func (o *TypesInvoiceFilter) HasPeriodStartGte() bool`
+
+HasPeriodStartGte returns a boolean if a field has been set.
+
+### GetPeriodStartLte
+
+`func (o *TypesInvoiceFilter) GetPeriodStartLte() string`
+
+GetPeriodStartLte returns the PeriodStartLte field if non-nil, zero value otherwise.
+
+### GetPeriodStartLteOk
+
+`func (o *TypesInvoiceFilter) GetPeriodStartLteOk() (*string, bool)`
+
+GetPeriodStartLteOk returns a tuple with the PeriodStartLte field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPeriodStartLte
+
+`func (o *TypesInvoiceFilter) SetPeriodStartLte(v string)`
+
+SetPeriodStartLte sets PeriodStartLte field to given value.
+
+### HasPeriodStartLte
+
+`func (o *TypesInvoiceFilter) HasPeriodStartLte() bool`
+
+HasPeriodStartLte returns a boolean if a field has been set.
 
 ### GetSkipLineItems
 

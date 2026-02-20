@@ -290,6 +290,123 @@ func (a *WebhooksAPIService) WebhooksHubspotTenantIdEnvironmentIdPostExecute(r W
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type WebhooksAPIWebhooksMoyasarTenantIdEnvironmentIdPostRequest struct {
+	ctx context.Context
+	ApiService *WebhooksAPIService
+	tenantId string
+	environmentId string
+	xMoyasarSignature *string
+}
+
+// Moyasar webhook signature
+func (r WebhooksAPIWebhooksMoyasarTenantIdEnvironmentIdPostRequest) XMoyasarSignature(xMoyasarSignature string) WebhooksAPIWebhooksMoyasarTenantIdEnvironmentIdPostRequest {
+	r.xMoyasarSignature = &xMoyasarSignature
+	return r
+}
+
+func (r WebhooksAPIWebhooksMoyasarTenantIdEnvironmentIdPostRequest) Execute() (map[string]interface{}, *http.Response, error) {
+	return r.ApiService.WebhooksMoyasarTenantIdEnvironmentIdPostExecute(r)
+}
+
+/*
+WebhooksMoyasarTenantIdEnvironmentIdPost Handle Moyasar webhook events
+
+Process incoming Moyasar webhook events for payment status updates
+
+ @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
+ @param tenantId Tenant ID
+ @param environmentId Environment ID
+ @return WebhooksAPIWebhooksMoyasarTenantIdEnvironmentIdPostRequest
+*/
+func (a *WebhooksAPIService) WebhooksMoyasarTenantIdEnvironmentIdPost(ctx context.Context, tenantId string, environmentId string) WebhooksAPIWebhooksMoyasarTenantIdEnvironmentIdPostRequest {
+	return WebhooksAPIWebhooksMoyasarTenantIdEnvironmentIdPostRequest{
+		ApiService: a,
+		ctx: ctx,
+		tenantId: tenantId,
+		environmentId: environmentId,
+	}
+}
+
+// Execute executes the request
+//  @return map[string]interface{}
+func (a *WebhooksAPIService) WebhooksMoyasarTenantIdEnvironmentIdPostExecute(r WebhooksAPIWebhooksMoyasarTenantIdEnvironmentIdPostRequest) (map[string]interface{}, *http.Response, error) {
+	var (
+		localVarHTTPMethod   = http.MethodPost
+		localVarPostBody     interface{}
+		formFiles            []formFile
+		localVarReturnValue  map[string]interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksAPIService.WebhooksMoyasarTenantIdEnvironmentIdPost")
+	if err != nil {
+		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/webhooks/moyasar/{tenant_id}/{environment_id}"
+	localVarPath = strings.Replace(localVarPath, "{"+"tenant_id"+"}", url.PathEscape(parameterValueToString(r.tenantId, "tenantId")), -1)
+	localVarPath = strings.Replace(localVarPath, "{"+"environment_id"+"}", url.PathEscape(parameterValueToString(r.environmentId, "environmentId")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := url.Values{}
+	localVarFormParams := url.Values{}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.xMoyasarSignature != nil {
+		parameterAddToHeaderOrQuery(localVarHeaderParams, "X-Moyasar-Signature", r.xMoyasarSignature, "simple", "")
+	}
+	req, err := a.client.prepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, formFiles)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.callAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := io.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = io.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := &GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type WebhooksAPIWebhooksNomodTenantIdEnvironmentIdPostRequest struct {
 	ctx context.Context
 	ApiService *WebhooksAPIService

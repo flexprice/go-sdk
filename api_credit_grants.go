@@ -26,6 +26,7 @@ type CreditGrantsAPIService service
 type CreditGrantsAPICreditgrantsGetRequest struct {
 	ctx context.Context
 	ApiService *CreditGrantsAPIService
+	creditGrantIds *[]string
 	endTime *string
 	expand *string
 	limit *int32
@@ -37,6 +38,11 @@ type CreditGrantsAPICreditgrantsGetRequest struct {
 	startTime *string
 	status *string
 	subscriptionIds *[]string
+}
+
+func (r CreditGrantsAPICreditgrantsGetRequest) CreditGrantIds(creditGrantIds []string) CreditGrantsAPICreditgrantsGetRequest {
+	r.creditGrantIds = &creditGrantIds
+	return r
 }
 
 func (r CreditGrantsAPICreditgrantsGetRequest) EndTime(endTime string) CreditGrantsAPICreditgrantsGetRequest {
@@ -135,6 +141,9 @@ func (a *CreditGrantsAPIService) CreditgrantsGetExecute(r CreditGrantsAPICreditg
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
 
+	if r.creditGrantIds != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "credit_grant_ids", r.creditGrantIds, "form", "csv")
+	}
 	if r.endTime != nil {
 		parameterAddToHeaderOrQuery(localVarQueryParams, "end_time", r.endTime, "form", "")
 	}
@@ -261,6 +270,13 @@ type CreditGrantsAPICreditgrantsIdDeleteRequest struct {
 	ctx context.Context
 	ApiService *CreditGrantsAPIService
 	id string
+	body *DtoDeleteCreditGrantRequest
+}
+
+// Optional: effective_date for subscription-scoped grants
+func (r CreditGrantsAPICreditgrantsIdDeleteRequest) Body(body DtoDeleteCreditGrantRequest) CreditGrantsAPICreditgrantsIdDeleteRequest {
+	r.body = &body
+	return r
 }
 
 func (r CreditGrantsAPICreditgrantsIdDeleteRequest) Execute() (*DtoSuccessResponse, *http.Response, error) {
@@ -270,7 +286,7 @@ func (r CreditGrantsAPICreditgrantsIdDeleteRequest) Execute() (*DtoSuccessRespon
 /*
 CreditgrantsIdDelete Delete a credit grant
 
-Delete a credit grant
+Delete a credit grant. Plan-scoped grants are archived; subscription-scoped grants have their end date set (optional body with effective_date). Request body is optional.
 
  @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  @param id Credit Grant ID
@@ -307,7 +323,7 @@ func (a *CreditGrantsAPIService) CreditgrantsIdDeleteExecute(r CreditGrantsAPICr
 	localVarFormParams := url.Values{}
 
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
+	localVarHTTPContentTypes := []string{"application/json"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -323,6 +339,8 @@ func (a *CreditGrantsAPIService) CreditgrantsIdDeleteExecute(r CreditGrantsAPICr
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
+	// body params
+	localVarPostBody = r.body
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

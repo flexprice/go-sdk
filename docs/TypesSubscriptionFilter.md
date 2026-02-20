@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **Limit** | Pointer to **int32** |  | [optional] 
 **Offset** | Pointer to **int32** |  | [optional] 
 **Order** | Pointer to **string** |  | [optional] 
+**ParentSubscriptionIds** | Pointer to **[]string** | ParentSubscriptionIDs filters by parent subscription IDs | [optional] 
 **PlanId** | Pointer to **string** | PlanID filters by plan ID | [optional] 
 **Sort** | Pointer to [**[]TypesSortCondition**](TypesSortCondition.md) |  | [optional] 
 **StartTime** | Pointer to **string** |  | [optional] 
@@ -342,6 +343,31 @@ SetOrder sets Order field to given value.
 `func (o *TypesSubscriptionFilter) HasOrder() bool`
 
 HasOrder returns a boolean if a field has been set.
+
+### GetParentSubscriptionIds
+
+`func (o *TypesSubscriptionFilter) GetParentSubscriptionIds() []string`
+
+GetParentSubscriptionIds returns the ParentSubscriptionIds field if non-nil, zero value otherwise.
+
+### GetParentSubscriptionIdsOk
+
+`func (o *TypesSubscriptionFilter) GetParentSubscriptionIdsOk() (*[]string, bool)`
+
+GetParentSubscriptionIdsOk returns a tuple with the ParentSubscriptionIds field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentSubscriptionIds
+
+`func (o *TypesSubscriptionFilter) SetParentSubscriptionIds(v []string)`
+
+SetParentSubscriptionIds sets ParentSubscriptionIds field to given value.
+
+### HasParentSubscriptionIds
+
+`func (o *TypesSubscriptionFilter) HasParentSubscriptionIds() bool`
+
+HasParentSubscriptionIds returns a boolean if a field has been set.
 
 ### GetPlanId
 

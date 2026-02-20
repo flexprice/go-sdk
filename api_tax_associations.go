@@ -26,12 +26,26 @@ type TaxAssociationsAPIService service
 type TaxAssociationsAPITaxesAssociationsGetRequest struct {
 	ctx context.Context
 	ApiService *TaxAssociationsAPIService
-	taxAssociation *TypesTaxAssociationFilter
+	entityType *string
+	entityId *string
+	taxRateId *string
 }
 
-// Tax Association Filter
-func (r TaxAssociationsAPITaxesAssociationsGetRequest) TaxAssociation(taxAssociation TypesTaxAssociationFilter) TaxAssociationsAPITaxesAssociationsGetRequest {
-	r.taxAssociation = &taxAssociation
+// Entity Type
+func (r TaxAssociationsAPITaxesAssociationsGetRequest) EntityType(entityType string) TaxAssociationsAPITaxesAssociationsGetRequest {
+	r.entityType = &entityType
+	return r
+}
+
+// Entity ID
+func (r TaxAssociationsAPITaxesAssociationsGetRequest) EntityId(entityId string) TaxAssociationsAPITaxesAssociationsGetRequest {
+	r.entityId = &entityId
+	return r
+}
+
+// Tax Rate ID
+func (r TaxAssociationsAPITaxesAssociationsGetRequest) TaxRateId(taxRateId string) TaxAssociationsAPITaxesAssociationsGetRequest {
+	r.taxRateId = &taxRateId
 	return r
 }
 
@@ -74,12 +88,18 @@ func (a *TaxAssociationsAPIService) TaxesAssociationsGetExecute(r TaxAssociation
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}
 	localVarFormParams := url.Values{}
-	if r.taxAssociation == nil {
-		return localVarReturnValue, nil, reportError("taxAssociation is required and must be specified")
-	}
 
+	if r.entityType != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "entity_type", r.entityType, "form", "")
+	}
+	if r.entityId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "entity_id", r.entityId, "form", "")
+	}
+	if r.taxRateId != nil {
+		parameterAddToHeaderOrQuery(localVarQueryParams, "tax_rate_id", r.taxRateId, "form", "")
+	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json"}
+	localVarHTTPContentTypes := []string{}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
@@ -95,8 +115,6 @@ func (a *TaxAssociationsAPIService) TaxesAssociationsGetExecute(r TaxAssociation
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	// body params
-	localVarPostBody = r.taxAssociation
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

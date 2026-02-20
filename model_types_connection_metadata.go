@@ -22,6 +22,7 @@ type TypesConnectionMetadata struct {
 	Chargebee *TypesChargebeeConnectionMetadata `json:"chargebee,omitempty"`
 	Generic *TypesGenericConnectionMetadata `json:"generic,omitempty"`
 	Hubspot *TypesHubSpotConnectionMetadata `json:"hubspot,omitempty"`
+	Moyasar *TypesMoyasarConnectionMetadata `json:"moyasar,omitempty"`
 	Nomod *TypesNomodConnectionMetadata `json:"nomod,omitempty"`
 	Quickbooks *TypesQuickBooksConnectionMetadata `json:"quickbooks,omitempty"`
 	Razorpay *TypesRazorpayConnectionMetadata `json:"razorpay,omitempty"`
@@ -141,6 +142,38 @@ func (o *TypesConnectionMetadata) HasHubspot() bool {
 // SetHubspot gets a reference to the given TypesHubSpotConnectionMetadata and assigns it to the Hubspot field.
 func (o *TypesConnectionMetadata) SetHubspot(v TypesHubSpotConnectionMetadata) {
 	o.Hubspot = &v
+}
+
+// GetMoyasar returns the Moyasar field value if set, zero value otherwise.
+func (o *TypesConnectionMetadata) GetMoyasar() TypesMoyasarConnectionMetadata {
+	if o == nil || IsNil(o.Moyasar) {
+		var ret TypesMoyasarConnectionMetadata
+		return ret
+	}
+	return *o.Moyasar
+}
+
+// GetMoyasarOk returns a tuple with the Moyasar field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TypesConnectionMetadata) GetMoyasarOk() (*TypesMoyasarConnectionMetadata, bool) {
+	if o == nil || IsNil(o.Moyasar) {
+		return nil, false
+	}
+	return o.Moyasar, true
+}
+
+// HasMoyasar returns a boolean if a field has been set.
+func (o *TypesConnectionMetadata) HasMoyasar() bool {
+	if o != nil && !IsNil(o.Moyasar) {
+		return true
+	}
+
+	return false
+}
+
+// SetMoyasar gets a reference to the given TypesMoyasarConnectionMetadata and assigns it to the Moyasar field.
+func (o *TypesConnectionMetadata) SetMoyasar(v TypesMoyasarConnectionMetadata) {
+	o.Moyasar = &v
 }
 
 // GetNomod returns the Nomod field value if set, zero value otherwise.
@@ -353,6 +386,9 @@ func (o TypesConnectionMetadata) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Hubspot) {
 		toSerialize["hubspot"] = o.Hubspot
+	}
+	if !IsNil(o.Moyasar) {
+		toSerialize["moyasar"] = o.Moyasar
 	}
 	if !IsNil(o.Nomod) {
 		toSerialize["nomod"] = o.Nomod

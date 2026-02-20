@@ -24,6 +24,7 @@ type TypesCommitmentInfo struct {
 	ComputedOverageAmount *string `json:"computed_overage_amount,omitempty"`
 	// total_cost = computed_commitment_utilized_amount + computed_overage_amount + computed_true_up_amount
 	ComputedTrueUpAmount *string `json:"computed_true_up_amount,omitempty"`
+	Duration *TypesBillingPeriod `json:"duration,omitempty"`
 	IsWindowed *bool `json:"is_windowed,omitempty"`
 	OverageFactor *string `json:"overage_factor,omitempty"`
 	// Only used for quantity-based commitments
@@ -175,6 +176,38 @@ func (o *TypesCommitmentInfo) HasComputedTrueUpAmount() bool {
 // SetComputedTrueUpAmount gets a reference to the given string and assigns it to the ComputedTrueUpAmount field.
 func (o *TypesCommitmentInfo) SetComputedTrueUpAmount(v string) {
 	o.ComputedTrueUpAmount = &v
+}
+
+// GetDuration returns the Duration field value if set, zero value otherwise.
+func (o *TypesCommitmentInfo) GetDuration() TypesBillingPeriod {
+	if o == nil || IsNil(o.Duration) {
+		var ret TypesBillingPeriod
+		return ret
+	}
+	return *o.Duration
+}
+
+// GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TypesCommitmentInfo) GetDurationOk() (*TypesBillingPeriod, bool) {
+	if o == nil || IsNil(o.Duration) {
+		return nil, false
+	}
+	return o.Duration, true
+}
+
+// HasDuration returns a boolean if a field has been set.
+func (o *TypesCommitmentInfo) HasDuration() bool {
+	if o != nil && !IsNil(o.Duration) {
+		return true
+	}
+
+	return false
+}
+
+// SetDuration gets a reference to the given TypesBillingPeriod and assigns it to the Duration field.
+func (o *TypesCommitmentInfo) SetDuration(v TypesBillingPeriod) {
+	o.Duration = &v
 }
 
 // GetIsWindowed returns the IsWindowed field value if set, zero value otherwise.
@@ -358,6 +391,9 @@ func (o TypesCommitmentInfo) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.ComputedTrueUpAmount) {
 		toSerialize["computed_true_up_amount"] = o.ComputedTrueUpAmount
+	}
+	if !IsNil(o.Duration) {
+		toSerialize["duration"] = o.Duration
 	}
 	if !IsNil(o.IsWindowed) {
 		toSerialize["is_windowed"] = o.IsWindowed

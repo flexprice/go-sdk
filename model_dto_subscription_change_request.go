@@ -26,6 +26,7 @@ type DtoSubscriptionChangeRequest struct {
 	BillingPeriod TypesBillingPeriod `json:"billing_period"`
 	// billing_period_count is the billing period count for the new subscription
 	BillingPeriodCount *int32 `json:"billing_period_count,omitempty"`
+	ChangeAt *TypesScheduleType `json:"change_at,omitempty"`
 	// metadata contains additional key-value pairs for storing extra information
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	ProrationBehavior TypesProrationBehavior `json:"proration_behavior"`
@@ -161,6 +162,38 @@ func (o *DtoSubscriptionChangeRequest) SetBillingPeriodCount(v int32) {
 	o.BillingPeriodCount = &v
 }
 
+// GetChangeAt returns the ChangeAt field value if set, zero value otherwise.
+func (o *DtoSubscriptionChangeRequest) GetChangeAt() TypesScheduleType {
+	if o == nil || IsNil(o.ChangeAt) {
+		var ret TypesScheduleType
+		return ret
+	}
+	return *o.ChangeAt
+}
+
+// GetChangeAtOk returns a tuple with the ChangeAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoSubscriptionChangeRequest) GetChangeAtOk() (*TypesScheduleType, bool) {
+	if o == nil || IsNil(o.ChangeAt) {
+		return nil, false
+	}
+	return o.ChangeAt, true
+}
+
+// HasChangeAt returns a boolean if a field has been set.
+func (o *DtoSubscriptionChangeRequest) HasChangeAt() bool {
+	if o != nil && !IsNil(o.ChangeAt) {
+		return true
+	}
+
+	return false
+}
+
+// SetChangeAt gets a reference to the given TypesScheduleType and assigns it to the ChangeAt field.
+func (o *DtoSubscriptionChangeRequest) SetChangeAt(v TypesScheduleType) {
+	o.ChangeAt = &v
+}
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *DtoSubscriptionChangeRequest) GetMetadata() map[string]string {
 	if o == nil || IsNil(o.Metadata) {
@@ -256,6 +289,9 @@ func (o DtoSubscriptionChangeRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize["billing_period"] = o.BillingPeriod
 	if !IsNil(o.BillingPeriodCount) {
 		toSerialize["billing_period_count"] = o.BillingPeriodCount
+	}
+	if !IsNil(o.ChangeAt) {
+		toSerialize["change_at"] = o.ChangeAt
 	}
 	if !IsNil(o.Metadata) {
 		toSerialize["metadata"] = o.Metadata

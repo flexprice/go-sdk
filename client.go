@@ -65,6 +65,8 @@ type APIClient struct {
 
 	CreditNotesAPI *CreditNotesAPIService
 
+	CustomerPortalAPI *CustomerPortalAPIService
+
 	CustomersAPI *CustomersAPIService
 
 	EntitlementsAPI *EntitlementsAPIService
@@ -138,6 +140,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.CouponsAPI = (*CouponsAPIService)(&c.common)
 	c.CreditGrantsAPI = (*CreditGrantsAPIService)(&c.common)
 	c.CreditNotesAPI = (*CreditNotesAPIService)(&c.common)
+	c.CustomerPortalAPI = (*CustomerPortalAPIService)(&c.common)
 	c.CustomersAPI = (*CustomersAPIService)(&c.common)
 	c.EntitlementsAPI = (*EntitlementsAPIService)(&c.common)
 	c.EntityIntegrationMappingsAPI = (*EntityIntegrationMappingsAPIService)(&c.common)

@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**EventsAnalyticsPost**](EventsAPI.md#EventsAnalyticsPost) | **Post** /events/analytics | Get usage analytics
 [**EventsBulkPost**](EventsAPI.md#EventsBulkPost) | **Post** /events/bulk | Bulk Ingest events
 [**EventsHuggingfaceInferencePost**](EventsAPI.md#EventsHuggingfaceInferencePost) | **Post** /events/huggingface-inference | Get hugging face inference data
+[**EventsIdGet**](EventsAPI.md#EventsIdGet) | **Get** /events/{id} | Get event by ID
 [**EventsMonitoringGet**](EventsAPI.md#EventsMonitoringGet) | **Get** /events/monitoring | Get monitoring data
 [**EventsPost**](EventsAPI.md#EventsPost) | **Post** /events | Ingest event
 [**EventsQueryPost**](EventsAPI.md#EventsQueryPost) | **Post** /events/query | List raw events
@@ -193,6 +194,76 @@ Other parameters are passed through a pointer to a apiEventsHuggingfaceInference
 ### Return type
 
 [**DtoGetHuggingFaceBillingDataResponse**](DtoGetHuggingFaceBillingDataResponse.md)
+
+### Authorization
+
+[ApiKeyAuth](../README.md#ApiKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## EventsIdGet
+
+> DtoGetEventByIDResponse EventsIdGet(ctx, id).Execute()
+
+Get event by ID
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	id := "id_example" // string | Event ID
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.EventsAPI.EventsIdGet(context.Background(), id).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `EventsAPI.EventsIdGet``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `EventsIdGet`: DtoGetEventByIDResponse
+	fmt.Fprintf(os.Stdout, "Response from `EventsAPI.EventsIdGet`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**id** | **string** | Event ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiEventsIdGetRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+### Return type
+
+[**DtoGetEventByIDResponse**](DtoGetEventByIDResponse.md)
 
 ### Authorization
 

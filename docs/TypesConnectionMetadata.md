@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **Chargebee** | Pointer to [**TypesChargebeeConnectionMetadata**](TypesChargebeeConnectionMetadata.md) |  | [optional] 
 **Generic** | Pointer to [**TypesGenericConnectionMetadata**](TypesGenericConnectionMetadata.md) |  | [optional] 
 **Hubspot** | Pointer to [**TypesHubSpotConnectionMetadata**](TypesHubSpotConnectionMetadata.md) |  | [optional] 
+**Moyasar** | Pointer to [**TypesMoyasarConnectionMetadata**](TypesMoyasarConnectionMetadata.md) |  | [optional] 
 **Nomod** | Pointer to [**TypesNomodConnectionMetadata**](TypesNomodConnectionMetadata.md) |  | [optional] 
 **Quickbooks** | Pointer to [**TypesQuickBooksConnectionMetadata**](TypesQuickBooksConnectionMetadata.md) |  | [optional] 
 **Razorpay** | Pointer to [**TypesRazorpayConnectionMetadata**](TypesRazorpayConnectionMetadata.md) |  | [optional] 
@@ -107,6 +108,31 @@ SetHubspot sets Hubspot field to given value.
 `func (o *TypesConnectionMetadata) HasHubspot() bool`
 
 HasHubspot returns a boolean if a field has been set.
+
+### GetMoyasar
+
+`func (o *TypesConnectionMetadata) GetMoyasar() TypesMoyasarConnectionMetadata`
+
+GetMoyasar returns the Moyasar field if non-nil, zero value otherwise.
+
+### GetMoyasarOk
+
+`func (o *TypesConnectionMetadata) GetMoyasarOk() (*TypesMoyasarConnectionMetadata, bool)`
+
+GetMoyasarOk returns a tuple with the Moyasar field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetMoyasar
+
+`func (o *TypesConnectionMetadata) SetMoyasar(v TypesMoyasarConnectionMetadata)`
+
+SetMoyasar sets Moyasar field to given value.
+
+### HasMoyasar
+
+`func (o *TypesConnectionMetadata) HasMoyasar() bool`
+
+HasMoyasar returns a boolean if a field has been set.
 
 ### GetNomod
 

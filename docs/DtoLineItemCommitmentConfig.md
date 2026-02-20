@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **CommitmentAmount** | Pointer to **float32** | CommitmentAmount is the minimum amount committed for this line item | [optional] 
+**CommitmentDuration** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
 **CommitmentQuantity** | Pointer to **float32** | CommitmentQuantity is the minimum quantity committed for this line item | [optional] 
 **CommitmentType** | Pointer to [**TypesCommitmentType**](TypesCommitmentType.md) |  | [optional] 
 **EnableTrueUp** | Pointer to **bool** | EnableTrueUp determines if true-up fee should be applied when usage is below commitment | [optional] 
@@ -54,6 +55,31 @@ SetCommitmentAmount sets CommitmentAmount field to given value.
 `func (o *DtoLineItemCommitmentConfig) HasCommitmentAmount() bool`
 
 HasCommitmentAmount returns a boolean if a field has been set.
+
+### GetCommitmentDuration
+
+`func (o *DtoLineItemCommitmentConfig) GetCommitmentDuration() TypesBillingPeriod`
+
+GetCommitmentDuration returns the CommitmentDuration field if non-nil, zero value otherwise.
+
+### GetCommitmentDurationOk
+
+`func (o *DtoLineItemCommitmentConfig) GetCommitmentDurationOk() (*TypesBillingPeriod, bool)`
+
+GetCommitmentDurationOk returns a tuple with the CommitmentDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentDuration
+
+`func (o *DtoLineItemCommitmentConfig) SetCommitmentDuration(v TypesBillingPeriod)`
+
+SetCommitmentDuration sets CommitmentDuration field to given value.
+
+### HasCommitmentDuration
+
+`func (o *DtoLineItemCommitmentConfig) HasCommitmentDuration() bool`
+
+HasCommitmentDuration returns a boolean if a field has been set.
 
 ### GetCommitmentQuantity
 

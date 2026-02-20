@@ -19,8 +19,7 @@ var _ MappedNullable = &DtoUpdateWalletRequest{}
 
 // DtoUpdateWalletRequest struct for DtoUpdateWalletRequest
 type DtoUpdateWalletRequest struct {
-	AlertConfig *DtoAlertConfig `json:"alert_config,omitempty"`
-	AlertEnabled *bool `json:"alert_enabled,omitempty"`
+	AlertSettings *TypesAlertSettings `json:"alert_settings,omitempty"`
 	AutoTopup *TypesAutoTopup `json:"auto_topup,omitempty"`
 	Config *TypesWalletConfig `json:"config,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -45,68 +44,36 @@ func NewDtoUpdateWalletRequestWithDefaults() *DtoUpdateWalletRequest {
 	return &this
 }
 
-// GetAlertConfig returns the AlertConfig field value if set, zero value otherwise.
-func (o *DtoUpdateWalletRequest) GetAlertConfig() DtoAlertConfig {
-	if o == nil || IsNil(o.AlertConfig) {
-		var ret DtoAlertConfig
+// GetAlertSettings returns the AlertSettings field value if set, zero value otherwise.
+func (o *DtoUpdateWalletRequest) GetAlertSettings() TypesAlertSettings {
+	if o == nil || IsNil(o.AlertSettings) {
+		var ret TypesAlertSettings
 		return ret
 	}
-	return *o.AlertConfig
+	return *o.AlertSettings
 }
 
-// GetAlertConfigOk returns a tuple with the AlertConfig field value if set, nil otherwise
+// GetAlertSettingsOk returns a tuple with the AlertSettings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoUpdateWalletRequest) GetAlertConfigOk() (*DtoAlertConfig, bool) {
-	if o == nil || IsNil(o.AlertConfig) {
+func (o *DtoUpdateWalletRequest) GetAlertSettingsOk() (*TypesAlertSettings, bool) {
+	if o == nil || IsNil(o.AlertSettings) {
 		return nil, false
 	}
-	return o.AlertConfig, true
+	return o.AlertSettings, true
 }
 
-// HasAlertConfig returns a boolean if a field has been set.
-func (o *DtoUpdateWalletRequest) HasAlertConfig() bool {
-	if o != nil && !IsNil(o.AlertConfig) {
+// HasAlertSettings returns a boolean if a field has been set.
+func (o *DtoUpdateWalletRequest) HasAlertSettings() bool {
+	if o != nil && !IsNil(o.AlertSettings) {
 		return true
 	}
 
 	return false
 }
 
-// SetAlertConfig gets a reference to the given DtoAlertConfig and assigns it to the AlertConfig field.
-func (o *DtoUpdateWalletRequest) SetAlertConfig(v DtoAlertConfig) {
-	o.AlertConfig = &v
-}
-
-// GetAlertEnabled returns the AlertEnabled field value if set, zero value otherwise.
-func (o *DtoUpdateWalletRequest) GetAlertEnabled() bool {
-	if o == nil || IsNil(o.AlertEnabled) {
-		var ret bool
-		return ret
-	}
-	return *o.AlertEnabled
-}
-
-// GetAlertEnabledOk returns a tuple with the AlertEnabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoUpdateWalletRequest) GetAlertEnabledOk() (*bool, bool) {
-	if o == nil || IsNil(o.AlertEnabled) {
-		return nil, false
-	}
-	return o.AlertEnabled, true
-}
-
-// HasAlertEnabled returns a boolean if a field has been set.
-func (o *DtoUpdateWalletRequest) HasAlertEnabled() bool {
-	if o != nil && !IsNil(o.AlertEnabled) {
-		return true
-	}
-
-	return false
-}
-
-// SetAlertEnabled gets a reference to the given bool and assigns it to the AlertEnabled field.
-func (o *DtoUpdateWalletRequest) SetAlertEnabled(v bool) {
-	o.AlertEnabled = &v
+// SetAlertSettings gets a reference to the given TypesAlertSettings and assigns it to the AlertSettings field.
+func (o *DtoUpdateWalletRequest) SetAlertSettings(v TypesAlertSettings) {
+	o.AlertSettings = &v
 }
 
 // GetAutoTopup returns the AutoTopup field value if set, zero value otherwise.
@@ -279,11 +246,8 @@ func (o DtoUpdateWalletRequest) MarshalJSON() ([]byte, error) {
 
 func (o DtoUpdateWalletRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
-	if !IsNil(o.AlertConfig) {
-		toSerialize["alert_config"] = o.AlertConfig
-	}
-	if !IsNil(o.AlertEnabled) {
-		toSerialize["alert_enabled"] = o.AlertEnabled
+	if !IsNil(o.AlertSettings) {
+		toSerialize["alert_settings"] = o.AlertSettings
 	}
 	if !IsNil(o.AutoTopup) {
 		toSerialize["auto_topup"] = o.AutoTopup

@@ -30,6 +30,7 @@ const (
 	TYPESWINDOWSIZE_WindowSizeDay TypesWindowSize = "DAY"
 	TYPESWINDOWSIZE_WindowSizeWeek TypesWindowSize = "WEEK"
 	TYPESWINDOWSIZE_WindowSizeMonth TypesWindowSize = "MONTH"
+	TYPESWINDOWSIZE_DefaultWindowSize TypesWindowSize = "MONTH"
 )
 
 // All allowed values of TypesWindowSize enum
@@ -43,6 +44,7 @@ var AllowedTypesWindowSizeEnumValues = []TypesWindowSize{
 	"12HOUR",
 	"DAY",
 	"WEEK",
+	"MONTH",
 	"MONTH",
 }
 

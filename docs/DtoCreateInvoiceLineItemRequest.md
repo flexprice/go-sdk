@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **DisplayName** | Pointer to **string** | display_name is the optional human-readable name for this line item | [optional] 
 **EntityId** | Pointer to **string** | entity_id is the optional unique identifier of the entity associated with this line item | [optional] 
 **EntityType** | Pointer to **string** | entity_type is the optional type of the entity associated with this line item | [optional] 
+**InvoiceLevelDiscount** | Pointer to **string** | invoice_level_discount is the discount amount in invoice currency applied to all line items on the invoice. | [optional] 
+**LineItemDiscount** | Pointer to **string** | line_item_discount is the discount amount in invoice currency applied directly to this line item. | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **MeterDisplayName** | Pointer to **string** | meter_display_name is the optional human-readable name of the meter | [optional] 
 **MeterId** | Pointer to **string** | meter_id is the optional unique identifier of the meter used for usage tracking | [optional] 
@@ -16,6 +18,7 @@ Name | Type | Description | Notes
 **PeriodStart** | Pointer to **string** | period_start is the optional start date of the period this line item covers | [optional] 
 **PlanDisplayName** | Pointer to **string** | plan_display_name is the optional human-readable name of the plan | [optional] 
 **PlanId** | Pointer to **string** | TODO: !REMOVE after migration plan_id is the optional unique identifier of the plan associated with this line item | [optional] 
+**PrepaidCreditsApplied** | Pointer to **string** | prepaid_credits_applied is the amount in invoice currency reduced from this line item due to prepaid credits application. | [optional] 
 **PriceId** | Pointer to **string** | price_id is the optional unique identifier of the price associated with this line item | [optional] 
 **PriceType** | Pointer to **string** | price_type indicates the type of pricing (fixed, usage, tiered, etc.) | [optional] 
 **PriceUnit** | Pointer to **string** | price_unit is the optional 3-digit ISO code of the price unit associated with this line item | [optional] 
@@ -160,6 +163,56 @@ SetEntityType sets EntityType field to given value.
 `func (o *DtoCreateInvoiceLineItemRequest) HasEntityType() bool`
 
 HasEntityType returns a boolean if a field has been set.
+
+### GetInvoiceLevelDiscount
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetInvoiceLevelDiscount() string`
+
+GetInvoiceLevelDiscount returns the InvoiceLevelDiscount field if non-nil, zero value otherwise.
+
+### GetInvoiceLevelDiscountOk
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetInvoiceLevelDiscountOk() (*string, bool)`
+
+GetInvoiceLevelDiscountOk returns a tuple with the InvoiceLevelDiscount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetInvoiceLevelDiscount
+
+`func (o *DtoCreateInvoiceLineItemRequest) SetInvoiceLevelDiscount(v string)`
+
+SetInvoiceLevelDiscount sets InvoiceLevelDiscount field to given value.
+
+### HasInvoiceLevelDiscount
+
+`func (o *DtoCreateInvoiceLineItemRequest) HasInvoiceLevelDiscount() bool`
+
+HasInvoiceLevelDiscount returns a boolean if a field has been set.
+
+### GetLineItemDiscount
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetLineItemDiscount() string`
+
+GetLineItemDiscount returns the LineItemDiscount field if non-nil, zero value otherwise.
+
+### GetLineItemDiscountOk
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetLineItemDiscountOk() (*string, bool)`
+
+GetLineItemDiscountOk returns a tuple with the LineItemDiscount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetLineItemDiscount
+
+`func (o *DtoCreateInvoiceLineItemRequest) SetLineItemDiscount(v string)`
+
+SetLineItemDiscount sets LineItemDiscount field to given value.
+
+### HasLineItemDiscount
+
+`func (o *DtoCreateInvoiceLineItemRequest) HasLineItemDiscount() bool`
+
+HasLineItemDiscount returns a boolean if a field has been set.
 
 ### GetMetadata
 
@@ -335,6 +388,31 @@ SetPlanId sets PlanId field to given value.
 `func (o *DtoCreateInvoiceLineItemRequest) HasPlanId() bool`
 
 HasPlanId returns a boolean if a field has been set.
+
+### GetPrepaidCreditsApplied
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetPrepaidCreditsApplied() string`
+
+GetPrepaidCreditsApplied returns the PrepaidCreditsApplied field if non-nil, zero value otherwise.
+
+### GetPrepaidCreditsAppliedOk
+
+`func (o *DtoCreateInvoiceLineItemRequest) GetPrepaidCreditsAppliedOk() (*string, bool)`
+
+GetPrepaidCreditsAppliedOk returns a tuple with the PrepaidCreditsApplied field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPrepaidCreditsApplied
+
+`func (o *DtoCreateInvoiceLineItemRequest) SetPrepaidCreditsApplied(v string)`
+
+SetPrepaidCreditsApplied sets PrepaidCreditsApplied field to given value.
+
+### HasPrepaidCreditsApplied
+
+`func (o *DtoCreateInvoiceLineItemRequest) HasPrepaidCreditsApplied() bool`
+
+HasPrepaidCreditsApplied returns a boolean if a field has been set.
 
 ### GetPriceId
 

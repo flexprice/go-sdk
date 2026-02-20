@@ -7,6 +7,8 @@
 
 * `CONTAINS` (value: `"contains"`)
 
+* `NOT_CONTAINS` (value: `"not_contains"`)
+
 * `GREATER_THAN` (value: `"gt"`)
 
 * `LESS_THAN` (value: `"lt"`)

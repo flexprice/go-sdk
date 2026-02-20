@@ -23,6 +23,7 @@ const (
 	TYPESWALLETTXREFERENCETYPE_WalletTxReferenceTypePayment TypesWalletTxReferenceType = "PAYMENT"
 	TYPESWALLETTXREFERENCETYPE_WalletTxReferenceTypeExternal TypesWalletTxReferenceType = "EXTERNAL"
 	TYPESWALLETTXREFERENCETYPE_WalletTxReferenceTypeRequest TypesWalletTxReferenceType = "REQUEST"
+	TYPESWALLETTXREFERENCETYPE_WalletTxReferenceTypeInvoice TypesWalletTxReferenceType = "INVOICE"
 )
 
 // All allowed values of TypesWalletTxReferenceType enum
@@ -30,6 +31,7 @@ var AllowedTypesWalletTxReferenceTypeEnumValues = []TypesWalletTxReferenceType{
 	"PAYMENT",
 	"EXTERNAL",
 	"REQUEST",
+	"INVOICE",
 }
 
 func (v *TypesWalletTxReferenceType) UnmarshalJSON(src []byte) error {

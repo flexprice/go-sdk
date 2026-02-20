@@ -909,11 +909,11 @@ func (a *PriceUnitsAPIService) PricesUnitsPostExecute(r PriceUnitsAPIPricesUnits
 type PriceUnitsAPIPricesUnitsSearchPostRequest struct {
 	ctx context.Context
 	ApiService *PriceUnitsAPIService
-	filter *TypesPriceUnitFilter
+	filter *TypesFilter
 }
 
 // Filter
-func (r PriceUnitsAPIPricesUnitsSearchPostRequest) Filter(filter TypesPriceUnitFilter) PriceUnitsAPIPricesUnitsSearchPostRequest {
+func (r PriceUnitsAPIPricesUnitsSearchPostRequest) Filter(filter TypesFilter) PriceUnitsAPIPricesUnitsSearchPostRequest {
 	r.filter = &filter
 	return r
 }

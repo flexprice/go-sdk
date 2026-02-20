@@ -30,6 +30,8 @@ type DtoGetUsageRequest struct {
 	EventName string `json:"event_name"`
 	ExternalCustomerId *string `json:"external_customer_id,omitempty"`
 	Filters *map[string][]string `json:"filters,omitempty"`
+	// GroupByProperty is the property name in event.properties to group by before aggregating. When set, aggregation is applied per unique value of this property within each bucket, then the per-group results are summed to produce the bucket total.
+	GroupByProperty *string `json:"group_by_property,omitempty"`
 	Multiplier *string `json:"multiplier,omitempty"`
 	// will be empty/ignored in case of COUNT
 	PropertyName *string `json:"property_name,omitempty"`
@@ -298,6 +300,38 @@ func (o *DtoGetUsageRequest) SetFilters(v map[string][]string) {
 	o.Filters = &v
 }
 
+// GetGroupByProperty returns the GroupByProperty field value if set, zero value otherwise.
+func (o *DtoGetUsageRequest) GetGroupByProperty() string {
+	if o == nil || IsNil(o.GroupByProperty) {
+		var ret string
+		return ret
+	}
+	return *o.GroupByProperty
+}
+
+// GetGroupByPropertyOk returns a tuple with the GroupByProperty field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoGetUsageRequest) GetGroupByPropertyOk() (*string, bool) {
+	if o == nil || IsNil(o.GroupByProperty) {
+		return nil, false
+	}
+	return o.GroupByProperty, true
+}
+
+// HasGroupByProperty returns a boolean if a field has been set.
+func (o *DtoGetUsageRequest) HasGroupByProperty() bool {
+	if o != nil && !IsNil(o.GroupByProperty) {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupByProperty gets a reference to the given string and assigns it to the GroupByProperty field.
+func (o *DtoGetUsageRequest) SetGroupByProperty(v string) {
+	o.GroupByProperty = &v
+}
+
 // GetMultiplier returns the Multiplier field value if set, zero value otherwise.
 func (o *DtoGetUsageRequest) GetMultiplier() string {
 	if o == nil || IsNil(o.Multiplier) {
@@ -455,6 +489,9 @@ func (o DtoGetUsageRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Filters) {
 		toSerialize["filters"] = o.Filters
+	}
+	if !IsNil(o.GroupByProperty) {
+		toSerialize["group_by_property"] = o.GroupByProperty
 	}
 	if !IsNil(o.Multiplier) {
 		toSerialize["multiplier"] = o.Multiplier

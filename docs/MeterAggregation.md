@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **BucketSize** | Pointer to [**TypesWindowSize**](TypesWindowSize.md) |  | [optional] 
 **Field** | Pointer to **string** | Field is the key in $event.properties on which the aggregation is to be applied For ex if the aggregation type is sum for API usage, the field could be \&quot;duration_ms\&quot; | [optional] 
+**GroupBy** | Pointer to **string** | GroupBy is the property name in event.properties to group by before aggregating. Currently only supported for MAX aggregation with bucket_size. When set, aggregation is applied per unique value of this property within each bucket, then the per-group results are summed to produce the bucket total. | [optional] 
 **Multiplier** | Pointer to **string** | Multiplier is the multiplier for the aggregation For ex if the aggregation type is sum_with_multiplier for API usage, the multiplier could be 1000 to scale up by a factor of 1000. If not provided, it will be null. | [optional] 
 **Type** | Pointer to [**TypesAggregationType**](TypesAggregationType.md) |  | [optional] 
 
@@ -77,6 +78,31 @@ SetField sets Field field to given value.
 `func (o *MeterAggregation) HasField() bool`
 
 HasField returns a boolean if a field has been set.
+
+### GetGroupBy
+
+`func (o *MeterAggregation) GetGroupBy() string`
+
+GetGroupBy returns the GroupBy field if non-nil, zero value otherwise.
+
+### GetGroupByOk
+
+`func (o *MeterAggregation) GetGroupByOk() (*string, bool)`
+
+GetGroupByOk returns a tuple with the GroupBy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetGroupBy
+
+`func (o *MeterAggregation) SetGroupBy(v string)`
+
+SetGroupBy sets GroupBy field to given value.
+
+### HasGroupBy
+
+`func (o *MeterAggregation) HasGroupBy() bool`
+
+HasGroupBy returns a boolean if a field has been set.
 
 ### GetMultiplier
 

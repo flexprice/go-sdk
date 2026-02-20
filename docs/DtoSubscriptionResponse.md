@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **CancelledAt** | Pointer to **string** | CanceledAt is the date the subscription was canceled | [optional] 
 **CollectionMethod** | Pointer to **string** | CollectionMethod determines how invoices are collected | [optional] 
 **CommitmentAmount** | Pointer to **string** | CommitmentAmount is the minimum amount a customer commits to paying for a billing period | [optional] 
+**CommitmentDuration** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
 **CouponAssociations** | Pointer to [**[]DtoCouponAssociationResponse**](DtoCouponAssociationResponse.md) | CouponAssociations are the coupon associations for this subscription | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
@@ -36,9 +37,11 @@ Name | Type | Description | Notes
 **LookupKey** | Pointer to **string** | LookupKey is the key used to lookup the subscription in our system | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **OverageFactor** | Pointer to **string** | OverageFactor is a multiplier applied to usage beyond the commitment amount | [optional] 
+**ParentSubscriptionId** | Pointer to **string** | ParentSubscriptionID is the parent subscription ID for hierarchy (e.g. child subscription under a parent) | [optional] 
 **PauseStatus** | Pointer to [**TypesPauseStatus**](TypesPauseStatus.md) |  | [optional] 
 **Pauses** | Pointer to [**[]SubscriptionSubscriptionPause**](SubscriptionSubscriptionPause.md) |  | [optional] 
 **PaymentBehavior** | Pointer to **string** | PaymentBehavior determines how subscription payments are handled | [optional] 
+**PaymentTerms** | Pointer to [**TypesPaymentTerms**](TypesPaymentTerms.md) |  | [optional] 
 **Phases** | Pointer to [**[]DtoSubscriptionPhaseResponse**](DtoSubscriptionPhaseResponse.md) | Phases are the subscription phases for this subscription | [optional] 
 **Plan** | Pointer to [**DtoPlanResponse**](DtoPlanResponse.md) |  | [optional] 
 **PlanId** | Pointer to **string** | PlanID is the identifier for the plan in our system | [optional] 
@@ -346,6 +349,31 @@ SetCommitmentAmount sets CommitmentAmount field to given value.
 `func (o *DtoSubscriptionResponse) HasCommitmentAmount() bool`
 
 HasCommitmentAmount returns a boolean if a field has been set.
+
+### GetCommitmentDuration
+
+`func (o *DtoSubscriptionResponse) GetCommitmentDuration() TypesBillingPeriod`
+
+GetCommitmentDuration returns the CommitmentDuration field if non-nil, zero value otherwise.
+
+### GetCommitmentDurationOk
+
+`func (o *DtoSubscriptionResponse) GetCommitmentDurationOk() (*TypesBillingPeriod, bool)`
+
+GetCommitmentDurationOk returns a tuple with the CommitmentDuration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCommitmentDuration
+
+`func (o *DtoSubscriptionResponse) SetCommitmentDuration(v TypesBillingPeriod)`
+
+SetCommitmentDuration sets CommitmentDuration field to given value.
+
+### HasCommitmentDuration
+
+`func (o *DtoSubscriptionResponse) HasCommitmentDuration() bool`
+
+HasCommitmentDuration returns a boolean if a field has been set.
 
 ### GetCouponAssociations
 
@@ -872,6 +900,31 @@ SetOverageFactor sets OverageFactor field to given value.
 
 HasOverageFactor returns a boolean if a field has been set.
 
+### GetParentSubscriptionId
+
+`func (o *DtoSubscriptionResponse) GetParentSubscriptionId() string`
+
+GetParentSubscriptionId returns the ParentSubscriptionId field if non-nil, zero value otherwise.
+
+### GetParentSubscriptionIdOk
+
+`func (o *DtoSubscriptionResponse) GetParentSubscriptionIdOk() (*string, bool)`
+
+GetParentSubscriptionIdOk returns a tuple with the ParentSubscriptionId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetParentSubscriptionId
+
+`func (o *DtoSubscriptionResponse) SetParentSubscriptionId(v string)`
+
+SetParentSubscriptionId sets ParentSubscriptionId field to given value.
+
+### HasParentSubscriptionId
+
+`func (o *DtoSubscriptionResponse) HasParentSubscriptionId() bool`
+
+HasParentSubscriptionId returns a boolean if a field has been set.
+
 ### GetPauseStatus
 
 `func (o *DtoSubscriptionResponse) GetPauseStatus() TypesPauseStatus`
@@ -946,6 +999,31 @@ SetPaymentBehavior sets PaymentBehavior field to given value.
 `func (o *DtoSubscriptionResponse) HasPaymentBehavior() bool`
 
 HasPaymentBehavior returns a boolean if a field has been set.
+
+### GetPaymentTerms
+
+`func (o *DtoSubscriptionResponse) GetPaymentTerms() TypesPaymentTerms`
+
+GetPaymentTerms returns the PaymentTerms field if non-nil, zero value otherwise.
+
+### GetPaymentTermsOk
+
+`func (o *DtoSubscriptionResponse) GetPaymentTermsOk() (*TypesPaymentTerms, bool)`
+
+GetPaymentTermsOk returns a tuple with the PaymentTerms field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPaymentTerms
+
+`func (o *DtoSubscriptionResponse) SetPaymentTerms(v TypesPaymentTerms)`
+
+SetPaymentTerms sets PaymentTerms field to given value.
+
+### HasPaymentTerms
+
+`func (o *DtoSubscriptionResponse) HasPaymentTerms() bool`
+
+HasPaymentTerms returns a boolean if a field has been set.
 
 ### GetPhases
 

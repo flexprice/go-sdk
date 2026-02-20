@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**WebhooksChargebeeTenantIdEnvironmentIdPost**](WebhooksAPI.md#WebhooksChargebeeTenantIdEnvironmentIdPost) | **Post** /webhooks/chargebee/{tenant_id}/{environment_id} | Handle Chargebee webhook events
 [**WebhooksHubspotTenantIdEnvironmentIdPost**](WebhooksAPI.md#WebhooksHubspotTenantIdEnvironmentIdPost) | **Post** /webhooks/hubspot/{tenant_id}/{environment_id} | Handle HubSpot webhook events
+[**WebhooksMoyasarTenantIdEnvironmentIdPost**](WebhooksAPI.md#WebhooksMoyasarTenantIdEnvironmentIdPost) | **Post** /webhooks/moyasar/{tenant_id}/{environment_id} | Handle Moyasar webhook events
 [**WebhooksNomodTenantIdEnvironmentIdPost**](WebhooksAPI.md#WebhooksNomodTenantIdEnvironmentIdPost) | **Post** /webhooks/nomod/{tenant_id}/{environment_id} | Handle Nomod webhook events
 [**WebhooksQuickbooksTenantIdEnvironmentIdPost**](WebhooksAPI.md#WebhooksQuickbooksTenantIdEnvironmentIdPost) | **Post** /webhooks/quickbooks/{tenant_id}/{environment_id} | Handle QuickBooks webhook events
 [**WebhooksRazorpayTenantIdEnvironmentIdPost**](WebhooksAPI.md#WebhooksRazorpayTenantIdEnvironmentIdPost) | **Post** /webhooks/razorpay/{tenant_id}/{environment_id} | Handle Razorpay webhook events
@@ -144,6 +145,81 @@ Name | Type | Description  | Notes
 
 
  **xHubSpotSignatureV3** | **string** | HubSpot webhook signature | 
+
+### Return type
+
+**map[string]interface{}**
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+
+## WebhooksMoyasarTenantIdEnvironmentIdPost
+
+> map[string]interface{} WebhooksMoyasarTenantIdEnvironmentIdPost(ctx, tenantId, environmentId).XMoyasarSignature(xMoyasarSignature).Execute()
+
+Handle Moyasar webhook events
+
+
+
+### Example
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+	openapiclient "github.com/flexprice/go-sdk/flexprice"
+)
+
+func main() {
+	tenantId := "tenantId_example" // string | Tenant ID
+	environmentId := "environmentId_example" // string | Environment ID
+	xMoyasarSignature := "xMoyasarSignature_example" // string | Moyasar webhook signature (optional)
+
+	configuration := openapiclient.NewConfiguration()
+	apiClient := openapiclient.NewAPIClient(configuration)
+	resp, r, err := apiClient.WebhooksAPI.WebhooksMoyasarTenantIdEnvironmentIdPost(context.Background(), tenantId, environmentId).XMoyasarSignature(xMoyasarSignature).Execute()
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksAPI.WebhooksMoyasarTenantIdEnvironmentIdPost``: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+	// response from `WebhooksMoyasarTenantIdEnvironmentIdPost`: map[string]interface{}
+	fmt.Fprintf(os.Stdout, "Response from `WebhooksAPI.WebhooksMoyasarTenantIdEnvironmentIdPost`: %v\n", resp)
+}
+```
+
+### Path Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+**ctx** | **context.Context** | context for authentication, logging, cancellation, deadlines, tracing, etc.
+**tenantId** | **string** | Tenant ID | 
+**environmentId** | **string** | Environment ID | 
+
+### Other Parameters
+
+Other parameters are passed through a pointer to a apiWebhooksMoyasarTenantIdEnvironmentIdPostRequest struct via the builder pattern
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+
+
+ **xMoyasarSignature** | **string** | Moyasar webhook signature | 
 
 ### Return type
 

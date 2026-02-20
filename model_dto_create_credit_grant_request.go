@@ -22,7 +22,10 @@ var _ MappedNullable = &DtoCreateCreditGrantRequest{}
 // DtoCreateCreditGrantRequest struct for DtoCreateCreditGrantRequest
 type DtoCreateCreditGrantRequest struct {
 	Cadence TypesCreditGrantCadence `json:"cadence"`
+	// amount in the currency =  number of credits * conversion_rate ex if conversion_rate is 1, then 1 USD = 1 credit ex if conversion_rate is 2, then 1 USD = 0.5 credits ex if conversion_rate is 0.5, then 1 USD = 2 credits
+	ConversionRate *string `json:"conversion_rate,omitempty"`
 	Credits string `json:"credits"`
+	EndDate *string `json:"end_date,omitempty"`
 	ExpirationDuration *int32 `json:"expiration_duration,omitempty"`
 	ExpirationDurationUnit *TypesCreditGrantExpiryDurationUnit `json:"expiration_duration_unit,omitempty"`
 	ExpirationType *TypesCreditGrantExpiryType `json:"expiration_type,omitempty"`
@@ -33,7 +36,10 @@ type DtoCreateCreditGrantRequest struct {
 	PlanId *string `json:"plan_id,omitempty"`
 	Priority *int32 `json:"priority,omitempty"`
 	Scope TypesCreditGrantScope `json:"scope"`
+	StartDate *string `json:"start_date,omitempty"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
+	// topup_conversion_rate is the conversion rate for the topup to the currency ex if topup_conversion_rate is 1, then 1 USD = 1 credit ex if topup_conversion_rate is 2, then 1 USD = 0.5 credits ex if topup_conversion_rate is 0.5, then 1 USD = 2 credits
+	TopupConversionRate *string `json:"topup_conversion_rate,omitempty"`
 }
 
 type _DtoCreateCreditGrantRequest DtoCreateCreditGrantRequest
@@ -83,6 +89,38 @@ func (o *DtoCreateCreditGrantRequest) SetCadence(v TypesCreditGrantCadence) {
 	o.Cadence = v
 }
 
+// GetConversionRate returns the ConversionRate field value if set, zero value otherwise.
+func (o *DtoCreateCreditGrantRequest) GetConversionRate() string {
+	if o == nil || IsNil(o.ConversionRate) {
+		var ret string
+		return ret
+	}
+	return *o.ConversionRate
+}
+
+// GetConversionRateOk returns a tuple with the ConversionRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateCreditGrantRequest) GetConversionRateOk() (*string, bool) {
+	if o == nil || IsNil(o.ConversionRate) {
+		return nil, false
+	}
+	return o.ConversionRate, true
+}
+
+// HasConversionRate returns a boolean if a field has been set.
+func (o *DtoCreateCreditGrantRequest) HasConversionRate() bool {
+	if o != nil && !IsNil(o.ConversionRate) {
+		return true
+	}
+
+	return false
+}
+
+// SetConversionRate gets a reference to the given string and assigns it to the ConversionRate field.
+func (o *DtoCreateCreditGrantRequest) SetConversionRate(v string) {
+	o.ConversionRate = &v
+}
+
 // GetCredits returns the Credits field value
 func (o *DtoCreateCreditGrantRequest) GetCredits() string {
 	if o == nil {
@@ -105,6 +143,38 @@ func (o *DtoCreateCreditGrantRequest) GetCreditsOk() (*string, bool) {
 // SetCredits sets field value
 func (o *DtoCreateCreditGrantRequest) SetCredits(v string) {
 	o.Credits = v
+}
+
+// GetEndDate returns the EndDate field value if set, zero value otherwise.
+func (o *DtoCreateCreditGrantRequest) GetEndDate() string {
+	if o == nil || IsNil(o.EndDate) {
+		var ret string
+		return ret
+	}
+	return *o.EndDate
+}
+
+// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateCreditGrantRequest) GetEndDateOk() (*string, bool) {
+	if o == nil || IsNil(o.EndDate) {
+		return nil, false
+	}
+	return o.EndDate, true
+}
+
+// HasEndDate returns a boolean if a field has been set.
+func (o *DtoCreateCreditGrantRequest) HasEndDate() bool {
+	if o != nil && !IsNil(o.EndDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
+func (o *DtoCreateCreditGrantRequest) SetEndDate(v string) {
+	o.EndDate = &v
 }
 
 // GetExpirationDuration returns the ExpirationDuration field value if set, zero value otherwise.
@@ -411,6 +481,38 @@ func (o *DtoCreateCreditGrantRequest) SetScope(v TypesCreditGrantScope) {
 	o.Scope = v
 }
 
+// GetStartDate returns the StartDate field value if set, zero value otherwise.
+func (o *DtoCreateCreditGrantRequest) GetStartDate() string {
+	if o == nil || IsNil(o.StartDate) {
+		var ret string
+		return ret
+	}
+	return *o.StartDate
+}
+
+// GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateCreditGrantRequest) GetStartDateOk() (*string, bool) {
+	if o == nil || IsNil(o.StartDate) {
+		return nil, false
+	}
+	return o.StartDate, true
+}
+
+// HasStartDate returns a boolean if a field has been set.
+func (o *DtoCreateCreditGrantRequest) HasStartDate() bool {
+	if o != nil && !IsNil(o.StartDate) {
+		return true
+	}
+
+	return false
+}
+
+// SetStartDate gets a reference to the given string and assigns it to the StartDate field.
+func (o *DtoCreateCreditGrantRequest) SetStartDate(v string) {
+	o.StartDate = &v
+}
+
 // GetSubscriptionId returns the SubscriptionId field value if set, zero value otherwise.
 func (o *DtoCreateCreditGrantRequest) GetSubscriptionId() string {
 	if o == nil || IsNil(o.SubscriptionId) {
@@ -443,6 +545,38 @@ func (o *DtoCreateCreditGrantRequest) SetSubscriptionId(v string) {
 	o.SubscriptionId = &v
 }
 
+// GetTopupConversionRate returns the TopupConversionRate field value if set, zero value otherwise.
+func (o *DtoCreateCreditGrantRequest) GetTopupConversionRate() string {
+	if o == nil || IsNil(o.TopupConversionRate) {
+		var ret string
+		return ret
+	}
+	return *o.TopupConversionRate
+}
+
+// GetTopupConversionRateOk returns a tuple with the TopupConversionRate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateCreditGrantRequest) GetTopupConversionRateOk() (*string, bool) {
+	if o == nil || IsNil(o.TopupConversionRate) {
+		return nil, false
+	}
+	return o.TopupConversionRate, true
+}
+
+// HasTopupConversionRate returns a boolean if a field has been set.
+func (o *DtoCreateCreditGrantRequest) HasTopupConversionRate() bool {
+	if o != nil && !IsNil(o.TopupConversionRate) {
+		return true
+	}
+
+	return false
+}
+
+// SetTopupConversionRate gets a reference to the given string and assigns it to the TopupConversionRate field.
+func (o *DtoCreateCreditGrantRequest) SetTopupConversionRate(v string) {
+	o.TopupConversionRate = &v
+}
+
 func (o DtoCreateCreditGrantRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -454,7 +588,13 @@ func (o DtoCreateCreditGrantRequest) MarshalJSON() ([]byte, error) {
 func (o DtoCreateCreditGrantRequest) ToMap() (map[string]interface{}, error) {
 	toSerialize := map[string]interface{}{}
 	toSerialize["cadence"] = o.Cadence
+	if !IsNil(o.ConversionRate) {
+		toSerialize["conversion_rate"] = o.ConversionRate
+	}
 	toSerialize["credits"] = o.Credits
+	if !IsNil(o.EndDate) {
+		toSerialize["end_date"] = o.EndDate
+	}
 	if !IsNil(o.ExpirationDuration) {
 		toSerialize["expiration_duration"] = o.ExpirationDuration
 	}
@@ -481,8 +621,14 @@ func (o DtoCreateCreditGrantRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["priority"] = o.Priority
 	}
 	toSerialize["scope"] = o.Scope
+	if !IsNil(o.StartDate) {
+		toSerialize["start_date"] = o.StartDate
+	}
 	if !IsNil(o.SubscriptionId) {
 		toSerialize["subscription_id"] = o.SubscriptionId
+	}
+	if !IsNil(o.TopupConversionRate) {
+		toSerialize["topup_conversion_rate"] = o.TopupConversionRate
 	}
 	return toSerialize, nil
 }

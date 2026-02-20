@@ -38,11 +38,9 @@ type DtoCreateInvoiceRequest struct {
 	Description *string `json:"description,omitempty"`
 	// due_date is the date by which payment is expected
 	DueDate *string `json:"due_date,omitempty"`
-	// environment_id is the unique identifier of the environment this invoice belongs to
-	EnvironmentId *string `json:"environment_id,omitempty"`
 	// idempotency_key is an optional key used to prevent duplicate invoice creation
 	IdempotencyKey *string `json:"idempotency_key,omitempty"`
-	// Invoice Coupns
+	// Invoice Coupons
 	InvoiceCoupons []DtoInvoiceCoupon `json:"invoice_coupons,omitempty"`
 	// invoice_number is an optional human-readable identifier for the invoice
 	InvoiceNumber *string `json:"invoice_number,omitempty"`
@@ -60,7 +58,7 @@ type DtoCreateInvoiceRequest struct {
 	PeriodEnd *string `json:"period_end,omitempty"`
 	// period_start is the start date of the billing period
 	PeriodStart *string `json:"period_start,omitempty"`
-	// prepared_tax_rates contains the tax rates pre-resolved by the caller (e.g., billing service) These are applied at invoice level by the invoice service without further resolution
+	// prepared_tax_rates contains the tax rates pre-resolved by the caller (e.g., billing service)
 	PreparedTaxRates []DtoTaxRateResponse `json:"prepared_tax_rates,omitempty"`
 	// subscription_id is the optional unique identifier of the subscription associated with this invoice
 	SubscriptionId *string `json:"subscription_id,omitempty"`
@@ -72,6 +70,8 @@ type DtoCreateInvoiceRequest struct {
 	TaxRates []string `json:"tax_rates,omitempty"`
 	// total is the total amount of the invoice including taxes and discounts
 	Total string `json:"total"`
+	// total_prepaid_applied is the total amount of prepaid applied to this invoice.
+	TotalPrepaidApplied *string `json:"total_prepaid_applied,omitempty"`
 }
 
 type _DtoCreateInvoiceRequest DtoCreateInvoiceRequest
@@ -360,38 +360,6 @@ func (o *DtoCreateInvoiceRequest) HasDueDate() bool {
 // SetDueDate gets a reference to the given string and assigns it to the DueDate field.
 func (o *DtoCreateInvoiceRequest) SetDueDate(v string) {
 	o.DueDate = &v
-}
-
-// GetEnvironmentId returns the EnvironmentId field value if set, zero value otherwise.
-func (o *DtoCreateInvoiceRequest) GetEnvironmentId() string {
-	if o == nil || IsNil(o.EnvironmentId) {
-		var ret string
-		return ret
-	}
-	return *o.EnvironmentId
-}
-
-// GetEnvironmentIdOk returns a tuple with the EnvironmentId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoCreateInvoiceRequest) GetEnvironmentIdOk() (*string, bool) {
-	if o == nil || IsNil(o.EnvironmentId) {
-		return nil, false
-	}
-	return o.EnvironmentId, true
-}
-
-// HasEnvironmentId returns a boolean if a field has been set.
-func (o *DtoCreateInvoiceRequest) HasEnvironmentId() bool {
-	if o != nil && !IsNil(o.EnvironmentId) {
-		return true
-	}
-
-	return false
-}
-
-// SetEnvironmentId gets a reference to the given string and assigns it to the EnvironmentId field.
-func (o *DtoCreateInvoiceRequest) SetEnvironmentId(v string) {
-	o.EnvironmentId = &v
 }
 
 // GetIdempotencyKey returns the IdempotencyKey field value if set, zero value otherwise.
@@ -954,6 +922,38 @@ func (o *DtoCreateInvoiceRequest) SetTotal(v string) {
 	o.Total = v
 }
 
+// GetTotalPrepaidApplied returns the TotalPrepaidApplied field value if set, zero value otherwise.
+func (o *DtoCreateInvoiceRequest) GetTotalPrepaidApplied() string {
+	if o == nil || IsNil(o.TotalPrepaidApplied) {
+		var ret string
+		return ret
+	}
+	return *o.TotalPrepaidApplied
+}
+
+// GetTotalPrepaidAppliedOk returns a tuple with the TotalPrepaidApplied field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoCreateInvoiceRequest) GetTotalPrepaidAppliedOk() (*string, bool) {
+	if o == nil || IsNil(o.TotalPrepaidApplied) {
+		return nil, false
+	}
+	return o.TotalPrepaidApplied, true
+}
+
+// HasTotalPrepaidApplied returns a boolean if a field has been set.
+func (o *DtoCreateInvoiceRequest) HasTotalPrepaidApplied() bool {
+	if o != nil && !IsNil(o.TotalPrepaidApplied) {
+		return true
+	}
+
+	return false
+}
+
+// SetTotalPrepaidApplied gets a reference to the given string and assigns it to the TotalPrepaidApplied field.
+func (o *DtoCreateInvoiceRequest) SetTotalPrepaidApplied(v string) {
+	o.TotalPrepaidApplied = &v
+}
+
 func (o DtoCreateInvoiceRequest) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -984,9 +984,6 @@ func (o DtoCreateInvoiceRequest) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.DueDate) {
 		toSerialize["due_date"] = o.DueDate
-	}
-	if !IsNil(o.EnvironmentId) {
-		toSerialize["environment_id"] = o.EnvironmentId
 	}
 	if !IsNil(o.IdempotencyKey) {
 		toSerialize["idempotency_key"] = o.IdempotencyKey
@@ -1038,6 +1035,9 @@ func (o DtoCreateInvoiceRequest) ToMap() (map[string]interface{}, error) {
 		toSerialize["tax_rates"] = o.TaxRates
 	}
 	toSerialize["total"] = o.Total
+	if !IsNil(o.TotalPrepaidApplied) {
+		toSerialize["total_prepaid_applied"] = o.TotalPrepaidApplied
+	}
 	return toSerialize, nil
 }
 

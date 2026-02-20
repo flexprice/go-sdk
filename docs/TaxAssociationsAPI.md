@@ -14,7 +14,7 @@ Method | HTTP request | Description
 
 ## TaxesAssociationsGet
 
-> DtoListTaxAssociationsResponse TaxesAssociationsGet(ctx).TaxAssociation(taxAssociation).Execute()
+> DtoListTaxAssociationsResponse TaxesAssociationsGet(ctx).EntityType(entityType).EntityId(entityId).TaxRateId(taxRateId).Execute()
 
 List tax associations
 
@@ -33,11 +33,13 @@ import (
 )
 
 func main() {
-	taxAssociation := *openapiclient.NewTypesTaxAssociationFilter() // TypesTaxAssociationFilter | Tax Association Filter
+	entityType := "entityType_example" // string | Entity Type (optional)
+	entityId := "entityId_example" // string | Entity ID (optional)
+	taxRateId := "taxRateId_example" // string | Tax Rate ID (optional)
 
 	configuration := openapiclient.NewConfiguration()
 	apiClient := openapiclient.NewAPIClient(configuration)
-	resp, r, err := apiClient.TaxAssociationsAPI.TaxesAssociationsGet(context.Background()).TaxAssociation(taxAssociation).Execute()
+	resp, r, err := apiClient.TaxAssociationsAPI.TaxesAssociationsGet(context.Background()).EntityType(entityType).EntityId(entityId).TaxRateId(taxRateId).Execute()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TaxAssociationsAPI.TaxesAssociationsGet``: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -58,7 +60,9 @@ Other parameters are passed through a pointer to a apiTaxesAssociationsGetReques
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **taxAssociation** | [**TypesTaxAssociationFilter**](TypesTaxAssociationFilter.md) | Tax Association Filter | 
+ **entityType** | **string** | Entity Type | 
+ **entityId** | **string** | Entity ID | 
+ **taxRateId** | **string** | Tax Rate ID | 
 
 ### Return type
 
@@ -70,7 +74,7 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

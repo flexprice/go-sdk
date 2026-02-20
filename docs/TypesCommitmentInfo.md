@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **ComputedCommitmentUtilizedAmount** | Pointer to **string** |  | [optional] 
 **ComputedOverageAmount** | Pointer to **string** |  | [optional] 
 **ComputedTrueUpAmount** | Pointer to **string** | total_cost &#x3D; computed_commitment_utilized_amount + computed_overage_amount + computed_true_up_amount | [optional] 
+**Duration** | Pointer to [**TypesBillingPeriod**](TypesBillingPeriod.md) |  | [optional] 
 **IsWindowed** | Pointer to **bool** |  | [optional] 
 **OverageFactor** | Pointer to **string** |  | [optional] 
 **Quantity** | Pointer to **string** | Only used for quantity-based commitments | [optional] 
@@ -132,6 +133,31 @@ SetComputedTrueUpAmount sets ComputedTrueUpAmount field to given value.
 `func (o *TypesCommitmentInfo) HasComputedTrueUpAmount() bool`
 
 HasComputedTrueUpAmount returns a boolean if a field has been set.
+
+### GetDuration
+
+`func (o *TypesCommitmentInfo) GetDuration() TypesBillingPeriod`
+
+GetDuration returns the Duration field if non-nil, zero value otherwise.
+
+### GetDurationOk
+
+`func (o *TypesCommitmentInfo) GetDurationOk() (*TypesBillingPeriod, bool)`
+
+GetDurationOk returns a tuple with the Duration field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetDuration
+
+`func (o *TypesCommitmentInfo) SetDuration(v TypesBillingPeriod)`
+
+SetDuration sets Duration field to given value.
+
+### HasDuration
+
+`func (o *TypesCommitmentInfo) HasDuration() bool`
+
+HasDuration returns a boolean if a field has been set.
 
 ### GetIsWindowed
 

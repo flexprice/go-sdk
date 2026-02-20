@@ -24,6 +24,7 @@ type TypesSyncConfig struct {
 	Payment *TypesEntitySyncConfig `json:"payment,omitempty"`
 	Plan *TypesEntitySyncConfig `json:"plan,omitempty"`
 	Quote *TypesEntitySyncConfig `json:"quote,omitempty"`
+	S3 *TypesS3ExportConfig `json:"s3,omitempty"`
 	Subscription *TypesEntitySyncConfig `json:"subscription,omitempty"`
 }
 
@@ -204,6 +205,38 @@ func (o *TypesSyncConfig) SetQuote(v TypesEntitySyncConfig) {
 	o.Quote = &v
 }
 
+// GetS3 returns the S3 field value if set, zero value otherwise.
+func (o *TypesSyncConfig) GetS3() TypesS3ExportConfig {
+	if o == nil || IsNil(o.S3) {
+		var ret TypesS3ExportConfig
+		return ret
+	}
+	return *o.S3
+}
+
+// GetS3Ok returns a tuple with the S3 field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TypesSyncConfig) GetS3Ok() (*TypesS3ExportConfig, bool) {
+	if o == nil || IsNil(o.S3) {
+		return nil, false
+	}
+	return o.S3, true
+}
+
+// HasS3 returns a boolean if a field has been set.
+func (o *TypesSyncConfig) HasS3() bool {
+	if o != nil && !IsNil(o.S3) {
+		return true
+	}
+
+	return false
+}
+
+// SetS3 gets a reference to the given TypesS3ExportConfig and assigns it to the S3 field.
+func (o *TypesSyncConfig) SetS3(v TypesS3ExportConfig) {
+	o.S3 = &v
+}
+
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
 func (o *TypesSyncConfig) GetSubscription() TypesEntitySyncConfig {
 	if o == nil || IsNil(o.Subscription) {
@@ -260,6 +293,9 @@ func (o TypesSyncConfig) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.Quote) {
 		toSerialize["quote"] = o.Quote
+	}
+	if !IsNil(o.S3) {
+		toSerialize["s3"] = o.S3
 	}
 	if !IsNil(o.Subscription) {
 		toSerialize["subscription"] = o.Subscription

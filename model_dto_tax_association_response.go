@@ -19,24 +19,30 @@ var _ MappedNullable = &DtoTaxAssociationResponse{}
 
 // DtoTaxAssociationResponse struct for DtoTaxAssociationResponse
 type DtoTaxAssociationResponse struct {
+	// Whether this tax should be automatically applied
 	AutoApply *bool `json:"auto_apply,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
+	// Currency
 	Currency *string `json:"currency,omitempty"`
+	// ID of the entity this tax rate applies to
 	EntityId *string `json:"entity_id,omitempty"`
 	EntityType *TypesTaxRateEntityType `json:"entity_type,omitempty"`
+	// EnvironmentID is the ID of the environment this tax rate config belongs to
 	EnvironmentId *string `json:"environment_id,omitempty"`
+	// ID of the ent.
 	Id *string `json:"id,omitempty"`
+	// Metadata holds the value of the \"metadata\" field.
 	Metadata *map[string]string `json:"metadata,omitempty"`
+	// Priority for tax resolution (lower number = higher priority)
 	Priority *int32 `json:"priority,omitempty"`
-	Status *string `json:"status,omitempty"`
+	Status *TypesStatus `json:"status,omitempty"`
 	TaxRate *DtoTaxRateResponse `json:"tax_rate,omitempty"`
+	// Reference to the TaxRate entity
 	TaxRateId *string `json:"tax_rate_id,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	UpdatedBy *string `json:"updated_by,omitempty"`
-	ValidFrom *string `json:"valid_from,omitempty"`
-	ValidTo *string `json:"valid_to,omitempty"`
 }
 
 // NewDtoTaxAssociationResponse instantiates a new DtoTaxAssociationResponse object
@@ -377,9 +383,9 @@ func (o *DtoTaxAssociationResponse) SetPriority(v int32) {
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *DtoTaxAssociationResponse) GetStatus() string {
+func (o *DtoTaxAssociationResponse) GetStatus() TypesStatus {
 	if o == nil || IsNil(o.Status) {
-		var ret string
+		var ret TypesStatus
 		return ret
 	}
 	return *o.Status
@@ -387,7 +393,7 @@ func (o *DtoTaxAssociationResponse) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoTaxAssociationResponse) GetStatusOk() (*string, bool) {
+func (o *DtoTaxAssociationResponse) GetStatusOk() (*TypesStatus, bool) {
 	if o == nil || IsNil(o.Status) {
 		return nil, false
 	}
@@ -403,8 +409,8 @@ func (o *DtoTaxAssociationResponse) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *DtoTaxAssociationResponse) SetStatus(v string) {
+// SetStatus gets a reference to the given TypesStatus and assigns it to the Status field.
+func (o *DtoTaxAssociationResponse) SetStatus(v TypesStatus) {
 	o.Status = &v
 }
 
@@ -568,70 +574,6 @@ func (o *DtoTaxAssociationResponse) SetUpdatedBy(v string) {
 	o.UpdatedBy = &v
 }
 
-// GetValidFrom returns the ValidFrom field value if set, zero value otherwise.
-func (o *DtoTaxAssociationResponse) GetValidFrom() string {
-	if o == nil || IsNil(o.ValidFrom) {
-		var ret string
-		return ret
-	}
-	return *o.ValidFrom
-}
-
-// GetValidFromOk returns a tuple with the ValidFrom field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoTaxAssociationResponse) GetValidFromOk() (*string, bool) {
-	if o == nil || IsNil(o.ValidFrom) {
-		return nil, false
-	}
-	return o.ValidFrom, true
-}
-
-// HasValidFrom returns a boolean if a field has been set.
-func (o *DtoTaxAssociationResponse) HasValidFrom() bool {
-	if o != nil && !IsNil(o.ValidFrom) {
-		return true
-	}
-
-	return false
-}
-
-// SetValidFrom gets a reference to the given string and assigns it to the ValidFrom field.
-func (o *DtoTaxAssociationResponse) SetValidFrom(v string) {
-	o.ValidFrom = &v
-}
-
-// GetValidTo returns the ValidTo field value if set, zero value otherwise.
-func (o *DtoTaxAssociationResponse) GetValidTo() string {
-	if o == nil || IsNil(o.ValidTo) {
-		var ret string
-		return ret
-	}
-	return *o.ValidTo
-}
-
-// GetValidToOk returns a tuple with the ValidTo field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *DtoTaxAssociationResponse) GetValidToOk() (*string, bool) {
-	if o == nil || IsNil(o.ValidTo) {
-		return nil, false
-	}
-	return o.ValidTo, true
-}
-
-// HasValidTo returns a boolean if a field has been set.
-func (o *DtoTaxAssociationResponse) HasValidTo() bool {
-	if o != nil && !IsNil(o.ValidTo) {
-		return true
-	}
-
-	return false
-}
-
-// SetValidTo gets a reference to the given string and assigns it to the ValidTo field.
-func (o *DtoTaxAssociationResponse) SetValidTo(v string) {
-	o.ValidTo = &v
-}
-
 func (o DtoTaxAssociationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize,err := o.ToMap()
 	if err != nil {
@@ -689,12 +631,6 @@ func (o DtoTaxAssociationResponse) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.UpdatedBy) {
 		toSerialize["updated_by"] = o.UpdatedBy
-	}
-	if !IsNil(o.ValidFrom) {
-		toSerialize["valid_from"] = o.ValidFrom
-	}
-	if !IsNil(o.ValidTo) {
-		toSerialize["valid_to"] = o.ValidTo
 	}
 	return toSerialize, nil
 }

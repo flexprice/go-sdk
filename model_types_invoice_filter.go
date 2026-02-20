@@ -40,6 +40,14 @@ type TypesInvoiceFilter struct {
 	Order *string `json:"order,omitempty"`
 	// payment_status filters by the payment state of invoices Multiple statuses can be specified to include invoices with any of the listed payment states
 	PaymentStatus []TypesPaymentStatus `json:"payment_status,omitempty"`
+	// period_end_gte filters invoices with period_end >= value
+	PeriodEndGte *string `json:"period_end_gte,omitempty"`
+	// period_end_lte filters invoices with period_end <= value
+	PeriodEndLte *string `json:"period_end_lte,omitempty"`
+	// period_start_gte filters invoices with period_start >= value
+	PeriodStartGte *string `json:"period_start_gte,omitempty"`
+	// period_start_lte filters invoices with period_start <= value
+	PeriodStartLte *string `json:"period_start_lte,omitempty"`
 	// SkipLineItems if true, will not include line items in the response
 	SkipLineItems *bool `json:"skip_line_items,omitempty"`
 	Sort []TypesSortCondition `json:"sort,omitempty"`
@@ -514,6 +522,134 @@ func (o *TypesInvoiceFilter) SetPaymentStatus(v []TypesPaymentStatus) {
 	o.PaymentStatus = v
 }
 
+// GetPeriodEndGte returns the PeriodEndGte field value if set, zero value otherwise.
+func (o *TypesInvoiceFilter) GetPeriodEndGte() string {
+	if o == nil || IsNil(o.PeriodEndGte) {
+		var ret string
+		return ret
+	}
+	return *o.PeriodEndGte
+}
+
+// GetPeriodEndGteOk returns a tuple with the PeriodEndGte field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TypesInvoiceFilter) GetPeriodEndGteOk() (*string, bool) {
+	if o == nil || IsNil(o.PeriodEndGte) {
+		return nil, false
+	}
+	return o.PeriodEndGte, true
+}
+
+// HasPeriodEndGte returns a boolean if a field has been set.
+func (o *TypesInvoiceFilter) HasPeriodEndGte() bool {
+	if o != nil && !IsNil(o.PeriodEndGte) {
+		return true
+	}
+
+	return false
+}
+
+// SetPeriodEndGte gets a reference to the given string and assigns it to the PeriodEndGte field.
+func (o *TypesInvoiceFilter) SetPeriodEndGte(v string) {
+	o.PeriodEndGte = &v
+}
+
+// GetPeriodEndLte returns the PeriodEndLte field value if set, zero value otherwise.
+func (o *TypesInvoiceFilter) GetPeriodEndLte() string {
+	if o == nil || IsNil(o.PeriodEndLte) {
+		var ret string
+		return ret
+	}
+	return *o.PeriodEndLte
+}
+
+// GetPeriodEndLteOk returns a tuple with the PeriodEndLte field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TypesInvoiceFilter) GetPeriodEndLteOk() (*string, bool) {
+	if o == nil || IsNil(o.PeriodEndLte) {
+		return nil, false
+	}
+	return o.PeriodEndLte, true
+}
+
+// HasPeriodEndLte returns a boolean if a field has been set.
+func (o *TypesInvoiceFilter) HasPeriodEndLte() bool {
+	if o != nil && !IsNil(o.PeriodEndLte) {
+		return true
+	}
+
+	return false
+}
+
+// SetPeriodEndLte gets a reference to the given string and assigns it to the PeriodEndLte field.
+func (o *TypesInvoiceFilter) SetPeriodEndLte(v string) {
+	o.PeriodEndLte = &v
+}
+
+// GetPeriodStartGte returns the PeriodStartGte field value if set, zero value otherwise.
+func (o *TypesInvoiceFilter) GetPeriodStartGte() string {
+	if o == nil || IsNil(o.PeriodStartGte) {
+		var ret string
+		return ret
+	}
+	return *o.PeriodStartGte
+}
+
+// GetPeriodStartGteOk returns a tuple with the PeriodStartGte field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TypesInvoiceFilter) GetPeriodStartGteOk() (*string, bool) {
+	if o == nil || IsNil(o.PeriodStartGte) {
+		return nil, false
+	}
+	return o.PeriodStartGte, true
+}
+
+// HasPeriodStartGte returns a boolean if a field has been set.
+func (o *TypesInvoiceFilter) HasPeriodStartGte() bool {
+	if o != nil && !IsNil(o.PeriodStartGte) {
+		return true
+	}
+
+	return false
+}
+
+// SetPeriodStartGte gets a reference to the given string and assigns it to the PeriodStartGte field.
+func (o *TypesInvoiceFilter) SetPeriodStartGte(v string) {
+	o.PeriodStartGte = &v
+}
+
+// GetPeriodStartLte returns the PeriodStartLte field value if set, zero value otherwise.
+func (o *TypesInvoiceFilter) GetPeriodStartLte() string {
+	if o == nil || IsNil(o.PeriodStartLte) {
+		var ret string
+		return ret
+	}
+	return *o.PeriodStartLte
+}
+
+// GetPeriodStartLteOk returns a tuple with the PeriodStartLte field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TypesInvoiceFilter) GetPeriodStartLteOk() (*string, bool) {
+	if o == nil || IsNil(o.PeriodStartLte) {
+		return nil, false
+	}
+	return o.PeriodStartLte, true
+}
+
+// HasPeriodStartLte returns a boolean if a field has been set.
+func (o *TypesInvoiceFilter) HasPeriodStartLte() bool {
+	if o != nil && !IsNil(o.PeriodStartLte) {
+		return true
+	}
+
+	return false
+}
+
+// SetPeriodStartLte gets a reference to the given string and assigns it to the PeriodStartLte field.
+func (o *TypesInvoiceFilter) SetPeriodStartLte(v string) {
+	o.PeriodStartLte = &v
+}
+
 // GetSkipLineItems returns the SkipLineItems field value if set, zero value otherwise.
 func (o *TypesInvoiceFilter) GetSkipLineItems() bool {
 	if o == nil || IsNil(o.SkipLineItems) {
@@ -725,6 +861,18 @@ func (o TypesInvoiceFilter) ToMap() (map[string]interface{}, error) {
 	}
 	if !IsNil(o.PaymentStatus) {
 		toSerialize["payment_status"] = o.PaymentStatus
+	}
+	if !IsNil(o.PeriodEndGte) {
+		toSerialize["period_end_gte"] = o.PeriodEndGte
+	}
+	if !IsNil(o.PeriodEndLte) {
+		toSerialize["period_end_lte"] = o.PeriodEndLte
+	}
+	if !IsNil(o.PeriodStartGte) {
+		toSerialize["period_start_gte"] = o.PeriodStartGte
+	}
+	if !IsNil(o.PeriodStartLte) {
+		toSerialize["period_start_lte"] = o.PeriodStartLte
 	}
 	if !IsNil(o.SkipLineItems) {
 		toSerialize["skip_line_items"] = o.SkipLineItems

@@ -24,6 +24,7 @@ type DtoUpdateSubscriptionLineItemRequest struct {
 	BillingModel *TypesBillingModel `json:"billing_model,omitempty"`
 	// Commitment fields
 	CommitmentAmount *float32 `json:"commitment_amount,omitempty"`
+	CommitmentDuration *TypesBillingPeriod `json:"commitment_duration,omitempty"`
 	CommitmentOverageFactor *float32 `json:"commitment_overage_factor,omitempty"`
 	CommitmentQuantity *float32 `json:"commitment_quantity,omitempty"`
 	CommitmentTrueUpEnabled *bool `json:"commitment_true_up_enabled,omitempty"`
@@ -150,6 +151,38 @@ func (o *DtoUpdateSubscriptionLineItemRequest) HasCommitmentAmount() bool {
 // SetCommitmentAmount gets a reference to the given float32 and assigns it to the CommitmentAmount field.
 func (o *DtoUpdateSubscriptionLineItemRequest) SetCommitmentAmount(v float32) {
 	o.CommitmentAmount = &v
+}
+
+// GetCommitmentDuration returns the CommitmentDuration field value if set, zero value otherwise.
+func (o *DtoUpdateSubscriptionLineItemRequest) GetCommitmentDuration() TypesBillingPeriod {
+	if o == nil || IsNil(o.CommitmentDuration) {
+		var ret TypesBillingPeriod
+		return ret
+	}
+	return *o.CommitmentDuration
+}
+
+// GetCommitmentDurationOk returns a tuple with the CommitmentDuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DtoUpdateSubscriptionLineItemRequest) GetCommitmentDurationOk() (*TypesBillingPeriod, bool) {
+	if o == nil || IsNil(o.CommitmentDuration) {
+		return nil, false
+	}
+	return o.CommitmentDuration, true
+}
+
+// HasCommitmentDuration returns a boolean if a field has been set.
+func (o *DtoUpdateSubscriptionLineItemRequest) HasCommitmentDuration() bool {
+	if o != nil && !IsNil(o.CommitmentDuration) {
+		return true
+	}
+
+	return false
+}
+
+// SetCommitmentDuration gets a reference to the given TypesBillingPeriod and assigns it to the CommitmentDuration field.
+func (o *DtoUpdateSubscriptionLineItemRequest) SetCommitmentDuration(v TypesBillingPeriod) {
+	o.CommitmentDuration = &v
 }
 
 // GetCommitmentOverageFactor returns the CommitmentOverageFactor field value if set, zero value otherwise.
@@ -490,6 +523,9 @@ func (o DtoUpdateSubscriptionLineItemRequest) ToMap() (map[string]interface{}, e
 	}
 	if !IsNil(o.CommitmentAmount) {
 		toSerialize["commitment_amount"] = o.CommitmentAmount
+	}
+	if !IsNil(o.CommitmentDuration) {
+		toSerialize["commitment_duration"] = o.CommitmentDuration
 	}
 	if !IsNil(o.CommitmentOverageFactor) {
 		toSerialize["commitment_overage_factor"] = o.CommitmentOverageFactor
