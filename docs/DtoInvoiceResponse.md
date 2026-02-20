@@ -4,10 +4,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AdjustmentAmount** | Pointer to **float32** | adjustment_amount is the total sum of credit notes of type \&quot;adjustment\&quot;. These are non-cash reductions applied to the invoice (e.g. goodwill credit, billing correction). | [optional] 
-**AmountDue** | Pointer to **float32** | amount_due is the total amount that needs to be paid for this invoice | [optional] 
-**AmountPaid** | Pointer to **float32** | amount_paid is the amount that has already been paid towards this invoice | [optional] 
-**AmountRemaining** | Pointer to **float32** | amount_remaining is the outstanding amount still owed on this invoice (calculated as amount_due minus amount_paid) | [optional] 
+**AdjustmentAmount** | Pointer to **string** | adjustment_amount is the total sum of credit notes of type \&quot;adjustment\&quot;. These are non-cash reductions applied to the invoice (e.g. goodwill credit, billing correction). | [optional] 
+**AmountDue** | Pointer to **string** | amount_due is the total amount that needs to be paid for this invoice | [optional] 
+**AmountPaid** | Pointer to **string** | amount_paid is the amount that has already been paid towards this invoice | [optional] 
+**AmountRemaining** | Pointer to **string** | amount_remaining is the outstanding amount still owed on this invoice (calculated as amount_due minus amount_paid) | [optional] 
 **BillingPeriod** | Pointer to **string** | billing_period describes the billing period this invoice covers (e.g., \&quot;January 2024\&quot;, \&quot;Q1 2024\&quot;) | [optional] 
 **BillingReason** | Pointer to **string** | billing_reason indicates why this invoice was generated (e.g., \&quot;subscription_billing\&quot;, \&quot;manual_charge\&quot;) | [optional] 
 **BillingSequence** | Pointer to **int32** | billing_sequence is the sequential number indicating the billing cycle for subscription invoices | [optional] 
@@ -34,17 +34,17 @@ Name | Type | Description | Notes
 **PaymentStatus** | Pointer to [**TypesPaymentStatus**](TypesPaymentStatus.md) |  | [optional] 
 **PeriodEnd** | Pointer to **string** | period_end is the end date of the billing period covered by this invoice | [optional] 
 **PeriodStart** | Pointer to **string** | period_start is the start date of the billing period covered by this invoice | [optional] 
-**RefundedAmount** | Pointer to **float32** | refunded_amount is the total sum of credit notes of type \&quot;refund\&quot;. These are actual refunds issued to the customer. | [optional] 
+**RefundedAmount** | Pointer to **string** | refunded_amount is the total sum of credit notes of type \&quot;refund\&quot;. These are actual refunds issued to the customer. | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **Subscription** | Pointer to [**DtoSubscriptionResponse**](DtoSubscriptionResponse.md) |  | [optional] 
 **SubscriptionId** | Pointer to **string** | subscription_id is the ID of the subscription this invoice is associated with (only present for subscription-based invoices) | [optional] 
-**Subtotal** | Pointer to **float32** | subtotal is the sum of all line items before any taxes, discounts, or additional fees | [optional] 
+**Subtotal** | Pointer to **string** | subtotal is the sum of all line items before any taxes, discounts, or additional fees | [optional] 
 **Taxes** | Pointer to [**[]DtoTaxAppliedResponse**](DtoTaxAppliedResponse.md) | tax_applied_records contains the tax applied records associated with this invoice | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
-**Total** | Pointer to **float32** | total is the final amount including taxes, fees, and discounts | [optional] 
-**TotalDiscount** | Pointer to **float32** | total_discount is the sum of all coupon discounts applied to the invoice | [optional] 
-**TotalPrepaidCreditsApplied** | Pointer to **float32** | total_prepaid_credits_applied is the total amount of prepaid credits applied to this invoice. | [optional] 
-**TotalTax** | Pointer to **float32** | total_tax is the sum of all taxes combined at the invoice level. | [optional] 
+**Total** | Pointer to **string** | total is the final amount including taxes, fees, and discounts | [optional] 
+**TotalDiscount** | Pointer to **string** | total_discount is the sum of all coupon discounts applied to the invoice | [optional] 
+**TotalPrepaidCreditsApplied** | Pointer to **string** | total_prepaid_credits_applied is the total amount of prepaid credits applied to this invoice. | [optional] 
+**TotalTax** | Pointer to **string** | total_tax is the sum of all taxes combined at the invoice level. | [optional] 
 **UpdatedAt** | Pointer to **string** |  | [optional] 
 **UpdatedBy** | Pointer to **string** |  | [optional] 
 **Version** | Pointer to **int32** | version is the version number for tracking changes to this invoice | [optional] 
@@ -71,20 +71,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAdjustmentAmount
 
-`func (o *DtoInvoiceResponse) GetAdjustmentAmount() float32`
+`func (o *DtoInvoiceResponse) GetAdjustmentAmount() string`
 
 GetAdjustmentAmount returns the AdjustmentAmount field if non-nil, zero value otherwise.
 
 ### GetAdjustmentAmountOk
 
-`func (o *DtoInvoiceResponse) GetAdjustmentAmountOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetAdjustmentAmountOk() (*string, bool)`
 
 GetAdjustmentAmountOk returns a tuple with the AdjustmentAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAdjustmentAmount
 
-`func (o *DtoInvoiceResponse) SetAdjustmentAmount(v float32)`
+`func (o *DtoInvoiceResponse) SetAdjustmentAmount(v string)`
 
 SetAdjustmentAmount sets AdjustmentAmount field to given value.
 
@@ -96,20 +96,20 @@ HasAdjustmentAmount returns a boolean if a field has been set.
 
 ### GetAmountDue
 
-`func (o *DtoInvoiceResponse) GetAmountDue() float32`
+`func (o *DtoInvoiceResponse) GetAmountDue() string`
 
 GetAmountDue returns the AmountDue field if non-nil, zero value otherwise.
 
 ### GetAmountDueOk
 
-`func (o *DtoInvoiceResponse) GetAmountDueOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetAmountDueOk() (*string, bool)`
 
 GetAmountDueOk returns a tuple with the AmountDue field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmountDue
 
-`func (o *DtoInvoiceResponse) SetAmountDue(v float32)`
+`func (o *DtoInvoiceResponse) SetAmountDue(v string)`
 
 SetAmountDue sets AmountDue field to given value.
 
@@ -121,20 +121,20 @@ HasAmountDue returns a boolean if a field has been set.
 
 ### GetAmountPaid
 
-`func (o *DtoInvoiceResponse) GetAmountPaid() float32`
+`func (o *DtoInvoiceResponse) GetAmountPaid() string`
 
 GetAmountPaid returns the AmountPaid field if non-nil, zero value otherwise.
 
 ### GetAmountPaidOk
 
-`func (o *DtoInvoiceResponse) GetAmountPaidOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetAmountPaidOk() (*string, bool)`
 
 GetAmountPaidOk returns a tuple with the AmountPaid field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmountPaid
 
-`func (o *DtoInvoiceResponse) SetAmountPaid(v float32)`
+`func (o *DtoInvoiceResponse) SetAmountPaid(v string)`
 
 SetAmountPaid sets AmountPaid field to given value.
 
@@ -146,20 +146,20 @@ HasAmountPaid returns a boolean if a field has been set.
 
 ### GetAmountRemaining
 
-`func (o *DtoInvoiceResponse) GetAmountRemaining() float32`
+`func (o *DtoInvoiceResponse) GetAmountRemaining() string`
 
 GetAmountRemaining returns the AmountRemaining field if non-nil, zero value otherwise.
 
 ### GetAmountRemainingOk
 
-`func (o *DtoInvoiceResponse) GetAmountRemainingOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetAmountRemainingOk() (*string, bool)`
 
 GetAmountRemainingOk returns a tuple with the AmountRemaining field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmountRemaining
 
-`func (o *DtoInvoiceResponse) SetAmountRemaining(v float32)`
+`func (o *DtoInvoiceResponse) SetAmountRemaining(v string)`
 
 SetAmountRemaining sets AmountRemaining field to given value.
 
@@ -821,20 +821,20 @@ HasPeriodStart returns a boolean if a field has been set.
 
 ### GetRefundedAmount
 
-`func (o *DtoInvoiceResponse) GetRefundedAmount() float32`
+`func (o *DtoInvoiceResponse) GetRefundedAmount() string`
 
 GetRefundedAmount returns the RefundedAmount field if non-nil, zero value otherwise.
 
 ### GetRefundedAmountOk
 
-`func (o *DtoInvoiceResponse) GetRefundedAmountOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetRefundedAmountOk() (*string, bool)`
 
 GetRefundedAmountOk returns a tuple with the RefundedAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetRefundedAmount
 
-`func (o *DtoInvoiceResponse) SetRefundedAmount(v float32)`
+`func (o *DtoInvoiceResponse) SetRefundedAmount(v string)`
 
 SetRefundedAmount sets RefundedAmount field to given value.
 
@@ -921,20 +921,20 @@ HasSubscriptionId returns a boolean if a field has been set.
 
 ### GetSubtotal
 
-`func (o *DtoInvoiceResponse) GetSubtotal() float32`
+`func (o *DtoInvoiceResponse) GetSubtotal() string`
 
 GetSubtotal returns the Subtotal field if non-nil, zero value otherwise.
 
 ### GetSubtotalOk
 
-`func (o *DtoInvoiceResponse) GetSubtotalOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetSubtotalOk() (*string, bool)`
 
 GetSubtotalOk returns a tuple with the Subtotal field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSubtotal
 
-`func (o *DtoInvoiceResponse) SetSubtotal(v float32)`
+`func (o *DtoInvoiceResponse) SetSubtotal(v string)`
 
 SetSubtotal sets Subtotal field to given value.
 
@@ -996,20 +996,20 @@ HasTenantId returns a boolean if a field has been set.
 
 ### GetTotal
 
-`func (o *DtoInvoiceResponse) GetTotal() float32`
+`func (o *DtoInvoiceResponse) GetTotal() string`
 
 GetTotal returns the Total field if non-nil, zero value otherwise.
 
 ### GetTotalOk
 
-`func (o *DtoInvoiceResponse) GetTotalOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetTotalOk() (*string, bool)`
 
 GetTotalOk returns a tuple with the Total field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotal
 
-`func (o *DtoInvoiceResponse) SetTotal(v float32)`
+`func (o *DtoInvoiceResponse) SetTotal(v string)`
 
 SetTotal sets Total field to given value.
 
@@ -1021,20 +1021,20 @@ HasTotal returns a boolean if a field has been set.
 
 ### GetTotalDiscount
 
-`func (o *DtoInvoiceResponse) GetTotalDiscount() float32`
+`func (o *DtoInvoiceResponse) GetTotalDiscount() string`
 
 GetTotalDiscount returns the TotalDiscount field if non-nil, zero value otherwise.
 
 ### GetTotalDiscountOk
 
-`func (o *DtoInvoiceResponse) GetTotalDiscountOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetTotalDiscountOk() (*string, bool)`
 
 GetTotalDiscountOk returns a tuple with the TotalDiscount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalDiscount
 
-`func (o *DtoInvoiceResponse) SetTotalDiscount(v float32)`
+`func (o *DtoInvoiceResponse) SetTotalDiscount(v string)`
 
 SetTotalDiscount sets TotalDiscount field to given value.
 
@@ -1046,20 +1046,20 @@ HasTotalDiscount returns a boolean if a field has been set.
 
 ### GetTotalPrepaidCreditsApplied
 
-`func (o *DtoInvoiceResponse) GetTotalPrepaidCreditsApplied() float32`
+`func (o *DtoInvoiceResponse) GetTotalPrepaidCreditsApplied() string`
 
 GetTotalPrepaidCreditsApplied returns the TotalPrepaidCreditsApplied field if non-nil, zero value otherwise.
 
 ### GetTotalPrepaidCreditsAppliedOk
 
-`func (o *DtoInvoiceResponse) GetTotalPrepaidCreditsAppliedOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetTotalPrepaidCreditsAppliedOk() (*string, bool)`
 
 GetTotalPrepaidCreditsAppliedOk returns a tuple with the TotalPrepaidCreditsApplied field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalPrepaidCreditsApplied
 
-`func (o *DtoInvoiceResponse) SetTotalPrepaidCreditsApplied(v float32)`
+`func (o *DtoInvoiceResponse) SetTotalPrepaidCreditsApplied(v string)`
 
 SetTotalPrepaidCreditsApplied sets TotalPrepaidCreditsApplied field to given value.
 
@@ -1071,20 +1071,20 @@ HasTotalPrepaidCreditsApplied returns a boolean if a field has been set.
 
 ### GetTotalTax
 
-`func (o *DtoInvoiceResponse) GetTotalTax() float32`
+`func (o *DtoInvoiceResponse) GetTotalTax() string`
 
 GetTotalTax returns the TotalTax field if non-nil, zero value otherwise.
 
 ### GetTotalTaxOk
 
-`func (o *DtoInvoiceResponse) GetTotalTaxOk() (*float32, bool)`
+`func (o *DtoInvoiceResponse) GetTotalTaxOk() (*string, bool)`
 
 GetTotalTaxOk returns a tuple with the TotalTax field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetTotalTax
 
-`func (o *DtoInvoiceResponse) SetTotalTax(v float32)`
+`func (o *DtoInvoiceResponse) SetTotalTax(v string)`
 
 SetTotalTax sets TotalTax field to given value.
 

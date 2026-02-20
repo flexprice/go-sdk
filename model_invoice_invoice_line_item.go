@@ -19,7 +19,7 @@ var _ MappedNullable = &InvoiceInvoiceLineItem{}
 
 // InvoiceInvoiceLineItem struct for InvoiceInvoiceLineItem
 type InvoiceInvoiceLineItem struct {
-	Amount *float32 `json:"amount,omitempty"`
+	Amount *string `json:"amount,omitempty"`
 	CommitmentInfo *TypesCommitmentInfo `json:"commitment_info,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
@@ -32,9 +32,9 @@ type InvoiceInvoiceLineItem struct {
 	Id *string `json:"id,omitempty"`
 	InvoiceId *string `json:"invoice_id,omitempty"`
 	// invoice_level_discount is the discount amount in invoice currency applied to all line items on the invoice.
-	InvoiceLevelDiscount *float32 `json:"invoice_level_discount,omitempty"`
+	InvoiceLevelDiscount *string `json:"invoice_level_discount,omitempty"`
 	// line_item_discount is the discount amount in invoice currency applied directly to this line item.
-	LineItemDiscount *float32 `json:"line_item_discount,omitempty"`
+	LineItemDiscount *string `json:"line_item_discount,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	MeterDisplayName *string `json:"meter_display_name,omitempty"`
 	MeterId *string `json:"meter_id,omitempty"`
@@ -42,13 +42,13 @@ type InvoiceInvoiceLineItem struct {
 	PeriodStart *string `json:"period_start,omitempty"`
 	PlanDisplayName *string `json:"plan_display_name,omitempty"`
 	// prepaid_credits_applied is the amount in invoice currency reduced from this line item due to prepaid credits application.
-	PrepaidCreditsApplied *float32 `json:"prepaid_credits_applied,omitempty"`
+	PrepaidCreditsApplied *string `json:"prepaid_credits_applied,omitempty"`
 	PriceId *string `json:"price_id,omitempty"`
 	PriceType *string `json:"price_type,omitempty"`
 	PriceUnit *string `json:"price_unit,omitempty"`
-	PriceUnitAmount *float32 `json:"price_unit_amount,omitempty"`
+	PriceUnitAmount *string `json:"price_unit_amount,omitempty"`
 	PriceUnitId *string `json:"price_unit_id,omitempty"`
-	Quantity *float32 `json:"quantity,omitempty"`
+	Quantity *string `json:"quantity,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
@@ -74,9 +74,9 @@ func NewInvoiceInvoiceLineItemWithDefaults() *InvoiceInvoiceLineItem {
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *InvoiceInvoiceLineItem) GetAmount() float32 {
+func (o *InvoiceInvoiceLineItem) GetAmount() string {
 	if o == nil || IsNil(o.Amount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Amount
@@ -84,7 +84,7 @@ func (o *InvoiceInvoiceLineItem) GetAmount() float32 {
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvoiceInvoiceLineItem) GetAmountOk() (*float32, bool) {
+func (o *InvoiceInvoiceLineItem) GetAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
@@ -100,8 +100,8 @@ func (o *InvoiceInvoiceLineItem) HasAmount() bool {
 	return false
 }
 
-// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
-func (o *InvoiceInvoiceLineItem) SetAmount(v float32) {
+// SetAmount gets a reference to the given string and assigns it to the Amount field.
+func (o *InvoiceInvoiceLineItem) SetAmount(v string) {
 	o.Amount = &v
 }
 
@@ -458,9 +458,9 @@ func (o *InvoiceInvoiceLineItem) SetInvoiceId(v string) {
 }
 
 // GetInvoiceLevelDiscount returns the InvoiceLevelDiscount field value if set, zero value otherwise.
-func (o *InvoiceInvoiceLineItem) GetInvoiceLevelDiscount() float32 {
+func (o *InvoiceInvoiceLineItem) GetInvoiceLevelDiscount() string {
 	if o == nil || IsNil(o.InvoiceLevelDiscount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.InvoiceLevelDiscount
@@ -468,7 +468,7 @@ func (o *InvoiceInvoiceLineItem) GetInvoiceLevelDiscount() float32 {
 
 // GetInvoiceLevelDiscountOk returns a tuple with the InvoiceLevelDiscount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvoiceInvoiceLineItem) GetInvoiceLevelDiscountOk() (*float32, bool) {
+func (o *InvoiceInvoiceLineItem) GetInvoiceLevelDiscountOk() (*string, bool) {
 	if o == nil || IsNil(o.InvoiceLevelDiscount) {
 		return nil, false
 	}
@@ -484,15 +484,15 @@ func (o *InvoiceInvoiceLineItem) HasInvoiceLevelDiscount() bool {
 	return false
 }
 
-// SetInvoiceLevelDiscount gets a reference to the given float32 and assigns it to the InvoiceLevelDiscount field.
-func (o *InvoiceInvoiceLineItem) SetInvoiceLevelDiscount(v float32) {
+// SetInvoiceLevelDiscount gets a reference to the given string and assigns it to the InvoiceLevelDiscount field.
+func (o *InvoiceInvoiceLineItem) SetInvoiceLevelDiscount(v string) {
 	o.InvoiceLevelDiscount = &v
 }
 
 // GetLineItemDiscount returns the LineItemDiscount field value if set, zero value otherwise.
-func (o *InvoiceInvoiceLineItem) GetLineItemDiscount() float32 {
+func (o *InvoiceInvoiceLineItem) GetLineItemDiscount() string {
 	if o == nil || IsNil(o.LineItemDiscount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.LineItemDiscount
@@ -500,7 +500,7 @@ func (o *InvoiceInvoiceLineItem) GetLineItemDiscount() float32 {
 
 // GetLineItemDiscountOk returns a tuple with the LineItemDiscount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvoiceInvoiceLineItem) GetLineItemDiscountOk() (*float32, bool) {
+func (o *InvoiceInvoiceLineItem) GetLineItemDiscountOk() (*string, bool) {
 	if o == nil || IsNil(o.LineItemDiscount) {
 		return nil, false
 	}
@@ -516,8 +516,8 @@ func (o *InvoiceInvoiceLineItem) HasLineItemDiscount() bool {
 	return false
 }
 
-// SetLineItemDiscount gets a reference to the given float32 and assigns it to the LineItemDiscount field.
-func (o *InvoiceInvoiceLineItem) SetLineItemDiscount(v float32) {
+// SetLineItemDiscount gets a reference to the given string and assigns it to the LineItemDiscount field.
+func (o *InvoiceInvoiceLineItem) SetLineItemDiscount(v string) {
 	o.LineItemDiscount = &v
 }
 
@@ -714,9 +714,9 @@ func (o *InvoiceInvoiceLineItem) SetPlanDisplayName(v string) {
 }
 
 // GetPrepaidCreditsApplied returns the PrepaidCreditsApplied field value if set, zero value otherwise.
-func (o *InvoiceInvoiceLineItem) GetPrepaidCreditsApplied() float32 {
+func (o *InvoiceInvoiceLineItem) GetPrepaidCreditsApplied() string {
 	if o == nil || IsNil(o.PrepaidCreditsApplied) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.PrepaidCreditsApplied
@@ -724,7 +724,7 @@ func (o *InvoiceInvoiceLineItem) GetPrepaidCreditsApplied() float32 {
 
 // GetPrepaidCreditsAppliedOk returns a tuple with the PrepaidCreditsApplied field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvoiceInvoiceLineItem) GetPrepaidCreditsAppliedOk() (*float32, bool) {
+func (o *InvoiceInvoiceLineItem) GetPrepaidCreditsAppliedOk() (*string, bool) {
 	if o == nil || IsNil(o.PrepaidCreditsApplied) {
 		return nil, false
 	}
@@ -740,8 +740,8 @@ func (o *InvoiceInvoiceLineItem) HasPrepaidCreditsApplied() bool {
 	return false
 }
 
-// SetPrepaidCreditsApplied gets a reference to the given float32 and assigns it to the PrepaidCreditsApplied field.
-func (o *InvoiceInvoiceLineItem) SetPrepaidCreditsApplied(v float32) {
+// SetPrepaidCreditsApplied gets a reference to the given string and assigns it to the PrepaidCreditsApplied field.
+func (o *InvoiceInvoiceLineItem) SetPrepaidCreditsApplied(v string) {
 	o.PrepaidCreditsApplied = &v
 }
 
@@ -842,9 +842,9 @@ func (o *InvoiceInvoiceLineItem) SetPriceUnit(v string) {
 }
 
 // GetPriceUnitAmount returns the PriceUnitAmount field value if set, zero value otherwise.
-func (o *InvoiceInvoiceLineItem) GetPriceUnitAmount() float32 {
+func (o *InvoiceInvoiceLineItem) GetPriceUnitAmount() string {
 	if o == nil || IsNil(o.PriceUnitAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.PriceUnitAmount
@@ -852,7 +852,7 @@ func (o *InvoiceInvoiceLineItem) GetPriceUnitAmount() float32 {
 
 // GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvoiceInvoiceLineItem) GetPriceUnitAmountOk() (*float32, bool) {
+func (o *InvoiceInvoiceLineItem) GetPriceUnitAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.PriceUnitAmount) {
 		return nil, false
 	}
@@ -868,8 +868,8 @@ func (o *InvoiceInvoiceLineItem) HasPriceUnitAmount() bool {
 	return false
 }
 
-// SetPriceUnitAmount gets a reference to the given float32 and assigns it to the PriceUnitAmount field.
-func (o *InvoiceInvoiceLineItem) SetPriceUnitAmount(v float32) {
+// SetPriceUnitAmount gets a reference to the given string and assigns it to the PriceUnitAmount field.
+func (o *InvoiceInvoiceLineItem) SetPriceUnitAmount(v string) {
 	o.PriceUnitAmount = &v
 }
 
@@ -906,9 +906,9 @@ func (o *InvoiceInvoiceLineItem) SetPriceUnitId(v string) {
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *InvoiceInvoiceLineItem) GetQuantity() float32 {
+func (o *InvoiceInvoiceLineItem) GetQuantity() string {
 	if o == nil || IsNil(o.Quantity) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Quantity
@@ -916,7 +916,7 @@ func (o *InvoiceInvoiceLineItem) GetQuantity() float32 {
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *InvoiceInvoiceLineItem) GetQuantityOk() (*float32, bool) {
+func (o *InvoiceInvoiceLineItem) GetQuantityOk() (*string, bool) {
 	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
@@ -932,8 +932,8 @@ func (o *InvoiceInvoiceLineItem) HasQuantity() bool {
 	return false
 }
 
-// SetQuantity gets a reference to the given float32 and assigns it to the Quantity field.
-func (o *InvoiceInvoiceLineItem) SetQuantity(v float32) {
+// SetQuantity gets a reference to the given string and assigns it to the Quantity field.
+func (o *InvoiceInvoiceLineItem) SetQuantity(v string) {
 	o.Quantity = &v
 }
 

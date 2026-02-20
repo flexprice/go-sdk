@@ -19,7 +19,7 @@ var _ MappedNullable = &DtoInvoiceLineItemResponse{}
 
 // DtoInvoiceLineItemResponse struct for DtoInvoiceLineItemResponse
 type DtoInvoiceLineItemResponse struct {
-	Amount *float32 `json:"amount,omitempty"`
+	Amount *string `json:"amount,omitempty"`
 	CommitmentInfo *TypesCommitmentInfo `json:"commitment_info,omitempty"`
 	CreatedAt *string `json:"created_at,omitempty"`
 	CreatedBy *string `json:"created_by,omitempty"`
@@ -32,9 +32,9 @@ type DtoInvoiceLineItemResponse struct {
 	Id *string `json:"id,omitempty"`
 	InvoiceId *string `json:"invoice_id,omitempty"`
 	// invoice_level_discount is the discount amount in invoice currency applied to all line items on the invoice.
-	InvoiceLevelDiscount *float32 `json:"invoice_level_discount,omitempty"`
+	InvoiceLevelDiscount *string `json:"invoice_level_discount,omitempty"`
 	// line_item_discount is the discount amount in invoice currency applied directly to this line item.
-	LineItemDiscount *float32 `json:"line_item_discount,omitempty"`
+	LineItemDiscount *string `json:"line_item_discount,omitempty"`
 	Metadata *map[string]string `json:"metadata,omitempty"`
 	MeterDisplayName *string `json:"meter_display_name,omitempty"`
 	MeterId *string `json:"meter_id,omitempty"`
@@ -42,13 +42,13 @@ type DtoInvoiceLineItemResponse struct {
 	PeriodStart *string `json:"period_start,omitempty"`
 	PlanDisplayName *string `json:"plan_display_name,omitempty"`
 	// prepaid_credits_applied is the amount in invoice currency reduced from this line item due to prepaid credits application.
-	PrepaidCreditsApplied *float32 `json:"prepaid_credits_applied,omitempty"`
+	PrepaidCreditsApplied *string `json:"prepaid_credits_applied,omitempty"`
 	PriceId *string `json:"price_id,omitempty"`
 	PriceType *string `json:"price_type,omitempty"`
 	PriceUnit *string `json:"price_unit,omitempty"`
-	PriceUnitAmount *float32 `json:"price_unit_amount,omitempty"`
+	PriceUnitAmount *string `json:"price_unit_amount,omitempty"`
 	PriceUnitId *string `json:"price_unit_id,omitempty"`
-	Quantity *float32 `json:"quantity,omitempty"`
+	Quantity *string `json:"quantity,omitempty"`
 	Status *TypesStatus `json:"status,omitempty"`
 	SubscriptionId *string `json:"subscription_id,omitempty"`
 	TenantId *string `json:"tenant_id,omitempty"`
@@ -78,9 +78,9 @@ func NewDtoInvoiceLineItemResponseWithDefaults() *DtoInvoiceLineItemResponse {
 }
 
 // GetAmount returns the Amount field value if set, zero value otherwise.
-func (o *DtoInvoiceLineItemResponse) GetAmount() float32 {
+func (o *DtoInvoiceLineItemResponse) GetAmount() string {
 	if o == nil || IsNil(o.Amount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Amount
@@ -88,7 +88,7 @@ func (o *DtoInvoiceLineItemResponse) GetAmount() float32 {
 
 // GetAmountOk returns a tuple with the Amount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoInvoiceLineItemResponse) GetAmountOk() (*float32, bool) {
+func (o *DtoInvoiceLineItemResponse) GetAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.Amount) {
 		return nil, false
 	}
@@ -104,8 +104,8 @@ func (o *DtoInvoiceLineItemResponse) HasAmount() bool {
 	return false
 }
 
-// SetAmount gets a reference to the given float32 and assigns it to the Amount field.
-func (o *DtoInvoiceLineItemResponse) SetAmount(v float32) {
+// SetAmount gets a reference to the given string and assigns it to the Amount field.
+func (o *DtoInvoiceLineItemResponse) SetAmount(v string) {
 	o.Amount = &v
 }
 
@@ -462,9 +462,9 @@ func (o *DtoInvoiceLineItemResponse) SetInvoiceId(v string) {
 }
 
 // GetInvoiceLevelDiscount returns the InvoiceLevelDiscount field value if set, zero value otherwise.
-func (o *DtoInvoiceLineItemResponse) GetInvoiceLevelDiscount() float32 {
+func (o *DtoInvoiceLineItemResponse) GetInvoiceLevelDiscount() string {
 	if o == nil || IsNil(o.InvoiceLevelDiscount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.InvoiceLevelDiscount
@@ -472,7 +472,7 @@ func (o *DtoInvoiceLineItemResponse) GetInvoiceLevelDiscount() float32 {
 
 // GetInvoiceLevelDiscountOk returns a tuple with the InvoiceLevelDiscount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoInvoiceLineItemResponse) GetInvoiceLevelDiscountOk() (*float32, bool) {
+func (o *DtoInvoiceLineItemResponse) GetInvoiceLevelDiscountOk() (*string, bool) {
 	if o == nil || IsNil(o.InvoiceLevelDiscount) {
 		return nil, false
 	}
@@ -488,15 +488,15 @@ func (o *DtoInvoiceLineItemResponse) HasInvoiceLevelDiscount() bool {
 	return false
 }
 
-// SetInvoiceLevelDiscount gets a reference to the given float32 and assigns it to the InvoiceLevelDiscount field.
-func (o *DtoInvoiceLineItemResponse) SetInvoiceLevelDiscount(v float32) {
+// SetInvoiceLevelDiscount gets a reference to the given string and assigns it to the InvoiceLevelDiscount field.
+func (o *DtoInvoiceLineItemResponse) SetInvoiceLevelDiscount(v string) {
 	o.InvoiceLevelDiscount = &v
 }
 
 // GetLineItemDiscount returns the LineItemDiscount field value if set, zero value otherwise.
-func (o *DtoInvoiceLineItemResponse) GetLineItemDiscount() float32 {
+func (o *DtoInvoiceLineItemResponse) GetLineItemDiscount() string {
 	if o == nil || IsNil(o.LineItemDiscount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.LineItemDiscount
@@ -504,7 +504,7 @@ func (o *DtoInvoiceLineItemResponse) GetLineItemDiscount() float32 {
 
 // GetLineItemDiscountOk returns a tuple with the LineItemDiscount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoInvoiceLineItemResponse) GetLineItemDiscountOk() (*float32, bool) {
+func (o *DtoInvoiceLineItemResponse) GetLineItemDiscountOk() (*string, bool) {
 	if o == nil || IsNil(o.LineItemDiscount) {
 		return nil, false
 	}
@@ -520,8 +520,8 @@ func (o *DtoInvoiceLineItemResponse) HasLineItemDiscount() bool {
 	return false
 }
 
-// SetLineItemDiscount gets a reference to the given float32 and assigns it to the LineItemDiscount field.
-func (o *DtoInvoiceLineItemResponse) SetLineItemDiscount(v float32) {
+// SetLineItemDiscount gets a reference to the given string and assigns it to the LineItemDiscount field.
+func (o *DtoInvoiceLineItemResponse) SetLineItemDiscount(v string) {
 	o.LineItemDiscount = &v
 }
 
@@ -718,9 +718,9 @@ func (o *DtoInvoiceLineItemResponse) SetPlanDisplayName(v string) {
 }
 
 // GetPrepaidCreditsApplied returns the PrepaidCreditsApplied field value if set, zero value otherwise.
-func (o *DtoInvoiceLineItemResponse) GetPrepaidCreditsApplied() float32 {
+func (o *DtoInvoiceLineItemResponse) GetPrepaidCreditsApplied() string {
 	if o == nil || IsNil(o.PrepaidCreditsApplied) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.PrepaidCreditsApplied
@@ -728,7 +728,7 @@ func (o *DtoInvoiceLineItemResponse) GetPrepaidCreditsApplied() float32 {
 
 // GetPrepaidCreditsAppliedOk returns a tuple with the PrepaidCreditsApplied field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoInvoiceLineItemResponse) GetPrepaidCreditsAppliedOk() (*float32, bool) {
+func (o *DtoInvoiceLineItemResponse) GetPrepaidCreditsAppliedOk() (*string, bool) {
 	if o == nil || IsNil(o.PrepaidCreditsApplied) {
 		return nil, false
 	}
@@ -744,8 +744,8 @@ func (o *DtoInvoiceLineItemResponse) HasPrepaidCreditsApplied() bool {
 	return false
 }
 
-// SetPrepaidCreditsApplied gets a reference to the given float32 and assigns it to the PrepaidCreditsApplied field.
-func (o *DtoInvoiceLineItemResponse) SetPrepaidCreditsApplied(v float32) {
+// SetPrepaidCreditsApplied gets a reference to the given string and assigns it to the PrepaidCreditsApplied field.
+func (o *DtoInvoiceLineItemResponse) SetPrepaidCreditsApplied(v string) {
 	o.PrepaidCreditsApplied = &v
 }
 
@@ -846,9 +846,9 @@ func (o *DtoInvoiceLineItemResponse) SetPriceUnit(v string) {
 }
 
 // GetPriceUnitAmount returns the PriceUnitAmount field value if set, zero value otherwise.
-func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmount() float32 {
+func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmount() string {
 	if o == nil || IsNil(o.PriceUnitAmount) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.PriceUnitAmount
@@ -856,7 +856,7 @@ func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmount() float32 {
 
 // GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmountOk() (*float32, bool) {
+func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmountOk() (*string, bool) {
 	if o == nil || IsNil(o.PriceUnitAmount) {
 		return nil, false
 	}
@@ -872,8 +872,8 @@ func (o *DtoInvoiceLineItemResponse) HasPriceUnitAmount() bool {
 	return false
 }
 
-// SetPriceUnitAmount gets a reference to the given float32 and assigns it to the PriceUnitAmount field.
-func (o *DtoInvoiceLineItemResponse) SetPriceUnitAmount(v float32) {
+// SetPriceUnitAmount gets a reference to the given string and assigns it to the PriceUnitAmount field.
+func (o *DtoInvoiceLineItemResponse) SetPriceUnitAmount(v string) {
 	o.PriceUnitAmount = &v
 }
 
@@ -910,9 +910,9 @@ func (o *DtoInvoiceLineItemResponse) SetPriceUnitId(v string) {
 }
 
 // GetQuantity returns the Quantity field value if set, zero value otherwise.
-func (o *DtoInvoiceLineItemResponse) GetQuantity() float32 {
+func (o *DtoInvoiceLineItemResponse) GetQuantity() string {
 	if o == nil || IsNil(o.Quantity) {
-		var ret float32
+		var ret string
 		return ret
 	}
 	return *o.Quantity
@@ -920,7 +920,7 @@ func (o *DtoInvoiceLineItemResponse) GetQuantity() float32 {
 
 // GetQuantityOk returns a tuple with the Quantity field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DtoInvoiceLineItemResponse) GetQuantityOk() (*float32, bool) {
+func (o *DtoInvoiceLineItemResponse) GetQuantityOk() (*string, bool) {
 	if o == nil || IsNil(o.Quantity) {
 		return nil, false
 	}
@@ -936,8 +936,8 @@ func (o *DtoInvoiceLineItemResponse) HasQuantity() bool {
 	return false
 }
 
-// SetQuantity gets a reference to the given float32 and assigns it to the Quantity field.
-func (o *DtoInvoiceLineItemResponse) SetQuantity(v float32) {
+// SetQuantity gets a reference to the given string and assigns it to the Quantity field.
+func (o *DtoInvoiceLineItemResponse) SetQuantity(v string) {
 	o.Quantity = &v
 }
 

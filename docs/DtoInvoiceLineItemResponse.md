@@ -4,7 +4,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Amount** | Pointer to **float32** |  | [optional] 
+**Amount** | Pointer to **string** |  | [optional] 
 **CommitmentInfo** | Pointer to [**TypesCommitmentInfo**](TypesCommitmentInfo.md) |  | [optional] 
 **CreatedAt** | Pointer to **string** |  | [optional] 
 **CreatedBy** | Pointer to **string** |  | [optional] 
@@ -16,21 +16,21 @@ Name | Type | Description | Notes
 **EnvironmentId** | Pointer to **string** |  | [optional] 
 **Id** | Pointer to **string** |  | [optional] 
 **InvoiceId** | Pointer to **string** |  | [optional] 
-**InvoiceLevelDiscount** | Pointer to **float32** | invoice_level_discount is the discount amount in invoice currency applied to all line items on the invoice. | [optional] 
-**LineItemDiscount** | Pointer to **float32** | line_item_discount is the discount amount in invoice currency applied directly to this line item. | [optional] 
+**InvoiceLevelDiscount** | Pointer to **string** | invoice_level_discount is the discount amount in invoice currency applied to all line items on the invoice. | [optional] 
+**LineItemDiscount** | Pointer to **string** | line_item_discount is the discount amount in invoice currency applied directly to this line item. | [optional] 
 **Metadata** | Pointer to **map[string]string** |  | [optional] 
 **MeterDisplayName** | Pointer to **string** |  | [optional] 
 **MeterId** | Pointer to **string** |  | [optional] 
 **PeriodEnd** | Pointer to **string** |  | [optional] 
 **PeriodStart** | Pointer to **string** |  | [optional] 
 **PlanDisplayName** | Pointer to **string** |  | [optional] 
-**PrepaidCreditsApplied** | Pointer to **float32** | prepaid_credits_applied is the amount in invoice currency reduced from this line item due to prepaid credits application. | [optional] 
+**PrepaidCreditsApplied** | Pointer to **string** | prepaid_credits_applied is the amount in invoice currency reduced from this line item due to prepaid credits application. | [optional] 
 **PriceId** | Pointer to **string** |  | [optional] 
 **PriceType** | Pointer to **string** |  | [optional] 
 **PriceUnit** | Pointer to **string** |  | [optional] 
-**PriceUnitAmount** | Pointer to **float32** |  | [optional] 
+**PriceUnitAmount** | Pointer to **string** |  | [optional] 
 **PriceUnitId** | Pointer to **string** |  | [optional] 
-**Quantity** | Pointer to **float32** |  | [optional] 
+**Quantity** | Pointer to **string** |  | [optional] 
 **Status** | Pointer to [**TypesStatus**](TypesStatus.md) |  | [optional] 
 **SubscriptionId** | Pointer to **string** |  | [optional] 
 **TenantId** | Pointer to **string** |  | [optional] 
@@ -60,20 +60,20 @@ but it doesn't guarantee that properties required by API are set
 
 ### GetAmount
 
-`func (o *DtoInvoiceLineItemResponse) GetAmount() float32`
+`func (o *DtoInvoiceLineItemResponse) GetAmount() string`
 
 GetAmount returns the Amount field if non-nil, zero value otherwise.
 
 ### GetAmountOk
 
-`func (o *DtoInvoiceLineItemResponse) GetAmountOk() (*float32, bool)`
+`func (o *DtoInvoiceLineItemResponse) GetAmountOk() (*string, bool)`
 
 GetAmountOk returns a tuple with the Amount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetAmount
 
-`func (o *DtoInvoiceLineItemResponse) SetAmount(v float32)`
+`func (o *DtoInvoiceLineItemResponse) SetAmount(v string)`
 
 SetAmount sets Amount field to given value.
 
@@ -360,20 +360,20 @@ HasInvoiceId returns a boolean if a field has been set.
 
 ### GetInvoiceLevelDiscount
 
-`func (o *DtoInvoiceLineItemResponse) GetInvoiceLevelDiscount() float32`
+`func (o *DtoInvoiceLineItemResponse) GetInvoiceLevelDiscount() string`
 
 GetInvoiceLevelDiscount returns the InvoiceLevelDiscount field if non-nil, zero value otherwise.
 
 ### GetInvoiceLevelDiscountOk
 
-`func (o *DtoInvoiceLineItemResponse) GetInvoiceLevelDiscountOk() (*float32, bool)`
+`func (o *DtoInvoiceLineItemResponse) GetInvoiceLevelDiscountOk() (*string, bool)`
 
 GetInvoiceLevelDiscountOk returns a tuple with the InvoiceLevelDiscount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetInvoiceLevelDiscount
 
-`func (o *DtoInvoiceLineItemResponse) SetInvoiceLevelDiscount(v float32)`
+`func (o *DtoInvoiceLineItemResponse) SetInvoiceLevelDiscount(v string)`
 
 SetInvoiceLevelDiscount sets InvoiceLevelDiscount field to given value.
 
@@ -385,20 +385,20 @@ HasInvoiceLevelDiscount returns a boolean if a field has been set.
 
 ### GetLineItemDiscount
 
-`func (o *DtoInvoiceLineItemResponse) GetLineItemDiscount() float32`
+`func (o *DtoInvoiceLineItemResponse) GetLineItemDiscount() string`
 
 GetLineItemDiscount returns the LineItemDiscount field if non-nil, zero value otherwise.
 
 ### GetLineItemDiscountOk
 
-`func (o *DtoInvoiceLineItemResponse) GetLineItemDiscountOk() (*float32, bool)`
+`func (o *DtoInvoiceLineItemResponse) GetLineItemDiscountOk() (*string, bool)`
 
 GetLineItemDiscountOk returns a tuple with the LineItemDiscount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetLineItemDiscount
 
-`func (o *DtoInvoiceLineItemResponse) SetLineItemDiscount(v float32)`
+`func (o *DtoInvoiceLineItemResponse) SetLineItemDiscount(v string)`
 
 SetLineItemDiscount sets LineItemDiscount field to given value.
 
@@ -560,20 +560,20 @@ HasPlanDisplayName returns a boolean if a field has been set.
 
 ### GetPrepaidCreditsApplied
 
-`func (o *DtoInvoiceLineItemResponse) GetPrepaidCreditsApplied() float32`
+`func (o *DtoInvoiceLineItemResponse) GetPrepaidCreditsApplied() string`
 
 GetPrepaidCreditsApplied returns the PrepaidCreditsApplied field if non-nil, zero value otherwise.
 
 ### GetPrepaidCreditsAppliedOk
 
-`func (o *DtoInvoiceLineItemResponse) GetPrepaidCreditsAppliedOk() (*float32, bool)`
+`func (o *DtoInvoiceLineItemResponse) GetPrepaidCreditsAppliedOk() (*string, bool)`
 
 GetPrepaidCreditsAppliedOk returns a tuple with the PrepaidCreditsApplied field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPrepaidCreditsApplied
 
-`func (o *DtoInvoiceLineItemResponse) SetPrepaidCreditsApplied(v float32)`
+`func (o *DtoInvoiceLineItemResponse) SetPrepaidCreditsApplied(v string)`
 
 SetPrepaidCreditsApplied sets PrepaidCreditsApplied field to given value.
 
@@ -660,20 +660,20 @@ HasPriceUnit returns a boolean if a field has been set.
 
 ### GetPriceUnitAmount
 
-`func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmount() float32`
+`func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmount() string`
 
 GetPriceUnitAmount returns the PriceUnitAmount field if non-nil, zero value otherwise.
 
 ### GetPriceUnitAmountOk
 
-`func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmountOk() (*float32, bool)`
+`func (o *DtoInvoiceLineItemResponse) GetPriceUnitAmountOk() (*string, bool)`
 
 GetPriceUnitAmountOk returns a tuple with the PriceUnitAmount field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetPriceUnitAmount
 
-`func (o *DtoInvoiceLineItemResponse) SetPriceUnitAmount(v float32)`
+`func (o *DtoInvoiceLineItemResponse) SetPriceUnitAmount(v string)`
 
 SetPriceUnitAmount sets PriceUnitAmount field to given value.
 
@@ -710,20 +710,20 @@ HasPriceUnitId returns a boolean if a field has been set.
 
 ### GetQuantity
 
-`func (o *DtoInvoiceLineItemResponse) GetQuantity() float32`
+`func (o *DtoInvoiceLineItemResponse) GetQuantity() string`
 
 GetQuantity returns the Quantity field if non-nil, zero value otherwise.
 
 ### GetQuantityOk
 
-`func (o *DtoInvoiceLineItemResponse) GetQuantityOk() (*float32, bool)`
+`func (o *DtoInvoiceLineItemResponse) GetQuantityOk() (*string, bool)`
 
 GetQuantityOk returns a tuple with the Quantity field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetQuantity
 
-`func (o *DtoInvoiceLineItemResponse) SetQuantity(v float32)`
+`func (o *DtoInvoiceLineItemResponse) SetQuantity(v string)`
 
 SetQuantity sets Quantity field to given value.
 
