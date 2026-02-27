@@ -1,0 +1,16 @@
+# DtoFeatureUsageSummary
+
+
+## Fields
+
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `CurrentUsage`                                                   | **string*                                                        | :heavy_minus_sign:                                               | N/A                                                              |
+| `Feature`                                                        | [*types.DtoFeatureResponse](../types/dtofeatureresponse.md)      | :heavy_minus_sign:                                               | N/A                                                              |
+| `IsEnabled`                                                      | **bool*                                                          | :heavy_minus_sign:                                               | N/A                                                              |
+| `IsSoftLimit`                                                    | **bool*                                                          | :heavy_minus_sign:                                               | N/A                                                              |
+| `IsUnlimited`                                                    | **bool*                                                          | :heavy_minus_sign:                                               | N/A                                                              |
+| `NextUsageResetAt`                                               | **string*                                                        | :heavy_minus_sign:                                               | N/A                                                              |
+| `Sources`                                                        | [][types.DtoEntitlementSource](../types/dtoentitlementsource.md) | :heavy_minus_sign:                                               | N/A                                                              |
+| `TotalLimit`                                                     | **int64*                                                         | :heavy_minus_sign:                                               | N/A                                                              |
+| `UsagePercent`                                                   | **string*                                                        | :heavy_minus_sign:                                               | N/A                                                              |

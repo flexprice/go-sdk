@@ -1,0 +1,21 @@
+# CustomerFilter
+
+
+## Fields
+
+| Field                                                         | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `CustomerIds`                                                 | []*string*                                                    | :heavy_minus_sign:                                            | N/A                                                           |
+| `Email`                                                       | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `EndTime`                                                     | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `Expand`                                                      | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `ExternalID`                                                  | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `ExternalIds`                                                 | []*string*                                                    | :heavy_minus_sign:                                            | N/A                                                           |
+| `Filters`                                                     | [][types.FilterCondition](../types/filtercondition.md)        | :heavy_minus_sign:                                            | N/A                                                           |
+| `Limit`                                                       | **int64*                                                      | :heavy_minus_sign:                                            | N/A                                                           |
+| `Offset`                                                      | **int64*                                                      | :heavy_minus_sign:                                            | N/A                                                           |
+| `Order`                                                       | [*types.CustomerFilterOrder](../types/customerfilterorder.md) | :heavy_minus_sign:                                            | N/A                                                           |
+| `ParentCustomerIds`                                           | []*string*                                                    | :heavy_minus_sign:                                            | N/A                                                           |
+| `Sort`                                                        | [][types.SortCondition](../types/sortcondition.md)            | :heavy_minus_sign:                                            | N/A                                                           |
+| `StartTime`                                                   | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `Status`                                                      | [*types.Status](../types/status.md)                           | :heavy_minus_sign:                                            | N/A                                                           |

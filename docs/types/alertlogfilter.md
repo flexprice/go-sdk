@@ -1,0 +1,21 @@
+# AlertLogFilter
+
+
+## Fields
+
+| Field                                                         | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `AlertStatus`                                                 | [*types.AlertState](../types/alertstate.md)                   | :heavy_minus_sign:                                            | N/A                                                           |
+| `AlertType`                                                   | [*types.AlertType](../types/alerttype.md)                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `CustomerID`                                                  | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `EndTime`                                                     | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `EntityID`                                                    | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `EntityType`                                                  | [*types.AlertEntityType](../types/alertentitytype.md)         | :heavy_minus_sign:                                            | N/A                                                           |
+| `Expand`                                                      | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `Filters`                                                     | [][types.FilterCondition](../types/filtercondition.md)        | :heavy_minus_sign:                                            | filters allows complex filtering based on multiple fields     |
+| `Limit`                                                       | **int64*                                                      | :heavy_minus_sign:                                            | N/A                                                           |
+| `Offset`                                                      | **int64*                                                      | :heavy_minus_sign:                                            | N/A                                                           |
+| `Order`                                                       | [*types.AlertLogFilterOrder](../types/alertlogfilterorder.md) | :heavy_minus_sign:                                            | N/A                                                           |
+| `Sort`                                                        | [][types.SortCondition](../types/sortcondition.md)            | :heavy_minus_sign:                                            | N/A                                                           |
+| `StartTime`                                                   | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `Status`                                                      | [*types.Status](../types/status.md)                           | :heavy_minus_sign:                                            | N/A                                                           |

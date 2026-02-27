@@ -1,0 +1,19 @@
+# UserFilter
+
+
+## Fields
+
+| Field                                                     | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `EndTime`                                                 | **string*                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `Expand`                                                  | **string*                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `Filters`                                                 | [][types.FilterCondition](../types/filtercondition.md)    | :heavy_minus_sign:                                        | filters allows complex filtering based on multiple fields |
+| `Limit`                                                   | **int64*                                                  | :heavy_minus_sign:                                        | N/A                                                       |
+| `Offset`                                                  | **int64*                                                  | :heavy_minus_sign:                                        | N/A                                                       |
+| `Order`                                                   | [*types.UserFilterOrder](../types/userfilterorder.md)     | :heavy_minus_sign:                                        | N/A                                                       |
+| `Roles`                                                   | []*string*                                                | :heavy_minus_sign:                                        | N/A                                                       |
+| `Sort`                                                    | [][types.SortCondition](../types/sortcondition.md)        | :heavy_minus_sign:                                        | N/A                                                       |
+| `StartTime`                                               | **string*                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `Status`                                                  | [*types.Status](../types/status.md)                       | :heavy_minus_sign:                                        | N/A                                                       |
+| `Type`                                                    | [*types.UserType](../types/usertype.md)                   | :heavy_minus_sign:                                        | N/A                                                       |
+| `UserIds`                                                 | []*string*                                                | :heavy_minus_sign:                                        | Specific filters for users                                |

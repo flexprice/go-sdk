@@ -1,0 +1,10 @@
+# DtoBillingPeriodInfo
+
+
+## Fields
+
+| Field                     | Type                      | Required                  | Description               |
+| ------------------------- | ------------------------- | ------------------------- | ------------------------- |
+| `EndTime`                 | **string*                 | :heavy_minus_sign:        | N/A                       |
+| `Period`                  | **string*                 | :heavy_minus_sign:        | e.g., "monthly", "yearly" |
+| `StartTime`               | **string*                 | :heavy_minus_sign:        | N/A                       |

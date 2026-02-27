@@ -1,8 +1,8 @@
-module github.com/flexprice/go-sdk
 
-go 1.19
+module github.com/flexprice/flexprice-go/v2
+
+go 1.22
 
 require (
-	github.com/joho/godotenv v1.5.1
-	github.com/stretchr/testify v1.8.4
+	github.com/spyzhov/ajson v0.8.0
 )

@@ -1,0 +1,13 @@
+# DtoInvoicePreview
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `Currency`                                                                 | **string*                                                                  | :heavy_minus_sign:                                                         | currency is the currency for all amounts                                   |
+| `DueDate`                                                                  | **string*                                                                  | :heavy_minus_sign:                                                         | due_date is when the invoice would be due                                  |
+| `LineItems`                                                                | [][types.DtoInvoiceLineItemPreview](../types/dtoinvoicelineitempreview.md) | :heavy_minus_sign:                                                         | line_items contains preview of line items                                  |
+| `Subtotal`                                                                 | **string*                                                                  | :heavy_minus_sign:                                                         | subtotal is the subtotal amount before taxes                               |
+| `TaxAmount`                                                                | **string*                                                                  | :heavy_minus_sign:                                                         | tax_amount is the total tax amount                                         |
+| `Total`                                                                    | **string*                                                                  | :heavy_minus_sign:                                                         | total is the total amount including taxes                                  |

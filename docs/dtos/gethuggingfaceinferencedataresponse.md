@@ -1,0 +1,9 @@
+# GetHuggingfaceInferenceDataResponse
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                      | [types.HTTPMetadata](../types/httpmetadata.md)                                                  | :heavy_check_mark:                                                                              | N/A                                                                                             |
+| `DtoGetHuggingFaceBillingDataResponse`                                                          | [*types.DtoGetHuggingFaceBillingDataResponse](../types/dtogethuggingfacebillingdataresponse.md) | :heavy_minus_sign:                                                                              | OK                                                                                              |

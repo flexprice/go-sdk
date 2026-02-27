@@ -1,16 +1,7 @@
 /*
-This file is meant to be copied into the FlexPrice Go SDK.
-It contains types and functions that depend on other SDK types:
-
-- APIClient: The main client for the FlexPrice API
-- DtoIngestEventRequest: The request type for creating events
-
-DO NOT attempt to compile this file directly. It is designed to be copied
-to the SDK directory by the add_go_async.sh script, where it will have
-access to all required type definitions.
-
-The linter will show errors when editing this file standalone, which is expected
-and can be ignored. The file will compile correctly when copied to the SDK.
+Custom async client for the FlexPrice Go SDK.
+Merged from api/custom/go/ after each generation.
+Depends on SDK types: *Flexprice, components.DtoIngestEventRequest, Events.IngestEvent.
 */
 
 // nolint
@@ -21,12 +12,9 @@ import (
 	"fmt"
 	"sync"
 	"time"
-)
 
-// Note: This file is meant to be included in the FlexPrice Go SDK
-// The following types are defined in the SDK:
-// - APIClient: The main client for the FlexPrice API
-// - DtoIngestEventRequest: The DTO for creating events
+	"github.com/flexprice/flexprice-go/models/components"
+)
 
 // AsyncConfig provides configuration options for the enhanced FlexPrice client
 type AsyncConfig struct {
@@ -65,7 +53,7 @@ func DefaultAsyncConfig() AsyncConfig {
 // It builds on top of the FlexPrice Go SDK to provide batching and asynchronous
 // event sending capabilities.
 type AsyncClient struct {
-	apiClient     *APIClient
+	apiClient     *Flexprice
 	config        AsyncConfig
 	msgs          chan EventOptions
 	quit          chan struct{}
@@ -101,12 +89,12 @@ type EventOptions struct {
 }
 
 // NewAsyncClient creates a new asynchronous FlexPrice client with default configuration
-func (c *APIClient) NewAsyncClient() *AsyncClient {
+func (c *Flexprice) NewAsyncClient() *AsyncClient {
 	return c.NewAsyncClientWithConfig(DefaultAsyncConfig())
 }
 
 // NewAsyncClientWithConfig creates a new asynchronous FlexPrice client with the provided config
-func (c *APIClient) NewAsyncClientWithConfig(config AsyncConfig) *AsyncClient {
+func (c *Flexprice) NewAsyncClientWithConfig(config AsyncConfig) *AsyncClient {
 	// Apply defaults for unset values
 	if config.BatchSize <= 0 {
 		config.BatchSize = DefaultAsyncConfig().BatchSize
@@ -283,25 +271,25 @@ func (c *AsyncClient) sendBatch(batch []EventOptions) {
 
 		for _, event := range events {
 			// Create the event request
-			req := DtoIngestEventRequest{
+			req := components.DtoIngestEventRequest{
 				EventName:          event.EventName,
-				ExternalCustomerId: event.ExternalCustomerID,
+				ExternalCustomerID: event.ExternalCustomerID,
 			}
 
 			if event.CustomerID != "" {
-				req.SetCustomerId(event.CustomerID)
+				req.CustomerID = &event.CustomerID
 			}
 
 			if event.EventID != "" {
-				req.SetEventId(event.EventID)
+				req.EventID = &event.EventID
 			}
 
 			if event.Source != "" {
-				req.SetSource(event.Source)
+				req.Source = &event.Source
 			}
 
 			if event.Timestamp != "" {
-				req.SetTimestamp(event.Timestamp)
+				req.Timestamp = &event.Timestamp
 			}
 
 			if event.Properties != nil {
@@ -310,23 +298,17 @@ func (c *AsyncClient) sendBatch(batch []EventOptions) {
 				for k, v := range event.Properties {
 					strProperties[k] = fmt.Sprintf("%v", v)
 				}
-				req.SetProperties(strProperties)
+				req.Properties = strProperties
 			}
 
 			// Debug the request
 			c.debugf("Sending event: %s %s", event.EventName, event.EventID)
 
-			// Send to API
-			_, resp, err := c.apiClient.EventsAPI.EventsPost(c.ctx).Event(req).Execute()
+			// Send to API (current SDK: Flexprice.Events.IngestEvent)
+			_, err := c.apiClient.Events.IngestEvent(c.ctx, req)
 
 			if err != nil {
 				c.errorCallback(fmt.Errorf("error sending event: %v", err))
-				continue
-			}
-
-			// Check response status code
-			if resp.StatusCode < 200 || resp.StatusCode >= 300 {
-				c.errorCallback(fmt.Errorf("unexpected status code: %d", resp.StatusCode))
 				continue
 			}
 

@@ -1,0 +1,15 @@
+# WalletFilter
+
+
+## Fields
+
+| Field                                                     | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `AlertEnabled`                                            | **bool*                                                   | :heavy_minus_sign:                                        | N/A                                                       |
+| `Expand`                                                  | **string*                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `Limit`                                                   | **int64*                                                  | :heavy_minus_sign:                                        | N/A                                                       |
+| `Offset`                                                  | **int64*                                                  | :heavy_minus_sign:                                        | N/A                                                       |
+| `Order`                                                   | [*types.WalletFilterOrder](../types/walletfilterorder.md) | :heavy_minus_sign:                                        | N/A                                                       |
+| `Sort`                                                    | **string*                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `Status`                                                  | [*types.WalletStatus](../types/walletstatus.md)           | :heavy_minus_sign:                                        | N/A                                                       |
+| `WalletIds`                                               | []*string*                                                | :heavy_minus_sign:                                        | N/A                                                       |
