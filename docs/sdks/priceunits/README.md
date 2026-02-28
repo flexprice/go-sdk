@@ -25,7 +25,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/dtos"
+	"github.com/flexprice/flexprice-go/v2/models/dtos"
 	"log"
 )
 
@@ -49,15 +49,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `ctx`                                                             | [context.Context](https://pkg.go.dev/context#Context)             | :heavy_check_mark:                                                | The context to use for the request.                               |
-| `request`                                                         | [dtos.ListPriceUnitsRequest](../../dtos/listpriceunitsrequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
-| `opts`                                                            | [][dtos.Option](../../dtos/option.md)                             | :heavy_minus_sign:                                                | The options for this request.                                     |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `request`                                                                | [dtos.ListPriceUnitsRequest](../../models/dtos/listpriceunitsrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
 ### Response
 
-**[*dtos.ListPriceUnitsResponse](../../dtos/listpriceunitsresponse.md), error**
+**[*dtos.ListPriceUnitsResponse](../../models/dtos/listpriceunitsresponse.md), error**
 
 ### Errors
 
@@ -80,7 +80,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -110,15 +110,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `ctx`                                                                       | [context.Context](https://pkg.go.dev/context#Context)                       | :heavy_check_mark:                                                          | The context to use for the request.                                         |
-| `request`                                                                   | [types.DtoCreatePriceUnitRequest](../../types/dtocreatepriceunitrequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
-| `opts`                                                                      | [][dtos.Option](../../dtos/option.md)                                       | :heavy_minus_sign:                                                          | The options for this request.                                               |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [types.DtoCreatePriceUnitRequest](../../models/types/dtocreatepriceunitrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
-**[*dtos.CreatePriceUnitResponse](../../dtos/createpriceunitresponse.md), error**
+**[*dtos.CreatePriceUnitResponse](../../models/dtos/createpriceunitresponse.md), error**
 
 ### Errors
 
@@ -168,11 +168,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `code`                                                | *string*                                              | :heavy_check_mark:                                    | Price unit code                                       |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetPriceUnitByCodeResponse](../../dtos/getpriceunitbycoderesponse.md), error**
+**[*dtos.GetPriceUnitByCodeResponse](../../models/dtos/getpriceunitbycoderesponse.md), error**
 
 ### Errors
 
@@ -195,7 +195,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -219,15 +219,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `ctx`                                                   | [context.Context](https://pkg.go.dev/context#Context)   | :heavy_check_mark:                                      | The context to use for the request.                     |
-| `request`                                               | [types.PriceUnitFilter](../../types/priceunitfilter.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
-| `opts`                                                  | [][dtos.Option](../../dtos/option.md)                   | :heavy_minus_sign:                                      | The options for this request.                           |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
+| `request`                                                      | [types.PriceUnitFilter](../../models/types/priceunitfilter.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| `opts`                                                         | [][dtos.Option](../../models/dtos/option.md)                   | :heavy_minus_sign:                                             | The options for this request.                                  |
 
 ### Response
 
-**[*dtos.QueryPriceUnitResponse](../../dtos/querypriceunitresponse.md), error**
+**[*dtos.QueryPriceUnitResponse](../../models/dtos/querypriceunitresponse.md), error**
 
 ### Errors
 
@@ -277,11 +277,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Price unit ID                                         |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetPriceUnitResponse](../../dtos/getpriceunitresponse.md), error**
+**[*dtos.GetPriceUnitResponse](../../models/dtos/getpriceunitresponse.md), error**
 
 ### Errors
 
@@ -303,7 +303,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -327,16 +327,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `ctx`                                                                       | [context.Context](https://pkg.go.dev/context#Context)                       | :heavy_check_mark:                                                          | The context to use for the request.                                         |
-| `id`                                                                        | *string*                                                                    | :heavy_check_mark:                                                          | Price unit ID                                                               |
-| `body`                                                                      | [types.DtoUpdatePriceUnitRequest](../../types/dtoupdatepriceunitrequest.md) | :heavy_check_mark:                                                          | Price unit details to update                                                |
-| `opts`                                                                      | [][dtos.Option](../../dtos/option.md)                                       | :heavy_minus_sign:                                                          | The options for this request.                                               |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `id`                                                                               | *string*                                                                           | :heavy_check_mark:                                                                 | Price unit ID                                                                      |
+| `body`                                                                             | [types.DtoUpdatePriceUnitRequest](../../models/types/dtoupdatepriceunitrequest.md) | :heavy_check_mark:                                                                 | Price unit details to update                                                       |
+| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
-**[*dtos.UpdatePriceUnitResponse](../../dtos/updatepriceunitresponse.md), error**
+**[*dtos.UpdatePriceUnitResponse](../../models/dtos/updatepriceunitresponse.md), error**
 
 ### Errors
 
@@ -385,11 +385,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Price unit ID                                         |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.DeletePriceUnitResponse](../../dtos/deletepriceunitresponse.md), error**
+**[*dtos.DeletePriceUnitResponse](../../models/dtos/deletepriceunitresponse.md), error**
 
 ### Errors
 

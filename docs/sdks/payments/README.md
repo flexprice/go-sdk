@@ -24,7 +24,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/dtos"
+	"github.com/flexprice/flexprice-go/v2/models/dtos"
 	"log"
 )
 
@@ -48,15 +48,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
-| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
-| `ctx`                                                         | [context.Context](https://pkg.go.dev/context#Context)         | :heavy_check_mark:                                            | The context to use for the request.                           |
-| `request`                                                     | [dtos.ListPaymentsRequest](../../dtos/listpaymentsrequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
-| `opts`                                                        | [][dtos.Option](../../dtos/option.md)                         | :heavy_minus_sign:                                            | The options for this request.                                 |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
+| `request`                                                            | [dtos.ListPaymentsRequest](../../models/dtos/listpaymentsrequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
+| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
 ### Response
 
-**[*dtos.ListPaymentsResponse](../../dtos/listpaymentsresponse.md), error**
+**[*dtos.ListPaymentsResponse](../../models/dtos/listpaymentsresponse.md), error**
 
 ### Errors
 
@@ -79,7 +79,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -109,15 +109,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `ctx`                                                                   | [context.Context](https://pkg.go.dev/context#Context)                   | :heavy_check_mark:                                                      | The context to use for the request.                                     |
-| `request`                                                               | [types.DtoCreatePaymentRequest](../../types/dtocreatepaymentrequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
-| `opts`                                                                  | [][dtos.Option](../../dtos/option.md)                                   | :heavy_minus_sign:                                                      | The options for this request.                                           |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [types.DtoCreatePaymentRequest](../../models/types/dtocreatepaymentrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
-**[*dtos.CreatePaymentResponse](../../dtos/createpaymentresponse.md), error**
+**[*dtos.CreatePaymentResponse](../../models/dtos/createpaymentresponse.md), error**
 
 ### Errors
 
@@ -167,11 +167,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Payment ID                                            |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetPaymentResponse](../../dtos/getpaymentresponse.md), error**
+**[*dtos.GetPaymentResponse](../../models/dtos/getpaymentresponse.md), error**
 
 ### Errors
 
@@ -194,7 +194,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -218,16 +218,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `ctx`                                                                   | [context.Context](https://pkg.go.dev/context#Context)                   | :heavy_check_mark:                                                      | The context to use for the request.                                     |
-| `id`                                                                    | *string*                                                                | :heavy_check_mark:                                                      | Payment ID                                                              |
-| `body`                                                                  | [types.DtoUpdatePaymentRequest](../../types/dtoupdatepaymentrequest.md) | :heavy_check_mark:                                                      | Payment configuration                                                   |
-| `opts`                                                                  | [][dtos.Option](../../dtos/option.md)                                   | :heavy_minus_sign:                                                      | The options for this request.                                           |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `id`                                                                           | *string*                                                                       | :heavy_check_mark:                                                             | Payment ID                                                                     |
+| `body`                                                                         | [types.DtoUpdatePaymentRequest](../../models/types/dtoupdatepaymentrequest.md) | :heavy_check_mark:                                                             | Payment configuration                                                          |
+| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
-**[*dtos.UpdatePaymentResponse](../../dtos/updatepaymentresponse.md), error**
+**[*dtos.UpdatePaymentResponse](../../models/dtos/updatepaymentresponse.md), error**
 
 ### Errors
 
@@ -277,11 +277,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Payment ID                                            |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.DeletePaymentResponse](../../dtos/deletepaymentresponse.md), error**
+**[*dtos.DeletePaymentResponse](../../models/dtos/deletepaymentresponse.md), error**
 
 ### Errors
 
@@ -331,11 +331,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Payment ID                                            |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.ProcessPaymentResponse](../../dtos/processpaymentresponse.md), error**
+**[*dtos.ProcessPaymentResponse](../../models/dtos/processpaymentresponse.md), error**
 
 ### Errors
 

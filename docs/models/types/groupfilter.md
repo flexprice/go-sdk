@@ -1,0 +1,20 @@
+# GroupFilter
+
+
+## Fields
+
+| Field                                                             | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `EndTime`                                                         | **string*                                                         | :heavy_minus_sign:                                                | N/A                                                               |
+| `EntityType`                                                      | **string*                                                         | :heavy_minus_sign:                                                | N/A                                                               |
+| `Expand`                                                          | **string*                                                         | :heavy_minus_sign:                                                | N/A                                                               |
+| `Filters`                                                         | [][types.FilterCondition](../../models/types/filtercondition.md)  | :heavy_minus_sign:                                                | filters allows complex filtering based on multiple fields         |
+| `GroupIds`                                                        | []*string*                                                        | :heavy_minus_sign:                                                | Group specific filters                                            |
+| `Limit`                                                           | **int64*                                                          | :heavy_minus_sign:                                                | N/A                                                               |
+| `LookupKey`                                                       | **string*                                                         | :heavy_minus_sign:                                                | N/A                                                               |
+| `Name`                                                            | **string*                                                         | :heavy_minus_sign:                                                | N/A                                                               |
+| `Offset`                                                          | **int64*                                                          | :heavy_minus_sign:                                                | N/A                                                               |
+| `Order`                                                           | [*types.GroupFilterOrder](../../models/types/groupfilterorder.md) | :heavy_minus_sign:                                                | N/A                                                               |
+| `Sort`                                                            | [][types.SortCondition](../../models/types/sortcondition.md)      | :heavy_minus_sign:                                                | N/A                                                               |
+| `StartTime`                                                       | **string*                                                         | :heavy_minus_sign:                                                | N/A                                                               |
+| `Status`                                                          | [*types.Status](../../models/types/status.md)                     | :heavy_minus_sign:                                                | N/A                                                               |

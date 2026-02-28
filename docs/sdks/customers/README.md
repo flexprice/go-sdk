@@ -27,7 +27,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -51,17 +51,17 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `ctx`                                                                     | [context.Context](https://pkg.go.dev/context#Context)                     | :heavy_check_mark:                                                        | The context to use for the request.                                       |
-| `body`                                                                    | [types.DtoUpdateCustomerRequest](../../types/dtoupdatecustomerrequest.md) | :heavy_check_mark:                                                        | Customer                                                                  |
-| `id`                                                                      | **string*                                                                 | :heavy_minus_sign:                                                        | Customer ID                                                               |
-| `externalCustomerID`                                                      | **string*                                                                 | :heavy_minus_sign:                                                        | Customer External ID                                                      |
-| `opts`                                                                    | [][dtos.Option](../../dtos/option.md)                                     | :heavy_minus_sign:                                                        | The options for this request.                                             |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `body`                                                                           | [types.DtoUpdateCustomerRequest](../../models/types/dtoupdatecustomerrequest.md) | :heavy_check_mark:                                                               | Customer                                                                         |
+| `id`                                                                             | **string*                                                                        | :heavy_minus_sign:                                                               | Customer ID                                                                      |
+| `externalCustomerID`                                                             | **string*                                                                        | :heavy_minus_sign:                                                               | Customer External ID                                                             |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
-**[*dtos.UpdateCustomerResponse](../../dtos/updatecustomerresponse.md), error**
+**[*dtos.UpdateCustomerResponse](../../models/dtos/updatecustomerresponse.md), error**
 
 ### Errors
 
@@ -84,7 +84,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -110,15 +110,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `ctx`                                                                     | [context.Context](https://pkg.go.dev/context#Context)                     | :heavy_check_mark:                                                        | The context to use for the request.                                       |
-| `request`                                                                 | [types.DtoCreateCustomerRequest](../../types/dtocreatecustomerrequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
-| `opts`                                                                    | [][dtos.Option](../../dtos/option.md)                                     | :heavy_minus_sign:                                                        | The options for this request.                                             |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [types.DtoCreateCustomerRequest](../../models/types/dtocreatecustomerrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
-**[*dtos.CreateCustomerResponse](../../dtos/createcustomerresponse.md), error**
+**[*dtos.CreateCustomerResponse](../../models/dtos/createcustomerresponse.md), error**
 
 ### Errors
 
@@ -168,11 +168,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `externalID`                                          | *string*                                              | :heavy_check_mark:                                    | Customer External ID                                  |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetCustomerByExternalIDResponse](../../dtos/getcustomerbyexternalidresponse.md), error**
+**[*dtos.GetCustomerByExternalIDResponse](../../models/dtos/getcustomerbyexternalidresponse.md), error**
 
 ### Errors
 
@@ -195,7 +195,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -219,15 +219,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `request`                                             | [types.CustomerFilter](../../types/customerfilter.md) | :heavy_check_mark:                                    | The request object to use for the request.            |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `request`                                                    | [types.CustomerFilter](../../models/types/customerfilter.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| `opts`                                                       | [][dtos.Option](../../models/dtos/option.md)                 | :heavy_minus_sign:                                           | The options for this request.                                |
 
 ### Response
 
-**[*dtos.QueryCustomerResponse](../../dtos/querycustomerresponse.md), error**
+**[*dtos.QueryCustomerResponse](../../models/dtos/querycustomerresponse.md), error**
 
 ### Errors
 
@@ -250,7 +250,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/dtos"
+	"github.com/flexprice/flexprice-go/v2/models/dtos"
 	"log"
 )
 
@@ -274,15 +274,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `ctx`                                                                               | [context.Context](https://pkg.go.dev/context#Context)                               | :heavy_check_mark:                                                                  | The context to use for the request.                                                 |
-| `request`                                                                           | [dtos.GetCustomerUsageSummaryRequest](../../dtos/getcustomerusagesummaryrequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
-| `opts`                                                                              | [][dtos.Option](../../dtos/option.md)                                               | :heavy_minus_sign:                                                                  | The options for this request.                                                       |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [dtos.GetCustomerUsageSummaryRequest](../../models/dtos/getcustomerusagesummaryrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][dtos.Option](../../models/dtos/option.md)                                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 ### Response
 
-**[*dtos.GetCustomerUsageSummaryResponse](../../dtos/getcustomerusagesummaryresponse.md), error**
+**[*dtos.GetCustomerUsageSummaryResponse](../../models/dtos/getcustomerusagesummaryresponse.md), error**
 
 ### Errors
 
@@ -332,11 +332,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Customer ID                                           |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetCustomerResponse](../../dtos/getcustomerresponse.md), error**
+**[*dtos.GetCustomerResponse](../../models/dtos/getcustomerresponse.md), error**
 
 ### Errors
 
@@ -386,11 +386,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Customer ID                                           |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.DeleteCustomerResponse](../../dtos/deletecustomerresponse.md), error**
+**[*dtos.DeleteCustomerResponse](../../models/dtos/deletecustomerresponse.md), error**
 
 ### Errors
 
@@ -440,11 +440,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Customer ID                                           |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetCustomerEntitlementsResponse](../../dtos/getcustomerentitlementsresponse.md), error**
+**[*dtos.GetCustomerEntitlementsResponse](../../models/dtos/getcustomerentitlementsresponse.md), error**
 
 ### Errors
 
@@ -494,11 +494,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Customer ID                                           |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetCustomerUpcomingGrantsResponse](../../dtos/getcustomerupcominggrantsresponse.md), error**
+**[*dtos.GetCustomerUpcomingGrantsResponse](../../models/dtos/getcustomerupcominggrantsresponse.md), error**
 
 ### Errors
 

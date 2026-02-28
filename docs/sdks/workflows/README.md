@@ -19,7 +19,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -43,15 +43,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `ctx`                                                                   | [context.Context](https://pkg.go.dev/context#Context)                   | :heavy_check_mark:                                                      | The context to use for the request.                                     |
-| `request`                                                               | [types.WorkflowExecutionFilter](../../types/workflowexecutionfilter.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
-| `opts`                                                                  | [][dtos.Option](../../dtos/option.md)                                   | :heavy_minus_sign:                                                      | The options for this request.                                           |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [types.WorkflowExecutionFilter](../../models/types/workflowexecutionfilter.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
-**[*dtos.QueryWorkflowResponse](../../dtos/queryworkflowresponse.md), error**
+**[*dtos.QueryWorkflowResponse](../../models/dtos/queryworkflowresponse.md), error**
 
 ### Errors
 

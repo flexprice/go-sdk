@@ -1,0 +1,11 @@
+# DtoCustomerUsageSummaryResponse
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `CustomerID`                                                                   | **string*                                                                      | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `Features`                                                                     | [][types.DtoFeatureUsageSummary](../../models/types/dtofeatureusagesummary.md) | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `Pagination`                                                                   | [*types.PaginationResponse](../../models/types/paginationresponse.md)          | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `Period`                                                                       | [*types.DtoBillingPeriodInfo](../../models/types/dtobillingperiodinfo.md)      | :heavy_minus_sign:                                                             | N/A                                                                            |

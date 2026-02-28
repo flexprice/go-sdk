@@ -24,7 +24,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -52,15 +52,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `ctx`                                                               | [context.Context](https://pkg.go.dev/context#Context)               | :heavy_check_mark:                                                  | The context to use for the request.                                 |
-| `request`                                                           | [types.DtoCreateAddonRequest](../../types/dtocreateaddonrequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
-| `opts`                                                              | [][dtos.Option](../../dtos/option.md)                               | :heavy_minus_sign:                                                  | The options for this request.                                       |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `request`                                                                  | [types.DtoCreateAddonRequest](../../models/types/dtocreateaddonrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
 ### Response
 
-**[*dtos.CreateAddonResponse](../../dtos/createaddonresponse.md), error**
+**[*dtos.CreateAddonResponse](../../models/dtos/createaddonresponse.md), error**
 
 ### Errors
 
@@ -110,11 +110,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `lookupKey`                                           | *string*                                              | :heavy_check_mark:                                    | Addon Lookup Key                                      |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetAddonByLookupKeyResponse](../../dtos/getaddonbylookupkeyresponse.md), error**
+**[*dtos.GetAddonByLookupKeyResponse](../../models/dtos/getaddonbylookupkeyresponse.md), error**
 
 ### Errors
 
@@ -137,7 +137,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -161,15 +161,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `request`                                             | [types.AddonFilter](../../types/addonfilter.md)       | :heavy_check_mark:                                    | The request object to use for the request.            |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                              | Type                                                   | Required                                               | Description                                            |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `ctx`                                                  | [context.Context](https://pkg.go.dev/context#Context)  | :heavy_check_mark:                                     | The context to use for the request.                    |
+| `request`                                              | [types.AddonFilter](../../models/types/addonfilter.md) | :heavy_check_mark:                                     | The request object to use for the request.             |
+| `opts`                                                 | [][dtos.Option](../../models/dtos/option.md)           | :heavy_minus_sign:                                     | The options for this request.                          |
 
 ### Response
 
-**[*dtos.QueryAddonResponse](../../dtos/queryaddonresponse.md), error**
+**[*dtos.QueryAddonResponse](../../models/dtos/queryaddonresponse.md), error**
 
 ### Errors
 
@@ -219,11 +219,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Addon ID                                              |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetAddonResponse](../../dtos/getaddonresponse.md), error**
+**[*dtos.GetAddonResponse](../../models/dtos/getaddonresponse.md), error**
 
 ### Errors
 
@@ -246,7 +246,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -270,16 +270,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `ctx`                                                               | [context.Context](https://pkg.go.dev/context#Context)               | :heavy_check_mark:                                                  | The context to use for the request.                                 |
-| `id`                                                                | *string*                                                            | :heavy_check_mark:                                                  | Addon ID                                                            |
-| `body`                                                              | [types.DtoUpdateAddonRequest](../../types/dtoupdateaddonrequest.md) | :heavy_check_mark:                                                  | Update Addon Request                                                |
-| `opts`                                                              | [][dtos.Option](../../dtos/option.md)                               | :heavy_minus_sign:                                                  | The options for this request.                                       |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `id`                                                                       | *string*                                                                   | :heavy_check_mark:                                                         | Addon ID                                                                   |
+| `body`                                                                     | [types.DtoUpdateAddonRequest](../../models/types/dtoupdateaddonrequest.md) | :heavy_check_mark:                                                         | Update Addon Request                                                       |
+| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
 ### Response
 
-**[*dtos.UpdateAddonResponse](../../dtos/updateaddonresponse.md), error**
+**[*dtos.UpdateAddonResponse](../../models/dtos/updateaddonresponse.md), error**
 
 ### Errors
 
@@ -329,11 +329,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Addon ID                                              |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.DeleteAddonResponse](../../dtos/deleteaddonresponse.md), error**
+**[*dtos.DeleteAddonResponse](../../models/dtos/deleteaddonresponse.md), error**
 
 ### Errors
 

@@ -23,7 +23,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -52,15 +52,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `ctx`                                                                           | [context.Context](https://pkg.go.dev/context#Context)                           | :heavy_check_mark:                                                              | The context to use for the request.                                             |
-| `request`                                                                       | [types.DtoCreateCreditGrantRequest](../../types/dtocreatecreditgrantrequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-| `opts`                                                                          | [][dtos.Option](../../dtos/option.md)                                           | :heavy_minus_sign:                                                              | The options for this request.                                                   |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [types.DtoCreateCreditGrantRequest](../../models/types/dtocreatecreditgrantrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
-**[*dtos.CreateCreditGrantResponse](../../dtos/createcreditgrantresponse.md), error**
+**[*dtos.CreateCreditGrantResponse](../../models/dtos/createcreditgrantresponse.md), error**
 
 ### Errors
 
@@ -110,11 +110,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Credit Grant ID                                       |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetCreditGrantResponse](../../dtos/getcreditgrantresponse.md), error**
+**[*dtos.GetCreditGrantResponse](../../models/dtos/getcreditgrantresponse.md), error**
 
 ### Errors
 
@@ -137,7 +137,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -161,16 +161,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `ctx`                                                                           | [context.Context](https://pkg.go.dev/context#Context)                           | :heavy_check_mark:                                                              | The context to use for the request.                                             |
-| `id`                                                                            | *string*                                                                        | :heavy_check_mark:                                                              | Credit Grant ID                                                                 |
-| `body`                                                                          | [types.DtoUpdateCreditGrantRequest](../../types/dtoupdatecreditgrantrequest.md) | :heavy_check_mark:                                                              | Credit Grant configuration                                                      |
-| `opts`                                                                          | [][dtos.Option](../../dtos/option.md)                                           | :heavy_minus_sign:                                                              | The options for this request.                                                   |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `id`                                                                                   | *string*                                                                               | :heavy_check_mark:                                                                     | Credit Grant ID                                                                        |
+| `body`                                                                                 | [types.DtoUpdateCreditGrantRequest](../../models/types/dtoupdatecreditgrantrequest.md) | :heavy_check_mark:                                                                     | Credit Grant configuration                                                             |
+| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
-**[*dtos.UpdateCreditGrantResponse](../../dtos/updatecreditgrantresponse.md), error**
+**[*dtos.UpdateCreditGrantResponse](../../models/dtos/updatecreditgrantresponse.md), error**
 
 ### Errors
 
@@ -216,16 +216,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `id`                                                                             | *string*                                                                         | :heavy_check_mark:                                                               | Credit Grant ID                                                                  |
-| `body`                                                                           | [*types.DtoDeleteCreditGrantRequest](../../types/dtodeletecreditgrantrequest.md) | :heavy_minus_sign:                                                               | Optional: effective_date for subscription-scoped grants                          |
-| `opts`                                                                           | [][dtos.Option](../../dtos/option.md)                                            | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `ctx`                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                   | :heavy_check_mark:                                                                      | The context to use for the request.                                                     |
+| `id`                                                                                    | *string*                                                                                | :heavy_check_mark:                                                                      | Credit Grant ID                                                                         |
+| `body`                                                                                  | [*types.DtoDeleteCreditGrantRequest](../../models/types/dtodeletecreditgrantrequest.md) | :heavy_minus_sign:                                                                      | Optional: effective_date for subscription-scoped grants                                 |
+| `opts`                                                                                  | [][dtos.Option](../../models/dtos/option.md)                                            | :heavy_minus_sign:                                                                      | The options for this request.                                                           |
 
 ### Response
 
-**[*dtos.DeleteCreditGrantResponse](../../dtos/deletecreditgrantresponse.md), error**
+**[*dtos.DeleteCreditGrantResponse](../../models/dtos/deletecreditgrantresponse.md), error**
 
 ### Errors
 
@@ -275,11 +275,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Plan ID                                               |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetPlanCreditGrantsResponse](../../dtos/getplancreditgrantsresponse.md), error**
+**[*dtos.GetPlanCreditGrantsResponse](../../models/dtos/getplancreditgrantsresponse.md), error**
 
 ### Errors
 

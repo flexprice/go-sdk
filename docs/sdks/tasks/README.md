@@ -24,7 +24,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/dtos"
+	"github.com/flexprice/flexprice-go/v2/models/dtos"
 	"log"
 )
 
@@ -48,15 +48,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `ctx`                                                   | [context.Context](https://pkg.go.dev/context#Context)   | :heavy_check_mark:                                      | The context to use for the request.                     |
-| `request`                                               | [dtos.ListTasksRequest](../../dtos/listtasksrequest.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
-| `opts`                                                  | [][dtos.Option](../../dtos/option.md)                   | :heavy_minus_sign:                                      | The options for this request.                           |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
+| `request`                                                      | [dtos.ListTasksRequest](../../models/dtos/listtasksrequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| `opts`                                                         | [][dtos.Option](../../models/dtos/option.md)                   | :heavy_minus_sign:                                             | The options for this request.                                  |
 
 ### Response
 
-**[*dtos.ListTasksResponse](../../dtos/listtasksresponse.md), error**
+**[*dtos.ListTasksResponse](../../models/dtos/listtasksresponse.md), error**
 
 ### Errors
 
@@ -79,7 +79,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -108,15 +108,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
-| `ctx`                                                             | [context.Context](https://pkg.go.dev/context#Context)             | :heavy_check_mark:                                                | The context to use for the request.                               |
-| `request`                                                         | [types.DtoCreateTaskRequest](../../types/dtocreatetaskrequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
-| `opts`                                                            | [][dtos.Option](../../dtos/option.md)                             | :heavy_minus_sign:                                                | The options for this request.                                     |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `request`                                                                | [types.DtoCreateTaskRequest](../../models/types/dtocreatetaskrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
 ### Response
 
-**[*dtos.CreateTaskResponse](../../dtos/createtaskresponse.md), error**
+**[*dtos.CreateTaskResponse](../../models/dtos/createtaskresponse.md), error**
 
 ### Errors
 
@@ -166,11 +166,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `workflowID`                                          | *string*                                              | :heavy_check_mark:                                    | Workflow ID                                           |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetTaskResultResponse](../../dtos/gettaskresultresponse.md), error**
+**[*dtos.GetTaskResultResponse](../../models/dtos/gettaskresultresponse.md), error**
 
 ### Errors
 
@@ -220,11 +220,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Task ID                                               |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetTaskResponse](../../dtos/gettaskresponse.md), error**
+**[*dtos.GetTaskResponse](../../models/dtos/gettaskresponse.md), error**
 
 ### Errors
 
@@ -274,11 +274,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Task ID                                               |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.DownloadTaskExportResponse](../../dtos/downloadtaskexportresponse.md), error**
+**[*dtos.DownloadTaskExportResponse](../../models/dtos/downloadtaskexportresponse.md), error**
 
 ### Errors
 
@@ -301,7 +301,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -327,16 +327,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `ctx`                                                                         | [context.Context](https://pkg.go.dev/context#Context)                         | :heavy_check_mark:                                                            | The context to use for the request.                                           |
-| `id`                                                                          | *string*                                                                      | :heavy_check_mark:                                                            | Task ID                                                                       |
-| `body`                                                                        | [types.DtoUpdateTaskStatusRequest](../../types/dtoupdatetaskstatusrequest.md) | :heavy_check_mark:                                                            | Status update                                                                 |
-| `opts`                                                                        | [][dtos.Option](../../dtos/option.md)                                         | :heavy_minus_sign:                                                            | The options for this request.                                                 |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `id`                                                                                 | *string*                                                                             | :heavy_check_mark:                                                                   | Task ID                                                                              |
+| `body`                                                                               | [types.DtoUpdateTaskStatusRequest](../../models/types/dtoupdatetaskstatusrequest.md) | :heavy_check_mark:                                                                   | Status update                                                                        |
+| `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 ### Response
 
-**[*dtos.UpdateTaskStatusResponse](../../dtos/updatetaskstatusresponse.md), error**
+**[*dtos.UpdateTaskStatusResponse](../../models/dtos/updatetaskstatusresponse.md), error**
 
 ### Errors
 

@@ -23,7 +23,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/dtos"
+	"github.com/flexprice/flexprice-go/v2/models/dtos"
 	"log"
 )
 
@@ -47,15 +47,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
-| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| `ctx`                                                       | [context.Context](https://pkg.go.dev/context#Context)       | :heavy_check_mark:                                          | The context to use for the request.                         |
-| `request`                                                   | [dtos.GetTaxRatesRequest](../../dtos/gettaxratesrequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
-| `opts`                                                      | [][dtos.Option](../../dtos/option.md)                       | :heavy_minus_sign:                                          | The options for this request.                               |
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
+| `request`                                                          | [dtos.GetTaxRatesRequest](../../models/dtos/gettaxratesrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
+| `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
 
 ### Response
 
-**[*dtos.GetTaxRatesResponse](../../dtos/gettaxratesresponse.md), error**
+**[*dtos.GetTaxRatesResponse](../../models/dtos/gettaxratesresponse.md), error**
 
 ### Errors
 
@@ -78,7 +78,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -105,15 +105,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `ctx`                                                                   | [context.Context](https://pkg.go.dev/context#Context)                   | :heavy_check_mark:                                                      | The context to use for the request.                                     |
-| `request`                                                               | [types.DtoCreateTaxRateRequest](../../types/dtocreatetaxraterequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
-| `opts`                                                                  | [][dtos.Option](../../dtos/option.md)                                   | :heavy_minus_sign:                                                      | The options for this request.                                           |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [types.DtoCreateTaxRateRequest](../../models/types/dtocreatetaxraterequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
-**[*dtos.CreateTaxRateResponse](../../dtos/createtaxrateresponse.md), error**
+**[*dtos.CreateTaxRateResponse](../../models/dtos/createtaxrateresponse.md), error**
 
 ### Errors
 
@@ -163,11 +163,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Tax rate ID                                           |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetTaxRateResponse](../../dtos/gettaxrateresponse.md), error**
+**[*dtos.GetTaxRateResponse](../../models/dtos/gettaxrateresponse.md), error**
 
 ### Errors
 
@@ -190,7 +190,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -214,16 +214,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `ctx`                                                                   | [context.Context](https://pkg.go.dev/context#Context)                   | :heavy_check_mark:                                                      | The context to use for the request.                                     |
-| `id`                                                                    | *string*                                                                | :heavy_check_mark:                                                      | Tax rate ID                                                             |
-| `body`                                                                  | [types.DtoUpdateTaxRateRequest](../../types/dtoupdatetaxraterequest.md) | :heavy_check_mark:                                                      | Tax rate to update                                                      |
-| `opts`                                                                  | [][dtos.Option](../../dtos/option.md)                                   | :heavy_minus_sign:                                                      | The options for this request.                                           |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `id`                                                                           | *string*                                                                       | :heavy_check_mark:                                                             | Tax rate ID                                                                    |
+| `body`                                                                         | [types.DtoUpdateTaxRateRequest](../../models/types/dtoupdatetaxraterequest.md) | :heavy_check_mark:                                                             | Tax rate to update                                                             |
+| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
-**[*dtos.UpdateTaxRateResponse](../../dtos/updatetaxrateresponse.md), error**
+**[*dtos.UpdateTaxRateResponse](../../models/dtos/updatetaxrateresponse.md), error**
 
 ### Errors
 
@@ -273,11 +273,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Tax rate ID                                           |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.DeleteTaxRateResponse](../../dtos/deletetaxrateresponse.md), error**
+**[*dtos.DeleteTaxRateResponse](../../models/dtos/deletetaxrateresponse.md), error**
 
 ### Errors
 

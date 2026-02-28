@@ -26,7 +26,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -52,15 +52,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `ctx`                                                                       | [context.Context](https://pkg.go.dev/context#Context)                       | :heavy_check_mark:                                                          | The context to use for the request.                                         |
-| `request`                                                                   | [types.DtoCreateCostsheetRequest](../../types/dtocreatecostsheetrequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
-| `opts`                                                                      | [][dtos.Option](../../dtos/option.md)                                       | :heavy_minus_sign:                                                          | The options for this request.                                               |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [types.DtoCreateCostsheetRequest](../../models/types/dtocreatecostsheetrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
-**[*dtos.CreateCostsheetResponse](../../dtos/createcostsheetresponse.md), error**
+**[*dtos.CreateCostsheetResponse](../../models/dtos/createcostsheetresponse.md), error**
 
 ### Errors
 
@@ -109,11 +109,11 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetActiveCostsheetResponse](../../dtos/getactivecostsheetresponse.md), error**
+**[*dtos.GetActiveCostsheetResponse](../../models/dtos/getactivecostsheetresponse.md), error**
 
 ### Errors
 
@@ -136,7 +136,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -160,15 +160,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `ctx`                                                                         | [context.Context](https://pkg.go.dev/context#Context)                         | :heavy_check_mark:                                                            | The context to use for the request.                                           |
-| `request`                                                                     | [types.DtoGetCostAnalyticsRequest](../../types/dtogetcostanalyticsrequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
-| `opts`                                                                        | [][dtos.Option](../../dtos/option.md)                                         | :heavy_minus_sign:                                                            | The options for this request.                                                 |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [types.DtoGetCostAnalyticsRequest](../../models/types/dtogetcostanalyticsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 ### Response
 
-**[*dtos.GetDetailedCostAnalyticsResponse](../../dtos/getdetailedcostanalyticsresponse.md), error**
+**[*dtos.GetDetailedCostAnalyticsResponse](../../models/dtos/getdetailedcostanalyticsresponse.md), error**
 
 ### Errors
 
@@ -191,7 +191,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -215,15 +215,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `ctx`                                                                         | [context.Context](https://pkg.go.dev/context#Context)                         | :heavy_check_mark:                                                            | The context to use for the request.                                           |
-| `request`                                                                     | [types.DtoGetCostAnalyticsRequest](../../types/dtogetcostanalyticsrequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
-| `opts`                                                                        | [][dtos.Option](../../dtos/option.md)                                         | :heavy_minus_sign:                                                            | The options for this request.                                                 |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [types.DtoGetCostAnalyticsRequest](../../models/types/dtogetcostanalyticsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 ### Response
 
-**[*dtos.GetDetailedCostAnalyticsV2Response](../../dtos/getdetailedcostanalyticsv2response.md), error**
+**[*dtos.GetDetailedCostAnalyticsV2Response](../../models/dtos/getdetailedcostanalyticsv2response.md), error**
 
 ### Errors
 
@@ -246,7 +246,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -270,15 +270,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                               | Type                                                    | Required                                                | Description                                             |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
-| `ctx`                                                   | [context.Context](https://pkg.go.dev/context#Context)   | :heavy_check_mark:                                      | The context to use for the request.                     |
-| `request`                                               | [types.CostsheetFilter](../../types/costsheetfilter.md) | :heavy_check_mark:                                      | The request object to use for the request.              |
-| `opts`                                                  | [][dtos.Option](../../dtos/option.md)                   | :heavy_minus_sign:                                      | The options for this request.                           |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
+| `request`                                                      | [types.CostsheetFilter](../../models/types/costsheetfilter.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| `opts`                                                         | [][dtos.Option](../../models/dtos/option.md)                   | :heavy_minus_sign:                                             | The options for this request.                                  |
 
 ### Response
 
-**[*dtos.QueryCostsheetResponse](../../dtos/querycostsheetresponse.md), error**
+**[*dtos.QueryCostsheetResponse](../../models/dtos/querycostsheetresponse.md), error**
 
 ### Errors
 
@@ -329,11 +329,11 @@ func main() {
 | `ctx`                                                     | [context.Context](https://pkg.go.dev/context#Context)     | :heavy_check_mark:                                        | The context to use for the request.                       |
 | `id`                                                      | *string*                                                  | :heavy_check_mark:                                        | Costsheet ID                                              |
 | `expand`                                                  | **string*                                                 | :heavy_minus_sign:                                        | Comma-separated list of fields to expand (e.g., 'prices') |
-| `opts`                                                    | [][dtos.Option](../../dtos/option.md)                     | :heavy_minus_sign:                                        | The options for this request.                             |
+| `opts`                                                    | [][dtos.Option](../../models/dtos/option.md)              | :heavy_minus_sign:                                        | The options for this request.                             |
 
 ### Response
 
-**[*dtos.GetCostsheetResponse](../../dtos/getcostsheetresponse.md), error**
+**[*dtos.GetCostsheetResponse](../../models/dtos/getcostsheetresponse.md), error**
 
 ### Errors
 
@@ -356,7 +356,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -380,16 +380,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `ctx`                                                                       | [context.Context](https://pkg.go.dev/context#Context)                       | :heavy_check_mark:                                                          | The context to use for the request.                                         |
-| `id`                                                                        | *string*                                                                    | :heavy_check_mark:                                                          | Costsheet ID                                                                |
-| `body`                                                                      | [types.DtoUpdateCostsheetRequest](../../types/dtoupdatecostsheetrequest.md) | :heavy_check_mark:                                                          | Costsheet configuration                                                     |
-| `opts`                                                                      | [][dtos.Option](../../dtos/option.md)                                       | :heavy_minus_sign:                                                          | The options for this request.                                               |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `id`                                                                               | *string*                                                                           | :heavy_check_mark:                                                                 | Costsheet ID                                                                       |
+| `body`                                                                             | [types.DtoUpdateCostsheetRequest](../../models/types/dtoupdatecostsheetrequest.md) | :heavy_check_mark:                                                                 | Costsheet configuration                                                            |
+| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
-**[*dtos.UpdateCostsheetResponse](../../dtos/updatecostsheetresponse.md), error**
+**[*dtos.UpdateCostsheetResponse](../../models/dtos/updatecostsheetresponse.md), error**
 
 ### Errors
 
@@ -439,11 +439,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Costsheet ID                                          |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.DeleteCostsheetResponse](../../dtos/deletecostsheetresponse.md), error**
+**[*dtos.DeleteCostsheetResponse](../../models/dtos/deletecostsheetresponse.md), error**
 
 ### Errors
 

@@ -49,11 +49,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `provider`                                            | *string*                                              | :heavy_check_mark:                                    | Integration provider                                  |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetIntegrationResponse](../../dtos/getintegrationresponse.md), error**
+**[*dtos.GetIntegrationResponse](../../models/dtos/getintegrationresponse.md), error**
 
 ### Errors
 
@@ -76,7 +76,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -106,16 +106,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `ctx`                                                                           | [context.Context](https://pkg.go.dev/context#Context)                           | :heavy_check_mark:                                                              | The context to use for the request.                                             |
-| `provider`                                                                      | *string*                                                                        | :heavy_check_mark:                                                              | Integration provider                                                            |
-| `body`                                                                          | [types.DtoCreateIntegrationRequest](../../types/dtocreateintegrationrequest.md) | :heavy_check_mark:                                                              | Integration creation request                                                    |
-| `opts`                                                                          | [][dtos.Option](../../dtos/option.md)                                           | :heavy_minus_sign:                                                              | The options for this request.                                                   |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `provider`                                                                             | *string*                                                                               | :heavy_check_mark:                                                                     | Integration provider                                                                   |
+| `body`                                                                                 | [types.DtoCreateIntegrationRequest](../../models/types/dtocreateintegrationrequest.md) | :heavy_check_mark:                                                                     | Integration creation request                                                           |
+| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
-**[*dtos.CreateOrUpdateIntegrationResponse](../../dtos/createorupdateintegrationresponse.md), error**
+**[*dtos.CreateOrUpdateIntegrationResponse](../../models/dtos/createorupdateintegrationresponse.md), error**
 
 ### Errors
 
@@ -164,11 +164,11 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.ListLinkedIntegrationsResponse](../../dtos/listlinkedintegrationsresponse.md), error**
+**[*dtos.ListLinkedIntegrationsResponse](../../models/dtos/listlinkedintegrationsresponse.md), error**
 
 ### Errors
 
@@ -217,11 +217,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Integration ID                                        |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.DeleteIntegrationResponse](../../dtos/deleteintegrationresponse.md), error**
+**[*dtos.DeleteIntegrationResponse](../../models/dtos/deleteintegrationresponse.md), error**
 
 ### Errors
 

@@ -58,11 +58,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Customer ID                                           |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetCustomerInvoiceSummaryResponse](../../dtos/getcustomerinvoicesummaryresponse.md), error**
+**[*dtos.GetCustomerInvoiceSummaryResponse](../../models/dtos/getcustomerinvoicesummaryresponse.md), error**
 
 ### Errors
 
@@ -85,7 +85,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -115,15 +115,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `ctx`                                                                   | [context.Context](https://pkg.go.dev/context#Context)                   | :heavy_check_mark:                                                      | The context to use for the request.                                     |
-| `request`                                                               | [types.DtoCreateInvoiceRequest](../../types/dtocreateinvoicerequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
-| `opts`                                                                  | [][dtos.Option](../../dtos/option.md)                                   | :heavy_minus_sign:                                                      | The options for this request.                                           |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [types.DtoCreateInvoiceRequest](../../models/types/dtocreateinvoicerequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
-**[*dtos.CreateInvoiceResponse](../../dtos/createinvoiceresponse.md), error**
+**[*dtos.CreateInvoiceResponse](../../models/dtos/createinvoiceresponse.md), error**
 
 ### Errors
 
@@ -146,7 +146,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -172,15 +172,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `ctx`                                                                           | [context.Context](https://pkg.go.dev/context#Context)                           | :heavy_check_mark:                                                              | The context to use for the request.                                             |
-| `request`                                                                       | [types.DtoGetPreviewInvoiceRequest](../../types/dtogetpreviewinvoicerequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
-| `opts`                                                                          | [][dtos.Option](../../dtos/option.md)                                           | :heavy_minus_sign:                                                              | The options for this request.                                                   |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [types.DtoGetPreviewInvoiceRequest](../../models/types/dtogetpreviewinvoicerequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
-**[*dtos.GetInvoicePreviewResponse](../../dtos/getinvoicepreviewresponse.md), error**
+**[*dtos.GetInvoicePreviewResponse](../../models/dtos/getinvoicepreviewresponse.md), error**
 
 ### Errors
 
@@ -203,7 +203,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -227,15 +227,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `request`                                             | [types.InvoiceFilter](../../types/invoicefilter.md)   | :heavy_check_mark:                                    | The request object to use for the request.            |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                  | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `ctx`                                                      | [context.Context](https://pkg.go.dev/context#Context)      | :heavy_check_mark:                                         | The context to use for the request.                        |
+| `request`                                                  | [types.InvoiceFilter](../../models/types/invoicefilter.md) | :heavy_check_mark:                                         | The request object to use for the request.                 |
+| `opts`                                                     | [][dtos.Option](../../models/dtos/option.md)               | :heavy_minus_sign:                                         | The options for this request.                              |
 
 ### Response
 
-**[*dtos.QueryInvoiceResponse](../../dtos/queryinvoiceresponse.md), error**
+**[*dtos.QueryInvoiceResponse](../../models/dtos/queryinvoiceresponse.md), error**
 
 ### Errors
 
@@ -287,11 +287,11 @@ func main() {
 | `id`                                                                                    | *string*                                                                                | :heavy_check_mark:                                                                      | Invoice ID                                                                              |
 | `expandBySource`                                                                        | **bool*                                                                                 | :heavy_minus_sign:                                                                      | Include source-level price breakdown for usage line items (legacy)                      |
 | `groupBy`                                                                               | []*string*                                                                              | :heavy_minus_sign:                                                                      | Group usage breakdown by specified fields (e.g., source, feature_id, properties.org_id) |
-| `opts`                                                                                  | [][dtos.Option](../../dtos/option.md)                                                   | :heavy_minus_sign:                                                                      | The options for this request.                                                           |
+| `opts`                                                                                  | [][dtos.Option](../../models/dtos/option.md)                                            | :heavy_minus_sign:                                                                      | The options for this request.                                                           |
 
 ### Response
 
-**[*dtos.GetInvoiceResponse](../../dtos/getinvoiceresponse.md), error**
+**[*dtos.GetInvoiceResponse](../../models/dtos/getinvoiceresponse.md), error**
 
 ### Errors
 
@@ -314,7 +314,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -338,16 +338,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `ctx`                                                                   | [context.Context](https://pkg.go.dev/context#Context)                   | :heavy_check_mark:                                                      | The context to use for the request.                                     |
-| `id`                                                                    | *string*                                                                | :heavy_check_mark:                                                      | Invoice ID                                                              |
-| `body`                                                                  | [types.DtoUpdateInvoiceRequest](../../types/dtoupdateinvoicerequest.md) | :heavy_check_mark:                                                      | Invoice Update Request                                                  |
-| `opts`                                                                  | [][dtos.Option](../../dtos/option.md)                                   | :heavy_minus_sign:                                                      | The options for this request.                                           |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `id`                                                                           | *string*                                                                       | :heavy_check_mark:                                                             | Invoice ID                                                                     |
+| `body`                                                                         | [types.DtoUpdateInvoiceRequest](../../models/types/dtoupdateinvoicerequest.md) | :heavy_check_mark:                                                             | Invoice Update Request                                                         |
+| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
-**[*dtos.UpdateInvoiceResponse](../../dtos/updateinvoiceresponse.md), error**
+**[*dtos.UpdateInvoiceResponse](../../models/dtos/updateinvoiceresponse.md), error**
 
 ### Errors
 
@@ -397,11 +397,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Invoice ID                                            |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.TriggerInvoiceCommsWebhookResponse](../../dtos/triggerinvoicecommswebhookresponse.md), error**
+**[*dtos.TriggerInvoiceCommsWebhookResponse](../../models/dtos/triggerinvoicecommswebhookresponse.md), error**
 
 ### Errors
 
@@ -451,11 +451,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Invoice ID                                            |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.FinalizeInvoiceResponse](../../dtos/finalizeinvoiceresponse.md), error**
+**[*dtos.FinalizeInvoiceResponse](../../models/dtos/finalizeinvoiceresponse.md), error**
 
 ### Errors
 
@@ -478,7 +478,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -504,16 +504,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `ctx`                                                                               | [context.Context](https://pkg.go.dev/context#Context)                               | :heavy_check_mark:                                                                  | The context to use for the request.                                                 |
-| `id`                                                                                | *string*                                                                            | :heavy_check_mark:                                                                  | Invoice ID                                                                          |
-| `body`                                                                              | [types.DtoUpdatePaymentStatusRequest](../../types/dtoupdatepaymentstatusrequest.md) | :heavy_check_mark:                                                                  | Payment Status Update Request                                                       |
-| `opts`                                                                              | [][dtos.Option](../../dtos/option.md)                                               | :heavy_minus_sign:                                                                  | The options for this request.                                                       |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `id`                                                                                       | *string*                                                                                   | :heavy_check_mark:                                                                         | Invoice ID                                                                                 |
+| `body`                                                                                     | [types.DtoUpdatePaymentStatusRequest](../../models/types/dtoupdatepaymentstatusrequest.md) | :heavy_check_mark:                                                                         | Payment Status Update Request                                                              |
+| `opts`                                                                                     | [][dtos.Option](../../models/dtos/option.md)                                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 ### Response
 
-**[*dtos.UpdateInvoicePaymentStatusResponse](../../dtos/updateinvoicepaymentstatusresponse.md), error**
+**[*dtos.UpdateInvoicePaymentStatusResponse](../../models/dtos/updateinvoicepaymentstatusresponse.md), error**
 
 ### Errors
 
@@ -563,11 +563,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Invoice ID                                            |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.AttemptInvoicePaymentResponse](../../dtos/attemptinvoicepaymentresponse.md), error**
+**[*dtos.AttemptInvoicePaymentResponse](../../models/dtos/attemptinvoicepaymentresponse.md), error**
 
 ### Errors
 
@@ -618,11 +618,11 @@ func main() {
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Invoice ID                                            |
 | `url_`                                                | **bool*                                               | :heavy_minus_sign:                                    | Return presigned URL from s3 instead of PDF           |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetInvoicePdfResponse](../../dtos/getinvoicepdfresponse.md), error**
+**[*dtos.GetInvoicePdfResponse](../../models/dtos/getinvoicepdfresponse.md), error**
 
 ### Errors
 
@@ -671,11 +671,11 @@ func main() {
 | `ctx`                                                               | [context.Context](https://pkg.go.dev/context#Context)               | :heavy_check_mark:                                                  | The context to use for the request.                                 |
 | `id`                                                                | *string*                                                            | :heavy_check_mark:                                                  | Invoice ID                                                          |
 | `finalize`                                                          | **bool*                                                             | :heavy_minus_sign:                                                  | Whether to finalize the invoice after recalculation (default: true) |
-| `opts`                                                              | [][dtos.Option](../../dtos/option.md)                               | :heavy_minus_sign:                                                  | The options for this request.                                       |
+| `opts`                                                              | [][dtos.Option](../../models/dtos/option.md)                        | :heavy_minus_sign:                                                  | The options for this request.                                       |
 
 ### Response
 
-**[*dtos.RecalculateInvoiceResponse](../../dtos/recalculateinvoiceresponse.md), error**
+**[*dtos.RecalculateInvoiceResponse](../../models/dtos/recalculateinvoiceresponse.md), error**
 
 ### Errors
 
@@ -725,11 +725,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Invoice ID                                            |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.VoidInvoiceResponse](../../dtos/voidinvoiceresponse.md), error**
+**[*dtos.VoidInvoiceResponse](../../models/dtos/voidinvoiceresponse.md), error**
 
 ### Errors
 

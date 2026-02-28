@@ -1,0 +1,9 @@
+# ListSubscriptionSchedulesResponse
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                    | [types.HTTPMetadata](../../models/types/httpmetadata.md)                                      | :heavy_check_mark:                                                                            | N/A                                                                                           |
+| `DtoGetPendingSchedulesResponse`                                                              | [*types.DtoGetPendingSchedulesResponse](../../models/types/dtogetpendingschedulesresponse.md) | :heavy_minus_sign:                                                                            | OK                                                                                            |

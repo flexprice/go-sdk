@@ -1,0 +1,19 @@
+# DtoSecretResponse
+
+
+## Fields
+
+| Field                                                         | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `CreatedAt`                                                   | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `DisplayID`                                                   | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `ExpiresAt`                                                   | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `ID`                                                          | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `LastUsedAt`                                                  | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `Name`                                                        | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `Provider`                                                    | [*types.SecretProvider](../../models/types/secretprovider.md) | :heavy_minus_sign:                                            | N/A                                                           |
+| `Roles`                                                       | []*string*                                                    | :heavy_minus_sign:                                            | RBAC roles                                                    |
+| `Status`                                                      | [*types.Status](../../models/types/status.md)                 | :heavy_minus_sign:                                            | N/A                                                           |
+| `Type`                                                        | [*types.SecretType](../../models/types/secrettype.md)         | :heavy_minus_sign:                                            | N/A                                                           |
+| `UpdatedAt`                                                   | **string*                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `UserType`                                                    | [*types.UserType](../../models/types/usertype.md)             | :heavy_minus_sign:                                            | N/A                                                           |

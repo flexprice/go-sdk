@@ -53,11 +53,11 @@ func main() {
 | `entityID`                                            | **string*                                             | :heavy_minus_sign:                                    | Entity ID                                             |
 | `externalCustomerID`                                  | **string*                                             | :heavy_minus_sign:                                    | External Customer ID                                  |
 | `taxRateID`                                           | **string*                                             | :heavy_minus_sign:                                    | Tax Rate ID                                           |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.ListTaxAssociationsResponse](../../dtos/listtaxassociationsresponse.md), error**
+**[*dtos.ListTaxAssociationsResponse](../../models/dtos/listtaxassociationsresponse.md), error**
 
 ### Errors
 
@@ -80,7 +80,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -106,15 +106,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `ctx`                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                 | :heavy_check_mark:                                                                    | The context to use for the request.                                                   |
-| `request`                                                                             | [types.DtoCreateTaxAssociationRequest](../../types/dtocreatetaxassociationrequest.md) | :heavy_check_mark:                                                                    | The request object to use for the request.                                            |
-| `opts`                                                                                | [][dtos.Option](../../dtos/option.md)                                                 | :heavy_minus_sign:                                                                    | The options for this request.                                                         |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [types.DtoCreateTaxAssociationRequest](../../models/types/dtocreatetaxassociationrequest.md) | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `opts`                                                                                       | [][dtos.Option](../../models/dtos/option.md)                                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 ### Response
 
-**[*dtos.CreateTaxAssociationResponse](../../dtos/createtaxassociationresponse.md), error**
+**[*dtos.CreateTaxAssociationResponse](../../models/dtos/createtaxassociationresponse.md), error**
 
 ### Errors
 
@@ -164,11 +164,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Tax Config ID                                         |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetTaxAssociationResponse](../../dtos/gettaxassociationresponse.md), error**
+**[*dtos.GetTaxAssociationResponse](../../models/dtos/gettaxassociationresponse.md), error**
 
 ### Errors
 
@@ -191,7 +191,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -215,16 +215,16 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                             | Type                                                                                  | Required                                                                              | Description                                                                           |
-| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| `ctx`                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                 | :heavy_check_mark:                                                                    | The context to use for the request.                                                   |
-| `id`                                                                                  | *string*                                                                              | :heavy_check_mark:                                                                    | Tax Config ID                                                                         |
-| `body`                                                                                | [types.DtoTaxAssociationUpdateRequest](../../types/dtotaxassociationupdaterequest.md) | :heavy_check_mark:                                                                    | Tax Config Request                                                                    |
-| `opts`                                                                                | [][dtos.Option](../../dtos/option.md)                                                 | :heavy_minus_sign:                                                                    | The options for this request.                                                         |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `id`                                                                                         | *string*                                                                                     | :heavy_check_mark:                                                                           | Tax Config ID                                                                                |
+| `body`                                                                                       | [types.DtoTaxAssociationUpdateRequest](../../models/types/dtotaxassociationupdaterequest.md) | :heavy_check_mark:                                                                           | Tax Config Request                                                                           |
+| `opts`                                                                                       | [][dtos.Option](../../models/dtos/option.md)                                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 ### Response
 
-**[*dtos.UpdateTaxAssociationResponse](../../dtos/updatetaxassociationresponse.md), error**
+**[*dtos.UpdateTaxAssociationResponse](../../models/dtos/updatetaxassociationresponse.md), error**
 
 ### Errors
 
@@ -274,11 +274,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Tax Config ID                                         |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.DeleteTaxAssociationResponse](../../dtos/deletetaxassociationresponse.md), error**
+**[*dtos.DeleteTaxAssociationResponse](../../models/dtos/deletetaxassociationresponse.md), error**
 
 ### Errors
 

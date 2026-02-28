@@ -1,9 +1,0 @@
-# PreviewSubscriptionChangeResponse
-
-
-## Fields
-
-| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `HTTPMeta`                                                                                      | [types.HTTPMetadata](../types/httpmetadata.md)                                                  | :heavy_check_mark:                                                                              | N/A                                                                                             |
-| `DtoSubscriptionChangePreviewResponse`                                                          | [*types.DtoSubscriptionChangePreviewResponse](../types/dtosubscriptionchangepreviewresponse.md) | :heavy_minus_sign:                                                                              | OK                                                                                              |

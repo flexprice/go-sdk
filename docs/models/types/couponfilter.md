@@ -1,0 +1,15 @@
+# CouponFilter
+
+
+## Fields
+
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `CouponIds`                                                         | []*string*                                                          | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Expand`                                                            | **string*                                                           | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Filters`                                                           | [][types.FilterCondition](../../models/types/filtercondition.md)    | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Limit`                                                             | **int64*                                                            | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Offset`                                                            | **int64*                                                            | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Order`                                                             | [*types.CouponFilterOrder](../../models/types/couponfilterorder.md) | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Sort`                                                              | [][types.SortCondition](../../models/types/sortcondition.md)        | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Status`                                                            | [*types.Status](../../models/types/status.md)                       | :heavy_minus_sign:                                                  | N/A                                                                 |

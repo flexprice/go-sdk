@@ -53,11 +53,11 @@ func main() {
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
 | `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.HandleChargebeeWebhookResponse](../../dtos/handlechargebeewebhookresponse.md), error**
+**[*dtos.HandleChargebeeWebhookResponse](../../models/dtos/handlechargebeewebhookresponse.md), error**
 
 ### Errors
 
@@ -107,11 +107,11 @@ func main() {
 | `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
 | `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
 | `xHubSpotSignatureV3`                                 | *string*                                              | :heavy_check_mark:                                    | HubSpot webhook signature                             |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.HandleHubspotWebhookResponse](../../dtos/handlehubspotwebhookresponse.md), error**
+**[*dtos.HandleHubspotWebhookResponse](../../models/dtos/handlehubspotwebhookresponse.md), error**
 
 ### Errors
 
@@ -161,11 +161,11 @@ func main() {
 | `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
 | `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
 | `xMoyasarSignature`                                   | **string*                                             | :heavy_minus_sign:                                    | Moyasar webhook signature                             |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.HandleMoyasarWebhookResponse](../../dtos/handlemoyasarwebhookresponse.md), error**
+**[*dtos.HandleMoyasarWebhookResponse](../../models/dtos/handlemoyasarwebhookresponse.md), error**
 
 ### Errors
 
@@ -215,11 +215,11 @@ func main() {
 | `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
 | `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
 | `xAPIKey`                                             | **string*                                             | :heavy_minus_sign:                                    | Nomod webhook secret (if configured)                  |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.HandleNomodWebhookResponse](../../dtos/handlenomodwebhookresponse.md), error**
+**[*dtos.HandleNomodWebhookResponse](../../models/dtos/handlenomodwebhookresponse.md), error**
 
 ### Errors
 
@@ -269,11 +269,11 @@ func main() {
 | `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
 | `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
 | `intuitSignature`                                     | **string*                                             | :heavy_minus_sign:                                    | QuickBooks webhook signature                          |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.HandleQuickbooksWebhookResponse](../../dtos/handlequickbookswebhookresponse.md), error**
+**[*dtos.HandleQuickbooksWebhookResponse](../../models/dtos/handlequickbookswebhookresponse.md), error**
 
 ### Errors
 
@@ -323,11 +323,11 @@ func main() {
 | `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
 | `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
 | `xRazorpaySignature`                                  | *string*                                              | :heavy_check_mark:                                    | Razorpay webhook signature                            |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.HandleRazorpayWebhookResponse](../../dtos/handlerazorpaywebhookresponse.md), error**
+**[*dtos.HandleRazorpayWebhookResponse](../../models/dtos/handlerazorpaywebhookresponse.md), error**
 
 ### Errors
 
@@ -377,11 +377,11 @@ func main() {
 | `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
 | `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
 | `stripeSignature`                                     | *string*                                              | :heavy_check_mark:                                    | Stripe webhook signature                              |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.HandleStripeWebhookResponse](../../dtos/handlestripewebhookresponse.md), error**
+**[*dtos.HandleStripeWebhookResponse](../../models/dtos/handlestripewebhookresponse.md), error**
 
 ### Errors
 

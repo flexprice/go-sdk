@@ -20,7 +20,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/flexprice-go/v2"
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"log"
 )
 
@@ -49,15 +49,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                                     | :heavy_check_mark:                                                                                        | The context to use for the request.                                                                       |
-| `request`                                                                                                 | [types.DtoCreateEntityIntegrationMappingRequest](../../types/dtocreateentityintegrationmappingrequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
-| `opts`                                                                                                    | [][dtos.Option](../../dtos/option.md)                                                                     | :heavy_minus_sign:                                                                                        | The options for this request.                                                                             |
+| Parameter                                                                                                        | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      |
+| ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                                            | :heavy_check_mark:                                                                                               | The context to use for the request.                                                                              |
+| `request`                                                                                                        | [types.DtoCreateEntityIntegrationMappingRequest](../../models/types/dtocreateentityintegrationmappingrequest.md) | :heavy_check_mark:                                                                                               | The request object to use for the request.                                                                       |
+| `opts`                                                                                                           | [][dtos.Option](../../models/dtos/option.md)                                                                     | :heavy_minus_sign:                                                                                               | The options for this request.                                                                                    |
 
 ### Response
 
-**[*dtos.CreateEntityIntegrationMappingResponse](../../dtos/createentityintegrationmappingresponse.md), error**
+**[*dtos.CreateEntityIntegrationMappingResponse](../../models/dtos/createentityintegrationmappingresponse.md), error**
 
 ### Errors
 
@@ -107,11 +107,11 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Entity integration mapping ID                         |
-| `opts`                                                | [][dtos.Option](../../dtos/option.md)                 | :heavy_minus_sign:                                    | The options for this request.                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.DeleteEntityIntegrationMappingResponse](../../dtos/deleteentityintegrationmappingresponse.md), error**
+**[*dtos.DeleteEntityIntegrationMappingResponse](../../models/dtos/deleteentityintegrationmappingresponse.md), error**
 
 ### Errors
 

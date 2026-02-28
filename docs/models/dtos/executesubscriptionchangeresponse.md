@@ -1,0 +1,9 @@
+# ExecuteSubscriptionChangeResponse
+
+
+## Fields
+
+| Field                                                                                                     | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                                | [types.HTTPMetadata](../../models/types/httpmetadata.md)                                                  | :heavy_check_mark:                                                                                        | N/A                                                                                                       |
+| `DtoSubscriptionChangeExecuteResponse`                                                                    | [*types.DtoSubscriptionChangeExecuteResponse](../../models/types/dtosubscriptionchangeexecuteresponse.md) | :heavy_minus_sign:                                                                                        | OK                                                                                                        |

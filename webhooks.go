@@ -6,13 +6,13 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/flexprice/flexprice-go/v2/dtos"
-	"github.com/flexprice/flexprice-go/v2/errors"
 	"github.com/flexprice/flexprice-go/v2/internal/config"
 	"github.com/flexprice/flexprice-go/v2/internal/hooks"
 	"github.com/flexprice/flexprice-go/v2/internal/utils"
+	"github.com/flexprice/flexprice-go/v2/models/dtos"
+	"github.com/flexprice/flexprice-go/v2/models/errors"
+	"github.com/flexprice/flexprice-go/v2/models/types"
 	"github.com/flexprice/flexprice-go/v2/retry"
-	"github.com/flexprice/flexprice-go/v2/types"
 	"net/http"
 )
 
