@@ -15,3 +15,4 @@
 | `OverageFactor`                                       | **float64*                                            | :heavy_minus_sign:                                    | Factor applied to this charge if in overage           |
 | `Price`                                               | [*types.PricePrice](../../models/types/priceprice.md) | :heavy_minus_sign:                                    | N/A                                                   |
 | `Quantity`                                            | **float64*                                            | :heavy_minus_sign:                                    | N/A                                                   |
+| `SubscriptionLineItemID`                              | **string*                                             | :heavy_minus_sign:                                    | For feature_usage: direct match by sub_line_item_id   |

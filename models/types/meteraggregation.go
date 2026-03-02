@@ -4,8 +4,12 @@ package types
 
 type MeterAggregation struct {
 	BucketSize *WindowSize `json:"bucket_size,omitzero"`
+	// Expression is an optional CEL expression to compute per-event quantity from event.properties.
+	// When set, it replaces Field-based extraction. Property names are used directly (e.g., token * duration * pixel).
+	Expression *string `json:"expression,omitzero"`
 	// Field is the key in $event.properties on which the aggregation is to be applied
 	// For ex if the aggregation type is sum for API usage, the field could be "duration_ms"
+	// Ignored when Expression is set.
 	Field *string `json:"field,omitzero"`
 	// GroupBy is the property name in event.properties to group by before aggregating.
 	// Currently only supported for MAX aggregation with bucket_size.
@@ -24,6 +28,13 @@ func (m *MeterAggregation) GetBucketSize() *WindowSize {
 		return nil
 	}
 	return m.BucketSize
+}
+
+func (m *MeterAggregation) GetExpression() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Expression
 }
 
 func (m *MeterAggregation) GetField() *string {

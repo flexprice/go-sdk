@@ -19,6 +19,8 @@ type DtoSubscriptionUsageByMetersResponse struct {
 	OverageFactor *float64    `json:"overage_factor,omitzero"`
 	Price         *PricePrice `json:"price,omitzero"`
 	Quantity      *float64    `json:"quantity,omitzero"`
+	// For feature_usage: direct match by sub_line_item_id
+	SubscriptionLineItemID *string `json:"subscription_line_item_id,omitzero"`
 }
 
 func (d DtoSubscriptionUsageByMetersResponse) MarshalJSON() ([]byte, error) {
@@ -100,4 +102,11 @@ func (d *DtoSubscriptionUsageByMetersResponse) GetQuantity() *float64 {
 		return nil
 	}
 	return d.Quantity
+}
+
+func (d *DtoSubscriptionUsageByMetersResponse) GetSubscriptionLineItemID() *string {
+	if d == nil {
+		return nil
+	}
+	return d.SubscriptionLineItemID
 }
