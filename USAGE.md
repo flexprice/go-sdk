@@ -13,7 +13,6 @@ func main() {
 	ctx := context.Background()
 
 	s := flexprice.New(
-		"https://api.example.com",
 		flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 

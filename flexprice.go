@@ -2,10 +2,11 @@
 
 package flexprice
 
-// Generated from OpenAPI doc version 1.0 and generator version 2.845.15
+// Generated from OpenAPI doc version 1.0 and generator version 2.846.1
 
 import (
 	"context"
+	"fmt"
 	"github.com/flexprice/flexprice-go/v2/internal/config"
 	"github.com/flexprice/flexprice-go/v2/internal/hooks"
 	"github.com/flexprice/flexprice-go/v2/internal/utils"
@@ -14,6 +15,14 @@ import (
 	"net/http"
 	"time"
 )
+
+// ServerList contains the list of servers available to the SDK
+var ServerList = []string{
+	// US Region
+	"https://us.api.flexprice.io/v1",
+	// India Region
+	"https://api.cloud.flexprice.io/v1",
+}
 
 // HTTPClient provides an interface for supplying the SDK with a custom HTTP client
 type HTTPClient interface {
@@ -41,7 +50,7 @@ func Float64(f float64) *float64 { return &f }
 // Pointer provides a helper function to return a pointer to a type
 func Pointer[T any](v T) *T { return &v }
 
-// Flexprice API: Flexprice API provides billing, metering, and subscription management for SaaS and usage-based products. Use it to manage customers, plans, invoices, payments, usage events, and entitlements. Authenticate with an API key in the x-api-key header.
+// Flexprice API: Flexprice API Service
 type Flexprice struct {
 	SDKVersion                string
 	Addons                    *Addons
@@ -100,6 +109,17 @@ func WithTemplatedServerURL(serverURL string, params map[string]string) SDKOptio
 	}
 }
 
+// WithServerIndex allows the overriding of the default server by index
+func WithServerIndex(serverIndex int) SDKOption {
+	return func(sdk *Flexprice) {
+		if serverIndex < 0 || serverIndex >= len(ServerList) {
+			panic(fmt.Errorf("server index %d out of range", serverIndex))
+		}
+
+		sdk.sdkConfiguration.ServerIndex = serverIndex
+	}
+}
+
 // WithClient allows the overriding of the default HTTP client used by the SDK
 func WithClient(client HTTPClient) SDKOption {
 	return func(sdk *Flexprice) {
@@ -137,12 +157,13 @@ func WithTimeout(timeout time.Duration) SDKOption {
 	}
 }
 
-// New creates a new instance of the SDK with the provided serverURL and options
-func New(serverURL string, opts ...SDKOption) *Flexprice {
+// New creates a new instance of the SDK with the provided options
+func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
 		SDKVersion: "2.0.1",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent: "speakeasy-sdk/go 2.0.1 2.845.15 1.0 github.com/flexprice/flexprice-go/v2",
+			UserAgent:  "speakeasy-sdk/go 2.0.1 2.846.1 1.0 github.com/flexprice/flexprice-go/v2",
+			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
 	}
@@ -154,8 +175,6 @@ func New(serverURL string, opts ...SDKOption) *Flexprice {
 	if sdk.sdkConfiguration.Client == nil {
 		sdk.sdkConfiguration.Client = &http.Client{Timeout: 60 * time.Second}
 	}
-
-	sdk.sdkConfiguration.ServerURL = serverURL
 
 	sdk.sdkConfiguration = sdk.hooks.SDKInit(sdk.sdkConfiguration)
 

@@ -7,10 +7,10 @@ import (
 )
 
 type FilterCondition struct {
-	DataType *DataType                                      `json:"data_type,omitzero"`
-	Field    *string                                        `json:"field,omitzero"`
-	Operator *FilterOperatorType                            `json:"operator,omitzero"`
-	Value    *GithubComFlexpriceFlexpriceInternalTypesValue `json:"value,omitzero"`
+	DataType *DataType           `json:"data_type,omitzero"`
+	Field    *string             `json:"field,omitzero"`
+	Operator *FilterOperatorType `json:"operator,omitzero"`
+	Value    *Value              `json:"value,omitzero"`
 }
 
 func (f FilterCondition) MarshalJSON() ([]byte, error) {
@@ -45,7 +45,7 @@ func (f *FilterCondition) GetOperator() *FilterOperatorType {
 	return f.Operator
 }
 
-func (f *FilterCondition) GetValue() *GithubComFlexpriceFlexpriceInternalTypesValue {
+func (f *FilterCondition) GetValue() *Value {
 	if f == nil {
 		return nil
 	}
