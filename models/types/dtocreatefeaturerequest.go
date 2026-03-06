@@ -14,7 +14,6 @@ type DtoCreateFeatureRequest struct {
 	Meter         *DtoCreateMeterRequest `json:"meter,omitzero"`
 	MeterID       *string                `json:"meter_id,omitzero"`
 	Name          string                 `json:"name"`
-	ReportingUnit *ReportingUnit         `json:"reporting_unit,omitzero"`
 	Type          FeatureType            `json:"type"`
 	UnitPlural    *string                `json:"unit_plural,omitzero"`
 	UnitSingular  *string                `json:"unit_singular,omitzero"`
@@ -78,13 +77,6 @@ func (d *DtoCreateFeatureRequest) GetName() string {
 		return ""
 	}
 	return d.Name
-}
-
-func (d *DtoCreateFeatureRequest) GetReportingUnit() *ReportingUnit {
-	if d == nil {
-		return nil
-	}
-	return d.ReportingUnit
 }
 
 func (d *DtoCreateFeatureRequest) GetType() FeatureType {

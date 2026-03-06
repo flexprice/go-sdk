@@ -28,9 +28,8 @@ type DtoUsageAnalyticItem struct {
 	// Price ID used for this usage
 	PriceID *string `json:"price_id,omitzero"`
 	// Stores property values for flexible grouping (e.g., org_id -> "org123")
-	Properties    map[string]string `json:"properties,omitzero"`
-	ReportingUnit *ReportingUnit    `json:"reporting_unit,omitzero"`
-	Source        *string           `json:"source,omitzero"`
+	Properties map[string]string `json:"properties,omitzero"`
+	Source     *string           `json:"source,omitzero"`
 	// List of sources when not grouping by source
 	Sources []string `json:"sources,omitzero"`
 	// Subscription line item ID
@@ -40,11 +39,9 @@ type DtoUsageAnalyticItem struct {
 	SubscriptionLineItem *SubscriptionSubscriptionLineItem `json:"subscription_line_item,omitzero"`
 	TotalCost            *string                           `json:"total_cost,omitzero"`
 	TotalUsage           *string                           `json:"total_usage,omitzero"`
-	// Empty string when feature has no reporting unit; otherwise the value in reporting units
-	TotalUsageDisplay *string     `json:"total_usage_display,omitzero"`
-	Unit              *string     `json:"unit,omitzero"`
-	UnitPlural        *string     `json:"unit_plural,omitzero"`
-	WindowSize        *WindowSize `json:"window_size,omitzero"`
+	Unit                 *string                           `json:"unit,omitzero"`
+	UnitPlural           *string                           `json:"unit_plural,omitzero"`
+	WindowSize           *WindowSize                       `json:"window_size,omitzero"`
 }
 
 func (d DtoUsageAnalyticItem) MarshalJSON() ([]byte, error) {
@@ -184,13 +181,6 @@ func (d *DtoUsageAnalyticItem) GetProperties() map[string]string {
 	return d.Properties
 }
 
-func (d *DtoUsageAnalyticItem) GetReportingUnit() *ReportingUnit {
-	if d == nil {
-		return nil
-	}
-	return d.ReportingUnit
-}
-
 func (d *DtoUsageAnalyticItem) GetSource() *string {
 	if d == nil {
 		return nil
@@ -238,13 +228,6 @@ func (d *DtoUsageAnalyticItem) GetTotalUsage() *string {
 		return nil
 	}
 	return d.TotalUsage
-}
-
-func (d *DtoUsageAnalyticItem) GetTotalUsageDisplay() *string {
-	if d == nil {
-		return nil
-	}
-	return d.TotalUsageDisplay
 }
 
 func (d *DtoUsageAnalyticItem) GetUnit() *string {

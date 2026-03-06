@@ -17,7 +17,6 @@ type GithubComFlexpriceFlexpriceInternalDomainFeatureFeature struct {
 	Metadata      map[string]string `json:"metadata,omitzero"`
 	MeterID       *string           `json:"meter_id,omitzero"`
 	Name          *string           `json:"name,omitzero"`
-	ReportingUnit *ReportingUnit    `json:"reporting_unit,omitzero"`
 	Status        *Status           `json:"status,omitzero"`
 	TenantID      *string           `json:"tenant_id,omitzero"`
 	Type          *FeatureType      `json:"type,omitzero"`
@@ -106,13 +105,6 @@ func (g *GithubComFlexpriceFlexpriceInternalDomainFeatureFeature) GetName() *str
 		return nil
 	}
 	return g.Name
-}
-
-func (g *GithubComFlexpriceFlexpriceInternalDomainFeatureFeature) GetReportingUnit() *ReportingUnit {
-	if g == nil {
-		return nil
-	}
-	return g.ReportingUnit
 }
 
 func (g *GithubComFlexpriceFlexpriceInternalDomainFeatureFeature) GetStatus() *Status {
