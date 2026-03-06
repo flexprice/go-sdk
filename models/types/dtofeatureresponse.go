@@ -18,6 +18,7 @@ type DtoFeatureResponse struct {
 	Meter         *DtoMeterResponse `json:"meter,omitzero"`
 	MeterID       *string           `json:"meter_id,omitzero"`
 	Name          *string           `json:"name,omitzero"`
+	ReportingUnit *ReportingUnit    `json:"reporting_unit,omitzero"`
 	Status        *Status           `json:"status,omitzero"`
 	TenantID      *string           `json:"tenant_id,omitzero"`
 	Type          *FeatureType      `json:"type,omitzero"`
@@ -113,6 +114,13 @@ func (d *DtoFeatureResponse) GetName() *string {
 		return nil
 	}
 	return d.Name
+}
+
+func (d *DtoFeatureResponse) GetReportingUnit() *ReportingUnit {
+	if d == nil {
+		return nil
+	}
+	return d.ReportingUnit
 }
 
 func (d *DtoFeatureResponse) GetStatus() *Status {

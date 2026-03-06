@@ -12,6 +12,7 @@ type DtoUpdateFeatureRequest struct {
 	Filters       []MeterFilter     `json:"filters,omitzero"`
 	Metadata      map[string]string `json:"metadata,omitzero"`
 	Name          *string           `json:"name,omitzero"`
+	ReportingUnit *ReportingUnit    `json:"reporting_unit,omitzero"`
 	UnitPlural    *string           `json:"unit_plural,omitzero"`
 	UnitSingular  *string           `json:"unit_singular,omitzero"`
 }
@@ -60,6 +61,13 @@ func (d *DtoUpdateFeatureRequest) GetName() *string {
 		return nil
 	}
 	return d.Name
+}
+
+func (d *DtoUpdateFeatureRequest) GetReportingUnit() *ReportingUnit {
+	if d == nil {
+		return nil
+	}
+	return d.ReportingUnit
 }
 
 func (d *DtoUpdateFeatureRequest) GetUnitPlural() *string {

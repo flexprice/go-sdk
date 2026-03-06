@@ -13,7 +13,10 @@ type DtoUpdatePriceRequest struct {
 	Description   *string       `json:"description,omitzero"`
 	DisplayName   *string       `json:"display_name,omitzero"`
 	EffectiveFrom *string       `json:"effective_from,omitzero"`
-	// GroupID is the id of the group to update the price in
+	// GroupID is the id of the group to update the price in.
+	// If not provided (nil), the group will not be changed
+	// If provided as empty string (""), the group will be removed (price will be ungrouped)
+	// If provided as a group ID, the price will be assigned to that group (must exist and be published)
 	GroupID *string `json:"group_id,omitzero"`
 	// All price fields that can be updated
 	// Non-critical fields (can be updated directly)
