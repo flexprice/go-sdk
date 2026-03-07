@@ -28,3 +28,4 @@ custom := types.TransactionReason("custom_value")
 | `TransactionReasonWalletTermination`       | WALLET_TERMINATION                         |
 | `TransactionReasonManualBalanceDebit`      | MANUAL_BALANCE_DEBIT                       |
 | `TransactionReasonCreditAdjustment`        | CREDIT_ADJUSTMENT                          |
+| `TransactionReasonInvoiceVoidRefund`       | INVOICE_VOID_REFUND                        |

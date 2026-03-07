@@ -15,7 +15,8 @@
 * [UpdateInvoicePaymentStatus](#updateinvoicepaymentstatus) - Update invoice payment status
 * [AttemptInvoicePayment](#attemptinvoicepayment) - Attempt invoice payment
 * [GetInvoicePdf](#getinvoicepdf) - Get invoice PDF
-* [RecalculateInvoice](#recalculateinvoice) - Recalculate invoice
+* [RecalculateInvoice](#recalculateinvoice) - Recalculate invoice (default: voided invoice)
+* [RecalculateInvoiceV2](#recalculateinvoicev2) - Recalculate draft invoice (v2)
 * [VoidInvoice](#voidinvoice) - Void invoice
 
 ## GetCustomerInvoiceSummary
@@ -621,7 +622,7 @@ func main() {
 
 ## RecalculateInvoice
 
-Use when subscription or usage data changed and you need to refresh a draft invoice before finalizing. Optional finalize=true to lock after recalc.
+Creates a fresh replacement invoice for a voided SUBSCRIPTION invoice covering the same billing period. The original voided invoice is linked to the new invoice via recalculated_invoice_id. Can only be called once per voided invoice.
 
 ### Example Usage
 
@@ -642,7 +643,60 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Invoices.RecalculateInvoice(ctx, "<id>", nil)
+    res, err := s.Invoices.RecalculateInvoice(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.DtoInvoiceResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Invoice ID                                            |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.RecalculateInvoiceResponse](../../models/dtos/recalculateinvoiceresponse.md), error**
+
+### Errors
+
+| Error Type                 | Status Code                | Content Type               |
+| -------------------------- | -------------------------- | -------------------------- |
+| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
+| errors.ErrorsErrorResponse | 500                        | application/json           |
+| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+
+## RecalculateInvoiceV2
+
+Recalculates a draft SUBSCRIPTION invoice in-place (replaces line items, reapplies credits/coupons/taxes). Use when subscription or usage data changed before finalizing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="recalculateInvoiceV2" method="post" path="/invoices/{id}/recalculate-v2" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/flexprice-go/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Invoices.RecalculateInvoiceV2(ctx, "<id>", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -663,7 +717,7 @@ func main() {
 
 ### Response
 
-**[*dtos.RecalculateInvoiceResponse](../../models/dtos/recalculateinvoiceresponse.md), error**
+**[*dtos.RecalculateInvoiceV2Response](../../models/dtos/recalculateinvoicev2response.md), error**
 
 ### Errors
 

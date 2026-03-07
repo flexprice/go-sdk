@@ -10,8 +10,6 @@ import (
 type RecalculateInvoiceRequest struct {
 	// Invoice ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
-	// Whether to finalize the invoice after recalculation (default: true)
-	Finalize *bool `queryParam:"style=form,explode=true,name=finalize"`
 }
 
 func (r *RecalculateInvoiceRequest) GetID() string {
@@ -19,13 +17,6 @@ func (r *RecalculateInvoiceRequest) GetID() string {
 		return ""
 	}
 	return r.ID
-}
-
-func (r *RecalculateInvoiceRequest) GetFinalize() *bool {
-	if r == nil {
-		return nil
-	}
-	return r.Finalize
 }
 
 type RecalculateInvoiceResponse struct {

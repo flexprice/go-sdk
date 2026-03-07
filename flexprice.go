@@ -2,7 +2,7 @@
 
 package flexprice
 
-// Generated from OpenAPI doc version 1.0 and generator version 2.850.7
+// Generated from OpenAPI doc version 1.0 and generator version 2.852.1
 
 import (
 	"context"
@@ -64,7 +64,6 @@ type Flexprice struct {
 	Wallets                   *Wallets
 	Invoices                  *Invoices
 	EntityIntegrationMappings *EntityIntegrationMappings
-	Environments              *Environments
 	Events                    *Events
 	Features                  *Features
 	Groups                    *Groups
@@ -162,7 +161,7 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
 		SDKVersion: "2.0.1",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 2.0.1 2.850.7 1.0 github.com/flexprice/flexprice-go/v2",
+			UserAgent:  "speakeasy-sdk/go 2.0.1 2.852.1 1.0 github.com/flexprice/flexprice-go/v2",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -189,7 +188,6 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.Wallets = newWallets(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Invoices = newInvoices(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.EntityIntegrationMappings = newEntityIntegrationMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Environments = newEnvironments(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Events = newEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Features = newFeatures(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Groups = newGroups(sdk, sdk.sdkConfiguration, sdk.hooks)

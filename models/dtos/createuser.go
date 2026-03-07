@@ -10,7 +10,7 @@ import (
 type CreateUserResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created
-	DtoUserResponse *types.DtoUserResponse
+	DtoCreateUserResponse *types.DtoCreateUserResponse
 }
 
 func (c CreateUserResponse) MarshalJSON() ([]byte, error) {
@@ -31,9 +31,9 @@ func (c *CreateUserResponse) GetHTTPMeta() types.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateUserResponse) GetDtoUserResponse() *types.DtoUserResponse {
+func (c *CreateUserResponse) GetDtoCreateUserResponse() *types.DtoCreateUserResponse {
 	if c == nil {
 		return nil
 	}
-	return c.DtoUserResponse
+	return c.DtoCreateUserResponse
 }

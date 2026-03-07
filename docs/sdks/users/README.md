@@ -4,13 +4,13 @@
 
 ### Available Operations
 
-* [CreateUser](#createuser) - Create service account
+* [CreateUser](#createuser) - Create user or service account
 * [GetUserInfo](#getuserinfo) - Get current user
 * [QueryUser](#queryuser) - Query users
 
 ## CreateUser
 
-Use when provisioning API access for automation, CI/CD pipelines, or headless integrations that need scoped API keys.
+Create a user account (type=user, email required; returns user + password for login) or a service account (type=service_account, roles required) for API/automation access.
 
 ### Example Usage
 
@@ -33,13 +33,12 @@ func main() {
     )
 
     res, err := s.Users.CreateUser(ctx, types.DtoCreateUserRequest{
-        Roles: []string{},
         Type: types.UserTypeUser,
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoUserResponse != nil {
+    if res.DtoCreateUserResponse != nil {
         // handle response
     }
 }

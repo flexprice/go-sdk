@@ -62,6 +62,9 @@ type DtoInvoiceResponse struct {
 	PeriodEnd *string `json:"period_end,omitzero"`
 	// period_start is the start date of the billing period covered by this invoice
 	PeriodStart *string `json:"period_start,omitzero"`
+	// recalculated_invoice_id is the ID of the replacement invoice created when this invoice was voided and recalculated.
+	// When set, it forms a parent→child link from this (voided) invoice to the new replacement invoice.
+	RecalculatedInvoiceID *string `json:"recalculated_invoice_id,omitzero"`
 	// refunded_amount is the total sum of credit notes of type "refund".
 	// These are actual refunds issued to the customer.
 	RefundedAmount *string                  `json:"refunded_amount,omitzero"`
@@ -309,6 +312,13 @@ func (d *DtoInvoiceResponse) GetPeriodStart() *string {
 		return nil
 	}
 	return d.PeriodStart
+}
+
+func (d *DtoInvoiceResponse) GetRecalculatedInvoiceID() *string {
+	if d == nil {
+		return nil
+	}
+	return d.RecalculatedInvoiceID
 }
 
 func (d *DtoInvoiceResponse) GetRefundedAmount() *string {

@@ -31,8 +31,8 @@ func newUsers(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hook
 	}
 }
 
-// CreateUser - Create service account
-// Use when provisioning API access for automation, CI/CD pipelines, or headless integrations that need scoped API keys.
+// CreateUser - Create user or service account
+// Create a user account (type=user, email required; returns user + password for login) or a service account (type=service_account, roles required) for API/automation access.
 func (s *Users) CreateUser(ctx context.Context, request types.DtoCreateUserRequest, opts ...dtos.Option) (*dtos.CreateUserResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
@@ -207,12 +207,12 @@ func (s *Users) CreateUser(ctx context.Context, request types.DtoCreateUserReque
 				return nil, err
 			}
 
-			var out types.DtoUserResponse
+			var out types.DtoCreateUserResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoUserResponse = &out
+			res.DtoCreateUserResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

@@ -25,3 +25,4 @@ value := dtos.TransactionReasonInvoicePayment
 | `TransactionReasonWalletTermination`       | WALLET_TERMINATION                         |
 | `TransactionReasonManualBalanceDebit`      | MANUAL_BALANCE_DEBIT                       |
 | `TransactionReasonCreditAdjustment`        | CREDIT_ADJUSTMENT                          |
+| `TransactionReasonInvoiceVoidRefund`       | INVOICE_VOID_REFUND                        |

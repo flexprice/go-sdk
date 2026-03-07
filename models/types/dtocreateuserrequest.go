@@ -2,15 +2,39 @@
 
 package types
 
+import (
+	"github.com/flexprice/flexprice-go/v2/internal/utils"
+)
+
 type DtoCreateUserRequest struct {
-	// Roles are required
-	Roles []string `json:"roles"`
+	// Required when type is "user"
+	Email *string `json:"email,omitzero"`
+	// Required when type is "service_account"
+	Roles []string `json:"roles,omitzero"`
 	Type  UserType `json:"type"`
+}
+
+func (d DtoCreateUserRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DtoCreateUserRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DtoCreateUserRequest) GetEmail() *string {
+	if d == nil {
+		return nil
+	}
+	return d.Email
 }
 
 func (d *DtoCreateUserRequest) GetRoles() []string {
 	if d == nil {
-		return []string{}
+		return nil
 	}
 	return d.Roles
 }
