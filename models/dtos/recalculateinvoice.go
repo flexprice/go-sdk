@@ -21,8 +21,8 @@ func (r *RecalculateInvoiceRequest) GetID() string {
 
 type RecalculateInvoiceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
-	// OK
-	DtoInvoiceResponse *types.DtoInvoiceResponse
+	// Accepted
+	ModelsTemporalWorkflowResult *types.ModelsTemporalWorkflowResult
 }
 
 func (r RecalculateInvoiceResponse) MarshalJSON() ([]byte, error) {
@@ -43,9 +43,9 @@ func (r *RecalculateInvoiceResponse) GetHTTPMeta() types.HTTPMetadata {
 	return r.HTTPMeta
 }
 
-func (r *RecalculateInvoiceResponse) GetDtoInvoiceResponse() *types.DtoInvoiceResponse {
+func (r *RecalculateInvoiceResponse) GetModelsTemporalWorkflowResult() *types.ModelsTemporalWorkflowResult {
 	if r == nil {
 		return nil
 	}
-	return r.DtoInvoiceResponse
+	return r.ModelsTemporalWorkflowResult
 }

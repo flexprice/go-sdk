@@ -5,4 +5,4 @@
 
 | Field                | Type                 | Required             | Description          |
 | -------------------- | -------------------- | -------------------- | -------------------- |
-| `ExternalID`         | *string*             | :heavy_check_mark:   | Customer External ID |
+| `ExternalID`         | `string`             | :heavy_check_mark:   | Customer External ID |

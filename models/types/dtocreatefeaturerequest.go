@@ -7,8 +7,10 @@ import (
 )
 
 type DtoCreateFeatureRequest struct {
-	AlertSettings *AlertSettings         `json:"alert_settings,omitzero"`
-	Description   *string                `json:"description,omitzero"`
+	AlertSettings *AlertSettings `json:"alert_settings,omitzero"`
+	Description   *string        `json:"description,omitzero"`
+	// GroupID is the id of the group to add the feature to
+	GroupID       *string                `json:"group_id,omitzero"`
 	LookupKey     *string                `json:"lookup_key,omitzero"`
 	Metadata      map[string]string      `json:"metadata,omitzero"`
 	Meter         *DtoCreateMeterRequest `json:"meter,omitzero"`
@@ -43,6 +45,13 @@ func (d *DtoCreateFeatureRequest) GetDescription() *string {
 		return nil
 	}
 	return d.Description
+}
+
+func (d *DtoCreateFeatureRequest) GetGroupID() *string {
+	if d == nil {
+		return nil
+	}
+	return d.GroupID
 }
 
 func (d *DtoCreateFeatureRequest) GetLookupKey() *string {

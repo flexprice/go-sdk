@@ -7,9 +7,11 @@ import (
 )
 
 type DtoUpdateFeatureRequest struct {
-	AlertSettings *AlertSettings    `json:"alert_settings,omitzero"`
-	Description   *string           `json:"description,omitzero"`
-	Filters       []MeterFilter     `json:"filters,omitzero"`
+	AlertSettings *AlertSettings `json:"alert_settings,omitzero"`
+	Description   *string        `json:"description,omitzero"`
+	Filters       []MeterFilter  `json:"filters,omitzero"`
+	// GroupID is the id of the group to assign the feature to. Pass empty string to clear.
+	GroupID       *string           `json:"group_id,omitzero"`
 	Metadata      map[string]string `json:"metadata,omitzero"`
 	Name          *string           `json:"name,omitzero"`
 	ReportingUnit *ReportingUnit    `json:"reporting_unit,omitzero"`
@@ -47,6 +49,13 @@ func (d *DtoUpdateFeatureRequest) GetFilters() []MeterFilter {
 		return nil
 	}
 	return d.Filters
+}
+
+func (d *DtoUpdateFeatureRequest) GetGroupID() *string {
+	if d == nil {
+		return nil
+	}
+	return d.GroupID
 }
 
 func (d *DtoUpdateFeatureRequest) GetMetadata() map[string]string {

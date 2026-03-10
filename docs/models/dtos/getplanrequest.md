@@ -5,4 +5,4 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `ID`               | *string*           | :heavy_check_mark: | Plan ID            |
+| `ID`               | `string`           | :heavy_check_mark: | Plan ID            |

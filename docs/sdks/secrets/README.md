@@ -46,9 +46,9 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `limit`                                               | **int64*                                              | :heavy_minus_sign:                                    | Limit                                                 |
-| `offset`                                              | **int64*                                              | :heavy_minus_sign:                                    | Offset                                                |
-| `status`                                              | **string*                                             | :heavy_minus_sign:                                    | Status (published/archived)                           |
+| `limit`                                               | `*int64`                                              | :heavy_minus_sign:                                    | Limit                                                 |
+| `offset`                                              | `*int64`                                              | :heavy_minus_sign:                                    | Offset                                                |
+| `status`                                              | `*string`                                             | :heavy_minus_sign:                                    | Status (published/archived)                           |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -158,7 +158,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | API key ID                                            |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | API key ID                                            |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response

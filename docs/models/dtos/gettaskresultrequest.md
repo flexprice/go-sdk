@@ -5,4 +5,4 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `WorkflowID`       | *string*           | :heavy_check_mark: | Workflow ID        |
+| `WorkflowID`       | `string`           | :heavy_check_mark: | Workflow ID        |

@@ -12,6 +12,8 @@ type GithubComFlexpriceFlexpriceInternalDomainFeatureFeature struct {
 	CreatedBy     *string           `json:"created_by,omitzero"`
 	Description   *string           `json:"description,omitzero"`
 	EnvironmentID *string           `json:"environment_id,omitzero"`
+	Group         *GroupGroup       `json:"group,omitzero"`
+	GroupID       *string           `json:"group_id,omitzero"`
 	ID            *string           `json:"id,omitzero"`
 	LookupKey     *string           `json:"lookup_key,omitzero"`
 	Metadata      map[string]string `json:"metadata,omitzero"`
@@ -71,6 +73,20 @@ func (g *GithubComFlexpriceFlexpriceInternalDomainFeatureFeature) GetEnvironment
 		return nil
 	}
 	return g.EnvironmentID
+}
+
+func (g *GithubComFlexpriceFlexpriceInternalDomainFeatureFeature) GetGroup() *GroupGroup {
+	if g == nil {
+		return nil
+	}
+	return g.Group
+}
+
+func (g *GithubComFlexpriceFlexpriceInternalDomainFeatureFeature) GetGroupID() *string {
+	if g == nil {
+		return nil
+	}
+	return g.GroupID
 }
 
 func (g *GithubComFlexpriceFlexpriceInternalDomainFeatureFeature) GetID() *string {

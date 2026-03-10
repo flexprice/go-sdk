@@ -5,4 +5,4 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `EffectiveFrom`    | **string*          | :heavy_minus_sign: | N/A                |
+| `EffectiveFrom`    | `*string`          | :heavy_minus_sign: | N/A                |

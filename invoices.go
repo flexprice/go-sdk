@@ -2883,8 +2883,8 @@ func (s *Invoices) GetInvoicePdf(ctx context.Context, id string, url_ *bool, opt
 
 }
 
-// RecalculateInvoice - Recalculate invoice (default: voided invoice)
-// Creates a fresh replacement invoice for a voided SUBSCRIPTION invoice covering the same billing period. The original voided invoice is linked to the new invoice via recalculated_invoice_id. Can only be called once per voided invoice.
+// RecalculateInvoice - Recalculate invoice (voided invoice)
+// Starts an async workflow that creates a fresh replacement invoice for a voided SUBSCRIPTION invoice (same billing period). Returns workflow_id and run_id; poll workflow status or GET the new invoice via recalculated_invoice_id after completion.
 func (s *Invoices) RecalculateInvoice(ctx context.Context, id string, opts ...dtos.Option) (*dtos.RecalculateInvoiceResponse, error) {
 	request := dtos.RecalculateInvoiceRequest{
 		ID: id,
@@ -3048,7 +3048,7 @@ func (s *Invoices) RecalculateInvoice(ctx context.Context, id string, opts ...dt
 	}
 
 	switch {
-	case httpRes.StatusCode == 200:
+	case httpRes.StatusCode == 202:
 		switch {
 		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
 			rawBody, err := utils.ConsumeRawBody(httpRes)
@@ -3056,12 +3056,12 @@ func (s *Invoices) RecalculateInvoice(ctx context.Context, id string, opts ...dt
 				return nil, err
 			}
 
-			var out types.DtoInvoiceResponse
+			var out types.ModelsTemporalWorkflowResult
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoInvoiceResponse = &out
+			res.ModelsTemporalWorkflowResult = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

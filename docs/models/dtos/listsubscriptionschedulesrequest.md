@@ -5,4 +5,4 @@
 
 | Field              | Type               | Required           | Description        |
 | ------------------ | ------------------ | ------------------ | ------------------ |
-| `SubscriptionID`   | *string*           | :heavy_check_mark: | Subscription ID    |
+| `SubscriptionID`   | `string`           | :heavy_check_mark: | Subscription ID    |

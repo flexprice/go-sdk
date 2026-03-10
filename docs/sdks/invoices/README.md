@@ -15,7 +15,7 @@
 * [UpdateInvoicePaymentStatus](#updateinvoicepaymentstatus) - Update invoice payment status
 * [AttemptInvoicePayment](#attemptinvoicepayment) - Attempt invoice payment
 * [GetInvoicePdf](#getinvoicepdf) - Get invoice PDF
-* [RecalculateInvoice](#recalculateinvoice) - Recalculate invoice (default: voided invoice)
+* [RecalculateInvoice](#recalculateinvoice) - Recalculate invoice (voided invoice)
 * [RecalculateInvoiceV2](#recalculateinvoicev2) - Recalculate draft invoice (v2)
 * [VoidInvoice](#voidinvoice) - Void invoice
 
@@ -57,7 +57,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Customer ID                                           |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Customer ID                                           |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -280,9 +280,9 @@ func main() {
 | Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
 | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | `ctx`                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                   | :heavy_check_mark:                                                                      | The context to use for the request.                                                     |
-| `id`                                                                                    | *string*                                                                                | :heavy_check_mark:                                                                      | Invoice ID                                                                              |
-| `expandBySource`                                                                        | **bool*                                                                                 | :heavy_minus_sign:                                                                      | Include source-level price breakdown for usage line items (legacy)                      |
-| `groupBy`                                                                               | []*string*                                                                              | :heavy_minus_sign:                                                                      | Group usage breakdown by specified fields (e.g., source, feature_id, properties.org_id) |
+| `id`                                                                                    | `string`                                                                                | :heavy_check_mark:                                                                      | Invoice ID                                                                              |
+| `expandBySource`                                                                        | `*bool`                                                                                 | :heavy_minus_sign:                                                                      | Include source-level price breakdown for usage line items (legacy)                      |
+| `groupBy`                                                                               | []`string`                                                                              | :heavy_minus_sign:                                                                      | Group usage breakdown by specified fields (e.g., source, feature_id, properties.org_id) |
 | `opts`                                                                                  | [][dtos.Option](../../models/dtos/option.md)                                            | :heavy_minus_sign:                                                                      | The options for this request.                                                           |
 
 ### Response
@@ -336,7 +336,7 @@ func main() {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `id`                                                                           | *string*                                                                       | :heavy_check_mark:                                                             | Invoice ID                                                                     |
+| `id`                                                                           | `string`                                                                       | :heavy_check_mark:                                                             | Invoice ID                                                                     |
 | `body`                                                                         | [types.DtoUpdateInvoiceRequest](../../models/types/dtoupdateinvoicerequest.md) | :heavy_check_mark:                                                             | Invoice Update Request                                                         |
 | `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
@@ -390,7 +390,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Invoice ID                                            |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Invoice ID                                            |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -443,7 +443,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Invoice ID                                            |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Invoice ID                                            |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -499,7 +499,7 @@ func main() {
 | Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `id`                                                                                       | *string*                                                                                   | :heavy_check_mark:                                                                         | Invoice ID                                                                                 |
+| `id`                                                                                       | `string`                                                                                   | :heavy_check_mark:                                                                         | Invoice ID                                                                                 |
 | `body`                                                                                     | [types.DtoUpdatePaymentStatusRequest](../../models/types/dtoupdatepaymentstatusrequest.md) | :heavy_check_mark:                                                                         | Payment Status Update Request                                                              |
 | `opts`                                                                                     | [][dtos.Option](../../models/dtos/option.md)                                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
@@ -553,7 +553,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Invoice ID                                            |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Invoice ID                                            |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -606,8 +606,8 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Invoice ID                                            |
-| `url_`                                                | **bool*                                               | :heavy_minus_sign:                                    | Return presigned URL from s3 instead of PDF           |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Invoice ID                                            |
+| `url_`                                                | `*bool`                                               | :heavy_minus_sign:                                    | Return presigned URL from s3 instead of PDF           |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -622,7 +622,7 @@ func main() {
 
 ## RecalculateInvoice
 
-Creates a fresh replacement invoice for a voided SUBSCRIPTION invoice covering the same billing period. The original voided invoice is linked to the new invoice via recalculated_invoice_id. Can only be called once per voided invoice.
+Starts an async workflow that creates a fresh replacement invoice for a voided SUBSCRIPTION invoice (same billing period). Returns workflow_id and run_id; poll workflow status or GET the new invoice via recalculated_invoice_id after completion.
 
 ### Example Usage
 
@@ -647,7 +647,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoInvoiceResponse != nil {
+    if res.ModelsTemporalWorkflowResult != nil {
         // handle response
     }
 }
@@ -658,7 +658,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Invoice ID                                            |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Invoice ID                                            |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -711,8 +711,8 @@ func main() {
 | Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `ctx`                                                               | [context.Context](https://pkg.go.dev/context#Context)               | :heavy_check_mark:                                                  | The context to use for the request.                                 |
-| `id`                                                                | *string*                                                            | :heavy_check_mark:                                                  | Invoice ID                                                          |
-| `finalize`                                                          | **bool*                                                             | :heavy_minus_sign:                                                  | Whether to finalize the invoice after recalculation (default: true) |
+| `id`                                                                | `string`                                                            | :heavy_check_mark:                                                  | Invoice ID                                                          |
+| `finalize`                                                          | `*bool`                                                             | :heavy_minus_sign:                                                  | Whether to finalize the invoice after recalculation (default: true) |
 | `opts`                                                              | [][dtos.Option](../../models/dtos/option.md)                        | :heavy_minus_sign:                                                  | The options for this request.                                       |
 
 ### Response
@@ -765,7 +765,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Invoice ID                                            |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Invoice ID                                            |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response

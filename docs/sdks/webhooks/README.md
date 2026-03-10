@@ -50,8 +50,8 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
-| `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
+| `tenantID`                                            | `string`                                              | :heavy_check_mark:                                    | Tenant ID                                             |
+| `environmentID`                                       | `string`                                              | :heavy_check_mark:                                    | Environment ID                                        |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -102,9 +102,9 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
-| `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
-| `xHubSpotSignatureV3`                                 | *string*                                              | :heavy_check_mark:                                    | HubSpot webhook signature                             |
+| `tenantID`                                            | `string`                                              | :heavy_check_mark:                                    | Tenant ID                                             |
+| `environmentID`                                       | `string`                                              | :heavy_check_mark:                                    | Environment ID                                        |
+| `xHubSpotSignatureV3`                                 | `string`                                              | :heavy_check_mark:                                    | HubSpot webhook signature                             |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -155,9 +155,9 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
-| `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
-| `xMoyasarSignature`                                   | **string*                                             | :heavy_minus_sign:                                    | Moyasar webhook signature                             |
+| `tenantID`                                            | `string`                                              | :heavy_check_mark:                                    | Tenant ID                                             |
+| `environmentID`                                       | `string`                                              | :heavy_check_mark:                                    | Environment ID                                        |
+| `xMoyasarSignature`                                   | `*string`                                             | :heavy_minus_sign:                                    | Moyasar webhook signature                             |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -208,9 +208,9 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
-| `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
-| `xAPIKey`                                             | **string*                                             | :heavy_minus_sign:                                    | Nomod webhook secret (if configured)                  |
+| `tenantID`                                            | `string`                                              | :heavy_check_mark:                                    | Tenant ID                                             |
+| `environmentID`                                       | `string`                                              | :heavy_check_mark:                                    | Environment ID                                        |
+| `xAPIKey`                                             | `*string`                                             | :heavy_minus_sign:                                    | Nomod webhook secret (if configured)                  |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -261,9 +261,9 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
-| `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
-| `intuitSignature`                                     | **string*                                             | :heavy_minus_sign:                                    | QuickBooks webhook signature                          |
+| `tenantID`                                            | `string`                                              | :heavy_check_mark:                                    | Tenant ID                                             |
+| `environmentID`                                       | `string`                                              | :heavy_check_mark:                                    | Environment ID                                        |
+| `intuitSignature`                                     | `*string`                                             | :heavy_minus_sign:                                    | QuickBooks webhook signature                          |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -314,9 +314,9 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
-| `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
-| `xRazorpaySignature`                                  | *string*                                              | :heavy_check_mark:                                    | Razorpay webhook signature                            |
+| `tenantID`                                            | `string`                                              | :heavy_check_mark:                                    | Tenant ID                                             |
+| `environmentID`                                       | `string`                                              | :heavy_check_mark:                                    | Environment ID                                        |
+| `xRazorpaySignature`                                  | `string`                                              | :heavy_check_mark:                                    | Razorpay webhook signature                            |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -367,9 +367,9 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `tenantID`                                            | *string*                                              | :heavy_check_mark:                                    | Tenant ID                                             |
-| `environmentID`                                       | *string*                                              | :heavy_check_mark:                                    | Environment ID                                        |
-| `stripeSignature`                                     | *string*                                              | :heavy_check_mark:                                    | Stripe webhook signature                              |
+| `tenantID`                                            | `string`                                              | :heavy_check_mark:                                    | Tenant ID                                             |
+| `environmentID`                                       | `string`                                              | :heavy_check_mark:                                    | Environment ID                                        |
+| `stripeSignature`                                     | `string`                                              | :heavy_check_mark:                                    | Stripe webhook signature                              |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response

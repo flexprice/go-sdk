@@ -48,10 +48,10 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `entityType`                                          | **string*                                             | :heavy_minus_sign:                                    | Entity Type                                           |
-| `entityID`                                            | **string*                                             | :heavy_minus_sign:                                    | Entity ID                                             |
-| `externalCustomerID`                                  | **string*                                             | :heavy_minus_sign:                                    | External Customer ID                                  |
-| `taxRateID`                                           | **string*                                             | :heavy_minus_sign:                                    | Tax Rate ID                                           |
+| `entityType`                                          | `*string`                                             | :heavy_minus_sign:                                    | Entity Type                                           |
+| `entityID`                                            | `*string`                                             | :heavy_minus_sign:                                    | Entity ID                                             |
+| `externalCustomerID`                                  | `*string`                                             | :heavy_minus_sign:                                    | External Customer ID                                  |
+| `taxRateID`                                           | `*string`                                             | :heavy_minus_sign:                                    | Tax Rate ID                                           |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -160,7 +160,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Tax Config ID                                         |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Tax Config ID                                         |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -214,7 +214,7 @@ func main() {
 | Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
 | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `id`                                                                                         | *string*                                                                                     | :heavy_check_mark:                                                                           | Tax Config ID                                                                                |
+| `id`                                                                                         | `string`                                                                                     | :heavy_check_mark:                                                                           | Tax Config ID                                                                                |
 | `body`                                                                                       | [types.DtoTaxAssociationUpdateRequest](../../models/types/dtotaxassociationupdaterequest.md) | :heavy_check_mark:                                                                           | Tax Config Request                                                                           |
 | `opts`                                                                                       | [][dtos.Option](../../models/dtos/option.md)                                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
@@ -268,7 +268,7 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | *string*                                              | :heavy_check_mark:                                    | Tax Config ID                                         |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Tax Config ID                                         |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response

@@ -12,6 +12,8 @@ type DtoFeatureResponse struct {
 	CreatedBy     *string           `json:"created_by,omitzero"`
 	Description   *string           `json:"description,omitzero"`
 	EnvironmentID *string           `json:"environment_id,omitzero"`
+	Group         *DtoGroupResponse `json:"group,omitzero"`
+	GroupID       *string           `json:"group_id,omitzero"`
 	ID            *string           `json:"id,omitzero"`
 	LookupKey     *string           `json:"lookup_key,omitzero"`
 	Metadata      map[string]string `json:"metadata,omitzero"`
@@ -72,6 +74,20 @@ func (d *DtoFeatureResponse) GetEnvironmentID() *string {
 		return nil
 	}
 	return d.EnvironmentID
+}
+
+func (d *DtoFeatureResponse) GetGroup() *DtoGroupResponse {
+	if d == nil {
+		return nil
+	}
+	return d.Group
+}
+
+func (d *DtoFeatureResponse) GetGroupID() *string {
+	if d == nil {
+		return nil
+	}
+	return d.GroupID
 }
 
 func (d *DtoFeatureResponse) GetID() *string {
