@@ -28,6 +28,9 @@ func (r *RecalculateInvoiceV2Request) GetFinalize() *bool {
 	return r.Finalize
 }
 
+// #region class-body-recalculateinvoicev2request
+// #endregion class-body-recalculateinvoicev2request
+
 type RecalculateInvoiceV2Response struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
@@ -58,3 +61,6 @@ func (r *RecalculateInvoiceV2Response) GetDtoInvoiceResponse() *types.DtoInvoice
 	}
 	return r.DtoInvoiceResponse
 }
+
+// #region class-body-recalculateinvoicev2response
+// #endregion class-body-recalculateinvoicev2response

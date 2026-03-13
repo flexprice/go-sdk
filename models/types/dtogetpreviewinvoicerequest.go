@@ -2,13 +2,37 @@
 
 package types
 
+import (
+	"github.com/flexprice/flexprice-go/v2/internal/utils"
+)
+
 type DtoGetPreviewInvoiceRequest struct {
+	// hide_zero_charges_line_items indicates whether to hide line items with zero cost
+	HideZeroChargesLineItems *bool `default:"false" json:"hide_zero_charges_line_items"`
 	// period_end is the optional end date of the period to preview
 	PeriodEnd *string `json:"period_end,omitzero"`
 	// period_start is the optional start date of the period to preview
 	PeriodStart *string `json:"period_start,omitzero"`
 	// subscription_id is the unique identifier of the subscription to preview invoice for
 	SubscriptionID string `json:"subscription_id"`
+}
+
+func (d DtoGetPreviewInvoiceRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DtoGetPreviewInvoiceRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DtoGetPreviewInvoiceRequest) GetHideZeroChargesLineItems() *bool {
+	if d == nil {
+		return nil
+	}
+	return d.HideZeroChargesLineItems
 }
 
 func (d *DtoGetPreviewInvoiceRequest) GetPeriodEnd() *string {

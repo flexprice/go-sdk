@@ -17,6 +17,7 @@ type DtoUsageAnalyticItem struct {
 	EventName  *string                                                  `json:"event_name,omitzero"`
 	Feature    *GithubComFlexpriceFlexpriceInternalDomainFeatureFeature `json:"feature,omitzero"`
 	FeatureID  *string                                                  `json:"feature_id,omitzero"`
+	Group      *GroupGroup                                              `json:"group,omitzero"`
 	Meter      *MeterMeter                                              `json:"meter,omitzero"`
 	// Meter ID
 	MeterID *string                                            `json:"meter_id,omitzero"`
@@ -119,6 +120,13 @@ func (d *DtoUsageAnalyticItem) GetFeatureID() *string {
 		return nil
 	}
 	return d.FeatureID
+}
+
+func (d *DtoUsageAnalyticItem) GetGroup() *GroupGroup {
+	if d == nil {
+		return nil
+	}
+	return d.Group
 }
 
 func (d *DtoUsageAnalyticItem) GetMeter() *MeterMeter {

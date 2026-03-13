@@ -458,3 +458,6 @@ func (d *DtoSubscriptionResponseV2) GetVersion() *int64 {
 	}
 	return d.Version
 }
+
+// #region class-body-dtosubscriptionresponsev2
+// #endregion class-body-dtosubscriptionresponsev2

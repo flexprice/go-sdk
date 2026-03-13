@@ -28,6 +28,9 @@ func (g *GetSubscriptionV2Request) GetExpand() *string {
 	return g.Expand
 }
 
+// #region class-body-getsubscriptionv2request
+// #endregion class-body-getsubscriptionv2request
+
 type GetSubscriptionV2Response struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
@@ -58,3 +61,6 @@ func (g *GetSubscriptionV2Response) GetDtoSubscriptionResponseV2() *types.DtoSub
 	}
 	return g.DtoSubscriptionResponseV2
 }
+
+// #region class-body-getsubscriptionv2response
+// #endregion class-body-getsubscriptionv2response

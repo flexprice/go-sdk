@@ -65,3 +65,6 @@ func (s *S3JobConfig) GetUsePathStyle() *bool {
 	}
 	return s.UsePathStyle
 }
+
+// #region class-body-s3jobconfig
+// #endregion class-body-s3jobconfig

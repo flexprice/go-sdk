@@ -37,3 +37,6 @@ func (g *GetDetailedCostAnalyticsV2Response) GetDtoGetDetailedCostAnalyticsRespo
 	}
 	return g.DtoGetDetailedCostAnalyticsResponse
 }
+
+// #region class-body-getdetailedcostanalyticsv2response
+// #endregion class-body-getdetailedcostanalyticsv2response
