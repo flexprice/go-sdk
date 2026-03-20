@@ -3,7 +3,7 @@
 package types
 
 import (
-	"github.com/flexprice/flexprice-go/v2/internal/utils"
+	"github.com/flexprice/go-sdk/v2/internal/utils"
 )
 
 // Configuration - configuration contains type-specific configuration (e.g., target_plan_id for plan changes)

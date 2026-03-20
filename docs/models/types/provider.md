@@ -6,7 +6,7 @@ provider is the integration provider name (e.g., "stripe", "razorpay")
 
 ```go
 import (
-	"github.com/flexprice/flexprice-go/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
 value := types.ProviderStripe

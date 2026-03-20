@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/flexprice/flexprice-go/v2/types"
+	"github.com/flexprice/go-sdk/v2/types"
 )
 
 // UnionCandidate represents a candidate type during union deserialization

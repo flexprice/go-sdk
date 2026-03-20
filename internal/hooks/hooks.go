@@ -5,7 +5,7 @@ package hooks
 import (
 	"context"
 	"errors"
-	"github.com/flexprice/flexprice-go/v2/internal/config"
+	"github.com/flexprice/go-sdk/v2/internal/config"
 	"net/http"
 )
 

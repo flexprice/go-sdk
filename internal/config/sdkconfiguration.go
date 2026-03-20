@@ -4,7 +4,7 @@ package config
 
 import (
 	"context"
-	"github.com/flexprice/flexprice-go/v2/retry"
+	"github.com/flexprice/go-sdk/v2/retry"
 	"net/http"
 	"time"
 )

@@ -3,7 +3,7 @@
 package types
 
 import (
-	"github.com/flexprice/flexprice-go/v2/internal/utils"
+	"github.com/flexprice/go-sdk/v2/internal/utils"
 )
 
 // DtoCreateCustomerRequest - Request object for creating a new customer in the system

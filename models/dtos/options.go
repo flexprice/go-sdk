@@ -4,8 +4,8 @@ package dtos
 
 import (
 	"errors"
-	"github.com/flexprice/flexprice-go/v2/internal/utils"
-	"github.com/flexprice/flexprice-go/v2/retry"
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"github.com/flexprice/go-sdk/v2/retry"
 	"time"
 )
 

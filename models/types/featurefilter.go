@@ -5,7 +5,7 @@ package types
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/flexprice/flexprice-go/v2/internal/utils"
+	"github.com/flexprice/go-sdk/v2/internal/utils"
 )
 
 type FeatureFilterOrder string

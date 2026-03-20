@@ -6,7 +6,7 @@ Sort order
 
 ```go
 import (
-	"github.com/flexprice/flexprice-go/v2/models/dtos"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 )
 
 value := dtos.ListPriceUnitsOrderAsc
