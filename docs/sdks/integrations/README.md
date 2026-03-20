@@ -91,7 +91,7 @@ func main() {
             "key": "<value>",
         },
         Name: "<value>",
-        Provider: types.SecretProviderChargebee,
+        Provider: types.SecretProviderQuickbooks,
     })
     if err != nil {
         log.Fatal(err)

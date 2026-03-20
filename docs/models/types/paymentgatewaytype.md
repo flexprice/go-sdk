@@ -19,3 +19,4 @@ value := types.PaymentGatewayTypeStripe
 | `PaymentGatewayTypeRazorpay` | razorpay                     |
 | `PaymentGatewayTypeNomod`    | nomod                        |
 | `PaymentGatewayTypeMoyasar`  | moyasar                      |
+| `PaymentGatewayTypePaddle`   | paddle                       |

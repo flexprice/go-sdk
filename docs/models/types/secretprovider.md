@@ -27,3 +27,4 @@ custom := types.SecretProvider("custom_value")
 | `SecretProviderQuickbooks` | quickbooks                 |
 | `SecretProviderNomod`      | nomod                      |
 | `SecretProviderMoyasar`    | moyasar                    |
+| `SecretProviderPaddle`     | paddle                     |

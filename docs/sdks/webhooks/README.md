@@ -8,6 +8,7 @@
 * [HandleHubspotWebhook](#handlehubspotwebhook) - Handle HubSpot webhook events
 * [HandleMoyasarWebhook](#handlemoyasarwebhook) - Handle Moyasar webhook events
 * [HandleNomodWebhook](#handlenomodwebhook) - Handle Nomod webhook events
+* [HandlePaddleWebhook](#handlepaddlewebhook) - Handle Paddle webhook events
 * [HandleQuickbooksWebhook](#handlequickbookswebhook) - Handle QuickBooks webhook events
 * [HandleRazorpayWebhook](#handlerazorpaywebhook) - Handle Razorpay webhook events
 * [HandleStripeWebhook](#handlestripewebhook) - Handle Stripe webhook events
@@ -216,6 +217,59 @@ func main() {
 ### Response
 
 **[*dtos.HandleNomodWebhookResponse](../../models/dtos/handlenomodwebhookresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## HandlePaddleWebhook
+
+Use as the Paddle webhook endpoint URL. Receives transaction.completed events from Paddle to update payment status in FlexPrice.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="handlePaddleWebhook" method="post" path="/webhooks/paddle/{tenant_id}/{environment_id}" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Webhooks.HandlePaddleWebhook(ctx, "<id>", "<id>", "<value>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Object != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `tenantID`                                            | `string`                                              | :heavy_check_mark:                                    | Tenant ID                                             |
+| `environmentID`                                       | `string`                                              | :heavy_check_mark:                                    | Environment ID                                        |
+| `paddleSignature`                                     | `string`                                              | :heavy_check_mark:                                    | Paddle webhook signature                              |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.HandlePaddleWebhookResponse](../../models/dtos/handlepaddlewebhookresponse.md), error**
 
 ### Errors
 
