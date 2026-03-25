@@ -11,7 +11,7 @@ type WebhookDtoAlertWebhookPayload struct {
 	AlertType   *string `json:"alert_type,omitzero"`
 	// Customer response object containing all customer information
 	Customer  *DtoCustomerResponse `json:"customer,omitzero"`
-	EventType *string              `json:"event_type,omitzero"`
+	EventType *WebhookEventName    `json:"event_type,omitzero"`
 	Feature   *DtoFeatureResponse  `json:"feature,omitzero"`
 	Wallet    *DtoWalletResponse   `json:"wallet,omitzero"`
 }
@@ -48,7 +48,7 @@ func (w *WebhookDtoAlertWebhookPayload) GetCustomer() *DtoCustomerResponse {
 	return w.Customer
 }
 
-func (w *WebhookDtoAlertWebhookPayload) GetEventType() *string {
+func (w *WebhookDtoAlertWebhookPayload) GetEventType() *WebhookEventName {
 	if w == nil {
 		return nil
 	}

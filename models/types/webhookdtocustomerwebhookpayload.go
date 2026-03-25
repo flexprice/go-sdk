@@ -9,7 +9,7 @@ import (
 type WebhookDtoCustomerWebhookPayload struct {
 	// Customer response object containing all customer information
 	Customer  *DtoCustomerResponse `json:"customer,omitzero"`
-	EventType *string              `json:"event_type,omitzero"`
+	EventType *WebhookEventName    `json:"event_type,omitzero"`
 }
 
 func (w WebhookDtoCustomerWebhookPayload) MarshalJSON() ([]byte, error) {
@@ -30,7 +30,7 @@ func (w *WebhookDtoCustomerWebhookPayload) GetCustomer() *DtoCustomerResponse {
 	return w.Customer
 }
 
-func (w *WebhookDtoCustomerWebhookPayload) GetEventType() *string {
+func (w *WebhookDtoCustomerWebhookPayload) GetEventType() *WebhookEventName {
 	if w == nil {
 		return nil
 	}

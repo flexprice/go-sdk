@@ -7,7 +7,7 @@ import (
 )
 
 type WebhookDtoSubscriptionPhaseWebhookPayload struct {
-	EventType *string                       `json:"event_type,omitzero"`
+	EventType *WebhookEventName             `json:"event_type,omitzero"`
 	Phase     *DtoSubscriptionPhaseResponse `json:"phase,omitzero"`
 }
 
@@ -22,7 +22,7 @@ func (w *WebhookDtoSubscriptionPhaseWebhookPayload) UnmarshalJSON(data []byte) e
 	return nil
 }
 
-func (w *WebhookDtoSubscriptionPhaseWebhookPayload) GetEventType() *string {
+func (w *WebhookDtoSubscriptionPhaseWebhookPayload) GetEventType() *WebhookEventName {
 	if w == nil {
 		return nil
 	}

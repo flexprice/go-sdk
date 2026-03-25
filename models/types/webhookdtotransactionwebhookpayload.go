@@ -7,7 +7,7 @@ import (
 )
 
 type WebhookDtoTransactionWebhookPayload struct {
-	EventType   *string                       `json:"event_type,omitzero"`
+	EventType   *WebhookEventName             `json:"event_type,omitzero"`
 	Transaction *DtoWalletTransactionResponse `json:"transaction,omitzero"`
 	Wallet      *DtoWalletResponse            `json:"wallet,omitzero"`
 }
@@ -23,7 +23,7 @@ func (w *WebhookDtoTransactionWebhookPayload) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (w *WebhookDtoTransactionWebhookPayload) GetEventType() *string {
+func (w *WebhookDtoTransactionWebhookPayload) GetEventType() *WebhookEventName {
 	if w == nil {
 		return nil
 	}

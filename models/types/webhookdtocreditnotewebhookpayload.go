@@ -8,7 +8,7 @@ import (
 
 type WebhookDtoCreditNoteWebhookPayload struct {
 	CreditNote *DtoCreditNoteResponse `json:"credit_note,omitzero"`
-	EventType  *string                `json:"event_type,omitzero"`
+	EventType  *WebhookEventName      `json:"event_type,omitzero"`
 }
 
 func (w WebhookDtoCreditNoteWebhookPayload) MarshalJSON() ([]byte, error) {
@@ -29,7 +29,7 @@ func (w *WebhookDtoCreditNoteWebhookPayload) GetCreditNote() *DtoCreditNoteRespo
 	return w.CreditNote
 }
 
-func (w *WebhookDtoCreditNoteWebhookPayload) GetEventType() *string {
+func (w *WebhookDtoCreditNoteWebhookPayload) GetEventType() *WebhookEventName {
 	if w == nil {
 		return nil
 	}
