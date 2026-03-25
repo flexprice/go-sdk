@@ -3,11 +3,21 @@
 package types
 
 type DtoCancelSubscriptionRequest struct {
+	// CancelAt is the custom date to cancel the subscription.
+	// Required when CancellationType is "scheduled_date". Must be in the future.
+	CancelAt                       *string                         `json:"cancel_at,omitzero"`
 	CancelImmediatelyInovicePolicy *CancelImmediatelyInvoicePolicy `json:"cancel_immediately_inovice_policy,omitzero"`
 	CancellationType               CancellationType                `json:"cancellation_type"`
 	ProrationBehavior              *ProrationBehavior              `json:"proration_behavior,omitzero"`
 	// Reason for cancellation (for audit and business intelligence)
 	Reason *string `json:"reason,omitzero"`
+}
+
+func (d *DtoCancelSubscriptionRequest) GetCancelAt() *string {
+	if d == nil {
+		return nil
+	}
+	return d.CancelAt
 }
 
 func (d *DtoCancelSubscriptionRequest) GetCancelImmediatelyInovicePolicy() *CancelImmediatelyInvoicePolicy {

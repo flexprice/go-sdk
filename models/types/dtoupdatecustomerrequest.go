@@ -30,11 +30,14 @@ type DtoUpdateCustomerRequest struct {
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// name is the updated name or company name for the customer
 	Name *string `json:"name,omitzero"`
-	// parent_customer_external_id is the external ID of the parent customer from your system
-	// Exactly one of parent_customer_id or parent_customer_external_id may be provided
-	// If you provide the external ID, the parent customer value will be ignored
+	// Deprecated: See ParentCustomerID.
+	// parent_customer_external_id is the external ID of the parent customer from your system.
+	// Exactly one of parent_customer_id or parent_customer_external_id may be provided.
+	// If you provide the external ID, the parent customer value will be ignored.
 	ParentCustomerExternalID *string `json:"parent_customer_external_id,omitzero"`
-	// parent_customer_id is the internal FlexPrice ID of the parent customer
+	// Deprecated: Customer parent hierarchy is deprecated in favor of subscription-level hierarchy.
+	// This field is accepted for backward compatibility but no hierarchy validations are enforced.
+	// parent_customer_id is the internal FlexPrice ID of the parent customer.
 	ParentCustomerID *string `json:"parent_customer_id,omitzero"`
 }
 

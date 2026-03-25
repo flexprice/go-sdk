@@ -33,7 +33,9 @@ type GithubComFlexpriceFlexpriceInternalDomainCustomerCustomer struct {
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// Name is the name of the customer
 	Name *string `json:"name,omitzero"`
-	// ParentCustomerID is the parent customer identifier for the customer
+	// Deprecated: Customer parent hierarchy is deprecated in favor of subscription-level hierarchy.
+	// Retained for backward compatibility; no hierarchy rules are enforced at the service layer.
+	// ParentCustomerID is the parent customer identifier for the customer.
 	ParentCustomerID *string `json:"parent_customer_id,omitzero"`
 	Status           *Status `json:"status,omitzero"`
 	TenantID         *string `json:"tenant_id,omitzero"`

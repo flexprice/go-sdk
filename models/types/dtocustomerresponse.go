@@ -36,7 +36,9 @@ type DtoCustomerResponse struct {
 	Name *string `json:"name,omitzero"`
 	// Customer response object containing all customer information
 	ParentCustomer *DtoCustomerResponse `json:"parent_customer,omitzero"`
-	// ParentCustomerID is the parent customer identifier for the customer
+	// Deprecated: Customer parent hierarchy is deprecated in favor of subscription-level hierarchy.
+	// Retained for backward compatibility; no hierarchy rules are enforced at the service layer.
+	// ParentCustomerID is the parent customer identifier for the customer.
 	ParentCustomerID *string `json:"parent_customer_id,omitzero"`
 	Status           *Status `json:"status,omitzero"`
 	TenantID         *string `json:"tenant_id,omitzero"`

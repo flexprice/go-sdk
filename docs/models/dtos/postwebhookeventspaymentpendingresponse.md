@@ -1,0 +1,9 @@
+# PostWebhookEventsPaymentPendingResponse
+
+
+## Fields
+
+| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                      | [types.HTTPMetadata](../../models/types/httpmetadata.md)                                        | :heavy_check_mark:                                                                              | N/A                                                                                             |
+| `WebhookDtoPaymentWebhookPayload`                                                               | [*types.WebhookDtoPaymentWebhookPayload](../../models/types/webhookdtopaymentwebhookpayload.md) | :heavy_minus_sign:                                                                              | Webhook payload                                                                                 |

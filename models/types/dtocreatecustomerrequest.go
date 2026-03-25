@@ -30,10 +30,13 @@ type DtoCreateCustomerRequest struct {
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// name is the full name or company name of the customer
 	Name *string `json:"name,omitzero"`
-	// parent_customer_external_id is the external ID of the parent customer from your system
-	// Exactly one of parent_customer_id or parent_customer_external_id may be provided
+	// Deprecated: See ParentCustomerID.
+	// parent_customer_external_id is the external ID of the parent customer from your system.
+	// Exactly one of parent_customer_id or parent_customer_external_id may be provided.
 	ParentCustomerExternalID *string `json:"parent_customer_external_id,omitzero"`
-	// parent_customer_id is the internal FlexPrice ID of the parent customer
+	// Deprecated: Customer parent hierarchy is deprecated in favor of subscription-level hierarchy.
+	// This field is accepted for backward compatibility but no hierarchy validations are enforced.
+	// parent_customer_id is the internal FlexPrice ID of the parent customer.
 	ParentCustomerID *string `json:"parent_customer_id,omitzero"`
 	// skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
 	// This is used internally when a customer is created via a workflow to prevent infinite loops

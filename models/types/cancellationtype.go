@@ -5,8 +5,9 @@ package types
 type CancellationType string
 
 const (
-	CancellationTypeImmediate   CancellationType = "immediate"
-	CancellationTypeEndOfPeriod CancellationType = "end_of_period"
+	CancellationTypeImmediate     CancellationType = "immediate"
+	CancellationTypeEndOfPeriod   CancellationType = "end_of_period"
+	CancellationTypeScheduledDate CancellationType = "scheduled_date"
 )
 
 func (e CancellationType) ToPointer() *CancellationType {
@@ -17,7 +18,7 @@ func (e CancellationType) ToPointer() *CancellationType {
 func (e *CancellationType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "immediate", "end_of_period":
+		case "immediate", "end_of_period", "scheduled_date":
 			return true
 		}
 	}

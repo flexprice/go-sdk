@@ -1,0 +1,10 @@
+# WebhookDtoTransactionWebhookPayload
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `EventType`                                                                               | `*string`                                                                                 | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `Transaction`                                                                             | [*types.DtoWalletTransactionResponse](../../models/types/dtowallettransactionresponse.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `Wallet`                                                                                  | [*types.DtoWalletResponse](../../models/types/dtowalletresponse.md)                       | :heavy_minus_sign:                                                                        | N/A                                                                                       |

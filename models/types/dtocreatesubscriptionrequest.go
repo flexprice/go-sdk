@@ -35,6 +35,14 @@ type DtoCreateSubscriptionRequest struct {
 	ExternalCustomerID     *string         `json:"external_customer_id,omitzero"`
 	GatewayPaymentMethodID *string         `json:"gateway_payment_method_id,omitzero"`
 	InvoiceBilling         *InvoiceBilling `json:"invoice_billing,omitzero"`
+	// invoicing_customer_external_id is the external ID of the customer to use for invoicing.
+	// Resolved internally to an internal customer ID via external ID lookup.
+	// Mutually exclusive with invoicing_customer_id.
+	InvoicingCustomerExternalID *string `json:"invoicing_customer_external_id,omitzero"`
+	// invoicing_customer_id is the FlexPrice customer ID to use for invoicing.
+	// This can differ from the subscription customer (e.g., a billing entity invoicing on behalf of another customer).
+	// Mutually exclusive with invoicing_customer_external_id.
+	InvoicingCustomerID *string `json:"invoicing_customer_id,omitzero"`
 	// LineItemCommitments allows setting commitment configuration per line item (keyed by price_id)
 	LineItemCommitments map[string]DtoLineItemCommitmentConfig `json:"line_item_commitments,omitzero"`
 	LineItemCoupons     map[string][]string                    `json:"line_item_coupons,omitzero"`
@@ -199,6 +207,20 @@ func (d *DtoCreateSubscriptionRequest) GetInvoiceBilling() *InvoiceBilling {
 		return nil
 	}
 	return d.InvoiceBilling
+}
+
+func (d *DtoCreateSubscriptionRequest) GetInvoicingCustomerExternalID() *string {
+	if d == nil {
+		return nil
+	}
+	return d.InvoicingCustomerExternalID
+}
+
+func (d *DtoCreateSubscriptionRequest) GetInvoicingCustomerID() *string {
+	if d == nil {
+		return nil
+	}
+	return d.InvoicingCustomerID
 }
 
 func (d *DtoCreateSubscriptionRequest) GetLineItemCommitments() map[string]DtoLineItemCommitmentConfig {

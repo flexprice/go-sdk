@@ -16,7 +16,8 @@ custom := types.CancellationType("custom_value")
 
 ## Values
 
-| Name                          | Value                         |
-| ----------------------------- | ----------------------------- |
-| `CancellationTypeImmediate`   | immediate                     |
-| `CancellationTypeEndOfPeriod` | end_of_period                 |
+| Name                            | Value                           |
+| ------------------------------- | ------------------------------- |
+| `CancellationTypeImmediate`     | immediate                       |
+| `CancellationTypeEndOfPeriod`   | end_of_period                   |
+| `CancellationTypeScheduledDate` | scheduled_date                  |
