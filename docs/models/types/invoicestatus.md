@@ -21,3 +21,4 @@ custom := types.InvoiceStatus("custom_value")
 | `InvoiceStatusDraft`     | DRAFT                    |
 | `InvoiceStatusFinalized` | FINALIZED                |
 | `InvoiceStatusVoided`    | VOIDED                   |
+| `InvoiceStatusSkipped`   | SKIPPED                  |

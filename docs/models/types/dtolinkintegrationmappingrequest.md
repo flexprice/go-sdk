@@ -1,4 +1,4 @@
-# DtoCreateEntityIntegrationMappingRequest
+# DtoLinkIntegrationMappingRequest
 
 
 ## Fields

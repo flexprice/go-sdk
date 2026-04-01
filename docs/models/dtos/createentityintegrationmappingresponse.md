@@ -1,9 +1,0 @@
-# CreateEntityIntegrationMappingResponse
-
-
-## Fields
-
-| Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| `HTTPMeta`                                                                                              | [types.HTTPMetadata](../../models/types/httpmetadata.md)                                                | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
-| `DtoEntityIntegrationMappingResponse`                                                                   | [*types.DtoEntityIntegrationMappingResponse](../../models/types/dtoentityintegrationmappingresponse.md) | :heavy_minus_sign:                                                                                      | Created                                                                                                 |

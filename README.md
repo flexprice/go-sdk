@@ -123,6 +123,111 @@ For a full list of operations, see the [API reference](https://docs.flexprice.io
 - **Wrong base URL:** Use `https://us.api.flexprice.io/v1` (or your tenant host with `/v1`). Always include `/v1`; no trailing space or slash.
 - **Non-202 on ingest:** Event ingest returns 202 Accepted; if you get 4xx/5xx, check request shape (e.g. `EventName`, `ExternalCustomerID`, `Properties`) and [API docs](https://docs.flexprice.io).
 
+## Handling Webhooks
+
+Flexprice sends webhook events to your server for async updates on payments, invoices, subscriptions, wallets, and more.
+
+**Flow:**
+1. Register your endpoint URL in the Flexprice dashboard
+2. Receive `POST` with raw JSON body
+3. Read `event_type` to route
+4. Parse payload into typed struct
+5. Handle business logic idempotently
+6. Return `200` quickly
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"io"
+	"log"
+	"net/http"
+
+	"github.com/flexprice/flexprice-go/v2/models/types"
+)
+
+// envelope reads only the event_type field for cheap routing
+type envelope struct {
+	EventType types.WebhookEventName `json:"event_type"`
+}
+
+func handleWebhook(w http.ResponseWriter, r *http.Request) {
+	body, err := io.ReadAll(r.Body)
+	if err != nil {
+		http.Error(w, "failed to read body", http.StatusBadRequest)
+		return
+	}
+
+	var env envelope
+	if err := json.Unmarshal(body, &env); err != nil {
+		http.Error(w, "invalid JSON", http.StatusBadRequest)
+		return
+	}
+
+	switch env.EventType {
+	case types.WebhookEventNamePaymentSuccess,
+		types.WebhookEventNamePaymentFailed,
+		types.WebhookEventNamePaymentUpdated:
+		var payload types.WebhookDtoPaymentWebhookPayload
+		if err := json.Unmarshal(body, &payload); err != nil {
+			log.Printf("parse error: %v", err)
+			break
+		}
+		if p := payload.GetPayment(); p != nil {
+			log.Printf("payment %s", p.GetID())
+			// TODO: update payment record
+		}
+
+	case types.WebhookEventNameSubscriptionActivated,
+		types.WebhookEventNameSubscriptionCancelled,
+		types.WebhookEventNameSubscriptionUpdated:
+		var payload types.WebhookDtoSubscriptionWebhookPayload
+		if err := json.Unmarshal(body, &payload); err != nil {
+			log.Printf("parse error: %v", err)
+			break
+		}
+		if s := payload.GetSubscription(); s != nil {
+			log.Printf("subscription %s", s.GetID())
+		}
+
+	case types.WebhookEventNameInvoiceUpdateFinalized,
+		types.WebhookEventNameInvoicePaymentOverdue:
+		var payload types.WebhookDtoInvoiceWebhookPayload
+		if err := json.Unmarshal(body, &payload); err != nil {
+			log.Printf("parse error: %v", err)
+			break
+		}
+		if inv := payload.GetInvoice(); inv != nil {
+			log.Printf("invoice %s", inv.GetID())
+		}
+
+	default:
+		log.Printf("unhandled event: %s", env.EventType)
+	}
+
+	w.WriteHeader(http.StatusOK)
+}
+```
+
+### Event types
+
+| Category | Events |
+|---|---|
+| **Payment** | `payment.created` · `payment.updated` · `payment.success` · `payment.failed` · `payment.pending` |
+| **Invoice** | `invoice.create.drafted` · `invoice.update` · `invoice.update.finalized` · `invoice.update.payment` · `invoice.update.voided` · `invoice.payment.overdue` · `invoice.communication.triggered` |
+| **Subscription** | `subscription.created` · `subscription.draft.created` · `subscription.activated` · `subscription.updated` · `subscription.paused` · `subscription.resumed` · `subscription.cancelled` · `subscription.renewal.due` |
+| **Subscription Phase** | `subscription.phase.created` · `subscription.phase.updated` · `subscription.phase.deleted` |
+| **Customer** | `customer.created` · `customer.updated` · `customer.deleted` |
+| **Wallet** | `wallet.created` · `wallet.updated` · `wallet.terminated` · `wallet.transaction.created` · `wallet.credit_balance.dropped` · `wallet.credit_balance.recovered` · `wallet.ongoing_balance.dropped` · `wallet.ongoing_balance.recovered` |
+| **Feature / Entitlement** | `feature.created` · `feature.updated` · `feature.deleted` · `feature.wallet_balance.alert` · `entitlement.created` · `entitlement.updated` · `entitlement.deleted` |
+| **Credit Note** | `credit_note.created` · `credit_note.updated` |
+
+**Production rules:**
+- Keep handlers idempotent — Flexprice retries on non-`2xx`
+- Return `200` for unknown event types — prevents unnecessary retries
+- Do heavy processing async — respond fast, queue the work
+
 ## Documentation
 
 - [FlexPrice API documentation](https://docs.flexprice.io)

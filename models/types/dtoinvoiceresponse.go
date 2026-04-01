@@ -50,6 +50,8 @@ type DtoInvoiceResponse struct {
 	InvoicePdfURL *string        `json:"invoice_pdf_url,omitzero"`
 	InvoiceStatus *InvoiceStatus `json:"invoice_status,omitzero"`
 	InvoiceType   *InvoiceType   `json:"invoice_type,omitzero"`
+	// last_computed_at is the timestamp when this invoice was last computed by ComputeInvoice
+	LastComputedAt *string `json:"last_computed_at,omitzero"`
 	// line_items contains the individual items that make up this invoice (overrides embedded field)
 	LineItems []DtoInvoiceLineItemResponse `json:"line_items,omitzero"`
 	Metadata  map[string]string            `json:"metadata,omitzero"`
@@ -263,6 +265,13 @@ func (d *DtoInvoiceResponse) GetInvoiceType() *InvoiceType {
 		return nil
 	}
 	return d.InvoiceType
+}
+
+func (d *DtoInvoiceResponse) GetLastComputedAt() *string {
+	if d == nil {
+		return nil
+	}
+	return d.LastComputedAt
 }
 
 func (d *DtoInvoiceResponse) GetLineItems() []DtoInvoiceLineItemResponse {

@@ -8,6 +8,7 @@ const (
 	InvoiceStatusDraft     InvoiceStatus = "DRAFT"
 	InvoiceStatusFinalized InvoiceStatus = "FINALIZED"
 	InvoiceStatusVoided    InvoiceStatus = "VOIDED"
+	InvoiceStatusSkipped   InvoiceStatus = "SKIPPED"
 )
 
 func (e InvoiceStatus) ToPointer() *InvoiceStatus {
@@ -18,7 +19,7 @@ func (e InvoiceStatus) ToPointer() *InvoiceStatus {
 func (e *InvoiceStatus) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "DRAFT", "FINALIZED", "VOIDED":
+		case "DRAFT", "FINALIZED", "VOIDED", "SKIPPED":
 			return true
 		}
 	}

@@ -2,7 +2,7 @@
 
 package flexprice
 
-// Generated from OpenAPI doc version 1.0 and generator version 2.869.23
+// Generated from OpenAPI doc version 1.0 and generator version 2.879.1
 
 import (
 	"context"
@@ -52,37 +52,36 @@ func Pointer[T any](v T) *T { return &v }
 
 // Flexprice API: Flexprice API Service
 type Flexprice struct {
-	SDKVersion                string
-	Addons                    *Addons
-	Entitlements              *Entitlements
-	Alerts                    *Alerts
-	Costs                     *Costs
-	Coupons                   *Coupons
-	CreditGrants              *CreditGrants
-	CreditNotes               *CreditNotes
-	Customers                 *Customers
-	Wallets                   *Wallets
-	Invoices                  *Invoices
-	EntityIntegrationMappings *EntityIntegrationMappings
-	Events                    *Events
-	Features                  *Features
-	Groups                    *Groups
-	Payments                  *Payments
-	Plans                     *Plans
-	Prices                    *Prices
-	PriceUnits                *PriceUnits
-	Rbac                      *Rbac
-	Secrets                   *Secrets
-	Integrations              *Integrations
-	Subscriptions             *Subscriptions
-	Tasks                     *Tasks
-	ScheduledTasks            *ScheduledTasks
-	TaxAssociations           *TaxAssociations
-	TaxRates                  *TaxRates
-	Tenants                   *Tenants
-	Users                     *Users
-	WebhookEvents             *WebhookEvents
-	Workflows                 *Workflows
+	SDKVersion      string
+	Addons          *Addons
+	Entitlements    *Entitlements
+	Alerts          *Alerts
+	Costs           *Costs
+	Coupons         *Coupons
+	CreditGrants    *CreditGrants
+	CreditNotes     *CreditNotes
+	Customers       *Customers
+	Wallets         *Wallets
+	Invoices        *Invoices
+	Events          *Events
+	Features        *Features
+	Groups          *Groups
+	Integrations    *Integrations
+	Payments        *Payments
+	Plans           *Plans
+	Prices          *Prices
+	PriceUnits      *PriceUnits
+	Rbac            *Rbac
+	Secrets         *Secrets
+	Subscriptions   *Subscriptions
+	Tasks           *Tasks
+	ScheduledTasks  *ScheduledTasks
+	TaxAssociations *TaxAssociations
+	TaxRates        *TaxRates
+	Tenants         *Tenants
+	Users           *Users
+	WebhookEvents   *WebhookEvents
+	Workflows       *Workflows
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -159,9 +158,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.0.12",
+		SDKVersion: "2.0.13",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 2.0.12 2.869.23 1.0 github.com/flexprice/go-sdk/v2",
+			UserAgent:  "speakeasy-sdk/go 2.0.13 2.879.1 1.0 github.com/flexprice/go-sdk/v2",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -187,17 +186,16 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.Customers = newCustomers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Wallets = newWallets(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Invoices = newInvoices(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.EntityIntegrationMappings = newEntityIntegrationMappings(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Events = newEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Features = newFeatures(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Groups = newGroups(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Integrations = newIntegrations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Payments = newPayments(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Plans = newPlans(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Prices = newPrices(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.PriceUnits = newPriceUnits(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Rbac = newRbac(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Secrets = newSecrets(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Integrations = newIntegrations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Subscriptions = newSubscriptions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Tasks = newTasks(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.ScheduledTasks = newScheduledTasks(sdk, sdk.sdkConfiguration, sdk.hooks)

@@ -33,6 +33,8 @@ func newCoupons(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *ho
 
 // CreateCoupon - Create coupon
 // Use when creating a discount (e.g. promo code or referral). Ideal for percent or fixed value, with optional validity and usage limits.
+//
+// This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
 func (s *Coupons) CreateCoupon(ctx context.Context, request types.DtoCreateCouponRequest, opts ...dtos.Option) (*dtos.CreateCouponResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
@@ -92,7 +94,7 @@ func (s *Coupons) CreateCoupon(ctx context.Context, request types.DtoCreateCoupo
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
 		return nil, err
 	}
 
@@ -827,6 +829,8 @@ func (s *Coupons) GetCoupon(ctx context.Context, id string, opts ...dtos.Option)
 
 // UpdateCoupon - Update coupon
 // Use when changing coupon config (e.g. value, validity, or usage limits).
+//
+// This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
 func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.DtoUpdateCouponRequest, opts ...dtos.Option) (*dtos.UpdateCouponResponse, error) {
 	request := dtos.UpdateCouponRequest{
 		ID:   id,
@@ -891,7 +895,7 @@ func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.DtoUpd
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
 		return nil, err
 	}
 
@@ -1101,6 +1105,8 @@ func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.DtoUpd
 
 // DeleteCoupon - Delete coupon
 // Use when retiring a coupon (e.g. campaign ended). Returns 200 with success message.
+//
+// This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
 func (s *Coupons) DeleteCoupon(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteCouponResponse, error) {
 	request := dtos.DeleteCouponRequest{
 		ID: id,
@@ -1157,7 +1163,7 @@ func (s *Coupons) DeleteCoupon(ctx context.Context, id string, opts ...dtos.Opti
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
 		return nil, err
 	}
 

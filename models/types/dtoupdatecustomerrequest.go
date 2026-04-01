@@ -24,8 +24,6 @@ type DtoUpdateCustomerRequest struct {
 	Email *string `json:"email,omitzero"`
 	// external_id is the updated external identifier for the customer
 	ExternalID *string `json:"external_id,omitzero"`
-	// integration_entity_mapping contains provider integration mappings for this customer
-	IntegrationEntityMapping []DtoIntegrationEntityMapping `json:"integration_entity_mapping,omitzero"`
 	// metadata contains updated key-value pairs that will replace existing metadata
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// name is the updated name or company name for the customer
@@ -106,13 +104,6 @@ func (d *DtoUpdateCustomerRequest) GetExternalID() *string {
 		return nil
 	}
 	return d.ExternalID
-}
-
-func (d *DtoUpdateCustomerRequest) GetIntegrationEntityMapping() []DtoIntegrationEntityMapping {
-	if d == nil {
-		return nil
-	}
-	return d.IntegrationEntityMapping
 }
 
 func (d *DtoUpdateCustomerRequest) GetMetadata() map[string]string {

@@ -33,6 +33,8 @@ func newCreditNotes(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks
 
 // CreateCreditNote - Create credit note
 // Use when issuing a refund or adjustment (e.g. customer dispute or proration). Links to an invoice; create as draft then finalize.
+//
+// This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
 func (s *CreditNotes) CreateCreditNote(ctx context.Context, request types.DtoCreateCreditNoteRequest, opts ...dtos.Option) (*dtos.CreateCreditNoteResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
@@ -92,7 +94,7 @@ func (s *CreditNotes) CreateCreditNote(ctx context.Context, request types.DtoCre
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
 		return nil, err
 	}
 
@@ -564,6 +566,8 @@ func (s *CreditNotes) GetCreditNote(ctx context.Context, id string, opts ...dtos
 
 // ProcessCreditNote - Finalize credit note
 // Use when locking a draft credit note and applying the credit (e.g. after approval). Once finalized, applied per billing provider.
+//
+// This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
 func (s *CreditNotes) ProcessCreditNote(ctx context.Context, id string, opts ...dtos.Option) (*dtos.ProcessCreditNoteResponse, error) {
 	request := dtos.ProcessCreditNoteRequest{
 		ID: id,
@@ -620,7 +624,7 @@ func (s *CreditNotes) ProcessCreditNote(ctx context.Context, id string, opts ...
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
 		return nil, err
 	}
 
@@ -830,6 +834,8 @@ func (s *CreditNotes) ProcessCreditNote(ctx context.Context, id string, opts ...
 
 // VoidCreditNote - Void credit note
 // Use when cancelling a draft credit note (e.g. created by mistake). Only draft credit notes can be voided.
+//
+// This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
 func (s *CreditNotes) VoidCreditNote(ctx context.Context, id string, opts ...dtos.Option) (*dtos.VoidCreditNoteResponse, error) {
 	request := dtos.VoidCreditNoteRequest{
 		ID: id,
@@ -886,7 +892,7 @@ func (s *CreditNotes) VoidCreditNote(ctx context.Context, id string, opts ...dto
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
 		return nil, err
 	}
 

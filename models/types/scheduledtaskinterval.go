@@ -6,6 +6,7 @@ type ScheduledTaskInterval string
 
 const (
 	ScheduledTaskIntervalFifteenMin ScheduledTaskInterval = "15MIN"
+	ScheduledTaskIntervalThirtyMin  ScheduledTaskInterval = "30MIN"
 	ScheduledTaskIntervalCustom     ScheduledTaskInterval = "custom"
 	ScheduledTaskIntervalHourly     ScheduledTaskInterval = "hourly"
 	ScheduledTaskIntervalDaily      ScheduledTaskInterval = "daily"
@@ -19,7 +20,7 @@ func (e ScheduledTaskInterval) ToPointer() *ScheduledTaskInterval {
 func (e *ScheduledTaskInterval) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "15MIN", "custom", "hourly", "daily":
+		case "15MIN", "30MIN", "custom", "hourly", "daily":
 			return true
 		}
 	}

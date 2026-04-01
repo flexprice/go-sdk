@@ -19,6 +19,7 @@ custom := types.ScheduledTaskInterval("custom_value")
 | Name                              | Value                             |
 | --------------------------------- | --------------------------------- |
 | `ScheduledTaskIntervalFifteenMin` | 15MIN                             |
+| `ScheduledTaskIntervalThirtyMin`  | 30MIN                             |
 | `ScheduledTaskIntervalCustom`     | custom                            |
 | `ScheduledTaskIntervalHourly`     | hourly                            |
 | `ScheduledTaskIntervalDaily`      | daily                             |

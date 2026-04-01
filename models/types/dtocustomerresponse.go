@@ -29,7 +29,8 @@ type DtoCustomerResponse struct {
 	// ExternalID is the external identifier for the customer
 	ExternalID *string `json:"external_id,omitzero"`
 	// ID is the unique identifier for the customer
-	ID *string `json:"id,omitzero"`
+	ID           *string                               `json:"id,omitzero"`
+	Integrations []DtoEntityIntegrationMappingResponse `json:"integrations,omitzero"`
 	// Metadata
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// Name is the name of the customer
@@ -139,6 +140,13 @@ func (d *DtoCustomerResponse) GetID() *string {
 		return nil
 	}
 	return d.ID
+}
+
+func (d *DtoCustomerResponse) GetIntegrations() []DtoEntityIntegrationMappingResponse {
+	if d == nil {
+		return nil
+	}
+	return d.Integrations
 }
 
 func (d *DtoCustomerResponse) GetMetadata() map[string]string {

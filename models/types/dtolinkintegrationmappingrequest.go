@@ -6,7 +6,7 @@ import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
 )
 
-type DtoCreateEntityIntegrationMappingRequest struct {
+type DtoLinkIntegrationMappingRequest struct {
 	EntityID         string                `json:"entity_id"`
 	EntityType       IntegrationEntityType `json:"entity_type"`
 	Metadata         map[string]any        `json:"metadata,omitzero"`
@@ -14,46 +14,46 @@ type DtoCreateEntityIntegrationMappingRequest struct {
 	ProviderType     string                `json:"provider_type"`
 }
 
-func (d DtoCreateEntityIntegrationMappingRequest) MarshalJSON() ([]byte, error) {
+func (d DtoLinkIntegrationMappingRequest) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(d, "", false)
 }
 
-func (d *DtoCreateEntityIntegrationMappingRequest) UnmarshalJSON(data []byte) error {
+func (d *DtoLinkIntegrationMappingRequest) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (d *DtoCreateEntityIntegrationMappingRequest) GetEntityID() string {
+func (d *DtoLinkIntegrationMappingRequest) GetEntityID() string {
 	if d == nil {
 		return ""
 	}
 	return d.EntityID
 }
 
-func (d *DtoCreateEntityIntegrationMappingRequest) GetEntityType() IntegrationEntityType {
+func (d *DtoLinkIntegrationMappingRequest) GetEntityType() IntegrationEntityType {
 	if d == nil {
 		return IntegrationEntityType("")
 	}
 	return d.EntityType
 }
 
-func (d *DtoCreateEntityIntegrationMappingRequest) GetMetadata() map[string]any {
+func (d *DtoLinkIntegrationMappingRequest) GetMetadata() map[string]any {
 	if d == nil {
 		return nil
 	}
 	return d.Metadata
 }
 
-func (d *DtoCreateEntityIntegrationMappingRequest) GetProviderEntityID() string {
+func (d *DtoLinkIntegrationMappingRequest) GetProviderEntityID() string {
 	if d == nil {
 		return ""
 	}
 	return d.ProviderEntityID
 }
 
-func (d *DtoCreateEntityIntegrationMappingRequest) GetProviderType() string {
+func (d *DtoLinkIntegrationMappingRequest) GetProviderType() string {
 	if d == nil {
 		return ""
 	}

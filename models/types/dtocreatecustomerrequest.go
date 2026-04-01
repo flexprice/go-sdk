@@ -24,8 +24,6 @@ type DtoCreateCustomerRequest struct {
 	Email *string `json:"email,omitzero"`
 	// external_id is the unique identifier from your system to reference this customer (required)
 	ExternalID string `json:"external_id"`
-	// integration_entity_mapping contains provider integration mappings for this customer
-	IntegrationEntityMapping []DtoIntegrationEntityMapping `json:"integration_entity_mapping,omitzero"`
 	// metadata contains additional key-value pairs for storing extra information
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// name is the full name or company name of the customer
@@ -111,13 +109,6 @@ func (d *DtoCreateCustomerRequest) GetExternalID() string {
 		return ""
 	}
 	return d.ExternalID
-}
-
-func (d *DtoCreateCustomerRequest) GetIntegrationEntityMapping() []DtoIntegrationEntityMapping {
-	if d == nil {
-		return nil
-	}
-	return d.IntegrationEntityMapping
 }
 
 func (d *DtoCreateCustomerRequest) GetMetadata() map[string]string {
