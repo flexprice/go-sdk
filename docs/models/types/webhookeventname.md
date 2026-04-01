@@ -7,7 +7,7 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
-value := types.WebhookEventNameInvoiceCreateDrafted
+value := types.WebhookEventNameSubscriptionCreated
 
 // Open enum: custom values can be created with a direct type cast
 custom := types.WebhookEventName("custom_value")
@@ -18,7 +18,6 @@ custom := types.WebhookEventName("custom_value")
 
 | Name                                            | Value                                           |
 | ----------------------------------------------- | ----------------------------------------------- |
-| `WebhookEventNameInvoiceCreateDrafted`          | invoice.create.drafted                          |
 | `WebhookEventNameSubscriptionCreated`           | subscription.created                            |
 | `WebhookEventNameSubscriptionDraftCreated`      | subscription.draft.created                      |
 | `WebhookEventNameSubscriptionActivated`         | subscription.activated                          |

@@ -17,7 +17,6 @@
 * [PostWebhookEventsFeatureUpdated](#postwebhookeventsfeatureupdated) - feature.updated
 * [PostWebhookEventsFeatureWalletBalanceAlert](#postwebhookeventsfeaturewalletbalancealert) - feature.wallet_balance.alert
 * [PostWebhookEventsInvoiceCommunicationTriggered](#postwebhookeventsinvoicecommunicationtriggered) - invoice.communication.triggered
-* [PostWebhookEventsInvoiceCreateDrafted](#postwebhookeventsinvoicecreatedrafted) - invoice.create.drafted
 * [PostWebhookEventsInvoicePaymentOverdue](#postwebhookeventsinvoicepaymentoverdue) - invoice.payment.overdue
 * [PostWebhookEventsInvoiceUpdate](#postwebhookeventsinvoiceupdate) - invoice.update
 * [PostWebhookEventsInvoiceUpdateFinalized](#postwebhookeventsinvoiceupdatefinalized) - invoice.update.finalized
@@ -691,56 +690,6 @@ func main() {
 ### Response
 
 **[*dtos.PostWebhookEventsInvoiceCommunicationTriggeredResponse](../../models/dtos/postwebhookeventsinvoicecommunicationtriggeredresponse.md), error**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
-
-## PostWebhookEventsInvoiceCreateDrafted
-
-Fired when a new invoice is created in draft status. Doc-only for parsing.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="post_/webhook-events/invoice.create.drafted" method="post" path="/webhook-events/invoice.create.drafted" -->
-```go
-package main
-
-import(
-	"context"
-	flexprice "github.com/flexprice/go-sdk/v2"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.WebhookEvents.PostWebhookEventsInvoiceCreateDrafted(ctx)
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.WebhookDtoInvoiceWebhookPayload != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
-
-### Response
-
-**[*dtos.PostWebhookEventsInvoiceCreateDraftedResponse](../../models/dtos/postwebhookeventsinvoicecreatedraftedresponse.md), error**
 
 ### Errors
 

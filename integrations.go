@@ -52,7 +52,7 @@ func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types
 	} else {
 		baseURL = *o.ServerURL
 	}
-	opURL, err := url.JoinPath(baseURL, "/integrations/mappings/link")
+	opURL, err := url.JoinPath(baseURL, "/integrations/link")
 	if err != nil {
 		return nil, fmt.Errorf("error generating URL: %w", err)
 	}

@@ -43,8 +43,12 @@ type SubscriptionFilter struct {
 	BillingPeriod []BillingPeriod `json:"billing_period,omitzero"`
 	// CustomerID filters by customer ID
 	CustomerID *string `json:"customer_id,omitzero"`
-	EndTime    *string `json:"end_time,omitzero"`
-	Expand     *string `json:"expand,omitzero"`
+	// EffectiveDateForUpdate selects subscriptions that need a billing-period pass on or before this time:
+	// current_period_end <= date OR (cancel_at IS NOT NULL AND cancel_at <= date).
+	// When nil, period/cancel cutoff logic is not applied by this field (see TimeRangeFilter for legacy period-end filtering).
+	EffectiveDateForUpdate *string `json:"effective_date_for_update,omitzero"`
+	EndTime                *string `json:"end_time,omitzero"`
+	Expand                 *string `json:"expand,omitzero"`
 	// ExternalCustomerID filters by external customer ID
 	ExternalCustomerID *string           `json:"external_customer_id,omitzero"`
 	Filters            []FilterCondition `json:"filters,omitzero"`
@@ -104,6 +108,13 @@ func (s *SubscriptionFilter) GetCustomerID() *string {
 		return nil
 	}
 	return s.CustomerID
+}
+
+func (s *SubscriptionFilter) GetEffectiveDateForUpdate() *string {
+	if s == nil {
+		return nil
+	}
+	return s.EffectiveDateForUpdate
 }
 
 func (s *SubscriptionFilter) GetEndTime() *string {

@@ -1,9 +1,0 @@
-# PostWebhookEventsInvoiceCreateDraftedResponse
-
-
-## Fields
-
-| Field                                                                                           | Type                                                                                            | Required                                                                                        | Description                                                                                     |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `HTTPMeta`                                                                                      | [types.HTTPMetadata](../../models/types/httpmetadata.md)                                        | :heavy_check_mark:                                                                              | N/A                                                                                             |
-| `WebhookDtoInvoiceWebhookPayload`                                                               | [*types.WebhookDtoInvoiceWebhookPayload](../../models/types/webhookdtoinvoicewebhookpayload.md) | :heavy_minus_sign:                                                                              | Webhook payload                                                                                 |
