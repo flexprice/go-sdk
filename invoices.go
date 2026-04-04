@@ -2671,11 +2671,12 @@ func (s *Invoices) AttemptInvoicePayment(ctx context.Context, id string, opts ..
 }
 
 // GetInvoicePdf - Get invoice PDF
-// Use when delivering an invoice PDF to the customer (e.g. email attachment or download). Use url=true for a presigned URL instead of binary.
-func (s *Invoices) GetInvoicePdf(ctx context.Context, id string, url_ *bool, opts ...dtos.Option) (*dtos.GetInvoicePdfResponse, error) {
+// Use when delivering an invoice PDF to the customer (e.g. email attachment or download). Use url=true for a presigned URL instead of binary. Use force_generate=true to regenerate and re-upload the PDF even if one already exists in S3.
+func (s *Invoices) GetInvoicePdf(ctx context.Context, id string, url_ *bool, forceGenerate *bool, opts ...dtos.Option) (*dtos.GetInvoicePdfResponse, error) {
 	request := dtos.GetInvoicePdfRequest{
-		ID:  id,
-		URL: url_,
+		ID:            id,
+		URL:           url_,
+		ForceGenerate: forceGenerate,
 	}
 
 	o := dtos.Options{}

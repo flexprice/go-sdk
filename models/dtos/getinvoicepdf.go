@@ -12,6 +12,8 @@ type GetInvoicePdfRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Return presigned URL from s3 instead of PDF
 	URL *bool `queryParam:"style=form,explode=true,name=url"`
+	// Force regeneration of the PDF even if one already exists in S3 (default: false). Note: force_generate has no effect if invoice_pdf_url is already set on the invoice.
+	ForceGenerate *bool `queryParam:"style=form,explode=true,name=force_generate"`
 }
 
 func (g *GetInvoicePdfRequest) GetID() string {
@@ -26,6 +28,13 @@ func (g *GetInvoicePdfRequest) GetURL() *bool {
 		return nil
 	}
 	return g.URL
+}
+
+func (g *GetInvoicePdfRequest) GetForceGenerate() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.ForceGenerate
 }
 
 type GetInvoicePdfResponse struct {

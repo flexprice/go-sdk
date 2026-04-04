@@ -570,7 +570,7 @@ func main() {
 
 ## GetInvoicePdf
 
-Use when delivering an invoice PDF to the customer (e.g. email attachment or download). Use url=true for a presigned URL instead of binary.
+Use when delivering an invoice PDF to the customer (e.g. email attachment or download). Use url=true for a presigned URL instead of binary. Use force_generate=true to regenerate and re-upload the PDF even if one already exists in S3.
 
 ### Example Usage
 
@@ -591,7 +591,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Invoices.GetInvoicePdf(ctx, "<id>", nil)
+    res, err := s.Invoices.GetInvoicePdf(ctx, "<id>", nil, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -603,12 +603,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Invoice ID                                            |
-| `url_`                                                | `*bool`                                               | :heavy_minus_sign:                                    | Return presigned URL from s3 instead of PDF           |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                                                                                                             | Type                                                                                                                                                                  | Required                                                                                                                                                              | Description                                                                                                                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                                                                 | [context.Context](https://pkg.go.dev/context#Context)                                                                                                                 | :heavy_check_mark:                                                                                                                                                    | The context to use for the request.                                                                                                                                   |
+| `id`                                                                                                                                                                  | `string`                                                                                                                                                              | :heavy_check_mark:                                                                                                                                                    | Invoice ID                                                                                                                                                            |
+| `url_`                                                                                                                                                                | `*bool`                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                    | Return presigned URL from s3 instead of PDF                                                                                                                           |
+| `forceGenerate`                                                                                                                                                       | `*bool`                                                                                                                                                               | :heavy_minus_sign:                                                                                                                                                    | Force regeneration of the PDF even if one already exists in S3 (default: false). Note: force_generate has no effect if invoice_pdf_url is already set on the invoice. |
+| `opts`                                                                                                                                                                | [][dtos.Option](../../models/dtos/option.md)                                                                                                                          | :heavy_minus_sign:                                                                                                                                                    | The options for this request.                                                                                                                                         |
 
 ### Response
 

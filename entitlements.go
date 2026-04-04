@@ -2043,12 +2043,12 @@ func (s *Entitlements) GetPlanEntitlements(ctx context.Context, id string, opts 
 				return nil, err
 			}
 
-			var out types.DtoPlanResponse
+			var out types.DtoListEntitlementsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPlanResponse = &out
+			res.DtoListEntitlementsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

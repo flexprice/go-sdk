@@ -426,7 +426,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoPlanResponse != nil {
+    if res.DtoListEntitlementsResponse != nil {
         // handle response
     }
 }
