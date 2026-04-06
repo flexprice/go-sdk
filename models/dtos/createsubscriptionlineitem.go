@@ -11,7 +11,18 @@ type CreateSubscriptionLineItemRequest struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Create Line Item Request
-	Body types.DtoCreateSubscriptionLineItemRequest `request:"mediaType=application/json"`
+	Body types.CreateSubscriptionLineItemRequest `request:"mediaType=application/json"`
+}
+
+func (c CreateSubscriptionLineItemRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateSubscriptionLineItemRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (c *CreateSubscriptionLineItemRequest) GetID() string {
@@ -21,9 +32,9 @@ func (c *CreateSubscriptionLineItemRequest) GetID() string {
 	return c.ID
 }
 
-func (c *CreateSubscriptionLineItemRequest) GetBody() types.DtoCreateSubscriptionLineItemRequest {
+func (c *CreateSubscriptionLineItemRequest) GetBody() types.CreateSubscriptionLineItemRequest {
 	if c == nil {
-		return types.DtoCreateSubscriptionLineItemRequest{}
+		return types.CreateSubscriptionLineItemRequest{}
 	}
 	return c.Body
 }
@@ -31,7 +42,7 @@ func (c *CreateSubscriptionLineItemRequest) GetBody() types.DtoCreateSubscriptio
 type CreateSubscriptionLineItemResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created
-	DtoSubscriptionLineItemResponse *types.DtoSubscriptionLineItemResponse
+	SubscriptionLineItemResponse *types.SubscriptionLineItemResponse
 }
 
 func (c CreateSubscriptionLineItemResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (c CreateSubscriptionLineItemResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateSubscriptionLineItemResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (c *CreateSubscriptionLineItemResponse) GetHTTPMeta() types.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateSubscriptionLineItemResponse) GetDtoSubscriptionLineItemResponse() *types.DtoSubscriptionLineItemResponse {
+func (c *CreateSubscriptionLineItemResponse) GetSubscriptionLineItemResponse() *types.SubscriptionLineItemResponse {
 	if c == nil {
 		return nil
 	}
-	return c.DtoSubscriptionLineItemResponse
+	return c.SubscriptionLineItemResponse
 }

@@ -3,7 +3,7 @@
 
 ## Fields
 
-| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `HTTPMeta`                                                          | [types.HTTPMetadata](../../models/types/httpmetadata.md)            | :heavy_check_mark:                                                  | N/A                                                                 |
-| `DtoCouponResponse`                                                 | [*types.DtoCouponResponse](../../models/types/dtocouponresponse.md) | :heavy_minus_sign:                                                  | Created                                                             |
+| Field                                                    | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `HTTPMeta`                                               | [types.HTTPMetadata](../../models/types/httpmetadata.md) | :heavy_check_mark:                                       | N/A                                                      |
+| `Coupon`                                                 | [*types.Coupon](../../models/types/coupon.md)            | :heavy_minus_sign:                                       | Created                                                  |

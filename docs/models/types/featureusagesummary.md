@@ -1,0 +1,16 @@
+# FeatureUsageSummary
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `CurrentUsage`                                                       | `*string`                                                            | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `Feature`                                                            | [*types.Feature1](../../models/types/feature1.md)                    | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `IsEnabled`                                                          | `*bool`                                                              | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `IsSoftLimit`                                                        | `*bool`                                                              | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `IsUnlimited`                                                        | `*bool`                                                              | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `NextUsageResetAt`                                                   | [*time.Time](https://pkg.go.dev/time#Time)                           | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `Sources`                                                            | [][types.EntitlementSource](../../models/types/entitlementsource.md) | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `TotalLimit`                                                         | `*int64`                                                             | :heavy_minus_sign:                                                   | N/A                                                                  |
+| `UsagePercent`                                                       | `*string`                                                            | :heavy_minus_sign:                                                   | N/A                                                                  |

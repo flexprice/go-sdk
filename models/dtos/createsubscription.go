@@ -10,7 +10,7 @@ import (
 type CreateSubscriptionResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created
-	DtoSubscriptionResponse *types.DtoSubscriptionResponse
+	Subscription *types.Subscription
 }
 
 func (c CreateSubscriptionResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (c CreateSubscriptionResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateSubscriptionResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (c *CreateSubscriptionResponse) GetHTTPMeta() types.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateSubscriptionResponse) GetDtoSubscriptionResponse() *types.DtoSubscriptionResponse {
+func (c *CreateSubscriptionResponse) GetSubscription() *types.Subscription {
 	if c == nil {
 		return nil
 	}
-	return c.DtoSubscriptionResponse
+	return c.Subscription
 }

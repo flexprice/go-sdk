@@ -7,8 +7,8 @@ import (
 )
 
 type FailurePoint struct {
-	Error            *ErrorsErrorResponse `json:"error,omitzero"`
-	FailurePointType *FailurePointType    `json:"failure_point_type,omitzero"`
+	Error            *ErrorResponse    `json:"error,omitzero"`
+	FailurePointType *FailurePointType `json:"failure_point_type,omitzero"`
 }
 
 func (f FailurePoint) MarshalJSON() ([]byte, error) {
@@ -22,7 +22,7 @@ func (f *FailurePoint) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (f *FailurePoint) GetError() *ErrorsErrorResponse {
+func (f *FailurePoint) GetError() *ErrorResponse {
 	if f == nil {
 		return nil
 	}

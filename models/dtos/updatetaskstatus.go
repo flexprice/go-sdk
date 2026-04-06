@@ -11,7 +11,18 @@ type UpdateTaskStatusRequest struct {
 	// Task ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Status update
-	Body types.DtoUpdateTaskStatusRequest `request:"mediaType=application/json"`
+	Body types.UpdateTaskStatusRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateTaskStatusRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateTaskStatusRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateTaskStatusRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateTaskStatusRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateTaskStatusRequest) GetBody() types.DtoUpdateTaskStatusRequest {
+func (u *UpdateTaskStatusRequest) GetBody() types.UpdateTaskStatusRequest {
 	if u == nil {
-		return types.DtoUpdateTaskStatusRequest{}
+		return types.UpdateTaskStatusRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateTaskStatusRequest) GetBody() types.DtoUpdateTaskStatusRequest {
 type UpdateTaskStatusResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSuccessResponse *types.DtoSuccessResponse
+	SuccessResponse *types.SuccessResponse
 }
 
 func (u UpdateTaskStatusResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateTaskStatusResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateTaskStatusResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateTaskStatusResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateTaskStatusResponse) GetDtoSuccessResponse() *types.DtoSuccessResponse {
+func (u *UpdateTaskStatusResponse) GetSuccessResponse() *types.SuccessResponse {
 	if u == nil {
 		return nil
 	}
-	return u.DtoSuccessResponse
+	return u.SuccessResponse
 }

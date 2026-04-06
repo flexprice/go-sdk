@@ -11,7 +11,18 @@ type UpdateInvoiceRequest struct {
 	// Invoice ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Invoice Update Request
-	Body types.DtoUpdateInvoiceRequest `request:"mediaType=application/json"`
+	Body types.UpdateInvoiceRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateInvoiceRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateInvoiceRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateInvoiceRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateInvoiceRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateInvoiceRequest) GetBody() types.DtoUpdateInvoiceRequest {
+func (u *UpdateInvoiceRequest) GetBody() types.UpdateInvoiceRequest {
 	if u == nil {
-		return types.DtoUpdateInvoiceRequest{}
+		return types.UpdateInvoiceRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateInvoiceRequest) GetBody() types.DtoUpdateInvoiceRequest {
 type UpdateInvoiceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoInvoiceResponse *types.DtoInvoiceResponse
+	Invoice *types.Invoice
 }
 
 func (u UpdateInvoiceResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateInvoiceResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateInvoiceResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateInvoiceResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateInvoiceResponse) GetDtoInvoiceResponse() *types.DtoInvoiceResponse {
+func (u *UpdateInvoiceResponse) GetInvoice() *types.Invoice {
 	if u == nil {
 		return nil
 	}
-	return u.DtoInvoiceResponse
+	return u.Invoice
 }

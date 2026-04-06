@@ -170,6 +170,17 @@ type ListTasksRequest struct {
 	TaskType        *TaskType        `queryParam:"style=form,explode=true,name=task_type"`
 }
 
+func (l ListTasksRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListTasksRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (l *ListTasksRequest) GetCreatedBy() *string {
 	if l == nil {
 		return nil
@@ -264,7 +275,7 @@ func (l *ListTasksRequest) GetTaskType() *TaskType {
 type ListTasksResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListTasksResponse *types.DtoListTasksResponse
+	ListTasksResponse *types.ListTasksResponse
 }
 
 func (l ListTasksResponse) MarshalJSON() ([]byte, error) {
@@ -272,7 +283,7 @@ func (l ListTasksResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListTasksResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -285,9 +296,9 @@ func (l *ListTasksResponse) GetHTTPMeta() types.HTTPMetadata {
 	return l.HTTPMeta
 }
 
-func (l *ListTasksResponse) GetDtoListTasksResponse() *types.DtoListTasksResponse {
+func (l *ListTasksResponse) GetListTasksResponse() *types.ListTasksResponse {
 	if l == nil {
 		return nil
 	}
-	return l.DtoListTasksResponse
+	return l.ListTasksResponse
 }

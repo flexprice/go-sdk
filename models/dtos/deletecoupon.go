@@ -12,6 +12,17 @@ type DeleteCouponRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (d DeleteCouponRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteCouponRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (d *DeleteCouponRequest) GetID() string {
 	if d == nil {
 		return ""
@@ -30,7 +41,7 @@ func (d DeleteCouponResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeleteCouponResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil

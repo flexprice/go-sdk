@@ -7,7 +7,7 @@ import (
 )
 
 type ListResponseDtoWalletResponse struct {
-	Items      []DtoWalletResponse `json:"items,omitzero"`
+	Items      []Wallet            `json:"items,omitzero"`
 	Pagination *PaginationResponse `json:"pagination,omitzero"`
 }
 
@@ -22,7 +22,7 @@ func (l *ListResponseDtoWalletResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListResponseDtoWalletResponse) GetItems() []DtoWalletResponse {
+func (l *ListResponseDtoWalletResponse) GetItems() []Wallet {
 	if l == nil {
 		return nil
 	}

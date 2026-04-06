@@ -18,7 +18,7 @@ func (l ListRbacRolesResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListRbacRolesResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil

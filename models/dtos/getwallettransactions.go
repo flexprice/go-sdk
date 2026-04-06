@@ -195,6 +195,17 @@ type GetWalletTransactionsRequest struct {
 	Type               *Type                        `queryParam:"style=form,explode=true,name=type"`
 }
 
+func (g GetWalletTransactionsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetWalletTransactionsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetWalletTransactionsRequest) GetIDPathParameter() string {
 	if g == nil {
 		return ""
@@ -331,7 +342,7 @@ func (g *GetWalletTransactionsRequest) GetType() *Type {
 type GetWalletTransactionsResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListWalletTransactionsResponse *types.DtoListWalletTransactionsResponse
+	ListWalletTransactionsResponse *types.ListWalletTransactionsResponse
 }
 
 func (g GetWalletTransactionsResponse) MarshalJSON() ([]byte, error) {
@@ -339,7 +350,7 @@ func (g GetWalletTransactionsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetWalletTransactionsResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -352,9 +363,9 @@ func (g *GetWalletTransactionsResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetWalletTransactionsResponse) GetDtoListWalletTransactionsResponse() *types.DtoListWalletTransactionsResponse {
+func (g *GetWalletTransactionsResponse) GetListWalletTransactionsResponse() *types.ListWalletTransactionsResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoListWalletTransactionsResponse
+	return g.ListWalletTransactionsResponse
 }

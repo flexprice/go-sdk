@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type UserFilterOrder string
@@ -35,8 +36,8 @@ func (e *UserFilterOrder) UnmarshalJSON(data []byte) error {
 }
 
 type UserFilter struct {
-	EndTime *string `json:"end_time,omitzero"`
-	Expand  *string `json:"expand,omitzero"`
+	EndTime *time.Time `json:"end_time,omitzero"`
+	Expand  *string    `json:"expand,omitzero"`
 	// filters allows complex filtering based on multiple fields
 	Filters   []FilterCondition `json:"filters,omitzero"`
 	Limit     *int64            `json:"limit,omitzero"`
@@ -44,7 +45,7 @@ type UserFilter struct {
 	Order     *UserFilterOrder  `json:"order,omitzero"`
 	Roles     []string          `json:"roles,omitzero"`
 	Sort      []SortCondition   `json:"sort,omitzero"`
-	StartTime *string           `json:"start_time,omitzero"`
+	StartTime *time.Time        `json:"start_time,omitzero"`
 	Status    *Status           `json:"status,omitzero"`
 	Type      *UserType         `json:"type,omitzero"`
 	// Specific filters for users
@@ -62,7 +63,7 @@ func (u *UserFilter) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (u *UserFilter) GetEndTime() *string {
+func (u *UserFilter) GetEndTime() *time.Time {
 	if u == nil {
 		return nil
 	}
@@ -118,7 +119,7 @@ func (u *UserFilter) GetSort() []SortCondition {
 	return u.Sort
 }
 
-func (u *UserFilter) GetStartTime() *string {
+func (u *UserFilter) GetStartTime() *time.Time {
 	if u == nil {
 		return nil
 	}

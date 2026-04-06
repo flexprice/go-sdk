@@ -1,0 +1,10 @@
+# UpdateInvoiceRequest
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `DueDate`                                                                               | [*time.Time](https://pkg.go.dev/time#Time)                                              | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `InvoicePdfURL`                                                                         | `*string`                                                                               | :heavy_minus_sign:                                                                      | invoice_pdf_url is the URL where customers can download the PDF version of this invoice |
+| `Metadata`                                                                              | map[string]`string`                                                                     | :heavy_minus_sign:                                                                      | N/A                                                                                     |

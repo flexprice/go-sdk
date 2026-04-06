@@ -18,6 +18,17 @@ type ListTaxAssociationsRequest struct {
 	TaxRateID *string `queryParam:"style=form,explode=true,name=tax_rate_id"`
 }
 
+func (l ListTaxAssociationsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListTaxAssociationsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (l *ListTaxAssociationsRequest) GetEntityType() *string {
 	if l == nil {
 		return nil
@@ -49,7 +60,7 @@ func (l *ListTaxAssociationsRequest) GetTaxRateID() *string {
 type ListTaxAssociationsResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListTaxAssociationsResponse *types.DtoListTaxAssociationsResponse
+	ListTaxAssociationsResponse *types.ListTaxAssociationsResponse
 }
 
 func (l ListTaxAssociationsResponse) MarshalJSON() ([]byte, error) {
@@ -57,7 +68,7 @@ func (l ListTaxAssociationsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListTaxAssociationsResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -70,9 +81,9 @@ func (l *ListTaxAssociationsResponse) GetHTTPMeta() types.HTTPMetadata {
 	return l.HTTPMeta
 }
 
-func (l *ListTaxAssociationsResponse) GetDtoListTaxAssociationsResponse() *types.DtoListTaxAssociationsResponse {
+func (l *ListTaxAssociationsResponse) GetListTaxAssociationsResponse() *types.ListTaxAssociationsResponse {
 	if l == nil {
 		return nil
 	}
-	return l.DtoListTaxAssociationsResponse
+	return l.ListTaxAssociationsResponse
 }

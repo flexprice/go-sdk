@@ -1,0 +1,11 @@
+# GetPreviewInvoiceRequest
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `HideZeroChargesLineItems`                                                          | `*bool`                                                                             | :heavy_minus_sign:                                                                  | hide_zero_charges_line_items indicates whether to hide line items with zero cost    |
+| `PeriodEnd`                                                                         | [*time.Time](https://pkg.go.dev/time#Time)                                          | :heavy_minus_sign:                                                                  | period_end is the optional end date of the period to preview                        |
+| `PeriodStart`                                                                       | [*time.Time](https://pkg.go.dev/time#Time)                                          | :heavy_minus_sign:                                                                  | period_start is the optional start date of the period to preview                    |
+| `SubscriptionID`                                                                    | `string`                                                                            | :heavy_check_mark:                                                                  | subscription_id is the unique identifier of the subscription to preview invoice for |

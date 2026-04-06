@@ -13,7 +13,18 @@ type UpdateCustomerRequest struct {
 	// Customer External ID
 	ExternalCustomerID *string `queryParam:"style=form,explode=true,name=external_customer_id"`
 	// Customer
-	Body types.DtoUpdateCustomerRequest `request:"mediaType=application/json"`
+	Body types.UpdateCustomerRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateCustomerRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateCustomerRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateCustomerRequest) GetID() *string {
@@ -30,9 +41,9 @@ func (u *UpdateCustomerRequest) GetExternalCustomerID() *string {
 	return u.ExternalCustomerID
 }
 
-func (u *UpdateCustomerRequest) GetBody() types.DtoUpdateCustomerRequest {
+func (u *UpdateCustomerRequest) GetBody() types.UpdateCustomerRequest {
 	if u == nil {
-		return types.DtoUpdateCustomerRequest{}
+		return types.UpdateCustomerRequest{}
 	}
 	return u.Body
 }
@@ -40,7 +51,7 @@ func (u *UpdateCustomerRequest) GetBody() types.DtoUpdateCustomerRequest {
 type UpdateCustomerResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCustomerResponse *types.DtoCustomerResponse
+	Customer *types.Customer1
 }
 
 func (u UpdateCustomerResponse) MarshalJSON() ([]byte, error) {
@@ -48,7 +59,7 @@ func (u UpdateCustomerResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateCustomerResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -61,9 +72,9 @@ func (u *UpdateCustomerResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateCustomerResponse) GetDtoCustomerResponse() *types.DtoCustomerResponse {
+func (u *UpdateCustomerResponse) GetCustomer() *types.Customer1 {
 	if u == nil {
 		return nil
 	}
-	return u.DtoCustomerResponse
+	return u.Customer
 }

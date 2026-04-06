@@ -37,13 +37,13 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Costs.CreateCostsheet(ctx, types.DtoCreateCostsheetRequest{
+    res, err := s.Costs.CreateCostsheet(ctx, types.CreateCostsheetRequest{
         Name: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoCreateCostsheetResponse != nil {
+    if res.CreateCostsheetResponse != nil {
         // handle response
     }
 }
@@ -51,11 +51,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [types.DtoCreateCostsheetRequest](../../models/types/dtocreatecostsheetrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [types.CreateCostsheetRequest](../../models/types/createcostsheetrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
 
 ### Response
 
@@ -63,11 +63,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 409                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 409             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetActiveCostsheet
 
@@ -96,7 +96,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoCostsheetResponse != nil {
+    if res.CostsheetResponse != nil {
         // handle response
     }
 }
@@ -115,11 +115,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 404                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 404                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetDetailedCostAnalytics
 
@@ -145,11 +145,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Costs.GetDetailedCostAnalytics(ctx, types.DtoGetCostAnalyticsRequest{})
+    res, err := s.Costs.GetDetailedCostAnalytics(ctx, types.GetCostAnalyticsRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoGetDetailedCostAnalyticsResponse != nil {
+    if res.GetDetailedCostAnalyticsResponse != nil {
         // handle response
     }
 }
@@ -157,11 +157,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [types.DtoGetCostAnalyticsRequest](../../models/types/dtogetcostanalyticsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [types.GetCostAnalyticsRequest](../../models/types/getcostanalyticsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
@@ -169,11 +169,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetDetailedCostAnalyticsV2
 
@@ -199,11 +199,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Costs.GetDetailedCostAnalyticsV2(ctx, types.DtoGetCostAnalyticsRequest{})
+    res, err := s.Costs.GetDetailedCostAnalyticsV2(ctx, types.GetCostAnalyticsRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoGetDetailedCostAnalyticsResponse != nil {
+    if res.GetDetailedCostAnalyticsResponse != nil {
         // handle response
     }
 }
@@ -211,11 +211,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [types.DtoGetCostAnalyticsRequest](../../models/types/dtogetcostanalyticsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [types.GetCostAnalyticsRequest](../../models/types/getcostanalyticsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
@@ -223,11 +223,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## QueryCostsheet
 
@@ -257,7 +257,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoListCostsheetResponse != nil {
+    if res.ListCostsheetResponse != nil {
         // handle response
     }
 }
@@ -277,11 +277,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetCostsheet
 
@@ -310,7 +310,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoGetCostsheetResponse != nil {
+    if res.GetCostsheetResponse != nil {
         // handle response
     }
 }
@@ -331,11 +331,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## UpdateCostsheet
 
@@ -361,11 +361,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Costs.UpdateCostsheet(ctx, "<id>", types.DtoUpdateCostsheetRequest{})
+    res, err := s.Costs.UpdateCostsheet(ctx, "<id>", types.UpdateCostsheetRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoUpdateCostsheetResponse != nil {
+    if res.UpdateCostsheetResponse != nil {
         // handle response
     }
 }
@@ -373,12 +373,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Costsheet ID                                                                       |
-| `body`                                                                             | [types.DtoUpdateCostsheetRequest](../../models/types/dtoupdatecostsheetrequest.md) | :heavy_check_mark:                                                                 | Costsheet configuration                                                            |
-| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `id`                                                                         | `string`                                                                     | :heavy_check_mark:                                                           | Costsheet ID                                                                 |
+| `body`                                                                       | [types.UpdateCostsheetRequest](../../models/types/updatecostsheetrequest.md) | :heavy_check_mark:                                                           | Costsheet configuration                                                      |
+| `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
 
 ### Response
 
@@ -386,11 +386,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404, 409              | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404, 409        | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## DeleteCostsheet
 
@@ -419,7 +419,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoDeleteCostsheetResponse != nil {
+    if res.DeleteCostsheetResponse != nil {
         // handle response
     }
 }
@@ -439,8 +439,8 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |

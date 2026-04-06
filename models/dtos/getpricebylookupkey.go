@@ -12,6 +12,17 @@ type GetPriceByLookupKeyRequest struct {
 	LookupKey string `pathParam:"style=simple,explode=false,name=lookup_key"`
 }
 
+func (g GetPriceByLookupKeyRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPriceByLookupKeyRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"lookup_key"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetPriceByLookupKeyRequest) GetLookupKey() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetPriceByLookupKeyRequest) GetLookupKey() string {
 type GetPriceByLookupKeyResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoPriceResponse *types.DtoPriceResponse
+	Price *types.Price
 }
 
 func (g GetPriceByLookupKeyResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetPriceByLookupKeyResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetPriceByLookupKeyResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetPriceByLookupKeyResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetPriceByLookupKeyResponse) GetDtoPriceResponse() *types.DtoPriceResponse {
+func (g *GetPriceByLookupKeyResponse) GetPrice() *types.Price {
 	if g == nil {
 		return nil
 	}
-	return g.DtoPriceResponse
+	return g.Price
 }

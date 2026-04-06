@@ -11,7 +11,18 @@ type UpdateCouponRequest struct {
 	// Coupon ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Coupon update request
-	Body types.DtoUpdateCouponRequest `request:"mediaType=application/json"`
+	Body types.UpdateCouponRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateCouponRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateCouponRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateCouponRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateCouponRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateCouponRequest) GetBody() types.DtoUpdateCouponRequest {
+func (u *UpdateCouponRequest) GetBody() types.UpdateCouponRequest {
 	if u == nil {
-		return types.DtoUpdateCouponRequest{}
+		return types.UpdateCouponRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateCouponRequest) GetBody() types.DtoUpdateCouponRequest {
 type UpdateCouponResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCouponResponse *types.DtoCouponResponse
+	Coupon *types.Coupon
 }
 
 func (u UpdateCouponResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateCouponResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateCouponResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateCouponResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateCouponResponse) GetDtoCouponResponse() *types.DtoCouponResponse {
+func (u *UpdateCouponResponse) GetCoupon() *types.Coupon {
 	if u == nil {
 		return nil
 	}
-	return u.DtoCouponResponse
+	return u.Coupon
 }

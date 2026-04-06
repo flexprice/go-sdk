@@ -2,6 +2,10 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type ReportingUnit struct {
 	// Multiplier: reporting_unit_value = unit_value * conversion_rate; must be > 0
 	ConversionRate *float64 `json:"conversion_rate,omitzero"`
@@ -9,6 +13,17 @@ type ReportingUnit struct {
 	UnitPlural *string `json:"unit_plural,omitzero"`
 	// Display unit label, singular (e.g. "second")
 	UnitSingular *string `json:"unit_singular,omitzero"`
+}
+
+func (r ReportingUnit) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *ReportingUnit) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (r *ReportingUnit) GetConversionRate() *float64 {

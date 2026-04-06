@@ -36,13 +36,13 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Plans.CreatePlan(ctx, types.DtoCreatePlanRequest{
+    res, err := s.Plans.CreatePlan(ctx, types.CreatePlanRequest{
         Name: "<value>",
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoPlanResponse != nil {
+    if res.Plan != nil {
         // handle response
     }
 }
@@ -50,11 +50,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
-| `request`                                                                | [types.DtoCreatePlanRequest](../../models/types/dtocreateplanrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-| `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
+| `request`                                                          | [types.CreatePlanRequest](../../models/types/createplanrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
+| `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
 
 ### Response
 
@@ -62,11 +62,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## QueryPlan
 
@@ -96,7 +96,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoListPlansResponse != nil {
+    if res.ListPlansResponse != nil {
         // handle response
     }
 }
@@ -116,11 +116,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetPlan
 
@@ -149,7 +149,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoPlanResponse != nil {
+    if res.Plan != nil {
         // handle response
     }
 }
@@ -169,11 +169,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## UpdatePlan
 
@@ -199,11 +199,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Plans.UpdatePlan(ctx, "<id>", types.DtoUpdatePlanRequest{})
+    res, err := s.Plans.UpdatePlan(ctx, "<id>", types.UpdatePlanRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoPlanResponse != nil {
+    if res.Plan != nil {
         // handle response
     }
 }
@@ -211,12 +211,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
-| `id`                                                                     | `string`                                                                 | :heavy_check_mark:                                                       | Plan ID                                                                  |
-| `body`                                                                   | [types.DtoUpdatePlanRequest](../../models/types/dtoupdateplanrequest.md) | :heavy_check_mark:                                                       | Plan update                                                              |
-| `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
+| `id`                                                               | `string`                                                           | :heavy_check_mark:                                                 | Plan ID                                                            |
+| `body`                                                             | [types.UpdatePlanRequest](../../models/types/updateplanrequest.md) | :heavy_check_mark:                                                 | Plan update                                                        |
+| `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
 
 ### Response
 
@@ -224,11 +224,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## DeletePlan
 
@@ -257,7 +257,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSuccessResponse != nil {
+    if res.SuccessResponse != nil {
         // handle response
     }
 }
@@ -277,11 +277,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## PostPlansIDClone
 
@@ -307,11 +307,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Plans.PostPlansIDClone(ctx, "<id>", types.DtoClonePlanRequest{})
+    res, err := s.Plans.PostPlansIDClone(ctx, "<id>", types.ClonePlanRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoPlanResponse != nil {
+    if res.Plan != nil {
         // handle response
     }
 }
@@ -319,12 +319,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
-| `id`                                                                   | `string`                                                               | :heavy_check_mark:                                                     | Source Plan ID                                                         |
-| `body`                                                                 | [types.DtoClonePlanRequest](../../models/types/dtocloneplanrequest.md) | :heavy_check_mark:                                                     | Clone configuration                                                    |
-| `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
+| Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `ctx`                                                            | [context.Context](https://pkg.go.dev/context#Context)            | :heavy_check_mark:                                               | The context to use for the request.                              |
+| `id`                                                             | `string`                                                         | :heavy_check_mark:                                               | Source Plan ID                                                   |
+| `body`                                                           | [types.ClonePlanRequest](../../models/types/cloneplanrequest.md) | :heavy_check_mark:                                               | Clone configuration                                              |
+| `opts`                                                           | [][dtos.Option](../../models/dtos/option.md)                     | :heavy_minus_sign:                                               | The options for this request.                                    |
 
 ### Response
 
@@ -332,11 +332,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404, 409              | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404, 409        | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## SyncPlanPrices
 
@@ -385,8 +385,8 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404, 422              | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404, 422        | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |

@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type PlanFilterOrder string
@@ -35,8 +36,8 @@ func (e *PlanFilterOrder) UnmarshalJSON(data []byte) error {
 }
 
 type PlanFilter struct {
-	EndTime *string `json:"end_time,omitzero"`
-	Expand  *string `json:"expand,omitzero"`
+	EndTime *time.Time `json:"end_time,omitzero"`
+	Expand  *string    `json:"expand,omitzero"`
 	// filters allows complex filtering based on multiple fields
 	Filters   []FilterCondition `json:"filters,omitzero"`
 	Limit     *int64            `json:"limit,omitzero"`
@@ -45,7 +46,7 @@ type PlanFilter struct {
 	Order     *PlanFilterOrder  `json:"order,omitzero"`
 	PlanIds   []string          `json:"plan_ids,omitzero"`
 	Sort      []SortCondition   `json:"sort,omitzero"`
-	StartTime *string           `json:"start_time,omitzero"`
+	StartTime *time.Time        `json:"start_time,omitzero"`
 	Status    *Status           `json:"status,omitzero"`
 }
 
@@ -60,7 +61,7 @@ func (p *PlanFilter) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (p *PlanFilter) GetEndTime() *string {
+func (p *PlanFilter) GetEndTime() *time.Time {
 	if p == nil {
 		return nil
 	}
@@ -123,7 +124,7 @@ func (p *PlanFilter) GetSort() []SortCondition {
 	return p.Sort
 }
 
-func (p *PlanFilter) GetStartTime() *string {
+func (p *PlanFilter) GetStartTime() *time.Time {
 	if p == nil {
 		return nil
 	}

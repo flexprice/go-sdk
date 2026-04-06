@@ -10,7 +10,7 @@ import (
 type CreateFeatureResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created
-	DtoFeatureResponse *types.DtoFeatureResponse
+	Feature *types.Feature1
 }
 
 func (c CreateFeatureResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (c CreateFeatureResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateFeatureResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (c *CreateFeatureResponse) GetHTTPMeta() types.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateFeatureResponse) GetDtoFeatureResponse() *types.DtoFeatureResponse {
+func (c *CreateFeatureResponse) GetFeature() *types.Feature1 {
 	if c == nil {
 		return nil
 	}
-	return c.DtoFeatureResponse
+	return c.Feature
 }

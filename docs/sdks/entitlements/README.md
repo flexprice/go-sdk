@@ -40,7 +40,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoListEntitlementsResponse != nil {
+    if res.ListEntitlementsResponse != nil {
         // handle response
     }
 }
@@ -60,11 +60,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## CreateEntitlement
 
@@ -90,14 +90,14 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Entitlements.CreateEntitlement(ctx, types.DtoCreateEntitlementRequest{
+    res, err := s.Entitlements.CreateEntitlement(ctx, types.CreateEntitlementRequest{
         FeatureID: "<id>",
         FeatureType: types.FeatureTypeMetered,
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoEntitlementResponse != nil {
+    if res.EntitlementResponse != nil {
         // handle response
     }
 }
@@ -105,11 +105,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [types.DtoCreateEntitlementRequest](../../models/types/dtocreateentitlementrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [types.CreateEntitlementRequest](../../models/types/createentitlementrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -117,11 +117,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## CreateEntitlementsBulk
 
@@ -147,9 +147,9 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Entitlements.CreateEntitlementsBulk(ctx, types.DtoCreateBulkEntitlementRequest{
-        Items: []types.DtoCreateEntitlementRequest{
-            types.DtoCreateEntitlementRequest{
+    res, err := s.Entitlements.CreateEntitlementsBulk(ctx, types.CreateBulkEntitlementRequest{
+        Items: []types.CreateEntitlementRequest{
+            types.CreateEntitlementRequest{
                 FeatureID: "<id>",
                 FeatureType: types.FeatureTypeStatic,
             },
@@ -158,7 +158,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoCreateBulkEntitlementResponse != nil {
+    if res.CreateBulkEntitlementResponse != nil {
         // handle response
     }
 }
@@ -166,11 +166,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                      | Type                                                                                           | Required                                                                                       | Description                                                                                    |
-| ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
-| `request`                                                                                      | [types.DtoCreateBulkEntitlementRequest](../../models/types/dtocreatebulkentitlementrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `opts`                                                                                         | [][dtos.Option](../../models/dtos/option.md)                                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
+| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
+| `request`                                                                                | [types.CreateBulkEntitlementRequest](../../models/types/createbulkentitlementrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
+| `opts`                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
 
 ### Response
 
@@ -178,11 +178,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## QueryEntitlement
 
@@ -212,7 +212,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoListEntitlementsResponse != nil {
+    if res.ListEntitlementsResponse != nil {
         // handle response
     }
 }
@@ -232,11 +232,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetEntitlement
 
@@ -265,7 +265,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoEntitlementResponse != nil {
+    if res.EntitlementResponse != nil {
         // handle response
     }
 }
@@ -285,11 +285,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## UpdateEntitlement
 
@@ -315,11 +315,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Entitlements.UpdateEntitlement(ctx, "<id>", types.DtoUpdateEntitlementRequest{})
+    res, err := s.Entitlements.UpdateEntitlement(ctx, "<id>", types.UpdateEntitlementRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoEntitlementResponse != nil {
+    if res.EntitlementResponse != nil {
         // handle response
     }
 }
@@ -327,12 +327,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Entitlement ID                                                                         |
-| `body`                                                                                 | [types.DtoUpdateEntitlementRequest](../../models/types/dtoupdateentitlementrequest.md) | :heavy_check_mark:                                                                     | Entitlement configuration                                                              |
-| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `id`                                                                             | `string`                                                                         | :heavy_check_mark:                                                               | Entitlement ID                                                                   |
+| `body`                                                                           | [types.UpdateEntitlementRequest](../../models/types/updateentitlementrequest.md) | :heavy_check_mark:                                                               | Entitlement configuration                                                        |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -340,11 +340,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## DeleteEntitlement
 
@@ -373,7 +373,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSuccessResponse != nil {
+    if res.SuccessResponse != nil {
         // handle response
     }
 }
@@ -393,11 +393,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetPlanEntitlements
 
@@ -426,7 +426,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoListEntitlementsResponse != nil {
+    if res.ListEntitlementsResponse != nil {
         // handle response
     }
 }
@@ -446,8 +446,8 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |

@@ -11,7 +11,18 @@ type PostPlansIDCloneRequest struct {
 	// Source Plan ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Clone configuration
-	Body types.DtoClonePlanRequest `request:"mediaType=application/json"`
+	Body types.ClonePlanRequest `request:"mediaType=application/json"`
+}
+
+func (p PostPlansIDCloneRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PostPlansIDCloneRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PostPlansIDCloneRequest) GetID() string {
@@ -21,9 +32,9 @@ func (p *PostPlansIDCloneRequest) GetID() string {
 	return p.ID
 }
 
-func (p *PostPlansIDCloneRequest) GetBody() types.DtoClonePlanRequest {
+func (p *PostPlansIDCloneRequest) GetBody() types.ClonePlanRequest {
 	if p == nil {
-		return types.DtoClonePlanRequest{}
+		return types.ClonePlanRequest{}
 	}
 	return p.Body
 }
@@ -31,7 +42,7 @@ func (p *PostPlansIDCloneRequest) GetBody() types.DtoClonePlanRequest {
 type PostPlansIDCloneResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created
-	DtoPlanResponse *types.DtoPlanResponse
+	Plan *types.Plan1
 }
 
 func (p PostPlansIDCloneResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (p PostPlansIDCloneResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PostPlansIDCloneResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (p *PostPlansIDCloneResponse) GetHTTPMeta() types.HTTPMetadata {
 	return p.HTTPMeta
 }
 
-func (p *PostPlansIDCloneResponse) GetDtoPlanResponse() *types.DtoPlanResponse {
+func (p *PostPlansIDCloneResponse) GetPlan() *types.Plan1 {
 	if p == nil {
 		return nil
 	}
-	return p.DtoPlanResponse
+	return p.Plan
 }

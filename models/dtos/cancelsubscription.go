@@ -11,7 +11,18 @@ type CancelSubscriptionRequest struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Cancel Subscription Request
-	Body types.DtoCancelSubscriptionRequest `request:"mediaType=application/json"`
+	Body types.CancelSubscriptionRequest `request:"mediaType=application/json"`
+}
+
+func (c CancelSubscriptionRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CancelSubscriptionRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (c *CancelSubscriptionRequest) GetID() string {
@@ -21,9 +32,9 @@ func (c *CancelSubscriptionRequest) GetID() string {
 	return c.ID
 }
 
-func (c *CancelSubscriptionRequest) GetBody() types.DtoCancelSubscriptionRequest {
+func (c *CancelSubscriptionRequest) GetBody() types.CancelSubscriptionRequest {
 	if c == nil {
-		return types.DtoCancelSubscriptionRequest{}
+		return types.CancelSubscriptionRequest{}
 	}
 	return c.Body
 }
@@ -31,7 +42,7 @@ func (c *CancelSubscriptionRequest) GetBody() types.DtoCancelSubscriptionRequest
 type CancelSubscriptionResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCancelSubscriptionResponse *types.DtoCancelSubscriptionResponse
+	CancelSubscriptionResponse *types.CancelSubscriptionResponse
 }
 
 func (c CancelSubscriptionResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (c CancelSubscriptionResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CancelSubscriptionResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (c *CancelSubscriptionResponse) GetHTTPMeta() types.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CancelSubscriptionResponse) GetDtoCancelSubscriptionResponse() *types.DtoCancelSubscriptionResponse {
+func (c *CancelSubscriptionResponse) GetCancelSubscriptionResponse() *types.CancelSubscriptionResponse {
 	if c == nil {
 		return nil
 	}
-	return c.DtoCancelSubscriptionResponse
+	return c.CancelSubscriptionResponse
 }

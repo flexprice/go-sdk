@@ -7,8 +7,8 @@ import (
 )
 
 type WebhookDtoEntitlementWebhookPayload struct {
-	Entitlement *DtoEntitlementResponse `json:"entitlement,omitzero"`
-	EventType   *WebhookEventName       `json:"event_type,omitzero"`
+	Entitlement *EntitlementResponse `json:"entitlement,omitzero"`
+	EventType   *WebhookEventName    `json:"event_type,omitzero"`
 }
 
 func (w WebhookDtoEntitlementWebhookPayload) MarshalJSON() ([]byte, error) {
@@ -22,7 +22,7 @@ func (w *WebhookDtoEntitlementWebhookPayload) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (w *WebhookDtoEntitlementWebhookPayload) GetEntitlement() *DtoEntitlementResponse {
+func (w *WebhookDtoEntitlementWebhookPayload) GetEntitlement() *EntitlementResponse {
 	if w == nil {
 		return nil
 	}

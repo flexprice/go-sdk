@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type InvoiceFilterOrder string
@@ -43,9 +44,9 @@ type InvoiceFilter struct {
 	AmountRemainingGt *float64 `json:"amount_remaining_gt,omitzero"`
 	// customer_id filters invoices for a specific customer using FlexPrice's internal customer ID
 	// This is the ID returned by FlexPrice when creating or retrieving customers
-	CustomerID *string `json:"customer_id,omitzero"`
-	EndTime    *string `json:"end_time,omitzero"`
-	Expand     *string `json:"expand,omitzero"`
+	CustomerID *string    `json:"customer_id,omitzero"`
+	EndTime    *time.Time `json:"end_time,omitzero"`
+	Expand     *string    `json:"expand,omitzero"`
 	// external_customer_id filters invoices for a customer using your system's customer identifier
 	// This is the ID you provided when creating the customer in FlexPrice
 	ExternalCustomerID *string           `json:"external_customer_id,omitzero"`
@@ -74,7 +75,7 @@ type InvoiceFilter struct {
 	// SkipLineItems if true, will not include line items in the response
 	SkipLineItems *bool           `json:"skip_line_items,omitzero"`
 	Sort          []SortCondition `json:"sort,omitzero"`
-	StartTime     *string         `json:"start_time,omitzero"`
+	StartTime     *time.Time      `json:"start_time,omitzero"`
 	Status        *Status         `json:"status,omitzero"`
 	// subscription_id filters invoices generated for a specific subscription
 	// Only returns invoices that were created as part of the specified subscription's billing
@@ -113,7 +114,7 @@ func (i *InvoiceFilter) GetCustomerID() *string {
 	return i.CustomerID
 }
 
-func (i *InvoiceFilter) GetEndTime() *string {
+func (i *InvoiceFilter) GetEndTime() *time.Time {
 	if i == nil {
 		return nil
 	}
@@ -232,7 +233,7 @@ func (i *InvoiceFilter) GetSort() []SortCondition {
 	return i.Sort
 }
 
-func (i *InvoiceFilter) GetStartTime() *string {
+func (i *InvoiceFilter) GetStartTime() *time.Time {
 	if i == nil {
 		return nil
 	}

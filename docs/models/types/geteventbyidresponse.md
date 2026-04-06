@@ -1,0 +1,11 @@
+# GetEventByIDResponse
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `DebugTracker`                                                                      | [*types.DebugTracker](../../models/types/debugtracker.md)                           | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Event`                                                                             | [*types.Event](../../models/types/event.md)                                         | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `ProcessedEvents`                                                                   | [][types.FeatureUsageInfo](../../models/types/featureusageinfo.md)                  | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Status`                                                                            | [*types.EventProcessingStatusType](../../models/types/eventprocessingstatustype.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |

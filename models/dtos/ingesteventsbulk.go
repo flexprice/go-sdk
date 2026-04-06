@@ -18,7 +18,7 @@ func (i IngestEventsBulkResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (i *IngestEventsBulkResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil

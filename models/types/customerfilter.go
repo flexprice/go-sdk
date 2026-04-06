@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type CustomerFilterOrder string
@@ -35,20 +36,19 @@ func (e *CustomerFilterOrder) UnmarshalJSON(data []byte) error {
 }
 
 type CustomerFilter struct {
-	CustomerIds       []string             `json:"customer_ids,omitzero"`
-	Email             *string              `json:"email,omitzero"`
-	EndTime           *string              `json:"end_time,omitzero"`
-	Expand            *string              `json:"expand,omitzero"`
-	ExternalID        *string              `json:"external_id,omitzero"`
-	ExternalIds       []string             `json:"external_ids,omitzero"`
-	Filters           []FilterCondition    `json:"filters,omitzero"`
-	Limit             *int64               `json:"limit,omitzero"`
-	Offset            *int64               `json:"offset,omitzero"`
-	Order             *CustomerFilterOrder `json:"order,omitzero"`
-	ParentCustomerIds []string             `json:"parent_customer_ids,omitzero"`
-	Sort              []SortCondition      `json:"sort,omitzero"`
-	StartTime         *string              `json:"start_time,omitzero"`
-	Status            *Status              `json:"status,omitzero"`
+	CustomerIds []string             `json:"customer_ids,omitzero"`
+	Email       *string              `json:"email,omitzero"`
+	EndTime     *time.Time           `json:"end_time,omitzero"`
+	Expand      *string              `json:"expand,omitzero"`
+	ExternalID  *string              `json:"external_id,omitzero"`
+	ExternalIds []string             `json:"external_ids,omitzero"`
+	Filters     []FilterCondition    `json:"filters,omitzero"`
+	Limit       *int64               `json:"limit,omitzero"`
+	Offset      *int64               `json:"offset,omitzero"`
+	Order       *CustomerFilterOrder `json:"order,omitzero"`
+	Sort        []SortCondition      `json:"sort,omitzero"`
+	StartTime   *time.Time           `json:"start_time,omitzero"`
+	Status      *Status              `json:"status,omitzero"`
 }
 
 func (c CustomerFilter) MarshalJSON() ([]byte, error) {
@@ -76,7 +76,7 @@ func (c *CustomerFilter) GetEmail() *string {
 	return c.Email
 }
 
-func (c *CustomerFilter) GetEndTime() *string {
+func (c *CustomerFilter) GetEndTime() *time.Time {
 	if c == nil {
 		return nil
 	}
@@ -132,13 +132,6 @@ func (c *CustomerFilter) GetOrder() *CustomerFilterOrder {
 	return c.Order
 }
 
-func (c *CustomerFilter) GetParentCustomerIds() []string {
-	if c == nil {
-		return nil
-	}
-	return c.ParentCustomerIds
-}
-
 func (c *CustomerFilter) GetSort() []SortCondition {
 	if c == nil {
 		return nil
@@ -146,7 +139,7 @@ func (c *CustomerFilter) GetSort() []SortCondition {
 	return c.Sort
 }
 
-func (c *CustomerFilter) GetStartTime() *string {
+func (c *CustomerFilter) GetStartTime() *time.Time {
 	if c == nil {
 		return nil
 	}

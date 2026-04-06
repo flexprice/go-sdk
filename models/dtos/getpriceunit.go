@@ -12,6 +12,17 @@ type GetPriceUnitRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetPriceUnitRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPriceUnitRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetPriceUnitRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetPriceUnitRequest) GetID() string {
 type GetPriceUnitResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoPriceUnitResponse *types.DtoPriceUnitResponse
+	PriceUnitResponse *types.PriceUnitResponse
 }
 
 func (g GetPriceUnitResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetPriceUnitResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetPriceUnitResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetPriceUnitResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetPriceUnitResponse) GetDtoPriceUnitResponse() *types.DtoPriceUnitResponse {
+func (g *GetPriceUnitResponse) GetPriceUnitResponse() *types.PriceUnitResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoPriceUnitResponse
+	return g.PriceUnitResponse
 }

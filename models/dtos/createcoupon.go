@@ -10,7 +10,7 @@ import (
 type CreateCouponResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created
-	DtoCouponResponse *types.DtoCouponResponse
+	Coupon *types.Coupon
 }
 
 func (c CreateCouponResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (c CreateCouponResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateCouponResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (c *CreateCouponResponse) GetHTTPMeta() types.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateCouponResponse) GetDtoCouponResponse() *types.DtoCouponResponse {
+func (c *CreateCouponResponse) GetCoupon() *types.Coupon {
 	if c == nil {
 		return nil
 	}
-	return c.DtoCouponResponse
+	return c.Coupon
 }

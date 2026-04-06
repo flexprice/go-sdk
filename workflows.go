@@ -207,12 +207,12 @@ func (s *Workflows) QueryWorkflow(ctx context.Context, request types.WorkflowExe
 				return nil, err
 			}
 
-			var out types.DtoListWorkflowsResponse
+			var out types.ListWorkflowsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListWorkflowsResponse = &out
+			res.ListWorkflowsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -228,7 +228,7 @@ func (s *Workflows) QueryWorkflow(ctx context.Context, request types.WorkflowExe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -253,7 +253,7 @@ func (s *Workflows) QueryWorkflow(ctx context.Context, request types.WorkflowExe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

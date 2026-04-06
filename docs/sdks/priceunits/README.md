@@ -40,7 +40,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoListPriceUnitsResponse != nil {
+    if res.ListPriceUnitsResponse != nil {
         // handle response
     }
 }
@@ -60,11 +60,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## CreatePriceUnit
 
@@ -90,7 +90,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.PriceUnits.CreatePriceUnit(ctx, types.DtoCreatePriceUnitRequest{
+    res, err := s.PriceUnits.CreatePriceUnit(ctx, types.CreatePriceUnitRequest{
         BaseCurrency: "<value>",
         Code: "<value>",
         ConversionRate: "<value>",
@@ -100,7 +100,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoCreatePriceUnitResponse != nil {
+    if res.CreatePriceUnitResponse != nil {
         // handle response
     }
 }
@@ -108,11 +108,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [types.DtoCreatePriceUnitRequest](../../models/types/dtocreatepriceunitrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [types.CreatePriceUnitRequest](../../models/types/createpriceunitrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
 
 ### Response
 
@@ -120,11 +120,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetPriceUnitByCode
 
@@ -153,7 +153,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoPriceUnitResponse != nil {
+    if res.PriceUnitResponse != nil {
         // handle response
     }
 }
@@ -173,11 +173,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## QueryPriceUnit
 
@@ -207,7 +207,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoListPriceUnitsResponse != nil {
+    if res.ListPriceUnitsResponse != nil {
         // handle response
     }
 }
@@ -227,11 +227,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetPriceUnit
 
@@ -260,7 +260,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoPriceUnitResponse != nil {
+    if res.PriceUnitResponse != nil {
         // handle response
     }
 }
@@ -280,10 +280,10 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## UpdatePriceUnit
 
@@ -309,11 +309,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.PriceUnits.UpdatePriceUnit(ctx, "<id>", types.DtoUpdatePriceUnitRequest{})
+    res, err := s.PriceUnits.UpdatePriceUnit(ctx, "<id>", types.UpdatePriceUnitRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoPriceUnitResponse != nil {
+    if res.PriceUnitResponse != nil {
         // handle response
     }
 }
@@ -321,12 +321,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Price unit ID                                                                      |
-| `body`                                                                             | [types.DtoUpdatePriceUnitRequest](../../models/types/dtoupdatepriceunitrequest.md) | :heavy_check_mark:                                                                 | Price unit details to update                                                       |
-| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `id`                                                                         | `string`                                                                     | :heavy_check_mark:                                                           | Price unit ID                                                                |
+| `body`                                                                       | [types.UpdatePriceUnitRequest](../../models/types/updatepriceunitrequest.md) | :heavy_check_mark:                                                           | Price unit details to update                                                 |
+| `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
 
 ### Response
 
@@ -334,10 +334,10 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## DeletePriceUnit
 
@@ -366,7 +366,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSuccessResponse != nil {
+    if res.SuccessResponse != nil {
         // handle response
     }
 }
@@ -386,7 +386,7 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |

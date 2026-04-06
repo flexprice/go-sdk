@@ -11,7 +11,7 @@ type TriggerScheduledTaskRunRequest struct {
 	// Scheduled Task ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Optional start and end time for custom range
-	Body *types.DtoTriggerForceRunRequest `request:"mediaType=application/json"`
+	Body *types.TriggerForceRunRequest `request:"mediaType=application/json"`
 }
 
 func (t TriggerScheduledTaskRunRequest) MarshalJSON() ([]byte, error) {
@@ -19,7 +19,7 @@ func (t TriggerScheduledTaskRunRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TriggerScheduledTaskRunRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil
@@ -32,7 +32,7 @@ func (t *TriggerScheduledTaskRunRequest) GetID() string {
 	return t.ID
 }
 
-func (t *TriggerScheduledTaskRunRequest) GetBody() *types.DtoTriggerForceRunRequest {
+func (t *TriggerScheduledTaskRunRequest) GetBody() *types.TriggerForceRunRequest {
 	if t == nil {
 		return nil
 	}
@@ -42,7 +42,7 @@ func (t *TriggerScheduledTaskRunRequest) GetBody() *types.DtoTriggerForceRunRequ
 type TriggerScheduledTaskRunResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Returns workflow details and time range
-	DtoTriggerForceRunResponse *types.DtoTriggerForceRunResponse
+	TriggerForceRunResponse *types.TriggerForceRunResponse
 }
 
 func (t TriggerScheduledTaskRunResponse) MarshalJSON() ([]byte, error) {
@@ -50,7 +50,7 @@ func (t TriggerScheduledTaskRunResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TriggerScheduledTaskRunResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -63,9 +63,9 @@ func (t *TriggerScheduledTaskRunResponse) GetHTTPMeta() types.HTTPMetadata {
 	return t.HTTPMeta
 }
 
-func (t *TriggerScheduledTaskRunResponse) GetDtoTriggerForceRunResponse() *types.DtoTriggerForceRunResponse {
+func (t *TriggerScheduledTaskRunResponse) GetTriggerForceRunResponse() *types.TriggerForceRunResponse {
 	if t == nil {
 		return nil
 	}
-	return t.DtoTriggerForceRunResponse
+	return t.TriggerForceRunResponse
 }

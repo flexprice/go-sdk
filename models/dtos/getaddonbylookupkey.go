@@ -12,6 +12,17 @@ type GetAddonByLookupKeyRequest struct {
 	LookupKey string `pathParam:"style=simple,explode=false,name=lookup_key"`
 }
 
+func (g GetAddonByLookupKeyRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonByLookupKeyRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"lookup_key"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetAddonByLookupKeyRequest) GetLookupKey() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetAddonByLookupKeyRequest) GetLookupKey() string {
 type GetAddonByLookupKeyResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoAddonResponse *types.DtoAddonResponse
+	Addon *types.Addon1
 }
 
 func (g GetAddonByLookupKeyResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetAddonByLookupKeyResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetAddonByLookupKeyResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetAddonByLookupKeyResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetAddonByLookupKeyResponse) GetDtoAddonResponse() *types.DtoAddonResponse {
+func (g *GetAddonByLookupKeyResponse) GetAddon() *types.Addon1 {
 	if g == nil {
 		return nil
 	}
-	return g.DtoAddonResponse
+	return g.Addon
 }

@@ -10,7 +10,7 @@ import (
 type GetHuggingfaceInferenceDataResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoGetHuggingFaceBillingDataResponse *types.DtoGetHuggingFaceBillingDataResponse
+	GetHuggingFaceBillingDataResponse *types.GetHuggingFaceBillingDataResponse
 }
 
 func (g GetHuggingfaceInferenceDataResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (g GetHuggingfaceInferenceDataResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetHuggingfaceInferenceDataResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (g *GetHuggingfaceInferenceDataResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetHuggingfaceInferenceDataResponse) GetDtoGetHuggingFaceBillingDataResponse() *types.DtoGetHuggingFaceBillingDataResponse {
+func (g *GetHuggingfaceInferenceDataResponse) GetGetHuggingFaceBillingDataResponse() *types.GetHuggingFaceBillingDataResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoGetHuggingFaceBillingDataResponse
+	return g.GetHuggingFaceBillingDataResponse
 }

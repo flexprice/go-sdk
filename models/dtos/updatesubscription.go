@@ -11,7 +11,18 @@ type UpdateSubscriptionRequest struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Update Subscription Request
-	Body types.DtoUpdateSubscriptionRequest `request:"mediaType=application/json"`
+	Body types.UpdateSubscriptionRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateSubscriptionRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateSubscriptionRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateSubscriptionRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateSubscriptionRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateSubscriptionRequest) GetBody() types.DtoUpdateSubscriptionRequest {
+func (u *UpdateSubscriptionRequest) GetBody() types.UpdateSubscriptionRequest {
 	if u == nil {
-		return types.DtoUpdateSubscriptionRequest{}
+		return types.UpdateSubscriptionRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateSubscriptionRequest) GetBody() types.DtoUpdateSubscriptionRequest
 type UpdateSubscriptionResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSubscriptionResponse *types.DtoSubscriptionResponse
+	Subscription *types.Subscription
 }
 
 func (u UpdateSubscriptionResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateSubscriptionResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateSubscriptionResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateSubscriptionResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateSubscriptionResponse) GetDtoSubscriptionResponse() *types.DtoSubscriptionResponse {
+func (u *UpdateSubscriptionResponse) GetSubscription() *types.Subscription {
 	if u == nil {
 		return nil
 	}
-	return u.DtoSubscriptionResponse
+	return u.Subscription
 }

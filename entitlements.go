@@ -204,12 +204,12 @@ func (s *Entitlements) GetAddonEntitlements(ctx context.Context, id string, opts
 				return nil, err
 			}
 
-			var out types.DtoListEntitlementsResponse
+			var out types.ListEntitlementsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListEntitlementsResponse = &out
+			res.ListEntitlementsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -227,7 +227,7 @@ func (s *Entitlements) GetAddonEntitlements(ctx context.Context, id string, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -252,7 +252,7 @@ func (s *Entitlements) GetAddonEntitlements(ctx context.Context, id string, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -295,7 +295,7 @@ func (s *Entitlements) GetAddonEntitlements(ctx context.Context, id string, opts
 
 // CreateEntitlement - Create entitlement
 // Use when attaching a feature (and its limit) to a plan or addon (e.g. "10 seats" or "1000 API calls"). Defines what the plan/addon includes.
-func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.DtoCreateEntitlementRequest, opts ...dtos.Option) (*dtos.CreateEntitlementResponse, error) {
+func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.CreateEntitlementRequest, opts ...dtos.Option) (*dtos.CreateEntitlementResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -469,12 +469,12 @@ func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.DtoC
 				return nil, err
 			}
 
-			var out types.DtoEntitlementResponse
+			var out types.EntitlementResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoEntitlementResponse = &out
+			res.EntitlementResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -490,7 +490,7 @@ func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.DtoC
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -515,7 +515,7 @@ func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.DtoC
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -558,7 +558,7 @@ func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.DtoC
 
 // CreateEntitlementsBulk - Create entitlements in bulk
 // Use when attaching many features to a plan or addon at once (e.g. initial plan setup or import). Bulk version of create entitlement.
-func (s *Entitlements) CreateEntitlementsBulk(ctx context.Context, request types.DtoCreateBulkEntitlementRequest, opts ...dtos.Option) (*dtos.CreateEntitlementsBulkResponse, error) {
+func (s *Entitlements) CreateEntitlementsBulk(ctx context.Context, request types.CreateBulkEntitlementRequest, opts ...dtos.Option) (*dtos.CreateEntitlementsBulkResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -732,12 +732,12 @@ func (s *Entitlements) CreateEntitlementsBulk(ctx context.Context, request types
 				return nil, err
 			}
 
-			var out types.DtoCreateBulkEntitlementResponse
+			var out types.CreateBulkEntitlementResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreateBulkEntitlementResponse = &out
+			res.CreateBulkEntitlementResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -753,7 +753,7 @@ func (s *Entitlements) CreateEntitlementsBulk(ctx context.Context, request types
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -778,7 +778,7 @@ func (s *Entitlements) CreateEntitlementsBulk(ctx context.Context, request types
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -995,12 +995,12 @@ func (s *Entitlements) QueryEntitlement(ctx context.Context, request types.Entit
 				return nil, err
 			}
 
-			var out types.DtoListEntitlementsResponse
+			var out types.ListEntitlementsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListEntitlementsResponse = &out
+			res.ListEntitlementsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1016,7 +1016,7 @@ func (s *Entitlements) QueryEntitlement(ctx context.Context, request types.Entit
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1041,7 +1041,7 @@ func (s *Entitlements) QueryEntitlement(ctx context.Context, request types.Entit
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1255,12 +1255,12 @@ func (s *Entitlements) GetEntitlement(ctx context.Context, id string, opts ...dt
 				return nil, err
 			}
 
-			var out types.DtoEntitlementResponse
+			var out types.EntitlementResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoEntitlementResponse = &out
+			res.EntitlementResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1276,7 +1276,7 @@ func (s *Entitlements) GetEntitlement(ctx context.Context, id string, opts ...dt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1301,7 +1301,7 @@ func (s *Entitlements) GetEntitlement(ctx context.Context, id string, opts ...dt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1344,7 +1344,7 @@ func (s *Entitlements) GetEntitlement(ctx context.Context, id string, opts ...dt
 
 // UpdateEntitlement - Update entitlement
 // Use when changing an entitlement (e.g. increasing or decreasing a limit). Request body contains the fields to update.
-func (s *Entitlements) UpdateEntitlement(ctx context.Context, id string, body types.DtoUpdateEntitlementRequest, opts ...dtos.Option) (*dtos.UpdateEntitlementResponse, error) {
+func (s *Entitlements) UpdateEntitlement(ctx context.Context, id string, body types.UpdateEntitlementRequest, opts ...dtos.Option) (*dtos.UpdateEntitlementResponse, error) {
 	request := dtos.UpdateEntitlementRequest{
 		ID:   id,
 		Body: body,
@@ -1523,12 +1523,12 @@ func (s *Entitlements) UpdateEntitlement(ctx context.Context, id string, body ty
 				return nil, err
 			}
 
-			var out types.DtoEntitlementResponse
+			var out types.EntitlementResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoEntitlementResponse = &out
+			res.EntitlementResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1544,7 +1544,7 @@ func (s *Entitlements) UpdateEntitlement(ctx context.Context, id string, body ty
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1569,7 +1569,7 @@ func (s *Entitlements) UpdateEntitlement(ctx context.Context, id string, body ty
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1783,12 +1783,12 @@ func (s *Entitlements) DeleteEntitlement(ctx context.Context, id string, opts ..
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1804,7 +1804,7 @@ func (s *Entitlements) DeleteEntitlement(ctx context.Context, id string, opts ..
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1829,7 +1829,7 @@ func (s *Entitlements) DeleteEntitlement(ctx context.Context, id string, opts ..
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2043,12 +2043,12 @@ func (s *Entitlements) GetPlanEntitlements(ctx context.Context, id string, opts 
 				return nil, err
 			}
 
-			var out types.DtoListEntitlementsResponse
+			var out types.ListEntitlementsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListEntitlementsResponse = &out
+			res.ListEntitlementsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2066,7 +2066,7 @@ func (s *Entitlements) GetPlanEntitlements(ctx context.Context, id string, opts 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2091,7 +2091,7 @@ func (s *Entitlements) GetPlanEntitlements(ctx context.Context, id string, opts 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

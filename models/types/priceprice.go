@@ -5,6 +5,7 @@ package types
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
 	"github.com/flexprice/go-sdk/v2/optionalnullable"
+	"time"
 )
 
 type PricePrice struct {
@@ -17,9 +18,9 @@ type PricePrice struct {
 	// BillingPeriodCount is the count of the billing period ex 1, 3, 6, 12
 	BillingPeriodCount *int64 `json:"billing_period_count,omitzero"`
 	// ConversionRate is the conversion rate of the price unit to the fiat currency
-	ConversionRate *string `json:"conversion_rate,omitzero"`
-	CreatedAt      *string `json:"created_at,omitzero"`
-	CreatedBy      *string `json:"created_by,omitzero"`
+	ConversionRate *string    `json:"conversion_rate,omitzero"`
+	CreatedAt      *time.Time `json:"created_at,omitzero"`
+	CreatedBy      *string    `json:"created_by,omitzero"`
 	// Currency 3 digit ISO currency code in lowercase ex usd, eur, gbp
 	Currency *string `json:"currency,omitzero"`
 	// Description of the price
@@ -32,7 +33,7 @@ type PricePrice struct {
 	// DisplayPriceUnitAmount is the formatted amount of the price unit
 	DisplayPriceUnitAmount *string `json:"display_price_unit_amount,omitzero"`
 	// EndDate is the end date of the price
-	EndDate *string `json:"end_date,omitzero"`
+	EndDate *time.Time `json:"end_date,omitzero"`
 	// EntityID holds the value of the "entity_id" field.
 	EntityID   *string          `json:"entity_id,omitzero"`
 	EntityType *PriceEntityType `json:"entity_type,omitzero"`
@@ -62,7 +63,7 @@ type PricePrice struct {
 	PriceUnitTiers []PricePriceTier `json:"price_unit_tiers,omitzero"`
 	PriceUnitType  *PriceUnitType   `json:"price_unit_type,omitzero"`
 	// StartDate is the start date of the price
-	StartDate         *string                      `json:"start_date,omitzero"`
+	StartDate         *time.Time                   `json:"start_date,omitzero"`
 	Status            *Status                      `json:"status,omitzero"`
 	TenantID          *string                      `json:"tenant_id,omitzero"`
 	TierMode          *BillingTier                 `json:"tier_mode,omitzero"`
@@ -72,7 +73,7 @@ type PricePrice struct {
 	// Note: This is only applicable for recurring prices (BILLING_CADENCE_RECURRING)
 	TrialPeriod *int64     `json:"trial_period,omitzero"`
 	Type        *PriceType `json:"type,omitzero"`
-	UpdatedAt   *string    `json:"updated_at,omitzero"`
+	UpdatedAt   *time.Time `json:"updated_at,omitzero"`
 	UpdatedBy   *string    `json:"updated_by,omitzero"`
 }
 
@@ -129,7 +130,7 @@ func (p *PricePrice) GetConversionRate() *string {
 	return p.ConversionRate
 }
 
-func (p *PricePrice) GetCreatedAt() *string {
+func (p *PricePrice) GetCreatedAt() *time.Time {
 	if p == nil {
 		return nil
 	}
@@ -178,7 +179,7 @@ func (p *PricePrice) GetDisplayPriceUnitAmount() *string {
 	return p.DisplayPriceUnitAmount
 }
 
-func (p *PricePrice) GetEndDate() *string {
+func (p *PricePrice) GetEndDate() *time.Time {
 	if p == nil {
 		return nil
 	}
@@ -297,7 +298,7 @@ func (p *PricePrice) GetPriceUnitType() *PriceUnitType {
 	return p.PriceUnitType
 }
 
-func (p *PricePrice) GetStartDate() *string {
+func (p *PricePrice) GetStartDate() *time.Time {
 	if p == nil {
 		return nil
 	}
@@ -353,7 +354,7 @@ func (p *PricePrice) GetType() *PriceType {
 	return p.Type
 }
 
-func (p *PricePrice) GetUpdatedAt() *string {
+func (p *PricePrice) GetUpdatedAt() *time.Time {
 	if p == nil {
 		return nil
 	}

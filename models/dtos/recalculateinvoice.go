@@ -12,6 +12,17 @@ type RecalculateInvoiceRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (r RecalculateInvoiceRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RecalculateInvoiceRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (r *RecalculateInvoiceRequest) GetID() string {
 	if r == nil {
 		return ""
@@ -30,7 +41,7 @@ func (r RecalculateInvoiceResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RecalculateInvoiceResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil

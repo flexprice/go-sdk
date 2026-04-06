@@ -11,7 +11,18 @@ type ActivateSubscriptionRequest struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Activate Draft Subscription Request
-	Body types.DtoActivateDraftSubscriptionRequest `request:"mediaType=application/json"`
+	Body types.ActivateDraftSubscriptionRequest `request:"mediaType=application/json"`
+}
+
+func (a ActivateSubscriptionRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *ActivateSubscriptionRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (a *ActivateSubscriptionRequest) GetID() string {
@@ -21,9 +32,9 @@ func (a *ActivateSubscriptionRequest) GetID() string {
 	return a.ID
 }
 
-func (a *ActivateSubscriptionRequest) GetBody() types.DtoActivateDraftSubscriptionRequest {
+func (a *ActivateSubscriptionRequest) GetBody() types.ActivateDraftSubscriptionRequest {
 	if a == nil {
-		return types.DtoActivateDraftSubscriptionRequest{}
+		return types.ActivateDraftSubscriptionRequest{}
 	}
 	return a.Body
 }
@@ -31,7 +42,7 @@ func (a *ActivateSubscriptionRequest) GetBody() types.DtoActivateDraftSubscripti
 type ActivateSubscriptionResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSubscriptionResponse *types.DtoSubscriptionResponse
+	Subscription *types.Subscription
 }
 
 func (a ActivateSubscriptionResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (a ActivateSubscriptionResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (a *ActivateSubscriptionResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (a *ActivateSubscriptionResponse) GetHTTPMeta() types.HTTPMetadata {
 	return a.HTTPMeta
 }
 
-func (a *ActivateSubscriptionResponse) GetDtoSubscriptionResponse() *types.DtoSubscriptionResponse {
+func (a *ActivateSubscriptionResponse) GetSubscription() *types.Subscription {
 	if a == nil {
 		return nil
 	}
-	return a.DtoSubscriptionResponse
+	return a.Subscription
 }

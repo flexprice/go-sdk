@@ -11,7 +11,18 @@ type UpdateSubscriptionLineItemRequest struct {
 	// Line Item ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Update Line Item Request
-	Body types.DtoUpdateSubscriptionLineItemRequest `request:"mediaType=application/json"`
+	Body types.UpdateSubscriptionLineItemRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateSubscriptionLineItemRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateSubscriptionLineItemRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateSubscriptionLineItemRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateSubscriptionLineItemRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateSubscriptionLineItemRequest) GetBody() types.DtoUpdateSubscriptionLineItemRequest {
+func (u *UpdateSubscriptionLineItemRequest) GetBody() types.UpdateSubscriptionLineItemRequest {
 	if u == nil {
-		return types.DtoUpdateSubscriptionLineItemRequest{}
+		return types.UpdateSubscriptionLineItemRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateSubscriptionLineItemRequest) GetBody() types.DtoUpdateSubscriptio
 type UpdateSubscriptionLineItemResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSubscriptionLineItemResponse *types.DtoSubscriptionLineItemResponse
+	SubscriptionLineItemResponse *types.SubscriptionLineItemResponse
 }
 
 func (u UpdateSubscriptionLineItemResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateSubscriptionLineItemResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateSubscriptionLineItemResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateSubscriptionLineItemResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateSubscriptionLineItemResponse) GetDtoSubscriptionLineItemResponse() *types.DtoSubscriptionLineItemResponse {
+func (u *UpdateSubscriptionLineItemResponse) GetSubscriptionLineItemResponse() *types.SubscriptionLineItemResponse {
 	if u == nil {
 		return nil
 	}
-	return u.DtoSubscriptionLineItemResponse
+	return u.SubscriptionLineItemResponse
 }

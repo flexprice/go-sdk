@@ -12,6 +12,17 @@ type GetCustomerEntitlementsRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetCustomerEntitlementsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerEntitlementsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetCustomerEntitlementsRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetCustomerEntitlementsRequest) GetID() string {
 type GetCustomerEntitlementsResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCustomerEntitlementsResponse *types.DtoCustomerEntitlementsResponse
+	CustomerEntitlementsResponse *types.CustomerEntitlementsResponse
 }
 
 func (g GetCustomerEntitlementsResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetCustomerEntitlementsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetCustomerEntitlementsResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetCustomerEntitlementsResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCustomerEntitlementsResponse) GetDtoCustomerEntitlementsResponse() *types.DtoCustomerEntitlementsResponse {
+func (g *GetCustomerEntitlementsResponse) GetCustomerEntitlementsResponse() *types.CustomerEntitlementsResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoCustomerEntitlementsResponse
+	return g.CustomerEntitlementsResponse
 }

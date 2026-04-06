@@ -11,7 +11,18 @@ type UpdatePriceRequest struct {
 	// Price ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Price configuration
-	Body types.DtoUpdatePriceRequest `request:"mediaType=application/json"`
+	Body types.UpdatePriceRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdatePriceRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdatePriceRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdatePriceRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdatePriceRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdatePriceRequest) GetBody() types.DtoUpdatePriceRequest {
+func (u *UpdatePriceRequest) GetBody() types.UpdatePriceRequest {
 	if u == nil {
-		return types.DtoUpdatePriceRequest{}
+		return types.UpdatePriceRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdatePriceRequest) GetBody() types.DtoUpdatePriceRequest {
 type UpdatePriceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoPriceResponse *types.DtoPriceResponse
+	Price *types.Price
 }
 
 func (u UpdatePriceResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdatePriceResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdatePriceResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdatePriceResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdatePriceResponse) GetDtoPriceResponse() *types.DtoPriceResponse {
+func (u *UpdatePriceResponse) GetPrice() *types.Price {
 	if u == nil {
 		return nil
 	}
-	return u.DtoPriceResponse
+	return u.Price
 }

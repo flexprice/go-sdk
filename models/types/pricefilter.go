@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type PriceFilterOrder string
@@ -36,7 +37,7 @@ func (e *PriceFilterOrder) UnmarshalJSON(data []byte) error {
 
 type PriceFilter struct {
 	AllowExpiredPrices *bool            `default:"false" json:"allow_expired_prices"`
-	EndTime            *string          `json:"end_time,omitzero"`
+	EndTime            *time.Time       `json:"end_time,omitzero"`
 	EntityIds          []string         `json:"entity_ids,omitzero"`
 	EntityType         *PriceEntityType `json:"entity_type,omitzero"`
 	Expand             *string          `json:"expand,omitzero"`
@@ -48,13 +49,13 @@ type PriceFilter struct {
 	Order         *PriceFilterOrder `json:"order,omitzero"`
 	ParentPriceID *string           `json:"parent_price_id,omitzero"`
 	// Price override filtering fields
-	PlanIds        []string `json:"plan_ids,omitzero"`
-	PriceIds       []string `json:"price_ids,omitzero"`
-	Sort           *string  `json:"sort,omitzero"`
-	StartDateLt    *string  `json:"start_date_lt,omitzero"`
-	StartTime      *string  `json:"start_time,omitzero"`
-	Status         *Status  `json:"status,omitzero"`
-	SubscriptionID *string  `json:"subscription_id,omitzero"`
+	PlanIds        []string   `json:"plan_ids,omitzero"`
+	PriceIds       []string   `json:"price_ids,omitzero"`
+	Sort           *string    `json:"sort,omitzero"`
+	StartDateLt    *string    `json:"start_date_lt,omitzero"`
+	StartTime      *time.Time `json:"start_time,omitzero"`
+	Status         *Status    `json:"status,omitzero"`
+	SubscriptionID *string    `json:"subscription_id,omitzero"`
 }
 
 func (p PriceFilter) MarshalJSON() ([]byte, error) {
@@ -75,7 +76,7 @@ func (p *PriceFilter) GetAllowExpiredPrices() *bool {
 	return p.AllowExpiredPrices
 }
 
-func (p *PriceFilter) GetEndTime() *string {
+func (p *PriceFilter) GetEndTime() *time.Time {
 	if p == nil {
 		return nil
 	}
@@ -173,7 +174,7 @@ func (p *PriceFilter) GetStartDateLt() *string {
 	return p.StartDateLt
 }
 
-func (p *PriceFilter) GetStartTime() *string {
+func (p *PriceFilter) GetStartTime() *time.Time {
 	if p == nil {
 		return nil
 	}

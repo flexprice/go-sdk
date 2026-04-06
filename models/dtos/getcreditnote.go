@@ -12,6 +12,17 @@ type GetCreditNoteRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetCreditNoteRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCreditNoteRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetCreditNoteRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetCreditNoteRequest) GetID() string {
 type GetCreditNoteResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCreditNoteResponse *types.DtoCreditNoteResponse
+	CreditNoteResponse *types.CreditNoteResponse
 }
 
 func (g GetCreditNoteResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetCreditNoteResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetCreditNoteResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetCreditNoteResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCreditNoteResponse) GetDtoCreditNoteResponse() *types.DtoCreditNoteResponse {
+func (g *GetCreditNoteResponse) GetCreditNoteResponse() *types.CreditNoteResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoCreditNoteResponse
+	return g.CreditNoteResponse
 }

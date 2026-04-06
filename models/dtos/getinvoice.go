@@ -21,7 +21,7 @@ func (g GetInvoiceRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetInvoiceRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil
@@ -51,7 +51,7 @@ func (g *GetInvoiceRequest) GetGroupBy() []string {
 type GetInvoiceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoInvoiceResponse *types.DtoInvoiceResponse
+	Invoice *types.Invoice
 }
 
 func (g GetInvoiceResponse) MarshalJSON() ([]byte, error) {
@@ -59,7 +59,7 @@ func (g GetInvoiceResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetInvoiceResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -72,9 +72,9 @@ func (g *GetInvoiceResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetInvoiceResponse) GetDtoInvoiceResponse() *types.DtoInvoiceResponse {
+func (g *GetInvoiceResponse) GetInvoice() *types.Invoice {
 	if g == nil {
 		return nil
 	}
-	return g.DtoInvoiceResponse
+	return g.Invoice
 }

@@ -34,7 +34,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.CreditGrants.CreateCreditGrant(ctx, types.DtoCreateCreditGrantRequest{
+    res, err := s.CreditGrants.CreateCreditGrant(ctx, types.CreateCreditGrantRequest{
         Cadence: types.CreditGrantCadenceOnetime,
         Credits: "<value>",
         Name: "<value>",
@@ -43,7 +43,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoCreditGrantResponse != nil {
+    if res.CreditGrantResponse != nil {
         // handle response
     }
 }
@@ -51,11 +51,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [types.DtoCreateCreditGrantRequest](../../models/types/dtocreatecreditgrantrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [types.CreateCreditGrantRequest](../../models/types/createcreditgrantrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -63,11 +63,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetCreditGrant
 
@@ -96,7 +96,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoCreditGrantResponse != nil {
+    if res.CreditGrantResponse != nil {
         // handle response
     }
 }
@@ -116,11 +116,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## UpdateCreditGrant
 
@@ -146,11 +146,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.CreditGrants.UpdateCreditGrant(ctx, "<id>", types.DtoUpdateCreditGrantRequest{})
+    res, err := s.CreditGrants.UpdateCreditGrant(ctx, "<id>", types.UpdateCreditGrantRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoCreditGrantResponse != nil {
+    if res.CreditGrantResponse != nil {
         // handle response
     }
 }
@@ -158,12 +158,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Credit Grant ID                                                                        |
-| `body`                                                                                 | [types.DtoUpdateCreditGrantRequest](../../models/types/dtoupdatecreditgrantrequest.md) | :heavy_check_mark:                                                                     | Credit Grant configuration                                                             |
-| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `id`                                                                             | `string`                                                                         | :heavy_check_mark:                                                               | Credit Grant ID                                                                  |
+| `body`                                                                           | [types.UpdateCreditGrantRequest](../../models/types/updatecreditgrantrequest.md) | :heavy_check_mark:                                                               | Credit Grant configuration                                                       |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -171,11 +171,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## DeleteCreditGrant
 
@@ -204,7 +204,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSuccessResponse != nil {
+    if res.SuccessResponse != nil {
         // handle response
     }
 }
@@ -212,12 +212,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                               | Type                                                                                    | Required                                                                                | Description                                                                             |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| `ctx`                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                   | :heavy_check_mark:                                                                      | The context to use for the request.                                                     |
-| `id`                                                                                    | `string`                                                                                | :heavy_check_mark:                                                                      | Credit Grant ID                                                                         |
-| `body`                                                                                  | [*types.DtoDeleteCreditGrantRequest](../../models/types/dtodeletecreditgrantrequest.md) | :heavy_minus_sign:                                                                      | Optional: effective_date for subscription-scoped grants                                 |
-| `opts`                                                                                  | [][dtos.Option](../../models/dtos/option.md)                                            | :heavy_minus_sign:                                                                      | The options for this request.                                                           |
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `ctx`                                                                             | [context.Context](https://pkg.go.dev/context#Context)                             | :heavy_check_mark:                                                                | The context to use for the request.                                               |
+| `id`                                                                              | `string`                                                                          | :heavy_check_mark:                                                                | Credit Grant ID                                                                   |
+| `body`                                                                            | [*types.DeleteCreditGrantRequest](../../models/types/deletecreditgrantrequest.md) | :heavy_minus_sign:                                                                | Optional: effective_date for subscription-scoped grants                           |
+| `opts`                                                                            | [][dtos.Option](../../models/dtos/option.md)                                      | :heavy_minus_sign:                                                                | The options for this request.                                                     |
 
 ### Response
 
@@ -225,11 +225,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetPlanCreditGrants
 
@@ -258,7 +258,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoListCreditGrantsResponse != nil {
+    if res.ListCreditGrantsResponse != nil {
         // handle response
     }
 }
@@ -278,8 +278,8 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |

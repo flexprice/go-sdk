@@ -10,7 +10,7 @@ import (
 type CreateCreditGrantResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created
-	DtoCreditGrantResponse *types.DtoCreditGrantResponse
+	CreditGrantResponse *types.CreditGrantResponse
 }
 
 func (c CreateCreditGrantResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (c CreateCreditGrantResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateCreditGrantResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (c *CreateCreditGrantResponse) GetHTTPMeta() types.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateCreditGrantResponse) GetDtoCreditGrantResponse() *types.DtoCreditGrantResponse {
+func (c *CreateCreditGrantResponse) GetCreditGrantResponse() *types.CreditGrantResponse {
 	if c == nil {
 		return nil
 	}
-	return c.DtoCreditGrantResponse
+	return c.CreditGrantResponse
 }

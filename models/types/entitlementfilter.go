@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type EntitlementFilterOrder string
@@ -35,7 +36,7 @@ func (e *EntitlementFilterOrder) UnmarshalJSON(data []byte) error {
 }
 
 type EntitlementFilter struct {
-	EndTime     *string                `json:"end_time,omitzero"`
+	EndTime     *time.Time             `json:"end_time,omitzero"`
 	EntityIds   []string               `json:"entity_ids,omitzero"`
 	EntityType  *EntitlementEntityType `json:"entity_type,omitzero"`
 	Expand      *string                `json:"expand,omitzero"`
@@ -49,7 +50,7 @@ type EntitlementFilter struct {
 	Order     *EntitlementFilterOrder `json:"order,omitzero"`
 	PlanIds   []string                `json:"plan_ids,omitzero"`
 	Sort      []SortCondition         `json:"sort,omitzero"`
-	StartTime *string                 `json:"start_time,omitzero"`
+	StartTime *time.Time              `json:"start_time,omitzero"`
 	Status    *Status                 `json:"status,omitzero"`
 }
 
@@ -64,7 +65,7 @@ func (e *EntitlementFilter) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (e *EntitlementFilter) GetEndTime() *string {
+func (e *EntitlementFilter) GetEndTime() *time.Time {
 	if e == nil {
 		return nil
 	}
@@ -155,7 +156,7 @@ func (e *EntitlementFilter) GetSort() []SortCondition {
 	return e.Sort
 }
 
-func (e *EntitlementFilter) GetStartTime() *string {
+func (e *EntitlementFilter) GetStartTime() *time.Time {
 	if e == nil {
 		return nil
 	}

@@ -33,7 +33,7 @@ func newIntegrations(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hook
 
 // LinkIntegrationMapping - Link integration mapping
 // Link a FlexPrice entity to provider entity with provider-specific side effects.
-func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types.DtoLinkIntegrationMappingRequest, opts ...dtos.Option) (*dtos.LinkIntegrationMappingResponse, error) {
+func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types.LinkIntegrationMappingRequest, opts ...dtos.Option) (*dtos.LinkIntegrationMappingResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -207,12 +207,12 @@ func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types
 				return nil, err
 			}
 
-			var out types.DtoLinkIntegrationMappingResponse
+			var out types.LinkIntegrationMappingResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoLinkIntegrationMappingResponse = &out
+			res.LinkIntegrationMappingResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -228,7 +228,7 @@ func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -253,7 +253,7 @@ func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

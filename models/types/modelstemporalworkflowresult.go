@@ -2,10 +2,25 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type ModelsTemporalWorkflowResult struct {
 	Message    *string `json:"message,omitzero"`
 	RunID      *string `json:"run_id,omitzero"`
 	WorkflowID *string `json:"workflow_id,omitzero"`
+}
+
+func (m ModelsTemporalWorkflowResult) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *ModelsTemporalWorkflowResult) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *ModelsTemporalWorkflowResult) GetMessage() *string {

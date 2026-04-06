@@ -11,7 +11,18 @@ type UpdateScheduledTaskRequest struct {
 	// Scheduled Task ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Update request (enabled: true/false to pause/resume)
-	Body types.DtoUpdateScheduledTaskRequest `request:"mediaType=application/json"`
+	Body types.UpdateScheduledTaskRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateScheduledTaskRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateScheduledTaskRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateScheduledTaskRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateScheduledTaskRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateScheduledTaskRequest) GetBody() types.DtoUpdateScheduledTaskRequest {
+func (u *UpdateScheduledTaskRequest) GetBody() types.UpdateScheduledTaskRequest {
 	if u == nil {
-		return types.DtoUpdateScheduledTaskRequest{}
+		return types.UpdateScheduledTaskRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateScheduledTaskRequest) GetBody() types.DtoUpdateScheduledTaskReque
 type UpdateScheduledTaskResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoScheduledTaskResponse *types.DtoScheduledTaskResponse
+	ScheduledTaskResponse *types.ScheduledTaskResponse
 }
 
 func (u UpdateScheduledTaskResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateScheduledTaskResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateScheduledTaskResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateScheduledTaskResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateScheduledTaskResponse) GetDtoScheduledTaskResponse() *types.DtoScheduledTaskResponse {
+func (u *UpdateScheduledTaskResponse) GetScheduledTaskResponse() *types.ScheduledTaskResponse {
 	if u == nil {
 		return nil
 	}
-	return u.DtoScheduledTaskResponse
+	return u.ScheduledTaskResponse
 }

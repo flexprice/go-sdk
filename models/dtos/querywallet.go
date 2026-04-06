@@ -18,7 +18,7 @@ func (q QueryWalletResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (q *QueryWalletResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &q, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil

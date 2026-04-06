@@ -4,37 +4,38 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type SubscriptionSubscriptionPause struct {
-	CreatedAt *string `json:"created_at,omitzero"`
-	CreatedBy *string `json:"created_by,omitzero"`
+	CreatedAt *time.Time `json:"created_at,omitzero"`
+	CreatedBy *string    `json:"created_by,omitzero"`
 	// EnvironmentID is the environment identifier for the pause
 	EnvironmentID *string `json:"environment_id,omitzero"`
 	// ID is the unique identifier for the subscription pause
 	ID       *string           `json:"id,omitzero"`
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// OriginalPeriodEnd is the end of the billing period when the pause was created
-	OriginalPeriodEnd *string `json:"original_period_end,omitzero"`
+	OriginalPeriodEnd *time.Time `json:"original_period_end,omitzero"`
 	// OriginalPeriodStart is the start of the billing period when the pause was created
-	OriginalPeriodStart *string `json:"original_period_start,omitzero"`
+	OriginalPeriodStart *time.Time `json:"original_period_start,omitzero"`
 	// PauseEnd is when the pause will end (null for indefinite)
-	PauseEnd  *string    `json:"pause_end,omitzero"`
+	PauseEnd  *time.Time `json:"pause_end,omitzero"`
 	PauseMode *PauseMode `json:"pause_mode,omitzero"`
 	// PauseStart is when the pause actually started
-	PauseStart  *string      `json:"pause_start,omitzero"`
+	PauseStart  *time.Time   `json:"pause_start,omitzero"`
 	PauseStatus *PauseStatus `json:"pause_status,omitzero"`
 	// Reason is the reason for pausing
 	Reason     *string     `json:"reason,omitzero"`
 	ResumeMode *ResumeMode `json:"resume_mode,omitzero"`
 	// ResumedAt is when the pause was actually ended (if manually resumed)
-	ResumedAt *string `json:"resumed_at,omitzero"`
-	Status    *Status `json:"status,omitzero"`
+	ResumedAt *time.Time `json:"resumed_at,omitzero"`
+	Status    *Status    `json:"status,omitzero"`
 	// SubscriptionID is the identifier for the subscription
-	SubscriptionID *string `json:"subscription_id,omitzero"`
-	TenantID       *string `json:"tenant_id,omitzero"`
-	UpdatedAt      *string `json:"updated_at,omitzero"`
-	UpdatedBy      *string `json:"updated_by,omitzero"`
+	SubscriptionID *string    `json:"subscription_id,omitzero"`
+	TenantID       *string    `json:"tenant_id,omitzero"`
+	UpdatedAt      *time.Time `json:"updated_at,omitzero"`
+	UpdatedBy      *string    `json:"updated_by,omitzero"`
 }
 
 func (s SubscriptionSubscriptionPause) MarshalJSON() ([]byte, error) {
@@ -48,7 +49,7 @@ func (s *SubscriptionSubscriptionPause) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (s *SubscriptionSubscriptionPause) GetCreatedAt() *string {
+func (s *SubscriptionSubscriptionPause) GetCreatedAt() *time.Time {
 	if s == nil {
 		return nil
 	}
@@ -83,21 +84,21 @@ func (s *SubscriptionSubscriptionPause) GetMetadata() map[string]string {
 	return s.Metadata
 }
 
-func (s *SubscriptionSubscriptionPause) GetOriginalPeriodEnd() *string {
+func (s *SubscriptionSubscriptionPause) GetOriginalPeriodEnd() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.OriginalPeriodEnd
 }
 
-func (s *SubscriptionSubscriptionPause) GetOriginalPeriodStart() *string {
+func (s *SubscriptionSubscriptionPause) GetOriginalPeriodStart() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.OriginalPeriodStart
 }
 
-func (s *SubscriptionSubscriptionPause) GetPauseEnd() *string {
+func (s *SubscriptionSubscriptionPause) GetPauseEnd() *time.Time {
 	if s == nil {
 		return nil
 	}
@@ -111,7 +112,7 @@ func (s *SubscriptionSubscriptionPause) GetPauseMode() *PauseMode {
 	return s.PauseMode
 }
 
-func (s *SubscriptionSubscriptionPause) GetPauseStart() *string {
+func (s *SubscriptionSubscriptionPause) GetPauseStart() *time.Time {
 	if s == nil {
 		return nil
 	}
@@ -139,7 +140,7 @@ func (s *SubscriptionSubscriptionPause) GetResumeMode() *ResumeMode {
 	return s.ResumeMode
 }
 
-func (s *SubscriptionSubscriptionPause) GetResumedAt() *string {
+func (s *SubscriptionSubscriptionPause) GetResumedAt() *time.Time {
 	if s == nil {
 		return nil
 	}
@@ -167,7 +168,7 @@ func (s *SubscriptionSubscriptionPause) GetTenantID() *string {
 	return s.TenantID
 }
 
-func (s *SubscriptionSubscriptionPause) GetUpdatedAt() *string {
+func (s *SubscriptionSubscriptionPause) GetUpdatedAt() *time.Time {
 	if s == nil {
 		return nil
 	}

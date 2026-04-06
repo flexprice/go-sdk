@@ -11,7 +11,18 @@ type PreviewSubscriptionChangeRequest struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Subscription change preview request
-	Body types.DtoSubscriptionChangeRequest `request:"mediaType=application/json"`
+	Body types.SubscriptionChangeRequest `request:"mediaType=application/json"`
+}
+
+func (p PreviewSubscriptionChangeRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PreviewSubscriptionChangeRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PreviewSubscriptionChangeRequest) GetID() string {
@@ -21,9 +32,9 @@ func (p *PreviewSubscriptionChangeRequest) GetID() string {
 	return p.ID
 }
 
-func (p *PreviewSubscriptionChangeRequest) GetBody() types.DtoSubscriptionChangeRequest {
+func (p *PreviewSubscriptionChangeRequest) GetBody() types.SubscriptionChangeRequest {
 	if p == nil {
-		return types.DtoSubscriptionChangeRequest{}
+		return types.SubscriptionChangeRequest{}
 	}
 	return p.Body
 }
@@ -31,7 +42,7 @@ func (p *PreviewSubscriptionChangeRequest) GetBody() types.DtoSubscriptionChange
 type PreviewSubscriptionChangeResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSubscriptionChangePreviewResponse *types.DtoSubscriptionChangePreviewResponse
+	SubscriptionChangePreviewResponse *types.SubscriptionChangePreviewResponse
 }
 
 func (p PreviewSubscriptionChangeResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (p PreviewSubscriptionChangeResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PreviewSubscriptionChangeResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (p *PreviewSubscriptionChangeResponse) GetHTTPMeta() types.HTTPMetadata {
 	return p.HTTPMeta
 }
 
-func (p *PreviewSubscriptionChangeResponse) GetDtoSubscriptionChangePreviewResponse() *types.DtoSubscriptionChangePreviewResponse {
+func (p *PreviewSubscriptionChangeResponse) GetSubscriptionChangePreviewResponse() *types.SubscriptionChangePreviewResponse {
 	if p == nil {
 		return nil
 	}
-	return p.DtoSubscriptionChangePreviewResponse
+	return p.SubscriptionChangePreviewResponse
 }

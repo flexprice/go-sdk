@@ -1,0 +1,14 @@
+# GetCostAnalyticsRequest
+
+
+## Fields
+
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `EndTime`                                                              | [*time.Time](https://pkg.go.dev/time#Time)                             | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `Expand`                                                               | []`string`                                                             | :heavy_minus_sign:                                                     | Expand options - specify which entities to expand                      |
+| `ExternalCustomerID`                                                   | `*string`                                                              | :heavy_minus_sign:                                                     | Optional - for specific customer                                       |
+| `FeatureIds`                                                           | []`string`                                                             | :heavy_minus_sign:                                                     | Additional filters                                                     |
+| `Limit`                                                                | `*int64`                                                               | :heavy_minus_sign:                                                     | Pagination                                                             |
+| `Offset`                                                               | `*int64`                                                               | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `StartTime`                                                            | [*time.Time](https://pkg.go.dev/time#Time)                             | :heavy_minus_sign:                                                     | Time range fields (optional - defaults to last 7 days if not provided) |

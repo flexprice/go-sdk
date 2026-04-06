@@ -11,7 +11,18 @@ type UpdatePriceUnitRequest struct {
 	// Price unit ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Price unit details to update
-	Body types.DtoUpdatePriceUnitRequest `request:"mediaType=application/json"`
+	Body types.UpdatePriceUnitRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdatePriceUnitRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdatePriceUnitRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdatePriceUnitRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdatePriceUnitRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdatePriceUnitRequest) GetBody() types.DtoUpdatePriceUnitRequest {
+func (u *UpdatePriceUnitRequest) GetBody() types.UpdatePriceUnitRequest {
 	if u == nil {
-		return types.DtoUpdatePriceUnitRequest{}
+		return types.UpdatePriceUnitRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdatePriceUnitRequest) GetBody() types.DtoUpdatePriceUnitRequest {
 type UpdatePriceUnitResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoPriceUnitResponse *types.DtoPriceUnitResponse
+	PriceUnitResponse *types.PriceUnitResponse
 }
 
 func (u UpdatePriceUnitResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdatePriceUnitResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdatePriceUnitResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdatePriceUnitResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdatePriceUnitResponse) GetDtoPriceUnitResponse() *types.DtoPriceUnitResponse {
+func (u *UpdatePriceUnitResponse) GetPriceUnitResponse() *types.PriceUnitResponse {
 	if u == nil {
 		return nil
 	}
-	return u.DtoPriceUnitResponse
+	return u.PriceUnitResponse
 }

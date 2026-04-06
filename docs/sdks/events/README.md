@@ -37,7 +37,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Events.IngestEvent(ctx, types.DtoIngestEventRequest{
+    res, err := s.Events.IngestEvent(ctx, types.IngestEventRequest{
         CustomerID: flexprice.Pointer("customer456"),
         EventID: flexprice.Pointer("event123"),
         EventName: "api_request",
@@ -60,11 +60,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [types.DtoIngestEventRequest](../../models/types/dtoingesteventrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
+| `request`                                                            | [types.IngestEventRequest](../../models/types/ingesteventrequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
+| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
 ### Response
 
@@ -72,11 +72,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetUsageAnalytics
 
@@ -102,13 +102,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Events.GetUsageAnalytics(ctx, types.DtoGetUsageAnalyticsRequest{
-        ExternalCustomerID: "<id>",
-    })
+    res, err := s.Events.GetUsageAnalytics(ctx, types.GetUsageAnalyticsRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoGetUsageAnalyticsResponse != nil {
+    if res.GetUsageAnalyticsResponse != nil {
         // handle response
     }
 }
@@ -116,11 +114,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `request`                                                                              | [types.DtoGetUsageAnalyticsRequest](../../models/types/dtogetusageanalyticsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
-| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [types.GetUsageAnalyticsRequest](../../models/types/getusageanalyticsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -128,11 +126,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## IngestEventsBulk
 
@@ -158,8 +156,8 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Events.IngestEventsBulk(ctx, types.DtoBulkIngestEventRequest{
-        Events: []types.DtoIngestEventRequest{},
+    res, err := s.Events.IngestEventsBulk(ctx, types.BulkIngestEventRequest{
+        Events: []types.IngestEventRequest{},
     })
     if err != nil {
         log.Fatal(err)
@@ -172,11 +170,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [types.DtoBulkIngestEventRequest](../../models/types/dtobulkingesteventrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [types.BulkIngestEventRequest](../../models/types/bulkingesteventrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
 
 ### Response
 
@@ -184,11 +182,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetHuggingfaceInferenceData
 
@@ -217,7 +215,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoGetHuggingFaceBillingDataResponse != nil {
+    if res.GetHuggingFaceBillingDataResponse != nil {
         // handle response
     }
 }
@@ -236,10 +234,10 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## ListRawEvents
 
@@ -254,6 +252,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/types"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -265,16 +264,16 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Events.ListRawEvents(ctx, types.DtoGetEventsRequest{
-        EndTime: flexprice.Pointer("2024-12-09T00:00:00Z"),
+    res, err := s.Events.ListRawEvents(ctx, types.GetEventsRequest{
+        EndTime: types.MustNewTimeFromString("2024-12-09T00:00:00Z"),
         Order: flexprice.Pointer("desc"),
         Sort: flexprice.Pointer("timestamp"),
-        StartTime: flexprice.Pointer("2024-11-09T00:00:00Z"),
+        StartTime: types.MustNewTimeFromString("2024-11-09T00:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoGetEventsResponse != nil {
+    if res.GetEventsResponse != nil {
         // handle response
     }
 }
@@ -282,11 +281,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
-| `request`                                                              | [types.DtoGetEventsRequest](../../models/types/dtogeteventsrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
-| `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
+| Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `ctx`                                                            | [context.Context](https://pkg.go.dev/context#Context)            | :heavy_check_mark:                                               | The context to use for the request.                              |
+| `request`                                                        | [types.GetEventsRequest](../../models/types/geteventsrequest.md) | :heavy_check_mark:                                               | The request object to use for the request.                       |
+| `opts`                                                           | [][dtos.Option](../../models/dtos/option.md)                     | :heavy_minus_sign:                                               | The options for this request.                                    |
 
 ### Response
 
@@ -294,11 +293,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetUsageStatistics
 
@@ -314,6 +313,7 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/types"
 	"log"
 )
 
@@ -324,20 +324,20 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Events.GetUsageStatistics(ctx, types.DtoGetUsageRequest{
+    res, err := s.Events.GetUsageStatistics(ctx, types.GetUsageRequest{
         AggregationType: types.AggregationTypeCountUnique,
-        BillingAnchor: flexprice.Pointer("2024-03-05T14:30:45.123456789Z"),
+        BillingAnchor: types.MustNewTimeFromString("2024-03-05T14:30:45.123456789Z"),
         CustomerID: flexprice.Pointer("customer456"),
-        EndTime: flexprice.Pointer("2024-03-20T00:00:00Z"),
+        EndTime: types.MustNewTimeFromString("2024-03-20T00:00:00Z"),
         EventName: "api_request",
         ExternalCustomerID: flexprice.Pointer("customer456"),
         PropertyName: flexprice.Pointer("request_size"),
-        StartTime: flexprice.Pointer("2024-03-13T00:00:00Z"),
+        StartTime: types.MustNewTimeFromString("2024-03-13T00:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoGetUsageResponse != nil {
+    if res.GetUsageResponse != nil {
         // handle response
     }
 }
@@ -345,11 +345,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `request`                                                            | [types.DtoGetUsageRequest](../../models/types/dtogetusagerequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
-| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
+| `request`                                                      | [types.GetUsageRequest](../../models/types/getusagerequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| `opts`                                                         | [][dtos.Option](../../models/dtos/option.md)                   | :heavy_minus_sign:                                             | The options for this request.                                  |
 
 ### Response
 
@@ -357,11 +357,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetUsageByMeter
 
@@ -376,6 +376,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/types"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -387,18 +388,18 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Events.GetUsageByMeter(ctx, types.DtoGetUsageByMeterRequest{
-        BillingAnchor: flexprice.Pointer("2024-03-05T14:30:45Z"),
+    res, err := s.Events.GetUsageByMeter(ctx, types.GetUsageByMeterRequest{
+        BillingAnchor: types.MustNewTimeFromString("2024-03-05T14:30:45Z"),
         CustomerID: flexprice.Pointer("customer456"),
-        EndTime: flexprice.Pointer("2024-12-09T00:00:00Z"),
+        EndTime: types.MustNewTimeFromString("2024-12-09T00:00:00Z"),
         ExternalCustomerID: flexprice.Pointer("user_5"),
         MeterID: "123",
-        StartTime: flexprice.Pointer("2024-11-09T00:00:00Z"),
+        StartTime: types.MustNewTimeFromString("2024-11-09T00:00:00Z"),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoGetUsageResponse != nil {
+    if res.GetUsageResponse != nil {
         // handle response
     }
 }
@@ -406,11 +407,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [types.DtoGetUsageByMeterRequest](../../models/types/dtogetusagebymeterrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `request`                                                                    | [types.GetUsageByMeterRequest](../../models/types/getusagebymeterrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
+| `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
 
 ### Response
 
@@ -418,11 +419,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetEvent
 
@@ -451,7 +452,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoGetEventByIDResponse != nil {
+    if res.GetEventByIDResponse != nil {
         // handle response
     }
 }
@@ -471,8 +472,8 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 404                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 404                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |

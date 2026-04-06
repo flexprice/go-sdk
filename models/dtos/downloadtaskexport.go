@@ -12,6 +12,17 @@ type DownloadTaskExportRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (d DownloadTaskExportRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DownloadTaskExportRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (d *DownloadTaskExportRequest) GetID() string {
 	if d == nil {
 		return ""
@@ -30,7 +41,7 @@ func (d DownloadTaskExportResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DownloadTaskExportResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil

@@ -4,11 +4,12 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type CreditnoteCreditNoteLineItem struct {
 	Amount            *string           `json:"amount,omitzero"`
-	CreatedAt         *string           `json:"created_at,omitzero"`
+	CreatedAt         *time.Time        `json:"created_at,omitzero"`
 	CreatedBy         *string           `json:"created_by,omitzero"`
 	CreditNoteID      *string           `json:"credit_note_id,omitzero"`
 	Currency          *string           `json:"currency,omitzero"`
@@ -19,7 +20,7 @@ type CreditnoteCreditNoteLineItem struct {
 	Metadata          map[string]string `json:"metadata,omitzero"`
 	Status            *Status           `json:"status,omitzero"`
 	TenantID          *string           `json:"tenant_id,omitzero"`
-	UpdatedAt         *string           `json:"updated_at,omitzero"`
+	UpdatedAt         *time.Time        `json:"updated_at,omitzero"`
 	UpdatedBy         *string           `json:"updated_by,omitzero"`
 }
 
@@ -41,7 +42,7 @@ func (c *CreditnoteCreditNoteLineItem) GetAmount() *string {
 	return c.Amount
 }
 
-func (c *CreditnoteCreditNoteLineItem) GetCreatedAt() *string {
+func (c *CreditnoteCreditNoteLineItem) GetCreatedAt() *time.Time {
 	if c == nil {
 		return nil
 	}
@@ -118,7 +119,7 @@ func (c *CreditnoteCreditNoteLineItem) GetTenantID() *string {
 	return c.TenantID
 }
 
-func (c *CreditnoteCreditNoteLineItem) GetUpdatedAt() *string {
+func (c *CreditnoteCreditNoteLineItem) GetUpdatedAt() *time.Time {
 	if c == nil {
 		return nil
 	}

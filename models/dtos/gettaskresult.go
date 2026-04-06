@@ -12,6 +12,17 @@ type GetTaskResultRequest struct {
 	WorkflowID string `queryParam:"style=form,explode=true,name=workflow_id"`
 }
 
+func (g GetTaskResultRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTaskResultRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"workflow_id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetTaskResultRequest) GetWorkflowID() string {
 	if g == nil {
 		return ""
@@ -30,7 +41,7 @@ func (g GetTaskResultResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTaskResultResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil

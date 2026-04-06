@@ -11,8 +11,30 @@ import (
 type ScheduleUpdateBillingPeriodRequest struct {
 }
 
+func (s ScheduleUpdateBillingPeriodRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ScheduleUpdateBillingPeriodRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 // ScheduleUpdateBillingPeriodResponseBody - OK
 type ScheduleUpdateBillingPeriodResponseBody struct {
+}
+
+func (s ScheduleUpdateBillingPeriodResponseBody) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ScheduleUpdateBillingPeriodResponseBody) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 type ScheduleUpdateBillingPeriodResponse struct {
@@ -26,7 +48,7 @@ func (s ScheduleUpdateBillingPeriodResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (s *ScheduleUpdateBillingPeriodResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil

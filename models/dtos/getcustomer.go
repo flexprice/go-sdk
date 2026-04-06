@@ -12,6 +12,17 @@ type GetCustomerRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetCustomerRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetCustomerRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetCustomerRequest) GetID() string {
 type GetCustomerResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCustomerResponse *types.DtoCustomerResponse
+	Customer *types.Customer1
 }
 
 func (g GetCustomerResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetCustomerResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetCustomerResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetCustomerResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCustomerResponse) GetDtoCustomerResponse() *types.DtoCustomerResponse {
+func (g *GetCustomerResponse) GetCustomer() *types.Customer1 {
 	if g == nil {
 		return nil
 	}
-	return g.DtoCustomerResponse
+	return g.Customer
 }

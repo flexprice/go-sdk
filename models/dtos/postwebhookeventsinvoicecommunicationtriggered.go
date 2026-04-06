@@ -18,7 +18,7 @@ func (p PostWebhookEventsInvoiceCommunicationTriggeredResponse) MarshalJSON() ([
 }
 
 func (p *PostWebhookEventsInvoiceCommunicationTriggeredResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil

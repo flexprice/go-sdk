@@ -33,7 +33,7 @@ func newGroups(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hoo
 
 // CreateGroup - Create group
 // Use when organizing entities into a group (e.g. for filtering prices or plans by product line or region).
-func (s *Groups) CreateGroup(ctx context.Context, request types.DtoCreateGroupRequest, opts ...dtos.Option) (*dtos.CreateGroupResponse, error) {
+func (s *Groups) CreateGroup(ctx context.Context, request types.CreateGroupRequest, opts ...dtos.Option) (*dtos.CreateGroupResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -207,12 +207,12 @@ func (s *Groups) CreateGroup(ctx context.Context, request types.DtoCreateGroupRe
 				return nil, err
 			}
 
-			var out types.DtoGroupResponse
+			var out types.GroupResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGroupResponse = &out
+			res.GroupResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -228,7 +228,7 @@ func (s *Groups) CreateGroup(ctx context.Context, request types.DtoCreateGroupRe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -253,7 +253,7 @@ func (s *Groups) CreateGroup(ctx context.Context, request types.DtoCreateGroupRe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -470,12 +470,12 @@ func (s *Groups) QueryGroup(ctx context.Context, request types.GroupFilter, opts
 				return nil, err
 			}
 
-			var out types.DtoListGroupsResponse
+			var out types.ListGroupsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListGroupsResponse = &out
+			res.ListGroupsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -491,7 +491,7 @@ func (s *Groups) QueryGroup(ctx context.Context, request types.GroupFilter, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -516,7 +516,7 @@ func (s *Groups) QueryGroup(ctx context.Context, request types.GroupFilter, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -730,12 +730,12 @@ func (s *Groups) GetGroup(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out types.DtoGroupResponse
+			var out types.GroupResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGroupResponse = &out
+			res.GroupResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -753,7 +753,7 @@ func (s *Groups) GetGroup(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -778,7 +778,7 @@ func (s *Groups) GetGroup(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -996,7 +996,7 @@ func (s *Groups) DeleteGroup(ctx context.Context, id string, opts ...dtos.Option
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1021,7 +1021,7 @@ func (s *Groups) DeleteGroup(ctx context.Context, id string, opts ...dtos.Option
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

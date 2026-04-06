@@ -204,12 +204,12 @@ func (s *Invoices) GetCustomerInvoiceSummary(ctx context.Context, id string, opt
 				return nil, err
 			}
 
-			var out types.DtoCustomerMultiCurrencyInvoiceSummary
+			var out types.CustomerMultiCurrencyInvoiceSummary
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCustomerMultiCurrencyInvoiceSummary = &out
+			res.CustomerMultiCurrencyInvoiceSummary = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -225,7 +225,7 @@ func (s *Invoices) GetCustomerInvoiceSummary(ctx context.Context, id string, opt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -250,7 +250,7 @@ func (s *Invoices) GetCustomerInvoiceSummary(ctx context.Context, id string, opt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -293,7 +293,7 @@ func (s *Invoices) GetCustomerInvoiceSummary(ctx context.Context, id string, opt
 
 // CreateInvoice - Create one-off invoice
 // Use when creating a manual or one-off invoice (e.g. custom charge or non-recurring billing). Invoice is created in draft; finalize when ready.
-func (s *Invoices) CreateInvoice(ctx context.Context, request types.DtoCreateInvoiceRequest, opts ...dtos.Option) (*dtos.CreateInvoiceResponse, error) {
+func (s *Invoices) CreateInvoice(ctx context.Context, request types.CreateInvoiceRequest, opts ...dtos.Option) (*dtos.CreateInvoiceResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -467,12 +467,12 @@ func (s *Invoices) CreateInvoice(ctx context.Context, request types.DtoCreateInv
 				return nil, err
 			}
 
-			var out types.DtoInvoiceResponse
+			var out types.Invoice
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoInvoiceResponse = &out
+			res.Invoice = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -488,7 +488,7 @@ func (s *Invoices) CreateInvoice(ctx context.Context, request types.DtoCreateInv
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -513,7 +513,7 @@ func (s *Invoices) CreateInvoice(ctx context.Context, request types.DtoCreateInv
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -556,7 +556,7 @@ func (s *Invoices) CreateInvoice(ctx context.Context, request types.DtoCreateInv
 
 // GetInvoicePreview - Get invoice preview
 // Use when showing a customer what they will be charged (e.g. preview before checkout or plan change). No invoice is created.
-func (s *Invoices) GetInvoicePreview(ctx context.Context, request types.DtoGetPreviewInvoiceRequest, opts ...dtos.Option) (*dtos.GetInvoicePreviewResponse, error) {
+func (s *Invoices) GetInvoicePreview(ctx context.Context, request types.GetPreviewInvoiceRequest, opts ...dtos.Option) (*dtos.GetInvoicePreviewResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -730,12 +730,12 @@ func (s *Invoices) GetInvoicePreview(ctx context.Context, request types.DtoGetPr
 				return nil, err
 			}
 
-			var out types.DtoInvoiceResponse
+			var out types.Invoice
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoInvoiceResponse = &out
+			res.Invoice = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -751,7 +751,7 @@ func (s *Invoices) GetInvoicePreview(ctx context.Context, request types.DtoGetPr
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -776,7 +776,7 @@ func (s *Invoices) GetInvoicePreview(ctx context.Context, request types.DtoGetPr
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -993,12 +993,12 @@ func (s *Invoices) QueryInvoice(ctx context.Context, request types.InvoiceFilter
 				return nil, err
 			}
 
-			var out types.DtoListInvoicesResponse
+			var out types.ListInvoicesResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListInvoicesResponse = &out
+			res.ListInvoicesResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1014,7 +1014,7 @@ func (s *Invoices) QueryInvoice(ctx context.Context, request types.InvoiceFilter
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1039,7 +1039,7 @@ func (s *Invoices) QueryInvoice(ctx context.Context, request types.InvoiceFilter
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1259,12 +1259,12 @@ func (s *Invoices) GetInvoice(ctx context.Context, id string, expandBySource *bo
 				return nil, err
 			}
 
-			var out types.DtoInvoiceResponse
+			var out types.Invoice
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoInvoiceResponse = &out
+			res.Invoice = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1280,7 +1280,7 @@ func (s *Invoices) GetInvoice(ctx context.Context, id string, expandBySource *bo
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1305,7 +1305,7 @@ func (s *Invoices) GetInvoice(ctx context.Context, id string, expandBySource *bo
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1348,7 +1348,7 @@ func (s *Invoices) GetInvoice(ctx context.Context, id string, expandBySource *bo
 
 // UpdateInvoice - Update invoice
 // Use when updating invoice metadata or due date (e.g. PDF URL, net terms). For paid invoices only safe fields can be updated.
-func (s *Invoices) UpdateInvoice(ctx context.Context, id string, body types.DtoUpdateInvoiceRequest, opts ...dtos.Option) (*dtos.UpdateInvoiceResponse, error) {
+func (s *Invoices) UpdateInvoice(ctx context.Context, id string, body types.UpdateInvoiceRequest, opts ...dtos.Option) (*dtos.UpdateInvoiceResponse, error) {
 	request := dtos.UpdateInvoiceRequest{
 		ID:   id,
 		Body: body,
@@ -1527,12 +1527,12 @@ func (s *Invoices) UpdateInvoice(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out types.DtoInvoiceResponse
+			var out types.Invoice
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoInvoiceResponse = &out
+			res.Invoice = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1550,7 +1550,7 @@ func (s *Invoices) UpdateInvoice(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1575,7 +1575,7 @@ func (s *Invoices) UpdateInvoice(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1789,12 +1789,12 @@ func (s *Invoices) TriggerInvoiceCommsWebhook(ctx context.Context, id string, op
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1812,7 +1812,7 @@ func (s *Invoices) TriggerInvoiceCommsWebhook(ctx context.Context, id string, op
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1837,7 +1837,7 @@ func (s *Invoices) TriggerInvoiceCommsWebhook(ctx context.Context, id string, op
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2051,12 +2051,12 @@ func (s *Invoices) FinalizeInvoice(ctx context.Context, id string, opts ...dtos.
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2072,7 +2072,7 @@ func (s *Invoices) FinalizeInvoice(ctx context.Context, id string, opts ...dtos.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2097,7 +2097,7 @@ func (s *Invoices) FinalizeInvoice(ctx context.Context, id string, opts ...dtos.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2140,7 +2140,7 @@ func (s *Invoices) FinalizeInvoice(ctx context.Context, id string, opts ...dtos.
 
 // UpdateInvoicePaymentStatus - Update invoice payment status
 // Use when reconciling payment status from an external gateway or manual entry (e.g. mark paid after bank confirmation).
-func (s *Invoices) UpdateInvoicePaymentStatus(ctx context.Context, id string, body types.DtoUpdatePaymentStatusRequest, opts ...dtos.Option) (*dtos.UpdateInvoicePaymentStatusResponse, error) {
+func (s *Invoices) UpdateInvoicePaymentStatus(ctx context.Context, id string, body types.UpdatePaymentStatusRequest, opts ...dtos.Option) (*dtos.UpdateInvoicePaymentStatusResponse, error) {
 	request := dtos.UpdateInvoicePaymentStatusRequest{
 		ID:   id,
 		Body: body,
@@ -2319,12 +2319,12 @@ func (s *Invoices) UpdateInvoicePaymentStatus(ctx context.Context, id string, bo
 				return nil, err
 			}
 
-			var out types.DtoInvoiceResponse
+			var out types.Invoice
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoInvoiceResponse = &out
+			res.Invoice = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2342,7 +2342,7 @@ func (s *Invoices) UpdateInvoicePaymentStatus(ctx context.Context, id string, bo
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2367,7 +2367,7 @@ func (s *Invoices) UpdateInvoicePaymentStatus(ctx context.Context, id string, bo
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2581,12 +2581,12 @@ func (s *Invoices) AttemptInvoicePayment(ctx context.Context, id string, opts ..
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2604,7 +2604,7 @@ func (s *Invoices) AttemptInvoicePayment(ctx context.Context, id string, opts ..
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2629,7 +2629,7 @@ func (s *Invoices) AttemptInvoicePayment(ctx context.Context, id string, opts ..
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3080,7 +3080,7 @@ func (s *Invoices) RecalculateInvoice(ctx context.Context, id string, opts ...dt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3105,7 +3105,7 @@ func (s *Invoices) RecalculateInvoice(ctx context.Context, id string, opts ...dt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3324,12 +3324,12 @@ func (s *Invoices) RecalculateInvoiceV2(ctx context.Context, id string, finalize
 				return nil, err
 			}
 
-			var out types.DtoInvoiceResponse
+			var out types.Invoice
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoInvoiceResponse = &out
+			res.Invoice = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -3347,7 +3347,7 @@ func (s *Invoices) RecalculateInvoiceV2(ctx context.Context, id string, finalize
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3372,7 +3372,7 @@ func (s *Invoices) RecalculateInvoiceV2(ctx context.Context, id string, finalize
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3586,12 +3586,12 @@ func (s *Invoices) VoidInvoice(ctx context.Context, id string, opts ...dtos.Opti
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -3607,7 +3607,7 @@ func (s *Invoices) VoidInvoice(ctx context.Context, id string, opts ...dtos.Opti
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3632,7 +3632,7 @@ func (s *Invoices) VoidInvoice(ctx context.Context, id string, opts ...dtos.Opti
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

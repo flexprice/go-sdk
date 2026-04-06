@@ -11,7 +11,18 @@ type UpdateInvoicePaymentStatusRequest struct {
 	// Invoice ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Payment Status Update Request
-	Body types.DtoUpdatePaymentStatusRequest `request:"mediaType=application/json"`
+	Body types.UpdatePaymentStatusRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateInvoicePaymentStatusRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateInvoicePaymentStatusRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateInvoicePaymentStatusRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateInvoicePaymentStatusRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateInvoicePaymentStatusRequest) GetBody() types.DtoUpdatePaymentStatusRequest {
+func (u *UpdateInvoicePaymentStatusRequest) GetBody() types.UpdatePaymentStatusRequest {
 	if u == nil {
-		return types.DtoUpdatePaymentStatusRequest{}
+		return types.UpdatePaymentStatusRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateInvoicePaymentStatusRequest) GetBody() types.DtoUpdatePaymentStat
 type UpdateInvoicePaymentStatusResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoInvoiceResponse *types.DtoInvoiceResponse
+	Invoice *types.Invoice
 }
 
 func (u UpdateInvoicePaymentStatusResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateInvoicePaymentStatusResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateInvoicePaymentStatusResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateInvoicePaymentStatusResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateInvoicePaymentStatusResponse) GetDtoInvoiceResponse() *types.DtoInvoiceResponse {
+func (u *UpdateInvoicePaymentStatusResponse) GetInvoice() *types.Invoice {
 	if u == nil {
 		return nil
 	}
-	return u.DtoInvoiceResponse
+	return u.Invoice
 }

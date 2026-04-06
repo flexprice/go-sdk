@@ -11,7 +11,18 @@ type UpdateAddonRequest struct {
 	// Addon ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Update Addon Request
-	Body types.DtoUpdateAddonRequest `request:"mediaType=application/json"`
+	Body types.UpdateAddonRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateAddonRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateAddonRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateAddonRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateAddonRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateAddonRequest) GetBody() types.DtoUpdateAddonRequest {
+func (u *UpdateAddonRequest) GetBody() types.UpdateAddonRequest {
 	if u == nil {
-		return types.DtoUpdateAddonRequest{}
+		return types.UpdateAddonRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateAddonRequest) GetBody() types.DtoUpdateAddonRequest {
 type UpdateAddonResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoAddonResponse *types.DtoAddonResponse
+	Addon *types.Addon1
 }
 
 func (u UpdateAddonResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateAddonResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateAddonResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateAddonResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateAddonResponse) GetDtoAddonResponse() *types.DtoAddonResponse {
+func (u *UpdateAddonResponse) GetAddon() *types.Addon1 {
 	if u == nil {
 		return nil
 	}
-	return u.DtoAddonResponse
+	return u.Addon
 }

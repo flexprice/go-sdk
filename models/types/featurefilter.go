@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type FeatureFilterOrder string
@@ -35,8 +36,8 @@ func (e *FeatureFilterOrder) UnmarshalJSON(data []byte) error {
 }
 
 type FeatureFilter struct {
-	EndTime *string `json:"end_time,omitzero"`
-	Expand  *string `json:"expand,omitzero"`
+	EndTime *time.Time `json:"end_time,omitzero"`
+	Expand  *string    `json:"expand,omitzero"`
 	// Feature specific filters
 	FeatureIds []string `json:"feature_ids,omitzero"`
 	// filters allows complex filtering based on multiple fields
@@ -49,7 +50,7 @@ type FeatureFilter struct {
 	Offset       *int64              `json:"offset,omitzero"`
 	Order        *FeatureFilterOrder `json:"order,omitzero"`
 	Sort         []SortCondition     `json:"sort,omitzero"`
-	StartTime    *string             `json:"start_time,omitzero"`
+	StartTime    *time.Time          `json:"start_time,omitzero"`
 	Status       *Status             `json:"status,omitzero"`
 }
 
@@ -64,7 +65,7 @@ func (f *FeatureFilter) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (f *FeatureFilter) GetEndTime() *string {
+func (f *FeatureFilter) GetEndTime() *time.Time {
 	if f == nil {
 		return nil
 	}
@@ -148,7 +149,7 @@ func (f *FeatureFilter) GetSort() []SortCondition {
 	return f.Sort
 }
 
-func (f *FeatureFilter) GetStartTime() *string {
+func (f *FeatureFilter) GetStartTime() *time.Time {
 	if f == nil {
 		return nil
 	}

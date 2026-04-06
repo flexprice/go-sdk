@@ -3,12 +3,24 @@
 package dtos
 
 import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
 type DeleteScheduledTaskRequest struct {
 	// Scheduled Task ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (d DeleteScheduledTaskRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteScheduledTaskRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DeleteScheduledTaskRequest) GetID() string {
@@ -20,6 +32,17 @@ func (d *DeleteScheduledTaskRequest) GetID() string {
 
 type DeleteScheduledTaskResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
+}
+
+func (d DeleteScheduledTaskResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteScheduledTaskResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DeleteScheduledTaskResponse) GetHTTPMeta() types.HTTPMetadata {

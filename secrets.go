@@ -210,12 +210,12 @@ func (s *Secrets) ListAPIKeys(ctx context.Context, limit *int64, offset *int64, 
 				return nil, err
 			}
 
-			var out types.DtoListSecretsResponse
+			var out types.ListSecretsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListSecretsResponse = &out
+			res.ListSecretsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -231,7 +231,7 @@ func (s *Secrets) ListAPIKeys(ctx context.Context, limit *int64, offset *int64, 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -256,7 +256,7 @@ func (s *Secrets) ListAPIKeys(ctx context.Context, limit *int64, offset *int64, 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -299,7 +299,7 @@ func (s *Secrets) ListAPIKeys(ctx context.Context, limit *int64, offset *int64, 
 
 // CreateAPIKey - Create a new API key
 // Use when issuing a new API key (e.g. for a service account or for the current user). Provide service_account_id to create for a service account.
-func (s *Secrets) CreateAPIKey(ctx context.Context, request types.DtoCreateAPIKeyRequest, opts ...dtos.Option) (*dtos.CreateAPIKeyResponse, error) {
+func (s *Secrets) CreateAPIKey(ctx context.Context, request types.CreateAPIKeyRequest, opts ...dtos.Option) (*dtos.CreateAPIKeyResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -473,12 +473,12 @@ func (s *Secrets) CreateAPIKey(ctx context.Context, request types.DtoCreateAPIKe
 				return nil, err
 			}
 
-			var out types.DtoCreateAPIKeyResponse
+			var out types.CreateAPIKeyResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreateAPIKeyResponse = &out
+			res.CreateAPIKeyResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -494,7 +494,7 @@ func (s *Secrets) CreateAPIKey(ctx context.Context, request types.DtoCreateAPIKe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -519,7 +519,7 @@ func (s *Secrets) CreateAPIKey(ctx context.Context, request types.DtoCreateAPIKe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -735,7 +735,7 @@ func (s *Secrets) DeleteAPIKey(ctx context.Context, id string, opts ...dtos.Opti
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -760,7 +760,7 @@ func (s *Secrets) DeleteAPIKey(ctx context.Context, id string, opts ...dtos.Opti
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

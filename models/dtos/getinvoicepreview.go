@@ -10,7 +10,7 @@ import (
 type GetInvoicePreviewResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoInvoiceResponse *types.DtoInvoiceResponse
+	Invoice *types.Invoice
 }
 
 func (g GetInvoicePreviewResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (g GetInvoicePreviewResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetInvoicePreviewResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (g *GetInvoicePreviewResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetInvoicePreviewResponse) GetDtoInvoiceResponse() *types.DtoInvoiceResponse {
+func (g *GetInvoicePreviewResponse) GetInvoice() *types.Invoice {
 	if g == nil {
 		return nil
 	}
-	return g.DtoInvoiceResponse
+	return g.Invoice
 }

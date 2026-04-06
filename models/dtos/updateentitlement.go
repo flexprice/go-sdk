@@ -11,7 +11,18 @@ type UpdateEntitlementRequest struct {
 	// Entitlement ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Entitlement configuration
-	Body types.DtoUpdateEntitlementRequest `request:"mediaType=application/json"`
+	Body types.UpdateEntitlementRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateEntitlementRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateEntitlementRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateEntitlementRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateEntitlementRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateEntitlementRequest) GetBody() types.DtoUpdateEntitlementRequest {
+func (u *UpdateEntitlementRequest) GetBody() types.UpdateEntitlementRequest {
 	if u == nil {
-		return types.DtoUpdateEntitlementRequest{}
+		return types.UpdateEntitlementRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateEntitlementRequest) GetBody() types.DtoUpdateEntitlementRequest {
 type UpdateEntitlementResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoEntitlementResponse *types.DtoEntitlementResponse
+	EntitlementResponse *types.EntitlementResponse
 }
 
 func (u UpdateEntitlementResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateEntitlementResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateEntitlementResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateEntitlementResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateEntitlementResponse) GetDtoEntitlementResponse() *types.DtoEntitlementResponse {
+func (u *UpdateEntitlementResponse) GetEntitlementResponse() *types.EntitlementResponse {
 	if u == nil {
 		return nil
 	}
-	return u.DtoEntitlementResponse
+	return u.EntitlementResponse
 }

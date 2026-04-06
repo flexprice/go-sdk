@@ -2,6 +2,10 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type MeterAggregation struct {
 	BucketSize *WindowSize `json:"bucket_size,omitzero"`
 	// Expression is an optional CEL expression to compute per-event quantity from event.properties.
@@ -21,6 +25,17 @@ type MeterAggregation struct {
 	// to scale up by a factor of 1000. If not provided, it will be null.
 	Multiplier *string          `json:"multiplier,omitzero"`
 	Type       *AggregationType `json:"type,omitzero"`
+}
+
+func (m MeterAggregation) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(m, "", false)
+}
+
+func (m *MeterAggregation) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (m *MeterAggregation) GetBucketSize() *WindowSize {

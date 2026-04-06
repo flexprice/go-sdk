@@ -12,6 +12,17 @@ type GetGroupRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetGroupRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetGroupRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetGroupRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetGroupRequest) GetID() string {
 type GetGroupResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoGroupResponse *types.DtoGroupResponse
+	GroupResponse *types.GroupResponse
 }
 
 func (g GetGroupResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetGroupResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetGroupResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetGroupResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetGroupResponse) GetDtoGroupResponse() *types.DtoGroupResponse {
+func (g *GetGroupResponse) GetGroupResponse() *types.GroupResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoGroupResponse
+	return g.GroupResponse
 }

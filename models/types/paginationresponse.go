@@ -2,10 +2,25 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type PaginationResponse struct {
 	Limit  *int64 `json:"limit,omitzero"`
 	Offset *int64 `json:"offset,omitzero"`
 	Total  *int64 `json:"total,omitzero"`
+}
+
+func (p PaginationResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PaginationResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PaginationResponse) GetLimit() *int64 {

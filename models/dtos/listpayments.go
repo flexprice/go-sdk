@@ -218,7 +218,7 @@ func (l *ListPaymentsRequest) GetStatus() *ListPaymentsStatus {
 type ListPaymentsResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Paginated payments
-	DtoListPaymentsResponse *types.DtoListPaymentsResponse
+	ListPaymentsResponse *types.ListPaymentsResponse
 }
 
 func (l ListPaymentsResponse) MarshalJSON() ([]byte, error) {
@@ -226,7 +226,7 @@ func (l ListPaymentsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListPaymentsResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -239,9 +239,9 @@ func (l *ListPaymentsResponse) GetHTTPMeta() types.HTTPMetadata {
 	return l.HTTPMeta
 }
 
-func (l *ListPaymentsResponse) GetDtoListPaymentsResponse() *types.DtoListPaymentsResponse {
+func (l *ListPaymentsResponse) GetListPaymentsResponse() *types.ListPaymentsResponse {
 	if l == nil {
 		return nil
 	}
-	return l.DtoListPaymentsResponse
+	return l.ListPaymentsResponse
 }

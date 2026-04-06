@@ -12,6 +12,17 @@ type DeleteCostsheetRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (d DeleteCostsheetRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteCostsheetRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (d *DeleteCostsheetRequest) GetID() string {
 	if d == nil {
 		return ""
@@ -22,7 +33,7 @@ func (d *DeleteCostsheetRequest) GetID() string {
 type DeleteCostsheetResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Costsheet deleted
-	DtoDeleteCostsheetResponse *types.DtoDeleteCostsheetResponse
+	DeleteCostsheetResponse *types.DeleteCostsheetResponse
 }
 
 func (d DeleteCostsheetResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (d DeleteCostsheetResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeleteCostsheetResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (d *DeleteCostsheetResponse) GetHTTPMeta() types.HTTPMetadata {
 	return d.HTTPMeta
 }
 
-func (d *DeleteCostsheetResponse) GetDtoDeleteCostsheetResponse() *types.DtoDeleteCostsheetResponse {
+func (d *DeleteCostsheetResponse) GetDeleteCostsheetResponse() *types.DeleteCostsheetResponse {
 	if d == nil {
 		return nil
 	}
-	return d.DtoDeleteCostsheetResponse
+	return d.DeleteCostsheetResponse
 }

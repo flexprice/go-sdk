@@ -2,6 +2,10 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type PricePriceTier struct {
 	// flat_amount is the flat amount for the given tier (optional)
 	// Applied on top of unit_amount*quantity. Useful for cases like "2.7$ + 5c"
@@ -13,6 +17,17 @@ type PricePriceTier struct {
 	// - If up_to is 1000, then quantity less than or equal to 1000 belongs to this tier
 	// - This behavior is consistent across both VOLUME and SLAB tier modes
 	UpTo *int64 `json:"up_to,omitzero"`
+}
+
+func (p PricePriceTier) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PricePriceTier) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PricePriceTier) GetFlatAmount() *string {

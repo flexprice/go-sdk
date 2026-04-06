@@ -3,6 +3,7 @@
 package dtos
 
 import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"io"
 )
@@ -14,6 +15,17 @@ type GetInvoicePdfRequest struct {
 	URL *bool `queryParam:"style=form,explode=true,name=url"`
 	// Force regeneration of the PDF even if one already exists in S3 (default: false). Note: force_generate has no effect if invoice_pdf_url is already set on the invoice.
 	ForceGenerate *bool `queryParam:"style=form,explode=true,name=force_generate"`
+}
+
+func (g GetInvoicePdfRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetInvoicePdfRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (g *GetInvoicePdfRequest) GetID() string {
@@ -42,6 +54,17 @@ type GetInvoicePdfResponse struct {
 	// OK
 	// The Close method must be called on this field, even if it is not used, to prevent resource leaks.
 	ResponseStream io.ReadCloser
+}
+
+func (g GetInvoicePdfResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetInvoicePdfResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (g *GetInvoicePdfResponse) GetHTTPMeta() types.HTTPMetadata {

@@ -2,10 +2,25 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type PriceTransformQuantity struct {
 	// Divide quantity by this number
 	DivideBy *int64     `json:"divide_by,omitzero"`
 	Round    *RoundType `json:"round,omitzero"`
+}
+
+func (p PriceTransformQuantity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PriceTransformQuantity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PriceTransformQuantity) GetDivideBy() *int64 {

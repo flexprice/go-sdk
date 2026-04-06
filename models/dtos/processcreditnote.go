@@ -12,6 +12,17 @@ type ProcessCreditNoteRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (p ProcessCreditNoteRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProcessCreditNoteRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (p *ProcessCreditNoteRequest) GetID() string {
 	if p == nil {
 		return ""
@@ -22,7 +33,7 @@ func (p *ProcessCreditNoteRequest) GetID() string {
 type ProcessCreditNoteResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCreditNoteResponse *types.DtoCreditNoteResponse
+	CreditNoteResponse *types.CreditNoteResponse
 }
 
 func (p ProcessCreditNoteResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (p ProcessCreditNoteResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (p *ProcessCreditNoteResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (p *ProcessCreditNoteResponse) GetHTTPMeta() types.HTTPMetadata {
 	return p.HTTPMeta
 }
 
-func (p *ProcessCreditNoteResponse) GetDtoCreditNoteResponse() *types.DtoCreditNoteResponse {
+func (p *ProcessCreditNoteResponse) GetCreditNoteResponse() *types.CreditNoteResponse {
 	if p == nil {
 		return nil
 	}
-	return p.DtoCreditNoteResponse
+	return p.CreditNoteResponse
 }

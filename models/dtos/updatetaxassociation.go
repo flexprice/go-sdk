@@ -11,7 +11,18 @@ type UpdateTaxAssociationRequest struct {
 	// Tax Config ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Tax Config Request
-	Body types.DtoTaxAssociationUpdateRequest `request:"mediaType=application/json"`
+	Body types.TaxAssociationUpdateRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateTaxAssociationRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateTaxAssociationRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateTaxAssociationRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateTaxAssociationRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateTaxAssociationRequest) GetBody() types.DtoTaxAssociationUpdateRequest {
+func (u *UpdateTaxAssociationRequest) GetBody() types.TaxAssociationUpdateRequest {
 	if u == nil {
-		return types.DtoTaxAssociationUpdateRequest{}
+		return types.TaxAssociationUpdateRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateTaxAssociationRequest) GetBody() types.DtoTaxAssociationUpdateReq
 type UpdateTaxAssociationResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoTaxAssociationResponse *types.DtoTaxAssociationResponse
+	TaxAssociationResponse *types.TaxAssociationResponse
 }
 
 func (u UpdateTaxAssociationResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateTaxAssociationResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateTaxAssociationResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateTaxAssociationResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateTaxAssociationResponse) GetDtoTaxAssociationResponse() *types.DtoTaxAssociationResponse {
+func (u *UpdateTaxAssociationResponse) GetTaxAssociationResponse() *types.TaxAssociationResponse {
 	if u == nil {
 		return nil
 	}
-	return u.DtoTaxAssociationResponse
+	return u.TaxAssociationResponse
 }

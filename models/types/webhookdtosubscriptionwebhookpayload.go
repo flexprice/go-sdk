@@ -7,8 +7,8 @@ import (
 )
 
 type WebhookDtoSubscriptionWebhookPayload struct {
-	EventType    *WebhookEventName        `json:"event_type,omitzero"`
-	Subscription *DtoSubscriptionResponse `json:"subscription,omitzero"`
+	EventType    *WebhookEventName `json:"event_type,omitzero"`
+	Subscription *Subscription     `json:"subscription,omitzero"`
 }
 
 func (w WebhookDtoSubscriptionWebhookPayload) MarshalJSON() ([]byte, error) {
@@ -29,7 +29,7 @@ func (w *WebhookDtoSubscriptionWebhookPayload) GetEventType() *WebhookEventName 
 	return w.EventType
 }
 
-func (w *WebhookDtoSubscriptionWebhookPayload) GetSubscription() *DtoSubscriptionResponse {
+func (w *WebhookDtoSubscriptionWebhookPayload) GetSubscription() *Subscription {
 	if w == nil {
 		return nil
 	}

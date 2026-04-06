@@ -16,6 +16,17 @@ type ListAPIKeysRequest struct {
 	Status *string `queryParam:"style=form,explode=true,name=status"`
 }
 
+func (l ListAPIKeysRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListAPIKeysRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (l *ListAPIKeysRequest) GetLimit() *int64 {
 	if l == nil {
 		return nil
@@ -40,7 +51,7 @@ func (l *ListAPIKeysRequest) GetStatus() *string {
 type ListAPIKeysResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListSecretsResponse *types.DtoListSecretsResponse
+	ListSecretsResponse *types.ListSecretsResponse
 }
 
 func (l ListAPIKeysResponse) MarshalJSON() ([]byte, error) {
@@ -48,7 +59,7 @@ func (l ListAPIKeysResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListAPIKeysResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -61,9 +72,9 @@ func (l *ListAPIKeysResponse) GetHTTPMeta() types.HTTPMetadata {
 	return l.HTTPMeta
 }
 
-func (l *ListAPIKeysResponse) GetDtoListSecretsResponse() *types.DtoListSecretsResponse {
+func (l *ListAPIKeysResponse) GetListSecretsResponse() *types.ListSecretsResponse {
 	if l == nil {
 		return nil
 	}
-	return l.DtoListSecretsResponse
+	return l.ListSecretsResponse
 }

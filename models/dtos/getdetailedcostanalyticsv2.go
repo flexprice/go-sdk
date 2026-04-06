@@ -10,7 +10,7 @@ import (
 type GetDetailedCostAnalyticsV2Response struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoGetDetailedCostAnalyticsResponse *types.DtoGetDetailedCostAnalyticsResponse
+	GetDetailedCostAnalyticsResponse *types.GetDetailedCostAnalyticsResponse
 }
 
 func (g GetDetailedCostAnalyticsV2Response) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (g GetDetailedCostAnalyticsV2Response) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetDetailedCostAnalyticsV2Response) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,11 +31,11 @@ func (g *GetDetailedCostAnalyticsV2Response) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetDetailedCostAnalyticsV2Response) GetDtoGetDetailedCostAnalyticsResponse() *types.DtoGetDetailedCostAnalyticsResponse {
+func (g *GetDetailedCostAnalyticsV2Response) GetGetDetailedCostAnalyticsResponse() *types.GetDetailedCostAnalyticsResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoGetDetailedCostAnalyticsResponse
+	return g.GetDetailedCostAnalyticsResponse
 }
 
 // #region class-body-getdetailedcostanalyticsv2response

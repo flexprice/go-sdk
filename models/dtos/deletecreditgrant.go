@@ -11,7 +11,7 @@ type DeleteCreditGrantRequest struct {
 	// Credit Grant ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Optional: effective_date for subscription-scoped grants
-	Body *types.DtoDeleteCreditGrantRequest `request:"mediaType=application/json"`
+	Body *types.DeleteCreditGrantRequest `request:"mediaType=application/json"`
 }
 
 func (d DeleteCreditGrantRequest) MarshalJSON() ([]byte, error) {
@@ -19,7 +19,7 @@ func (d DeleteCreditGrantRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeleteCreditGrantRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil
@@ -32,7 +32,7 @@ func (d *DeleteCreditGrantRequest) GetID() string {
 	return d.ID
 }
 
-func (d *DeleteCreditGrantRequest) GetBody() *types.DtoDeleteCreditGrantRequest {
+func (d *DeleteCreditGrantRequest) GetBody() *types.DeleteCreditGrantRequest {
 	if d == nil {
 		return nil
 	}
@@ -42,7 +42,7 @@ func (d *DeleteCreditGrantRequest) GetBody() *types.DtoDeleteCreditGrantRequest 
 type DeleteCreditGrantResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSuccessResponse *types.DtoSuccessResponse
+	SuccessResponse *types.SuccessResponse
 }
 
 func (d DeleteCreditGrantResponse) MarshalJSON() ([]byte, error) {
@@ -50,7 +50,7 @@ func (d DeleteCreditGrantResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeleteCreditGrantResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -63,9 +63,9 @@ func (d *DeleteCreditGrantResponse) GetHTTPMeta() types.HTTPMetadata {
 	return d.HTTPMeta
 }
 
-func (d *DeleteCreditGrantResponse) GetDtoSuccessResponse() *types.DtoSuccessResponse {
+func (d *DeleteCreditGrantResponse) GetSuccessResponse() *types.SuccessResponse {
 	if d == nil {
 		return nil
 	}
-	return d.DtoSuccessResponse
+	return d.SuccessResponse
 }

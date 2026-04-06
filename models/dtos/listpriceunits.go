@@ -98,7 +98,7 @@ func (l *ListPriceUnitsRequest) GetOrder() *ListPriceUnitsOrder {
 type ListPriceUnitsResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListPriceUnitsResponse *types.DtoListPriceUnitsResponse
+	ListPriceUnitsResponse *types.ListPriceUnitsResponse
 }
 
 func (l ListPriceUnitsResponse) MarshalJSON() ([]byte, error) {
@@ -106,7 +106,7 @@ func (l ListPriceUnitsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListPriceUnitsResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -119,9 +119,9 @@ func (l *ListPriceUnitsResponse) GetHTTPMeta() types.HTTPMetadata {
 	return l.HTTPMeta
 }
 
-func (l *ListPriceUnitsResponse) GetDtoListPriceUnitsResponse() *types.DtoListPriceUnitsResponse {
+func (l *ListPriceUnitsResponse) GetListPriceUnitsResponse() *types.ListPriceUnitsResponse {
 	if l == nil {
 		return nil
 	}
-	return l.DtoListPriceUnitsResponse
+	return l.ListPriceUnitsResponse
 }

@@ -12,6 +12,17 @@ type GetEventRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetEventRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetEventRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetEventRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetEventRequest) GetID() string {
 type GetEventResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoGetEventByIDResponse *types.DtoGetEventByIDResponse
+	GetEventByIDResponse *types.GetEventByIDResponse
 }
 
 func (g GetEventResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetEventResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetEventResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetEventResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetEventResponse) GetDtoGetEventByIDResponse() *types.DtoGetEventByIDResponse {
+func (g *GetEventResponse) GetGetEventByIDResponse() *types.GetEventByIDResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoGetEventByIDResponse
+	return g.GetEventByIDResponse
 }

@@ -11,7 +11,18 @@ type UpdateWalletRequest struct {
 	// Wallet ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Update wallet request
-	Body types.DtoUpdateWalletRequest `request:"mediaType=application/json"`
+	Body types.UpdateWalletRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateWalletRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateWalletRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateWalletRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateWalletRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateWalletRequest) GetBody() types.DtoUpdateWalletRequest {
+func (u *UpdateWalletRequest) GetBody() types.UpdateWalletRequest {
 	if u == nil {
-		return types.DtoUpdateWalletRequest{}
+		return types.UpdateWalletRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateWalletRequest) GetBody() types.DtoUpdateWalletRequest {
 type UpdateWalletResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoWalletResponse *types.DtoWalletResponse
+	Wallet *types.Wallet
 }
 
 func (u UpdateWalletResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateWalletResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateWalletResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateWalletResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateWalletResponse) GetDtoWalletResponse() *types.DtoWalletResponse {
+func (u *UpdateWalletResponse) GetWallet() *types.Wallet {
 	if u == nil {
 		return nil
 	}
-	return u.DtoWalletResponse
+	return u.Wallet
 }

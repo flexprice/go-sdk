@@ -12,6 +12,17 @@ type GetTaxRateRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetTaxRateRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTaxRateRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetTaxRateRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetTaxRateRequest) GetID() string {
 type GetTaxRateResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoTaxRateResponse *types.DtoTaxRateResponse
+	TaxRateResponse *types.TaxRateResponse
 }
 
 func (g GetTaxRateResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetTaxRateResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTaxRateResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetTaxRateResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetTaxRateResponse) GetDtoTaxRateResponse() *types.DtoTaxRateResponse {
+func (g *GetTaxRateResponse) GetTaxRateResponse() *types.TaxRateResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoTaxRateResponse
+	return g.TaxRateResponse
 }

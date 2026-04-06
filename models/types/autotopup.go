@@ -2,11 +2,26 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type AutoTopup struct {
 	Amount    *float64 `json:"amount,omitzero"`
 	Enabled   *bool    `json:"enabled,omitzero"`
 	Invoicing *bool    `json:"invoicing,omitzero"`
 	Threshold *float64 `json:"threshold,omitzero"`
+}
+
+func (a AutoTopup) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AutoTopup) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (a *AutoTopup) GetAmount() *float64 {

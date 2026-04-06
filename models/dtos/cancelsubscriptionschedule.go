@@ -11,7 +11,7 @@ type CancelSubscriptionScheduleRequest struct {
 	// Schedule ID (optional if using request body)
 	ScheduleID string `pathParam:"style=simple,explode=false,name=schedule_id"`
 	// Cancel request (optional if using path parameter)
-	Body *types.DtoCancelScheduleRequest `request:"mediaType=application/json"`
+	Body *types.CancelScheduleRequest `request:"mediaType=application/json"`
 }
 
 func (c CancelSubscriptionScheduleRequest) MarshalJSON() ([]byte, error) {
@@ -19,7 +19,7 @@ func (c CancelSubscriptionScheduleRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CancelSubscriptionScheduleRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"schedule_id"}); err != nil {
 		return err
 	}
 	return nil
@@ -32,7 +32,7 @@ func (c *CancelSubscriptionScheduleRequest) GetScheduleID() string {
 	return c.ScheduleID
 }
 
-func (c *CancelSubscriptionScheduleRequest) GetBody() *types.DtoCancelScheduleRequest {
+func (c *CancelSubscriptionScheduleRequest) GetBody() *types.CancelScheduleRequest {
 	if c == nil {
 		return nil
 	}
@@ -42,7 +42,7 @@ func (c *CancelSubscriptionScheduleRequest) GetBody() *types.DtoCancelScheduleRe
 type CancelSubscriptionScheduleResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCancelScheduleResponse *types.DtoCancelScheduleResponse
+	CancelScheduleResponse *types.CancelScheduleResponse
 }
 
 func (c CancelSubscriptionScheduleResponse) MarshalJSON() ([]byte, error) {
@@ -50,7 +50,7 @@ func (c CancelSubscriptionScheduleResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CancelSubscriptionScheduleResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -63,9 +63,9 @@ func (c *CancelSubscriptionScheduleResponse) GetHTTPMeta() types.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CancelSubscriptionScheduleResponse) GetDtoCancelScheduleResponse() *types.DtoCancelScheduleResponse {
+func (c *CancelSubscriptionScheduleResponse) GetCancelScheduleResponse() *types.CancelScheduleResponse {
 	if c == nil {
 		return nil
 	}
-	return c.DtoCancelScheduleResponse
+	return c.CancelScheduleResponse
 }

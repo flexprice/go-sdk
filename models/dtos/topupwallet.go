@@ -11,7 +11,18 @@ type TopUpWalletRequest struct {
 	// Wallet ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Top up request
-	Body types.DtoTopUpWalletRequest `request:"mediaType=application/json"`
+	Body types.TopUpWalletRequest `request:"mediaType=application/json"`
+}
+
+func (t TopUpWalletRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TopUpWalletRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (t *TopUpWalletRequest) GetID() string {
@@ -21,9 +32,9 @@ func (t *TopUpWalletRequest) GetID() string {
 	return t.ID
 }
 
-func (t *TopUpWalletRequest) GetBody() types.DtoTopUpWalletRequest {
+func (t *TopUpWalletRequest) GetBody() types.TopUpWalletRequest {
 	if t == nil {
-		return types.DtoTopUpWalletRequest{}
+		return types.TopUpWalletRequest{}
 	}
 	return t.Body
 }
@@ -31,7 +42,7 @@ func (t *TopUpWalletRequest) GetBody() types.DtoTopUpWalletRequest {
 type TopUpWalletResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoTopUpWalletResponse *types.DtoTopUpWalletResponse
+	TopUpWalletResponse *types.TopUpWalletResponse
 }
 
 func (t TopUpWalletResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (t TopUpWalletResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TopUpWalletResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (t *TopUpWalletResponse) GetHTTPMeta() types.HTTPMetadata {
 	return t.HTTPMeta
 }
 
-func (t *TopUpWalletResponse) GetDtoTopUpWalletResponse() *types.DtoTopUpWalletResponse {
+func (t *TopUpWalletResponse) GetTopUpWalletResponse() *types.TopUpWalletResponse {
 	if t == nil {
 		return nil
 	}
-	return t.DtoTopUpWalletResponse
+	return t.TopUpWalletResponse
 }

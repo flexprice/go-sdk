@@ -12,6 +12,17 @@ type GetTenantByIDRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetTenantByIDRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTenantByIDRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetTenantByIDRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetTenantByIDRequest) GetID() string {
 type GetTenantByIDResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Tenant details
-	DtoTenantResponse *types.DtoTenantResponse
+	TenantResponse *types.TenantResponse
 }
 
 func (g GetTenantByIDResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetTenantByIDResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTenantByIDResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetTenantByIDResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetTenantByIDResponse) GetDtoTenantResponse() *types.DtoTenantResponse {
+func (g *GetTenantByIDResponse) GetTenantResponse() *types.TenantResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoTenantResponse
+	return g.TenantResponse
 }

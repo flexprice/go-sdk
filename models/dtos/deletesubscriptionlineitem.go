@@ -11,7 +11,18 @@ type DeleteSubscriptionLineItemRequest struct {
 	// Line Item ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Delete Line Item Request
-	Body types.DtoDeleteSubscriptionLineItemRequest `request:"mediaType=application/json"`
+	Body types.DeleteSubscriptionLineItemRequest `request:"mediaType=application/json"`
+}
+
+func (d DeleteSubscriptionLineItemRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteSubscriptionLineItemRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DeleteSubscriptionLineItemRequest) GetID() string {
@@ -21,9 +32,9 @@ func (d *DeleteSubscriptionLineItemRequest) GetID() string {
 	return d.ID
 }
 
-func (d *DeleteSubscriptionLineItemRequest) GetBody() types.DtoDeleteSubscriptionLineItemRequest {
+func (d *DeleteSubscriptionLineItemRequest) GetBody() types.DeleteSubscriptionLineItemRequest {
 	if d == nil {
-		return types.DtoDeleteSubscriptionLineItemRequest{}
+		return types.DeleteSubscriptionLineItemRequest{}
 	}
 	return d.Body
 }
@@ -31,7 +42,7 @@ func (d *DeleteSubscriptionLineItemRequest) GetBody() types.DtoDeleteSubscriptio
 type DeleteSubscriptionLineItemResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSubscriptionLineItemResponse *types.DtoSubscriptionLineItemResponse
+	SubscriptionLineItemResponse *types.SubscriptionLineItemResponse
 }
 
 func (d DeleteSubscriptionLineItemResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (d DeleteSubscriptionLineItemResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeleteSubscriptionLineItemResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (d *DeleteSubscriptionLineItemResponse) GetHTTPMeta() types.HTTPMetadata {
 	return d.HTTPMeta
 }
 
-func (d *DeleteSubscriptionLineItemResponse) GetDtoSubscriptionLineItemResponse() *types.DtoSubscriptionLineItemResponse {
+func (d *DeleteSubscriptionLineItemResponse) GetSubscriptionLineItemResponse() *types.SubscriptionLineItemResponse {
 	if d == nil {
 		return nil
 	}
-	return d.DtoSubscriptionLineItemResponse
+	return d.SubscriptionLineItemResponse
 }

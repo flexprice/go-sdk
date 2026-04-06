@@ -10,7 +10,7 @@ import (
 type GetActiveCostsheetResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Active costsheet
-	DtoCostsheetResponse *types.DtoCostsheetResponse
+	CostsheetResponse *types.CostsheetResponse
 }
 
 func (g GetActiveCostsheetResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (g GetActiveCostsheetResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetActiveCostsheetResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (g *GetActiveCostsheetResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetActiveCostsheetResponse) GetDtoCostsheetResponse() *types.DtoCostsheetResponse {
+func (g *GetActiveCostsheetResponse) GetCostsheetResponse() *types.CostsheetResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoCostsheetResponse
+	return g.CostsheetResponse
 }

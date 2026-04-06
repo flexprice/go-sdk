@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type WalletTransactionFilterOrder string
@@ -35,12 +36,12 @@ func (e *WalletTransactionFilterOrder) UnmarshalJSON(data []byte) error {
 }
 
 type WalletTransactionFilter struct {
-	CreatedBy          *string  `json:"created_by,omitzero"`
-	CreditsAvailableGt *float64 `json:"credits_available_gt,omitzero"`
-	EndTime            *string  `json:"end_time,omitzero"`
-	Expand             *string  `json:"expand,omitzero"`
-	ExpiryDateAfter    *string  `json:"expiry_date_after,omitzero"`
-	ExpiryDateBefore   *string  `json:"expiry_date_before,omitzero"`
+	CreatedBy          *string    `json:"created_by,omitzero"`
+	CreditsAvailableGt *float64   `json:"credits_available_gt,omitzero"`
+	EndTime            *time.Time `json:"end_time,omitzero"`
+	Expand             *string    `json:"expand,omitzero"`
+	ExpiryDateAfter    *string    `json:"expiry_date_after,omitzero"`
+	ExpiryDateBefore   *string    `json:"expiry_date_before,omitzero"`
 	// filters allows complex filtering based on multiple fields
 	Filters           []FilterCondition             `json:"filters,omitzero"`
 	ID                *string                       `json:"id,omitzero"`
@@ -51,7 +52,7 @@ type WalletTransactionFilter struct {
 	ReferenceID       *string                       `json:"reference_id,omitzero"`
 	ReferenceType     *string                       `json:"reference_type,omitzero"`
 	Sort              []SortCondition               `json:"sort,omitzero"`
-	StartTime         *string                       `json:"start_time,omitzero"`
+	StartTime         *time.Time                    `json:"start_time,omitzero"`
 	Status            *Status                       `json:"status,omitzero"`
 	TransactionReason *TransactionReason            `json:"transaction_reason,omitzero"`
 	TransactionStatus *TransactionStatus            `json:"transaction_status,omitzero"`
@@ -83,7 +84,7 @@ func (w *WalletTransactionFilter) GetCreditsAvailableGt() *float64 {
 	return w.CreditsAvailableGt
 }
 
-func (w *WalletTransactionFilter) GetEndTime() *string {
+func (w *WalletTransactionFilter) GetEndTime() *time.Time {
 	if w == nil {
 		return nil
 	}
@@ -174,7 +175,7 @@ func (w *WalletTransactionFilter) GetSort() []SortCondition {
 	return w.Sort
 }
 
-func (w *WalletTransactionFilter) GetStartTime() *string {
+func (w *WalletTransactionFilter) GetStartTime() *time.Time {
 	if w == nil {
 		return nil
 	}

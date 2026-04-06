@@ -12,6 +12,17 @@ type GetCreditGrantRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetCreditGrantRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCreditGrantRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetCreditGrantRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetCreditGrantRequest) GetID() string {
 type GetCreditGrantResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCreditGrantResponse *types.DtoCreditGrantResponse
+	CreditGrantResponse *types.CreditGrantResponse
 }
 
 func (g GetCreditGrantResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetCreditGrantResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetCreditGrantResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetCreditGrantResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCreditGrantResponse) GetDtoCreditGrantResponse() *types.DtoCreditGrantResponse {
+func (g *GetCreditGrantResponse) GetCreditGrantResponse() *types.CreditGrantResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoCreditGrantResponse
+	return g.CreditGrantResponse
 }

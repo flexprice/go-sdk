@@ -33,7 +33,7 @@ func newUsers(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hook
 
 // CreateUser - Create user or service account
 // Create a user account (type=user, email required; returns user + password for login) or a service account (type=service_account, roles required) for API/automation access.
-func (s *Users) CreateUser(ctx context.Context, request types.DtoCreateUserRequest, opts ...dtos.Option) (*dtos.CreateUserResponse, error) {
+func (s *Users) CreateUser(ctx context.Context, request types.CreateUserRequest, opts ...dtos.Option) (*dtos.CreateUserResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -207,12 +207,12 @@ func (s *Users) CreateUser(ctx context.Context, request types.DtoCreateUserReque
 				return nil, err
 			}
 
-			var out types.DtoCreateUserResponse
+			var out types.CreateUserResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreateUserResponse = &out
+			res.CreateUserResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -228,7 +228,7 @@ func (s *Users) CreateUser(ctx context.Context, request types.DtoCreateUserReque
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -253,7 +253,7 @@ func (s *Users) CreateUser(ctx context.Context, request types.DtoCreateUserReque
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -463,12 +463,12 @@ func (s *Users) GetUserInfo(ctx context.Context, opts ...dtos.Option) (*dtos.Get
 				return nil, err
 			}
 
-			var out types.DtoUserResponse
+			var out types.UserResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoUserResponse = &out
+			res.UserResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -484,7 +484,7 @@ func (s *Users) GetUserInfo(ctx context.Context, opts ...dtos.Option) (*dtos.Get
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -509,7 +509,7 @@ func (s *Users) GetUserInfo(ctx context.Context, opts ...dtos.Option) (*dtos.Get
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -726,12 +726,12 @@ func (s *Users) QueryUser(ctx context.Context, request types.UserFilter, opts ..
 				return nil, err
 			}
 
-			var out types.DtoListUsersResponse
+			var out types.ListUsersResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListUsersResponse = &out
+			res.ListUsersResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -747,7 +747,7 @@ func (s *Users) QueryUser(ctx context.Context, request types.UserFilter, opts ..
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -772,7 +772,7 @@ func (s *Users) QueryUser(ctx context.Context, request types.UserFilter, opts ..
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

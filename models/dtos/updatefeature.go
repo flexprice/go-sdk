@@ -11,7 +11,18 @@ type UpdateFeatureRequest struct {
 	// Feature ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Feature update data
-	Body types.DtoUpdateFeatureRequest `request:"mediaType=application/json"`
+	Body types.UpdateFeatureRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateFeatureRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateFeatureRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateFeatureRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateFeatureRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateFeatureRequest) GetBody() types.DtoUpdateFeatureRequest {
+func (u *UpdateFeatureRequest) GetBody() types.UpdateFeatureRequest {
 	if u == nil {
-		return types.DtoUpdateFeatureRequest{}
+		return types.UpdateFeatureRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateFeatureRequest) GetBody() types.DtoUpdateFeatureRequest {
 type UpdateFeatureResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoFeatureResponse *types.DtoFeatureResponse
+	Feature *types.Feature1
 }
 
 func (u UpdateFeatureResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateFeatureResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateFeatureResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateFeatureResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateFeatureResponse) GetDtoFeatureResponse() *types.DtoFeatureResponse {
+func (u *UpdateFeatureResponse) GetFeature() *types.Feature1 {
 	if u == nil {
 		return nil
 	}
-	return u.DtoFeatureResponse
+	return u.Feature
 }

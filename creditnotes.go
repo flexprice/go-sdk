@@ -35,7 +35,7 @@ func newCreditNotes(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks
 // Use when issuing a refund or adjustment (e.g. customer dispute or proration). Links to an invoice; create as draft then finalize.
 //
 // This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
-func (s *CreditNotes) CreateCreditNote(ctx context.Context, request types.DtoCreateCreditNoteRequest, opts ...dtos.Option) (*dtos.CreateCreditNoteResponse, error) {
+func (s *CreditNotes) CreateCreditNote(ctx context.Context, request types.CreateCreditNoteRequest, opts ...dtos.Option) (*dtos.CreateCreditNoteResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -209,12 +209,12 @@ func (s *CreditNotes) CreateCreditNote(ctx context.Context, request types.DtoCre
 				return nil, err
 			}
 
-			var out types.DtoCreditNoteResponse
+			var out types.CreditNoteResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreditNoteResponse = &out
+			res.CreditNoteResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -236,7 +236,7 @@ func (s *CreditNotes) CreateCreditNote(ctx context.Context, request types.DtoCre
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -261,7 +261,7 @@ func (s *CreditNotes) CreateCreditNote(ctx context.Context, request types.DtoCre
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -475,12 +475,12 @@ func (s *CreditNotes) GetCreditNote(ctx context.Context, id string, opts ...dtos
 				return nil, err
 			}
 
-			var out types.DtoCreditNoteResponse
+			var out types.CreditNoteResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreditNoteResponse = &out
+			res.CreditNoteResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -498,7 +498,7 @@ func (s *CreditNotes) GetCreditNote(ctx context.Context, id string, opts ...dtos
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -523,7 +523,7 @@ func (s *CreditNotes) GetCreditNote(ctx context.Context, id string, opts ...dtos
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -739,12 +739,12 @@ func (s *CreditNotes) ProcessCreditNote(ctx context.Context, id string, opts ...
 				return nil, err
 			}
 
-			var out types.DtoCreditNoteResponse
+			var out types.CreditNoteResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreditNoteResponse = &out
+			res.CreditNoteResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -766,7 +766,7 @@ func (s *CreditNotes) ProcessCreditNote(ctx context.Context, id string, opts ...
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -791,7 +791,7 @@ func (s *CreditNotes) ProcessCreditNote(ctx context.Context, id string, opts ...
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1007,12 +1007,12 @@ func (s *CreditNotes) VoidCreditNote(ctx context.Context, id string, opts ...dto
 				return nil, err
 			}
 
-			var out types.DtoCreditNoteResponse
+			var out types.CreditNoteResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreditNoteResponse = &out
+			res.CreditNoteResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1034,7 +1034,7 @@ func (s *CreditNotes) VoidCreditNote(ctx context.Context, id string, opts ...dto
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1059,7 +1059,7 @@ func (s *CreditNotes) VoidCreditNote(ctx context.Context, id string, opts ...dto
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

@@ -2,6 +2,10 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type S3JobConfig struct {
 	// S3 bucket name
 	Bucket      *string            `json:"bucket,omitzero"`
@@ -15,6 +19,17 @@ type S3JobConfig struct {
 	Region *string `json:"region,omitzero"`
 	// Use path-style addressing instead of virtual-hosted-style (required for MinIO)
 	UsePathStyle *bool `json:"use_path_style,omitzero"`
+}
+
+func (s S3JobConfig) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *S3JobConfig) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *S3JobConfig) GetBucket() *string {

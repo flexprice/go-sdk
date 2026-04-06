@@ -18,6 +18,17 @@ type ListAllSubscriptionSchedulesRequest struct {
 	Offset *int64 `queryParam:"style=form,explode=true,name=offset"`
 }
 
+func (l ListAllSubscriptionSchedulesRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListAllSubscriptionSchedulesRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (l *ListAllSubscriptionSchedulesRequest) GetPendingOnly() *bool {
 	if l == nil {
 		return nil
@@ -49,7 +60,7 @@ func (l *ListAllSubscriptionSchedulesRequest) GetOffset() *int64 {
 type ListAllSubscriptionSchedulesResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoGetPendingSchedulesResponse *types.DtoGetPendingSchedulesResponse
+	GetPendingSchedulesResponse *types.GetPendingSchedulesResponse
 }
 
 func (l ListAllSubscriptionSchedulesResponse) MarshalJSON() ([]byte, error) {
@@ -57,7 +68,7 @@ func (l ListAllSubscriptionSchedulesResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListAllSubscriptionSchedulesResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -70,9 +81,9 @@ func (l *ListAllSubscriptionSchedulesResponse) GetHTTPMeta() types.HTTPMetadata 
 	return l.HTTPMeta
 }
 
-func (l *ListAllSubscriptionSchedulesResponse) GetDtoGetPendingSchedulesResponse() *types.DtoGetPendingSchedulesResponse {
+func (l *ListAllSubscriptionSchedulesResponse) GetGetPendingSchedulesResponse() *types.GetPendingSchedulesResponse {
 	if l == nil {
 		return nil
 	}
-	return l.DtoGetPendingSchedulesResponse
+	return l.GetPendingSchedulesResponse
 }

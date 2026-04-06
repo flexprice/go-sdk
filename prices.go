@@ -33,7 +33,7 @@ func newPrices(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hoo
 
 // CreatePrice - Create price
 // Use when adding a new price to a plan or catalog (e.g. per-seat, flat, or metered). Ideal for both simple and usage-based pricing.
-func (s *Prices) CreatePrice(ctx context.Context, request types.DtoCreatePriceRequest, opts ...dtos.Option) (*dtos.CreatePriceResponse, error) {
+func (s *Prices) CreatePrice(ctx context.Context, request types.CreatePriceRequest, opts ...dtos.Option) (*dtos.CreatePriceResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -207,12 +207,12 @@ func (s *Prices) CreatePrice(ctx context.Context, request types.DtoCreatePriceRe
 				return nil, err
 			}
 
-			var out types.DtoPriceResponse
+			var out types.Price
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPriceResponse = &out
+			res.Price = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -228,7 +228,7 @@ func (s *Prices) CreatePrice(ctx context.Context, request types.DtoCreatePriceRe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -253,7 +253,7 @@ func (s *Prices) CreatePrice(ctx context.Context, request types.DtoCreatePriceRe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -296,7 +296,7 @@ func (s *Prices) CreatePrice(ctx context.Context, request types.DtoCreatePriceRe
 
 // CreatePricesBulk - Create prices in bulk
 // Use when creating many prices at once (e.g. importing a catalog or setting up a plan with multiple tiers).
-func (s *Prices) CreatePricesBulk(ctx context.Context, request types.DtoCreateBulkPriceRequest, opts ...dtos.Option) (*dtos.CreatePricesBulkResponse, error) {
+func (s *Prices) CreatePricesBulk(ctx context.Context, request types.CreateBulkPriceRequest, opts ...dtos.Option) (*dtos.CreatePricesBulkResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -470,12 +470,12 @@ func (s *Prices) CreatePricesBulk(ctx context.Context, request types.DtoCreateBu
 				return nil, err
 			}
 
-			var out types.DtoCreateBulkPriceResponse
+			var out types.CreateBulkPriceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreateBulkPriceResponse = &out
+			res.CreateBulkPriceResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -491,7 +491,7 @@ func (s *Prices) CreatePricesBulk(ctx context.Context, request types.DtoCreateBu
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -516,7 +516,7 @@ func (s *Prices) CreatePricesBulk(ctx context.Context, request types.DtoCreateBu
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -730,12 +730,12 @@ func (s *Prices) GetPriceByLookupKey(ctx context.Context, lookupKey string, opts
 				return nil, err
 			}
 
-			var out types.DtoPriceResponse
+			var out types.Price
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPriceResponse = &out
+			res.Price = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -751,7 +751,7 @@ func (s *Prices) GetPriceByLookupKey(ctx context.Context, lookupKey string, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -776,7 +776,7 @@ func (s *Prices) GetPriceByLookupKey(ctx context.Context, lookupKey string, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -993,12 +993,12 @@ func (s *Prices) QueryPrice(ctx context.Context, request types.PriceFilter, opts
 				return nil, err
 			}
 
-			var out types.DtoListPricesResponse
+			var out types.ListPricesResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListPricesResponse = &out
+			res.ListPricesResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1014,7 +1014,7 @@ func (s *Prices) QueryPrice(ctx context.Context, request types.PriceFilter, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1039,7 +1039,7 @@ func (s *Prices) QueryPrice(ctx context.Context, request types.PriceFilter, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1253,12 +1253,12 @@ func (s *Prices) GetPrice(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out types.DtoPriceResponse
+			var out types.Price
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPriceResponse = &out
+			res.Price = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1274,7 +1274,7 @@ func (s *Prices) GetPrice(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1299,7 +1299,7 @@ func (s *Prices) GetPrice(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1342,7 +1342,7 @@ func (s *Prices) GetPrice(ctx context.Context, id string, opts ...dtos.Option) (
 
 // UpdatePrice - Update price
 // Use when changing price configuration (e.g. amount, billing scheme, or metadata).
-func (s *Prices) UpdatePrice(ctx context.Context, id string, body types.DtoUpdatePriceRequest, opts ...dtos.Option) (*dtos.UpdatePriceResponse, error) {
+func (s *Prices) UpdatePrice(ctx context.Context, id string, body types.UpdatePriceRequest, opts ...dtos.Option) (*dtos.UpdatePriceResponse, error) {
 	request := dtos.UpdatePriceRequest{
 		ID:   id,
 		Body: body,
@@ -1521,12 +1521,12 @@ func (s *Prices) UpdatePrice(ctx context.Context, id string, body types.DtoUpdat
 				return nil, err
 			}
 
-			var out types.DtoPriceResponse
+			var out types.Price
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPriceResponse = &out
+			res.Price = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1542,7 +1542,7 @@ func (s *Prices) UpdatePrice(ctx context.Context, id string, body types.DtoUpdat
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1567,7 +1567,7 @@ func (s *Prices) UpdatePrice(ctx context.Context, id string, body types.DtoUpdat
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1610,7 +1610,7 @@ func (s *Prices) UpdatePrice(ctx context.Context, id string, body types.DtoUpdat
 
 // DeletePrice - Delete price
 // Use when retiring a price (e.g. end-of-life or replacement). Optional effective date or cascade for subscriptions.
-func (s *Prices) DeletePrice(ctx context.Context, id string, body types.DtoDeletePriceRequest, opts ...dtos.Option) (*dtos.DeletePriceResponse, error) {
+func (s *Prices) DeletePrice(ctx context.Context, id string, body types.DeletePriceRequest, opts ...dtos.Option) (*dtos.DeletePriceResponse, error) {
 	request := dtos.DeletePriceRequest{
 		ID:   id,
 		Body: body,
@@ -1789,12 +1789,12 @@ func (s *Prices) DeletePrice(ctx context.Context, id string, body types.DtoDelet
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1810,7 +1810,7 @@ func (s *Prices) DeletePrice(ctx context.Context, id string, body types.DtoDelet
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1835,7 +1835,7 @@ func (s *Prices) DeletePrice(ctx context.Context, id string, body types.DtoDelet
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

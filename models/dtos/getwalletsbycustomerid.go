@@ -12,6 +12,17 @@ type GetWalletsByCustomerIDRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetWalletsByCustomerIDRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetWalletsByCustomerIDRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetWalletsByCustomerIDRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetWalletsByCustomerIDRequest) GetID() string {
 type GetWalletsByCustomerIDResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoWalletResponses []types.DtoWalletResponse
+	Wallets []types.Wallet
 }
 
 func (g GetWalletsByCustomerIDResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetWalletsByCustomerIDResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetWalletsByCustomerIDResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetWalletsByCustomerIDResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetWalletsByCustomerIDResponse) GetDtoWalletResponses() []types.DtoWalletResponse {
+func (g *GetWalletsByCustomerIDResponse) GetWallets() []types.Wallet {
 	if g == nil {
 		return nil
 	}
-	return g.DtoWalletResponses
+	return g.Wallets
 }

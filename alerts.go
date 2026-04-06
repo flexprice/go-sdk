@@ -207,12 +207,12 @@ func (s *Alerts) QueryAlertLog(ctx context.Context, request types.AlertLogFilter
 				return nil, err
 			}
 
-			var out types.DtoListAlertLogsResponse
+			var out types.ListAlertLogsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListAlertLogsResponse = &out
+			res.ListAlertLogsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -228,7 +228,7 @@ func (s *Alerts) QueryAlertLog(ctx context.Context, request types.AlertLogFilter
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -253,7 +253,7 @@ func (s *Alerts) QueryAlertLog(ctx context.Context, request types.AlertLogFilter
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

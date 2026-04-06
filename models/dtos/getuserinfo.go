@@ -10,7 +10,7 @@ import (
 type GetUserInfoResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoUserResponse *types.DtoUserResponse
+	UserResponse *types.UserResponse
 }
 
 func (g GetUserInfoResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (g GetUserInfoResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetUserInfoResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (g *GetUserInfoResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetUserInfoResponse) GetDtoUserResponse() *types.DtoUserResponse {
+func (g *GetUserInfoResponse) GetUserResponse() *types.UserResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoUserResponse
+	return g.UserResponse
 }

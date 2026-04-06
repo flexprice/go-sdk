@@ -12,6 +12,17 @@ type GetTaskRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetTaskRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTaskRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetTaskRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetTaskRequest) GetID() string {
 type GetTaskResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoTaskResponse *types.DtoTaskResponse
+	TaskResponse *types.TaskResponse
 }
 
 func (g GetTaskResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetTaskResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTaskResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetTaskResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetTaskResponse) GetDtoTaskResponse() *types.DtoTaskResponse {
+func (g *GetTaskResponse) GetTaskResponse() *types.TaskResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoTaskResponse
+	return g.TaskResponse
 }

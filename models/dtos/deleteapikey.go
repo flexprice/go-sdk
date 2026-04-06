@@ -3,12 +3,24 @@
 package dtos
 
 import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
 type DeleteAPIKeyRequest struct {
 	// API key ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (d DeleteAPIKeyRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteAPIKeyRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DeleteAPIKeyRequest) GetID() string {
@@ -20,6 +32,17 @@ func (d *DeleteAPIKeyRequest) GetID() string {
 
 type DeleteAPIKeyResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
+}
+
+func (d DeleteAPIKeyResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteAPIKeyResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DeleteAPIKeyResponse) GetHTTPMeta() types.HTTPMetadata {

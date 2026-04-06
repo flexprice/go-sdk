@@ -10,7 +10,7 @@ import (
 type QueryWalletTransactionResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListWalletTransactionsResponse *types.DtoListWalletTransactionsResponse
+	ListWalletTransactionsResponse *types.ListWalletTransactionsResponse
 }
 
 func (q QueryWalletTransactionResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (q QueryWalletTransactionResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (q *QueryWalletTransactionResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &q, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (q *QueryWalletTransactionResponse) GetHTTPMeta() types.HTTPMetadata {
 	return q.HTTPMeta
 }
 
-func (q *QueryWalletTransactionResponse) GetDtoListWalletTransactionsResponse() *types.DtoListWalletTransactionsResponse {
+func (q *QueryWalletTransactionResponse) GetListWalletTransactionsResponse() *types.ListWalletTransactionsResponse {
 	if q == nil {
 		return nil
 	}
-	return q.DtoListWalletTransactionsResponse
+	return q.ListWalletTransactionsResponse
 }

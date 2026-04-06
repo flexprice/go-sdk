@@ -14,6 +14,17 @@ type GetCostsheetRequest struct {
 	Expand *string `queryParam:"style=form,explode=true,name=expand"`
 }
 
+func (g GetCostsheetRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCostsheetRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetCostsheetRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -31,7 +42,7 @@ func (g *GetCostsheetRequest) GetExpand() *string {
 type GetCostsheetResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Costsheet details
-	DtoGetCostsheetResponse *types.DtoGetCostsheetResponse
+	GetCostsheetResponse *types.GetCostsheetResponse
 }
 
 func (g GetCostsheetResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (g GetCostsheetResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetCostsheetResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (g *GetCostsheetResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCostsheetResponse) GetDtoGetCostsheetResponse() *types.DtoGetCostsheetResponse {
+func (g *GetCostsheetResponse) GetGetCostsheetResponse() *types.GetCostsheetResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoGetCostsheetResponse
+	return g.GetCostsheetResponse
 }

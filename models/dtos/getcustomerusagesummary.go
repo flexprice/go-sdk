@@ -64,7 +64,7 @@ func (g *GetCustomerUsageSummaryRequest) GetSubscriptionIds() []string {
 type GetCustomerUsageSummaryResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCustomerUsageSummaryResponse *types.DtoCustomerUsageSummaryResponse
+	CustomerUsageSummaryResponse *types.CustomerUsageSummaryResponse
 }
 
 func (g GetCustomerUsageSummaryResponse) MarshalJSON() ([]byte, error) {
@@ -72,7 +72,7 @@ func (g GetCustomerUsageSummaryResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetCustomerUsageSummaryResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -85,9 +85,9 @@ func (g *GetCustomerUsageSummaryResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCustomerUsageSummaryResponse) GetDtoCustomerUsageSummaryResponse() *types.DtoCustomerUsageSummaryResponse {
+func (g *GetCustomerUsageSummaryResponse) GetCustomerUsageSummaryResponse() *types.CustomerUsageSummaryResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoCustomerUsageSummaryResponse
+	return g.CustomerUsageSummaryResponse
 }

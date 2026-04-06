@@ -11,7 +11,18 @@ type UpdatePlanRequest struct {
 	// Plan ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Plan update
-	Body types.DtoUpdatePlanRequest `request:"mediaType=application/json"`
+	Body types.UpdatePlanRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdatePlanRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdatePlanRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdatePlanRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdatePlanRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdatePlanRequest) GetBody() types.DtoUpdatePlanRequest {
+func (u *UpdatePlanRequest) GetBody() types.UpdatePlanRequest {
 	if u == nil {
-		return types.DtoUpdatePlanRequest{}
+		return types.UpdatePlanRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdatePlanRequest) GetBody() types.DtoUpdatePlanRequest {
 type UpdatePlanResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoPlanResponse *types.DtoPlanResponse
+	Plan *types.Plan1
 }
 
 func (u UpdatePlanResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdatePlanResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdatePlanResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdatePlanResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdatePlanResponse) GetDtoPlanResponse() *types.DtoPlanResponse {
+func (u *UpdatePlanResponse) GetPlan() *types.Plan1 {
 	if u == nil {
 		return nil
 	}
-	return u.DtoPlanResponse
+	return u.Plan
 }

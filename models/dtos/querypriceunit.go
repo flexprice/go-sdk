@@ -10,7 +10,7 @@ import (
 type QueryPriceUnitResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListPriceUnitsResponse *types.DtoListPriceUnitsResponse
+	ListPriceUnitsResponse *types.ListPriceUnitsResponse
 }
 
 func (q QueryPriceUnitResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (q QueryPriceUnitResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (q *QueryPriceUnitResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &q, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (q *QueryPriceUnitResponse) GetHTTPMeta() types.HTTPMetadata {
 	return q.HTTPMeta
 }
 
-func (q *QueryPriceUnitResponse) GetDtoListPriceUnitsResponse() *types.DtoListPriceUnitsResponse {
+func (q *QueryPriceUnitResponse) GetListPriceUnitsResponse() *types.ListPriceUnitsResponse {
 	if q == nil {
 		return nil
 	}
-	return q.DtoListPriceUnitsResponse
+	return q.ListPriceUnitsResponse
 }

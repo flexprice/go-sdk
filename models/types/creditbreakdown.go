@@ -2,9 +2,24 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type CreditBreakdown struct {
 	Free      *string `json:"free,omitzero"`
 	Purchased *string `json:"purchased,omitzero"`
+}
+
+func (c CreditBreakdown) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreditBreakdown) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (c *CreditBreakdown) GetFree() *string {

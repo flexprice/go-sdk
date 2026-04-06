@@ -10,7 +10,7 @@ import (
 type ListRawEventsResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoGetEventsResponse *types.DtoGetEventsResponse
+	GetEventsResponse *types.GetEventsResponse
 }
 
 func (l ListRawEventsResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (l ListRawEventsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListRawEventsResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (l *ListRawEventsResponse) GetHTTPMeta() types.HTTPMetadata {
 	return l.HTTPMeta
 }
 
-func (l *ListRawEventsResponse) GetDtoGetEventsResponse() *types.DtoGetEventsResponse {
+func (l *ListRawEventsResponse) GetGetEventsResponse() *types.GetEventsResponse {
 	if l == nil {
 		return nil
 	}
-	return l.DtoGetEventsResponse
+	return l.GetEventsResponse
 }

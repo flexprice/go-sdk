@@ -12,6 +12,17 @@ type DeleteAddonRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (d DeleteAddonRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteAddonRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (d *DeleteAddonRequest) GetID() string {
 	if d == nil {
 		return ""
@@ -22,7 +33,7 @@ func (d *DeleteAddonRequest) GetID() string {
 type DeleteAddonResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSuccessResponse *types.DtoSuccessResponse
+	SuccessResponse *types.SuccessResponse
 }
 
 func (d DeleteAddonResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (d DeleteAddonResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeleteAddonResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (d *DeleteAddonResponse) GetHTTPMeta() types.HTTPMetadata {
 	return d.HTTPMeta
 }
 
-func (d *DeleteAddonResponse) GetDtoSuccessResponse() *types.DtoSuccessResponse {
+func (d *DeleteAddonResponse) GetSuccessResponse() *types.SuccessResponse {
 	if d == nil {
 		return nil
 	}
-	return d.DtoSuccessResponse
+	return d.SuccessResponse
 }

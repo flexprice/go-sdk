@@ -204,12 +204,12 @@ func (s *PriceUnits) ListPriceUnits(ctx context.Context, request dtos.ListPriceU
 				return nil, err
 			}
 
-			var out types.DtoListPriceUnitsResponse
+			var out types.ListPriceUnitsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListPriceUnitsResponse = &out
+			res.ListPriceUnitsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -225,7 +225,7 @@ func (s *PriceUnits) ListPriceUnits(ctx context.Context, request dtos.ListPriceU
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -250,7 +250,7 @@ func (s *PriceUnits) ListPriceUnits(ctx context.Context, request dtos.ListPriceU
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -293,7 +293,7 @@ func (s *PriceUnits) ListPriceUnits(ctx context.Context, request dtos.ListPriceU
 
 // CreatePriceUnit - Create price unit
 // Use when defining a new unit of measure for pricing (e.g. GB, API call, seat). Ideal for metered or usage-based prices.
-func (s *PriceUnits) CreatePriceUnit(ctx context.Context, request types.DtoCreatePriceUnitRequest, opts ...dtos.Option) (*dtos.CreatePriceUnitResponse, error) {
+func (s *PriceUnits) CreatePriceUnit(ctx context.Context, request types.CreatePriceUnitRequest, opts ...dtos.Option) (*dtos.CreatePriceUnitResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -467,12 +467,12 @@ func (s *PriceUnits) CreatePriceUnit(ctx context.Context, request types.DtoCreat
 				return nil, err
 			}
 
-			var out types.DtoCreatePriceUnitResponse
+			var out types.CreatePriceUnitResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreatePriceUnitResponse = &out
+			res.CreatePriceUnitResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -488,7 +488,7 @@ func (s *PriceUnits) CreatePriceUnit(ctx context.Context, request types.DtoCreat
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -513,7 +513,7 @@ func (s *PriceUnits) CreatePriceUnit(ctx context.Context, request types.DtoCreat
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -727,12 +727,12 @@ func (s *PriceUnits) GetPriceUnitByCode(ctx context.Context, code string, opts .
 				return nil, err
 			}
 
-			var out types.DtoPriceUnitResponse
+			var out types.PriceUnitResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPriceUnitResponse = &out
+			res.PriceUnitResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -750,7 +750,7 @@ func (s *PriceUnits) GetPriceUnitByCode(ctx context.Context, code string, opts .
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -775,7 +775,7 @@ func (s *PriceUnits) GetPriceUnitByCode(ctx context.Context, code string, opts .
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -992,12 +992,12 @@ func (s *PriceUnits) QueryPriceUnit(ctx context.Context, request types.PriceUnit
 				return nil, err
 			}
 
-			var out types.DtoListPriceUnitsResponse
+			var out types.ListPriceUnitsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListPriceUnitsResponse = &out
+			res.ListPriceUnitsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1013,7 +1013,7 @@ func (s *PriceUnits) QueryPriceUnit(ctx context.Context, request types.PriceUnit
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1038,7 +1038,7 @@ func (s *PriceUnits) QueryPriceUnit(ctx context.Context, request types.PriceUnit
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1252,12 +1252,12 @@ func (s *PriceUnits) GetPriceUnit(ctx context.Context, id string, opts ...dtos.O
 				return nil, err
 			}
 
-			var out types.DtoPriceUnitResponse
+			var out types.PriceUnitResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPriceUnitResponse = &out
+			res.PriceUnitResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1275,7 +1275,7 @@ func (s *PriceUnits) GetPriceUnit(ctx context.Context, id string, opts ...dtos.O
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1318,7 +1318,7 @@ func (s *PriceUnits) GetPriceUnit(ctx context.Context, id string, opts ...dtos.O
 
 // UpdatePriceUnit - Update price unit
 // Use when renaming or updating metadata for a price unit. Code is immutable once created.
-func (s *PriceUnits) UpdatePriceUnit(ctx context.Context, id string, body types.DtoUpdatePriceUnitRequest, opts ...dtos.Option) (*dtos.UpdatePriceUnitResponse, error) {
+func (s *PriceUnits) UpdatePriceUnit(ctx context.Context, id string, body types.UpdatePriceUnitRequest, opts ...dtos.Option) (*dtos.UpdatePriceUnitResponse, error) {
 	request := dtos.UpdatePriceUnitRequest{
 		ID:   id,
 		Body: body,
@@ -1497,12 +1497,12 @@ func (s *PriceUnits) UpdatePriceUnit(ctx context.Context, id string, body types.
 				return nil, err
 			}
 
-			var out types.DtoPriceUnitResponse
+			var out types.PriceUnitResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPriceUnitResponse = &out
+			res.PriceUnitResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1520,7 +1520,7 @@ func (s *PriceUnits) UpdatePriceUnit(ctx context.Context, id string, body types.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1734,12 +1734,12 @@ func (s *PriceUnits) DeletePriceUnit(ctx context.Context, id string, opts ...dto
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1757,7 +1757,7 @@ func (s *PriceUnits) DeletePriceUnit(ctx context.Context, id string, opts ...dto
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

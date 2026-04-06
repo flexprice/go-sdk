@@ -33,7 +33,7 @@ func newEvents(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hoo
 
 // IngestEvent - Ingest event
 // Use when sending a single usage event from your app (e.g. one API call or one GB stored). Events are processed asynchronously; returns 202 with event_id.
-func (s *Events) IngestEvent(ctx context.Context, request types.DtoIngestEventRequest, opts ...dtos.Option) (*dtos.IngestEventResponse, error) {
+func (s *Events) IngestEvent(ctx context.Context, request types.IngestEventRequest, opts ...dtos.Option) (*dtos.IngestEventResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -228,7 +228,7 @@ func (s *Events) IngestEvent(ctx context.Context, request types.DtoIngestEventRe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -253,7 +253,7 @@ func (s *Events) IngestEvent(ctx context.Context, request types.DtoIngestEventRe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -296,7 +296,7 @@ func (s *Events) IngestEvent(ctx context.Context, request types.DtoIngestEventRe
 
 // GetUsageAnalytics - Get usage analytics
 // Use when building analytics views (e.g. usage by feature or customer over time). Supports filtering, grouping, and time-series breakdown.
-func (s *Events) GetUsageAnalytics(ctx context.Context, request types.DtoGetUsageAnalyticsRequest, opts ...dtos.Option) (*dtos.GetUsageAnalyticsResponse, error) {
+func (s *Events) GetUsageAnalytics(ctx context.Context, request types.GetUsageAnalyticsRequest, opts ...dtos.Option) (*dtos.GetUsageAnalyticsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -470,12 +470,12 @@ func (s *Events) GetUsageAnalytics(ctx context.Context, request types.DtoGetUsag
 				return nil, err
 			}
 
-			var out types.DtoGetUsageAnalyticsResponse
+			var out types.GetUsageAnalyticsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGetUsageAnalyticsResponse = &out
+			res.GetUsageAnalyticsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -491,7 +491,7 @@ func (s *Events) GetUsageAnalytics(ctx context.Context, request types.DtoGetUsag
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -516,7 +516,7 @@ func (s *Events) GetUsageAnalytics(ctx context.Context, request types.DtoGetUsag
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -559,7 +559,7 @@ func (s *Events) GetUsageAnalytics(ctx context.Context, request types.DtoGetUsag
 
 // IngestEventsBulk - Bulk ingest events
 // Use when batching usage events (e.g. backfill or high-volume ingestion). More efficient than single event calls; returns 202 when accepted.
-func (s *Events) IngestEventsBulk(ctx context.Context, request types.DtoBulkIngestEventRequest, opts ...dtos.Option) (*dtos.IngestEventsBulkResponse, error) {
+func (s *Events) IngestEventsBulk(ctx context.Context, request types.BulkIngestEventRequest, opts ...dtos.Option) (*dtos.IngestEventsBulkResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -754,7 +754,7 @@ func (s *Events) IngestEventsBulk(ctx context.Context, request types.DtoBulkInge
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -779,7 +779,7 @@ func (s *Events) IngestEventsBulk(ctx context.Context, request types.DtoBulkInge
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -989,12 +989,12 @@ func (s *Events) GetHuggingfaceInferenceData(ctx context.Context, opts ...dtos.O
 				return nil, err
 			}
 
-			var out types.DtoGetHuggingFaceBillingDataResponse
+			var out types.GetHuggingFaceBillingDataResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGetHuggingFaceBillingDataResponse = &out
+			res.GetHuggingFaceBillingDataResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1010,7 +1010,7 @@ func (s *Events) GetHuggingfaceInferenceData(ctx context.Context, opts ...dtos.O
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1053,7 +1053,7 @@ func (s *Events) GetHuggingfaceInferenceData(ctx context.Context, opts ...dtos.O
 
 // ListRawEvents - List raw events
 // Use when debugging ingestion or exporting raw event data (e.g. support or audit). Returns a paginated list; supports time range and sorting.
-func (s *Events) ListRawEvents(ctx context.Context, request types.DtoGetEventsRequest, opts ...dtos.Option) (*dtos.ListRawEventsResponse, error) {
+func (s *Events) ListRawEvents(ctx context.Context, request types.GetEventsRequest, opts ...dtos.Option) (*dtos.ListRawEventsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -1227,12 +1227,12 @@ func (s *Events) ListRawEvents(ctx context.Context, request types.DtoGetEventsRe
 				return nil, err
 			}
 
-			var out types.DtoGetEventsResponse
+			var out types.GetEventsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGetEventsResponse = &out
+			res.GetEventsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1248,7 +1248,7 @@ func (s *Events) ListRawEvents(ctx context.Context, request types.DtoGetEventsRe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1273,7 +1273,7 @@ func (s *Events) ListRawEvents(ctx context.Context, request types.DtoGetEventsRe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1316,7 +1316,7 @@ func (s *Events) ListRawEvents(ctx context.Context, request types.DtoGetEventsRe
 
 // GetUsageStatistics - Get usage statistics
 // Use when building usage reports or dashboards across events. Supports filters and grouping; defaults to last 7 days if no range provided.
-func (s *Events) GetUsageStatistics(ctx context.Context, request types.DtoGetUsageRequest, opts ...dtos.Option) (*dtos.GetUsageStatisticsResponse, error) {
+func (s *Events) GetUsageStatistics(ctx context.Context, request types.GetUsageRequest, opts ...dtos.Option) (*dtos.GetUsageStatisticsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -1490,12 +1490,12 @@ func (s *Events) GetUsageStatistics(ctx context.Context, request types.DtoGetUsa
 				return nil, err
 			}
 
-			var out types.DtoGetUsageResponse
+			var out types.GetUsageResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGetUsageResponse = &out
+			res.GetUsageResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1511,7 +1511,7 @@ func (s *Events) GetUsageStatistics(ctx context.Context, request types.DtoGetUsa
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1536,7 +1536,7 @@ func (s *Events) GetUsageStatistics(ctx context.Context, request types.DtoGetUsa
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1579,7 +1579,7 @@ func (s *Events) GetUsageStatistics(ctx context.Context, request types.DtoGetUsa
 
 // GetUsageByMeter - Get usage by meter
 // Use when showing usage for a specific meter (e.g. dashboard or overage check). Supports time range, filters, and grouping by customer or subscription.
-func (s *Events) GetUsageByMeter(ctx context.Context, request types.DtoGetUsageByMeterRequest, opts ...dtos.Option) (*dtos.GetUsageByMeterResponse, error) {
+func (s *Events) GetUsageByMeter(ctx context.Context, request types.GetUsageByMeterRequest, opts ...dtos.Option) (*dtos.GetUsageByMeterResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -1753,12 +1753,12 @@ func (s *Events) GetUsageByMeter(ctx context.Context, request types.DtoGetUsageB
 				return nil, err
 			}
 
-			var out types.DtoGetUsageResponse
+			var out types.GetUsageResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGetUsageResponse = &out
+			res.GetUsageResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1776,7 +1776,7 @@ func (s *Events) GetUsageByMeter(ctx context.Context, request types.DtoGetUsageB
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1801,7 +1801,7 @@ func (s *Events) GetUsageByMeter(ctx context.Context, request types.DtoGetUsageB
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2015,12 +2015,12 @@ func (s *Events) GetEvent(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out types.DtoGetEventByIDResponse
+			var out types.GetEventByIDResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGetEventByIDResponse = &out
+			res.GetEventByIDResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2036,7 +2036,7 @@ func (s *Events) GetEvent(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2061,7 +2061,7 @@ func (s *Events) GetEvent(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

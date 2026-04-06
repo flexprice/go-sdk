@@ -22,6 +22,17 @@ type ListScheduledTasksRequest struct {
 	Enabled *bool `queryParam:"style=form,explode=true,name=enabled"`
 }
 
+func (l ListScheduledTasksRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListScheduledTasksRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (l *ListScheduledTasksRequest) GetLimit() *int64 {
 	if l == nil {
 		return nil
@@ -67,7 +78,7 @@ func (l *ListScheduledTasksRequest) GetEnabled() *bool {
 type ListScheduledTasksResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListScheduledTasksResponse *types.DtoListScheduledTasksResponse
+	ListScheduledTasksResponse *types.ListScheduledTasksResponse
 }
 
 func (l ListScheduledTasksResponse) MarshalJSON() ([]byte, error) {
@@ -75,7 +86,7 @@ func (l ListScheduledTasksResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListScheduledTasksResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -88,9 +99,9 @@ func (l *ListScheduledTasksResponse) GetHTTPMeta() types.HTTPMetadata {
 	return l.HTTPMeta
 }
 
-func (l *ListScheduledTasksResponse) GetDtoListScheduledTasksResponse() *types.DtoListScheduledTasksResponse {
+func (l *ListScheduledTasksResponse) GetListScheduledTasksResponse() *types.ListScheduledTasksResponse {
 	if l == nil {
 		return nil
 	}
-	return l.DtoListScheduledTasksResponse
+	return l.ListScheduledTasksResponse
 }

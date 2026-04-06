@@ -10,7 +10,7 @@ import (
 type CreateAPIKeyResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created
-	DtoCreateAPIKeyResponse *types.DtoCreateAPIKeyResponse
+	CreateAPIKeyResponse *types.CreateAPIKeyResponse
 }
 
 func (c CreateAPIKeyResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (c CreateAPIKeyResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateAPIKeyResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (c *CreateAPIKeyResponse) GetHTTPMeta() types.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateAPIKeyResponse) GetDtoCreateAPIKeyResponse() *types.DtoCreateAPIKeyResponse {
+func (c *CreateAPIKeyResponse) GetCreateAPIKeyResponse() *types.CreateAPIKeyResponse {
 	if c == nil {
 		return nil
 	}
-	return c.DtoCreateAPIKeyResponse
+	return c.CreateAPIKeyResponse
 }

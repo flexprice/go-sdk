@@ -12,6 +12,17 @@ type GetSubscriptionRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetSubscriptionRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSubscriptionRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetSubscriptionRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetSubscriptionRequest) GetID() string {
 type GetSubscriptionResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSubscriptionResponse *types.DtoSubscriptionResponse
+	Subscription *types.Subscription
 }
 
 func (g GetSubscriptionResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetSubscriptionResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetSubscriptionResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetSubscriptionResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetSubscriptionResponse) GetDtoSubscriptionResponse() *types.DtoSubscriptionResponse {
+func (g *GetSubscriptionResponse) GetSubscription() *types.Subscription {
 	if g == nil {
 		return nil
 	}
-	return g.DtoSubscriptionResponse
+	return g.Subscription
 }

@@ -204,12 +204,12 @@ func (s *Payments) ListPayments(ctx context.Context, request dtos.ListPaymentsRe
 				return nil, err
 			}
 
-			var out types.DtoListPaymentsResponse
+			var out types.ListPaymentsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListPaymentsResponse = &out
+			res.ListPaymentsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -225,7 +225,7 @@ func (s *Payments) ListPayments(ctx context.Context, request dtos.ListPaymentsRe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -250,7 +250,7 @@ func (s *Payments) ListPayments(ctx context.Context, request dtos.ListPaymentsRe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -293,7 +293,7 @@ func (s *Payments) ListPayments(ctx context.Context, request dtos.ListPaymentsRe
 
 // CreatePayment - Create payment
 // Use when recording a payment against an invoice (e.g. after receiving funds via a gateway or manual entry).
-func (s *Payments) CreatePayment(ctx context.Context, request types.DtoCreatePaymentRequest, opts ...dtos.Option) (*dtos.CreatePaymentResponse, error) {
+func (s *Payments) CreatePayment(ctx context.Context, request types.CreatePaymentRequest, opts ...dtos.Option) (*dtos.CreatePaymentResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -467,12 +467,12 @@ func (s *Payments) CreatePayment(ctx context.Context, request types.DtoCreatePay
 				return nil, err
 			}
 
-			var out types.DtoPaymentResponse
+			var out types.Payment
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPaymentResponse = &out
+			res.Payment = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -488,7 +488,7 @@ func (s *Payments) CreatePayment(ctx context.Context, request types.DtoCreatePay
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -513,7 +513,7 @@ func (s *Payments) CreatePayment(ctx context.Context, request types.DtoCreatePay
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -727,12 +727,12 @@ func (s *Payments) GetPayment(ctx context.Context, id string, opts ...dtos.Optio
 				return nil, err
 			}
 
-			var out types.DtoPaymentResponse
+			var out types.Payment
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPaymentResponse = &out
+			res.Payment = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -750,7 +750,7 @@ func (s *Payments) GetPayment(ctx context.Context, id string, opts ...dtos.Optio
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -775,7 +775,7 @@ func (s *Payments) GetPayment(ctx context.Context, id string, opts ...dtos.Optio
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -818,7 +818,7 @@ func (s *Payments) GetPayment(ctx context.Context, id string, opts ...dtos.Optio
 
 // UpdatePayment - Update payment
 // Use when updating payment status or metadata (e.g. after reconciliation or adding a reference).
-func (s *Payments) UpdatePayment(ctx context.Context, id string, body types.DtoUpdatePaymentRequest, opts ...dtos.Option) (*dtos.UpdatePaymentResponse, error) {
+func (s *Payments) UpdatePayment(ctx context.Context, id string, body types.UpdatePaymentRequest, opts ...dtos.Option) (*dtos.UpdatePaymentResponse, error) {
 	request := dtos.UpdatePaymentRequest{
 		ID:   id,
 		Body: body,
@@ -997,12 +997,12 @@ func (s *Payments) UpdatePayment(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out types.DtoPaymentResponse
+			var out types.Payment
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPaymentResponse = &out
+			res.Payment = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1018,7 +1018,7 @@ func (s *Payments) UpdatePayment(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1043,7 +1043,7 @@ func (s *Payments) UpdatePayment(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1257,12 +1257,12 @@ func (s *Payments) DeletePayment(ctx context.Context, id string, opts ...dtos.Op
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1280,7 +1280,7 @@ func (s *Payments) DeletePayment(ctx context.Context, id string, opts ...dtos.Op
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1305,7 +1305,7 @@ func (s *Payments) DeletePayment(ctx context.Context, id string, opts ...dtos.Op
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1519,12 +1519,12 @@ func (s *Payments) ProcessPayment(ctx context.Context, id string, opts ...dtos.O
 				return nil, err
 			}
 
-			var out types.DtoPaymentResponse
+			var out types.Payment
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPaymentResponse = &out
+			res.Payment = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1542,7 +1542,7 @@ func (s *Payments) ProcessPayment(ctx context.Context, id string, opts ...dtos.O
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1567,7 +1567,7 @@ func (s *Payments) ProcessPayment(ctx context.Context, id string, opts ...dtos.O
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

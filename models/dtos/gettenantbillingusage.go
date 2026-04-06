@@ -10,7 +10,7 @@ import (
 type GetTenantBillingUsageResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Tenant billing usage
-	DtoTenantBillingUsage *types.DtoTenantBillingUsage
+	TenantBillingUsage *types.TenantBillingUsage
 }
 
 func (g GetTenantBillingUsageResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (g GetTenantBillingUsageResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetTenantBillingUsageResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (g *GetTenantBillingUsageResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetTenantBillingUsageResponse) GetDtoTenantBillingUsage() *types.DtoTenantBillingUsage {
+func (g *GetTenantBillingUsageResponse) GetTenantBillingUsage() *types.TenantBillingUsage {
 	if g == nil {
 		return nil
 	}
-	return g.DtoTenantBillingUsage
+	return g.TenantBillingUsage
 }

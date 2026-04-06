@@ -33,7 +33,7 @@ func newCreditGrants(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hook
 
 // CreateCreditGrant - Create credit grant
 // Use when giving a customer or plan credits (e.g. prepaid balance or promotional credits). Scope can be plan or subscription; supports start/end dates.
-func (s *CreditGrants) CreateCreditGrant(ctx context.Context, request types.DtoCreateCreditGrantRequest, opts ...dtos.Option) (*dtos.CreateCreditGrantResponse, error) {
+func (s *CreditGrants) CreateCreditGrant(ctx context.Context, request types.CreateCreditGrantRequest, opts ...dtos.Option) (*dtos.CreateCreditGrantResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -207,12 +207,12 @@ func (s *CreditGrants) CreateCreditGrant(ctx context.Context, request types.DtoC
 				return nil, err
 			}
 
-			var out types.DtoCreditGrantResponse
+			var out types.CreditGrantResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreditGrantResponse = &out
+			res.CreditGrantResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -228,7 +228,7 @@ func (s *CreditGrants) CreateCreditGrant(ctx context.Context, request types.DtoC
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -253,7 +253,7 @@ func (s *CreditGrants) CreateCreditGrant(ctx context.Context, request types.DtoC
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -467,12 +467,12 @@ func (s *CreditGrants) GetCreditGrant(ctx context.Context, id string, opts ...dt
 				return nil, err
 			}
 
-			var out types.DtoCreditGrantResponse
+			var out types.CreditGrantResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreditGrantResponse = &out
+			res.CreditGrantResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -488,7 +488,7 @@ func (s *CreditGrants) GetCreditGrant(ctx context.Context, id string, opts ...dt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -513,7 +513,7 @@ func (s *CreditGrants) GetCreditGrant(ctx context.Context, id string, opts ...dt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -556,7 +556,7 @@ func (s *CreditGrants) GetCreditGrant(ctx context.Context, id string, opts ...dt
 
 // UpdateCreditGrant - Update credit grant
 // Use when changing a credit grant (e.g. amount or end date). Request body contains the fields to update.
-func (s *CreditGrants) UpdateCreditGrant(ctx context.Context, id string, body types.DtoUpdateCreditGrantRequest, opts ...dtos.Option) (*dtos.UpdateCreditGrantResponse, error) {
+func (s *CreditGrants) UpdateCreditGrant(ctx context.Context, id string, body types.UpdateCreditGrantRequest, opts ...dtos.Option) (*dtos.UpdateCreditGrantResponse, error) {
 	request := dtos.UpdateCreditGrantRequest{
 		ID:   id,
 		Body: body,
@@ -735,12 +735,12 @@ func (s *CreditGrants) UpdateCreditGrant(ctx context.Context, id string, body ty
 				return nil, err
 			}
 
-			var out types.DtoCreditGrantResponse
+			var out types.CreditGrantResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreditGrantResponse = &out
+			res.CreditGrantResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -756,7 +756,7 @@ func (s *CreditGrants) UpdateCreditGrant(ctx context.Context, id string, body ty
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -781,7 +781,7 @@ func (s *CreditGrants) UpdateCreditGrant(ctx context.Context, id string, body ty
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -824,7 +824,7 @@ func (s *CreditGrants) UpdateCreditGrant(ctx context.Context, id string, body ty
 
 // DeleteCreditGrant - Delete credit grant
 // Use when removing or ending a credit grant (e.g. revoke promo or close prepaid). Plan-scoped grants are archived; subscription-scoped supports optional effective_date in body.
-func (s *CreditGrants) DeleteCreditGrant(ctx context.Context, id string, body *types.DtoDeleteCreditGrantRequest, opts ...dtos.Option) (*dtos.DeleteCreditGrantResponse, error) {
+func (s *CreditGrants) DeleteCreditGrant(ctx context.Context, id string, body *types.DeleteCreditGrantRequest, opts ...dtos.Option) (*dtos.DeleteCreditGrantResponse, error) {
 	request := dtos.DeleteCreditGrantRequest{
 		ID:   id,
 		Body: body,
@@ -1003,12 +1003,12 @@ func (s *CreditGrants) DeleteCreditGrant(ctx context.Context, id string, body *t
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1024,7 +1024,7 @@ func (s *CreditGrants) DeleteCreditGrant(ctx context.Context, id string, body *t
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1049,7 +1049,7 @@ func (s *CreditGrants) DeleteCreditGrant(ctx context.Context, id string, body *t
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1263,12 +1263,12 @@ func (s *CreditGrants) GetPlanCreditGrants(ctx context.Context, id string, opts 
 				return nil, err
 			}
 
-			var out types.DtoListCreditGrantsResponse
+			var out types.ListCreditGrantsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListCreditGrantsResponse = &out
+			res.ListCreditGrantsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1286,7 +1286,7 @@ func (s *CreditGrants) GetPlanCreditGrants(ctx context.Context, id string, opts 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1311,7 +1311,7 @@ func (s *CreditGrants) GetPlanCreditGrants(ctx context.Context, id string, opts 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

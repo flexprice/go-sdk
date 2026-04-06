@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type WorkflowExecutionFilterOrder string
@@ -35,7 +36,7 @@ func (e *WorkflowExecutionFilterOrder) UnmarshalJSON(data []byte) error {
 }
 
 type WorkflowExecutionFilter struct {
-	EndTime *string `json:"end_time,omitzero"`
+	EndTime *time.Time `json:"end_time,omitzero"`
 	// e.g. plan, invoice, subscription
 	Entity *string `json:"entity,omitzero"`
 	// e.g. plan_01ABC123
@@ -47,7 +48,7 @@ type WorkflowExecutionFilter struct {
 	Offset    *int64                        `json:"offset,omitzero"`
 	Order     *WorkflowExecutionFilterOrder `json:"order,omitzero"`
 	Sort      []SortCondition               `json:"sort,omitzero"`
-	StartTime *string                       `json:"start_time,omitzero"`
+	StartTime *time.Time                    `json:"start_time,omitzero"`
 	Status    *Status                       `json:"status,omitzero"`
 	TaskQueue *string                       `json:"task_queue,omitzero"`
 	// Workflow-specific filters
@@ -68,7 +69,7 @@ func (w *WorkflowExecutionFilter) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (w *WorkflowExecutionFilter) GetEndTime() *string {
+func (w *WorkflowExecutionFilter) GetEndTime() *time.Time {
 	if w == nil {
 		return nil
 	}
@@ -131,7 +132,7 @@ func (w *WorkflowExecutionFilter) GetSort() []SortCondition {
 	return w.Sort
 }
 
-func (w *WorkflowExecutionFilter) GetStartTime() *string {
+func (w *WorkflowExecutionFilter) GetStartTime() *time.Time {
 	if w == nil {
 		return nil
 	}

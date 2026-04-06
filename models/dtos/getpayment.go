@@ -12,6 +12,17 @@ type GetPaymentRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetPaymentRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPaymentRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetPaymentRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetPaymentRequest) GetID() string {
 type GetPaymentResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Payment details
-	DtoPaymentResponse *types.DtoPaymentResponse
+	Payment *types.Payment
 }
 
 func (g GetPaymentResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetPaymentResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetPaymentResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetPaymentResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetPaymentResponse) GetDtoPaymentResponse() *types.DtoPaymentResponse {
+func (g *GetPaymentResponse) GetPayment() *types.Payment {
 	if g == nil {
 		return nil
 	}
-	return g.DtoPaymentResponse
+	return g.Payment
 }

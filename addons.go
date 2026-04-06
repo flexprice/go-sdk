@@ -33,7 +33,7 @@ func newAddons(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hoo
 
 // CreateAddon - Create addon
 // Use when defining an optional purchasable item (e.g. extra storage or support tier). Ideal for add-ons that customers can attach to a subscription.
-func (s *Addons) CreateAddon(ctx context.Context, request types.DtoCreateAddonRequest, opts ...dtos.Option) (*dtos.CreateAddonResponse, error) {
+func (s *Addons) CreateAddon(ctx context.Context, request types.CreateAddonRequest, opts ...dtos.Option) (*dtos.CreateAddonResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -207,12 +207,12 @@ func (s *Addons) CreateAddon(ctx context.Context, request types.DtoCreateAddonRe
 				return nil, err
 			}
 
-			var out types.DtoCreateAddonResponse
+			var out types.CreateAddonResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreateAddonResponse = &out
+			res.CreateAddonResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -228,7 +228,7 @@ func (s *Addons) CreateAddon(ctx context.Context, request types.DtoCreateAddonRe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -253,7 +253,7 @@ func (s *Addons) CreateAddon(ctx context.Context, request types.DtoCreateAddonRe
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -467,12 +467,12 @@ func (s *Addons) GetAddonByLookupKey(ctx context.Context, lookupKey string, opts
 				return nil, err
 			}
 
-			var out types.DtoAddonResponse
+			var out types.Addon1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoAddonResponse = &out
+			res.Addon = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -488,7 +488,7 @@ func (s *Addons) GetAddonByLookupKey(ctx context.Context, lookupKey string, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -513,7 +513,7 @@ func (s *Addons) GetAddonByLookupKey(ctx context.Context, lookupKey string, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -730,12 +730,12 @@ func (s *Addons) QueryAddon(ctx context.Context, request types.AddonFilter, opts
 				return nil, err
 			}
 
-			var out types.DtoListAddonsResponse
+			var out types.ListAddonsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListAddonsResponse = &out
+			res.ListAddonsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -751,7 +751,7 @@ func (s *Addons) QueryAddon(ctx context.Context, request types.AddonFilter, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -776,7 +776,7 @@ func (s *Addons) QueryAddon(ctx context.Context, request types.AddonFilter, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -990,12 +990,12 @@ func (s *Addons) GetAddon(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out types.DtoAddonResponse
+			var out types.Addon1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoAddonResponse = &out
+			res.Addon = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1011,7 +1011,7 @@ func (s *Addons) GetAddon(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1036,7 +1036,7 @@ func (s *Addons) GetAddon(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1079,7 +1079,7 @@ func (s *Addons) GetAddon(ctx context.Context, id string, opts ...dtos.Option) (
 
 // UpdateAddon - Update addon
 // Use when changing addon details (e.g. name, pricing, or metadata).
-func (s *Addons) UpdateAddon(ctx context.Context, id string, body types.DtoUpdateAddonRequest, opts ...dtos.Option) (*dtos.UpdateAddonResponse, error) {
+func (s *Addons) UpdateAddon(ctx context.Context, id string, body types.UpdateAddonRequest, opts ...dtos.Option) (*dtos.UpdateAddonResponse, error) {
 	request := dtos.UpdateAddonRequest{
 		ID:   id,
 		Body: body,
@@ -1258,12 +1258,12 @@ func (s *Addons) UpdateAddon(ctx context.Context, id string, body types.DtoUpdat
 				return nil, err
 			}
 
-			var out types.DtoAddonResponse
+			var out types.Addon1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoAddonResponse = &out
+			res.Addon = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1279,7 +1279,7 @@ func (s *Addons) UpdateAddon(ctx context.Context, id string, body types.DtoUpdat
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1304,7 +1304,7 @@ func (s *Addons) UpdateAddon(ctx context.Context, id string, body types.DtoUpdat
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1518,12 +1518,12 @@ func (s *Addons) DeleteAddon(ctx context.Context, id string, opts ...dtos.Option
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1539,7 +1539,7 @@ func (s *Addons) DeleteAddon(ctx context.Context, id string, opts ...dtos.Option
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1564,7 +1564,7 @@ func (s *Addons) DeleteAddon(ctx context.Context, id string, opts ...dtos.Option
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

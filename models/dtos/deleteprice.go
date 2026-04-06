@@ -11,7 +11,18 @@ type DeletePriceRequest struct {
 	// Price ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Delete Price Request
-	Body types.DtoDeletePriceRequest `request:"mediaType=application/json"`
+	Body types.DeletePriceRequest `request:"mediaType=application/json"`
+}
+
+func (d DeletePriceRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePriceRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DeletePriceRequest) GetID() string {
@@ -21,9 +32,9 @@ func (d *DeletePriceRequest) GetID() string {
 	return d.ID
 }
 
-func (d *DeletePriceRequest) GetBody() types.DtoDeletePriceRequest {
+func (d *DeletePriceRequest) GetBody() types.DeletePriceRequest {
 	if d == nil {
-		return types.DtoDeletePriceRequest{}
+		return types.DeletePriceRequest{}
 	}
 	return d.Body
 }
@@ -31,7 +42,7 @@ func (d *DeletePriceRequest) GetBody() types.DtoDeletePriceRequest {
 type DeletePriceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSuccessResponse *types.DtoSuccessResponse
+	SuccessResponse *types.SuccessResponse
 }
 
 func (d DeletePriceResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (d DeletePriceResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeletePriceResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (d *DeletePriceResponse) GetHTTPMeta() types.HTTPMetadata {
 	return d.HTTPMeta
 }
 
-func (d *DeletePriceResponse) GetDtoSuccessResponse() *types.DtoSuccessResponse {
+func (d *DeletePriceResponse) GetSuccessResponse() *types.SuccessResponse {
 	if d == nil {
 		return nil
 	}
-	return d.DtoSuccessResponse
+	return d.SuccessResponse
 }

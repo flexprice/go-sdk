@@ -16,7 +16,7 @@ func main() {
 		flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	res, err := s.Addons.CreateAddon(ctx, types.DtoCreateAddonRequest{
+	res, err := s.Addons.CreateAddon(ctx, types.CreateAddonRequest{
 		LookupKey: "<value>",
 		Name:      "<value>",
 		Type:      types.AddonTypeMultipleInstance,
@@ -24,7 +24,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.DtoCreateAddonResponse != nil {
+	if res.CreateAddonResponse != nil {
 		// handle response
 	}
 }

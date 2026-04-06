@@ -1,0 +1,17 @@
+# GetDetailedCostAnalyticsResponse
+
+
+## Fields
+
+| Field                                                              | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `CostAnalytics`                                                    | [][types.CostAnalyticItem](../../models/types/costanalyticitem.md) | :heavy_minus_sign:                                                 | Cost analytics array (flattened from nested structure)             |
+| `Currency`                                                         | `*string`                                                          | :heavy_minus_sign:                                                 | N/A                                                                |
+| `EndTime`                                                          | [*time.Time](https://pkg.go.dev/time#Time)                         | :heavy_minus_sign:                                                 | N/A                                                                |
+| `Margin`                                                           | `*string`                                                          | :heavy_minus_sign:                                                 | Revenue - Cost                                                     |
+| `MarginPercent`                                                    | `*string`                                                          | :heavy_minus_sign:                                                 | (Margin / Revenue) * 100                                           |
+| `Roi`                                                              | `*string`                                                          | :heavy_minus_sign:                                                 | (Revenue - Cost) / Cost                                            |
+| `RoiPercent`                                                       | `*string`                                                          | :heavy_minus_sign:                                                 | ROI * 100                                                          |
+| `StartTime`                                                        | [*time.Time](https://pkg.go.dev/time#Time)                         | :heavy_minus_sign:                                                 | N/A                                                                |
+| `TotalCost`                                                        | `*string`                                                          | :heavy_minus_sign:                                                 | N/A                                                                |
+| `TotalRevenue`                                                     | `*string`                                                          | :heavy_minus_sign:                                                 | Derived metrics                                                    |

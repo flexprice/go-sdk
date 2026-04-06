@@ -11,7 +11,18 @@ type ResumeSubscriptionRequest struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Resume subscription request
-	Body types.DtoResumeSubscriptionRequest `request:"mediaType=application/json"`
+	Body types.ResumeSubscriptionRequest `request:"mediaType=application/json"`
+}
+
+func (r ResumeSubscriptionRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *ResumeSubscriptionRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (r *ResumeSubscriptionRequest) GetID() string {
@@ -21,9 +32,9 @@ func (r *ResumeSubscriptionRequest) GetID() string {
 	return r.ID
 }
 
-func (r *ResumeSubscriptionRequest) GetBody() types.DtoResumeSubscriptionRequest {
+func (r *ResumeSubscriptionRequest) GetBody() types.ResumeSubscriptionRequest {
 	if r == nil {
-		return types.DtoResumeSubscriptionRequest{}
+		return types.ResumeSubscriptionRequest{}
 	}
 	return r.Body
 }
@@ -31,7 +42,7 @@ func (r *ResumeSubscriptionRequest) GetBody() types.DtoResumeSubscriptionRequest
 type ResumeSubscriptionResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSubscriptionPauseResponse *types.DtoSubscriptionPauseResponse
+	SubscriptionPauseResponse *types.SubscriptionPauseResponse
 }
 
 func (r ResumeSubscriptionResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (r ResumeSubscriptionResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (r *ResumeSubscriptionResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (r *ResumeSubscriptionResponse) GetHTTPMeta() types.HTTPMetadata {
 	return r.HTTPMeta
 }
 
-func (r *ResumeSubscriptionResponse) GetDtoSubscriptionPauseResponse() *types.DtoSubscriptionPauseResponse {
+func (r *ResumeSubscriptionResponse) GetSubscriptionPauseResponse() *types.SubscriptionPauseResponse {
 	if r == nil {
 		return nil
 	}
-	return r.DtoSubscriptionPauseResponse
+	return r.SubscriptionPauseResponse
 }

@@ -11,6 +11,17 @@ import (
 type ScheduleDraftFinalizationResponseBody struct {
 }
 
+func (s ScheduleDraftFinalizationResponseBody) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ScheduleDraftFinalizationResponseBody) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 type ScheduleDraftFinalizationResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
@@ -22,7 +33,7 @@ func (s ScheduleDraftFinalizationResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (s *ScheduleDraftFinalizationResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil

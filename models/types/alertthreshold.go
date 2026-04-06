@@ -2,9 +2,24 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type AlertThreshold struct {
 	Condition *AlertCondition `json:"condition,omitzero"`
 	Threshold *float64        `json:"threshold,omitzero"`
+}
+
+func (a AlertThreshold) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AlertThreshold) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (a *AlertThreshold) GetCondition() *AlertCondition {

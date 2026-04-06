@@ -12,6 +12,17 @@ type VoidCreditNoteRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (v VoidCreditNoteRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(v, "", false)
+}
+
+func (v *VoidCreditNoteRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &v, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (v *VoidCreditNoteRequest) GetID() string {
 	if v == nil {
 		return ""
@@ -22,7 +33,7 @@ func (v *VoidCreditNoteRequest) GetID() string {
 type VoidCreditNoteResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCreditNoteResponse *types.DtoCreditNoteResponse
+	CreditNoteResponse *types.CreditNoteResponse
 }
 
 func (v VoidCreditNoteResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (v VoidCreditNoteResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (v *VoidCreditNoteResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &v, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (v *VoidCreditNoteResponse) GetHTTPMeta() types.HTTPMetadata {
 	return v.HTTPMeta
 }
 
-func (v *VoidCreditNoteResponse) GetDtoCreditNoteResponse() *types.DtoCreditNoteResponse {
+func (v *VoidCreditNoteResponse) GetCreditNoteResponse() *types.CreditNoteResponse {
 	if v == nil {
 		return nil
 	}
-	return v.DtoCreditNoteResponse
+	return v.CreditNoteResponse
 }

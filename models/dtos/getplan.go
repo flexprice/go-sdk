@@ -12,6 +12,17 @@ type GetPlanRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetPlanRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPlanRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetPlanRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetPlanRequest) GetID() string {
 type GetPlanResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoPlanResponse *types.DtoPlanResponse
+	Plan *types.Plan1
 }
 
 func (g GetPlanResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetPlanResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetPlanResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetPlanResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetPlanResponse) GetDtoPlanResponse() *types.DtoPlanResponse {
+func (g *GetPlanResponse) GetPlan() *types.Plan1 {
 	if g == nil {
 		return nil
 	}
-	return g.DtoPlanResponse
+	return g.Plan
 }

@@ -3,7 +3,7 @@
 
 ## Fields
 
-| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `HTTPMeta`                                                                | [types.HTTPMetadata](../../models/types/httpmetadata.md)                  | :heavy_check_mark:                                                        | N/A                                                                       |
-| `DtoListUsersResponse`                                                    | [*types.DtoListUsersResponse](../../models/types/dtolistusersresponse.md) | :heavy_minus_sign:                                                        | OK                                                                        |
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `HTTPMeta`                                                          | [types.HTTPMetadata](../../models/types/httpmetadata.md)            | :heavy_check_mark:                                                  | N/A                                                                 |
+| `ListUsersResponse`                                                 | [*types.ListUsersResponse](../../models/types/listusersresponse.md) | :heavy_minus_sign:                                                  | OK                                                                  |

@@ -12,6 +12,17 @@ type SyncPlanPricesRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (s SyncPlanPricesRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SyncPlanPricesRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (s *SyncPlanPricesRequest) GetID() string {
 	if s == nil {
 		return ""
@@ -30,7 +41,7 @@ func (s SyncPlanPricesResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SyncPlanPricesResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil

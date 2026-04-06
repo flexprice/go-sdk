@@ -2,9 +2,24 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type SortCondition struct {
 	Direction *SortDirection `json:"direction,omitzero"`
 	Field     *string        `json:"field,omitzero"`
+}
+
+func (s SortCondition) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SortCondition) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *SortCondition) GetDirection() *SortDirection {

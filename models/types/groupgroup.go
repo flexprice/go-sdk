@@ -4,10 +4,11 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type GroupGroup struct {
-	CreatedAt     *string           `json:"created_at,omitzero"`
+	CreatedAt     *time.Time        `json:"created_at,omitzero"`
 	CreatedBy     *string           `json:"created_by,omitzero"`
 	EntityType    *GroupEntityType  `json:"entity_type,omitzero"`
 	EnvironmentID *string           `json:"environment_id,omitzero"`
@@ -17,7 +18,7 @@ type GroupGroup struct {
 	Name          *string           `json:"name,omitzero"`
 	Status        *Status           `json:"status,omitzero"`
 	TenantID      *string           `json:"tenant_id,omitzero"`
-	UpdatedAt     *string           `json:"updated_at,omitzero"`
+	UpdatedAt     *time.Time        `json:"updated_at,omitzero"`
 	UpdatedBy     *string           `json:"updated_by,omitzero"`
 }
 
@@ -32,7 +33,7 @@ func (g *GroupGroup) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (g *GroupGroup) GetCreatedAt() *string {
+func (g *GroupGroup) GetCreatedAt() *time.Time {
 	if g == nil {
 		return nil
 	}
@@ -102,7 +103,7 @@ func (g *GroupGroup) GetTenantID() *string {
 	return g.TenantID
 }
 
-func (g *GroupGroup) GetUpdatedAt() *string {
+func (g *GroupGroup) GetUpdatedAt() *time.Time {
 	if g == nil {
 		return nil
 	}

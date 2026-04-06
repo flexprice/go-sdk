@@ -10,7 +10,7 @@ import (
 type QueryGroupResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListGroupsResponse *types.DtoListGroupsResponse
+	ListGroupsResponse *types.ListGroupsResponse
 }
 
 func (q QueryGroupResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (q QueryGroupResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (q *QueryGroupResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &q, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (q *QueryGroupResponse) GetHTTPMeta() types.HTTPMetadata {
 	return q.HTTPMeta
 }
 
-func (q *QueryGroupResponse) GetDtoListGroupsResponse() *types.DtoListGroupsResponse {
+func (q *QueryGroupResponse) GetListGroupsResponse() *types.ListGroupsResponse {
 	if q == nil {
 		return nil
 	}
-	return q.DtoListGroupsResponse
+	return q.ListGroupsResponse
 }

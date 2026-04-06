@@ -10,7 +10,7 @@ import (
 type UpdateTenantResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Updated tenant
-	DtoTenantResponse *types.DtoTenantResponse
+	TenantResponse *types.TenantResponse
 }
 
 func (u UpdateTenantResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (u UpdateTenantResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateTenantResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (u *UpdateTenantResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateTenantResponse) GetDtoTenantResponse() *types.DtoTenantResponse {
+func (u *UpdateTenantResponse) GetTenantResponse() *types.TenantResponse {
 	if u == nil {
 		return nil
 	}
-	return u.DtoTenantResponse
+	return u.TenantResponse
 }

@@ -11,7 +11,18 @@ type UpdateCreditGrantRequest struct {
 	// Credit Grant ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Credit Grant configuration
-	Body types.DtoUpdateCreditGrantRequest `request:"mediaType=application/json"`
+	Body types.UpdateCreditGrantRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateCreditGrantRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateCreditGrantRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateCreditGrantRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateCreditGrantRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateCreditGrantRequest) GetBody() types.DtoUpdateCreditGrantRequest {
+func (u *UpdateCreditGrantRequest) GetBody() types.UpdateCreditGrantRequest {
 	if u == nil {
-		return types.DtoUpdateCreditGrantRequest{}
+		return types.UpdateCreditGrantRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateCreditGrantRequest) GetBody() types.DtoUpdateCreditGrantRequest {
 type UpdateCreditGrantResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCreditGrantResponse *types.DtoCreditGrantResponse
+	CreditGrantResponse *types.CreditGrantResponse
 }
 
 func (u UpdateCreditGrantResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateCreditGrantResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateCreditGrantResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateCreditGrantResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateCreditGrantResponse) GetDtoCreditGrantResponse() *types.DtoCreditGrantResponse {
+func (u *UpdateCreditGrantResponse) GetCreditGrantResponse() *types.CreditGrantResponse {
 	if u == nil {
 		return nil
 	}
-	return u.DtoCreditGrantResponse
+	return u.CreditGrantResponse
 }

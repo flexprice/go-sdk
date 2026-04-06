@@ -10,7 +10,7 @@ import (
 type CreateAddonResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created
-	DtoCreateAddonResponse *types.DtoCreateAddonResponse
+	CreateAddonResponse *types.CreateAddonResponse
 }
 
 func (c CreateAddonResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (c CreateAddonResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateAddonResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (c *CreateAddonResponse) GetHTTPMeta() types.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateAddonResponse) GetDtoCreateAddonResponse() *types.DtoCreateAddonResponse {
+func (c *CreateAddonResponse) GetCreateAddonResponse() *types.CreateAddonResponse {
 	if c == nil {
 		return nil
 	}
-	return c.DtoCreateAddonResponse
+	return c.CreateAddonResponse
 }

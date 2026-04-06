@@ -11,7 +11,18 @@ type PauseSubscriptionRequest struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Pause subscription request
-	Body types.DtoPauseSubscriptionRequest `request:"mediaType=application/json"`
+	Body types.PauseSubscriptionRequest `request:"mediaType=application/json"`
+}
+
+func (p PauseSubscriptionRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PauseSubscriptionRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (p *PauseSubscriptionRequest) GetID() string {
@@ -21,9 +32,9 @@ func (p *PauseSubscriptionRequest) GetID() string {
 	return p.ID
 }
 
-func (p *PauseSubscriptionRequest) GetBody() types.DtoPauseSubscriptionRequest {
+func (p *PauseSubscriptionRequest) GetBody() types.PauseSubscriptionRequest {
 	if p == nil {
-		return types.DtoPauseSubscriptionRequest{}
+		return types.PauseSubscriptionRequest{}
 	}
 	return p.Body
 }
@@ -31,7 +42,7 @@ func (p *PauseSubscriptionRequest) GetBody() types.DtoPauseSubscriptionRequest {
 type PauseSubscriptionResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSubscriptionPauseResponse *types.DtoSubscriptionPauseResponse
+	SubscriptionPauseResponse *types.SubscriptionPauseResponse
 }
 
 func (p PauseSubscriptionResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (p PauseSubscriptionResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (p *PauseSubscriptionResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (p *PauseSubscriptionResponse) GetHTTPMeta() types.HTTPMetadata {
 	return p.HTTPMeta
 }
 
-func (p *PauseSubscriptionResponse) GetDtoSubscriptionPauseResponse() *types.DtoSubscriptionPauseResponse {
+func (p *PauseSubscriptionResponse) GetSubscriptionPauseResponse() *types.SubscriptionPauseResponse {
 	if p == nil {
 		return nil
 	}
-	return p.DtoSubscriptionPauseResponse
+	return p.SubscriptionPauseResponse
 }

@@ -204,12 +204,12 @@ func (s *TaxRates) GetTaxRates(ctx context.Context, request dtos.GetTaxRatesRequ
 				return nil, err
 			}
 
-			var out []types.DtoTaxRateResponse
+			var out []types.TaxRateResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTaxRateResponses = out
+			res.TaxRateResponses = out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -225,7 +225,7 @@ func (s *TaxRates) GetTaxRates(ctx context.Context, request dtos.GetTaxRatesRequ
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -250,7 +250,7 @@ func (s *TaxRates) GetTaxRates(ctx context.Context, request dtos.GetTaxRatesRequ
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -293,7 +293,7 @@ func (s *TaxRates) GetTaxRates(ctx context.Context, request dtos.GetTaxRatesRequ
 
 // CreateTaxRate - Create a tax rate
 // Use when defining a new tax rate (e.g. VAT or sales tax) for use in invoices. Attach to customers or products via tax associations.
-func (s *TaxRates) CreateTaxRate(ctx context.Context, request types.DtoCreateTaxRateRequest, opts ...dtos.Option) (*dtos.CreateTaxRateResponse, error) {
+func (s *TaxRates) CreateTaxRate(ctx context.Context, request types.CreateTaxRateRequest, opts ...dtos.Option) (*dtos.CreateTaxRateResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -467,12 +467,12 @@ func (s *TaxRates) CreateTaxRate(ctx context.Context, request types.DtoCreateTax
 				return nil, err
 			}
 
-			var out types.DtoTaxRateResponse
+			var out types.TaxRateResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTaxRateResponse = &out
+			res.TaxRateResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -488,7 +488,7 @@ func (s *TaxRates) CreateTaxRate(ctx context.Context, request types.DtoCreateTax
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -513,7 +513,7 @@ func (s *TaxRates) CreateTaxRate(ctx context.Context, request types.DtoCreateTax
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -727,12 +727,12 @@ func (s *TaxRates) GetTaxRate(ctx context.Context, id string, opts ...dtos.Optio
 				return nil, err
 			}
 
-			var out types.DtoTaxRateResponse
+			var out types.TaxRateResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTaxRateResponse = &out
+			res.TaxRateResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -748,7 +748,7 @@ func (s *TaxRates) GetTaxRate(ctx context.Context, id string, opts ...dtos.Optio
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -773,7 +773,7 @@ func (s *TaxRates) GetTaxRate(ctx context.Context, id string, opts ...dtos.Optio
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -816,7 +816,7 @@ func (s *TaxRates) GetTaxRate(ctx context.Context, id string, opts ...dtos.Optio
 
 // UpdateTaxRate - Update a tax rate
 // Use when changing a tax rate (e.g. rate value or name). Request body contains the fields to update.
-func (s *TaxRates) UpdateTaxRate(ctx context.Context, id string, body types.DtoUpdateTaxRateRequest, opts ...dtos.Option) (*dtos.UpdateTaxRateResponse, error) {
+func (s *TaxRates) UpdateTaxRate(ctx context.Context, id string, body types.UpdateTaxRateRequest, opts ...dtos.Option) (*dtos.UpdateTaxRateResponse, error) {
 	request := dtos.UpdateTaxRateRequest{
 		ID:   id,
 		Body: body,
@@ -995,12 +995,12 @@ func (s *TaxRates) UpdateTaxRate(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out types.DtoTaxRateResponse
+			var out types.TaxRateResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTaxRateResponse = &out
+			res.TaxRateResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1016,7 +1016,7 @@ func (s *TaxRates) UpdateTaxRate(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1041,7 +1041,7 @@ func (s *TaxRates) UpdateTaxRate(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1257,7 +1257,7 @@ func (s *TaxRates) DeleteTaxRate(ctx context.Context, id string, opts ...dtos.Op
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1282,7 +1282,7 @@ func (s *TaxRates) DeleteTaxRate(ctx context.Context, id string, opts ...dtos.Op
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

@@ -11,7 +11,18 @@ type UpdatePaymentRequest struct {
 	// Payment ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Payment configuration
-	Body types.DtoUpdatePaymentRequest `request:"mediaType=application/json"`
+	Body types.UpdatePaymentRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdatePaymentRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdatePaymentRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdatePaymentRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdatePaymentRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdatePaymentRequest) GetBody() types.DtoUpdatePaymentRequest {
+func (u *UpdatePaymentRequest) GetBody() types.UpdatePaymentRequest {
 	if u == nil {
-		return types.DtoUpdatePaymentRequest{}
+		return types.UpdatePaymentRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdatePaymentRequest) GetBody() types.DtoUpdatePaymentRequest {
 type UpdatePaymentResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Updated payment
-	DtoPaymentResponse *types.DtoPaymentResponse
+	Payment *types.Payment
 }
 
 func (u UpdatePaymentResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdatePaymentResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdatePaymentResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdatePaymentResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdatePaymentResponse) GetDtoPaymentResponse() *types.DtoPaymentResponse {
+func (u *UpdatePaymentResponse) GetPayment() *types.Payment {
 	if u == nil {
 		return nil
 	}
-	return u.DtoPaymentResponse
+	return u.Payment
 }

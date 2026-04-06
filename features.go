@@ -33,7 +33,7 @@ func newFeatures(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *h
 
 // CreateFeature - Create feature
 // Use when defining a new feature or capability to gate or meter (e.g. feature flags or usage-based limits). Ideal for boolean or usage features.
-func (s *Features) CreateFeature(ctx context.Context, request types.DtoCreateFeatureRequest, opts ...dtos.Option) (*dtos.CreateFeatureResponse, error) {
+func (s *Features) CreateFeature(ctx context.Context, request types.CreateFeatureRequest, opts ...dtos.Option) (*dtos.CreateFeatureResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -207,12 +207,12 @@ func (s *Features) CreateFeature(ctx context.Context, request types.DtoCreateFea
 				return nil, err
 			}
 
-			var out types.DtoFeatureResponse
+			var out types.Feature1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoFeatureResponse = &out
+			res.Feature = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -228,7 +228,7 @@ func (s *Features) CreateFeature(ctx context.Context, request types.DtoCreateFea
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -253,7 +253,7 @@ func (s *Features) CreateFeature(ctx context.Context, request types.DtoCreateFea
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -470,12 +470,12 @@ func (s *Features) QueryFeature(ctx context.Context, request types.FeatureFilter
 				return nil, err
 			}
 
-			var out types.DtoListFeaturesResponse
+			var out types.ListFeaturesResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListFeaturesResponse = &out
+			res.ListFeaturesResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -491,7 +491,7 @@ func (s *Features) QueryFeature(ctx context.Context, request types.FeatureFilter
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -516,7 +516,7 @@ func (s *Features) QueryFeature(ctx context.Context, request types.FeatureFilter
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -559,7 +559,7 @@ func (s *Features) QueryFeature(ctx context.Context, request types.FeatureFilter
 
 // UpdateFeature - Update feature
 // Use when changing feature definition (e.g. name, type, or meter). Request body contains the fields to update.
-func (s *Features) UpdateFeature(ctx context.Context, id string, body types.DtoUpdateFeatureRequest, opts ...dtos.Option) (*dtos.UpdateFeatureResponse, error) {
+func (s *Features) UpdateFeature(ctx context.Context, id string, body types.UpdateFeatureRequest, opts ...dtos.Option) (*dtos.UpdateFeatureResponse, error) {
 	request := dtos.UpdateFeatureRequest{
 		ID:   id,
 		Body: body,
@@ -738,12 +738,12 @@ func (s *Features) UpdateFeature(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out types.DtoFeatureResponse
+			var out types.Feature1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoFeatureResponse = &out
+			res.Feature = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -761,7 +761,7 @@ func (s *Features) UpdateFeature(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -786,7 +786,7 @@ func (s *Features) UpdateFeature(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1000,12 +1000,12 @@ func (s *Features) DeleteFeature(ctx context.Context, id string, opts ...dtos.Op
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1023,7 +1023,7 @@ func (s *Features) DeleteFeature(ctx context.Context, id string, opts ...dtos.Op
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1048,7 +1048,7 @@ func (s *Features) DeleteFeature(ctx context.Context, id string, opts ...dtos.Op
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

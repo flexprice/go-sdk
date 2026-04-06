@@ -33,7 +33,7 @@ func newCosts(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hook
 
 // CreateCostsheet - Create costsheet
 // Use when setting up a new pricing configuration (e.g. a new product or region). Costsheets group prices and define the default for the environment.
-func (s *Costs) CreateCostsheet(ctx context.Context, request types.DtoCreateCostsheetRequest, opts ...dtos.Option) (*dtos.CreateCostsheetResponse, error) {
+func (s *Costs) CreateCostsheet(ctx context.Context, request types.CreateCostsheetRequest, opts ...dtos.Option) (*dtos.CreateCostsheetResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -207,12 +207,12 @@ func (s *Costs) CreateCostsheet(ctx context.Context, request types.DtoCreateCost
 				return nil, err
 			}
 
-			var out types.DtoCreateCostsheetResponse
+			var out types.CreateCostsheetResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCreateCostsheetResponse = &out
+			res.CreateCostsheetResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -230,7 +230,7 @@ func (s *Costs) CreateCostsheet(ctx context.Context, request types.DtoCreateCost
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -255,7 +255,7 @@ func (s *Costs) CreateCostsheet(ctx context.Context, request types.DtoCreateCost
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -465,12 +465,12 @@ func (s *Costs) GetActiveCostsheet(ctx context.Context, opts ...dtos.Option) (*d
 				return nil, err
 			}
 
-			var out types.DtoCostsheetResponse
+			var out types.CostsheetResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCostsheetResponse = &out
+			res.CostsheetResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -486,7 +486,7 @@ func (s *Costs) GetActiveCostsheet(ctx context.Context, opts ...dtos.Option) (*d
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -511,7 +511,7 @@ func (s *Costs) GetActiveCostsheet(ctx context.Context, opts ...dtos.Option) (*d
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -554,7 +554,7 @@ func (s *Costs) GetActiveCostsheet(ctx context.Context, opts ...dtos.Option) (*d
 
 // GetDetailedCostAnalytics - Get combined revenue and cost analytics
 // Use when building dashboards or reports that need revenue vs cost, ROI, and margin over a time period (e.g. finance views or executive summaries).
-func (s *Costs) GetDetailedCostAnalytics(ctx context.Context, request types.DtoGetCostAnalyticsRequest, opts ...dtos.Option) (*dtos.GetDetailedCostAnalyticsResponse, error) {
+func (s *Costs) GetDetailedCostAnalytics(ctx context.Context, request types.GetCostAnalyticsRequest, opts ...dtos.Option) (*dtos.GetDetailedCostAnalyticsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -728,12 +728,12 @@ func (s *Costs) GetDetailedCostAnalytics(ctx context.Context, request types.DtoG
 				return nil, err
 			}
 
-			var out types.DtoGetDetailedCostAnalyticsResponse
+			var out types.GetDetailedCostAnalyticsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGetDetailedCostAnalyticsResponse = &out
+			res.GetDetailedCostAnalyticsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -749,7 +749,7 @@ func (s *Costs) GetDetailedCostAnalytics(ctx context.Context, request types.DtoG
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -774,7 +774,7 @@ func (s *Costs) GetDetailedCostAnalytics(ctx context.Context, request types.DtoG
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -817,7 +817,7 @@ func (s *Costs) GetDetailedCostAnalytics(ctx context.Context, request types.DtoG
 
 // GetDetailedCostAnalyticsV2 - Get combined revenue and cost analytics (V2)
 // Use when you need the same revenue/cost/ROI analytics but computed from the costsheet usage-tracking pipeline (e.g. for consistency with usage-based cost data).
-func (s *Costs) GetDetailedCostAnalyticsV2(ctx context.Context, request types.DtoGetCostAnalyticsRequest, opts ...dtos.Option) (*dtos.GetDetailedCostAnalyticsV2Response, error) {
+func (s *Costs) GetDetailedCostAnalyticsV2(ctx context.Context, request types.GetCostAnalyticsRequest, opts ...dtos.Option) (*dtos.GetDetailedCostAnalyticsV2Response, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -991,12 +991,12 @@ func (s *Costs) GetDetailedCostAnalyticsV2(ctx context.Context, request types.Dt
 				return nil, err
 			}
 
-			var out types.DtoGetDetailedCostAnalyticsResponse
+			var out types.GetDetailedCostAnalyticsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGetDetailedCostAnalyticsResponse = &out
+			res.GetDetailedCostAnalyticsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1012,7 +1012,7 @@ func (s *Costs) GetDetailedCostAnalyticsV2(ctx context.Context, request types.Dt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1037,7 +1037,7 @@ func (s *Costs) GetDetailedCostAnalyticsV2(ctx context.Context, request types.Dt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1254,12 +1254,12 @@ func (s *Costs) QueryCostsheet(ctx context.Context, request types.CostsheetFilte
 				return nil, err
 			}
 
-			var out types.DtoListCostsheetResponse
+			var out types.ListCostsheetResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListCostsheetResponse = &out
+			res.ListCostsheetResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1275,7 +1275,7 @@ func (s *Costs) QueryCostsheet(ctx context.Context, request types.CostsheetFilte
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1300,7 +1300,7 @@ func (s *Costs) QueryCostsheet(ctx context.Context, request types.CostsheetFilte
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1519,12 +1519,12 @@ func (s *Costs) GetCostsheet(ctx context.Context, id string, expand *string, opt
 				return nil, err
 			}
 
-			var out types.DtoGetCostsheetResponse
+			var out types.GetCostsheetResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGetCostsheetResponse = &out
+			res.GetCostsheetResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1542,7 +1542,7 @@ func (s *Costs) GetCostsheet(ctx context.Context, id string, expand *string, opt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1567,7 +1567,7 @@ func (s *Costs) GetCostsheet(ctx context.Context, id string, expand *string, opt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1610,7 +1610,7 @@ func (s *Costs) GetCostsheet(ctx context.Context, id string, expand *string, opt
 
 // UpdateCostsheet - Update costsheet
 // Use when changing costsheet name or metadata.
-func (s *Costs) UpdateCostsheet(ctx context.Context, id string, body types.DtoUpdateCostsheetRequest, opts ...dtos.Option) (*dtos.UpdateCostsheetResponse, error) {
+func (s *Costs) UpdateCostsheet(ctx context.Context, id string, body types.UpdateCostsheetRequest, opts ...dtos.Option) (*dtos.UpdateCostsheetResponse, error) {
 	request := dtos.UpdateCostsheetRequest{
 		ID:   id,
 		Body: body,
@@ -1789,12 +1789,12 @@ func (s *Costs) UpdateCostsheet(ctx context.Context, id string, body types.DtoUp
 				return nil, err
 			}
 
-			var out types.DtoUpdateCostsheetResponse
+			var out types.UpdateCostsheetResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoUpdateCostsheetResponse = &out
+			res.UpdateCostsheetResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1814,7 +1814,7 @@ func (s *Costs) UpdateCostsheet(ctx context.Context, id string, body types.DtoUp
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1839,7 +1839,7 @@ func (s *Costs) UpdateCostsheet(ctx context.Context, id string, body types.DtoUp
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2053,12 +2053,12 @@ func (s *Costs) DeleteCostsheet(ctx context.Context, id string, opts ...dtos.Opt
 				return nil, err
 			}
 
-			var out types.DtoDeleteCostsheetResponse
+			var out types.DeleteCostsheetResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoDeleteCostsheetResponse = &out
+			res.DeleteCostsheetResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2076,7 +2076,7 @@ func (s *Costs) DeleteCostsheet(ctx context.Context, id string, opts ...dtos.Opt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2101,7 +2101,7 @@ func (s *Costs) DeleteCostsheet(ctx context.Context, id string, opts ...dtos.Opt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

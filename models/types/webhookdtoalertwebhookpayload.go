@@ -10,10 +10,10 @@ type WebhookDtoAlertWebhookPayload struct {
 	AlertStatus *string `json:"alert_status,omitzero"`
 	AlertType   *string `json:"alert_type,omitzero"`
 	// Customer response object containing all customer information
-	Customer  *DtoCustomerResponse `json:"customer,omitzero"`
-	EventType *WebhookEventName    `json:"event_type,omitzero"`
-	Feature   *DtoFeatureResponse  `json:"feature,omitzero"`
-	Wallet    *DtoWalletResponse   `json:"wallet,omitzero"`
+	Customer  *Customer1        `json:"customer,omitzero"`
+	EventType *WebhookEventName `json:"event_type,omitzero"`
+	Feature   *Feature1         `json:"feature,omitzero"`
+	Wallet    *Wallet           `json:"wallet,omitzero"`
 }
 
 func (w WebhookDtoAlertWebhookPayload) MarshalJSON() ([]byte, error) {
@@ -41,7 +41,7 @@ func (w *WebhookDtoAlertWebhookPayload) GetAlertType() *string {
 	return w.AlertType
 }
 
-func (w *WebhookDtoAlertWebhookPayload) GetCustomer() *DtoCustomerResponse {
+func (w *WebhookDtoAlertWebhookPayload) GetCustomer() *Customer1 {
 	if w == nil {
 		return nil
 	}
@@ -55,14 +55,14 @@ func (w *WebhookDtoAlertWebhookPayload) GetEventType() *WebhookEventName {
 	return w.EventType
 }
 
-func (w *WebhookDtoAlertWebhookPayload) GetFeature() *DtoFeatureResponse {
+func (w *WebhookDtoAlertWebhookPayload) GetFeature() *Feature1 {
 	if w == nil {
 		return nil
 	}
 	return w.Feature
 }
 
-func (w *WebhookDtoAlertWebhookPayload) GetWallet() *DtoWalletResponse {
+func (w *WebhookDtoAlertWebhookPayload) GetWallet() *Wallet {
 	if w == nil {
 		return nil
 	}

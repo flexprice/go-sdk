@@ -12,6 +12,17 @@ type GetRbacRoleRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetRbacRoleRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetRbacRoleRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetRbacRoleRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -30,7 +41,7 @@ func (g GetRbacRoleResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetRbacRoleResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil

@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type SubscriptionFilterOrder string
@@ -36,19 +37,21 @@ func (e *SubscriptionFilterOrder) UnmarshalJSON(data []byte) error {
 
 type SubscriptionFilter struct {
 	// ActiveAt filters subscriptions that are active at the given time
-	ActiveAt *string `json:"active_at,omitzero"`
+	ActiveAt *time.Time `json:"active_at,omitzero"`
 	// BillingCadence filters by billing cadence
 	BillingCadence []BillingCadence `json:"billing_cadence,omitzero"`
 	// BillingPeriod filters by billing period
 	BillingPeriod []BillingPeriod `json:"billing_period,omitzero"`
 	// CustomerID filters by customer ID
 	CustomerID *string `json:"customer_id,omitzero"`
+	// CustomerIDs filters by customer IDs
+	CustomerIds []string `json:"customer_ids,omitzero"`
 	// EffectiveDateForUpdate selects subscriptions that need a billing-period pass on or before this time:
 	// current_period_end <= date OR (cancel_at IS NOT NULL AND cancel_at <= date).
 	// When nil, period/cancel cutoff logic is not applied by this field (see TimeRangeFilter for legacy period-end filtering).
-	EffectiveDateForUpdate *string `json:"effective_date_for_update,omitzero"`
-	EndTime                *string `json:"end_time,omitzero"`
-	Expand                 *string `json:"expand,omitzero"`
+	EffectiveDateForUpdate *string    `json:"effective_date_for_update,omitzero"`
+	EndTime                *time.Time `json:"end_time,omitzero"`
+	Expand                 *string    `json:"expand,omitzero"`
 	// ExternalCustomerID filters by external customer ID
 	ExternalCustomerID *string           `json:"external_customer_id,omitzero"`
 	Filters            []FilterCondition `json:"filters,omitzero"`
@@ -62,11 +65,13 @@ type SubscriptionFilter struct {
 	// PlanID filters by plan ID
 	PlanID          *string         `json:"plan_id,omitzero"`
 	Sort            []SortCondition `json:"sort,omitzero"`
-	StartTime       *string         `json:"start_time,omitzero"`
+	StartTime       *time.Time      `json:"start_time,omitzero"`
 	Status          *Status         `json:"status,omitzero"`
 	SubscriptionIds []string        `json:"subscription_ids,omitzero"`
 	// SubscriptionStatus filters by subscription status
 	SubscriptionStatus []SubscriptionStatus `json:"subscription_status,omitzero"`
+	// SubscriptionType filters by subscription type
+	SubscriptionType []SubscriptionType `json:"subscription_type,omitzero"`
 	// WithLineItems includes line items in the response
 	WithLineItems *bool `json:"with_line_items,omitzero"`
 }
@@ -82,7 +87,7 @@ func (s *SubscriptionFilter) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (s *SubscriptionFilter) GetActiveAt() *string {
+func (s *SubscriptionFilter) GetActiveAt() *time.Time {
 	if s == nil {
 		return nil
 	}
@@ -110,6 +115,13 @@ func (s *SubscriptionFilter) GetCustomerID() *string {
 	return s.CustomerID
 }
 
+func (s *SubscriptionFilter) GetCustomerIds() []string {
+	if s == nil {
+		return nil
+	}
+	return s.CustomerIds
+}
+
 func (s *SubscriptionFilter) GetEffectiveDateForUpdate() *string {
 	if s == nil {
 		return nil
@@ -117,7 +129,7 @@ func (s *SubscriptionFilter) GetEffectiveDateForUpdate() *string {
 	return s.EffectiveDateForUpdate
 }
 
-func (s *SubscriptionFilter) GetEndTime() *string {
+func (s *SubscriptionFilter) GetEndTime() *time.Time {
 	if s == nil {
 		return nil
 	}
@@ -194,7 +206,7 @@ func (s *SubscriptionFilter) GetSort() []SortCondition {
 	return s.Sort
 }
 
-func (s *SubscriptionFilter) GetStartTime() *string {
+func (s *SubscriptionFilter) GetStartTime() *time.Time {
 	if s == nil {
 		return nil
 	}
@@ -220,6 +232,13 @@ func (s *SubscriptionFilter) GetSubscriptionStatus() []SubscriptionStatus {
 		return nil
 	}
 	return s.SubscriptionStatus
+}
+
+func (s *SubscriptionFilter) GetSubscriptionType() []SubscriptionType {
+	if s == nil {
+		return nil
+	}
+	return s.SubscriptionType
 }
 
 func (s *SubscriptionFilter) GetWithLineItems() *bool {

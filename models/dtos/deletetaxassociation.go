@@ -12,6 +12,17 @@ type DeleteTaxAssociationRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (d DeleteTaxAssociationRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteTaxAssociationRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (d *DeleteTaxAssociationRequest) GetID() string {
 	if d == nil {
 		return ""
@@ -22,7 +33,7 @@ func (d *DeleteTaxAssociationRequest) GetID() string {
 type DeleteTaxAssociationResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoTaxAssociationResponse *types.DtoTaxAssociationResponse
+	TaxAssociationResponse *types.TaxAssociationResponse
 }
 
 func (d DeleteTaxAssociationResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (d DeleteTaxAssociationResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeleteTaxAssociationResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (d *DeleteTaxAssociationResponse) GetHTTPMeta() types.HTTPMetadata {
 	return d.HTTPMeta
 }
 
-func (d *DeleteTaxAssociationResponse) GetDtoTaxAssociationResponse() *types.DtoTaxAssociationResponse {
+func (d *DeleteTaxAssociationResponse) GetTaxAssociationResponse() *types.TaxAssociationResponse {
 	if d == nil {
 		return nil
 	}
-	return d.DtoTaxAssociationResponse
+	return d.TaxAssociationResponse
 }

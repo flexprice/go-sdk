@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type GroupFilterOrder string
@@ -35,9 +36,9 @@ func (e *GroupFilterOrder) UnmarshalJSON(data []byte) error {
 }
 
 type GroupFilter struct {
-	EndTime    *string `json:"end_time,omitzero"`
-	EntityType *string `json:"entity_type,omitzero"`
-	Expand     *string `json:"expand,omitzero"`
+	EndTime    *time.Time `json:"end_time,omitzero"`
+	EntityType *string    `json:"entity_type,omitzero"`
+	Expand     *string    `json:"expand,omitzero"`
 	// filters allows complex filtering based on multiple fields
 	Filters []FilterCondition `json:"filters,omitzero"`
 	// Group specific filters
@@ -48,7 +49,7 @@ type GroupFilter struct {
 	Offset    *int64            `json:"offset,omitzero"`
 	Order     *GroupFilterOrder `json:"order,omitzero"`
 	Sort      []SortCondition   `json:"sort,omitzero"`
-	StartTime *string           `json:"start_time,omitzero"`
+	StartTime *time.Time        `json:"start_time,omitzero"`
 	Status    *Status           `json:"status,omitzero"`
 }
 
@@ -63,7 +64,7 @@ func (g *GroupFilter) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (g *GroupFilter) GetEndTime() *string {
+func (g *GroupFilter) GetEndTime() *time.Time {
 	if g == nil {
 		return nil
 	}
@@ -140,7 +141,7 @@ func (g *GroupFilter) GetSort() []SortCondition {
 	return g.Sort
 }
 
-func (g *GroupFilter) GetStartTime() *string {
+func (g *GroupFilter) GetStartTime() *time.Time {
 	if g == nil {
 		return nil
 	}

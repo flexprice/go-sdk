@@ -4,11 +4,12 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type MeterMeter struct {
 	Aggregation *MeterAggregation `json:"aggregation,omitzero"`
-	CreatedAt   *string           `json:"created_at,omitzero"`
+	CreatedAt   *time.Time        `json:"created_at,omitzero"`
 	CreatedBy   *string           `json:"created_by,omitzero"`
 	// EnvironmentID is the environment identifier for the meter
 	EnvironmentID *string `json:"environment_id,omitzero"`
@@ -26,7 +27,7 @@ type MeterMeter struct {
 	ResetUsage *ResetUsage `json:"reset_usage,omitzero"`
 	Status     *Status     `json:"status,omitzero"`
 	TenantID   *string     `json:"tenant_id,omitzero"`
-	UpdatedAt  *string     `json:"updated_at,omitzero"`
+	UpdatedAt  *time.Time  `json:"updated_at,omitzero"`
 	UpdatedBy  *string     `json:"updated_by,omitzero"`
 }
 
@@ -48,7 +49,7 @@ func (m *MeterMeter) GetAggregation() *MeterAggregation {
 	return m.Aggregation
 }
 
-func (m *MeterMeter) GetCreatedAt() *string {
+func (m *MeterMeter) GetCreatedAt() *time.Time {
 	if m == nil {
 		return nil
 	}
@@ -118,7 +119,7 @@ func (m *MeterMeter) GetTenantID() *string {
 	return m.TenantID
 }
 
-func (m *MeterMeter) GetUpdatedAt() *string {
+func (m *MeterMeter) GetUpdatedAt() *time.Time {
 	if m == nil {
 		return nil
 	}

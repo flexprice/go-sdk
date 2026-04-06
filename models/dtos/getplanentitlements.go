@@ -12,6 +12,17 @@ type GetPlanEntitlementsRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetPlanEntitlementsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPlanEntitlementsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetPlanEntitlementsRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetPlanEntitlementsRequest) GetID() string {
 type GetPlanEntitlementsResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListEntitlementsResponse *types.DtoListEntitlementsResponse
+	ListEntitlementsResponse *types.ListEntitlementsResponse
 }
 
 func (g GetPlanEntitlementsResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetPlanEntitlementsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetPlanEntitlementsResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetPlanEntitlementsResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetPlanEntitlementsResponse) GetDtoListEntitlementsResponse() *types.DtoListEntitlementsResponse {
+func (g *GetPlanEntitlementsResponse) GetListEntitlementsResponse() *types.ListEntitlementsResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoListEntitlementsResponse
+	return g.ListEntitlementsResponse
 }

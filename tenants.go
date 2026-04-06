@@ -200,12 +200,12 @@ func (s *Tenants) GetTenantBillingUsage(ctx context.Context, opts ...dtos.Option
 				return nil, err
 			}
 
-			var out types.DtoTenantBillingUsage
+			var out types.TenantBillingUsage
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTenantBillingUsage = &out
+			res.TenantBillingUsage = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -223,7 +223,7 @@ func (s *Tenants) GetTenantBillingUsage(ctx context.Context, opts ...dtos.Option
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -248,7 +248,7 @@ func (s *Tenants) GetTenantBillingUsage(ctx context.Context, opts ...dtos.Option
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -291,7 +291,7 @@ func (s *Tenants) GetTenantBillingUsage(ctx context.Context, opts ...dtos.Option
 
 // UpdateTenant - Update a tenant
 // Use when changing tenant details (e.g. name or billing info). Request body contains the fields to update.
-func (s *Tenants) UpdateTenant(ctx context.Context, request types.DtoUpdateTenantRequest, opts ...dtos.Option) (*dtos.UpdateTenantResponse, error) {
+func (s *Tenants) UpdateTenant(ctx context.Context, request types.UpdateTenantRequest, opts ...dtos.Option) (*dtos.UpdateTenantResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -465,12 +465,12 @@ func (s *Tenants) UpdateTenant(ctx context.Context, request types.DtoUpdateTenan
 				return nil, err
 			}
 
-			var out types.DtoTenantResponse
+			var out types.TenantResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTenantResponse = &out
+			res.TenantResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -488,7 +488,7 @@ func (s *Tenants) UpdateTenant(ctx context.Context, request types.DtoUpdateTenan
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -513,7 +513,7 @@ func (s *Tenants) UpdateTenant(ctx context.Context, request types.DtoUpdateTenan
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -727,12 +727,12 @@ func (s *Tenants) GetTenantByID(ctx context.Context, id string, opts ...dtos.Opt
 				return nil, err
 			}
 
-			var out types.DtoTenantResponse
+			var out types.TenantResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTenantResponse = &out
+			res.TenantResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -748,7 +748,7 @@ func (s *Tenants) GetTenantByID(ctx context.Context, id string, opts ...dtos.Opt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -773,7 +773,7 @@ func (s *Tenants) GetTenantByID(ctx context.Context, id string, opts ...dtos.Opt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

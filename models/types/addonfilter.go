@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type AddonFilterOrder string
@@ -37,7 +38,7 @@ func (e *AddonFilterOrder) UnmarshalJSON(data []byte) error {
 type AddonFilter struct {
 	AddonIds  []string   `json:"addon_ids,omitzero"`
 	AddonType *AddonType `json:"addon_type,omitzero"`
-	EndTime   *string    `json:"end_time,omitzero"`
+	EndTime   *time.Time `json:"end_time,omitzero"`
 	Expand    *string    `json:"expand,omitzero"`
 	// filters allows complex filtering based on multiple fields
 	Filters    []FilterCondition `json:"filters,omitzero"`
@@ -46,7 +47,7 @@ type AddonFilter struct {
 	Offset     *int64            `json:"offset,omitzero"`
 	Order      *AddonFilterOrder `json:"order,omitzero"`
 	Sort       []SortCondition   `json:"sort,omitzero"`
-	StartTime  *string           `json:"start_time,omitzero"`
+	StartTime  *time.Time        `json:"start_time,omitzero"`
 	Status     *Status           `json:"status,omitzero"`
 }
 
@@ -75,7 +76,7 @@ func (a *AddonFilter) GetAddonType() *AddonType {
 	return a.AddonType
 }
 
-func (a *AddonFilter) GetEndTime() *string {
+func (a *AddonFilter) GetEndTime() *time.Time {
 	if a == nil {
 		return nil
 	}
@@ -131,7 +132,7 @@ func (a *AddonFilter) GetSort() []SortCondition {
 	return a.Sort
 }
 
-func (a *AddonFilter) GetStartTime() *string {
+func (a *AddonFilter) GetStartTime() *time.Time {
 	if a == nil {
 		return nil
 	}

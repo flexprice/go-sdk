@@ -35,7 +35,7 @@ func newCoupons(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *ho
 // Use when creating a discount (e.g. promo code or referral). Ideal for percent or fixed value, with optional validity and usage limits.
 //
 // This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
-func (s *Coupons) CreateCoupon(ctx context.Context, request types.DtoCreateCouponRequest, opts ...dtos.Option) (*dtos.CreateCouponResponse, error) {
+func (s *Coupons) CreateCoupon(ctx context.Context, request types.CreateCouponRequest, opts ...dtos.Option) (*dtos.CreateCouponResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -209,12 +209,12 @@ func (s *Coupons) CreateCoupon(ctx context.Context, request types.DtoCreateCoupo
 				return nil, err
 			}
 
-			var out types.DtoCouponResponse
+			var out types.Coupon
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCouponResponse = &out
+			res.Coupon = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -236,7 +236,7 @@ func (s *Coupons) CreateCoupon(ctx context.Context, request types.DtoCreateCoupo
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -261,7 +261,7 @@ func (s *Coupons) CreateCoupon(ctx context.Context, request types.DtoCreateCoupo
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -478,12 +478,12 @@ func (s *Coupons) QueryCoupon(ctx context.Context, request types.CouponFilter, o
 				return nil, err
 			}
 
-			var out types.DtoListCouponsResponse
+			var out types.ListCouponsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListCouponsResponse = &out
+			res.ListCouponsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -499,7 +499,7 @@ func (s *Coupons) QueryCoupon(ctx context.Context, request types.CouponFilter, o
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -524,7 +524,7 @@ func (s *Coupons) QueryCoupon(ctx context.Context, request types.CouponFilter, o
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -738,12 +738,12 @@ func (s *Coupons) GetCoupon(ctx context.Context, id string, opts ...dtos.Option)
 				return nil, err
 			}
 
-			var out types.DtoCouponResponse
+			var out types.Coupon
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCouponResponse = &out
+			res.Coupon = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -761,7 +761,7 @@ func (s *Coupons) GetCoupon(ctx context.Context, id string, opts ...dtos.Option)
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -786,7 +786,7 @@ func (s *Coupons) GetCoupon(ctx context.Context, id string, opts ...dtos.Option)
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -831,7 +831,7 @@ func (s *Coupons) GetCoupon(ctx context.Context, id string, opts ...dtos.Option)
 // Use when changing coupon config (e.g. value, validity, or usage limits).
 //
 // This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
-func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.DtoUpdateCouponRequest, opts ...dtos.Option) (*dtos.UpdateCouponResponse, error) {
+func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.UpdateCouponRequest, opts ...dtos.Option) (*dtos.UpdateCouponResponse, error) {
 	request := dtos.UpdateCouponRequest{
 		ID:   id,
 		Body: body,
@@ -1010,12 +1010,12 @@ func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.DtoUpd
 				return nil, err
 			}
 
-			var out types.DtoCouponResponse
+			var out types.Coupon
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCouponResponse = &out
+			res.Coupon = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1037,7 +1037,7 @@ func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.DtoUpd
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1062,7 +1062,7 @@ func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.DtoUpd
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1305,7 +1305,7 @@ func (s *Coupons) DeleteCoupon(ctx context.Context, id string, opts ...dtos.Opti
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1330,7 +1330,7 @@ func (s *Coupons) DeleteCoupon(ctx context.Context, id string, opts ...dtos.Opti
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

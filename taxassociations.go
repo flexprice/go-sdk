@@ -211,12 +211,12 @@ func (s *TaxAssociations) ListTaxAssociations(ctx context.Context, entityType *s
 				return nil, err
 			}
 
-			var out types.DtoListTaxAssociationsResponse
+			var out types.ListTaxAssociationsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListTaxAssociationsResponse = &out
+			res.ListTaxAssociationsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -232,7 +232,7 @@ func (s *TaxAssociations) ListTaxAssociations(ctx context.Context, entityType *s
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -257,7 +257,7 @@ func (s *TaxAssociations) ListTaxAssociations(ctx context.Context, entityType *s
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -300,7 +300,7 @@ func (s *TaxAssociations) ListTaxAssociations(ctx context.Context, entityType *s
 
 // CreateTaxAssociation - Create Tax Association
 // Use when linking a tax rate to an entity (e.g. customer, product, or region) so that rate applies on invoices.
-func (s *TaxAssociations) CreateTaxAssociation(ctx context.Context, request types.DtoCreateTaxAssociationRequest, opts ...dtos.Option) (*dtos.CreateTaxAssociationResponse, error) {
+func (s *TaxAssociations) CreateTaxAssociation(ctx context.Context, request types.CreateTaxAssociationRequest, opts ...dtos.Option) (*dtos.CreateTaxAssociationResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -474,12 +474,12 @@ func (s *TaxAssociations) CreateTaxAssociation(ctx context.Context, request type
 				return nil, err
 			}
 
-			var out types.DtoTaxAssociationResponse
+			var out types.TaxAssociationResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTaxAssociationResponse = &out
+			res.TaxAssociationResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -495,7 +495,7 @@ func (s *TaxAssociations) CreateTaxAssociation(ctx context.Context, request type
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -520,7 +520,7 @@ func (s *TaxAssociations) CreateTaxAssociation(ctx context.Context, request type
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -734,12 +734,12 @@ func (s *TaxAssociations) GetTaxAssociation(ctx context.Context, id string, opts
 				return nil, err
 			}
 
-			var out types.DtoTaxAssociationResponse
+			var out types.TaxAssociationResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTaxAssociationResponse = &out
+			res.TaxAssociationResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -755,7 +755,7 @@ func (s *TaxAssociations) GetTaxAssociation(ctx context.Context, id string, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -780,7 +780,7 @@ func (s *TaxAssociations) GetTaxAssociation(ctx context.Context, id string, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -823,7 +823,7 @@ func (s *TaxAssociations) GetTaxAssociation(ctx context.Context, id string, opts
 
 // UpdateTaxAssociation - Update tax association
 // Use when changing a tax association (e.g. switch rate or entity). Request body contains the fields to update.
-func (s *TaxAssociations) UpdateTaxAssociation(ctx context.Context, id string, body types.DtoTaxAssociationUpdateRequest, opts ...dtos.Option) (*dtos.UpdateTaxAssociationResponse, error) {
+func (s *TaxAssociations) UpdateTaxAssociation(ctx context.Context, id string, body types.TaxAssociationUpdateRequest, opts ...dtos.Option) (*dtos.UpdateTaxAssociationResponse, error) {
 	request := dtos.UpdateTaxAssociationRequest{
 		ID:   id,
 		Body: body,
@@ -1002,12 +1002,12 @@ func (s *TaxAssociations) UpdateTaxAssociation(ctx context.Context, id string, b
 				return nil, err
 			}
 
-			var out types.DtoTaxAssociationResponse
+			var out types.TaxAssociationResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTaxAssociationResponse = &out
+			res.TaxAssociationResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1023,7 +1023,7 @@ func (s *TaxAssociations) UpdateTaxAssociation(ctx context.Context, id string, b
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1048,7 +1048,7 @@ func (s *TaxAssociations) UpdateTaxAssociation(ctx context.Context, id string, b
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1262,12 +1262,12 @@ func (s *TaxAssociations) DeleteTaxAssociation(ctx context.Context, id string, o
 				return nil, err
 			}
 
-			var out types.DtoTaxAssociationResponse
+			var out types.TaxAssociationResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTaxAssociationResponse = &out
+			res.TaxAssociationResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1283,7 +1283,7 @@ func (s *TaxAssociations) DeleteTaxAssociation(ctx context.Context, id string, o
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1308,7 +1308,7 @@ func (s *TaxAssociations) DeleteTaxAssociation(ctx context.Context, id string, o
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

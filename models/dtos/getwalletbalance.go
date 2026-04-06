@@ -14,6 +14,17 @@ type GetWalletBalanceRequest struct {
 	Expand *string `queryParam:"style=form,explode=true,name=expand"`
 }
 
+func (g GetWalletBalanceRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetWalletBalanceRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetWalletBalanceRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -31,7 +42,7 @@ func (g *GetWalletBalanceRequest) GetExpand() *string {
 type GetWalletBalanceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoWalletBalanceResponse *types.DtoWalletBalanceResponse
+	WalletBalanceResponse *types.WalletBalanceResponse
 }
 
 func (g GetWalletBalanceResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (g GetWalletBalanceResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetWalletBalanceResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (g *GetWalletBalanceResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetWalletBalanceResponse) GetDtoWalletBalanceResponse() *types.DtoWalletBalanceResponse {
+func (g *GetWalletBalanceResponse) GetWalletBalanceResponse() *types.WalletBalanceResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoWalletBalanceResponse
+	return g.WalletBalanceResponse
 }

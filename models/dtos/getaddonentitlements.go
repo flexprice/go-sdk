@@ -12,6 +12,17 @@ type GetAddonEntitlementsRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetAddonEntitlementsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonEntitlementsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetAddonEntitlementsRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetAddonEntitlementsRequest) GetID() string {
 type GetAddonEntitlementsResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListEntitlementsResponse *types.DtoListEntitlementsResponse
+	ListEntitlementsResponse *types.ListEntitlementsResponse
 }
 
 func (g GetAddonEntitlementsResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetAddonEntitlementsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetAddonEntitlementsResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetAddonEntitlementsResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetAddonEntitlementsResponse) GetDtoListEntitlementsResponse() *types.DtoListEntitlementsResponse {
+func (g *GetAddonEntitlementsResponse) GetListEntitlementsResponse() *types.ListEntitlementsResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoListEntitlementsResponse
+	return g.ListEntitlementsResponse
 }

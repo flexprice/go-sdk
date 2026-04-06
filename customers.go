@@ -33,7 +33,7 @@ func newCustomers(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *
 
 // UpdateCustomer - Update customer
 // Use when updating customer details (e.g. name, email, or metadata). Identify by id or external_customer_id.
-func (s *Customers) UpdateCustomer(ctx context.Context, body types.DtoUpdateCustomerRequest, id *string, externalCustomerID *string, opts ...dtos.Option) (*dtos.UpdateCustomerResponse, error) {
+func (s *Customers) UpdateCustomer(ctx context.Context, body types.UpdateCustomerRequest, id *string, externalCustomerID *string, opts ...dtos.Option) (*dtos.UpdateCustomerResponse, error) {
 	request := dtos.UpdateCustomerRequest{
 		ID:                 id,
 		ExternalCustomerID: externalCustomerID,
@@ -217,12 +217,12 @@ func (s *Customers) UpdateCustomer(ctx context.Context, body types.DtoUpdateCust
 				return nil, err
 			}
 
-			var out types.DtoCustomerResponse
+			var out types.Customer1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCustomerResponse = &out
+			res.Customer = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -238,7 +238,7 @@ func (s *Customers) UpdateCustomer(ctx context.Context, body types.DtoUpdateCust
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -263,7 +263,7 @@ func (s *Customers) UpdateCustomer(ctx context.Context, body types.DtoUpdateCust
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -306,7 +306,7 @@ func (s *Customers) UpdateCustomer(ctx context.Context, body types.DtoUpdateCust
 
 // CreateCustomer - Create customer
 // Use when onboarding a new billing customer (e.g. sign-up or CRM sync). Ideal for linking via external_customer_id to your app's user id.
-func (s *Customers) CreateCustomer(ctx context.Context, request types.DtoCreateCustomerRequest, opts ...dtos.Option) (*dtos.CreateCustomerResponse, error) {
+func (s *Customers) CreateCustomer(ctx context.Context, request types.CreateCustomerRequest, opts ...dtos.Option) (*dtos.CreateCustomerResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -480,12 +480,12 @@ func (s *Customers) CreateCustomer(ctx context.Context, request types.DtoCreateC
 				return nil, err
 			}
 
-			var out types.DtoCustomerResponse
+			var out types.Customer1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCustomerResponse = &out
+			res.Customer = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -501,7 +501,7 @@ func (s *Customers) CreateCustomer(ctx context.Context, request types.DtoCreateC
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -526,7 +526,7 @@ func (s *Customers) CreateCustomer(ctx context.Context, request types.DtoCreateC
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -740,12 +740,12 @@ func (s *Customers) GetCustomerByExternalID(ctx context.Context, externalID stri
 				return nil, err
 			}
 
-			var out types.DtoCustomerResponse
+			var out types.Customer1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCustomerResponse = &out
+			res.Customer = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -763,7 +763,7 @@ func (s *Customers) GetCustomerByExternalID(ctx context.Context, externalID stri
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -788,7 +788,7 @@ func (s *Customers) GetCustomerByExternalID(ctx context.Context, externalID stri
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1005,12 +1005,12 @@ func (s *Customers) QueryCustomer(ctx context.Context, request types.CustomerFil
 				return nil, err
 			}
 
-			var out types.DtoListCustomersResponse
+			var out types.ListCustomersResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListCustomersResponse = &out
+			res.ListCustomersResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1026,7 +1026,7 @@ func (s *Customers) QueryCustomer(ctx context.Context, request types.CustomerFil
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1051,7 +1051,7 @@ func (s *Customers) QueryCustomer(ctx context.Context, request types.CustomerFil
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1265,12 +1265,12 @@ func (s *Customers) GetCustomerUsageSummary(ctx context.Context, request dtos.Ge
 				return nil, err
 			}
 
-			var out types.DtoCustomerUsageSummaryResponse
+			var out types.CustomerUsageSummaryResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCustomerUsageSummaryResponse = &out
+			res.CustomerUsageSummaryResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1286,7 +1286,7 @@ func (s *Customers) GetCustomerUsageSummary(ctx context.Context, request dtos.Ge
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1311,7 +1311,7 @@ func (s *Customers) GetCustomerUsageSummary(ctx context.Context, request dtos.Ge
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1525,12 +1525,12 @@ func (s *Customers) GetCustomer(ctx context.Context, id string, opts ...dtos.Opt
 				return nil, err
 			}
 
-			var out types.DtoCustomerResponse
+			var out types.Customer1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCustomerResponse = &out
+			res.Customer = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1546,7 +1546,7 @@ func (s *Customers) GetCustomer(ctx context.Context, id string, opts ...dtos.Opt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1571,7 +1571,7 @@ func (s *Customers) GetCustomer(ctx context.Context, id string, opts ...dtos.Opt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1787,7 +1787,7 @@ func (s *Customers) DeleteCustomer(ctx context.Context, id string, opts ...dtos.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1812,7 +1812,7 @@ func (s *Customers) DeleteCustomer(ctx context.Context, id string, opts ...dtos.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2026,12 +2026,12 @@ func (s *Customers) GetCustomerEntitlements(ctx context.Context, id string, opts
 				return nil, err
 			}
 
-			var out types.DtoCustomerEntitlementsResponse
+			var out types.CustomerEntitlementsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCustomerEntitlementsResponse = &out
+			res.CustomerEntitlementsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2047,7 +2047,7 @@ func (s *Customers) GetCustomerEntitlements(ctx context.Context, id string, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2072,7 +2072,7 @@ func (s *Customers) GetCustomerEntitlements(ctx context.Context, id string, opts
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2286,12 +2286,12 @@ func (s *Customers) GetCustomerUpcomingGrants(ctx context.Context, id string, op
 				return nil, err
 			}
 
-			var out types.DtoListCreditGrantApplicationsResponse
+			var out types.ListCreditGrantApplicationsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListCreditGrantApplicationsResponse = &out
+			res.ListCreditGrantApplicationsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2309,7 +2309,7 @@ func (s *Customers) GetCustomerUpcomingGrants(ctx context.Context, id string, op
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2334,7 +2334,7 @@ func (s *Customers) GetCustomerUpcomingGrants(ctx context.Context, id string, op
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

@@ -4,6 +4,7 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type SubscriptionSubscriptionLineItem struct {
@@ -18,12 +19,12 @@ type SubscriptionSubscriptionLineItem struct {
 	CommitmentTrueUpEnabled *bool                           `json:"commitment_true_up_enabled,omitzero"`
 	CommitmentType          *CommitmentType                 `json:"commitment_type,omitzero"`
 	CommitmentWindowed      *bool                           `json:"commitment_windowed,omitzero"`
-	CreatedAt               *string                         `json:"created_at,omitzero"`
+	CreatedAt               *time.Time                      `json:"created_at,omitzero"`
 	CreatedBy               *string                         `json:"created_by,omitzero"`
 	Currency                *string                         `json:"currency,omitzero"`
 	CustomerID              *string                         `json:"customer_id,omitzero"`
 	DisplayName             *string                         `json:"display_name,omitzero"`
-	EndDate                 *string                         `json:"end_date,omitzero"`
+	EndDate                 *time.Time                      `json:"end_date,omitzero"`
 	EntityID                *string                         `json:"entity_id,omitzero"`
 	EntityType              *SubscriptionLineItemEntityType `json:"entity_type,omitzero"`
 	EnvironmentID           *string                         `json:"environment_id,omitzero"`
@@ -39,13 +40,13 @@ type SubscriptionSubscriptionLineItem struct {
 	PriceUnit               *string                         `json:"price_unit,omitzero"`
 	PriceUnitID             *string                         `json:"price_unit_id,omitzero"`
 	Quantity                *string                         `json:"quantity,omitzero"`
-	StartDate               *string                         `json:"start_date,omitzero"`
+	StartDate               *time.Time                      `json:"start_date,omitzero"`
 	Status                  *Status                         `json:"status,omitzero"`
 	SubscriptionID          *string                         `json:"subscription_id,omitzero"`
 	SubscriptionPhaseID     *string                         `json:"subscription_phase_id,omitzero"`
 	TenantID                *string                         `json:"tenant_id,omitzero"`
 	TrialPeriod             *int64                          `json:"trial_period,omitzero"`
-	UpdatedAt               *string                         `json:"updated_at,omitzero"`
+	UpdatedAt               *time.Time                      `json:"updated_at,omitzero"`
 	UpdatedBy               *string                         `json:"updated_by,omitzero"`
 }
 
@@ -123,7 +124,7 @@ func (s *SubscriptionSubscriptionLineItem) GetCommitmentWindowed() *bool {
 	return s.CommitmentWindowed
 }
 
-func (s *SubscriptionSubscriptionLineItem) GetCreatedAt() *string {
+func (s *SubscriptionSubscriptionLineItem) GetCreatedAt() *time.Time {
 	if s == nil {
 		return nil
 	}
@@ -158,7 +159,7 @@ func (s *SubscriptionSubscriptionLineItem) GetDisplayName() *string {
 	return s.DisplayName
 }
 
-func (s *SubscriptionSubscriptionLineItem) GetEndDate() *string {
+func (s *SubscriptionSubscriptionLineItem) GetEndDate() *time.Time {
 	if s == nil {
 		return nil
 	}
@@ -270,7 +271,7 @@ func (s *SubscriptionSubscriptionLineItem) GetQuantity() *string {
 	return s.Quantity
 }
 
-func (s *SubscriptionSubscriptionLineItem) GetStartDate() *string {
+func (s *SubscriptionSubscriptionLineItem) GetStartDate() *time.Time {
 	if s == nil {
 		return nil
 	}
@@ -312,7 +313,7 @@ func (s *SubscriptionSubscriptionLineItem) GetTrialPeriod() *int64 {
 	return s.TrialPeriod
 }
 
-func (s *SubscriptionSubscriptionLineItem) GetUpdatedAt() *string {
+func (s *SubscriptionSubscriptionLineItem) GetUpdatedAt() *time.Time {
 	if s == nil {
 		return nil
 	}

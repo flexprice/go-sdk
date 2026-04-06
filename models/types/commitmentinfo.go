@@ -2,6 +2,10 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type CommitmentInfo struct {
 	Amount                           *string `json:"amount,omitzero"`
 	ComputedCommitmentUtilizedAmount *string `json:"computed_commitment_utilized_amount,omitzero"`
@@ -15,6 +19,17 @@ type CommitmentInfo struct {
 	Quantity      *string         `json:"quantity,omitzero"`
 	TrueUpEnabled *bool           `json:"true_up_enabled,omitzero"`
 	Type          *CommitmentType `json:"type,omitzero"`
+}
+
+func (c CommitmentInfo) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CommitmentInfo) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (c *CommitmentInfo) GetAmount() *string {

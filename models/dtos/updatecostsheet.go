@@ -11,7 +11,18 @@ type UpdateCostsheetRequest struct {
 	// Costsheet ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Costsheet configuration
-	Body types.DtoUpdateCostsheetRequest `request:"mediaType=application/json"`
+	Body types.UpdateCostsheetRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateCostsheetRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateCostsheetRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateCostsheetRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateCostsheetRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateCostsheetRequest) GetBody() types.DtoUpdateCostsheetRequest {
+func (u *UpdateCostsheetRequest) GetBody() types.UpdateCostsheetRequest {
 	if u == nil {
-		return types.DtoUpdateCostsheetRequest{}
+		return types.UpdateCostsheetRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateCostsheetRequest) GetBody() types.DtoUpdateCostsheetRequest {
 type UpdateCostsheetResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Updated costsheet
-	DtoUpdateCostsheetResponse *types.DtoUpdateCostsheetResponse
+	UpdateCostsheetResponse *types.UpdateCostsheetResponse
 }
 
 func (u UpdateCostsheetResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateCostsheetResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateCostsheetResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateCostsheetResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateCostsheetResponse) GetDtoUpdateCostsheetResponse() *types.DtoUpdateCostsheetResponse {
+func (u *UpdateCostsheetResponse) GetUpdateCostsheetResponse() *types.UpdateCostsheetResponse {
 	if u == nil {
 		return nil
 	}
-	return u.DtoUpdateCostsheetResponse
+	return u.UpdateCostsheetResponse
 }

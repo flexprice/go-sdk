@@ -10,7 +10,7 @@ import (
 type LinkIntegrationMappingResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoLinkIntegrationMappingResponse *types.DtoLinkIntegrationMappingResponse
+	LinkIntegrationMappingResponse *types.LinkIntegrationMappingResponse
 }
 
 func (l LinkIntegrationMappingResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (l LinkIntegrationMappingResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LinkIntegrationMappingResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (l *LinkIntegrationMappingResponse) GetHTTPMeta() types.HTTPMetadata {
 	return l.HTTPMeta
 }
 
-func (l *LinkIntegrationMappingResponse) GetDtoLinkIntegrationMappingResponse() *types.DtoLinkIntegrationMappingResponse {
+func (l *LinkIntegrationMappingResponse) GetLinkIntegrationMappingResponse() *types.LinkIntegrationMappingResponse {
 	if l == nil {
 		return nil
 	}
-	return l.DtoLinkIntegrationMappingResponse
+	return l.LinkIntegrationMappingResponse
 }

@@ -10,7 +10,7 @@ import (
 type QueryWorkflowResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListWorkflowsResponse *types.DtoListWorkflowsResponse
+	ListWorkflowsResponse *types.ListWorkflowsResponse
 }
 
 func (q QueryWorkflowResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (q QueryWorkflowResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (q *QueryWorkflowResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &q, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (q *QueryWorkflowResponse) GetHTTPMeta() types.HTTPMetadata {
 	return q.HTTPMeta
 }
 
-func (q *QueryWorkflowResponse) GetDtoListWorkflowsResponse() *types.DtoListWorkflowsResponse {
+func (q *QueryWorkflowResponse) GetListWorkflowsResponse() *types.ListWorkflowsResponse {
 	if q == nil {
 		return nil
 	}
-	return q.DtoListWorkflowsResponse
+	return q.ListWorkflowsResponse
 }

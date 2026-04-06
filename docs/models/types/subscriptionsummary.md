@@ -1,0 +1,15 @@
+# SubscriptionSummary
+
+
+## Fields
+
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `ArchivedAt`                                                          | [*time.Time](https://pkg.go.dev/time#Time)                            | :heavy_minus_sign:                                                    | archived_at timestamp (for old subscriptions)                         |
+| `BillingAnchor`                                                       | [*time.Time](https://pkg.go.dev/time#Time)                            | :heavy_minus_sign:                                                    | billing_anchor of the subscription                                    |
+| `CreatedAt`                                                           | [*time.Time](https://pkg.go.dev/time#Time)                            | :heavy_minus_sign:                                                    | created_at timestamp                                                  |
+| `CurrentPeriodEnd`                                                    | [*time.Time](https://pkg.go.dev/time#Time)                            | :heavy_minus_sign:                                                    | current_period_end of the subscription                                |
+| `CurrentPeriodStart`                                                  | [*time.Time](https://pkg.go.dev/time#Time)                            | :heavy_minus_sign:                                                    | current_period_start of the subscription                              |
+| `ID`                                                                  | `*string`                                                             | :heavy_minus_sign:                                                    | id of the subscription                                                |
+| `PlanID`                                                              | `*string`                                                             | :heavy_minus_sign:                                                    | plan_id of the subscription                                           |
+| `Status`                                                              | [*types.SubscriptionStatus](../../models/types/subscriptionstatus.md) | :heavy_minus_sign:                                                    | N/A                                                                   |

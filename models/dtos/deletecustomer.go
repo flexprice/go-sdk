@@ -3,12 +3,24 @@
 package dtos
 
 import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
 type DeleteCustomerRequest struct {
 	// Customer ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (d DeleteCustomerRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteCustomerRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DeleteCustomerRequest) GetID() string {
@@ -20,6 +32,17 @@ func (d *DeleteCustomerRequest) GetID() string {
 
 type DeleteCustomerResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
+}
+
+func (d DeleteCustomerResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteCustomerResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DeleteCustomerResponse) GetHTTPMeta() types.HTTPMetadata {

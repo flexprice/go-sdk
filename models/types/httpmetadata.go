@@ -3,6 +3,7 @@
 package types
 
 import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
 	"net/http"
 )
 
@@ -11,6 +12,17 @@ type HTTPMetadata struct {
 	Response *http.Response `json:"-"`
 	// Raw HTTP request; suitable for debugging
 	Request *http.Request `json:"-"`
+}
+
+func (h HTTPMetadata) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(h, "", false)
+}
+
+func (h *HTTPMetadata) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &h, "", false, []string{"Response", "Request"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (h *HTTPMetadata) GetResponse() *http.Response {

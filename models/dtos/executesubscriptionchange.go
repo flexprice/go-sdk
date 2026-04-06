@@ -11,7 +11,18 @@ type ExecuteSubscriptionChangeRequest struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Subscription change request
-	Body types.DtoSubscriptionChangeRequest `request:"mediaType=application/json"`
+	Body types.SubscriptionChangeRequest `request:"mediaType=application/json"`
+}
+
+func (e ExecuteSubscriptionChangeRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteSubscriptionChangeRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (e *ExecuteSubscriptionChangeRequest) GetID() string {
@@ -21,9 +32,9 @@ func (e *ExecuteSubscriptionChangeRequest) GetID() string {
 	return e.ID
 }
 
-func (e *ExecuteSubscriptionChangeRequest) GetBody() types.DtoSubscriptionChangeRequest {
+func (e *ExecuteSubscriptionChangeRequest) GetBody() types.SubscriptionChangeRequest {
 	if e == nil {
-		return types.DtoSubscriptionChangeRequest{}
+		return types.SubscriptionChangeRequest{}
 	}
 	return e.Body
 }
@@ -31,7 +42,7 @@ func (e *ExecuteSubscriptionChangeRequest) GetBody() types.DtoSubscriptionChange
 type ExecuteSubscriptionChangeResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSubscriptionChangeExecuteResponse *types.DtoSubscriptionChangeExecuteResponse
+	SubscriptionChangeExecuteResponse *types.SubscriptionChangeExecuteResponse
 }
 
 func (e ExecuteSubscriptionChangeResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (e ExecuteSubscriptionChangeResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (e *ExecuteSubscriptionChangeResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (e *ExecuteSubscriptionChangeResponse) GetHTTPMeta() types.HTTPMetadata {
 	return e.HTTPMeta
 }
 
-func (e *ExecuteSubscriptionChangeResponse) GetDtoSubscriptionChangeExecuteResponse() *types.DtoSubscriptionChangeExecuteResponse {
+func (e *ExecuteSubscriptionChangeResponse) GetSubscriptionChangeExecuteResponse() *types.SubscriptionChangeExecuteResponse {
 	if e == nil {
 		return nil
 	}
-	return e.DtoSubscriptionChangeExecuteResponse
+	return e.SubscriptionChangeExecuteResponse
 }

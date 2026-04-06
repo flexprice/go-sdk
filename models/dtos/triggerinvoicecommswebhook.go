@@ -12,6 +12,17 @@ type TriggerInvoiceCommsWebhookRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (t TriggerInvoiceCommsWebhookRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TriggerInvoiceCommsWebhookRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (t *TriggerInvoiceCommsWebhookRequest) GetID() string {
 	if t == nil {
 		return ""
@@ -22,7 +33,7 @@ func (t *TriggerInvoiceCommsWebhookRequest) GetID() string {
 type TriggerInvoiceCommsWebhookResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSuccessResponse *types.DtoSuccessResponse
+	SuccessResponse *types.SuccessResponse
 }
 
 func (t TriggerInvoiceCommsWebhookResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (t TriggerInvoiceCommsWebhookResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TriggerInvoiceCommsWebhookResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (t *TriggerInvoiceCommsWebhookResponse) GetHTTPMeta() types.HTTPMetadata {
 	return t.HTTPMeta
 }
 
-func (t *TriggerInvoiceCommsWebhookResponse) GetDtoSuccessResponse() *types.DtoSuccessResponse {
+func (t *TriggerInvoiceCommsWebhookResponse) GetSuccessResponse() *types.SuccessResponse {
 	if t == nil {
 		return nil
 	}
-	return t.DtoSuccessResponse
+	return t.SuccessResponse
 }

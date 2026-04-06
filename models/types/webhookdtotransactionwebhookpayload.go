@@ -7,9 +7,9 @@ import (
 )
 
 type WebhookDtoTransactionWebhookPayload struct {
-	EventType   *WebhookEventName             `json:"event_type,omitzero"`
-	Transaction *DtoWalletTransactionResponse `json:"transaction,omitzero"`
-	Wallet      *DtoWalletResponse            `json:"wallet,omitzero"`
+	EventType   *WebhookEventName          `json:"event_type,omitzero"`
+	Transaction *WalletTransactionResponse `json:"transaction,omitzero"`
+	Wallet      *Wallet                    `json:"wallet,omitzero"`
 }
 
 func (w WebhookDtoTransactionWebhookPayload) MarshalJSON() ([]byte, error) {
@@ -30,14 +30,14 @@ func (w *WebhookDtoTransactionWebhookPayload) GetEventType() *WebhookEventName {
 	return w.EventType
 }
 
-func (w *WebhookDtoTransactionWebhookPayload) GetTransaction() *DtoWalletTransactionResponse {
+func (w *WebhookDtoTransactionWebhookPayload) GetTransaction() *WalletTransactionResponse {
 	if w == nil {
 		return nil
 	}
 	return w.Transaction
 }
 
-func (w *WebhookDtoTransactionWebhookPayload) GetWallet() *DtoWalletResponse {
+func (w *WebhookDtoTransactionWebhookPayload) GetWallet() *Wallet {
 	if w == nil {
 		return nil
 	}

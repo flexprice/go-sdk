@@ -10,7 +10,7 @@ import (
 type CreateWalletResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoWalletResponse *types.DtoWalletResponse
+	Wallet *types.Wallet
 }
 
 func (c CreateWalletResponse) MarshalJSON() ([]byte, error) {
@@ -18,7 +18,7 @@ func (c CreateWalletResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateWalletResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -31,9 +31,9 @@ func (c *CreateWalletResponse) GetHTTPMeta() types.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreateWalletResponse) GetDtoWalletResponse() *types.DtoWalletResponse {
+func (c *CreateWalletResponse) GetWallet() *types.Wallet {
 	if c == nil {
 		return nil
 	}
-	return c.DtoWalletResponse
+	return c.Wallet
 }

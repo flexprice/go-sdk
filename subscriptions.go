@@ -33,7 +33,7 @@ func newSubscriptions(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hoo
 
 // CreateSubscription - Create subscription
 // Use when onboarding a customer to a plan or starting a new subscription. Ideal for draft subscriptions (activate later) or active from start.
-func (s *Subscriptions) CreateSubscription(ctx context.Context, request types.DtoCreateSubscriptionRequest, opts ...dtos.Option) (*dtos.CreateSubscriptionResponse, error) {
+func (s *Subscriptions) CreateSubscription(ctx context.Context, request types.CreateSubscriptionRequest, opts ...dtos.Option) (*dtos.CreateSubscriptionResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -207,12 +207,12 @@ func (s *Subscriptions) CreateSubscription(ctx context.Context, request types.Dt
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionResponse
+			var out types.Subscription
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionResponse = &out
+			res.Subscription = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -228,7 +228,7 @@ func (s *Subscriptions) CreateSubscription(ctx context.Context, request types.Dt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -253,7 +253,7 @@ func (s *Subscriptions) CreateSubscription(ctx context.Context, request types.Dt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -296,7 +296,7 @@ func (s *Subscriptions) CreateSubscription(ctx context.Context, request types.Dt
 
 // AddSubscriptionAddon - Add addon to subscription
 // Use when adding an optional product or add-on to an existing subscription (e.g. extra storage or support tier).
-func (s *Subscriptions) AddSubscriptionAddon(ctx context.Context, request types.DtoAddAddonRequest, opts ...dtos.Option) (*dtos.AddSubscriptionAddonResponse, error) {
+func (s *Subscriptions) AddSubscriptionAddon(ctx context.Context, request types.AddAddonRequest, opts ...dtos.Option) (*dtos.AddSubscriptionAddonResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -470,12 +470,12 @@ func (s *Subscriptions) AddSubscriptionAddon(ctx context.Context, request types.
 				return nil, err
 			}
 
-			var out types.DtoAddonAssociationResponse
+			var out types.AddonAssociationResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoAddonAssociationResponse = &out
+			res.AddonAssociationResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -491,7 +491,7 @@ func (s *Subscriptions) AddSubscriptionAddon(ctx context.Context, request types.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -516,7 +516,7 @@ func (s *Subscriptions) AddSubscriptionAddon(ctx context.Context, request types.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -559,7 +559,7 @@ func (s *Subscriptions) AddSubscriptionAddon(ctx context.Context, request types.
 
 // RemoveSubscriptionAddon - Remove addon from subscription
 // Use when removing an add-on from a subscription (e.g. downgrade or opt-out).
-func (s *Subscriptions) RemoveSubscriptionAddon(ctx context.Context, request types.DtoRemoveAddonRequest, opts ...dtos.Option) (*dtos.RemoveSubscriptionAddonResponse, error) {
+func (s *Subscriptions) RemoveSubscriptionAddon(ctx context.Context, request types.RemoveAddonRequest, opts ...dtos.Option) (*dtos.RemoveSubscriptionAddonResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -733,12 +733,12 @@ func (s *Subscriptions) RemoveSubscriptionAddon(ctx context.Context, request typ
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -754,7 +754,7 @@ func (s *Subscriptions) RemoveSubscriptionAddon(ctx context.Context, request typ
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -779,7 +779,7 @@ func (s *Subscriptions) RemoveSubscriptionAddon(ctx context.Context, request typ
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -822,7 +822,7 @@ func (s *Subscriptions) RemoveSubscriptionAddon(ctx context.Context, request typ
 
 // UpdateSubscriptionLineItem - Update subscription line item
 // Use when changing a subscription line item (e.g. quantity or price). Implemented by ending the current line and creating a new one for clean billing.
-func (s *Subscriptions) UpdateSubscriptionLineItem(ctx context.Context, id string, body types.DtoUpdateSubscriptionLineItemRequest, opts ...dtos.Option) (*dtos.UpdateSubscriptionLineItemResponse, error) {
+func (s *Subscriptions) UpdateSubscriptionLineItem(ctx context.Context, id string, body types.UpdateSubscriptionLineItemRequest, opts ...dtos.Option) (*dtos.UpdateSubscriptionLineItemResponse, error) {
 	request := dtos.UpdateSubscriptionLineItemRequest{
 		ID:   id,
 		Body: body,
@@ -1001,12 +1001,12 @@ func (s *Subscriptions) UpdateSubscriptionLineItem(ctx context.Context, id strin
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionLineItemResponse
+			var out types.SubscriptionLineItemResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionLineItemResponse = &out
+			res.SubscriptionLineItemResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1022,7 +1022,7 @@ func (s *Subscriptions) UpdateSubscriptionLineItem(ctx context.Context, id strin
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1047,7 +1047,7 @@ func (s *Subscriptions) UpdateSubscriptionLineItem(ctx context.Context, id strin
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1090,7 +1090,7 @@ func (s *Subscriptions) UpdateSubscriptionLineItem(ctx context.Context, id strin
 
 // DeleteSubscriptionLineItem - Delete subscription line item
 // Use when removing a charge or seat from a subscription (e.g. downgrade). Line item ends; retained for history but no longer billed.
-func (s *Subscriptions) DeleteSubscriptionLineItem(ctx context.Context, id string, body types.DtoDeleteSubscriptionLineItemRequest, opts ...dtos.Option) (*dtos.DeleteSubscriptionLineItemResponse, error) {
+func (s *Subscriptions) DeleteSubscriptionLineItem(ctx context.Context, id string, body types.DeleteSubscriptionLineItemRequest, opts ...dtos.Option) (*dtos.DeleteSubscriptionLineItemResponse, error) {
 	request := dtos.DeleteSubscriptionLineItemRequest{
 		ID:   id,
 		Body: body,
@@ -1269,12 +1269,12 @@ func (s *Subscriptions) DeleteSubscriptionLineItem(ctx context.Context, id strin
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionLineItemResponse
+			var out types.SubscriptionLineItemResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionLineItemResponse = &out
+			res.SubscriptionLineItemResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1290,7 +1290,7 @@ func (s *Subscriptions) DeleteSubscriptionLineItem(ctx context.Context, id strin
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1315,7 +1315,7 @@ func (s *Subscriptions) DeleteSubscriptionLineItem(ctx context.Context, id strin
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1532,12 +1532,12 @@ func (s *Subscriptions) QuerySubscription(ctx context.Context, request types.Sub
 				return nil, err
 			}
 
-			var out types.DtoListSubscriptionsResponse
+			var out types.ListSubscriptionsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListSubscriptionsResponse = &out
+			res.ListSubscriptionsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1553,7 +1553,7 @@ func (s *Subscriptions) QuerySubscription(ctx context.Context, request types.Sub
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1578,7 +1578,7 @@ func (s *Subscriptions) QuerySubscription(ctx context.Context, request types.Sub
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1621,7 +1621,7 @@ func (s *Subscriptions) QuerySubscription(ctx context.Context, request types.Sub
 
 // GetSubscriptionUsage - Get usage by subscription
 // Use when showing usage for a subscription (e.g. in a portal or for overage checks). Supports time range and filters.
-func (s *Subscriptions) GetSubscriptionUsage(ctx context.Context, request types.DtoGetUsageBySubscriptionRequest, opts ...dtos.Option) (*dtos.GetSubscriptionUsageResponse, error) {
+func (s *Subscriptions) GetSubscriptionUsage(ctx context.Context, request types.GetUsageBySubscriptionRequest, opts ...dtos.Option) (*dtos.GetSubscriptionUsageResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -1795,12 +1795,12 @@ func (s *Subscriptions) GetSubscriptionUsage(ctx context.Context, request types.
 				return nil, err
 			}
 
-			var out types.DtoGetUsageBySubscriptionResponse
+			var out types.GetUsageBySubscriptionResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGetUsageBySubscriptionResponse = &out
+			res.GetUsageBySubscriptionResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1816,7 +1816,7 @@ func (s *Subscriptions) GetSubscriptionUsage(ctx context.Context, request types.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1841,7 +1841,7 @@ func (s *Subscriptions) GetSubscriptionUsage(ctx context.Context, request types.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2055,12 +2055,12 @@ func (s *Subscriptions) GetSubscription(ctx context.Context, id string, opts ...
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionResponse
+			var out types.Subscription
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionResponse = &out
+			res.Subscription = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2076,7 +2076,7 @@ func (s *Subscriptions) GetSubscription(ctx context.Context, id string, opts ...
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2101,7 +2101,7 @@ func (s *Subscriptions) GetSubscription(ctx context.Context, id string, opts ...
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2144,7 +2144,7 @@ func (s *Subscriptions) GetSubscription(ctx context.Context, id string, opts ...
 
 // UpdateSubscription - Update subscription
 // Use when changing subscription details (e.g. quantity, billing anchor, or parent). Supports partial update; send "" to clear parent_subscription_id.
-func (s *Subscriptions) UpdateSubscription(ctx context.Context, id string, body types.DtoUpdateSubscriptionRequest, opts ...dtos.Option) (*dtos.UpdateSubscriptionResponse, error) {
+func (s *Subscriptions) UpdateSubscription(ctx context.Context, id string, body types.UpdateSubscriptionRequest, opts ...dtos.Option) (*dtos.UpdateSubscriptionResponse, error) {
 	request := dtos.UpdateSubscriptionRequest{
 		ID:   id,
 		Body: body,
@@ -2323,12 +2323,12 @@ func (s *Subscriptions) UpdateSubscription(ctx context.Context, id string, body 
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionResponse
+			var out types.Subscription
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionResponse = &out
+			res.Subscription = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2344,7 +2344,7 @@ func (s *Subscriptions) UpdateSubscription(ctx context.Context, id string, body 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2369,7 +2369,7 @@ func (s *Subscriptions) UpdateSubscription(ctx context.Context, id string, body 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2412,7 +2412,7 @@ func (s *Subscriptions) UpdateSubscription(ctx context.Context, id string, body 
 
 // ActivateSubscription - Activate draft subscription
 // Use when turning a draft subscription live (e.g. after collecting payment or completing setup). Once activated, billing and entitlements apply.
-func (s *Subscriptions) ActivateSubscription(ctx context.Context, id string, body types.DtoActivateDraftSubscriptionRequest, opts ...dtos.Option) (*dtos.ActivateSubscriptionResponse, error) {
+func (s *Subscriptions) ActivateSubscription(ctx context.Context, id string, body types.ActivateDraftSubscriptionRequest, opts ...dtos.Option) (*dtos.ActivateSubscriptionResponse, error) {
 	request := dtos.ActivateSubscriptionRequest{
 		ID:   id,
 		Body: body,
@@ -2591,12 +2591,12 @@ func (s *Subscriptions) ActivateSubscription(ctx context.Context, id string, bod
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionResponse
+			var out types.Subscription
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionResponse = &out
+			res.Subscription = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2612,7 +2612,7 @@ func (s *Subscriptions) ActivateSubscription(ctx context.Context, id string, bod
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2637,7 +2637,7 @@ func (s *Subscriptions) ActivateSubscription(ctx context.Context, id string, bod
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2851,12 +2851,12 @@ func (s *Subscriptions) GetSubscriptionAddonAssociations(ctx context.Context, id
 				return nil, err
 			}
 
-			var out []types.DtoAddonAssociationResponse
+			var out []types.AddonAssociationResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoAddonAssociationResponses = out
+			res.AddonAssociationResponses = out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2874,7 +2874,7 @@ func (s *Subscriptions) GetSubscriptionAddonAssociations(ctx context.Context, id
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2899,7 +2899,7 @@ func (s *Subscriptions) GetSubscriptionAddonAssociations(ctx context.Context, id
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2942,7 +2942,7 @@ func (s *Subscriptions) GetSubscriptionAddonAssociations(ctx context.Context, id
 
 // CancelSubscription - Cancel subscription
 // Use when a customer churns or downgrades. Supports immediate or end-of-period cancellation and proration. Ideal for self-serve or support-driven cancellations.
-func (s *Subscriptions) CancelSubscription(ctx context.Context, id string, body types.DtoCancelSubscriptionRequest, opts ...dtos.Option) (*dtos.CancelSubscriptionResponse, error) {
+func (s *Subscriptions) CancelSubscription(ctx context.Context, id string, body types.CancelSubscriptionRequest, opts ...dtos.Option) (*dtos.CancelSubscriptionResponse, error) {
 	request := dtos.CancelSubscriptionRequest{
 		ID:   id,
 		Body: body,
@@ -3121,12 +3121,12 @@ func (s *Subscriptions) CancelSubscription(ctx context.Context, id string, body 
 				return nil, err
 			}
 
-			var out types.DtoCancelSubscriptionResponse
+			var out types.CancelSubscriptionResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCancelSubscriptionResponse = &out
+			res.CancelSubscriptionResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -3142,7 +3142,7 @@ func (s *Subscriptions) CancelSubscription(ctx context.Context, id string, body 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3167,7 +3167,7 @@ func (s *Subscriptions) CancelSubscription(ctx context.Context, id string, body 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3210,7 +3210,7 @@ func (s *Subscriptions) CancelSubscription(ctx context.Context, id string, body 
 
 // ExecuteSubscriptionChange - Execute subscription plan change
 // Use when applying a plan change (e.g. upgrade or downgrade). Executes proration and generates invoice or credit as needed.
-func (s *Subscriptions) ExecuteSubscriptionChange(ctx context.Context, id string, body types.DtoSubscriptionChangeRequest, opts ...dtos.Option) (*dtos.ExecuteSubscriptionChangeResponse, error) {
+func (s *Subscriptions) ExecuteSubscriptionChange(ctx context.Context, id string, body types.SubscriptionChangeRequest, opts ...dtos.Option) (*dtos.ExecuteSubscriptionChangeResponse, error) {
 	request := dtos.ExecuteSubscriptionChangeRequest{
 		ID:   id,
 		Body: body,
@@ -3389,12 +3389,12 @@ func (s *Subscriptions) ExecuteSubscriptionChange(ctx context.Context, id string
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionChangeExecuteResponse
+			var out types.SubscriptionChangeExecuteResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionChangeExecuteResponse = &out
+			res.SubscriptionChangeExecuteResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -3412,7 +3412,7 @@ func (s *Subscriptions) ExecuteSubscriptionChange(ctx context.Context, id string
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3437,7 +3437,7 @@ func (s *Subscriptions) ExecuteSubscriptionChange(ctx context.Context, id string
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3480,7 +3480,7 @@ func (s *Subscriptions) ExecuteSubscriptionChange(ctx context.Context, id string
 
 // PreviewSubscriptionChange - Preview subscription plan change
 // Use when showing a customer the cost of a plan change before they confirm (e.g. upgrade/downgrade preview with proration).
-func (s *Subscriptions) PreviewSubscriptionChange(ctx context.Context, id string, body types.DtoSubscriptionChangeRequest, opts ...dtos.Option) (*dtos.PreviewSubscriptionChangeResponse, error) {
+func (s *Subscriptions) PreviewSubscriptionChange(ctx context.Context, id string, body types.SubscriptionChangeRequest, opts ...dtos.Option) (*dtos.PreviewSubscriptionChangeResponse, error) {
 	request := dtos.PreviewSubscriptionChangeRequest{
 		ID:   id,
 		Body: body,
@@ -3659,12 +3659,12 @@ func (s *Subscriptions) PreviewSubscriptionChange(ctx context.Context, id string
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionChangePreviewResponse
+			var out types.SubscriptionChangePreviewResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionChangePreviewResponse = &out
+			res.SubscriptionChangePreviewResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -3682,7 +3682,7 @@ func (s *Subscriptions) PreviewSubscriptionChange(ctx context.Context, id string
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3707,7 +3707,7 @@ func (s *Subscriptions) PreviewSubscriptionChange(ctx context.Context, id string
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3926,12 +3926,12 @@ func (s *Subscriptions) GetSubscriptionEntitlements(ctx context.Context, id stri
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionEntitlementsResponse
+			var out types.SubscriptionEntitlementsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionEntitlementsResponse = &out
+			res.SubscriptionEntitlementsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -3949,7 +3949,7 @@ func (s *Subscriptions) GetSubscriptionEntitlements(ctx context.Context, id stri
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -3974,7 +3974,7 @@ func (s *Subscriptions) GetSubscriptionEntitlements(ctx context.Context, id stri
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -4188,12 +4188,12 @@ func (s *Subscriptions) GetSubscriptionUpcomingGrants(ctx context.Context, id st
 				return nil, err
 			}
 
-			var out types.DtoListCreditGrantApplicationsResponse
+			var out types.ListCreditGrantApplicationsResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListCreditGrantApplicationsResponse = &out
+			res.ListCreditGrantApplicationsResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -4211,7 +4211,7 @@ func (s *Subscriptions) GetSubscriptionUpcomingGrants(ctx context.Context, id st
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -4236,7 +4236,7 @@ func (s *Subscriptions) GetSubscriptionUpcomingGrants(ctx context.Context, id st
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -4279,7 +4279,7 @@ func (s *Subscriptions) GetSubscriptionUpcomingGrants(ctx context.Context, id st
 
 // CreateSubscriptionLineItem - Create subscription line item
 // Use when adding a new charge or seat to a subscription (e.g. extra seat or one-time add). Supports price_id or inline price.
-func (s *Subscriptions) CreateSubscriptionLineItem(ctx context.Context, id string, body types.DtoCreateSubscriptionLineItemRequest, opts ...dtos.Option) (*dtos.CreateSubscriptionLineItemResponse, error) {
+func (s *Subscriptions) CreateSubscriptionLineItem(ctx context.Context, id string, body types.CreateSubscriptionLineItemRequest, opts ...dtos.Option) (*dtos.CreateSubscriptionLineItemResponse, error) {
 	request := dtos.CreateSubscriptionLineItemRequest{
 		ID:   id,
 		Body: body,
@@ -4458,12 +4458,12 @@ func (s *Subscriptions) CreateSubscriptionLineItem(ctx context.Context, id strin
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionLineItemResponse
+			var out types.SubscriptionLineItemResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionLineItemResponse = &out
+			res.SubscriptionLineItemResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -4481,7 +4481,7 @@ func (s *Subscriptions) CreateSubscriptionLineItem(ctx context.Context, id strin
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -4506,7 +4506,277 @@ func (s *Subscriptions) CreateSubscriptionLineItem(ctx context.Context, id strin
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = types.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, errors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode >= 400 && httpRes.StatusCode < 500:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, errors.NewAPIError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
+	case httpRes.StatusCode >= 500 && httpRes.StatusCode < 600:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, errors.NewAPIError("API error occurred", httpRes.StatusCode, string(rawBody), httpRes)
+	default:
+		rawBody, err := utils.ConsumeRawBody(httpRes)
+		if err != nil {
+			return nil, err
+		}
+		return nil, errors.NewAPIError("unknown status code returned", httpRes.StatusCode, string(rawBody), httpRes)
+	}
+
+	return res, nil
+
+}
+
+// ExecuteSubscriptionModify - Add customers to subscription inheritance
+// Attach additional child customers (by external ID) to an active standalone or parent subscription; creates inherited skeleton subscriptions for each. The subscription must be active.
+func (s *Subscriptions) ExecuteSubscriptionModify(ctx context.Context, id string, body types.ExecuteSubscriptionInheritanceRequest, opts ...dtos.Option) (*dtos.ExecuteSubscriptionModifyResponse, error) {
+	request := dtos.ExecuteSubscriptionModifyRequest{
+		ID:   id,
+		Body: body,
+	}
+
+	o := dtos.Options{}
+	supportedOptions := []string{
+		dtos.SupportedOptionRetries,
+		dtos.SupportedOptionTimeout,
+	}
+
+	for _, opt := range opts {
+		if err := opt(&o, supportedOptions...); err != nil {
+			return nil, fmt.Errorf("error applying option: %w", err)
+		}
+	}
+
+	var baseURL string
+	if o.ServerURL == nil {
+		baseURL = utils.ReplaceParameters(s.sdkConfiguration.GetServerDetails())
+	} else {
+		baseURL = *o.ServerURL
+	}
+	opURL, err := utils.GenerateURL(ctx, baseURL, "/subscriptions/{id}/modify/execute", request, nil)
+	if err != nil {
+		return nil, fmt.Errorf("error generating URL: %w", err)
+	}
+
+	hookCtx := hooks.HookContext{
+		SDK:              s.rootSDK,
+		SDKConfiguration: s.sdkConfiguration,
+		BaseURL:          baseURL,
+		Context:          ctx,
+		OperationID:      "executeSubscriptionModify",
+		OAuth2Scopes:     nil,
+		SecuritySource:   s.sdkConfiguration.Security,
+	}
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
+	if err != nil {
+		return nil, err
+	}
+
+	timeout := o.Timeout
+	if timeout == nil {
+		timeout = s.sdkConfiguration.Timeout
+	}
+
+	if timeout != nil {
+		var cancel context.CancelFunc
+		ctx, cancel = context.WithTimeout(ctx, *timeout)
+		defer cancel()
+	}
+
+	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
+	if err != nil {
+		return nil, fmt.Errorf("error creating request: %w", err)
+	}
+	req.Header.Set("Accept", "application/json")
+	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
+
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+		return nil, err
+	}
+
+	for k, v := range o.SetHeaders {
+		req.Header.Set(k, v)
+	}
+
+	globalRetryConfig := s.sdkConfiguration.RetryConfig
+	retryConfig := o.Retries
+	if retryConfig == nil {
+		if globalRetryConfig != nil {
+			retryConfig = globalRetryConfig
+		}
+	}
+
+	var httpRes *http.Response
+	if retryConfig != nil {
+		httpRes, err = utils.Retry(ctx, utils.Retries{
+			Config: retryConfig,
+			StatusCodes: []string{
+				"429",
+				"500",
+				"502",
+				"503",
+				"504",
+			},
+		}, func() (*http.Response, error) {
+			if req.Body != nil && req.Body != http.NoBody && req.GetBody != nil {
+				copyBody, err := req.GetBody()
+
+				if err != nil {
+					return nil, err
+				}
+
+				req.Body = copyBody
+			}
+
+			req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+			if err != nil {
+				if retry.IsPermanentError(err) || retry.IsTemporaryError(err) {
+					return nil, err
+				}
+
+				return nil, retry.Permanent(err)
+			}
+
+			httpRes, err := s.sdkConfiguration.Client.Do(req)
+			if err != nil || httpRes == nil {
+				if err != nil {
+					err = fmt.Errorf("error sending request: %w", err)
+				} else {
+					err = fmt.Errorf("error sending request: no response")
+				}
+
+				_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			}
+			return httpRes, err
+		})
+
+		if err != nil {
+			return nil, err
+		} else {
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	} else {
+		req, err = s.hooks.BeforeRequest(hooks.BeforeRequestContext{HookContext: hookCtx}, req)
+		if err != nil {
+			return nil, err
+		}
+
+		httpRes, err = s.sdkConfiguration.Client.Do(req)
+		if err != nil || httpRes == nil {
+			if err != nil {
+				err = fmt.Errorf("error sending request: %w", err)
+			} else {
+				err = fmt.Errorf("error sending request: no response")
+			}
+
+			_, err = s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, nil, err)
+			return nil, err
+		} else if utils.MatchStatusCodes([]string{"400", "404", "4XX", "500", "5XX"}, httpRes.StatusCode) {
+			_httpRes, err := s.hooks.AfterError(hooks.AfterErrorContext{HookContext: hookCtx}, httpRes, nil)
+			if err != nil {
+				return nil, err
+			} else if _httpRes != nil {
+				httpRes = _httpRes
+			}
+		} else {
+			httpRes, err = s.hooks.AfterSuccess(hooks.AfterSuccessContext{HookContext: hookCtx}, httpRes)
+			if err != nil {
+				return nil, err
+			}
+		}
+	}
+
+	res := &dtos.ExecuteSubscriptionModifyResponse{
+		HTTPMeta: types.HTTPMetadata{
+			Request:  req,
+			Response: httpRes,
+		},
+	}
+
+	switch {
+	case httpRes.StatusCode == 200:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out types.Subscription
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			res.Subscription = &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, errors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 400:
+		fallthrough
+	case httpRes.StatusCode == 404:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out errors.ErrorResponse
+			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
+				return nil, err
+			}
+
+			out.HTTPMeta = types.HTTPMetadata{
+				Request:  req,
+				Response: httpRes,
+			}
+			return nil, &out
+		default:
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+			return nil, errors.NewAPIError(fmt.Sprintf("unknown content-type received: %s", httpRes.Header.Get("Content-Type")), httpRes.StatusCode, string(rawBody), httpRes)
+		}
+	case httpRes.StatusCode == 500:
+		switch {
+		case utils.MatchContentType(httpRes.Header.Get("Content-Type"), `application/json`):
+			rawBody, err := utils.ConsumeRawBody(httpRes)
+			if err != nil {
+				return nil, err
+			}
+
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -4549,7 +4819,7 @@ func (s *Subscriptions) CreateSubscriptionLineItem(ctx context.Context, id strin
 
 // PauseSubscription - Pause a subscription
 // Use when temporarily stopping a subscription (e.g. customer hold or seasonal pause). Billing and access pause; resume when ready.
-func (s *Subscriptions) PauseSubscription(ctx context.Context, id string, body types.DtoPauseSubscriptionRequest, opts ...dtos.Option) (*dtos.PauseSubscriptionResponse, error) {
+func (s *Subscriptions) PauseSubscription(ctx context.Context, id string, body types.PauseSubscriptionRequest, opts ...dtos.Option) (*dtos.PauseSubscriptionResponse, error) {
 	request := dtos.PauseSubscriptionRequest{
 		ID:   id,
 		Body: body,
@@ -4728,12 +4998,12 @@ func (s *Subscriptions) PauseSubscription(ctx context.Context, id string, body t
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionPauseResponse
+			var out types.SubscriptionPauseResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionPauseResponse = &out
+			res.SubscriptionPauseResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -4751,7 +5021,7 @@ func (s *Subscriptions) PauseSubscription(ctx context.Context, id string, body t
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -4776,7 +5046,7 @@ func (s *Subscriptions) PauseSubscription(ctx context.Context, id string, body t
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -4990,12 +5260,12 @@ func (s *Subscriptions) ListSubscriptionPauses(ctx context.Context, id string, o
 				return nil, err
 			}
 
-			var out []types.DtoListSubscriptionPausesResponse
+			var out []types.ListSubscriptionPausesResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListSubscriptionPausesResponses = out
+			res.ListSubscriptionPausesResponses = out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -5013,7 +5283,7 @@ func (s *Subscriptions) ListSubscriptionPauses(ctx context.Context, id string, o
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -5038,7 +5308,7 @@ func (s *Subscriptions) ListSubscriptionPauses(ctx context.Context, id string, o
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -5081,7 +5351,7 @@ func (s *Subscriptions) ListSubscriptionPauses(ctx context.Context, id string, o
 
 // ResumeSubscription - Resume a paused subscription
 // Use when reactivating a paused subscription (e.g. end of hold). Billing and access resume from the resume date.
-func (s *Subscriptions) ResumeSubscription(ctx context.Context, id string, body types.DtoResumeSubscriptionRequest, opts ...dtos.Option) (*dtos.ResumeSubscriptionResponse, error) {
+func (s *Subscriptions) ResumeSubscription(ctx context.Context, id string, body types.ResumeSubscriptionRequest, opts ...dtos.Option) (*dtos.ResumeSubscriptionResponse, error) {
 	request := dtos.ResumeSubscriptionRequest{
 		ID:   id,
 		Body: body,
@@ -5260,12 +5530,12 @@ func (s *Subscriptions) ResumeSubscription(ctx context.Context, id string, body 
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionPauseResponse
+			var out types.SubscriptionPauseResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionPauseResponse = &out
+			res.SubscriptionPauseResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -5283,7 +5553,7 @@ func (s *Subscriptions) ResumeSubscription(ctx context.Context, id string, body 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -5308,7 +5578,7 @@ func (s *Subscriptions) ResumeSubscription(ctx context.Context, id string, body 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -5527,12 +5797,12 @@ func (s *Subscriptions) GetSubscriptionV2(ctx context.Context, id string, expand
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionResponseV2
+			var out types.SubscriptionResponseV2
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionResponseV2 = &out
+			res.SubscriptionResponseV2 = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -5548,7 +5818,7 @@ func (s *Subscriptions) GetSubscriptionV2(ctx context.Context, id string, expand
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -5573,7 +5843,7 @@ func (s *Subscriptions) GetSubscriptionV2(ctx context.Context, id string, expand
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -5794,12 +6064,12 @@ func (s *Subscriptions) ListAllSubscriptionSchedules(ctx context.Context, pendin
 				return nil, err
 			}
 
-			var out types.DtoGetPendingSchedulesResponse
+			var out types.GetPendingSchedulesResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGetPendingSchedulesResponse = &out
+			res.GetPendingSchedulesResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -6004,12 +6274,12 @@ func (s *Subscriptions) GetSubscriptionSchedule(ctx context.Context, id string, 
 				return nil, err
 			}
 
-			var out types.DtoSubscriptionScheduleResponse
+			var out types.SubscriptionScheduleResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSubscriptionScheduleResponse = &out
+			res.SubscriptionScheduleResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -6043,7 +6313,7 @@ func (s *Subscriptions) GetSubscriptionSchedule(ctx context.Context, id string, 
 
 // CancelSubscriptionSchedule - Cancel subscription schedule
 // Use when cancelling a scheduled change (e.g. customer changed mind). Identify by schedule ID in path or by subscription ID + schedule type in body.
-func (s *Subscriptions) CancelSubscriptionSchedule(ctx context.Context, scheduleID string, body *types.DtoCancelScheduleRequest, opts ...dtos.Option) (*dtos.CancelSubscriptionScheduleResponse, error) {
+func (s *Subscriptions) CancelSubscriptionSchedule(ctx context.Context, scheduleID string, body *types.CancelScheduleRequest, opts ...dtos.Option) (*dtos.CancelSubscriptionScheduleResponse, error) {
 	request := dtos.CancelSubscriptionScheduleRequest{
 		ScheduleID: scheduleID,
 		Body:       body,
@@ -6222,12 +6492,12 @@ func (s *Subscriptions) CancelSubscriptionSchedule(ctx context.Context, schedule
 				return nil, err
 			}
 
-			var out types.DtoCancelScheduleResponse
+			var out types.CancelScheduleResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoCancelScheduleResponse = &out
+			res.CancelScheduleResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -6432,12 +6702,12 @@ func (s *Subscriptions) ListSubscriptionSchedules(ctx context.Context, subscript
 				return nil, err
 			}
 
-			var out types.DtoGetPendingSchedulesResponse
+			var out types.GetPendingSchedulesResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoGetPendingSchedulesResponse = &out
+			res.GetPendingSchedulesResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

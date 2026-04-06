@@ -2,19 +2,35 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
+)
+
 type TimeRangeFilter struct {
-	EndTime   *string `json:"end_time,omitzero"`
-	StartTime *string `json:"start_time,omitzero"`
+	EndTime   *time.Time `json:"end_time,omitzero"`
+	StartTime *time.Time `json:"start_time,omitzero"`
 }
 
-func (t *TimeRangeFilter) GetEndTime() *string {
+func (t TimeRangeFilter) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(t, "", false)
+}
+
+func (t *TimeRangeFilter) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (t *TimeRangeFilter) GetEndTime() *time.Time {
 	if t == nil {
 		return nil
 	}
 	return t.EndTime
 }
 
-func (t *TimeRangeFilter) GetStartTime() *string {
+func (t *TimeRangeFilter) GetStartTime() *time.Time {
 	if t == nil {
 		return nil
 	}

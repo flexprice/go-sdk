@@ -12,6 +12,17 @@ type GetSubscriptionUpcomingGrantsRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetSubscriptionUpcomingGrantsRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSubscriptionUpcomingGrantsRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetSubscriptionUpcomingGrantsRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetSubscriptionUpcomingGrantsRequest) GetID() string {
 type GetSubscriptionUpcomingGrantsResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListCreditGrantApplicationsResponse *types.DtoListCreditGrantApplicationsResponse
+	ListCreditGrantApplicationsResponse *types.ListCreditGrantApplicationsResponse
 }
 
 func (g GetSubscriptionUpcomingGrantsResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetSubscriptionUpcomingGrantsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetSubscriptionUpcomingGrantsResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetSubscriptionUpcomingGrantsResponse) GetHTTPMeta() types.HTTPMetadata
 	return g.HTTPMeta
 }
 
-func (g *GetSubscriptionUpcomingGrantsResponse) GetDtoListCreditGrantApplicationsResponse() *types.DtoListCreditGrantApplicationsResponse {
+func (g *GetSubscriptionUpcomingGrantsResponse) GetListCreditGrantApplicationsResponse() *types.ListCreditGrantApplicationsResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoListCreditGrantApplicationsResponse
+	return g.ListCreditGrantApplicationsResponse
 }

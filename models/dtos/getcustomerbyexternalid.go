@@ -12,6 +12,17 @@ type GetCustomerByExternalIDRequest struct {
 	ExternalID string `pathParam:"style=simple,explode=false,name=external_id"`
 }
 
+func (g GetCustomerByExternalIDRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerByExternalIDRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"external_id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetCustomerByExternalIDRequest) GetExternalID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetCustomerByExternalIDRequest) GetExternalID() string {
 type GetCustomerByExternalIDResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCustomerResponse *types.DtoCustomerResponse
+	Customer *types.Customer1
 }
 
 func (g GetCustomerByExternalIDResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetCustomerByExternalIDResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetCustomerByExternalIDResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetCustomerByExternalIDResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCustomerByExternalIDResponse) GetDtoCustomerResponse() *types.DtoCustomerResponse {
+func (g *GetCustomerByExternalIDResponse) GetCustomer() *types.Customer1 {
 	if g == nil {
 		return nil
 	}
-	return g.DtoCustomerResponse
+	return g.Customer
 }

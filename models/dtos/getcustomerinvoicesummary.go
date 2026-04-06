@@ -12,6 +12,17 @@ type GetCustomerInvoiceSummaryRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetCustomerInvoiceSummaryRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerInvoiceSummaryRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetCustomerInvoiceSummaryRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetCustomerInvoiceSummaryRequest) GetID() string {
 type GetCustomerInvoiceSummaryResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCustomerMultiCurrencyInvoiceSummary *types.DtoCustomerMultiCurrencyInvoiceSummary
+	CustomerMultiCurrencyInvoiceSummary *types.CustomerMultiCurrencyInvoiceSummary
 }
 
 func (g GetCustomerInvoiceSummaryResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetCustomerInvoiceSummaryResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetCustomerInvoiceSummaryResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetCustomerInvoiceSummaryResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCustomerInvoiceSummaryResponse) GetDtoCustomerMultiCurrencyInvoiceSummary() *types.DtoCustomerMultiCurrencyInvoiceSummary {
+func (g *GetCustomerInvoiceSummaryResponse) GetCustomerMultiCurrencyInvoiceSummary() *types.CustomerMultiCurrencyInvoiceSummary {
 	if g == nil {
 		return nil
 	}
-	return g.DtoCustomerMultiCurrencyInvoiceSummary
+	return g.CustomerMultiCurrencyInvoiceSummary
 }

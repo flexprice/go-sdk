@@ -21,6 +21,7 @@
 * [GetSubscriptionEntitlements](#getsubscriptionentitlements) - Get subscription entitlements
 * [GetSubscriptionUpcomingGrants](#getsubscriptionupcominggrants) - Get upcoming credit grant applications
 * [CreateSubscriptionLineItem](#createsubscriptionlineitem) - Create subscription line item
+* [ExecuteSubscriptionModify](#executesubscriptionmodify) - Add customers to subscription inheritance
 * [PauseSubscription](#pausesubscription) - Pause a subscription
 * [ListSubscriptionPauses](#listsubscriptionpauses) - List all pauses for a subscription
 * [ResumeSubscription](#resumesubscription) - Resume a paused subscription
@@ -54,7 +55,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.CreateSubscription(ctx, types.DtoCreateSubscriptionRequest{
+    res, err := s.Subscriptions.CreateSubscription(ctx, types.CreateSubscriptionRequest{
         BillingCadence: types.BillingCadenceOnetime,
         BillingPeriod: types.BillingPeriodDaily,
         Currency: "New Leu",
@@ -63,7 +64,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionResponse != nil {
+    if res.Subscription != nil {
         // handle response
     }
 }
@@ -71,11 +72,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [types.DtoCreateSubscriptionRequest](../../models/types/dtocreatesubscriptionrequest.md) | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `opts`                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `request`                                                                          | [types.CreateSubscriptionRequest](../../models/types/createsubscriptionrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -83,11 +84,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## AddSubscriptionAddon
 
@@ -113,14 +114,14 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.AddSubscriptionAddon(ctx, types.DtoAddAddonRequest{
+    res, err := s.Subscriptions.AddSubscriptionAddon(ctx, types.AddAddonRequest{
         AddonID: "<id>",
         SubscriptionID: "<id>",
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoAddonAssociationResponse != nil {
+    if res.AddonAssociationResponse != nil {
         // handle response
     }
 }
@@ -128,11 +129,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `request`                                                            | [types.DtoAddAddonRequest](../../models/types/dtoaddaddonrequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
-| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
+| `request`                                                      | [types.AddAddonRequest](../../models/types/addaddonrequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| `opts`                                                         | [][dtos.Option](../../models/dtos/option.md)                   | :heavy_minus_sign:                                             | The options for this request.                                  |
 
 ### Response
 
@@ -140,11 +141,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## RemoveSubscriptionAddon
 
@@ -170,13 +171,13 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.RemoveSubscriptionAddon(ctx, types.DtoRemoveAddonRequest{
+    res, err := s.Subscriptions.RemoveSubscriptionAddon(ctx, types.RemoveAddonRequest{
         AddonAssociationID: "<id>",
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSuccessResponse != nil {
+    if res.SuccessResponse != nil {
         // handle response
     }
 }
@@ -184,11 +185,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [types.DtoRemoveAddonRequest](../../models/types/dtoremoveaddonrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
+| `request`                                                            | [types.RemoveAddonRequest](../../models/types/removeaddonrequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
+| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
 ### Response
 
@@ -196,11 +197,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## UpdateSubscriptionLineItem
 
@@ -226,11 +227,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.UpdateSubscriptionLineItem(ctx, "<id>", types.DtoUpdateSubscriptionLineItemRequest{})
+    res, err := s.Subscriptions.UpdateSubscriptionLineItem(ctx, "<id>", types.UpdateSubscriptionLineItemRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionLineItemResponse != nil {
+    if res.SubscriptionLineItemResponse != nil {
         // handle response
     }
 }
@@ -238,12 +239,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `id`                                                                                                     | `string`                                                                                                 | :heavy_check_mark:                                                                                       | Line Item ID                                                                                             |
-| `body`                                                                                                   | [types.DtoUpdateSubscriptionLineItemRequest](../../models/types/dtoupdatesubscriptionlineitemrequest.md) | :heavy_check_mark:                                                                                       | Update Line Item Request                                                                                 |
-| `opts`                                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `id`                                                                                               | `string`                                                                                           | :heavy_check_mark:                                                                                 | Line Item ID                                                                                       |
+| `body`                                                                                             | [types.UpdateSubscriptionLineItemRequest](../../models/types/updatesubscriptionlineitemrequest.md) | :heavy_check_mark:                                                                                 | Update Line Item Request                                                                           |
+| `opts`                                                                                             | [][dtos.Option](../../models/dtos/option.md)                                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 ### Response
 
@@ -251,11 +252,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## DeleteSubscriptionLineItem
 
@@ -281,11 +282,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.DeleteSubscriptionLineItem(ctx, "<id>", types.DtoDeleteSubscriptionLineItemRequest{})
+    res, err := s.Subscriptions.DeleteSubscriptionLineItem(ctx, "<id>", types.DeleteSubscriptionLineItemRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionLineItemResponse != nil {
+    if res.SubscriptionLineItemResponse != nil {
         // handle response
     }
 }
@@ -293,12 +294,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `id`                                                                                                     | `string`                                                                                                 | :heavy_check_mark:                                                                                       | Line Item ID                                                                                             |
-| `body`                                                                                                   | [types.DtoDeleteSubscriptionLineItemRequest](../../models/types/dtodeletesubscriptionlineitemrequest.md) | :heavy_check_mark:                                                                                       | Delete Line Item Request                                                                                 |
-| `opts`                                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `id`                                                                                               | `string`                                                                                           | :heavy_check_mark:                                                                                 | Line Item ID                                                                                       |
+| `body`                                                                                             | [types.DeleteSubscriptionLineItemRequest](../../models/types/deletesubscriptionlineitemrequest.md) | :heavy_check_mark:                                                                                 | Delete Line Item Request                                                                           |
+| `opts`                                                                                             | [][dtos.Option](../../models/dtos/option.md)                                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 ### Response
 
@@ -306,11 +307,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## QuerySubscription
 
@@ -340,7 +341,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoListSubscriptionsResponse != nil {
+    if res.ListSubscriptionsResponse != nil {
         // handle response
     }
 }
@@ -360,11 +361,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetSubscriptionUsage
 
@@ -379,6 +380,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/types"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -390,16 +392,16 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.GetSubscriptionUsage(ctx, types.DtoGetUsageBySubscriptionRequest{
-        EndTime: flexprice.Pointer("2024-03-20T00:00:00Z"),
+    res, err := s.Subscriptions.GetSubscriptionUsage(ctx, types.GetUsageBySubscriptionRequest{
+        EndTime: types.MustNewTimeFromString("2024-03-20T00:00:00Z"),
         LifetimeUsage: flexprice.Pointer(false),
-        StartTime: flexprice.Pointer("2024-03-13T00:00:00Z"),
+        StartTime: types.MustNewTimeFromString("2024-03-13T00:00:00Z"),
         SubscriptionID: "123",
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoGetUsageBySubscriptionResponse != nil {
+    if res.GetUsageBySubscriptionResponse != nil {
         // handle response
     }
 }
@@ -407,11 +409,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `request`                                                                                        | [types.DtoGetUsageBySubscriptionRequest](../../models/types/dtogetusagebysubscriptionrequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
-| `opts`                                                                                           | [][dtos.Option](../../models/dtos/option.md)                                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [types.GetUsageBySubscriptionRequest](../../models/types/getusagebysubscriptionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][dtos.Option](../../models/dtos/option.md)                                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 ### Response
 
@@ -419,11 +421,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetSubscription
 
@@ -452,7 +454,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionResponse != nil {
+    if res.Subscription != nil {
         // handle response
     }
 }
@@ -472,11 +474,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## UpdateSubscription
 
@@ -502,11 +504,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.UpdateSubscription(ctx, "<id>", types.DtoUpdateSubscriptionRequest{})
+    res, err := s.Subscriptions.UpdateSubscription(ctx, "<id>", types.UpdateSubscriptionRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionResponse != nil {
+    if res.Subscription != nil {
         // handle response
     }
 }
@@ -514,12 +516,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `id`                                                                                     | `string`                                                                                 | :heavy_check_mark:                                                                       | Subscription ID                                                                          |
-| `body`                                                                                   | [types.DtoUpdateSubscriptionRequest](../../models/types/dtoupdatesubscriptionrequest.md) | :heavy_check_mark:                                                                       | Update Subscription Request                                                              |
-| `opts`                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Subscription ID                                                                    |
+| `body`                                                                             | [types.UpdateSubscriptionRequest](../../models/types/updatesubscriptionrequest.md) | :heavy_check_mark:                                                                 | Update Subscription Request                                                        |
+| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -527,11 +529,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## ActivateSubscription
 
@@ -546,6 +548,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/types"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -557,13 +560,13 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.ActivateSubscription(ctx, "<id>", types.DtoActivateDraftSubscriptionRequest{
-        StartDate: "<value>",
+    res, err := s.Subscriptions.ActivateSubscription(ctx, "<id>", types.ActivateDraftSubscriptionRequest{
+        StartDate: types.MustTimeFromString("2026-02-04T05:02:31.632Z"),
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionResponse != nil {
+    if res.Subscription != nil {
         // handle response
     }
 }
@@ -571,12 +574,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                              | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
-| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                                  | :heavy_check_mark:                                                                                     | The context to use for the request.                                                                    |
-| `id`                                                                                                   | `string`                                                                                               | :heavy_check_mark:                                                                                     | Subscription ID                                                                                        |
-| `body`                                                                                                 | [types.DtoActivateDraftSubscriptionRequest](../../models/types/dtoactivatedraftsubscriptionrequest.md) | :heavy_check_mark:                                                                                     | Activate Draft Subscription Request                                                                    |
-| `opts`                                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                                           | :heavy_minus_sign:                                                                                     | The options for this request.                                                                          |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `id`                                                                                             | `string`                                                                                         | :heavy_check_mark:                                                                               | Subscription ID                                                                                  |
+| `body`                                                                                           | [types.ActivateDraftSubscriptionRequest](../../models/types/activatedraftsubscriptionrequest.md) | :heavy_check_mark:                                                                               | Activate Draft Subscription Request                                                              |
+| `opts`                                                                                           | [][dtos.Option](../../models/dtos/option.md)                                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 ### Response
 
@@ -584,11 +587,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetSubscriptionAddonAssociations
 
@@ -617,7 +620,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoAddonAssociationResponses != nil {
+    if res.AddonAssociationResponses != nil {
         // handle response
     }
 }
@@ -637,11 +640,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## CancelSubscription
 
@@ -667,13 +670,13 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.CancelSubscription(ctx, "<id>", types.DtoCancelSubscriptionRequest{
+    res, err := s.Subscriptions.CancelSubscription(ctx, "<id>", types.CancelSubscriptionRequest{
         CancellationType: types.CancellationTypeImmediate,
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoCancelSubscriptionResponse != nil {
+    if res.CancelSubscriptionResponse != nil {
         // handle response
     }
 }
@@ -681,12 +684,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `id`                                                                                     | `string`                                                                                 | :heavy_check_mark:                                                                       | Subscription ID                                                                          |
-| `body`                                                                                   | [types.DtoCancelSubscriptionRequest](../../models/types/dtocancelsubscriptionrequest.md) | :heavy_check_mark:                                                                       | Cancel Subscription Request                                                              |
-| `opts`                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Subscription ID                                                                    |
+| `body`                                                                             | [types.CancelSubscriptionRequest](../../models/types/cancelsubscriptionrequest.md) | :heavy_check_mark:                                                                 | Cancel Subscription Request                                                        |
+| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -694,11 +697,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## ExecuteSubscriptionChange
 
@@ -724,7 +727,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.ExecuteSubscriptionChange(ctx, "<id>", types.DtoSubscriptionChangeRequest{
+    res, err := s.Subscriptions.ExecuteSubscriptionChange(ctx, "<id>", types.SubscriptionChangeRequest{
         BillingCadence: types.BillingCadenceRecurring,
         BillingCycle: types.BillingCycleAnniversary,
         BillingPeriod: types.BillingPeriodQuarterly,
@@ -734,7 +737,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionChangeExecuteResponse != nil {
+    if res.SubscriptionChangeExecuteResponse != nil {
         // handle response
     }
 }
@@ -742,12 +745,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `id`                                                                                     | `string`                                                                                 | :heavy_check_mark:                                                                       | Subscription ID                                                                          |
-| `body`                                                                                   | [types.DtoSubscriptionChangeRequest](../../models/types/dtosubscriptionchangerequest.md) | :heavy_check_mark:                                                                       | Subscription change request                                                              |
-| `opts`                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Subscription ID                                                                    |
+| `body`                                                                             | [types.SubscriptionChangeRequest](../../models/types/subscriptionchangerequest.md) | :heavy_check_mark:                                                                 | Subscription change request                                                        |
+| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -755,11 +758,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## PreviewSubscriptionChange
 
@@ -785,7 +788,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.PreviewSubscriptionChange(ctx, "<id>", types.DtoSubscriptionChangeRequest{
+    res, err := s.Subscriptions.PreviewSubscriptionChange(ctx, "<id>", types.SubscriptionChangeRequest{
         BillingCadence: types.BillingCadenceRecurring,
         BillingCycle: types.BillingCycleCalendar,
         BillingPeriod: types.BillingPeriodHalfYearly,
@@ -795,7 +798,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionChangePreviewResponse != nil {
+    if res.SubscriptionChangePreviewResponse != nil {
         // handle response
     }
 }
@@ -803,12 +806,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `id`                                                                                     | `string`                                                                                 | :heavy_check_mark:                                                                       | Subscription ID                                                                          |
-| `body`                                                                                   | [types.DtoSubscriptionChangeRequest](../../models/types/dtosubscriptionchangerequest.md) | :heavy_check_mark:                                                                       | Subscription change preview request                                                      |
-| `opts`                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Subscription ID                                                                    |
+| `body`                                                                             | [types.SubscriptionChangeRequest](../../models/types/subscriptionchangerequest.md) | :heavy_check_mark:                                                                 | Subscription change preview request                                                |
+| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -816,11 +819,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetSubscriptionEntitlements
 
@@ -849,7 +852,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionEntitlementsResponse != nil {
+    if res.SubscriptionEntitlementsResponse != nil {
         // handle response
     }
 }
@@ -870,11 +873,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetSubscriptionUpcomingGrants
 
@@ -903,7 +906,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoListCreditGrantApplicationsResponse != nil {
+    if res.ListCreditGrantApplicationsResponse != nil {
         // handle response
     }
 }
@@ -923,11 +926,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## CreateSubscriptionLineItem
 
@@ -953,11 +956,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.CreateSubscriptionLineItem(ctx, "<id>", types.DtoCreateSubscriptionLineItemRequest{})
+    res, err := s.Subscriptions.CreateSubscriptionLineItem(ctx, "<id>", types.CreateSubscriptionLineItemRequest{})
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionLineItemResponse != nil {
+    if res.SubscriptionLineItemResponse != nil {
         // handle response
     }
 }
@@ -965,12 +968,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
-| `id`                                                                                                     | `string`                                                                                                 | :heavy_check_mark:                                                                                       | Subscription ID                                                                                          |
-| `body`                                                                                                   | [types.DtoCreateSubscriptionLineItemRequest](../../models/types/dtocreatesubscriptionlineitemrequest.md) | :heavy_check_mark:                                                                                       | Create Line Item Request                                                                                 |
-| `opts`                                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `id`                                                                                               | `string`                                                                                           | :heavy_check_mark:                                                                                 | Subscription ID                                                                                    |
+| `body`                                                                                             | [types.CreateSubscriptionLineItemRequest](../../models/types/createsubscriptionlineitemrequest.md) | :heavy_check_mark:                                                                                 | Create Line Item Request                                                                           |
+| `opts`                                                                                             | [][dtos.Option](../../models/dtos/option.md)                                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 ### Response
 
@@ -978,11 +981,66 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## ExecuteSubscriptionModify
+
+Attach additional child customers (by external ID) to an active standalone or parent subscription; creates inherited skeleton subscriptions for each. The subscription must be active.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="executeSubscriptionModify" method="post" path="/subscriptions/{id}/modify/execute" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Subscriptions.ExecuteSubscriptionModify(ctx, "<id>", types.ExecuteSubscriptionInheritanceRequest{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.Subscription != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
+| `id`                                                                                                       | `string`                                                                                                   | :heavy_check_mark:                                                                                         | Subscription ID                                                                                            |
+| `body`                                                                                                     | [types.ExecuteSubscriptionInheritanceRequest](../../models/types/executesubscriptioninheritancerequest.md) | :heavy_check_mark:                                                                                         | External customer IDs to inherit                                                                           |
+| `opts`                                                                                                     | [][dtos.Option](../../models/dtos/option.md)                                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
+
+### Response
+
+**[*dtos.ExecuteSubscriptionModifyResponse](../../models/dtos/executesubscriptionmodifyresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## PauseSubscription
 
@@ -1008,13 +1066,13 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.PauseSubscription(ctx, "<id>", types.DtoPauseSubscriptionRequest{
+    res, err := s.Subscriptions.PauseSubscription(ctx, "<id>", types.PauseSubscriptionRequest{
         PauseMode: types.PauseModeScheduled,
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionPauseResponse != nil {
+    if res.SubscriptionPauseResponse != nil {
         // handle response
     }
 }
@@ -1022,12 +1080,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Subscription ID                                                                        |
-| `body`                                                                                 | [types.DtoPauseSubscriptionRequest](../../models/types/dtopausesubscriptionrequest.md) | :heavy_check_mark:                                                                     | Pause subscription request                                                             |
-| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `id`                                                                             | `string`                                                                         | :heavy_check_mark:                                                               | Subscription ID                                                                  |
+| `body`                                                                           | [types.PauseSubscriptionRequest](../../models/types/pausesubscriptionrequest.md) | :heavy_check_mark:                                                               | Pause subscription request                                                       |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -1035,11 +1093,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## ListSubscriptionPauses
 
@@ -1068,7 +1126,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoListSubscriptionPausesResponses != nil {
+    if res.ListSubscriptionPausesResponses != nil {
         // handle response
     }
 }
@@ -1088,11 +1146,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## ResumeSubscription
 
@@ -1118,13 +1176,13 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.ResumeSubscription(ctx, "<id>", types.DtoResumeSubscriptionRequest{
+    res, err := s.Subscriptions.ResumeSubscription(ctx, "<id>", types.ResumeSubscriptionRequest{
         ResumeMode: types.ResumeModeAuto,
     })
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionPauseResponse != nil {
+    if res.SubscriptionPauseResponse != nil {
         // handle response
     }
 }
@@ -1132,12 +1190,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `id`                                                                                     | `string`                                                                                 | :heavy_check_mark:                                                                       | Subscription ID                                                                          |
-| `body`                                                                                   | [types.DtoResumeSubscriptionRequest](../../models/types/dtoresumesubscriptionrequest.md) | :heavy_check_mark:                                                                       | Resume subscription request                                                              |
-| `opts`                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Subscription ID                                                                    |
+| `body`                                                                             | [types.ResumeSubscriptionRequest](../../models/types/resumesubscriptionrequest.md) | :heavy_check_mark:                                                                 | Resume subscription request                                                        |
+| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
 
@@ -1145,11 +1203,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400, 404                   | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetSubscriptionV2
 
@@ -1178,7 +1236,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionResponseV2 != nil {
+    if res.SubscriptionResponseV2 != nil {
         // handle response
     }
 }
@@ -1199,11 +1257,11 @@ func main() {
 
 ### Errors
 
-| Error Type                 | Status Code                | Content Type               |
-| -------------------------- | -------------------------- | -------------------------- |
-| errors.ErrorsErrorResponse | 400                        | application/json           |
-| errors.ErrorsErrorResponse | 500                        | application/json           |
-| errors.APIError            | 4XX, 5XX                   | \*/\*                      |
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## ListAllSubscriptionSchedules
 
@@ -1232,7 +1290,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoGetPendingSchedulesResponse != nil {
+    if res.GetPendingSchedulesResponse != nil {
         // handle response
     }
 }
@@ -1286,7 +1344,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoSubscriptionScheduleResponse != nil {
+    if res.SubscriptionScheduleResponse != nil {
         // handle response
     }
 }
@@ -1337,7 +1395,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoCancelScheduleResponse != nil {
+    if res.CancelScheduleResponse != nil {
         // handle response
     }
 }
@@ -1345,12 +1403,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `ctx`                                                                             | [context.Context](https://pkg.go.dev/context#Context)                             | :heavy_check_mark:                                                                | The context to use for the request.                                               |
-| `scheduleID`                                                                      | `string`                                                                          | :heavy_check_mark:                                                                | Schedule ID (optional if using request body)                                      |
-| `body`                                                                            | [*types.DtoCancelScheduleRequest](../../models/types/dtocancelschedulerequest.md) | :heavy_minus_sign:                                                                | Cancel request (optional if using path parameter)                                 |
-| `opts`                                                                            | [][dtos.Option](../../models/dtos/option.md)                                      | :heavy_minus_sign:                                                                | The options for this request.                                                     |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `ctx`                                                                       | [context.Context](https://pkg.go.dev/context#Context)                       | :heavy_check_mark:                                                          | The context to use for the request.                                         |
+| `scheduleID`                                                                | `string`                                                                    | :heavy_check_mark:                                                          | Schedule ID (optional if using request body)                                |
+| `body`                                                                      | [*types.CancelScheduleRequest](../../models/types/cancelschedulerequest.md) | :heavy_minus_sign:                                                          | Cancel request (optional if using path parameter)                           |
+| `opts`                                                                      | [][dtos.Option](../../models/dtos/option.md)                                | :heavy_minus_sign:                                                          | The options for this request.                                               |
 
 ### Response
 
@@ -1389,7 +1447,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.DtoGetPendingSchedulesResponse != nil {
+    if res.GetPendingSchedulesResponse != nil {
         // handle response
     }
 }

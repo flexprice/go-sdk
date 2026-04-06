@@ -1,0 +1,17 @@
+# CancelSubscriptionResponse
+
+
+## Fields
+
+| Field                                                                 | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `CancellationType`                                                    | [*types.CancellationType](../../models/types/cancellationtype.md)     | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `EffectiveDate`                                                       | [*time.Time](https://pkg.go.dev/time#Time)                            | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `Message`                                                             | `*string`                                                             | :heavy_minus_sign:                                                    | Response metadata                                                     |
+| `ProcessedAt`                                                         | [*time.Time](https://pkg.go.dev/time#Time)                            | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `ProrationDetails`                                                    | [][types.ProrationDetail](../../models/types/prorationdetail.md)      | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `ProrationInvoice`                                                    | [*types.Invoice](../../models/types/invoice.md)                       | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `Reason`                                                              | `*string`                                                             | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `Status`                                                              | [*types.SubscriptionStatus](../../models/types/subscriptionstatus.md) | :heavy_minus_sign:                                                    | N/A                                                                   |
+| `SubscriptionID`                                                      | `*string`                                                             | :heavy_minus_sign:                                                    | Basic cancellation info                                               |
+| `TotalCreditAmount`                                                   | `*string`                                                             | :heavy_minus_sign:                                                    | N/A                                                                   |

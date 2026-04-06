@@ -19,7 +19,7 @@ func (g GetSubscriptionEntitlementsRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetSubscriptionEntitlementsRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil
@@ -42,7 +42,7 @@ func (g *GetSubscriptionEntitlementsRequest) GetFeatureIds() []string {
 type GetSubscriptionEntitlementsResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSubscriptionEntitlementsResponse *types.DtoSubscriptionEntitlementsResponse
+	SubscriptionEntitlementsResponse *types.SubscriptionEntitlementsResponse
 }
 
 func (g GetSubscriptionEntitlementsResponse) MarshalJSON() ([]byte, error) {
@@ -50,7 +50,7 @@ func (g GetSubscriptionEntitlementsResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetSubscriptionEntitlementsResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -63,9 +63,9 @@ func (g *GetSubscriptionEntitlementsResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetSubscriptionEntitlementsResponse) GetDtoSubscriptionEntitlementsResponse() *types.DtoSubscriptionEntitlementsResponse {
+func (g *GetSubscriptionEntitlementsResponse) GetSubscriptionEntitlementsResponse() *types.SubscriptionEntitlementsResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoSubscriptionEntitlementsResponse
+	return g.SubscriptionEntitlementsResponse
 }

@@ -1,0 +1,12 @@
+# AggregatedEntitlement
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `IsEnabled`                                                                             | `*bool`                                                                                 | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `IsSoftLimit`                                                                           | `*bool`                                                                                 | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `StaticValues`                                                                          | []`string`                                                                              | :heavy_minus_sign:                                                                      | For static/SLA features                                                                 |
+| `UsageLimit`                                                                            | `*int64`                                                                                | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `UsageResetPeriod`                                                                      | [*types.EntitlementUsageResetPeriod](../../models/types/entitlementusageresetperiod.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |

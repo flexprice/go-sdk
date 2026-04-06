@@ -3,12 +3,24 @@
 package dtos
 
 import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
 type DeleteGroupRequest struct {
 	// Group ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
+}
+
+func (d DeleteGroupRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteGroupRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DeleteGroupRequest) GetID() string {
@@ -20,6 +32,17 @@ func (d *DeleteGroupRequest) GetID() string {
 
 type DeleteGroupResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
+}
+
+func (d DeleteGroupResponse) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteGroupResponse) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (d *DeleteGroupResponse) GetHTTPMeta() types.HTTPMetadata {

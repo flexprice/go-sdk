@@ -12,6 +12,17 @@ type DeletePriceUnitRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (d DeletePriceUnitRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePriceUnitRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (d *DeletePriceUnitRequest) GetID() string {
 	if d == nil {
 		return ""
@@ -22,7 +33,7 @@ func (d *DeletePriceUnitRequest) GetID() string {
 type DeletePriceUnitResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSuccessResponse *types.DtoSuccessResponse
+	SuccessResponse *types.SuccessResponse
 }
 
 func (d DeletePriceUnitResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (d DeletePriceUnitResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeletePriceUnitResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (d *DeletePriceUnitResponse) GetHTTPMeta() types.HTTPMetadata {
 	return d.HTTPMeta
 }
 
-func (d *DeletePriceUnitResponse) GetDtoSuccessResponse() *types.DtoSuccessResponse {
+func (d *DeletePriceUnitResponse) GetSuccessResponse() *types.SuccessResponse {
 	if d == nil {
 		return nil
 	}
-	return d.DtoSuccessResponse
+	return d.SuccessResponse
 }

@@ -204,12 +204,12 @@ func (s *ScheduledTasks) ListScheduledTasks(ctx context.Context, request dtos.Li
 				return nil, err
 			}
 
-			var out types.DtoListScheduledTasksResponse
+			var out types.ListScheduledTasksResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListScheduledTasksResponse = &out
+			res.ListScheduledTasksResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -225,7 +225,7 @@ func (s *ScheduledTasks) ListScheduledTasks(ctx context.Context, request dtos.Li
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -250,7 +250,7 @@ func (s *ScheduledTasks) ListScheduledTasks(ctx context.Context, request dtos.Li
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -293,7 +293,7 @@ func (s *ScheduledTasks) ListScheduledTasks(ctx context.Context, request dtos.Li
 
 // CreateScheduledTask - Create scheduled task
 // Use when setting up recurring data exports or other scheduled jobs. Ideal for report generation or syncing data on a schedule.
-func (s *ScheduledTasks) CreateScheduledTask(ctx context.Context, request types.DtoCreateScheduledTaskRequest, opts ...dtos.Option) (*dtos.CreateScheduledTaskResponse, error) {
+func (s *ScheduledTasks) CreateScheduledTask(ctx context.Context, request types.CreateScheduledTaskRequest, opts ...dtos.Option) (*dtos.CreateScheduledTaskResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -467,12 +467,12 @@ func (s *ScheduledTasks) CreateScheduledTask(ctx context.Context, request types.
 				return nil, err
 			}
 
-			var out types.DtoScheduledTaskResponse
+			var out types.ScheduledTaskResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoScheduledTaskResponse = &out
+			res.ScheduledTaskResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -488,7 +488,7 @@ func (s *ScheduledTasks) CreateScheduledTask(ctx context.Context, request types.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -513,7 +513,7 @@ func (s *ScheduledTasks) CreateScheduledTask(ctx context.Context, request types.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -744,7 +744,7 @@ func (s *ScheduledTasks) ScheduleDraftFinalization(ctx context.Context, opts ...
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -769,7 +769,7 @@ func (s *ScheduledTasks) ScheduleDraftFinalization(ctx context.Context, opts ...
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1007,7 +1007,7 @@ func (s *ScheduledTasks) ScheduleUpdateBillingPeriod(ctx context.Context, reques
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1032,7 +1032,7 @@ func (s *ScheduledTasks) ScheduleUpdateBillingPeriod(ctx context.Context, reques
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1246,12 +1246,12 @@ func (s *ScheduledTasks) GetScheduledTask(ctx context.Context, id string, opts .
 				return nil, err
 			}
 
-			var out types.DtoScheduledTaskResponse
+			var out types.ScheduledTaskResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoScheduledTaskResponse = &out
+			res.ScheduledTaskResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1269,7 +1269,7 @@ func (s *ScheduledTasks) GetScheduledTask(ctx context.Context, id string, opts .
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1294,7 +1294,7 @@ func (s *ScheduledTasks) GetScheduledTask(ctx context.Context, id string, opts .
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1337,7 +1337,7 @@ func (s *ScheduledTasks) GetScheduledTask(ctx context.Context, id string, opts .
 
 // UpdateScheduledTask - Update a scheduled task
 // Use when pausing or resuming a scheduled task. Only the enabled field can be changed.
-func (s *ScheduledTasks) UpdateScheduledTask(ctx context.Context, id string, body types.DtoUpdateScheduledTaskRequest, opts ...dtos.Option) (*dtos.UpdateScheduledTaskResponse, error) {
+func (s *ScheduledTasks) UpdateScheduledTask(ctx context.Context, id string, body types.UpdateScheduledTaskRequest, opts ...dtos.Option) (*dtos.UpdateScheduledTaskResponse, error) {
 	request := dtos.UpdateScheduledTaskRequest{
 		ID:   id,
 		Body: body,
@@ -1516,12 +1516,12 @@ func (s *ScheduledTasks) UpdateScheduledTask(ctx context.Context, id string, bod
 				return nil, err
 			}
 
-			var out types.DtoScheduledTaskResponse
+			var out types.ScheduledTaskResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoScheduledTaskResponse = &out
+			res.ScheduledTaskResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1539,7 +1539,7 @@ func (s *ScheduledTasks) UpdateScheduledTask(ctx context.Context, id string, bod
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1564,7 +1564,7 @@ func (s *ScheduledTasks) UpdateScheduledTask(ctx context.Context, id string, bod
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1782,7 +1782,7 @@ func (s *ScheduledTasks) DeleteScheduledTask(ctx context.Context, id string, opt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1807,7 +1807,7 @@ func (s *ScheduledTasks) DeleteScheduledTask(ctx context.Context, id string, opt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1850,7 +1850,7 @@ func (s *ScheduledTasks) DeleteScheduledTask(ctx context.Context, id string, opt
 
 // TriggerScheduledTaskRun - Trigger force run
 // Use when you need to run a scheduled export immediately (e.g. on-demand report or catch-up). Supports optional custom time range.
-func (s *ScheduledTasks) TriggerScheduledTaskRun(ctx context.Context, id string, body *types.DtoTriggerForceRunRequest, opts ...dtos.Option) (*dtos.TriggerScheduledTaskRunResponse, error) {
+func (s *ScheduledTasks) TriggerScheduledTaskRun(ctx context.Context, id string, body *types.TriggerForceRunRequest, opts ...dtos.Option) (*dtos.TriggerScheduledTaskRunResponse, error) {
 	request := dtos.TriggerScheduledTaskRunRequest{
 		ID:   id,
 		Body: body,
@@ -2029,12 +2029,12 @@ func (s *ScheduledTasks) TriggerScheduledTaskRun(ctx context.Context, id string,
 				return nil, err
 			}
 
-			var out types.DtoTriggerForceRunResponse
+			var out types.TriggerForceRunResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTriggerForceRunResponse = &out
+			res.TriggerForceRunResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2052,7 +2052,7 @@ func (s *ScheduledTasks) TriggerScheduledTaskRun(ctx context.Context, id string,
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -2077,7 +2077,7 @@ func (s *ScheduledTasks) TriggerScheduledTaskRun(ctx context.Context, id string,
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

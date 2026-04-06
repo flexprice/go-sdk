@@ -12,6 +12,17 @@ type AttemptInvoicePaymentRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (a AttemptInvoicePaymentRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttemptInvoicePaymentRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (a *AttemptInvoicePaymentRequest) GetID() string {
 	if a == nil {
 		return ""
@@ -22,7 +33,7 @@ func (a *AttemptInvoicePaymentRequest) GetID() string {
 type AttemptInvoicePaymentResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSuccessResponse *types.DtoSuccessResponse
+	SuccessResponse *types.SuccessResponse
 }
 
 func (a AttemptInvoicePaymentResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (a AttemptInvoicePaymentResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (a *AttemptInvoicePaymentResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (a *AttemptInvoicePaymentResponse) GetHTTPMeta() types.HTTPMetadata {
 	return a.HTTPMeta
 }
 
-func (a *AttemptInvoicePaymentResponse) GetDtoSuccessResponse() *types.DtoSuccessResponse {
+func (a *AttemptInvoicePaymentResponse) GetSuccessResponse() *types.SuccessResponse {
 	if a == nil {
 		return nil
 	}
-	return a.DtoSuccessResponse
+	return a.SuccessResponse
 }

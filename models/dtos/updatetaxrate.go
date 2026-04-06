@@ -11,7 +11,18 @@ type UpdateTaxRateRequest struct {
 	// Tax rate ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Tax rate to update
-	Body types.DtoUpdateTaxRateRequest `request:"mediaType=application/json"`
+	Body types.UpdateTaxRateRequest `request:"mediaType=application/json"`
+}
+
+func (u UpdateTaxRateRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateTaxRateRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"id", "body"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (u *UpdateTaxRateRequest) GetID() string {
@@ -21,9 +32,9 @@ func (u *UpdateTaxRateRequest) GetID() string {
 	return u.ID
 }
 
-func (u *UpdateTaxRateRequest) GetBody() types.DtoUpdateTaxRateRequest {
+func (u *UpdateTaxRateRequest) GetBody() types.UpdateTaxRateRequest {
 	if u == nil {
-		return types.DtoUpdateTaxRateRequest{}
+		return types.UpdateTaxRateRequest{}
 	}
 	return u.Body
 }
@@ -31,7 +42,7 @@ func (u *UpdateTaxRateRequest) GetBody() types.DtoUpdateTaxRateRequest {
 type UpdateTaxRateResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoTaxRateResponse *types.DtoTaxRateResponse
+	TaxRateResponse *types.TaxRateResponse
 }
 
 func (u UpdateTaxRateResponse) MarshalJSON() ([]byte, error) {
@@ -39,7 +50,7 @@ func (u UpdateTaxRateResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateTaxRateResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -52,9 +63,9 @@ func (u *UpdateTaxRateResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateTaxRateResponse) GetDtoTaxRateResponse() *types.DtoTaxRateResponse {
+func (u *UpdateTaxRateResponse) GetTaxRateResponse() *types.TaxRateResponse {
 	if u == nil {
 		return nil
 	}
-	return u.DtoTaxRateResponse
+	return u.TaxRateResponse
 }

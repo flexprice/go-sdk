@@ -12,6 +12,17 @@ type VoidInvoiceRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (v VoidInvoiceRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(v, "", false)
+}
+
+func (v *VoidInvoiceRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &v, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (v *VoidInvoiceRequest) GetID() string {
 	if v == nil {
 		return ""
@@ -22,7 +33,7 @@ func (v *VoidInvoiceRequest) GetID() string {
 type VoidInvoiceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoSuccessResponse *types.DtoSuccessResponse
+	SuccessResponse *types.SuccessResponse
 }
 
 func (v VoidInvoiceResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (v VoidInvoiceResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (v *VoidInvoiceResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &v, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &v, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (v *VoidInvoiceResponse) GetHTTPMeta() types.HTTPMetadata {
 	return v.HTTPMeta
 }
 
-func (v *VoidInvoiceResponse) GetDtoSuccessResponse() *types.DtoSuccessResponse {
+func (v *VoidInvoiceResponse) GetSuccessResponse() *types.SuccessResponse {
 	if v == nil {
 		return nil
 	}
-	return v.DtoSuccessResponse
+	return v.SuccessResponse
 }

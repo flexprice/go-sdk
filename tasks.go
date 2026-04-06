@@ -204,12 +204,12 @@ func (s *Tasks) ListTasks(ctx context.Context, request dtos.ListTasksRequest, op
 				return nil, err
 			}
 
-			var out types.DtoListTasksResponse
+			var out types.ListTasksResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListTasksResponse = &out
+			res.ListTasksResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -225,7 +225,7 @@ func (s *Tasks) ListTasks(ctx context.Context, request dtos.ListTasksRequest, op
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -250,7 +250,7 @@ func (s *Tasks) ListTasks(ctx context.Context, request dtos.ListTasksRequest, op
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -293,7 +293,7 @@ func (s *Tasks) ListTasks(ctx context.Context, request dtos.ListTasksRequest, op
 
 // CreateTask - Create a new task
 // Use when submitting a file or job for async processing (e.g. export or import). Returns task ID to poll for status and result.
-func (s *Tasks) CreateTask(ctx context.Context, request types.DtoCreateTaskRequest, opts ...dtos.Option) (*dtos.CreateTaskResponse, error) {
+func (s *Tasks) CreateTask(ctx context.Context, request types.CreateTaskRequest, opts ...dtos.Option) (*dtos.CreateTaskResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -467,12 +467,12 @@ func (s *Tasks) CreateTask(ctx context.Context, request types.DtoCreateTaskReque
 				return nil, err
 			}
 
-			var out types.DtoTaskResponse
+			var out types.TaskResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTaskResponse = &out
+			res.TaskResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -488,7 +488,7 @@ func (s *Tasks) CreateTask(ctx context.Context, request types.DtoCreateTaskReque
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -513,7 +513,7 @@ func (s *Tasks) CreateTask(ctx context.Context, request types.DtoCreateTaskReque
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -754,7 +754,7 @@ func (s *Tasks) GetTaskResult(ctx context.Context, workflowID string, opts ...dt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -779,7 +779,7 @@ func (s *Tasks) GetTaskResult(ctx context.Context, workflowID string, opts ...dt
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -993,12 +993,12 @@ func (s *Tasks) GetTask(ctx context.Context, id string, opts ...dtos.Option) (*d
 				return nil, err
 			}
 
-			var out types.DtoTaskResponse
+			var out types.TaskResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoTaskResponse = &out
+			res.TaskResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1016,7 +1016,7 @@ func (s *Tasks) GetTask(ctx context.Context, id string, opts ...dtos.Option) (*d
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1041,7 +1041,7 @@ func (s *Tasks) GetTask(ctx context.Context, id string, opts ...dtos.Option) (*d
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1278,7 +1278,7 @@ func (s *Tasks) DownloadTaskExport(ctx context.Context, id string, opts ...dtos.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1303,7 +1303,7 @@ func (s *Tasks) DownloadTaskExport(ctx context.Context, id string, opts ...dtos.
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1346,7 +1346,7 @@ func (s *Tasks) DownloadTaskExport(ctx context.Context, id string, opts ...dtos.
 
 // UpdateTaskStatus - Update task status
 // Use when updating task status (e.g. marking complete or failed from a worker). Typically called by backend processors.
-func (s *Tasks) UpdateTaskStatus(ctx context.Context, id string, body types.DtoUpdateTaskStatusRequest, opts ...dtos.Option) (*dtos.UpdateTaskStatusResponse, error) {
+func (s *Tasks) UpdateTaskStatus(ctx context.Context, id string, body types.UpdateTaskStatusRequest, opts ...dtos.Option) (*dtos.UpdateTaskStatusResponse, error) {
 	request := dtos.UpdateTaskStatusRequest{
 		ID:   id,
 		Body: body,
@@ -1525,12 +1525,12 @@ func (s *Tasks) UpdateTaskStatus(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1548,7 +1548,7 @@ func (s *Tasks) UpdateTaskStatus(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1573,7 +1573,7 @@ func (s *Tasks) UpdateTaskStatus(ctx context.Context, id string, body types.DtoU
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

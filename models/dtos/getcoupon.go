@@ -12,6 +12,17 @@ type GetCouponRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetCouponRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCouponRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetCouponRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetCouponRequest) GetID() string {
 type GetCouponResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoCouponResponse *types.DtoCouponResponse
+	Coupon *types.Coupon
 }
 
 func (g GetCouponResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetCouponResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetCouponResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetCouponResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCouponResponse) GetDtoCouponResponse() *types.DtoCouponResponse {
+func (g *GetCouponResponse) GetCoupon() *types.Coupon {
 	if g == nil {
 		return nil
 	}
-	return g.DtoCouponResponse
+	return g.Coupon
 }

@@ -5,6 +5,7 @@ package types
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/flexprice/go-sdk/v2/internal/utils"
 )
 
 type QueryFilterOrder string
@@ -40,6 +41,17 @@ type QueryFilter struct {
 	Order  *QueryFilterOrder `json:"order,omitzero"`
 	Sort   *string           `json:"sort,omitzero"`
 	Status *Status           `json:"status,omitzero"`
+}
+
+func (q QueryFilter) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
+}
+
+func (q *QueryFilter) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, nil); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (q *QueryFilter) GetExpand() *string {

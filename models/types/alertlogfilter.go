@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type AlertLogFilterOrder string
@@ -38,7 +39,7 @@ type AlertLogFilter struct {
 	AlertStatus *AlertState      `json:"alert_status,omitzero"`
 	AlertType   *AlertType       `json:"alert_type,omitzero"`
 	CustomerID  *string          `json:"customer_id,omitzero"`
-	EndTime     *string          `json:"end_time,omitzero"`
+	EndTime     *time.Time       `json:"end_time,omitzero"`
 	EntityID    *string          `json:"entity_id,omitzero"`
 	EntityType  *AlertEntityType `json:"entity_type,omitzero"`
 	Expand      *string          `json:"expand,omitzero"`
@@ -48,7 +49,7 @@ type AlertLogFilter struct {
 	Offset    *int64               `json:"offset,omitzero"`
 	Order     *AlertLogFilterOrder `json:"order,omitzero"`
 	Sort      []SortCondition      `json:"sort,omitzero"`
-	StartTime *string              `json:"start_time,omitzero"`
+	StartTime *time.Time           `json:"start_time,omitzero"`
 	Status    *Status              `json:"status,omitzero"`
 }
 
@@ -84,7 +85,7 @@ func (a *AlertLogFilter) GetCustomerID() *string {
 	return a.CustomerID
 }
 
-func (a *AlertLogFilter) GetEndTime() *string {
+func (a *AlertLogFilter) GetEndTime() *time.Time {
 	if a == nil {
 		return nil
 	}
@@ -147,7 +148,7 @@ func (a *AlertLogFilter) GetSort() []SortCondition {
 	return a.Sort
 }
 
-func (a *AlertLogFilter) GetStartTime() *string {
+func (a *AlertLogFilter) GetStartTime() *time.Time {
 	if a == nil {
 		return nil
 	}

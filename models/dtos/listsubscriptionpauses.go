@@ -12,6 +12,17 @@ type ListSubscriptionPausesRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (l ListSubscriptionPausesRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListSubscriptionPausesRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (l *ListSubscriptionPausesRequest) GetID() string {
 	if l == nil {
 		return ""
@@ -22,7 +33,7 @@ func (l *ListSubscriptionPausesRequest) GetID() string {
 type ListSubscriptionPausesResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoListSubscriptionPausesResponses []types.DtoListSubscriptionPausesResponse
+	ListSubscriptionPausesResponses []types.ListSubscriptionPausesResponse
 }
 
 func (l ListSubscriptionPausesResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (l ListSubscriptionPausesResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (l *ListSubscriptionPausesResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (l *ListSubscriptionPausesResponse) GetHTTPMeta() types.HTTPMetadata {
 	return l.HTTPMeta
 }
 
-func (l *ListSubscriptionPausesResponse) GetDtoListSubscriptionPausesResponses() []types.DtoListSubscriptionPausesResponse {
+func (l *ListSubscriptionPausesResponse) GetListSubscriptionPausesResponses() []types.ListSubscriptionPausesResponse {
 	if l == nil {
 		return nil
 	}
-	return l.DtoListSubscriptionPausesResponses
+	return l.ListSubscriptionPausesResponses
 }

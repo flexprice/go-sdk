@@ -12,6 +12,17 @@ type GetEntitlementRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetEntitlementRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetEntitlementRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetEntitlementRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetEntitlementRequest) GetID() string {
 type GetEntitlementResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoEntitlementResponse *types.DtoEntitlementResponse
+	EntitlementResponse *types.EntitlementResponse
 }
 
 func (g GetEntitlementResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetEntitlementResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetEntitlementResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetEntitlementResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetEntitlementResponse) GetDtoEntitlementResponse() *types.DtoEntitlementResponse {
+func (g *GetEntitlementResponse) GetEntitlementResponse() *types.EntitlementResponse {
 	if g == nil {
 		return nil
 	}
-	return g.DtoEntitlementResponse
+	return g.EntitlementResponse
 }

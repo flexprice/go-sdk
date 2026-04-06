@@ -2,8 +2,23 @@
 
 package types
 
+import (
+	"github.com/flexprice/go-sdk/v2/internal/utils"
+)
+
 type Security struct {
 	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (s Security) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *Security) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (s *Security) GetAPIKeyAuth() string {

@@ -12,6 +12,17 @@ type DeletePaymentRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (d DeletePaymentRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePaymentRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (d *DeletePaymentRequest) GetID() string {
 	if d == nil {
 		return ""
@@ -22,7 +33,7 @@ func (d *DeletePaymentRequest) GetID() string {
 type DeletePaymentResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Payment deleted
-	DtoSuccessResponse *types.DtoSuccessResponse
+	SuccessResponse *types.SuccessResponse
 }
 
 func (d DeletePaymentResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (d DeletePaymentResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (d *DeletePaymentResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (d *DeletePaymentResponse) GetHTTPMeta() types.HTTPMetadata {
 	return d.HTTPMeta
 }
 
-func (d *DeletePaymentResponse) GetDtoSuccessResponse() *types.DtoSuccessResponse {
+func (d *DeletePaymentResponse) GetSuccessResponse() *types.SuccessResponse {
 	if d == nil {
 		return nil
 	}
-	return d.DtoSuccessResponse
+	return d.SuccessResponse
 }

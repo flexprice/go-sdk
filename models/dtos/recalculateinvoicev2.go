@@ -14,6 +14,17 @@ type RecalculateInvoiceV2Request struct {
 	Finalize *bool `queryParam:"style=form,explode=true,name=finalize"`
 }
 
+func (r RecalculateInvoiceV2Request) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RecalculateInvoiceV2Request) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (r *RecalculateInvoiceV2Request) GetID() string {
 	if r == nil {
 		return ""
@@ -34,7 +45,7 @@ func (r *RecalculateInvoiceV2Request) GetFinalize() *bool {
 type RecalculateInvoiceV2Response struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoInvoiceResponse *types.DtoInvoiceResponse
+	Invoice *types.Invoice
 }
 
 func (r RecalculateInvoiceV2Response) MarshalJSON() ([]byte, error) {
@@ -42,7 +53,7 @@ func (r RecalculateInvoiceV2Response) MarshalJSON() ([]byte, error) {
 }
 
 func (r *RecalculateInvoiceV2Response) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -55,11 +66,11 @@ func (r *RecalculateInvoiceV2Response) GetHTTPMeta() types.HTTPMetadata {
 	return r.HTTPMeta
 }
 
-func (r *RecalculateInvoiceV2Response) GetDtoInvoiceResponse() *types.DtoInvoiceResponse {
+func (r *RecalculateInvoiceV2Response) GetInvoice() *types.Invoice {
 	if r == nil {
 		return nil
 	}
-	return r.DtoInvoiceResponse
+	return r.Invoice
 }
 
 // #region class-body-recalculateinvoicev2response

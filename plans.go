@@ -33,7 +33,7 @@ func newPlans(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hook
 
 // CreatePlan - Create plan
 // Use when defining a new pricing plan (e.g. Free, Pro, Enterprise). Attach prices and entitlements; customers subscribe to plans.
-func (s *Plans) CreatePlan(ctx context.Context, request types.DtoCreatePlanRequest, opts ...dtos.Option) (*dtos.CreatePlanResponse, error) {
+func (s *Plans) CreatePlan(ctx context.Context, request types.CreatePlanRequest, opts ...dtos.Option) (*dtos.CreatePlanResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -207,12 +207,12 @@ func (s *Plans) CreatePlan(ctx context.Context, request types.DtoCreatePlanReque
 				return nil, err
 			}
 
-			var out types.DtoPlanResponse
+			var out types.Plan1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPlanResponse = &out
+			res.Plan = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -228,7 +228,7 @@ func (s *Plans) CreatePlan(ctx context.Context, request types.DtoCreatePlanReque
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -253,7 +253,7 @@ func (s *Plans) CreatePlan(ctx context.Context, request types.DtoCreatePlanReque
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -470,12 +470,12 @@ func (s *Plans) QueryPlan(ctx context.Context, request types.PlanFilter, opts ..
 				return nil, err
 			}
 
-			var out types.DtoListPlansResponse
+			var out types.ListPlansResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoListPlansResponse = &out
+			res.ListPlansResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -491,7 +491,7 @@ func (s *Plans) QueryPlan(ctx context.Context, request types.PlanFilter, opts ..
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -516,7 +516,7 @@ func (s *Plans) QueryPlan(ctx context.Context, request types.PlanFilter, opts ..
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -730,12 +730,12 @@ func (s *Plans) GetPlan(ctx context.Context, id string, opts ...dtos.Option) (*d
 				return nil, err
 			}
 
-			var out types.DtoPlanResponse
+			var out types.Plan1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPlanResponse = &out
+			res.Plan = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -753,7 +753,7 @@ func (s *Plans) GetPlan(ctx context.Context, id string, opts ...dtos.Option) (*d
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -778,7 +778,7 @@ func (s *Plans) GetPlan(ctx context.Context, id string, opts ...dtos.Option) (*d
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -821,7 +821,7 @@ func (s *Plans) GetPlan(ctx context.Context, id string, opts ...dtos.Option) (*d
 
 // UpdatePlan - Update plan
 // Use when changing plan details (e.g. name, interval, or metadata). Partial update supported.
-func (s *Plans) UpdatePlan(ctx context.Context, id string, body types.DtoUpdatePlanRequest, opts ...dtos.Option) (*dtos.UpdatePlanResponse, error) {
+func (s *Plans) UpdatePlan(ctx context.Context, id string, body types.UpdatePlanRequest, opts ...dtos.Option) (*dtos.UpdatePlanResponse, error) {
 	request := dtos.UpdatePlanRequest{
 		ID:   id,
 		Body: body,
@@ -1000,12 +1000,12 @@ func (s *Plans) UpdatePlan(ctx context.Context, id string, body types.DtoUpdateP
 				return nil, err
 			}
 
-			var out types.DtoPlanResponse
+			var out types.Plan1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPlanResponse = &out
+			res.Plan = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1023,7 +1023,7 @@ func (s *Plans) UpdatePlan(ctx context.Context, id string, body types.DtoUpdateP
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1048,7 +1048,7 @@ func (s *Plans) UpdatePlan(ctx context.Context, id string, body types.DtoUpdateP
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1262,12 +1262,12 @@ func (s *Plans) DeletePlan(ctx context.Context, id string, opts ...dtos.Option) 
 				return nil, err
 			}
 
-			var out types.DtoSuccessResponse
+			var out types.SuccessResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoSuccessResponse = &out
+			res.SuccessResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1285,7 +1285,7 @@ func (s *Plans) DeletePlan(ctx context.Context, id string, opts ...dtos.Option) 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1310,7 +1310,7 @@ func (s *Plans) DeletePlan(ctx context.Context, id string, opts ...dtos.Option) 
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1353,7 +1353,7 @@ func (s *Plans) DeletePlan(ctx context.Context, id string, opts ...dtos.Option) 
 
 // PostPlansIDClone - Clone a plan
 // Clone an existing plan, copying its active prices, published entitlements, and published credit grants
-func (s *Plans) PostPlansIDClone(ctx context.Context, id string, body types.DtoClonePlanRequest, opts ...dtos.Option) (*dtos.PostPlansIDCloneResponse, error) {
+func (s *Plans) PostPlansIDClone(ctx context.Context, id string, body types.ClonePlanRequest, opts ...dtos.Option) (*dtos.PostPlansIDCloneResponse, error) {
 	request := dtos.PostPlansIDCloneRequest{
 		ID:   id,
 		Body: body,
@@ -1532,12 +1532,12 @@ func (s *Plans) PostPlansIDClone(ctx context.Context, id string, body types.DtoC
 				return nil, err
 			}
 
-			var out types.DtoPlanResponse
+			var out types.Plan1
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.DtoPlanResponse = &out
+			res.Plan = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1557,7 +1557,7 @@ func (s *Plans) PostPlansIDClone(ctx context.Context, id string, body types.DtoC
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1582,7 +1582,7 @@ func (s *Plans) PostPlansIDClone(ctx context.Context, id string, body types.DtoC
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1821,7 +1821,7 @@ func (s *Plans) SyncPlanPrices(ctx context.Context, id string, opts ...dtos.Opti
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
@@ -1846,7 +1846,7 @@ func (s *Plans) SyncPlanPrices(ctx context.Context, id string, opts ...dtos.Opti
 				return nil, err
 			}
 
-			var out errors.ErrorsErrorResponse
+			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}

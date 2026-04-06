@@ -12,6 +12,17 @@ type GetAddonRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 }
 
+func (g GetAddonRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+		return err
+	}
+	return nil
+}
+
 func (g *GetAddonRequest) GetID() string {
 	if g == nil {
 		return ""
@@ -22,7 +33,7 @@ func (g *GetAddonRequest) GetID() string {
 type GetAddonResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	DtoAddonResponse *types.DtoAddonResponse
+	Addon *types.Addon1
 }
 
 func (g GetAddonResponse) MarshalJSON() ([]byte, error) {
@@ -30,7 +41,7 @@ func (g GetAddonResponse) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetAddonResponse) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
@@ -43,9 +54,9 @@ func (g *GetAddonResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetAddonResponse) GetDtoAddonResponse() *types.DtoAddonResponse {
+func (g *GetAddonResponse) GetAddon() *types.Addon1 {
 	if g == nil {
 		return nil
 	}
-	return g.DtoAddonResponse
+	return g.Addon
 }
