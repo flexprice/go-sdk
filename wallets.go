@@ -204,12 +204,12 @@ func (s *Wallets) GetCustomerWallets(ctx context.Context, request dtos.GetCustom
 				return nil, err
 			}
 
-			var out []types.Wallet
+			var out []types.WalletResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Wallets = out
+			res.WalletResponses = out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -466,12 +466,12 @@ func (s *Wallets) GetWalletsByCustomerID(ctx context.Context, id string, opts ..
 				return nil, err
 			}
 
-			var out []types.Wallet
+			var out []types.WalletResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Wallets = out
+			res.WalletResponses = out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -729,12 +729,12 @@ func (s *Wallets) CreateWallet(ctx context.Context, request types.CreateWalletRe
 				return nil, err
 			}
 
-			var out types.Wallet
+			var out types.WalletResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Wallet = &out
+			res.WalletResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1515,12 +1515,12 @@ func (s *Wallets) GetWallet(ctx context.Context, id string, opts ...dtos.Option)
 				return nil, err
 			}
 
-			var out types.Wallet
+			var out types.WalletResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Wallet = &out
+			res.WalletResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1785,12 +1785,12 @@ func (s *Wallets) UpdateWallet(ctx context.Context, id string, body types.Update
 				return nil, err
 			}
 
-			var out types.Wallet
+			var out types.WalletResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Wallet = &out
+			res.WalletResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2314,12 +2314,12 @@ func (s *Wallets) TerminateWallet(ctx context.Context, id string, opts ...dtos.O
 				return nil, err
 			}
 
-			var out types.Wallet
+			var out types.WalletResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Wallet = &out
+			res.WalletResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

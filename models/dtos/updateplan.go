@@ -42,7 +42,7 @@ func (u *UpdatePlanRequest) GetBody() types.UpdatePlanRequest {
 type UpdatePlanResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Plan *types.Plan1
+	PlanResponse *types.PlanResponse
 }
 
 func (u UpdatePlanResponse) MarshalJSON() ([]byte, error) {
@@ -63,9 +63,9 @@ func (u *UpdatePlanResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdatePlanResponse) GetPlan() *types.Plan1 {
+func (u *UpdatePlanResponse) GetPlanResponse() *types.PlanResponse {
 	if u == nil {
 		return nil
 	}
-	return u.Plan
+	return u.PlanResponse
 }

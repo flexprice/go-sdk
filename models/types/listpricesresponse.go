@@ -7,7 +7,7 @@ import (
 )
 
 type ListPricesResponse struct {
-	Items      []Price             `json:"items,omitzero"`
+	Items      []PriceResponse     `json:"items,omitzero"`
 	Pagination *PaginationResponse `json:"pagination,omitzero"`
 }
 
@@ -22,7 +22,7 @@ func (l *ListPricesResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListPricesResponse) GetItems() []Price {
+func (l *ListPricesResponse) GetItems() []PriceResponse {
 	if l == nil {
 		return nil
 	}

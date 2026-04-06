@@ -8,24 +8,24 @@ import (
 
 type UsageAnalyticItem struct {
 	AddOnID         *string          `json:"add_on_id,omitzero"`
-	Addon           *Addon2          `json:"addon,omitzero"`
+	Addon           *Addon           `json:"addon,omitzero"`
 	AggregationType *AggregationType `json:"aggregation_type,omitzero"`
 	CommitmentInfo  *CommitmentInfo  `json:"commitment_info,omitzero"`
 	Currency        *string          `json:"currency,omitzero"`
 	// Number of events that contributed to this aggregation
 	EventCount *int64      `json:"event_count,omitzero"`
 	EventName  *string     `json:"event_name,omitzero"`
-	Feature    *Feature2   `json:"feature,omitzero"`
+	Feature    *Feature    `json:"feature,omitzero"`
 	FeatureID  *string     `json:"feature_id,omitzero"`
 	Group      *GroupGroup `json:"group,omitzero"`
 	Meter      *MeterMeter `json:"meter,omitzero"`
 	// Meter ID
 	MeterID *string              `json:"meter_id,omitzero"`
 	Name    *string              `json:"name,omitzero"`
-	Plan    *Plan2               `json:"plan,omitzero"`
+	Plan    *Plan                `json:"plan,omitzero"`
 	PlanID  *string              `json:"plan_id,omitzero"`
 	Points  []UsageAnalyticPoint `json:"points,omitzero"`
-	Price   *Price               `json:"price,omitzero"`
+	Price   *PriceResponse       `json:"price,omitzero"`
 	// Price ID used for this usage
 	PriceID *string `json:"price_id,omitzero"`
 	// Stores property values for flexible grouping (e.g., org_id -> "org123")
@@ -66,7 +66,7 @@ func (u *UsageAnalyticItem) GetAddOnID() *string {
 	return u.AddOnID
 }
 
-func (u *UsageAnalyticItem) GetAddon() *Addon2 {
+func (u *UsageAnalyticItem) GetAddon() *Addon {
 	if u == nil {
 		return nil
 	}
@@ -108,7 +108,7 @@ func (u *UsageAnalyticItem) GetEventName() *string {
 	return u.EventName
 }
 
-func (u *UsageAnalyticItem) GetFeature() *Feature2 {
+func (u *UsageAnalyticItem) GetFeature() *Feature {
 	if u == nil {
 		return nil
 	}
@@ -150,7 +150,7 @@ func (u *UsageAnalyticItem) GetName() *string {
 	return u.Name
 }
 
-func (u *UsageAnalyticItem) GetPlan() *Plan2 {
+func (u *UsageAnalyticItem) GetPlan() *Plan {
 	if u == nil {
 		return nil
 	}
@@ -171,7 +171,7 @@ func (u *UsageAnalyticItem) GetPoints() []UsageAnalyticPoint {
 	return u.Points
 }
 
-func (u *UsageAnalyticItem) GetPrice() *Price {
+func (u *UsageAnalyticItem) GetPrice() *PriceResponse {
 	if u == nil {
 		return nil
 	}

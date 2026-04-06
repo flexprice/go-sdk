@@ -7,18 +7,17 @@ import (
 	"time"
 )
 
-type Feature1 struct {
+type Feature struct {
 	AlertSettings *AlertSettings    `json:"alert_settings,omitzero"`
 	CreatedAt     *time.Time        `json:"created_at,omitzero"`
 	CreatedBy     *string           `json:"created_by,omitzero"`
 	Description   *string           `json:"description,omitzero"`
 	EnvironmentID *string           `json:"environment_id,omitzero"`
-	Group         *GroupResponse    `json:"group,omitzero"`
+	Group         *GroupGroup       `json:"group,omitzero"`
 	GroupID       *string           `json:"group_id,omitzero"`
 	ID            *string           `json:"id,omitzero"`
 	LookupKey     *string           `json:"lookup_key,omitzero"`
 	Metadata      map[string]string `json:"metadata,omitzero"`
-	Meter         *MeterResponse    `json:"meter,omitzero"`
 	MeterID       *string           `json:"meter_id,omitzero"`
 	Name          *string           `json:"name,omitzero"`
 	ReportingUnit *ReportingUnit    `json:"reporting_unit,omitzero"`
@@ -31,163 +30,153 @@ type Feature1 struct {
 	UpdatedBy     *string           `json:"updated_by,omitzero"`
 }
 
-func (f Feature1) MarshalJSON() ([]byte, error) {
+func (f Feature) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(f, "", false)
 }
 
-func (f *Feature1) UnmarshalJSON(data []byte) error {
+func (f *Feature) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (f *Feature1) GetAlertSettings() *AlertSettings {
+func (f *Feature) GetAlertSettings() *AlertSettings {
 	if f == nil {
 		return nil
 	}
 	return f.AlertSettings
 }
 
-func (f *Feature1) GetCreatedAt() *time.Time {
+func (f *Feature) GetCreatedAt() *time.Time {
 	if f == nil {
 		return nil
 	}
 	return f.CreatedAt
 }
 
-func (f *Feature1) GetCreatedBy() *string {
+func (f *Feature) GetCreatedBy() *string {
 	if f == nil {
 		return nil
 	}
 	return f.CreatedBy
 }
 
-func (f *Feature1) GetDescription() *string {
+func (f *Feature) GetDescription() *string {
 	if f == nil {
 		return nil
 	}
 	return f.Description
 }
 
-func (f *Feature1) GetEnvironmentID() *string {
+func (f *Feature) GetEnvironmentID() *string {
 	if f == nil {
 		return nil
 	}
 	return f.EnvironmentID
 }
 
-func (f *Feature1) GetGroup() *GroupResponse {
+func (f *Feature) GetGroup() *GroupGroup {
 	if f == nil {
 		return nil
 	}
 	return f.Group
 }
 
-func (f *Feature1) GetGroupID() *string {
+func (f *Feature) GetGroupID() *string {
 	if f == nil {
 		return nil
 	}
 	return f.GroupID
 }
 
-func (f *Feature1) GetID() *string {
+func (f *Feature) GetID() *string {
 	if f == nil {
 		return nil
 	}
 	return f.ID
 }
 
-func (f *Feature1) GetLookupKey() *string {
+func (f *Feature) GetLookupKey() *string {
 	if f == nil {
 		return nil
 	}
 	return f.LookupKey
 }
 
-func (f *Feature1) GetMetadata() map[string]string {
+func (f *Feature) GetMetadata() map[string]string {
 	if f == nil {
 		return nil
 	}
 	return f.Metadata
 }
 
-func (f *Feature1) GetMeter() *MeterResponse {
-	if f == nil {
-		return nil
-	}
-	return f.Meter
-}
-
-func (f *Feature1) GetMeterID() *string {
+func (f *Feature) GetMeterID() *string {
 	if f == nil {
 		return nil
 	}
 	return f.MeterID
 }
 
-func (f *Feature1) GetName() *string {
+func (f *Feature) GetName() *string {
 	if f == nil {
 		return nil
 	}
 	return f.Name
 }
 
-func (f *Feature1) GetReportingUnit() *ReportingUnit {
+func (f *Feature) GetReportingUnit() *ReportingUnit {
 	if f == nil {
 		return nil
 	}
 	return f.ReportingUnit
 }
 
-func (f *Feature1) GetStatus() *Status {
+func (f *Feature) GetStatus() *Status {
 	if f == nil {
 		return nil
 	}
 	return f.Status
 }
 
-func (f *Feature1) GetTenantID() *string {
+func (f *Feature) GetTenantID() *string {
 	if f == nil {
 		return nil
 	}
 	return f.TenantID
 }
 
-func (f *Feature1) GetType() *FeatureType {
+func (f *Feature) GetType() *FeatureType {
 	if f == nil {
 		return nil
 	}
 	return f.Type
 }
 
-func (f *Feature1) GetUnitPlural() *string {
+func (f *Feature) GetUnitPlural() *string {
 	if f == nil {
 		return nil
 	}
 	return f.UnitPlural
 }
 
-func (f *Feature1) GetUnitSingular() *string {
+func (f *Feature) GetUnitSingular() *string {
 	if f == nil {
 		return nil
 	}
 	return f.UnitSingular
 }
 
-func (f *Feature1) GetUpdatedAt() *time.Time {
+func (f *Feature) GetUpdatedAt() *time.Time {
 	if f == nil {
 		return nil
 	}
 	return f.UpdatedAt
 }
 
-func (f *Feature1) GetUpdatedBy() *string {
+func (f *Feature) GetUpdatedBy() *string {
 	if f == nil {
 		return nil
 	}
 	return f.UpdatedBy
 }
-
-// #region class-body-feature1
-// #endregion class-body-feature1

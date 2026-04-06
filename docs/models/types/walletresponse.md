@@ -1,4 +1,4 @@
-# Wallet
+# WalletResponse
 
 
 ## Fields

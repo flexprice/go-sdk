@@ -42,7 +42,7 @@ func (u *UpdateInvoiceRequest) GetBody() types.UpdateInvoiceRequest {
 type UpdateInvoiceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Invoice *types.Invoice
+	InvoiceResponse *types.InvoiceResponse
 }
 
 func (u UpdateInvoiceResponse) MarshalJSON() ([]byte, error) {
@@ -63,9 +63,9 @@ func (u *UpdateInvoiceResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateInvoiceResponse) GetInvoice() *types.Invoice {
+func (u *UpdateInvoiceResponse) GetInvoiceResponse() *types.InvoiceResponse {
 	if u == nil {
 		return nil
 	}
-	return u.Invoice
+	return u.InvoiceResponse
 }

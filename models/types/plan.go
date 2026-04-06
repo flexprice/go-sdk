@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Plan2 struct {
+type Plan struct {
 	CreatedAt     *time.Time        `json:"created_at,omitzero"`
 	CreatedBy     *string           `json:"created_by,omitzero"`
 	Description   *string           `json:"description,omitzero"`
@@ -23,107 +23,104 @@ type Plan2 struct {
 	UpdatedBy     *string           `json:"updated_by,omitzero"`
 }
 
-func (p Plan2) MarshalJSON() ([]byte, error) {
+func (p Plan) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(p, "", false)
 }
 
-func (p *Plan2) UnmarshalJSON(data []byte) error {
+func (p *Plan) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *Plan2) GetCreatedAt() *time.Time {
+func (p *Plan) GetCreatedAt() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.CreatedAt
 }
 
-func (p *Plan2) GetCreatedBy() *string {
+func (p *Plan) GetCreatedBy() *string {
 	if p == nil {
 		return nil
 	}
 	return p.CreatedBy
 }
 
-func (p *Plan2) GetDescription() *string {
+func (p *Plan) GetDescription() *string {
 	if p == nil {
 		return nil
 	}
 	return p.Description
 }
 
-func (p *Plan2) GetDisplayOrder() *int64 {
+func (p *Plan) GetDisplayOrder() *int64 {
 	if p == nil {
 		return nil
 	}
 	return p.DisplayOrder
 }
 
-func (p *Plan2) GetEnvironmentID() *string {
+func (p *Plan) GetEnvironmentID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.EnvironmentID
 }
 
-func (p *Plan2) GetID() *string {
+func (p *Plan) GetID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.ID
 }
 
-func (p *Plan2) GetLookupKey() *string {
+func (p *Plan) GetLookupKey() *string {
 	if p == nil {
 		return nil
 	}
 	return p.LookupKey
 }
 
-func (p *Plan2) GetMetadata() map[string]string {
+func (p *Plan) GetMetadata() map[string]string {
 	if p == nil {
 		return nil
 	}
 	return p.Metadata
 }
 
-func (p *Plan2) GetName() *string {
+func (p *Plan) GetName() *string {
 	if p == nil {
 		return nil
 	}
 	return p.Name
 }
 
-func (p *Plan2) GetStatus() *Status {
+func (p *Plan) GetStatus() *Status {
 	if p == nil {
 		return nil
 	}
 	return p.Status
 }
 
-func (p *Plan2) GetTenantID() *string {
+func (p *Plan) GetTenantID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.TenantID
 }
 
-func (p *Plan2) GetUpdatedAt() *time.Time {
+func (p *Plan) GetUpdatedAt() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.UpdatedAt
 }
 
-func (p *Plan2) GetUpdatedBy() *string {
+func (p *Plan) GetUpdatedBy() *string {
 	if p == nil {
 		return nil
 	}
 	return p.UpdatedBy
 }
-
-// #region class-body-plan2
-// #endregion class-body-plan2

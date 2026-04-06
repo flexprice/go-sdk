@@ -42,7 +42,7 @@ func (u *UpdateCouponRequest) GetBody() types.UpdateCouponRequest {
 type UpdateCouponResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Coupon *types.Coupon
+	CouponResponse *types.CouponResponse
 }
 
 func (u UpdateCouponResponse) MarshalJSON() ([]byte, error) {
@@ -63,9 +63,9 @@ func (u *UpdateCouponResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateCouponResponse) GetCoupon() *types.Coupon {
+func (u *UpdateCouponResponse) GetCouponResponse() *types.CouponResponse {
 	if u == nil {
 		return nil
 	}
-	return u.Coupon
+	return u.CouponResponse
 }

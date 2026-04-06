@@ -7,7 +7,7 @@ import (
 )
 
 type ListAddonsResponse struct {
-	Items      []Addon1            `json:"items,omitzero"`
+	Items      []AddonResponse     `json:"items,omitzero"`
 	Pagination *PaginationResponse `json:"pagination,omitzero"`
 }
 
@@ -22,7 +22,7 @@ func (l *ListAddonsResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListAddonsResponse) GetItems() []Addon1 {
+func (l *ListAddonsResponse) GetItems() []AddonResponse {
 	if l == nil {
 		return nil
 	}

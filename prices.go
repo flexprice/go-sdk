@@ -207,12 +207,12 @@ func (s *Prices) CreatePrice(ctx context.Context, request types.CreatePriceReque
 				return nil, err
 			}
 
-			var out types.Price
+			var out types.PriceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Price = &out
+			res.PriceResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -730,12 +730,12 @@ func (s *Prices) GetPriceByLookupKey(ctx context.Context, lookupKey string, opts
 				return nil, err
 			}
 
-			var out types.Price
+			var out types.PriceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Price = &out
+			res.PriceResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1253,12 +1253,12 @@ func (s *Prices) GetPrice(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out types.Price
+			var out types.PriceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Price = &out
+			res.PriceResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1521,12 +1521,12 @@ func (s *Prices) UpdatePrice(ctx context.Context, id string, body types.UpdatePr
 				return nil, err
 			}
 
-			var out types.Price
+			var out types.PriceResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Price = &out
+			res.PriceResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

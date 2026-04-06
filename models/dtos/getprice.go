@@ -33,7 +33,7 @@ func (g *GetPriceRequest) GetID() string {
 type GetPriceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Price *types.Price
+	PriceResponse *types.PriceResponse
 }
 
 func (g GetPriceResponse) MarshalJSON() ([]byte, error) {
@@ -54,9 +54,9 @@ func (g *GetPriceResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetPriceResponse) GetPrice() *types.Price {
+func (g *GetPriceResponse) GetPriceResponse() *types.PriceResponse {
 	if g == nil {
 		return nil
 	}
-	return g.Price
+	return g.PriceResponse
 }

@@ -14,7 +14,7 @@ type CancelSubscriptionResponse struct {
 	Message          *string             `json:"message,omitzero"`
 	ProcessedAt      *time.Time          `json:"processed_at,omitzero"`
 	ProrationDetails []ProrationDetail   `json:"proration_details,omitzero"`
-	ProrationInvoice *Invoice            `json:"proration_invoice,omitzero"`
+	ProrationInvoice *InvoiceResponse    `json:"proration_invoice,omitzero"`
 	Reason           *string             `json:"reason,omitzero"`
 	Status           *SubscriptionStatus `json:"status,omitzero"`
 	// Basic cancellation info
@@ -68,7 +68,7 @@ func (c *CancelSubscriptionResponse) GetProrationDetails() []ProrationDetail {
 	return c.ProrationDetails
 }
 
-func (c *CancelSubscriptionResponse) GetProrationInvoice() *Invoice {
+func (c *CancelSubscriptionResponse) GetProrationInvoice() *InvoiceResponse {
 	if c == nil {
 		return nil
 	}

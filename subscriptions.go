@@ -207,12 +207,12 @@ func (s *Subscriptions) CreateSubscription(ctx context.Context, request types.Cr
 				return nil, err
 			}
 
-			var out types.Subscription
+			var out types.SubscriptionResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Subscription = &out
+			res.SubscriptionResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2055,12 +2055,12 @@ func (s *Subscriptions) GetSubscription(ctx context.Context, id string, opts ...
 				return nil, err
 			}
 
-			var out types.Subscription
+			var out types.SubscriptionResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Subscription = &out
+			res.SubscriptionResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2323,12 +2323,12 @@ func (s *Subscriptions) UpdateSubscription(ctx context.Context, id string, body 
 				return nil, err
 			}
 
-			var out types.Subscription
+			var out types.SubscriptionResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Subscription = &out
+			res.SubscriptionResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -2591,12 +2591,12 @@ func (s *Subscriptions) ActivateSubscription(ctx context.Context, id string, bod
 				return nil, err
 			}
 
-			var out types.Subscription
+			var out types.SubscriptionResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Subscription = &out
+			res.SubscriptionResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -4728,12 +4728,12 @@ func (s *Subscriptions) ExecuteSubscriptionModify(ctx context.Context, id string
 				return nil, err
 			}
 
-			var out types.Subscription
+			var out types.SubscriptionResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Subscription = &out
+			res.SubscriptionResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

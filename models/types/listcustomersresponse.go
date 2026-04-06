@@ -8,7 +8,7 @@ import (
 
 // ListCustomersResponse - Response object for listing customers with pagination
 type ListCustomersResponse struct {
-	Items      []Customer1         `json:"items,omitzero"`
+	Items      []CustomerResponse  `json:"items,omitzero"`
 	Pagination *PaginationResponse `json:"pagination,omitzero"`
 }
 
@@ -23,7 +23,7 @@ func (l *ListCustomersResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListCustomersResponse) GetItems() []Customer1 {
+func (l *ListCustomersResponse) GetItems() []CustomerResponse {
 	if l == nil {
 		return nil
 	}

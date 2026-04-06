@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Plan1 struct {
+type PlanResponse struct {
 	CreatedAt     *time.Time            `json:"created_at,omitzero"`
 	CreatedBy     *string               `json:"created_by,omitzero"`
 	CreditGrants  []CreditGrantResponse `json:"credit_grants,omitzero"`
@@ -20,135 +20,132 @@ type Plan1 struct {
 	Metadata      map[string]string     `json:"metadata,omitzero"`
 	Name          *string               `json:"name,omitzero"`
 	// TODO: Add inline addons
-	Prices    []Price    `json:"prices,omitzero"`
-	Status    *Status    `json:"status,omitzero"`
-	TenantID  *string    `json:"tenant_id,omitzero"`
-	UpdatedAt *time.Time `json:"updated_at,omitzero"`
-	UpdatedBy *string    `json:"updated_by,omitzero"`
+	Prices    []PriceResponse `json:"prices,omitzero"`
+	Status    *Status         `json:"status,omitzero"`
+	TenantID  *string         `json:"tenant_id,omitzero"`
+	UpdatedAt *time.Time      `json:"updated_at,omitzero"`
+	UpdatedBy *string         `json:"updated_by,omitzero"`
 }
 
-func (p Plan1) MarshalJSON() ([]byte, error) {
+func (p PlanResponse) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(p, "", false)
 }
 
-func (p *Plan1) UnmarshalJSON(data []byte) error {
+func (p *PlanResponse) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *Plan1) GetCreatedAt() *time.Time {
+func (p *PlanResponse) GetCreatedAt() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.CreatedAt
 }
 
-func (p *Plan1) GetCreatedBy() *string {
+func (p *PlanResponse) GetCreatedBy() *string {
 	if p == nil {
 		return nil
 	}
 	return p.CreatedBy
 }
 
-func (p *Plan1) GetCreditGrants() []CreditGrantResponse {
+func (p *PlanResponse) GetCreditGrants() []CreditGrantResponse {
 	if p == nil {
 		return nil
 	}
 	return p.CreditGrants
 }
 
-func (p *Plan1) GetDescription() *string {
+func (p *PlanResponse) GetDescription() *string {
 	if p == nil {
 		return nil
 	}
 	return p.Description
 }
 
-func (p *Plan1) GetDisplayOrder() *int64 {
+func (p *PlanResponse) GetDisplayOrder() *int64 {
 	if p == nil {
 		return nil
 	}
 	return p.DisplayOrder
 }
 
-func (p *Plan1) GetEntitlements() []EntitlementResponse {
+func (p *PlanResponse) GetEntitlements() []EntitlementResponse {
 	if p == nil {
 		return nil
 	}
 	return p.Entitlements
 }
 
-func (p *Plan1) GetEnvironmentID() *string {
+func (p *PlanResponse) GetEnvironmentID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.EnvironmentID
 }
 
-func (p *Plan1) GetID() *string {
+func (p *PlanResponse) GetID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.ID
 }
 
-func (p *Plan1) GetLookupKey() *string {
+func (p *PlanResponse) GetLookupKey() *string {
 	if p == nil {
 		return nil
 	}
 	return p.LookupKey
 }
 
-func (p *Plan1) GetMetadata() map[string]string {
+func (p *PlanResponse) GetMetadata() map[string]string {
 	if p == nil {
 		return nil
 	}
 	return p.Metadata
 }
 
-func (p *Plan1) GetName() *string {
+func (p *PlanResponse) GetName() *string {
 	if p == nil {
 		return nil
 	}
 	return p.Name
 }
 
-func (p *Plan1) GetPrices() []Price {
+func (p *PlanResponse) GetPrices() []PriceResponse {
 	if p == nil {
 		return nil
 	}
 	return p.Prices
 }
 
-func (p *Plan1) GetStatus() *Status {
+func (p *PlanResponse) GetStatus() *Status {
 	if p == nil {
 		return nil
 	}
 	return p.Status
 }
 
-func (p *Plan1) GetTenantID() *string {
+func (p *PlanResponse) GetTenantID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.TenantID
 }
 
-func (p *Plan1) GetUpdatedAt() *time.Time {
+func (p *PlanResponse) GetUpdatedAt() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.UpdatedAt
 }
 
-func (p *Plan1) GetUpdatedBy() *string {
+func (p *PlanResponse) GetUpdatedBy() *string {
 	if p == nil {
 		return nil
 	}
 	return p.UpdatedBy
 }
-
-// #region class-body-plan1
-// #endregion class-body-plan1

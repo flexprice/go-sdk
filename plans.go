@@ -207,12 +207,12 @@ func (s *Plans) CreatePlan(ctx context.Context, request types.CreatePlanRequest,
 				return nil, err
 			}
 
-			var out types.Plan1
+			var out types.PlanResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Plan = &out
+			res.PlanResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -730,12 +730,12 @@ func (s *Plans) GetPlan(ctx context.Context, id string, opts ...dtos.Option) (*d
 				return nil, err
 			}
 
-			var out types.Plan1
+			var out types.PlanResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Plan = &out
+			res.PlanResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1000,12 +1000,12 @@ func (s *Plans) UpdatePlan(ctx context.Context, id string, body types.UpdatePlan
 				return nil, err
 			}
 
-			var out types.Plan1
+			var out types.PlanResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Plan = &out
+			res.PlanResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1532,12 +1532,12 @@ func (s *Plans) PostPlansIDClone(ctx context.Context, id string, body types.Clon
 				return nil, err
 			}
 
-			var out types.Plan1
+			var out types.PlanResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Plan = &out
+			res.PlanResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

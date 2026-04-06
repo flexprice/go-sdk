@@ -7,8 +7,8 @@ import (
 	"time"
 )
 
-// Customer1 - Customer response object containing all customer information
-type Customer1 struct {
+// CustomerResponse - Customer response object containing all customer information
+type CustomerResponse struct {
 	// AddressCity is the city of the customer's address
 	AddressCity *string `json:"address_city,omitzero"`
 	// AddressCountry is the country of the customer's address (ISO 3166-1 alpha-2)
@@ -42,149 +42,146 @@ type Customer1 struct {
 	UpdatedBy *string    `json:"updated_by,omitzero"`
 }
 
-func (c Customer1) MarshalJSON() ([]byte, error) {
+func (c CustomerResponse) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(c, "", false)
 }
 
-func (c *Customer1) UnmarshalJSON(data []byte) error {
+func (c *CustomerResponse) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *Customer1) GetAddressCity() *string {
+func (c *CustomerResponse) GetAddressCity() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AddressCity
 }
 
-func (c *Customer1) GetAddressCountry() *string {
+func (c *CustomerResponse) GetAddressCountry() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AddressCountry
 }
 
-func (c *Customer1) GetAddressLine1() *string {
+func (c *CustomerResponse) GetAddressLine1() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AddressLine1
 }
 
-func (c *Customer1) GetAddressLine2() *string {
+func (c *CustomerResponse) GetAddressLine2() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AddressLine2
 }
 
-func (c *Customer1) GetAddressPostalCode() *string {
+func (c *CustomerResponse) GetAddressPostalCode() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AddressPostalCode
 }
 
-func (c *Customer1) GetAddressState() *string {
+func (c *CustomerResponse) GetAddressState() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AddressState
 }
 
-func (c *Customer1) GetCreatedAt() *time.Time {
+func (c *CustomerResponse) GetCreatedAt() *time.Time {
 	if c == nil {
 		return nil
 	}
 	return c.CreatedAt
 }
 
-func (c *Customer1) GetCreatedBy() *string {
+func (c *CustomerResponse) GetCreatedBy() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CreatedBy
 }
 
-func (c *Customer1) GetEmail() *string {
+func (c *CustomerResponse) GetEmail() *string {
 	if c == nil {
 		return nil
 	}
 	return c.Email
 }
 
-func (c *Customer1) GetEnvironmentID() *string {
+func (c *CustomerResponse) GetEnvironmentID() *string {
 	if c == nil {
 		return nil
 	}
 	return c.EnvironmentID
 }
 
-func (c *Customer1) GetExternalID() *string {
+func (c *CustomerResponse) GetExternalID() *string {
 	if c == nil {
 		return nil
 	}
 	return c.ExternalID
 }
 
-func (c *Customer1) GetID() *string {
+func (c *CustomerResponse) GetID() *string {
 	if c == nil {
 		return nil
 	}
 	return c.ID
 }
 
-func (c *Customer1) GetIntegrations() []EntityIntegrationMappingResponse {
+func (c *CustomerResponse) GetIntegrations() []EntityIntegrationMappingResponse {
 	if c == nil {
 		return nil
 	}
 	return c.Integrations
 }
 
-func (c *Customer1) GetMetadata() map[string]string {
+func (c *CustomerResponse) GetMetadata() map[string]string {
 	if c == nil {
 		return nil
 	}
 	return c.Metadata
 }
 
-func (c *Customer1) GetName() *string {
+func (c *CustomerResponse) GetName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.Name
 }
 
-func (c *Customer1) GetStatus() *Status {
+func (c *CustomerResponse) GetStatus() *Status {
 	if c == nil {
 		return nil
 	}
 	return c.Status
 }
 
-func (c *Customer1) GetTenantID() *string {
+func (c *CustomerResponse) GetTenantID() *string {
 	if c == nil {
 		return nil
 	}
 	return c.TenantID
 }
 
-func (c *Customer1) GetUpdatedAt() *time.Time {
+func (c *CustomerResponse) GetUpdatedAt() *time.Time {
 	if c == nil {
 		return nil
 	}
 	return c.UpdatedAt
 }
 
-func (c *Customer1) GetUpdatedBy() *string {
+func (c *CustomerResponse) GetUpdatedBy() *string {
 	if c == nil {
 		return nil
 	}
 	return c.UpdatedBy
 }
-
-// #region class-body-customer1
-// #endregion class-body-customer1

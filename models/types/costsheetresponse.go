@@ -17,11 +17,11 @@ type CostsheetResponse struct {
 	Metadata      map[string]string `json:"metadata,omitzero"`
 	Name          *string           `json:"name,omitzero"`
 	// Associated prices
-	Prices    []Price    `json:"prices,omitzero"`
-	Status    *Status    `json:"status,omitzero"`
-	TenantID  *string    `json:"tenant_id,omitzero"`
-	UpdatedAt *time.Time `json:"updated_at,omitzero"`
-	UpdatedBy *string    `json:"updated_by,omitzero"`
+	Prices    []PriceResponse `json:"prices,omitzero"`
+	Status    *Status         `json:"status,omitzero"`
+	TenantID  *string         `json:"tenant_id,omitzero"`
+	UpdatedAt *time.Time      `json:"updated_at,omitzero"`
+	UpdatedBy *string         `json:"updated_by,omitzero"`
 }
 
 func (c CostsheetResponse) MarshalJSON() ([]byte, error) {
@@ -91,7 +91,7 @@ func (c *CostsheetResponse) GetName() *string {
 	return c.Name
 }
 
-func (c *CostsheetResponse) GetPrices() []Price {
+func (c *CostsheetResponse) GetPrices() []PriceResponse {
 	if c == nil {
 		return nil
 	}

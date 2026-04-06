@@ -33,7 +33,7 @@ func (g *GetPlanRequest) GetID() string {
 type GetPlanResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Plan *types.Plan1
+	PlanResponse *types.PlanResponse
 }
 
 func (g GetPlanResponse) MarshalJSON() ([]byte, error) {
@@ -54,9 +54,9 @@ func (g *GetPlanResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetPlanResponse) GetPlan() *types.Plan1 {
+func (g *GetPlanResponse) GetPlanResponse() *types.PlanResponse {
 	if g == nil {
 		return nil
 	}
-	return g.Plan
+	return g.PlanResponse
 }

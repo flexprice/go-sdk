@@ -46,7 +46,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Feature != nil {
+    if res.FeatureResponse != nil {
         // handle response
     }
 }
@@ -154,7 +154,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Feature != nil {
+    if res.FeatureResponse != nil {
         // handle response
     }
 }

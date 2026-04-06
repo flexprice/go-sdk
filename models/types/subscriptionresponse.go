@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Subscription struct {
+type SubscriptionResponse struct {
 	// ActivePauseID references the current active pause configuration
 	// This will be null if no pause is active or scheduled
 	ActivePauseID *string `json:"active_pause_id,omitzero"`
@@ -46,7 +46,7 @@ type Subscription struct {
 	// At the end of this period, a new invoice will be created.
 	CurrentPeriodStart *time.Time `json:"current_period_start,omitzero"`
 	// Customer response object containing all customer information
-	Customer *Customer1 `json:"customer,omitzero"`
+	Customer *CustomerResponse `json:"customer,omitzero"`
 	// CustomerID is the identifier for the customer in our system
 	CustomerID       *string `json:"customer_id,omitzero"`
 	CustomerTimezone *string `json:"customer_timezone,omitzero"`
@@ -62,7 +62,7 @@ type Subscription struct {
 	// InvoicingCustomerID is the customer ID to use for invoicing
 	// This can differ from the subscription customer (e.g., parent company invoicing for child company)
 	InvoicingCustomerID *string                            `json:"invoicing_customer_id,omitzero"`
-	LatestInvoice       *Invoice                           `json:"latest_invoice,omitzero"`
+	LatestInvoice       *InvoiceResponse                   `json:"latest_invoice,omitzero"`
 	LineItems           []SubscriptionSubscriptionLineItem `json:"line_items,omitzero"`
 	// LookupKey is the key used to lookup the subscription in our system
 	LookupKey *string           `json:"lookup_key,omitzero"`
@@ -78,7 +78,7 @@ type Subscription struct {
 	PaymentTerms    *PaymentTerms `json:"payment_terms,omitzero"`
 	// Phases are the subscription phases for this subscription
 	Phases []SubscriptionPhaseResponse `json:"phases,omitzero"`
-	Plan   *Plan1                      `json:"plan,omitzero"`
+	Plan   *PlanResponse               `json:"plan,omitzero"`
 	// PlanID is the identifier for the plan in our system
 	PlanID            *string            `json:"plan_id,omitzero"`
 	ProrationBehavior *ProrationBehavior `json:"proration_behavior,omitzero"`
@@ -98,375 +98,375 @@ type Subscription struct {
 	Version *int64 `json:"version,omitzero"`
 }
 
-func (s Subscription) MarshalJSON() ([]byte, error) {
+func (s SubscriptionResponse) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(s, "", false)
 }
 
-func (s *Subscription) UnmarshalJSON(data []byte) error {
+func (s *SubscriptionResponse) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *Subscription) GetActivePauseID() *string {
+func (s *SubscriptionResponse) GetActivePauseID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.ActivePauseID
 }
 
-func (s *Subscription) GetBillingAnchor() *time.Time {
+func (s *SubscriptionResponse) GetBillingAnchor() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.BillingAnchor
 }
 
-func (s *Subscription) GetBillingCadence() *BillingCadence {
+func (s *SubscriptionResponse) GetBillingCadence() *BillingCadence {
 	if s == nil {
 		return nil
 	}
 	return s.BillingCadence
 }
 
-func (s *Subscription) GetBillingCycle() *BillingCycle {
+func (s *SubscriptionResponse) GetBillingCycle() *BillingCycle {
 	if s == nil {
 		return nil
 	}
 	return s.BillingCycle
 }
 
-func (s *Subscription) GetBillingPeriod() *BillingPeriod {
+func (s *SubscriptionResponse) GetBillingPeriod() *BillingPeriod {
 	if s == nil {
 		return nil
 	}
 	return s.BillingPeriod
 }
 
-func (s *Subscription) GetBillingPeriodCount() *int64 {
+func (s *SubscriptionResponse) GetBillingPeriodCount() *int64 {
 	if s == nil {
 		return nil
 	}
 	return s.BillingPeriodCount
 }
 
-func (s *Subscription) GetCancelAt() *time.Time {
+func (s *SubscriptionResponse) GetCancelAt() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.CancelAt
 }
 
-func (s *Subscription) GetCancelAtPeriodEnd() *bool {
+func (s *SubscriptionResponse) GetCancelAtPeriodEnd() *bool {
 	if s == nil {
 		return nil
 	}
 	return s.CancelAtPeriodEnd
 }
 
-func (s *Subscription) GetCancelledAt() *time.Time {
+func (s *SubscriptionResponse) GetCancelledAt() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.CancelledAt
 }
 
-func (s *Subscription) GetCollectionMethod() *string {
+func (s *SubscriptionResponse) GetCollectionMethod() *string {
 	if s == nil {
 		return nil
 	}
 	return s.CollectionMethod
 }
 
-func (s *Subscription) GetCommitmentAmount() *string {
+func (s *SubscriptionResponse) GetCommitmentAmount() *string {
 	if s == nil {
 		return nil
 	}
 	return s.CommitmentAmount
 }
 
-func (s *Subscription) GetCommitmentDuration() *BillingPeriod {
+func (s *SubscriptionResponse) GetCommitmentDuration() *BillingPeriod {
 	if s == nil {
 		return nil
 	}
 	return s.CommitmentDuration
 }
 
-func (s *Subscription) GetCouponAssociations() []CouponAssociationResponse {
+func (s *SubscriptionResponse) GetCouponAssociations() []CouponAssociationResponse {
 	if s == nil {
 		return nil
 	}
 	return s.CouponAssociations
 }
 
-func (s *Subscription) GetCreatedAt() *time.Time {
+func (s *SubscriptionResponse) GetCreatedAt() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.CreatedAt
 }
 
-func (s *Subscription) GetCreatedBy() *string {
+func (s *SubscriptionResponse) GetCreatedBy() *string {
 	if s == nil {
 		return nil
 	}
 	return s.CreatedBy
 }
 
-func (s *Subscription) GetCreditGrants() []CreditGrantResponse {
+func (s *SubscriptionResponse) GetCreditGrants() []CreditGrantResponse {
 	if s == nil {
 		return nil
 	}
 	return s.CreditGrants
 }
 
-func (s *Subscription) GetCurrency() *string {
+func (s *SubscriptionResponse) GetCurrency() *string {
 	if s == nil {
 		return nil
 	}
 	return s.Currency
 }
 
-func (s *Subscription) GetCurrentPeriodEnd() *time.Time {
+func (s *SubscriptionResponse) GetCurrentPeriodEnd() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.CurrentPeriodEnd
 }
 
-func (s *Subscription) GetCurrentPeriodStart() *time.Time {
+func (s *SubscriptionResponse) GetCurrentPeriodStart() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.CurrentPeriodStart
 }
 
-func (s *Subscription) GetCustomer() *Customer1 {
+func (s *SubscriptionResponse) GetCustomer() *CustomerResponse {
 	if s == nil {
 		return nil
 	}
 	return s.Customer
 }
 
-func (s *Subscription) GetCustomerID() *string {
+func (s *SubscriptionResponse) GetCustomerID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.CustomerID
 }
 
-func (s *Subscription) GetCustomerTimezone() *string {
+func (s *SubscriptionResponse) GetCustomerTimezone() *string {
 	if s == nil {
 		return nil
 	}
 	return s.CustomerTimezone
 }
 
-func (s *Subscription) GetEnableTrueUp() *bool {
+func (s *SubscriptionResponse) GetEnableTrueUp() *bool {
 	if s == nil {
 		return nil
 	}
 	return s.EnableTrueUp
 }
 
-func (s *Subscription) GetEndDate() *time.Time {
+func (s *SubscriptionResponse) GetEndDate() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.EndDate
 }
 
-func (s *Subscription) GetEnvironmentID() *string {
+func (s *SubscriptionResponse) GetEnvironmentID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.EnvironmentID
 }
 
-func (s *Subscription) GetGatewayPaymentMethodID() *string {
+func (s *SubscriptionResponse) GetGatewayPaymentMethodID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.GatewayPaymentMethodID
 }
 
-func (s *Subscription) GetID() *string {
+func (s *SubscriptionResponse) GetID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.ID
 }
 
-func (s *Subscription) GetInvoicingCustomerID() *string {
+func (s *SubscriptionResponse) GetInvoicingCustomerID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.InvoicingCustomerID
 }
 
-func (s *Subscription) GetLatestInvoice() *Invoice {
+func (s *SubscriptionResponse) GetLatestInvoice() *InvoiceResponse {
 	if s == nil {
 		return nil
 	}
 	return s.LatestInvoice
 }
 
-func (s *Subscription) GetLineItems() []SubscriptionSubscriptionLineItem {
+func (s *SubscriptionResponse) GetLineItems() []SubscriptionSubscriptionLineItem {
 	if s == nil {
 		return nil
 	}
 	return s.LineItems
 }
 
-func (s *Subscription) GetLookupKey() *string {
+func (s *SubscriptionResponse) GetLookupKey() *string {
 	if s == nil {
 		return nil
 	}
 	return s.LookupKey
 }
 
-func (s *Subscription) GetMetadata() map[string]string {
+func (s *SubscriptionResponse) GetMetadata() map[string]string {
 	if s == nil {
 		return nil
 	}
 	return s.Metadata
 }
 
-func (s *Subscription) GetOverageFactor() *string {
+func (s *SubscriptionResponse) GetOverageFactor() *string {
 	if s == nil {
 		return nil
 	}
 	return s.OverageFactor
 }
 
-func (s *Subscription) GetParentSubscriptionID() *string {
+func (s *SubscriptionResponse) GetParentSubscriptionID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.ParentSubscriptionID
 }
 
-func (s *Subscription) GetPauseStatus() *PauseStatus {
+func (s *SubscriptionResponse) GetPauseStatus() *PauseStatus {
 	if s == nil {
 		return nil
 	}
 	return s.PauseStatus
 }
 
-func (s *Subscription) GetPauses() []SubscriptionSubscriptionPause {
+func (s *SubscriptionResponse) GetPauses() []SubscriptionSubscriptionPause {
 	if s == nil {
 		return nil
 	}
 	return s.Pauses
 }
 
-func (s *Subscription) GetPaymentBehavior() *string {
+func (s *SubscriptionResponse) GetPaymentBehavior() *string {
 	if s == nil {
 		return nil
 	}
 	return s.PaymentBehavior
 }
 
-func (s *Subscription) GetPaymentTerms() *PaymentTerms {
+func (s *SubscriptionResponse) GetPaymentTerms() *PaymentTerms {
 	if s == nil {
 		return nil
 	}
 	return s.PaymentTerms
 }
 
-func (s *Subscription) GetPhases() []SubscriptionPhaseResponse {
+func (s *SubscriptionResponse) GetPhases() []SubscriptionPhaseResponse {
 	if s == nil {
 		return nil
 	}
 	return s.Phases
 }
 
-func (s *Subscription) GetPlan() *Plan1 {
+func (s *SubscriptionResponse) GetPlan() *PlanResponse {
 	if s == nil {
 		return nil
 	}
 	return s.Plan
 }
 
-func (s *Subscription) GetPlanID() *string {
+func (s *SubscriptionResponse) GetPlanID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.PlanID
 }
 
-func (s *Subscription) GetProrationBehavior() *ProrationBehavior {
+func (s *SubscriptionResponse) GetProrationBehavior() *ProrationBehavior {
 	if s == nil {
 		return nil
 	}
 	return s.ProrationBehavior
 }
 
-func (s *Subscription) GetStartDate() *time.Time {
+func (s *SubscriptionResponse) GetStartDate() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.StartDate
 }
 
-func (s *Subscription) GetStatus() *Status {
+func (s *SubscriptionResponse) GetStatus() *Status {
 	if s == nil {
 		return nil
 	}
 	return s.Status
 }
 
-func (s *Subscription) GetSubscriptionStatus() *SubscriptionStatus {
+func (s *SubscriptionResponse) GetSubscriptionStatus() *SubscriptionStatus {
 	if s == nil {
 		return nil
 	}
 	return s.SubscriptionStatus
 }
 
-func (s *Subscription) GetSubscriptionType() *SubscriptionType {
+func (s *SubscriptionResponse) GetSubscriptionType() *SubscriptionType {
 	if s == nil {
 		return nil
 	}
 	return s.SubscriptionType
 }
 
-func (s *Subscription) GetTenantID() *string {
+func (s *SubscriptionResponse) GetTenantID() *string {
 	if s == nil {
 		return nil
 	}
 	return s.TenantID
 }
 
-func (s *Subscription) GetTrialEnd() *time.Time {
+func (s *SubscriptionResponse) GetTrialEnd() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.TrialEnd
 }
 
-func (s *Subscription) GetTrialStart() *time.Time {
+func (s *SubscriptionResponse) GetTrialStart() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.TrialStart
 }
 
-func (s *Subscription) GetUpdatedAt() *time.Time {
+func (s *SubscriptionResponse) GetUpdatedAt() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.UpdatedAt
 }
 
-func (s *Subscription) GetUpdatedBy() *string {
+func (s *SubscriptionResponse) GetUpdatedBy() *string {
 	if s == nil {
 		return nil
 	}
 	return s.UpdatedBy
 }
 
-func (s *Subscription) GetVersion() *int64 {
+func (s *SubscriptionResponse) GetVersion() *int64 {
 	if s == nil {
 		return nil
 	}

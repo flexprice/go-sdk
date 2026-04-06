@@ -9,7 +9,7 @@ import (
 type TopUpWalletResponse struct {
 	// Invoice ID if an invoice was created (only for PURCHASED_CREDIT_INVOICED)
 	InvoiceID         *string                    `json:"invoice_id,omitzero"`
-	Wallet            *Wallet                    `json:"wallet,omitzero"`
+	Wallet            *WalletResponse            `json:"wallet,omitzero"`
 	WalletTransaction *WalletTransactionResponse `json:"wallet_transaction,omitzero"`
 }
 
@@ -31,7 +31,7 @@ func (t *TopUpWalletResponse) GetInvoiceID() *string {
 	return t.InvoiceID
 }
 
-func (t *TopUpWalletResponse) GetWallet() *Wallet {
+func (t *TopUpWalletResponse) GetWallet() *WalletResponse {
 	if t == nil {
 		return nil
 	}

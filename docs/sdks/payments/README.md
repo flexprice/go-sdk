@@ -99,7 +99,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Payment != nil {
+    if res.PaymentResponse != nil {
         // handle response
     }
 }
@@ -152,7 +152,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Payment != nil {
+    if res.PaymentResponse != nil {
         // handle response
     }
 }
@@ -206,7 +206,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Payment != nil {
+    if res.PaymentResponse != nil {
         // handle response
     }
 }
@@ -313,7 +313,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Payment != nil {
+    if res.PaymentResponse != nil {
         // handle response
     }
 }

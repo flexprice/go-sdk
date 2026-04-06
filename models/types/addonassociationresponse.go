@@ -8,7 +8,7 @@ import (
 )
 
 type AddonAssociationResponse struct {
-	Addon              *Addon1                     `json:"addon,omitzero"`
+	Addon              *AddonResponse              `json:"addon,omitzero"`
 	AddonID            *string                     `json:"addon_id,omitzero"`
 	AddonStatus        *AddonStatus                `json:"addon_status,omitzero"`
 	CancellationReason *string                     `json:"cancellation_reason,omitzero"`
@@ -23,7 +23,7 @@ type AddonAssociationResponse struct {
 	Metadata           map[string]any              `json:"metadata,omitzero"`
 	StartDate          *time.Time                  `json:"start_date,omitzero"`
 	Status             *Status                     `json:"status,omitzero"`
-	Subscription       *Subscription               `json:"subscription,omitzero"`
+	Subscription       *SubscriptionResponse       `json:"subscription,omitzero"`
 	TenantID           *string                     `json:"tenant_id,omitzero"`
 	UpdatedAt          *time.Time                  `json:"updated_at,omitzero"`
 	UpdatedBy          *string                     `json:"updated_by,omitzero"`
@@ -40,7 +40,7 @@ func (a *AddonAssociationResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (a *AddonAssociationResponse) GetAddon() *Addon1 {
+func (a *AddonAssociationResponse) GetAddon() *AddonResponse {
 	if a == nil {
 		return nil
 	}
@@ -145,7 +145,7 @@ func (a *AddonAssociationResponse) GetStatus() *Status {
 	return a.Status
 }
 
-func (a *AddonAssociationResponse) GetSubscription() *Subscription {
+func (a *AddonAssociationResponse) GetSubscription() *SubscriptionResponse {
 	if a == nil {
 		return nil
 	}

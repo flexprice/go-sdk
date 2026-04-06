@@ -14,20 +14,20 @@ type AlertLogResponse struct {
 	CreatedAt   *time.Time  `json:"created_at,omitzero"`
 	CreatedBy   *string     `json:"created_by,omitzero"`
 	// Customer response object containing all customer information
-	Customer         *Customer1       `json:"customer,omitzero"`
-	CustomerID       *string          `json:"customer_id,omitzero"`
-	EntityID         *string          `json:"entity_id,omitzero"`
-	EntityType       *AlertEntityType `json:"entity_type,omitzero"`
-	EnvironmentID    *string          `json:"environment_id,omitzero"`
-	Feature          *Feature1        `json:"feature,omitzero"`
-	ID               *string          `json:"id,omitzero"`
-	ParentEntityID   *string          `json:"parent_entity_id,omitzero"`
-	ParentEntityType *string          `json:"parent_entity_type,omitzero"`
-	Status           *string          `json:"status,omitzero"`
-	TenantID         *string          `json:"tenant_id,omitzero"`
-	UpdatedAt        *time.Time       `json:"updated_at,omitzero"`
-	UpdatedBy        *string          `json:"updated_by,omitzero"`
-	Wallet           *Wallet          `json:"wallet,omitzero"`
+	Customer         *CustomerResponse `json:"customer,omitzero"`
+	CustomerID       *string           `json:"customer_id,omitzero"`
+	EntityID         *string           `json:"entity_id,omitzero"`
+	EntityType       *AlertEntityType  `json:"entity_type,omitzero"`
+	EnvironmentID    *string           `json:"environment_id,omitzero"`
+	Feature          *FeatureResponse  `json:"feature,omitzero"`
+	ID               *string           `json:"id,omitzero"`
+	ParentEntityID   *string           `json:"parent_entity_id,omitzero"`
+	ParentEntityType *string           `json:"parent_entity_type,omitzero"`
+	Status           *string           `json:"status,omitzero"`
+	TenantID         *string           `json:"tenant_id,omitzero"`
+	UpdatedAt        *time.Time        `json:"updated_at,omitzero"`
+	UpdatedBy        *string           `json:"updated_by,omitzero"`
+	Wallet           *WalletResponse   `json:"wallet,omitzero"`
 }
 
 func (a AlertLogResponse) MarshalJSON() ([]byte, error) {
@@ -76,7 +76,7 @@ func (a *AlertLogResponse) GetCreatedBy() *string {
 	return a.CreatedBy
 }
 
-func (a *AlertLogResponse) GetCustomer() *Customer1 {
+func (a *AlertLogResponse) GetCustomer() *CustomerResponse {
 	if a == nil {
 		return nil
 	}
@@ -111,7 +111,7 @@ func (a *AlertLogResponse) GetEnvironmentID() *string {
 	return a.EnvironmentID
 }
 
-func (a *AlertLogResponse) GetFeature() *Feature1 {
+func (a *AlertLogResponse) GetFeature() *FeatureResponse {
 	if a == nil {
 		return nil
 	}
@@ -167,7 +167,7 @@ func (a *AlertLogResponse) GetUpdatedBy() *string {
 	return a.UpdatedBy
 }
 
-func (a *AlertLogResponse) GetWallet() *Wallet {
+func (a *AlertLogResponse) GetWallet() *WalletResponse {
 	if a == nil {
 		return nil
 	}

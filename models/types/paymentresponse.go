@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Payment struct {
+type PaymentResponse struct {
 	Amount                 *string                  `json:"amount,omitzero"`
 	Attempts               []PaymentAttemptResponse `json:"attempts,omitzero"`
 	CreatedAt              *time.Time               `json:"created_at,omitzero"`
@@ -38,207 +38,207 @@ type Payment struct {
 	UpdatedBy              *string                  `json:"updated_by,omitzero"`
 }
 
-func (p Payment) MarshalJSON() ([]byte, error) {
+func (p PaymentResponse) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(p, "", false)
 }
 
-func (p *Payment) UnmarshalJSON(data []byte) error {
+func (p *PaymentResponse) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *Payment) GetAmount() *string {
+func (p *PaymentResponse) GetAmount() *string {
 	if p == nil {
 		return nil
 	}
 	return p.Amount
 }
 
-func (p *Payment) GetAttempts() []PaymentAttemptResponse {
+func (p *PaymentResponse) GetAttempts() []PaymentAttemptResponse {
 	if p == nil {
 		return nil
 	}
 	return p.Attempts
 }
 
-func (p *Payment) GetCreatedAt() *time.Time {
+func (p *PaymentResponse) GetCreatedAt() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.CreatedAt
 }
 
-func (p *Payment) GetCreatedBy() *string {
+func (p *PaymentResponse) GetCreatedBy() *string {
 	if p == nil {
 		return nil
 	}
 	return p.CreatedBy
 }
 
-func (p *Payment) GetCurrency() *string {
+func (p *PaymentResponse) GetCurrency() *string {
 	if p == nil {
 		return nil
 	}
 	return p.Currency
 }
 
-func (p *Payment) GetDestinationID() *string {
+func (p *PaymentResponse) GetDestinationID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.DestinationID
 }
 
-func (p *Payment) GetDestinationType() *PaymentDestinationType {
+func (p *PaymentResponse) GetDestinationType() *PaymentDestinationType {
 	if p == nil {
 		return nil
 	}
 	return p.DestinationType
 }
 
-func (p *Payment) GetErrorMessage() *string {
+func (p *PaymentResponse) GetErrorMessage() *string {
 	if p == nil {
 		return nil
 	}
 	return p.ErrorMessage
 }
 
-func (p *Payment) GetFailedAt() *time.Time {
+func (p *PaymentResponse) GetFailedAt() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.FailedAt
 }
 
-func (p *Payment) GetGatewayMetadata() map[string]string {
+func (p *PaymentResponse) GetGatewayMetadata() map[string]string {
 	if p == nil {
 		return nil
 	}
 	return p.GatewayMetadata
 }
 
-func (p *Payment) GetGatewayPaymentID() *string {
+func (p *PaymentResponse) GetGatewayPaymentID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.GatewayPaymentID
 }
 
-func (p *Payment) GetGatewayTrackingID() *string {
+func (p *PaymentResponse) GetGatewayTrackingID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.GatewayTrackingID
 }
 
-func (p *Payment) GetID() *string {
+func (p *PaymentResponse) GetID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.ID
 }
 
-func (p *Payment) GetIdempotencyKey() *string {
+func (p *PaymentResponse) GetIdempotencyKey() *string {
 	if p == nil {
 		return nil
 	}
 	return p.IdempotencyKey
 }
 
-func (p *Payment) GetInvoiceNumber() *string {
+func (p *PaymentResponse) GetInvoiceNumber() *string {
 	if p == nil {
 		return nil
 	}
 	return p.InvoiceNumber
 }
 
-func (p *Payment) GetMetadata() map[string]string {
+func (p *PaymentResponse) GetMetadata() map[string]string {
 	if p == nil {
 		return nil
 	}
 	return p.Metadata
 }
 
-func (p *Payment) GetPaymentGateway() *string {
+func (p *PaymentResponse) GetPaymentGateway() *string {
 	if p == nil {
 		return nil
 	}
 	return p.PaymentGateway
 }
 
-func (p *Payment) GetPaymentMethodID() *string {
+func (p *PaymentResponse) GetPaymentMethodID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.PaymentMethodID
 }
 
-func (p *Payment) GetPaymentMethodType() *PaymentMethodType {
+func (p *PaymentResponse) GetPaymentMethodType() *PaymentMethodType {
 	if p == nil {
 		return nil
 	}
 	return p.PaymentMethodType
 }
 
-func (p *Payment) GetPaymentStatus() *PaymentStatus {
+func (p *PaymentResponse) GetPaymentStatus() *PaymentStatus {
 	if p == nil {
 		return nil
 	}
 	return p.PaymentStatus
 }
 
-func (p *Payment) GetPaymentURL() *string {
+func (p *PaymentResponse) GetPaymentURL() *string {
 	if p == nil {
 		return nil
 	}
 	return p.PaymentURL
 }
 
-func (p *Payment) GetRefundedAt() *time.Time {
+func (p *PaymentResponse) GetRefundedAt() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.RefundedAt
 }
 
-func (p *Payment) GetSaveCardAndMakeDefault() *bool {
+func (p *PaymentResponse) GetSaveCardAndMakeDefault() *bool {
 	if p == nil {
 		return nil
 	}
 	return p.SaveCardAndMakeDefault
 }
 
-func (p *Payment) GetSucceededAt() *time.Time {
+func (p *PaymentResponse) GetSucceededAt() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.SucceededAt
 }
 
-func (p *Payment) GetTenantID() *string {
+func (p *PaymentResponse) GetTenantID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.TenantID
 }
 
-func (p *Payment) GetTrackAttempts() *bool {
+func (p *PaymentResponse) GetTrackAttempts() *bool {
 	if p == nil {
 		return nil
 	}
 	return p.TrackAttempts
 }
 
-func (p *Payment) GetUpdatedAt() *time.Time {
+func (p *PaymentResponse) GetUpdatedAt() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.UpdatedAt
 }
 
-func (p *Payment) GetUpdatedBy() *string {
+func (p *PaymentResponse) GetUpdatedBy() *string {
 	if p == nil {
 		return nil
 	}

@@ -33,7 +33,7 @@ func (t *TerminateWalletRequest) GetID() string {
 type TerminateWalletResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Wallet *types.Wallet
+	WalletResponse *types.WalletResponse
 }
 
 func (t TerminateWalletResponse) MarshalJSON() ([]byte, error) {
@@ -54,9 +54,9 @@ func (t *TerminateWalletResponse) GetHTTPMeta() types.HTTPMetadata {
 	return t.HTTPMeta
 }
 
-func (t *TerminateWalletResponse) GetWallet() *types.Wallet {
+func (t *TerminateWalletResponse) GetWalletResponse() *types.WalletResponse {
 	if t == nil {
 		return nil
 	}
-	return t.Wallet
+	return t.WalletResponse
 }

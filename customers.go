@@ -217,12 +217,12 @@ func (s *Customers) UpdateCustomer(ctx context.Context, body types.UpdateCustome
 				return nil, err
 			}
 
-			var out types.Customer1
+			var out types.CustomerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Customer = &out
+			res.CustomerResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -480,12 +480,12 @@ func (s *Customers) CreateCustomer(ctx context.Context, request types.CreateCust
 				return nil, err
 			}
 
-			var out types.Customer1
+			var out types.CustomerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Customer = &out
+			res.CustomerResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -740,12 +740,12 @@ func (s *Customers) GetCustomerByExternalID(ctx context.Context, externalID stri
 				return nil, err
 			}
 
-			var out types.Customer1
+			var out types.CustomerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Customer = &out
+			res.CustomerResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1525,12 +1525,12 @@ func (s *Customers) GetCustomer(ctx context.Context, id string, opts ...dtos.Opt
 				return nil, err
 			}
 
-			var out types.Customer1
+			var out types.CustomerResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Customer = &out
+			res.CustomerResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

@@ -45,7 +45,7 @@ func (r *RecalculateInvoiceV2Request) GetFinalize() *bool {
 type RecalculateInvoiceV2Response struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Invoice *types.Invoice
+	InvoiceResponse *types.InvoiceResponse
 }
 
 func (r RecalculateInvoiceV2Response) MarshalJSON() ([]byte, error) {
@@ -66,11 +66,11 @@ func (r *RecalculateInvoiceV2Response) GetHTTPMeta() types.HTTPMetadata {
 	return r.HTTPMeta
 }
 
-func (r *RecalculateInvoiceV2Response) GetInvoice() *types.Invoice {
+func (r *RecalculateInvoiceV2Response) GetInvoiceResponse() *types.InvoiceResponse {
 	if r == nil {
 		return nil
 	}
-	return r.Invoice
+	return r.InvoiceResponse
 }
 
 // #region class-body-recalculateinvoicev2response

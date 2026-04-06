@@ -20,7 +20,7 @@ type WalletTransactionResponse struct {
 	CreditsAvailable    *string       `json:"credits_available,omitzero"`
 	Currency            *string       `json:"currency,omitzero"`
 	// Customer response object containing all customer information
-	Customer       *Customer1             `json:"customer,omitzero"`
+	Customer       *CustomerResponse      `json:"customer,omitzero"`
 	CustomerID     *string                `json:"customer_id,omitzero"`
 	Description    *string                `json:"description,omitzero"`
 	EnvironmentID  *string                `json:"environment_id,omitzero"`
@@ -40,7 +40,7 @@ type WalletTransactionResponse struct {
 	Type                *TransactionType   `json:"type,omitzero"`
 	UpdatedAt           *time.Time         `json:"updated_at,omitzero"`
 	UpdatedBy           *string            `json:"updated_by,omitzero"`
-	Wallet              *Wallet            `json:"wallet,omitzero"`
+	Wallet              *WalletResponse    `json:"wallet,omitzero"`
 	WalletID            *string            `json:"wallet_id,omitzero"`
 }
 
@@ -125,7 +125,7 @@ func (w *WalletTransactionResponse) GetCurrency() *string {
 	return w.Currency
 }
 
-func (w *WalletTransactionResponse) GetCustomer() *Customer1 {
+func (w *WalletTransactionResponse) GetCustomer() *CustomerResponse {
 	if w == nil {
 		return nil
 	}
@@ -258,7 +258,7 @@ func (w *WalletTransactionResponse) GetUpdatedBy() *string {
 	return w.UpdatedBy
 }
 
-func (w *WalletTransactionResponse) GetWallet() *Wallet {
+func (w *WalletTransactionResponse) GetWallet() *WalletResponse {
 	if w == nil {
 		return nil
 	}

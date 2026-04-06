@@ -42,7 +42,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Plan != nil {
+    if res.PlanResponse != nil {
         // handle response
     }
 }
@@ -149,7 +149,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Plan != nil {
+    if res.PlanResponse != nil {
         // handle response
     }
 }
@@ -203,7 +203,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Plan != nil {
+    if res.PlanResponse != nil {
         // handle response
     }
 }
@@ -311,7 +311,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Plan != nil {
+    if res.PlanResponse != nil {
         // handle response
     }
 }

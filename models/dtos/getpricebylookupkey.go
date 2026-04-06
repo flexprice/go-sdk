@@ -33,7 +33,7 @@ func (g *GetPriceByLookupKeyRequest) GetLookupKey() string {
 type GetPriceByLookupKeyResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Price *types.Price
+	PriceResponse *types.PriceResponse
 }
 
 func (g GetPriceByLookupKeyResponse) MarshalJSON() ([]byte, error) {
@@ -54,9 +54,9 @@ func (g *GetPriceByLookupKeyResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetPriceByLookupKeyResponse) GetPrice() *types.Price {
+func (g *GetPriceByLookupKeyResponse) GetPriceResponse() *types.PriceResponse {
 	if g == nil {
 		return nil
 	}
-	return g.Price
+	return g.PriceResponse
 }

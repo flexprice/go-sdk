@@ -7,7 +7,7 @@ import (
 )
 
 type ListFeaturesResponse struct {
-	Items      []Feature1          `json:"items,omitzero"`
+	Items      []FeatureResponse   `json:"items,omitzero"`
 	Pagination *PaginationResponse `json:"pagination,omitzero"`
 }
 
@@ -22,7 +22,7 @@ func (l *ListFeaturesResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListFeaturesResponse) GetItems() []Feature1 {
+func (l *ListFeaturesResponse) GetItems() []FeatureResponse {
 	if l == nil {
 		return nil
 	}

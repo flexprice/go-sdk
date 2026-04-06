@@ -1,4 +1,4 @@
-# Customer1
+# CustomerResponse
 
 Customer response object containing all customer information
 

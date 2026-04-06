@@ -73,7 +73,7 @@ func (g *GetCustomerWalletsRequest) GetLookupKey() *string {
 type GetCustomerWalletsResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Wallets []types.Wallet
+	WalletResponses []types.WalletResponse
 }
 
 func (g GetCustomerWalletsResponse) MarshalJSON() ([]byte, error) {
@@ -94,9 +94,9 @@ func (g *GetCustomerWalletsResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCustomerWalletsResponse) GetWallets() []types.Wallet {
+func (g *GetCustomerWalletsResponse) GetWalletResponses() []types.WalletResponse {
 	if g == nil {
 		return nil
 	}
-	return g.Wallets
+	return g.WalletResponses
 }

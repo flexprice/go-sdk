@@ -42,7 +42,7 @@ func (u *UpdateFeatureRequest) GetBody() types.UpdateFeatureRequest {
 type UpdateFeatureResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Feature *types.Feature1
+	FeatureResponse *types.FeatureResponse
 }
 
 func (u UpdateFeatureResponse) MarshalJSON() ([]byte, error) {
@@ -63,9 +63,9 @@ func (u *UpdateFeatureResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateFeatureResponse) GetFeature() *types.Feature1 {
+func (u *UpdateFeatureResponse) GetFeatureResponse() *types.FeatureResponse {
 	if u == nil {
 		return nil
 	}
-	return u.Feature
+	return u.FeatureResponse
 }

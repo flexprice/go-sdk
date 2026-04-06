@@ -1,4 +1,4 @@
-# Plan1
+# PlanResponse
 
 
 ## Fields
@@ -16,7 +16,7 @@
 | `LookupKey`                                                              | `*string`                                                                | :heavy_minus_sign:                                                       | N/A                                                                      |
 | `Metadata`                                                               | map[string]`string`                                                      | :heavy_minus_sign:                                                       | N/A                                                                      |
 | `Name`                                                                   | `*string`                                                                | :heavy_minus_sign:                                                       | N/A                                                                      |
-| `Prices`                                                                 | [][types.Price](../../models/types/price.md)                             | :heavy_minus_sign:                                                       | TODO: Add inline addons                                                  |
+| `Prices`                                                                 | [][types.PriceResponse](../../models/types/priceresponse.md)             | :heavy_minus_sign:                                                       | TODO: Add inline addons                                                  |
 | `Status`                                                                 | [*types.Status](../../models/types/status.md)                            | :heavy_minus_sign:                                                       | N/A                                                                      |
 | `TenantID`                                                               | `*string`                                                                | :heavy_minus_sign:                                                       | N/A                                                                      |
 | `UpdatedAt`                                                              | [*time.Time](https://pkg.go.dev/time#Time)                               | :heavy_minus_sign:                                                       | N/A                                                                      |

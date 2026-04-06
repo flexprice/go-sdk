@@ -7,8 +7,8 @@ import (
 )
 
 type ListSubscriptionsResponse struct {
-	Items      []Subscription      `json:"items,omitzero"`
-	Pagination *PaginationResponse `json:"pagination,omitzero"`
+	Items      []SubscriptionResponse `json:"items,omitzero"`
+	Pagination *PaginationResponse    `json:"pagination,omitzero"`
 }
 
 func (l ListSubscriptionsResponse) MarshalJSON() ([]byte, error) {
@@ -22,7 +22,7 @@ func (l *ListSubscriptionsResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *ListSubscriptionsResponse) GetItems() []Subscription {
+func (l *ListSubscriptionsResponse) GetItems() []SubscriptionResponse {
 	if l == nil {
 		return nil
 	}

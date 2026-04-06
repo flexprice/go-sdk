@@ -64,7 +64,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Subscription != nil {
+    if res.SubscriptionResponse != nil {
         // handle response
     }
 }
@@ -454,7 +454,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Subscription != nil {
+    if res.SubscriptionResponse != nil {
         // handle response
     }
 }
@@ -508,7 +508,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Subscription != nil {
+    if res.SubscriptionResponse != nil {
         // handle response
     }
 }
@@ -566,7 +566,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Subscription != nil {
+    if res.SubscriptionResponse != nil {
         // handle response
     }
 }
@@ -1015,7 +1015,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Subscription != nil {
+    if res.SubscriptionResponse != nil {
         // handle response
     }
 }

@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Wallet struct {
+type WalletResponse struct {
 	AlertSettings *AlertSettings `json:"alert_settings,omitzero"`
 	AlertState    *AlertState    `json:"alert_state,omitzero"`
 	AutoTopup     *AutoTopup     `json:"auto_topup,omitzero"`
@@ -42,179 +42,179 @@ type Wallet struct {
 	WalletType          *WalletType   `json:"wallet_type,omitzero"`
 }
 
-func (w Wallet) MarshalJSON() ([]byte, error) {
+func (w WalletResponse) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(w, "", false)
 }
 
-func (w *Wallet) UnmarshalJSON(data []byte) error {
+func (w *WalletResponse) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &w, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (w *Wallet) GetAlertSettings() *AlertSettings {
+func (w *WalletResponse) GetAlertSettings() *AlertSettings {
 	if w == nil {
 		return nil
 	}
 	return w.AlertSettings
 }
 
-func (w *Wallet) GetAlertState() *AlertState {
+func (w *WalletResponse) GetAlertState() *AlertState {
 	if w == nil {
 		return nil
 	}
 	return w.AlertState
 }
 
-func (w *Wallet) GetAutoTopup() *AutoTopup {
+func (w *WalletResponse) GetAutoTopup() *AutoTopup {
 	if w == nil {
 		return nil
 	}
 	return w.AutoTopup
 }
 
-func (w *Wallet) GetBalance() *string {
+func (w *WalletResponse) GetBalance() *string {
 	if w == nil {
 		return nil
 	}
 	return w.Balance
 }
 
-func (w *Wallet) GetConfig() *WalletConfig {
+func (w *WalletResponse) GetConfig() *WalletConfig {
 	if w == nil {
 		return nil
 	}
 	return w.Config
 }
 
-func (w *Wallet) GetConversionRate() *string {
+func (w *WalletResponse) GetConversionRate() *string {
 	if w == nil {
 		return nil
 	}
 	return w.ConversionRate
 }
 
-func (w *Wallet) GetCreatedAt() *time.Time {
+func (w *WalletResponse) GetCreatedAt() *time.Time {
 	if w == nil {
 		return nil
 	}
 	return w.CreatedAt
 }
 
-func (w *Wallet) GetCreatedBy() *string {
+func (w *WalletResponse) GetCreatedBy() *string {
 	if w == nil {
 		return nil
 	}
 	return w.CreatedBy
 }
 
-func (w *Wallet) GetCreditBalance() *string {
+func (w *WalletResponse) GetCreditBalance() *string {
 	if w == nil {
 		return nil
 	}
 	return w.CreditBalance
 }
 
-func (w *Wallet) GetCreditsAvailableBreakdown() *CreditBreakdown {
+func (w *WalletResponse) GetCreditsAvailableBreakdown() *CreditBreakdown {
 	if w == nil {
 		return nil
 	}
 	return w.CreditsAvailableBreakdown
 }
 
-func (w *Wallet) GetCurrency() *string {
+func (w *WalletResponse) GetCurrency() *string {
 	if w == nil {
 		return nil
 	}
 	return w.Currency
 }
 
-func (w *Wallet) GetCustomerID() *string {
+func (w *WalletResponse) GetCustomerID() *string {
 	if w == nil {
 		return nil
 	}
 	return w.CustomerID
 }
 
-func (w *Wallet) GetDescription() *string {
+func (w *WalletResponse) GetDescription() *string {
 	if w == nil {
 		return nil
 	}
 	return w.Description
 }
 
-func (w *Wallet) GetEnvironmentID() *string {
+func (w *WalletResponse) GetEnvironmentID() *string {
 	if w == nil {
 		return nil
 	}
 	return w.EnvironmentID
 }
 
-func (w *Wallet) GetID() *string {
+func (w *WalletResponse) GetID() *string {
 	if w == nil {
 		return nil
 	}
 	return w.ID
 }
 
-func (w *Wallet) GetMetadata() map[string]string {
+func (w *WalletResponse) GetMetadata() map[string]string {
 	if w == nil {
 		return nil
 	}
 	return w.Metadata
 }
 
-func (w *Wallet) GetName() *string {
+func (w *WalletResponse) GetName() *string {
 	if w == nil {
 		return nil
 	}
 	return w.Name
 }
 
-func (w *Wallet) GetStatus() *Status {
+func (w *WalletResponse) GetStatus() *Status {
 	if w == nil {
 		return nil
 	}
 	return w.Status
 }
 
-func (w *Wallet) GetTenantID() *string {
+func (w *WalletResponse) GetTenantID() *string {
 	if w == nil {
 		return nil
 	}
 	return w.TenantID
 }
 
-func (w *Wallet) GetTopupConversionRate() *string {
+func (w *WalletResponse) GetTopupConversionRate() *string {
 	if w == nil {
 		return nil
 	}
 	return w.TopupConversionRate
 }
 
-func (w *Wallet) GetUpdatedAt() *time.Time {
+func (w *WalletResponse) GetUpdatedAt() *time.Time {
 	if w == nil {
 		return nil
 	}
 	return w.UpdatedAt
 }
 
-func (w *Wallet) GetUpdatedBy() *string {
+func (w *WalletResponse) GetUpdatedBy() *string {
 	if w == nil {
 		return nil
 	}
 	return w.UpdatedBy
 }
 
-func (w *Wallet) GetWalletStatus() *WalletStatus {
+func (w *WalletResponse) GetWalletStatus() *WalletStatus {
 	if w == nil {
 		return nil
 	}
 	return w.WalletStatus
 }
 
-func (w *Wallet) GetWalletType() *WalletType {
+func (w *WalletResponse) GetWalletType() *WalletType {
 	if w == nil {
 		return nil
 	}

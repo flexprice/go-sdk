@@ -44,7 +44,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Wallets != nil {
+    if res.WalletResponses != nil {
         // handle response
     }
 }
@@ -97,7 +97,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Wallets != nil {
+    if res.WalletResponses != nil {
         // handle response
     }
 }
@@ -153,7 +153,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Wallet != nil {
+    if res.WalletResponse != nil {
         // handle response
     }
 }
@@ -314,7 +314,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Wallet != nil {
+    if res.WalletResponse != nil {
         // handle response
     }
 }
@@ -368,7 +368,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Wallet != nil {
+    if res.WalletResponse != nil {
         // handle response
     }
 }
@@ -476,7 +476,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Wallet != nil {
+    if res.WalletResponse != nil {
         // handle response
     }
 }

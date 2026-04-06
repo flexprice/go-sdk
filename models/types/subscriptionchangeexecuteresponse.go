@@ -13,8 +13,8 @@ type SubscriptionChangeExecuteResponse struct {
 	// credit_grants contains any credit grants created for proration credits
 	CreditGrants []CreditGrantResponse `json:"credit_grants,omitzero"`
 	// effective_date is when the change took effect
-	EffectiveDate *time.Time `json:"effective_date,omitzero"`
-	Invoice       *Invoice   `json:"invoice,omitzero"`
+	EffectiveDate *time.Time       `json:"effective_date,omitzero"`
+	Invoice       *InvoiceResponse `json:"invoice,omitzero"`
 	// is_scheduled indicates if the change was scheduled or executed immediately
 	IsScheduled *bool `json:"is_scheduled,omitzero"`
 	// metadata from the request
@@ -60,7 +60,7 @@ func (s *SubscriptionChangeExecuteResponse) GetEffectiveDate() *time.Time {
 	return s.EffectiveDate
 }
 
-func (s *SubscriptionChangeExecuteResponse) GetInvoice() *Invoice {
+func (s *SubscriptionChangeExecuteResponse) GetInvoice() *InvoiceResponse {
 	if s == nil {
 		return nil
 	}

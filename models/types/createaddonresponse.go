@@ -18,12 +18,12 @@ type CreateAddonResponse struct {
 	Metadata      map[string]any        `json:"metadata,omitzero"`
 	Name          *string               `json:"name,omitzero"`
 	// Optional expanded fields
-	Prices    []Price    `json:"prices,omitzero"`
-	Status    *Status    `json:"status,omitzero"`
-	TenantID  *string    `json:"tenant_id,omitzero"`
-	Type      *AddonType `json:"type,omitzero"`
-	UpdatedAt *time.Time `json:"updated_at,omitzero"`
-	UpdatedBy *string    `json:"updated_by,omitzero"`
+	Prices    []PriceResponse `json:"prices,omitzero"`
+	Status    *Status         `json:"status,omitzero"`
+	TenantID  *string         `json:"tenant_id,omitzero"`
+	Type      *AddonType      `json:"type,omitzero"`
+	UpdatedAt *time.Time      `json:"updated_at,omitzero"`
+	UpdatedBy *string         `json:"updated_by,omitzero"`
 }
 
 func (c CreateAddonResponse) MarshalJSON() ([]byte, error) {
@@ -100,7 +100,7 @@ func (c *CreateAddonResponse) GetName() *string {
 	return c.Name
 }
 
-func (c *CreateAddonResponse) GetPrices() []Price {
+func (c *CreateAddonResponse) GetPrices() []PriceResponse {
 	if c == nil {
 		return nil
 	}

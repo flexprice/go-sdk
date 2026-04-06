@@ -209,12 +209,12 @@ func (s *Coupons) CreateCoupon(ctx context.Context, request types.CreateCouponRe
 				return nil, err
 			}
 
-			var out types.Coupon
+			var out types.CouponResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Coupon = &out
+			res.CouponResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -738,12 +738,12 @@ func (s *Coupons) GetCoupon(ctx context.Context, id string, opts ...dtos.Option)
 				return nil, err
 			}
 
-			var out types.Coupon
+			var out types.CouponResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Coupon = &out
+			res.CouponResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1010,12 +1010,12 @@ func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.Update
 				return nil, err
 			}
 
-			var out types.Coupon
+			var out types.CouponResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Coupon = &out
+			res.CouponResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

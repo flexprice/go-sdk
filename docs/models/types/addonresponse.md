@@ -1,4 +1,4 @@
-# Addon1
+# AddonResponse
 
 
 ## Fields
@@ -14,7 +14,7 @@
 | `LookupKey`                                                              | `*string`                                                                | :heavy_minus_sign:                                                       | N/A                                                                      |
 | `Metadata`                                                               | map[string]`any`                                                         | :heavy_minus_sign:                                                       | N/A                                                                      |
 | `Name`                                                                   | `*string`                                                                | :heavy_minus_sign:                                                       | N/A                                                                      |
-| `Prices`                                                                 | [][types.Price](../../models/types/price.md)                             | :heavy_minus_sign:                                                       | Optional expanded fields                                                 |
+| `Prices`                                                                 | [][types.PriceResponse](../../models/types/priceresponse.md)             | :heavy_minus_sign:                                                       | Optional expanded fields                                                 |
 | `Status`                                                                 | [*types.Status](../../models/types/status.md)                            | :heavy_minus_sign:                                                       | N/A                                                                      |
 | `TenantID`                                                               | `*string`                                                                | :heavy_minus_sign:                                                       | N/A                                                                      |
 | `Type`                                                                   | [*types.AddonType](../../models/types/addontype.md)                      | :heavy_minus_sign:                                                       | N/A                                                                      |

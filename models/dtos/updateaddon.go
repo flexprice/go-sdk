@@ -42,7 +42,7 @@ func (u *UpdateAddonRequest) GetBody() types.UpdateAddonRequest {
 type UpdateAddonResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Addon *types.Addon1
+	AddonResponse *types.AddonResponse
 }
 
 func (u UpdateAddonResponse) MarshalJSON() ([]byte, error) {
@@ -63,9 +63,9 @@ func (u *UpdateAddonResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateAddonResponse) GetAddon() *types.Addon1 {
+func (u *UpdateAddonResponse) GetAddonResponse() *types.AddonResponse {
 	if u == nil {
 		return nil
 	}
-	return u.Addon
+	return u.AddonResponse
 }

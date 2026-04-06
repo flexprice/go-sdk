@@ -7,7 +7,7 @@ import (
 )
 
 type CreateBulkPriceResponse struct {
-	Items []Price `json:"items,omitzero"`
+	Items []PriceResponse `json:"items,omitzero"`
 }
 
 func (c CreateBulkPriceResponse) MarshalJSON() ([]byte, error) {
@@ -21,7 +21,7 @@ func (c *CreateBulkPriceResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (c *CreateBulkPriceResponse) GetItems() []Price {
+func (c *CreateBulkPriceResponse) GetItems() []PriceResponse {
 	if c == nil {
 		return nil
 	}

@@ -8,8 +8,8 @@ import (
 	"time"
 )
 
-type Price struct {
-	Addon *Addon1 `json:"addon,omitzero"`
+type PriceResponse struct {
+	Addon *AddonResponse `json:"addon,omitzero"`
 	// Amount stored in main currency units (e.g., dollars, not cents)
 	// For USD: 12.50 means $12.50
 	Amount         *string         `json:"amount,omitzero"`
@@ -55,8 +55,8 @@ type Price struct {
 	// MinQuantity is the minimum quantity of the price
 	MinQuantity optionalnullable.OptionalNullable[string] `json:"min_quantity,omitzero"`
 	// ParentPriceID references the root price (always set for price lineage tracking)
-	ParentPriceID *string `json:"parent_price_id,omitzero"`
-	Plan          *Plan1  `json:"plan,omitzero"`
+	ParentPriceID *string       `json:"parent_price_id,omitzero"`
+	Plan          *PlanResponse `json:"plan,omitzero"`
 	// PriceUnit is the code of the price unit (e.g., 'btc', 'eth')
 	PriceUnit *string `json:"price_unit,omitzero"`
 	// PriceUnitAmount is the amount of the price unit
@@ -82,326 +82,326 @@ type Price struct {
 	UpdatedBy   *string    `json:"updated_by,omitzero"`
 }
 
-func (p Price) MarshalJSON() ([]byte, error) {
+func (p PriceResponse) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(p, "", false)
 }
 
-func (p *Price) UnmarshalJSON(data []byte) error {
+func (p *PriceResponse) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (p *Price) GetAddon() *Addon1 {
+func (p *PriceResponse) GetAddon() *AddonResponse {
 	if p == nil {
 		return nil
 	}
 	return p.Addon
 }
 
-func (p *Price) GetAmount() *string {
+func (p *PriceResponse) GetAmount() *string {
 	if p == nil {
 		return nil
 	}
 	return p.Amount
 }
 
-func (p *Price) GetBillingCadence() *BillingCadence {
+func (p *PriceResponse) GetBillingCadence() *BillingCadence {
 	if p == nil {
 		return nil
 	}
 	return p.BillingCadence
 }
 
-func (p *Price) GetBillingModel() *BillingModel {
+func (p *PriceResponse) GetBillingModel() *BillingModel {
 	if p == nil {
 		return nil
 	}
 	return p.BillingModel
 }
 
-func (p *Price) GetBillingPeriod() *BillingPeriod {
+func (p *PriceResponse) GetBillingPeriod() *BillingPeriod {
 	if p == nil {
 		return nil
 	}
 	return p.BillingPeriod
 }
 
-func (p *Price) GetBillingPeriodCount() *int64 {
+func (p *PriceResponse) GetBillingPeriodCount() *int64 {
 	if p == nil {
 		return nil
 	}
 	return p.BillingPeriodCount
 }
 
-func (p *Price) GetConversionRate() *string {
+func (p *PriceResponse) GetConversionRate() *string {
 	if p == nil {
 		return nil
 	}
 	return p.ConversionRate
 }
 
-func (p *Price) GetCreatedAt() *time.Time {
+func (p *PriceResponse) GetCreatedAt() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.CreatedAt
 }
 
-func (p *Price) GetCreatedBy() *string {
+func (p *PriceResponse) GetCreatedBy() *string {
 	if p == nil {
 		return nil
 	}
 	return p.CreatedBy
 }
 
-func (p *Price) GetCurrency() *string {
+func (p *PriceResponse) GetCurrency() *string {
 	if p == nil {
 		return nil
 	}
 	return p.Currency
 }
 
-func (p *Price) GetDescription() *string {
+func (p *PriceResponse) GetDescription() *string {
 	if p == nil {
 		return nil
 	}
 	return p.Description
 }
 
-func (p *Price) GetDisplayAmount() *string {
+func (p *PriceResponse) GetDisplayAmount() *string {
 	if p == nil {
 		return nil
 	}
 	return p.DisplayAmount
 }
 
-func (p *Price) GetDisplayName() *string {
+func (p *PriceResponse) GetDisplayName() *string {
 	if p == nil {
 		return nil
 	}
 	return p.DisplayName
 }
 
-func (p *Price) GetDisplayPriceUnitAmount() *string {
+func (p *PriceResponse) GetDisplayPriceUnitAmount() *string {
 	if p == nil {
 		return nil
 	}
 	return p.DisplayPriceUnitAmount
 }
 
-func (p *Price) GetEndDate() *time.Time {
+func (p *PriceResponse) GetEndDate() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.EndDate
 }
 
-func (p *Price) GetEntityID() *string {
+func (p *PriceResponse) GetEntityID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.EntityID
 }
 
-func (p *Price) GetEntityType() *PriceEntityType {
+func (p *PriceResponse) GetEntityType() *PriceEntityType {
 	if p == nil {
 		return nil
 	}
 	return p.EntityType
 }
 
-func (p *Price) GetEnvironmentID() *string {
+func (p *PriceResponse) GetEnvironmentID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.EnvironmentID
 }
 
-func (p *Price) GetGroup() *GroupResponse {
+func (p *PriceResponse) GetGroup() *GroupResponse {
 	if p == nil {
 		return nil
 	}
 	return p.Group
 }
 
-func (p *Price) GetGroupID() *string {
+func (p *PriceResponse) GetGroupID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.GroupID
 }
 
-func (p *Price) GetID() *string {
+func (p *PriceResponse) GetID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.ID
 }
 
-func (p *Price) GetInvoiceCadence() *InvoiceCadence {
+func (p *PriceResponse) GetInvoiceCadence() *InvoiceCadence {
 	if p == nil {
 		return nil
 	}
 	return p.InvoiceCadence
 }
 
-func (p *Price) GetLookupKey() *string {
+func (p *PriceResponse) GetLookupKey() *string {
 	if p == nil {
 		return nil
 	}
 	return p.LookupKey
 }
 
-func (p *Price) GetMetadata() map[string]string {
+func (p *PriceResponse) GetMetadata() map[string]string {
 	if p == nil {
 		return nil
 	}
 	return p.Metadata
 }
 
-func (p *Price) GetMeter() *MeterResponse {
+func (p *PriceResponse) GetMeter() *MeterResponse {
 	if p == nil {
 		return nil
 	}
 	return p.Meter
 }
 
-func (p *Price) GetMeterID() *string {
+func (p *PriceResponse) GetMeterID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.MeterID
 }
 
-func (p *Price) GetMinQuantity() optionalnullable.OptionalNullable[string] {
+func (p *PriceResponse) GetMinQuantity() optionalnullable.OptionalNullable[string] {
 	if p == nil {
 		return nil
 	}
 	return p.MinQuantity
 }
 
-func (p *Price) GetParentPriceID() *string {
+func (p *PriceResponse) GetParentPriceID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.ParentPriceID
 }
 
-func (p *Price) GetPlan() *Plan1 {
+func (p *PriceResponse) GetPlan() *PlanResponse {
 	if p == nil {
 		return nil
 	}
 	return p.Plan
 }
 
-func (p *Price) GetPriceUnit() *string {
+func (p *PriceResponse) GetPriceUnit() *string {
 	if p == nil {
 		return nil
 	}
 	return p.PriceUnit
 }
 
-func (p *Price) GetPriceUnitAmount() *string {
+func (p *PriceResponse) GetPriceUnitAmount() *string {
 	if p == nil {
 		return nil
 	}
 	return p.PriceUnitAmount
 }
 
-func (p *Price) GetPriceUnitID() *string {
+func (p *PriceResponse) GetPriceUnitID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.PriceUnitID
 }
 
-func (p *Price) GetPriceUnitTiers() []PricePriceTier {
+func (p *PriceResponse) GetPriceUnitTiers() []PricePriceTier {
 	if p == nil {
 		return nil
 	}
 	return p.PriceUnitTiers
 }
 
-func (p *Price) GetPriceUnitType() *PriceUnitType {
+func (p *PriceResponse) GetPriceUnitType() *PriceUnitType {
 	if p == nil {
 		return nil
 	}
 	return p.PriceUnitType
 }
 
-func (p *Price) GetPricingUnit() *PriceUnitResponse {
+func (p *PriceResponse) GetPricingUnit() *PriceUnitResponse {
 	if p == nil {
 		return nil
 	}
 	return p.PricingUnit
 }
 
-func (p *Price) GetStartDate() *time.Time {
+func (p *PriceResponse) GetStartDate() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.StartDate
 }
 
-func (p *Price) GetStatus() *Status {
+func (p *PriceResponse) GetStatus() *Status {
 	if p == nil {
 		return nil
 	}
 	return p.Status
 }
 
-func (p *Price) GetTenantID() *string {
+func (p *PriceResponse) GetTenantID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.TenantID
 }
 
-func (p *Price) GetTierMode() *BillingTier {
+func (p *PriceResponse) GetTierMode() *BillingTier {
 	if p == nil {
 		return nil
 	}
 	return p.TierMode
 }
 
-func (p *Price) GetTiers() []PricePriceTier {
+func (p *PriceResponse) GetTiers() []PricePriceTier {
 	if p == nil {
 		return nil
 	}
 	return p.Tiers
 }
 
-func (p *Price) GetTransformQuantity() *PriceJSONBTransformQuantity {
+func (p *PriceResponse) GetTransformQuantity() *PriceJSONBTransformQuantity {
 	if p == nil {
 		return nil
 	}
 	return p.TransformQuantity
 }
 
-func (p *Price) GetTrialPeriod() *int64 {
+func (p *PriceResponse) GetTrialPeriod() *int64 {
 	if p == nil {
 		return nil
 	}
 	return p.TrialPeriod
 }
 
-func (p *Price) GetType() *PriceType {
+func (p *PriceResponse) GetType() *PriceType {
 	if p == nil {
 		return nil
 	}
 	return p.Type
 }
 
-func (p *Price) GetUpdatedAt() *time.Time {
+func (p *PriceResponse) GetUpdatedAt() *time.Time {
 	if p == nil {
 		return nil
 	}
 	return p.UpdatedAt
 }
 
-func (p *Price) GetUpdatedBy() *string {
+func (p *PriceResponse) GetUpdatedBy() *string {
 	if p == nil {
 		return nil
 	}

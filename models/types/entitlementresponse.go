@@ -8,7 +8,7 @@ import (
 )
 
 type EntitlementResponse struct {
-	Addon               *Addon1                `json:"addon,omitzero"`
+	Addon               *AddonResponse         `json:"addon,omitzero"`
 	CreatedAt           *time.Time             `json:"created_at,omitzero"`
 	CreatedBy           *string                `json:"created_by,omitzero"`
 	DisplayOrder        *int64                 `json:"display_order,omitzero"`
@@ -16,14 +16,14 @@ type EntitlementResponse struct {
 	EntityID            *string                `json:"entity_id,omitzero"`
 	EntityType          *EntitlementEntityType `json:"entity_type,omitzero"`
 	EnvironmentID       *string                `json:"environment_id,omitzero"`
-	Feature             *Feature1              `json:"feature,omitzero"`
+	Feature             *FeatureResponse       `json:"feature,omitzero"`
 	FeatureID           *string                `json:"feature_id,omitzero"`
 	FeatureType         *FeatureType           `json:"feature_type,omitzero"`
 	ID                  *string                `json:"id,omitzero"`
 	IsEnabled           *bool                  `json:"is_enabled,omitzero"`
 	IsSoftLimit         *bool                  `json:"is_soft_limit,omitzero"`
 	ParentEntitlementID *string                `json:"parent_entitlement_id,omitzero"`
-	Plan                *Plan1                 `json:"plan,omitzero"`
+	Plan                *PlanResponse          `json:"plan,omitzero"`
 	// TODO: Remove this once we have a proper entitlement entity type
 	PlanID           *string                      `json:"plan_id,omitzero"`
 	StartDate        *time.Time                   `json:"start_date,omitzero"`
@@ -47,7 +47,7 @@ func (e *EntitlementResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (e *EntitlementResponse) GetAddon() *Addon1 {
+func (e *EntitlementResponse) GetAddon() *AddonResponse {
 	if e == nil {
 		return nil
 	}
@@ -103,7 +103,7 @@ func (e *EntitlementResponse) GetEnvironmentID() *string {
 	return e.EnvironmentID
 }
 
-func (e *EntitlementResponse) GetFeature() *Feature1 {
+func (e *EntitlementResponse) GetFeature() *FeatureResponse {
 	if e == nil {
 		return nil
 	}
@@ -152,7 +152,7 @@ func (e *EntitlementResponse) GetParentEntitlementID() *string {
 	return e.ParentEntitlementID
 }
 
-func (e *EntitlementResponse) GetPlan() *Plan1 {
+func (e *EntitlementResponse) GetPlan() *PlanResponse {
 	if e == nil {
 		return nil
 	}

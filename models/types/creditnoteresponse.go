@@ -15,8 +15,8 @@ type CreditNoteResponse struct {
 	CreditNoteStatus *CreditNoteStatus `json:"credit_note_status,omitzero"`
 	CreditNoteType   *CreditNoteType   `json:"credit_note_type,omitzero"`
 	// currency is the three-letter ISO currency code (e.g., USD, EUR) for the credit note
-	Currency *string    `json:"currency,omitzero"`
-	Customer *Customer2 `json:"customer,omitzero"`
+	Currency *string   `json:"currency,omitzero"`
+	Customer *Customer `json:"customer,omitzero"`
 	// customer_id is the unique identifier of the customer who owns this credit note
 	CustomerID *string `json:"customer_id,omitzero"`
 	// environment_id is the unique identifier of the environment this credit note belongs to
@@ -26,19 +26,19 @@ type CreditNoteResponse struct {
 	// id is the unique identifier for the credit note
 	ID *string `json:"id,omitzero"`
 	// idempotency_key is an optional key used to prevent duplicate credit note creation
-	IdempotencyKey *string  `json:"idempotency_key,omitzero"`
-	Invoice        *Invoice `json:"invoice,omitzero"`
+	IdempotencyKey *string          `json:"idempotency_key,omitzero"`
+	Invoice        *InvoiceResponse `json:"invoice,omitzero"`
 	// invoice_id is the id of the invoice resource that this credit note is applied to
 	InvoiceID *string `json:"invoice_id,omitzero"`
 	// line_items contains all of the line items associated with this credit note
 	LineItems []CreditnoteCreditNoteLineItem `json:"line_items,omitzero"`
 	// memo is an optional memo supplied on the credit note
-	Memo         *string           `json:"memo,omitzero"`
-	Metadata     map[string]string `json:"metadata,omitzero"`
-	Reason       *CreditNoteReason `json:"reason,omitzero"`
-	RefundStatus *PaymentStatus    `json:"refund_status,omitzero"`
-	Status       *Status           `json:"status,omitzero"`
-	Subscription *Subscription     `json:"subscription,omitzero"`
+	Memo         *string               `json:"memo,omitzero"`
+	Metadata     map[string]string     `json:"metadata,omitzero"`
+	Reason       *CreditNoteReason     `json:"reason,omitzero"`
+	RefundStatus *PaymentStatus        `json:"refund_status,omitzero"`
+	Status       *Status               `json:"status,omitzero"`
+	Subscription *SubscriptionResponse `json:"subscription,omitzero"`
 	// subscription_id is the optional unique identifier of the subscription related to this credit note
 	SubscriptionID *string `json:"subscription_id,omitzero"`
 	TenantID       *string `json:"tenant_id,omitzero"`
@@ -103,7 +103,7 @@ func (c *CreditNoteResponse) GetCurrency() *string {
 	return c.Currency
 }
 
-func (c *CreditNoteResponse) GetCustomer() *Customer2 {
+func (c *CreditNoteResponse) GetCustomer() *Customer {
 	if c == nil {
 		return nil
 	}
@@ -145,7 +145,7 @@ func (c *CreditNoteResponse) GetIdempotencyKey() *string {
 	return c.IdempotencyKey
 }
 
-func (c *CreditNoteResponse) GetInvoice() *Invoice {
+func (c *CreditNoteResponse) GetInvoice() *InvoiceResponse {
 	if c == nil {
 		return nil
 	}
@@ -201,7 +201,7 @@ func (c *CreditNoteResponse) GetStatus() *Status {
 	return c.Status
 }
 
-func (c *CreditNoteResponse) GetSubscription() *Subscription {
+func (c *CreditNoteResponse) GetSubscription() *SubscriptionResponse {
 	if c == nil {
 		return nil
 	}

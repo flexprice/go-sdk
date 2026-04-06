@@ -467,12 +467,12 @@ func (s *Addons) GetAddonByLookupKey(ctx context.Context, lookupKey string, opts
 				return nil, err
 			}
 
-			var out types.Addon1
+			var out types.AddonResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Addon = &out
+			res.AddonResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -990,12 +990,12 @@ func (s *Addons) GetAddon(ctx context.Context, id string, opts ...dtos.Option) (
 				return nil, err
 			}
 
-			var out types.Addon1
+			var out types.AddonResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Addon = &out
+			res.AddonResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -1258,12 +1258,12 @@ func (s *Addons) UpdateAddon(ctx context.Context, id string, body types.UpdateAd
 				return nil, err
 			}
 
-			var out types.Addon1
+			var out types.AddonResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Addon = &out
+			res.AddonResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {

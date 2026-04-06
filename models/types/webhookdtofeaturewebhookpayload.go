@@ -8,7 +8,7 @@ import (
 
 type WebhookDtoFeatureWebhookPayload struct {
 	EventType *WebhookEventName `json:"event_type,omitzero"`
-	Feature   *Feature1         `json:"feature,omitzero"`
+	Feature   *FeatureResponse  `json:"feature,omitzero"`
 }
 
 func (w WebhookDtoFeatureWebhookPayload) MarshalJSON() ([]byte, error) {
@@ -29,7 +29,7 @@ func (w *WebhookDtoFeatureWebhookPayload) GetEventType() *WebhookEventName {
 	return w.EventType
 }
 
-func (w *WebhookDtoFeatureWebhookPayload) GetFeature() *Feature1 {
+func (w *WebhookDtoFeatureWebhookPayload) GetFeature() *FeatureResponse {
 	if w == nil {
 		return nil
 	}

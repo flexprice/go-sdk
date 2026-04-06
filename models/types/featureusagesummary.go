@@ -9,7 +9,7 @@ import (
 
 type FeatureUsageSummary struct {
 	CurrentUsage     *string             `json:"current_usage,omitzero"`
-	Feature          *Feature1           `json:"feature,omitzero"`
+	Feature          *FeatureResponse    `json:"feature,omitzero"`
 	IsEnabled        *bool               `json:"is_enabled,omitzero"`
 	IsSoftLimit      *bool               `json:"is_soft_limit,omitzero"`
 	IsUnlimited      *bool               `json:"is_unlimited,omitzero"`
@@ -37,7 +37,7 @@ func (f *FeatureUsageSummary) GetCurrentUsage() *string {
 	return f.CurrentUsage
 }
 
-func (f *FeatureUsageSummary) GetFeature() *Feature1 {
+func (f *FeatureUsageSummary) GetFeature() *FeatureResponse {
 	if f == nil {
 		return nil
 	}

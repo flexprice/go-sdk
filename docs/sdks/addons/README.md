@@ -96,7 +96,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Addon != nil {
+    if res.AddonResponse != nil {
         // handle response
     }
 }
@@ -203,7 +203,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Addon != nil {
+    if res.AddonResponse != nil {
         // handle response
     }
 }
@@ -257,7 +257,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.Addon != nil {
+    if res.AddonResponse != nil {
         // handle response
     }
 }

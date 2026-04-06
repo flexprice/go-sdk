@@ -46,7 +46,7 @@ type SubscriptionResponseV2 struct {
 	// At the end of this period, a new invoice will be created.
 	CurrentPeriodStart *time.Time `json:"current_period_start,omitzero"`
 	// Customer response object containing all customer information
-	Customer *Customer1 `json:"customer,omitzero"`
+	Customer *CustomerResponse `json:"customer,omitzero"`
 	// CustomerID is the identifier for the customer in our system
 	CustomerID       *string `json:"customer_id,omitzero"`
 	CustomerTimezone *string `json:"customer_timezone,omitzero"`
@@ -80,7 +80,7 @@ type SubscriptionResponseV2 struct {
 	PaymentTerms    *PaymentTerms `json:"payment_terms,omitzero"`
 	// Phases are included when "phases" is in expand parameter
 	Phases []SubscriptionPhaseResponse `json:"phases,omitzero"`
-	Plan   *Plan1                      `json:"plan,omitzero"`
+	Plan   *PlanResponse               `json:"plan,omitzero"`
 	// PlanID is the identifier for the plan in our system
 	PlanID            *string            `json:"plan_id,omitzero"`
 	ProrationBehavior *ProrationBehavior `json:"proration_behavior,omitzero"`
@@ -244,7 +244,7 @@ func (s *SubscriptionResponseV2) GetCurrentPeriodStart() *time.Time {
 	return s.CurrentPeriodStart
 }
 
-func (s *SubscriptionResponseV2) GetCustomer() *Customer1 {
+func (s *SubscriptionResponseV2) GetCustomer() *CustomerResponse {
 	if s == nil {
 		return nil
 	}
@@ -377,7 +377,7 @@ func (s *SubscriptionResponseV2) GetPhases() []SubscriptionPhaseResponse {
 	return s.Phases
 }
 
-func (s *SubscriptionResponseV2) GetPlan() *Plan1 {
+func (s *SubscriptionResponseV2) GetPlan() *PlanResponse {
 	if s == nil {
 		return nil
 	}

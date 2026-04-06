@@ -42,7 +42,7 @@ func (p *PostPlansIDCloneRequest) GetBody() types.ClonePlanRequest {
 type PostPlansIDCloneResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created
-	Plan *types.Plan1
+	PlanResponse *types.PlanResponse
 }
 
 func (p PostPlansIDCloneResponse) MarshalJSON() ([]byte, error) {
@@ -63,9 +63,9 @@ func (p *PostPlansIDCloneResponse) GetHTTPMeta() types.HTTPMetadata {
 	return p.HTTPMeta
 }
 
-func (p *PostPlansIDCloneResponse) GetPlan() *types.Plan1 {
+func (p *PostPlansIDCloneResponse) GetPlanResponse() *types.PlanResponse {
 	if p == nil {
 		return nil
 	}
-	return p.Plan
+	return p.PlanResponse
 }

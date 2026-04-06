@@ -49,7 +49,7 @@ func main() {
 		log.Fatalf("CreateCustomer: %v", err)
 	}
 	if createResp != nil {
-		if c := createResp.GetCustomer(); c != nil && c.ID != nil {
+		if c := createResp.GetCustomerResponse(); c != nil && c.ID != nil {
 			fmt.Printf("Customer created: %s (external_id=%s)\n", *c.ID, externalID)
 		} else {
 			fmt.Println("Customer created.")

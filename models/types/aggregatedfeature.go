@@ -8,7 +8,7 @@ import (
 
 type AggregatedFeature struct {
 	Entitlement *AggregatedEntitlement `json:"entitlement,omitzero"`
-	Feature     *Feature1              `json:"feature,omitzero"`
+	Feature     *FeatureResponse       `json:"feature,omitzero"`
 	Sources     []EntitlementSource    `json:"sources,omitzero"`
 }
 
@@ -30,7 +30,7 @@ func (a *AggregatedFeature) GetEntitlement() *AggregatedEntitlement {
 	return a.Entitlement
 }
 
-func (a *AggregatedFeature) GetFeature() *Feature1 {
+func (a *AggregatedFeature) GetFeature() *FeatureResponse {
 	if a == nil {
 		return nil
 	}

@@ -33,7 +33,7 @@ func (p *ProcessPaymentRequest) GetID() string {
 type ProcessPaymentResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Processed payment
-	Payment *types.Payment
+	PaymentResponse *types.PaymentResponse
 }
 
 func (p ProcessPaymentResponse) MarshalJSON() ([]byte, error) {
@@ -54,9 +54,9 @@ func (p *ProcessPaymentResponse) GetHTTPMeta() types.HTTPMetadata {
 	return p.HTTPMeta
 }
 
-func (p *ProcessPaymentResponse) GetPayment() *types.Payment {
+func (p *ProcessPaymentResponse) GetPaymentResponse() *types.PaymentResponse {
 	if p == nil {
 		return nil
 	}
-	return p.Payment
+	return p.PaymentResponse
 }

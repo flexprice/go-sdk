@@ -33,7 +33,7 @@ func (g *GetCustomerByExternalIDRequest) GetExternalID() string {
 type GetCustomerByExternalIDResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Customer *types.Customer1
+	CustomerResponse *types.CustomerResponse
 }
 
 func (g GetCustomerByExternalIDResponse) MarshalJSON() ([]byte, error) {
@@ -54,9 +54,9 @@ func (g *GetCustomerByExternalIDResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCustomerByExternalIDResponse) GetCustomer() *types.Customer1 {
+func (g *GetCustomerByExternalIDResponse) GetCustomerResponse() *types.CustomerResponse {
 	if g == nil {
 		return nil
 	}
-	return g.Customer
+	return g.CustomerResponse
 }

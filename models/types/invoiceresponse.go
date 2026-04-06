@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Invoice struct {
+type InvoiceResponse struct {
 	// adjustment_amount is the total sum of credit notes of type "adjustment".
 	// These are non-cash reductions applied to the invoice (e.g. goodwill credit, billing correction).
 	AdjustmentAmount *string `json:"adjustment_amount,omitzero"`
@@ -30,7 +30,7 @@ type Invoice struct {
 	// currency is the three-letter ISO currency code (e.g., USD, EUR, GBP) that applies to all monetary amounts on this invoice
 	Currency *string `json:"currency,omitzero"`
 	// Customer response object containing all customer information
-	Customer *Customer1 `json:"customer,omitzero"`
+	Customer *CustomerResponse `json:"customer,omitzero"`
 	// customer_id is the ID of the customer who will receive this invoice
 	CustomerID *string `json:"customer_id,omitzero"`
 	// description is an optional description or notes about this invoice
@@ -70,9 +70,9 @@ type Invoice struct {
 	RecalculatedInvoiceID *string `json:"recalculated_invoice_id,omitzero"`
 	// refunded_amount is the total sum of credit notes of type "refund".
 	// These are actual refunds issued to the customer.
-	RefundedAmount *string       `json:"refunded_amount,omitzero"`
-	Status         *Status       `json:"status,omitzero"`
-	Subscription   *Subscription `json:"subscription,omitzero"`
+	RefundedAmount *string               `json:"refunded_amount,omitzero"`
+	Status         *Status               `json:"status,omitzero"`
+	Subscription   *SubscriptionResponse `json:"subscription,omitzero"`
 	// subscription_id is the ID of the subscription this invoice is associated with (only present for subscription-based invoices)
 	SubscriptionID *string `json:"subscription_id,omitzero"`
 	// subtotal is the sum of all line items before any taxes, discounts, or additional fees
@@ -96,340 +96,340 @@ type Invoice struct {
 	VoidedAt *time.Time `json:"voided_at,omitzero"`
 }
 
-func (i Invoice) MarshalJSON() ([]byte, error) {
+func (i InvoiceResponse) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(i, "", false)
 }
 
-func (i *Invoice) UnmarshalJSON(data []byte) error {
+func (i *InvoiceResponse) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (i *Invoice) GetAdjustmentAmount() *string {
+func (i *InvoiceResponse) GetAdjustmentAmount() *string {
 	if i == nil {
 		return nil
 	}
 	return i.AdjustmentAmount
 }
 
-func (i *Invoice) GetAmountDue() *string {
+func (i *InvoiceResponse) GetAmountDue() *string {
 	if i == nil {
 		return nil
 	}
 	return i.AmountDue
 }
 
-func (i *Invoice) GetAmountPaid() *string {
+func (i *InvoiceResponse) GetAmountPaid() *string {
 	if i == nil {
 		return nil
 	}
 	return i.AmountPaid
 }
 
-func (i *Invoice) GetAmountRemaining() *string {
+func (i *InvoiceResponse) GetAmountRemaining() *string {
 	if i == nil {
 		return nil
 	}
 	return i.AmountRemaining
 }
 
-func (i *Invoice) GetBillingPeriod() *string {
+func (i *InvoiceResponse) GetBillingPeriod() *string {
 	if i == nil {
 		return nil
 	}
 	return i.BillingPeriod
 }
 
-func (i *Invoice) GetBillingReason() *string {
+func (i *InvoiceResponse) GetBillingReason() *string {
 	if i == nil {
 		return nil
 	}
 	return i.BillingReason
 }
 
-func (i *Invoice) GetBillingSequence() *int64 {
+func (i *InvoiceResponse) GetBillingSequence() *int64 {
 	if i == nil {
 		return nil
 	}
 	return i.BillingSequence
 }
 
-func (i *Invoice) GetCouponApplications() []CouponApplicationResponse {
+func (i *InvoiceResponse) GetCouponApplications() []CouponApplicationResponse {
 	if i == nil {
 		return nil
 	}
 	return i.CouponApplications
 }
 
-func (i *Invoice) GetCreatedAt() *time.Time {
+func (i *InvoiceResponse) GetCreatedAt() *time.Time {
 	if i == nil {
 		return nil
 	}
 	return i.CreatedAt
 }
 
-func (i *Invoice) GetCreatedBy() *string {
+func (i *InvoiceResponse) GetCreatedBy() *string {
 	if i == nil {
 		return nil
 	}
 	return i.CreatedBy
 }
 
-func (i *Invoice) GetCurrency() *string {
+func (i *InvoiceResponse) GetCurrency() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Currency
 }
 
-func (i *Invoice) GetCustomer() *Customer1 {
+func (i *InvoiceResponse) GetCustomer() *CustomerResponse {
 	if i == nil {
 		return nil
 	}
 	return i.Customer
 }
 
-func (i *Invoice) GetCustomerID() *string {
+func (i *InvoiceResponse) GetCustomerID() *string {
 	if i == nil {
 		return nil
 	}
 	return i.CustomerID
 }
 
-func (i *Invoice) GetDescription() *string {
+func (i *InvoiceResponse) GetDescription() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Description
 }
 
-func (i *Invoice) GetDueDate() *time.Time {
+func (i *InvoiceResponse) GetDueDate() *time.Time {
 	if i == nil {
 		return nil
 	}
 	return i.DueDate
 }
 
-func (i *Invoice) GetEnvironmentID() *string {
+func (i *InvoiceResponse) GetEnvironmentID() *string {
 	if i == nil {
 		return nil
 	}
 	return i.EnvironmentID
 }
 
-func (i *Invoice) GetFinalizedAt() *time.Time {
+func (i *InvoiceResponse) GetFinalizedAt() *time.Time {
 	if i == nil {
 		return nil
 	}
 	return i.FinalizedAt
 }
 
-func (i *Invoice) GetID() *string {
+func (i *InvoiceResponse) GetID() *string {
 	if i == nil {
 		return nil
 	}
 	return i.ID
 }
 
-func (i *Invoice) GetIdempotencyKey() *string {
+func (i *InvoiceResponse) GetIdempotencyKey() *string {
 	if i == nil {
 		return nil
 	}
 	return i.IdempotencyKey
 }
 
-func (i *Invoice) GetInvoiceNumber() *string {
+func (i *InvoiceResponse) GetInvoiceNumber() *string {
 	if i == nil {
 		return nil
 	}
 	return i.InvoiceNumber
 }
 
-func (i *Invoice) GetInvoicePdfURL() *string {
+func (i *InvoiceResponse) GetInvoicePdfURL() *string {
 	if i == nil {
 		return nil
 	}
 	return i.InvoicePdfURL
 }
 
-func (i *Invoice) GetInvoiceStatus() *InvoiceStatus {
+func (i *InvoiceResponse) GetInvoiceStatus() *InvoiceStatus {
 	if i == nil {
 		return nil
 	}
 	return i.InvoiceStatus
 }
 
-func (i *Invoice) GetInvoiceType() *InvoiceType {
+func (i *InvoiceResponse) GetInvoiceType() *InvoiceType {
 	if i == nil {
 		return nil
 	}
 	return i.InvoiceType
 }
 
-func (i *Invoice) GetLastComputedAt() *time.Time {
+func (i *InvoiceResponse) GetLastComputedAt() *time.Time {
 	if i == nil {
 		return nil
 	}
 	return i.LastComputedAt
 }
 
-func (i *Invoice) GetLineItems() []InvoiceLineItemResponse {
+func (i *InvoiceResponse) GetLineItems() []InvoiceLineItemResponse {
 	if i == nil {
 		return nil
 	}
 	return i.LineItems
 }
 
-func (i *Invoice) GetMetadata() map[string]string {
+func (i *InvoiceResponse) GetMetadata() map[string]string {
 	if i == nil {
 		return nil
 	}
 	return i.Metadata
 }
 
-func (i *Invoice) GetOverpaidAmount() *string {
+func (i *InvoiceResponse) GetOverpaidAmount() *string {
 	if i == nil {
 		return nil
 	}
 	return i.OverpaidAmount
 }
 
-func (i *Invoice) GetPaidAt() *time.Time {
+func (i *InvoiceResponse) GetPaidAt() *time.Time {
 	if i == nil {
 		return nil
 	}
 	return i.PaidAt
 }
 
-func (i *Invoice) GetPaymentStatus() *PaymentStatus {
+func (i *InvoiceResponse) GetPaymentStatus() *PaymentStatus {
 	if i == nil {
 		return nil
 	}
 	return i.PaymentStatus
 }
 
-func (i *Invoice) GetPeriodEnd() *time.Time {
+func (i *InvoiceResponse) GetPeriodEnd() *time.Time {
 	if i == nil {
 		return nil
 	}
 	return i.PeriodEnd
 }
 
-func (i *Invoice) GetPeriodStart() *time.Time {
+func (i *InvoiceResponse) GetPeriodStart() *time.Time {
 	if i == nil {
 		return nil
 	}
 	return i.PeriodStart
 }
 
-func (i *Invoice) GetRecalculatedInvoiceID() *string {
+func (i *InvoiceResponse) GetRecalculatedInvoiceID() *string {
 	if i == nil {
 		return nil
 	}
 	return i.RecalculatedInvoiceID
 }
 
-func (i *Invoice) GetRefundedAmount() *string {
+func (i *InvoiceResponse) GetRefundedAmount() *string {
 	if i == nil {
 		return nil
 	}
 	return i.RefundedAmount
 }
 
-func (i *Invoice) GetStatus() *Status {
+func (i *InvoiceResponse) GetStatus() *Status {
 	if i == nil {
 		return nil
 	}
 	return i.Status
 }
 
-func (i *Invoice) GetSubscription() *Subscription {
+func (i *InvoiceResponse) GetSubscription() *SubscriptionResponse {
 	if i == nil {
 		return nil
 	}
 	return i.Subscription
 }
 
-func (i *Invoice) GetSubscriptionID() *string {
+func (i *InvoiceResponse) GetSubscriptionID() *string {
 	if i == nil {
 		return nil
 	}
 	return i.SubscriptionID
 }
 
-func (i *Invoice) GetSubtotal() *string {
+func (i *InvoiceResponse) GetSubtotal() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Subtotal
 }
 
-func (i *Invoice) GetTaxes() []TaxAppliedResponse {
+func (i *InvoiceResponse) GetTaxes() []TaxAppliedResponse {
 	if i == nil {
 		return nil
 	}
 	return i.Taxes
 }
 
-func (i *Invoice) GetTenantID() *string {
+func (i *InvoiceResponse) GetTenantID() *string {
 	if i == nil {
 		return nil
 	}
 	return i.TenantID
 }
 
-func (i *Invoice) GetTotal() *string {
+func (i *InvoiceResponse) GetTotal() *string {
 	if i == nil {
 		return nil
 	}
 	return i.Total
 }
 
-func (i *Invoice) GetTotalDiscount() *string {
+func (i *InvoiceResponse) GetTotalDiscount() *string {
 	if i == nil {
 		return nil
 	}
 	return i.TotalDiscount
 }
 
-func (i *Invoice) GetTotalPrepaidCreditsApplied() *string {
+func (i *InvoiceResponse) GetTotalPrepaidCreditsApplied() *string {
 	if i == nil {
 		return nil
 	}
 	return i.TotalPrepaidCreditsApplied
 }
 
-func (i *Invoice) GetTotalTax() *string {
+func (i *InvoiceResponse) GetTotalTax() *string {
 	if i == nil {
 		return nil
 	}
 	return i.TotalTax
 }
 
-func (i *Invoice) GetUpdatedAt() *time.Time {
+func (i *InvoiceResponse) GetUpdatedAt() *time.Time {
 	if i == nil {
 		return nil
 	}
 	return i.UpdatedAt
 }
 
-func (i *Invoice) GetUpdatedBy() *string {
+func (i *InvoiceResponse) GetUpdatedBy() *string {
 	if i == nil {
 		return nil
 	}
 	return i.UpdatedBy
 }
 
-func (i *Invoice) GetVersion() *int64 {
+func (i *InvoiceResponse) GetVersion() *int64 {
 	if i == nil {
 		return nil
 	}
 	return i.Version
 }
 
-func (i *Invoice) GetVoidedAt() *time.Time {
+func (i *InvoiceResponse) GetVoidedAt() *time.Time {
 	if i == nil {
 		return nil
 	}

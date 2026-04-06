@@ -33,7 +33,7 @@ func (g *GetWalletRequest) GetID() string {
 type GetWalletResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Wallet *types.Wallet
+	WalletResponse *types.WalletResponse
 }
 
 func (g GetWalletResponse) MarshalJSON() ([]byte, error) {
@@ -54,9 +54,9 @@ func (g *GetWalletResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetWalletResponse) GetWallet() *types.Wallet {
+func (g *GetWalletResponse) GetWalletResponse() *types.WalletResponse {
 	if g == nil {
 		return nil
 	}
-	return g.Wallet
+	return g.WalletResponse
 }

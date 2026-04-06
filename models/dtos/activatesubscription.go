@@ -42,7 +42,7 @@ func (a *ActivateSubscriptionRequest) GetBody() types.ActivateDraftSubscriptionR
 type ActivateSubscriptionResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Subscription *types.Subscription
+	SubscriptionResponse *types.SubscriptionResponse
 }
 
 func (a ActivateSubscriptionResponse) MarshalJSON() ([]byte, error) {
@@ -63,9 +63,9 @@ func (a *ActivateSubscriptionResponse) GetHTTPMeta() types.HTTPMetadata {
 	return a.HTTPMeta
 }
 
-func (a *ActivateSubscriptionResponse) GetSubscription() *types.Subscription {
+func (a *ActivateSubscriptionResponse) GetSubscriptionResponse() *types.SubscriptionResponse {
 	if a == nil {
 		return nil
 	}
-	return a.Subscription
+	return a.SubscriptionResponse
 }

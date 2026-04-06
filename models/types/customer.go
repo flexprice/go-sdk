@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Customer2 struct {
+type Customer struct {
 	// AddressCity is the city of the customer's address
 	AddressCity *string `json:"address_city,omitzero"`
 	// AddressCountry is the country of the customer's address (ISO 3166-1 alpha-2)
@@ -40,142 +40,139 @@ type Customer2 struct {
 	UpdatedBy *string    `json:"updated_by,omitzero"`
 }
 
-func (c Customer2) MarshalJSON() ([]byte, error) {
+func (c Customer) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(c, "", false)
 }
 
-func (c *Customer2) UnmarshalJSON(data []byte) error {
+func (c *Customer) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *Customer2) GetAddressCity() *string {
+func (c *Customer) GetAddressCity() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AddressCity
 }
 
-func (c *Customer2) GetAddressCountry() *string {
+func (c *Customer) GetAddressCountry() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AddressCountry
 }
 
-func (c *Customer2) GetAddressLine1() *string {
+func (c *Customer) GetAddressLine1() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AddressLine1
 }
 
-func (c *Customer2) GetAddressLine2() *string {
+func (c *Customer) GetAddressLine2() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AddressLine2
 }
 
-func (c *Customer2) GetAddressPostalCode() *string {
+func (c *Customer) GetAddressPostalCode() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AddressPostalCode
 }
 
-func (c *Customer2) GetAddressState() *string {
+func (c *Customer) GetAddressState() *string {
 	if c == nil {
 		return nil
 	}
 	return c.AddressState
 }
 
-func (c *Customer2) GetCreatedAt() *time.Time {
+func (c *Customer) GetCreatedAt() *time.Time {
 	if c == nil {
 		return nil
 	}
 	return c.CreatedAt
 }
 
-func (c *Customer2) GetCreatedBy() *string {
+func (c *Customer) GetCreatedBy() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CreatedBy
 }
 
-func (c *Customer2) GetEmail() *string {
+func (c *Customer) GetEmail() *string {
 	if c == nil {
 		return nil
 	}
 	return c.Email
 }
 
-func (c *Customer2) GetEnvironmentID() *string {
+func (c *Customer) GetEnvironmentID() *string {
 	if c == nil {
 		return nil
 	}
 	return c.EnvironmentID
 }
 
-func (c *Customer2) GetExternalID() *string {
+func (c *Customer) GetExternalID() *string {
 	if c == nil {
 		return nil
 	}
 	return c.ExternalID
 }
 
-func (c *Customer2) GetID() *string {
+func (c *Customer) GetID() *string {
 	if c == nil {
 		return nil
 	}
 	return c.ID
 }
 
-func (c *Customer2) GetMetadata() map[string]string {
+func (c *Customer) GetMetadata() map[string]string {
 	if c == nil {
 		return nil
 	}
 	return c.Metadata
 }
 
-func (c *Customer2) GetName() *string {
+func (c *Customer) GetName() *string {
 	if c == nil {
 		return nil
 	}
 	return c.Name
 }
 
-func (c *Customer2) GetStatus() *Status {
+func (c *Customer) GetStatus() *Status {
 	if c == nil {
 		return nil
 	}
 	return c.Status
 }
 
-func (c *Customer2) GetTenantID() *string {
+func (c *Customer) GetTenantID() *string {
 	if c == nil {
 		return nil
 	}
 	return c.TenantID
 }
 
-func (c *Customer2) GetUpdatedAt() *time.Time {
+func (c *Customer) GetUpdatedAt() *time.Time {
 	if c == nil {
 		return nil
 	}
 	return c.UpdatedAt
 }
 
-func (c *Customer2) GetUpdatedBy() *string {
+func (c *Customer) GetUpdatedBy() *string {
 	if c == nil {
 		return nil
 	}
 	return c.UpdatedBy
 }
-
-// #region class-body-customer2
-// #endregion class-body-customer2

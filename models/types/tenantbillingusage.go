@@ -7,7 +7,7 @@ import (
 )
 
 type TenantBillingUsage struct {
-	Subscriptions []Subscription                `json:"subscriptions,omitzero"`
+	Subscriptions []SubscriptionResponse        `json:"subscriptions,omitzero"`
 	Usage         *CustomerUsageSummaryResponse `json:"usage,omitzero"`
 }
 
@@ -22,7 +22,7 @@ func (t *TenantBillingUsage) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (t *TenantBillingUsage) GetSubscriptions() []Subscription {
+func (t *TenantBillingUsage) GetSubscriptions() []SubscriptionResponse {
 	if t == nil {
 		return nil
 	}

@@ -34,7 +34,7 @@ type SubscriptionLineItemResponse struct {
 	MeterDisplayName        *string                         `json:"meter_display_name,omitzero"`
 	MeterID                 *string                         `json:"meter_id,omitzero"`
 	PlanDisplayName         *string                         `json:"plan_display_name,omitzero"`
-	Price                   *Price                          `json:"price,omitzero"`
+	Price                   *PriceResponse                  `json:"price,omitzero"`
 	PriceID                 *string                         `json:"price_id,omitzero"`
 	PriceType               *PriceType                      `json:"price_type,omitzero"`
 	PriceUnit               *string                         `json:"price_unit,omitzero"`
@@ -229,7 +229,7 @@ func (s *SubscriptionLineItemResponse) GetPlanDisplayName() *string {
 	return s.PlanDisplayName
 }
 
-func (s *SubscriptionLineItemResponse) GetPrice() *Price {
+func (s *SubscriptionLineItemResponse) GetPrice() *PriceResponse {
 	if s == nil {
 		return nil
 	}

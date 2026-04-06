@@ -1,4 +1,4 @@
-# Customer2
+# Customer
 
 
 ## Fields

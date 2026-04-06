@@ -10,7 +10,7 @@ import (
 type CreatePriceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created
-	Price *types.Price
+	PriceResponse *types.PriceResponse
 }
 
 func (c CreatePriceResponse) MarshalJSON() ([]byte, error) {
@@ -31,9 +31,9 @@ func (c *CreatePriceResponse) GetHTTPMeta() types.HTTPMetadata {
 	return c.HTTPMeta
 }
 
-func (c *CreatePriceResponse) GetPrice() *types.Price {
+func (c *CreatePriceResponse) GetPriceResponse() *types.PriceResponse {
 	if c == nil {
 		return nil
 	}
-	return c.Price
+	return c.PriceResponse
 }

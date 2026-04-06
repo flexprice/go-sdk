@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Addon2 struct {
+type Addon struct {
 	CreatedAt     *time.Time     `json:"created_at,omitzero"`
 	CreatedBy     *string        `json:"created_by,omitzero"`
 	Description   *string        `json:"description,omitzero"`
@@ -23,107 +23,104 @@ type Addon2 struct {
 	UpdatedBy     *string        `json:"updated_by,omitzero"`
 }
 
-func (a Addon2) MarshalJSON() ([]byte, error) {
+func (a Addon) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(a, "", false)
 }
 
-func (a *Addon2) UnmarshalJSON(data []byte) error {
+func (a *Addon) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *Addon2) GetCreatedAt() *time.Time {
+func (a *Addon) GetCreatedAt() *time.Time {
 	if a == nil {
 		return nil
 	}
 	return a.CreatedAt
 }
 
-func (a *Addon2) GetCreatedBy() *string {
+func (a *Addon) GetCreatedBy() *string {
 	if a == nil {
 		return nil
 	}
 	return a.CreatedBy
 }
 
-func (a *Addon2) GetDescription() *string {
+func (a *Addon) GetDescription() *string {
 	if a == nil {
 		return nil
 	}
 	return a.Description
 }
 
-func (a *Addon2) GetEnvironmentID() *string {
+func (a *Addon) GetEnvironmentID() *string {
 	if a == nil {
 		return nil
 	}
 	return a.EnvironmentID
 }
 
-func (a *Addon2) GetID() *string {
+func (a *Addon) GetID() *string {
 	if a == nil {
 		return nil
 	}
 	return a.ID
 }
 
-func (a *Addon2) GetLookupKey() *string {
+func (a *Addon) GetLookupKey() *string {
 	if a == nil {
 		return nil
 	}
 	return a.LookupKey
 }
 
-func (a *Addon2) GetMetadata() map[string]any {
+func (a *Addon) GetMetadata() map[string]any {
 	if a == nil {
 		return nil
 	}
 	return a.Metadata
 }
 
-func (a *Addon2) GetName() *string {
+func (a *Addon) GetName() *string {
 	if a == nil {
 		return nil
 	}
 	return a.Name
 }
 
-func (a *Addon2) GetStatus() *Status {
+func (a *Addon) GetStatus() *Status {
 	if a == nil {
 		return nil
 	}
 	return a.Status
 }
 
-func (a *Addon2) GetTenantID() *string {
+func (a *Addon) GetTenantID() *string {
 	if a == nil {
 		return nil
 	}
 	return a.TenantID
 }
 
-func (a *Addon2) GetType() *AddonType {
+func (a *Addon) GetType() *AddonType {
 	if a == nil {
 		return nil
 	}
 	return a.Type
 }
 
-func (a *Addon2) GetUpdatedAt() *time.Time {
+func (a *Addon) GetUpdatedAt() *time.Time {
 	if a == nil {
 		return nil
 	}
 	return a.UpdatedAt
 }
 
-func (a *Addon2) GetUpdatedBy() *string {
+func (a *Addon) GetUpdatedBy() *string {
 	if a == nil {
 		return nil
 	}
 	return a.UpdatedBy
 }
-
-// #region class-body-addon2
-// #endregion class-body-addon2

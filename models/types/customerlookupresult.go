@@ -7,7 +7,7 @@ import (
 )
 
 type CustomerLookupResult struct {
-	Customer *Customer2          `json:"customer,omitzero"`
+	Customer *Customer           `json:"customer,omitzero"`
 	Error    *ErrorResponse      `json:"error,omitzero"`
 	Status   *DebugTrackerStatus `json:"status,omitzero"`
 }
@@ -23,7 +23,7 @@ func (c *CustomerLookupResult) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (c *CustomerLookupResult) GetCustomer() *Customer2 {
+func (c *CustomerLookupResult) GetCustomer() *Customer {
 	if c == nil {
 		return nil
 	}

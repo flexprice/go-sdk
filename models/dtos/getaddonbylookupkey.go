@@ -33,7 +33,7 @@ func (g *GetAddonByLookupKeyRequest) GetLookupKey() string {
 type GetAddonByLookupKeyResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Addon *types.Addon1
+	AddonResponse *types.AddonResponse
 }
 
 func (g GetAddonByLookupKeyResponse) MarshalJSON() ([]byte, error) {
@@ -54,9 +54,9 @@ func (g *GetAddonByLookupKeyResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetAddonByLookupKeyResponse) GetAddon() *types.Addon1 {
+func (g *GetAddonByLookupKeyResponse) GetAddonResponse() *types.AddonResponse {
 	if g == nil {
 		return nil
 	}
-	return g.Addon
+	return g.AddonResponse
 }

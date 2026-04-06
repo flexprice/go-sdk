@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type Addon1 struct {
+type AddonResponse struct {
 	CreatedAt     *time.Time            `json:"created_at,omitzero"`
 	CreatedBy     *string               `json:"created_by,omitzero"`
 	Description   *string               `json:"description,omitzero"`
@@ -18,129 +18,126 @@ type Addon1 struct {
 	Metadata      map[string]any        `json:"metadata,omitzero"`
 	Name          *string               `json:"name,omitzero"`
 	// Optional expanded fields
-	Prices    []Price    `json:"prices,omitzero"`
-	Status    *Status    `json:"status,omitzero"`
-	TenantID  *string    `json:"tenant_id,omitzero"`
-	Type      *AddonType `json:"type,omitzero"`
-	UpdatedAt *time.Time `json:"updated_at,omitzero"`
-	UpdatedBy *string    `json:"updated_by,omitzero"`
+	Prices    []PriceResponse `json:"prices,omitzero"`
+	Status    *Status         `json:"status,omitzero"`
+	TenantID  *string         `json:"tenant_id,omitzero"`
+	Type      *AddonType      `json:"type,omitzero"`
+	UpdatedAt *time.Time      `json:"updated_at,omitzero"`
+	UpdatedBy *string         `json:"updated_by,omitzero"`
 }
 
-func (a Addon1) MarshalJSON() ([]byte, error) {
+func (a AddonResponse) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(a, "", false)
 }
 
-func (a *Addon1) UnmarshalJSON(data []byte) error {
+func (a *AddonResponse) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (a *Addon1) GetCreatedAt() *time.Time {
+func (a *AddonResponse) GetCreatedAt() *time.Time {
 	if a == nil {
 		return nil
 	}
 	return a.CreatedAt
 }
 
-func (a *Addon1) GetCreatedBy() *string {
+func (a *AddonResponse) GetCreatedBy() *string {
 	if a == nil {
 		return nil
 	}
 	return a.CreatedBy
 }
 
-func (a *Addon1) GetDescription() *string {
+func (a *AddonResponse) GetDescription() *string {
 	if a == nil {
 		return nil
 	}
 	return a.Description
 }
 
-func (a *Addon1) GetEntitlements() []EntitlementResponse {
+func (a *AddonResponse) GetEntitlements() []EntitlementResponse {
 	if a == nil {
 		return nil
 	}
 	return a.Entitlements
 }
 
-func (a *Addon1) GetEnvironmentID() *string {
+func (a *AddonResponse) GetEnvironmentID() *string {
 	if a == nil {
 		return nil
 	}
 	return a.EnvironmentID
 }
 
-func (a *Addon1) GetID() *string {
+func (a *AddonResponse) GetID() *string {
 	if a == nil {
 		return nil
 	}
 	return a.ID
 }
 
-func (a *Addon1) GetLookupKey() *string {
+func (a *AddonResponse) GetLookupKey() *string {
 	if a == nil {
 		return nil
 	}
 	return a.LookupKey
 }
 
-func (a *Addon1) GetMetadata() map[string]any {
+func (a *AddonResponse) GetMetadata() map[string]any {
 	if a == nil {
 		return nil
 	}
 	return a.Metadata
 }
 
-func (a *Addon1) GetName() *string {
+func (a *AddonResponse) GetName() *string {
 	if a == nil {
 		return nil
 	}
 	return a.Name
 }
 
-func (a *Addon1) GetPrices() []Price {
+func (a *AddonResponse) GetPrices() []PriceResponse {
 	if a == nil {
 		return nil
 	}
 	return a.Prices
 }
 
-func (a *Addon1) GetStatus() *Status {
+func (a *AddonResponse) GetStatus() *Status {
 	if a == nil {
 		return nil
 	}
 	return a.Status
 }
 
-func (a *Addon1) GetTenantID() *string {
+func (a *AddonResponse) GetTenantID() *string {
 	if a == nil {
 		return nil
 	}
 	return a.TenantID
 }
 
-func (a *Addon1) GetType() *AddonType {
+func (a *AddonResponse) GetType() *AddonType {
 	if a == nil {
 		return nil
 	}
 	return a.Type
 }
 
-func (a *Addon1) GetUpdatedAt() *time.Time {
+func (a *AddonResponse) GetUpdatedAt() *time.Time {
 	if a == nil {
 		return nil
 	}
 	return a.UpdatedAt
 }
 
-func (a *Addon1) GetUpdatedBy() *string {
+func (a *AddonResponse) GetUpdatedBy() *string {
 	if a == nil {
 		return nil
 	}
 	return a.UpdatedBy
 }
-
-// #region class-body-addon1
-// #endregion class-body-addon1

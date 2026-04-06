@@ -42,7 +42,7 @@ func (u *UpdateWalletRequest) GetBody() types.UpdateWalletRequest {
 type UpdateWalletResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Wallet *types.Wallet
+	WalletResponse *types.WalletResponse
 }
 
 func (u UpdateWalletResponse) MarshalJSON() ([]byte, error) {
@@ -63,9 +63,9 @@ func (u *UpdateWalletResponse) GetHTTPMeta() types.HTTPMetadata {
 	return u.HTTPMeta
 }
 
-func (u *UpdateWalletResponse) GetWallet() *types.Wallet {
+func (u *UpdateWalletResponse) GetWalletResponse() *types.WalletResponse {
 	if u == nil {
 		return nil
 	}
-	return u.Wallet
+	return u.WalletResponse
 }

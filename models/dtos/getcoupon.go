@@ -33,7 +33,7 @@ func (g *GetCouponRequest) GetID() string {
 type GetCouponResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Coupon *types.Coupon
+	CouponResponse *types.CouponResponse
 }
 
 func (g GetCouponResponse) MarshalJSON() ([]byte, error) {
@@ -54,9 +54,9 @@ func (g *GetCouponResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetCouponResponse) GetCoupon() *types.Coupon {
+func (g *GetCouponResponse) GetCouponResponse() *types.CouponResponse {
 	if g == nil {
 		return nil
 	}
-	return g.Coupon
+	return g.CouponResponse
 }

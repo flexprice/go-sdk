@@ -51,7 +51,7 @@ func (g *GetInvoiceRequest) GetGroupBy() []string {
 type GetInvoiceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	Invoice *types.Invoice
+	InvoiceResponse *types.InvoiceResponse
 }
 
 func (g GetInvoiceResponse) MarshalJSON() ([]byte, error) {
@@ -72,9 +72,9 @@ func (g *GetInvoiceResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetInvoiceResponse) GetInvoice() *types.Invoice {
+func (g *GetInvoiceResponse) GetInvoiceResponse() *types.InvoiceResponse {
 	if g == nil {
 		return nil
 	}
-	return g.Invoice
+	return g.InvoiceResponse
 }

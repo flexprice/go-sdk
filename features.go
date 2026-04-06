@@ -207,12 +207,12 @@ func (s *Features) CreateFeature(ctx context.Context, request types.CreateFeatur
 				return nil, err
 			}
 
-			var out types.Feature1
+			var out types.FeatureResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Feature = &out
+			res.FeatureResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
@@ -738,12 +738,12 @@ func (s *Features) UpdateFeature(ctx context.Context, id string, body types.Upda
 				return nil, err
 			}
 
-			var out types.Feature1
+			var out types.FeatureResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.Feature = &out
+			res.FeatureResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
