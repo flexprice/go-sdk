@@ -1,0 +1,10 @@
+# ExecuteSubscriptionModifyRequest
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `InheritanceParams`                                                                           | [*types.SubModifyInheritanceRequest](../../models/types/submodifyinheritancerequest.md)       | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `QuantityChangeParams`                                                                        | [*types.SubModifyQuantityChangeRequest](../../models/types/submodifyquantitychangerequest.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Type`                                                                                        | [types.SubscriptionModifyType](../../models/types/subscriptionmodifytype.md)                  | :heavy_check_mark:                                                                            | N/A                                                                                           |

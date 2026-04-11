@@ -1,0 +1,13 @@
+# ChangedLineItem
+
+
+## Fields
+
+| Field                                      | Type                                       | Required                                   | Description                                |
+| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
+| `ChangeAction`                             | `*string`                                  | :heavy_minus_sign:                         | "created" \| "updated" \| "ended"          |
+| `EndDate`                                  | [*time.Time](https://pkg.go.dev/time#Time) | :heavy_minus_sign:                         | N/A                                        |
+| `ID`                                       | `*string`                                  | :heavy_minus_sign:                         | N/A                                        |
+| `PriceID`                                  | `*string`                                  | :heavy_minus_sign:                         | N/A                                        |
+| `Quantity`                                 | `*string`                                  | :heavy_minus_sign:                         | N/A                                        |
+| `StartDate`                                | [*time.Time](https://pkg.go.dev/time#Time) | :heavy_minus_sign:                         | N/A                                        |

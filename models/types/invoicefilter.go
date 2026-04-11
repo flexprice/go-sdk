@@ -77,6 +77,8 @@ type InvoiceFilter struct {
 	Sort          []SortCondition `json:"sort,omitzero"`
 	StartTime     *time.Time      `json:"start_time,omitzero"`
 	Status        *Status         `json:"status,omitzero"`
+	// subscription_customer_id filters invoices by the subscription owner's customer ID
+	SubscriptionCustomerID []string `json:"subscription_customer_id,omitzero"`
 	// subscription_id filters invoices generated for a specific subscription
 	// Only returns invoices that were created as part of the specified subscription's billing
 	SubscriptionID *string `json:"subscription_id,omitzero"`
@@ -245,6 +247,13 @@ func (i *InvoiceFilter) GetStatus() *Status {
 		return nil
 	}
 	return i.Status
+}
+
+func (i *InvoiceFilter) GetSubscriptionCustomerID() []string {
+	if i == nil {
+		return nil
+	}
+	return i.SubscriptionCustomerID
 }
 
 func (i *InvoiceFilter) GetSubscriptionID() *string {

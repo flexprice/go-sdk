@@ -24,3 +24,4 @@ custom := types.BillingPeriod("custom_value")
 | `BillingPeriodDaily`      | DAILY                     |
 | `BillingPeriodQuarterly`  | QUARTERLY                 |
 | `BillingPeriodHalfYearly` | HALF_YEARLY               |
+| `BillingPeriodOnetime`    | ONETIME                   |

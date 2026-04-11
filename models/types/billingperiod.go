@@ -11,6 +11,7 @@ const (
 	BillingPeriodDaily      BillingPeriod = "DAILY"
 	BillingPeriodQuarterly  BillingPeriod = "QUARTERLY"
 	BillingPeriodHalfYearly BillingPeriod = "HALF_YEARLY"
+	BillingPeriodOnetime    BillingPeriod = "ONETIME"
 )
 
 func (e BillingPeriod) ToPointer() *BillingPeriod {
@@ -21,7 +22,7 @@ func (e BillingPeriod) ToPointer() *BillingPeriod {
 func (e *BillingPeriod) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "MONTHLY", "ANNUAL", "WEEKLY", "DAILY", "QUARTERLY", "HALF_YEARLY":
+		case "MONTHLY", "ANNUAL", "WEEKLY", "DAILY", "QUARTERLY", "HALF_YEARLY", "ONETIME":
 			return true
 		}
 	}

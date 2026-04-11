@@ -1,4 +1,4 @@
-# ExecuteSubscriptionInheritanceRequest
+# SubModifyInheritanceRequest
 
 
 ## Fields

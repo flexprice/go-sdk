@@ -73,6 +73,9 @@ type InvoiceResponse struct {
 	RefundedAmount *string               `json:"refunded_amount,omitzero"`
 	Status         *Status               `json:"status,omitzero"`
 	Subscription   *SubscriptionResponse `json:"subscription,omitzero"`
+	// subscription_customer_id is the subscription owner's customer ID (Subscription.CustomerID).
+	// It may differ from customer_id when the subscription uses an invoicing customer. Set internally; nullable in DB.
+	SubscriptionCustomerID *string `json:"subscription_customer_id,omitzero"`
 	// subscription_id is the ID of the subscription this invoice is associated with (only present for subscription-based invoices)
 	SubscriptionID *string `json:"subscription_id,omitzero"`
 	// subtotal is the sum of all line items before any taxes, discounts, or additional fees
@@ -350,6 +353,13 @@ func (i *InvoiceResponse) GetSubscription() *SubscriptionResponse {
 		return nil
 	}
 	return i.Subscription
+}
+
+func (i *InvoiceResponse) GetSubscriptionCustomerID() *string {
+	if i == nil {
+		return nil
+	}
+	return i.SubscriptionCustomerID
 }
 
 func (i *InvoiceResponse) GetSubscriptionID() *string {

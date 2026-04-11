@@ -10,8 +10,8 @@ import (
 type ExecuteSubscriptionModifyRequest struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
-	// External customer IDs to inherit
-	Body types.ExecuteSubscriptionInheritanceRequest `request:"mediaType=application/json"`
+	// Modification request
+	Body types.ExecuteSubscriptionModifyRequest `request:"mediaType=application/json"`
 }
 
 func (e ExecuteSubscriptionModifyRequest) MarshalJSON() ([]byte, error) {
@@ -32,9 +32,9 @@ func (e *ExecuteSubscriptionModifyRequest) GetID() string {
 	return e.ID
 }
 
-func (e *ExecuteSubscriptionModifyRequest) GetBody() types.ExecuteSubscriptionInheritanceRequest {
+func (e *ExecuteSubscriptionModifyRequest) GetBody() types.ExecuteSubscriptionModifyRequest {
 	if e == nil {
-		return types.ExecuteSubscriptionInheritanceRequest{}
+		return types.ExecuteSubscriptionModifyRequest{}
 	}
 	return e.Body
 }
@@ -42,7 +42,7 @@ func (e *ExecuteSubscriptionModifyRequest) GetBody() types.ExecuteSubscriptionIn
 type ExecuteSubscriptionModifyResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	SubscriptionResponse *types.SubscriptionResponse
+	SubscriptionModifyResponse *types.SubscriptionModifyResponse
 }
 
 func (e ExecuteSubscriptionModifyResponse) MarshalJSON() ([]byte, error) {
@@ -63,9 +63,9 @@ func (e *ExecuteSubscriptionModifyResponse) GetHTTPMeta() types.HTTPMetadata {
 	return e.HTTPMeta
 }
 
-func (e *ExecuteSubscriptionModifyResponse) GetSubscriptionResponse() *types.SubscriptionResponse {
+func (e *ExecuteSubscriptionModifyResponse) GetSubscriptionModifyResponse() *types.SubscriptionModifyResponse {
 	if e == nil {
 		return nil
 	}
-	return e.SubscriptionResponse
+	return e.SubscriptionModifyResponse
 }

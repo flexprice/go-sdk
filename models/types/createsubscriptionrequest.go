@@ -10,7 +10,6 @@ import (
 type CreateSubscriptionRequest struct {
 	// Addons represents addons to be added to the subscription during creation
 	Addons             []AddAddonToSubscriptionRequest `json:"addons,omitzero"`
-	BillingCadence     BillingCadence                  `json:"billing_cadence"`
 	BillingCycle       *BillingCycle                   `json:"billing_cycle,omitzero"`
 	BillingPeriod      BillingPeriod                   `json:"billing_period"`
 	BillingPeriodCount *int64                          `json:"billing_period_count,omitzero"`
@@ -68,7 +67,7 @@ func (c CreateSubscriptionRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateSubscriptionRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"billing_cadence", "billing_period", "currency", "plan_id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"billing_period", "currency", "plan_id"}); err != nil {
 		return err
 	}
 	return nil
@@ -79,13 +78,6 @@ func (c *CreateSubscriptionRequest) GetAddons() []AddAddonToSubscriptionRequest 
 		return nil
 	}
 	return c.Addons
-}
-
-func (c *CreateSubscriptionRequest) GetBillingCadence() BillingCadence {
-	if c == nil {
-		return BillingCadence("")
-	}
-	return c.BillingCadence
 }
 
 func (c *CreateSubscriptionRequest) GetBillingCycle() *BillingCycle {

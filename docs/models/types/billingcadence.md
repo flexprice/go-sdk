@@ -8,9 +8,6 @@ import (
 )
 
 value := types.BillingCadenceRecurring
-
-// Open enum: custom values can be created with a direct type cast
-custom := types.BillingCadence("custom_value")
 ```
 
 
@@ -19,4 +16,3 @@ custom := types.BillingCadence("custom_value")
 | Name                      | Value                     |
 | ------------------------- | ------------------------- |
 | `BillingCadenceRecurring` | RECURRING                 |
-| `BillingCadenceOnetime`   | ONETIME                   |

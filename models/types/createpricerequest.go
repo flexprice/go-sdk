@@ -9,7 +9,6 @@ import (
 
 type CreatePriceRequest struct {
 	Amount             *string             `json:"amount,omitzero"`
-	BillingCadence     BillingCadence      `json:"billing_cadence"`
 	BillingModel       BillingModel        `json:"billing_model"`
 	BillingPeriod      BillingPeriod       `json:"billing_period"`
 	BillingPeriodCount *int64              `json:"billing_period_count,omitzero"`
@@ -43,7 +42,7 @@ func (c CreatePriceRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreatePriceRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"billing_cadence", "billing_model", "billing_period", "currency", "entity_id", "entity_type", "invoice_cadence", "price_unit_type", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"billing_model", "billing_period", "currency", "entity_id", "entity_type", "invoice_cadence", "price_unit_type", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -54,13 +53,6 @@ func (c *CreatePriceRequest) GetAmount() *string {
 		return nil
 	}
 	return c.Amount
-}
-
-func (c *CreatePriceRequest) GetBillingCadence() BillingCadence {
-	if c == nil {
-		return BillingCadence("")
-	}
-	return c.BillingCadence
 }
 
 func (c *CreatePriceRequest) GetBillingModel() BillingModel {

@@ -25,6 +25,7 @@ custom := types.SecretProvider("custom_value")
 | `SecretProviderRazorpay`   | razorpay                   |
 | `SecretProviderChargebee`  | chargebee                  |
 | `SecretProviderQuickbooks` | quickbooks                 |
+| `SecretProviderZohoBooks`  | zoho_books                 |
 | `SecretProviderNomod`      | nomod                      |
 | `SecretProviderMoyasar`    | moyasar                    |
 | `SecretProviderPaddle`     | paddle                     |

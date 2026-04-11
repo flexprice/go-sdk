@@ -1,0 +1,12 @@
+# MeterUsageQueryResponse
+
+
+## Fields
+
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      | Example                                                          |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `AggregationType`                                                | [*types.AggregationType](../../models/types/aggregationtype.md)  | :heavy_minus_sign:                                               | N/A                                                              |                                                                  |
+| `EventCount`                                                     | `*int64`                                                         | :heavy_minus_sign:                                               | N/A                                                              | 42                                                               |
+| `MeterID`                                                        | `*string`                                                        | :heavy_minus_sign:                                               | N/A                                                              | mtr_abc                                                          |
+| `Points`                                                         | [][types.MeterUsagePoint](../../models/types/meterusagepoint.md) | :heavy_minus_sign:                                               | N/A                                                              |                                                                  |
+| `TotalValue`                                                     | `*string`                                                        | :heavy_minus_sign:                                               | N/A                                                              | 1234.5678                                                        |

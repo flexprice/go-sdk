@@ -37,15 +37,14 @@ func main() {
     )
 
     res, err := s.Prices.CreatePrice(ctx, types.CreatePriceRequest{
-        BillingCadence: types.BillingCadenceRecurring,
-        BillingModel: types.BillingModelPackage,
-        BillingPeriod: types.BillingPeriodHalfYearly,
-        Currency: "Serbian Dinar",
+        BillingModel: types.BillingModelFlatFee,
+        BillingPeriod: types.BillingPeriodDaily,
+        Currency: "Dong",
         EntityID: "<id>",
         EntityType: types.PriceEntityTypePrice,
-        InvoiceCadence: types.InvoiceCadenceArrear,
-        PriceUnitType: types.PriceUnitTypeCustom,
-        Type: types.PriceTypeUsage,
+        InvoiceCadence: types.InvoiceCadenceAdvance,
+        PriceUnitType: types.PriceUnitTypeFiat,
+        Type: types.PriceTypeFixed,
     })
     if err != nil {
         log.Fatal(err)

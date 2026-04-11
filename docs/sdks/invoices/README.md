@@ -6,6 +6,7 @@
 
 * [GetCustomerInvoiceSummary](#getcustomerinvoicesummary) - Get customer invoice summary
 * [CreateInvoice](#createinvoice) - Create one-off invoice
+* [GetMeterUsagePreviewInvoice](#getmeterusagepreviewinvoice) - Get invoice preview using meter_usage data
 * [GetInvoicePreview](#getinvoicepreview) - Get invoice preview
 * [QueryInvoice](#queryinvoice) - Query invoices
 * [GetInvoice](#getinvoice) - Get invoice
@@ -123,6 +124,62 @@ func main() {
 ### Response
 
 **[*dtos.CreateInvoiceResponse](../../models/dtos/createinvoiceresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## GetMeterUsagePreviewInvoice
+
+Preview invoice using the meter_usage table for usage data instead of feature_usage.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getMeterUsagePreviewInvoice" method="post" path="/invoices/meter-usage-preview" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Invoices.GetMeterUsagePreviewInvoice(ctx, types.GetPreviewInvoiceRequest{
+        SubscriptionID: "<id>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.InvoiceResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [types.GetPreviewInvoiceRequest](../../models/types/getpreviewinvoicerequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+
+### Response
+
+**[*dtos.GetMeterUsagePreviewInvoiceResponse](../../models/dtos/getmeterusagepreviewinvoiceresponse.md), error**
 
 ### Errors
 

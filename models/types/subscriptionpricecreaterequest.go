@@ -9,7 +9,6 @@ import (
 
 type SubscriptionPriceCreateRequest struct {
 	Amount             *string                 `json:"amount,omitzero"`
-	BillingCadence     BillingCadence          `json:"billing_cadence"`
 	BillingModel       BillingModel            `json:"billing_model"`
 	BillingPeriod      BillingPeriod           `json:"billing_period"`
 	BillingPeriodCount *int64                  `json:"billing_period_count,omitzero"`
@@ -37,7 +36,7 @@ func (s SubscriptionPriceCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (s *SubscriptionPriceCreateRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"billing_cadence", "billing_model", "billing_period", "invoice_cadence", "price_unit_type", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"billing_model", "billing_period", "invoice_cadence", "price_unit_type", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -48,13 +47,6 @@ func (s *SubscriptionPriceCreateRequest) GetAmount() *string {
 		return nil
 	}
 	return s.Amount
-}
-
-func (s *SubscriptionPriceCreateRequest) GetBillingCadence() BillingCadence {
-	if s == nil {
-		return BillingCadence("")
-	}
-	return s.BillingCadence
 }
 
 func (s *SubscriptionPriceCreateRequest) GetBillingModel() BillingModel {

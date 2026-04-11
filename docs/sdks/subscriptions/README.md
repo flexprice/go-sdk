@@ -21,7 +21,8 @@
 * [GetSubscriptionEntitlements](#getsubscriptionentitlements) - Get subscription entitlements
 * [GetSubscriptionUpcomingGrants](#getsubscriptionupcominggrants) - Get upcoming credit grant applications
 * [CreateSubscriptionLineItem](#createsubscriptionlineitem) - Create subscription line item
-* [ExecuteSubscriptionModify](#executesubscriptionmodify) - Add customers to subscription inheritance
+* [ExecuteSubscriptionModify](#executesubscriptionmodify) - Execute subscription modification
+* [PreviewSubscriptionModify](#previewsubscriptionmodify) - Preview subscription modification
 * [PauseSubscription](#pausesubscription) - Pause a subscription
 * [ListSubscriptionPauses](#listsubscriptionpauses) - List all pauses for a subscription
 * [ResumeSubscription](#resumesubscription) - Resume a paused subscription
@@ -56,9 +57,8 @@ func main() {
     )
 
     res, err := s.Subscriptions.CreateSubscription(ctx, types.CreateSubscriptionRequest{
-        BillingCadence: types.BillingCadenceOnetime,
-        BillingPeriod: types.BillingPeriodDaily,
-        Currency: "New Leu",
+        BillingPeriod: types.BillingPeriodOnetime,
+        Currency: "Kwacha",
         PlanID: "<id>",
     })
     if err != nil {
@@ -730,8 +730,8 @@ func main() {
     res, err := s.Subscriptions.ExecuteSubscriptionChange(ctx, "<id>", types.SubscriptionChangeRequest{
         BillingCadence: types.BillingCadenceRecurring,
         BillingCycle: types.BillingCycleAnniversary,
-        BillingPeriod: types.BillingPeriodQuarterly,
-        ProrationBehavior: types.ProrationBehaviorCreateProrations,
+        BillingPeriod: types.BillingPeriodAnnual,
+        ProrationBehavior: types.ProrationBehaviorNone,
         TargetPlanID: "<id>",
     })
     if err != nil {
@@ -790,9 +790,9 @@ func main() {
 
     res, err := s.Subscriptions.PreviewSubscriptionChange(ctx, "<id>", types.SubscriptionChangeRequest{
         BillingCadence: types.BillingCadenceRecurring,
-        BillingCycle: types.BillingCycleCalendar,
-        BillingPeriod: types.BillingPeriodHalfYearly,
-        ProrationBehavior: types.ProrationBehaviorCreateProrations,
+        BillingCycle: types.BillingCycleAnniversary,
+        BillingPeriod: types.BillingPeriodOnetime,
+        ProrationBehavior: types.ProrationBehaviorNone,
         TargetPlanID: "<id>",
     })
     if err != nil {
@@ -989,7 +989,7 @@ func main() {
 
 ## ExecuteSubscriptionModify
 
-Attach additional child customers (by external ID) to an active standalone or parent subscription; creates inherited skeleton subscriptions for each. The subscription must be active.
+Execute a mid-cycle subscription modification (inheritance or quantity change).
 
 ### Example Usage
 
@@ -1011,11 +1011,13 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.ExecuteSubscriptionModify(ctx, "<id>", types.ExecuteSubscriptionInheritanceRequest{})
+    res, err := s.Subscriptions.ExecuteSubscriptionModify(ctx, "<id>", types.ExecuteSubscriptionModifyRequest{
+        Type: types.SubscriptionModifyTypeInheritance,
+    })
     if err != nil {
         log.Fatal(err)
     }
-    if res.SubscriptionResponse != nil {
+    if res.SubscriptionModifyResponse != nil {
         // handle response
     }
 }
@@ -1023,16 +1025,73 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                  | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
-| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                                      | :heavy_check_mark:                                                                                         | The context to use for the request.                                                                        |
-| `id`                                                                                                       | `string`                                                                                                   | :heavy_check_mark:                                                                                         | Subscription ID                                                                                            |
-| `body`                                                                                                     | [types.ExecuteSubscriptionInheritanceRequest](../../models/types/executesubscriptioninheritancerequest.md) | :heavy_check_mark:                                                                                         | External customer IDs to inherit                                                                           |
-| `opts`                                                                                                     | [][dtos.Option](../../models/dtos/option.md)                                                               | :heavy_minus_sign:                                                                                         | The options for this request.                                                                              |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `id`                                                                                             | `string`                                                                                         | :heavy_check_mark:                                                                               | Subscription ID                                                                                  |
+| `body`                                                                                           | [types.ExecuteSubscriptionModifyRequest](../../models/types/executesubscriptionmodifyrequest.md) | :heavy_check_mark:                                                                               | Modification request                                                                             |
+| `opts`                                                                                           | [][dtos.Option](../../models/dtos/option.md)                                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 ### Response
 
 **[*dtos.ExecuteSubscriptionModifyResponse](../../models/dtos/executesubscriptionmodifyresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## PreviewSubscriptionModify
+
+Preview the impact of a mid-cycle subscription modification without committing changes.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="previewSubscriptionModify" method="post" path="/subscriptions/{id}/modify/preview" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Subscriptions.PreviewSubscriptionModify(ctx, "<id>", types.ExecuteSubscriptionModifyRequest{
+        Type: types.SubscriptionModifyTypeQuantityChange,
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SubscriptionModifyResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `id`                                                                                             | `string`                                                                                         | :heavy_check_mark:                                                                               | Subscription ID                                                                                  |
+| `body`                                                                                           | [types.ExecuteSubscriptionModifyRequest](../../models/types/executesubscriptionmodifyrequest.md) | :heavy_check_mark:                                                                               | Modification preview request                                                                     |
+| `opts`                                                                                           | [][dtos.Option](../../models/dtos/option.md)                                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+
+### Response
+
+**[*dtos.PreviewSubscriptionModifyResponse](../../models/dtos/previewsubscriptionmodifyresponse.md), error**
 
 ### Errors
 

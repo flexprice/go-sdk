@@ -13,7 +13,10 @@ type SubscriptionPhaseCreateRequest struct {
 	EndDate *time.Time `json:"end_date,omitzero"`
 	// LineItemCoupons represents line item-level coupons (map of line_item_id to coupon IDs)
 	LineItemCoupons map[string][]string `json:"line_item_coupons,omitzero"`
-	Metadata        map[string]string   `json:"metadata,omitzero"`
+	// LineItems are extra line items to add during this phase, primarily one-time charges.
+	// Each item's start_date defaults to the phase's start_date when not provided.
+	LineItems []CreateSubscriptionLineItemRequest `json:"line_items,omitzero"`
+	Metadata  map[string]string                   `json:"metadata,omitzero"`
 	// OverrideLineItems allows customizing specific prices for this phase
 	// If not provided, phase will use the same line items as the subscription (plan prices)
 	OverrideLineItems []OverrideLineItemRequest `json:"override_line_items,omitzero"`
@@ -50,6 +53,13 @@ func (s *SubscriptionPhaseCreateRequest) GetLineItemCoupons() map[string][]strin
 		return nil
 	}
 	return s.LineItemCoupons
+}
+
+func (s *SubscriptionPhaseCreateRequest) GetLineItems() []CreateSubscriptionLineItemRequest {
+	if s == nil {
+		return nil
+	}
+	return s.LineItems
 }
 
 func (s *SubscriptionPhaseCreateRequest) GetMetadata() map[string]string {
