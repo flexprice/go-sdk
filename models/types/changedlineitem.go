@@ -8,13 +8,13 @@ import (
 )
 
 type ChangedLineItem struct {
-	// "created" | "updated" | "ended"
-	ChangeAction *string    `json:"change_action,omitzero"`
-	EndDate      *time.Time `json:"end_date,omitzero"`
-	ID           *string    `json:"id,omitzero"`
-	PriceID      *string    `json:"price_id,omitzero"`
-	Quantity     *string    `json:"quantity,omitzero"`
-	StartDate    *time.Time `json:"start_date,omitzero"`
+	// created | updated | ended
+	ChangeAction *ChangedLineItemAction `json:"change_action,omitzero"`
+	EndDate      *time.Time             `json:"end_date,omitzero"`
+	ID           *string                `json:"id,omitzero"`
+	PriceID      *string                `json:"price_id,omitzero"`
+	Quantity     *string                `json:"quantity,omitzero"`
+	StartDate    *time.Time             `json:"start_date,omitzero"`
 }
 
 func (c ChangedLineItem) MarshalJSON() ([]byte, error) {
@@ -28,7 +28,7 @@ func (c *ChangedLineItem) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (c *ChangedLineItem) GetChangeAction() *string {
+func (c *ChangedLineItem) GetChangeAction() *ChangedLineItemAction {
 	if c == nil {
 		return nil
 	}

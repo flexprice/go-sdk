@@ -7,10 +7,10 @@ import (
 )
 
 type ChangedSubscription struct {
-	// "created" | "updated"
-	Action *string             `json:"action,omitzero"`
-	ID     *string             `json:"id,omitzero"`
-	Status *SubscriptionStatus `json:"status,omitzero"`
+	// created | updated
+	Action *ChangedSubscriptionAction `json:"action,omitzero"`
+	ID     *string                    `json:"id,omitzero"`
+	Status *SubscriptionStatus        `json:"status,omitzero"`
 }
 
 func (c ChangedSubscription) MarshalJSON() ([]byte, error) {
@@ -24,7 +24,7 @@ func (c *ChangedSubscription) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (c *ChangedSubscription) GetAction() *string {
+func (c *ChangedSubscription) GetAction() *ChangedSubscriptionAction {
 	if c == nil {
 		return nil
 	}

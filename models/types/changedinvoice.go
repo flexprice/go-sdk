@@ -7,10 +7,13 @@ import (
 )
 
 type ChangedInvoice struct {
-	// "created" | "wallet_credit"
-	Action *string `json:"action,omitzero"`
-	ID     *string `json:"id,omitzero"`
-	Status *string `json:"status,omitzero"`
+	// created (proration invoice) | wallet_credit (downgrade credit)
+	Action  *ChangedInvoiceAction `json:"action,omitzero"`
+	ID      *string               `json:"id,omitzero"`
+	Invoice *InvoiceResponse      `json:"invoice,omitzero"`
+	// preview | issued | INITIATED | PENDING | PROCESSING | SUCCEEDED | OVERPAID | FAILED | REFUNDED | PARTIALLY_REFUNDED
+	Status            *ChangedInvoiceStatus      `json:"status,omitzero"`
+	WalletTransaction *WalletTransactionResponse `json:"wallet_transaction,omitzero"`
 }
 
 func (c ChangedInvoice) MarshalJSON() ([]byte, error) {
@@ -24,7 +27,7 @@ func (c *ChangedInvoice) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (c *ChangedInvoice) GetAction() *string {
+func (c *ChangedInvoice) GetAction() *ChangedInvoiceAction {
 	if c == nil {
 		return nil
 	}
@@ -38,9 +41,23 @@ func (c *ChangedInvoice) GetID() *string {
 	return c.ID
 }
 
-func (c *ChangedInvoice) GetStatus() *string {
+func (c *ChangedInvoice) GetInvoice() *InvoiceResponse {
+	if c == nil {
+		return nil
+	}
+	return c.Invoice
+}
+
+func (c *ChangedInvoice) GetStatus() *ChangedInvoiceStatus {
 	if c == nil {
 		return nil
 	}
 	return c.Status
+}
+
+func (c *ChangedInvoice) GetWalletTransaction() *WalletTransactionResponse {
+	if c == nil {
+		return nil
+	}
+	return c.WalletTransaction
 }

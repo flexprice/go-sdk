@@ -8,6 +8,7 @@
 * [QueryFeature](#queryfeature) - Query features
 * [UpdateFeature](#updatefeature) - Update feature
 * [DeleteFeature](#deletefeature) - Delete feature
+* [CloneFeature](#clonefeature) - Clone a feature
 
 ## CreateFeature
 
@@ -231,5 +232,60 @@ func main() {
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## CloneFeature
+
+Clone an existing feature
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="cloneFeature" method="post" path="/features/{id}/clone" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Features.CloneFeature(ctx, "<id>", types.CloneFeatureRequest{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.FeatureResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
+| `id`                                                                   | `string`                                                               | :heavy_check_mark:                                                     | Source Feature ID                                                      |
+| `body`                                                                 | [types.CloneFeatureRequest](../../models/types/clonefeaturerequest.md) | :heavy_check_mark:                                                     | Clone configuration                                                    |
+| `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
+
+### Response
+
+**[*dtos.CloneFeatureResponse](../../models/dtos/clonefeatureresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404, 409        | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |

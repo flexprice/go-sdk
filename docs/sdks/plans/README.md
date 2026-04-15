@@ -9,7 +9,7 @@
 * [GetPlan](#getplan) - Get plan
 * [UpdatePlan](#updateplan) - Update plan
 * [DeletePlan](#deleteplan) - Delete plan
-* [PostPlansIDClone](#postplansidclone) - Clone a plan
+* [ClonePlan](#cloneplan) - Clone a plan
 * [SyncPlanPrices](#syncplanprices) - Synchronize plan prices
 
 ## CreatePlan
@@ -283,13 +283,13 @@ func main() {
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 
-## PostPlansIDClone
+## ClonePlan
 
 Clone an existing plan, copying its active prices, published entitlements, and published credit grants
 
 ### Example Usage
 
-<!-- UsageSnippet language="go" operationID="post_/plans/{id}/clone" method="post" path="/plans/{id}/clone" -->
+<!-- UsageSnippet language="go" operationID="clonePlan" method="post" path="/plans/{id}/clone" -->
 ```go
 package main
 
@@ -307,7 +307,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Plans.PostPlansIDClone(ctx, "<id>", types.ClonePlanRequest{})
+    res, err := s.Plans.ClonePlan(ctx, "<id>", types.ClonePlanRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -328,7 +328,7 @@ func main() {
 
 ### Response
 
-**[*dtos.PostPlansIDCloneResponse](../../models/dtos/postplansidcloneresponse.md), error**
+**[*dtos.ClonePlanResponse](../../models/dtos/cloneplanresponse.md), error**
 
 ### Errors
 

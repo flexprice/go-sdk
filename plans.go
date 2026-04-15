@@ -1351,10 +1351,10 @@ func (s *Plans) DeletePlan(ctx context.Context, id string, opts ...dtos.Option) 
 
 }
 
-// PostPlansIDClone - Clone a plan
+// ClonePlan - Clone a plan
 // Clone an existing plan, copying its active prices, published entitlements, and published credit grants
-func (s *Plans) PostPlansIDClone(ctx context.Context, id string, body types.ClonePlanRequest, opts ...dtos.Option) (*dtos.PostPlansIDCloneResponse, error) {
-	request := dtos.PostPlansIDCloneRequest{
+func (s *Plans) ClonePlan(ctx context.Context, id string, body types.ClonePlanRequest, opts ...dtos.Option) (*dtos.ClonePlanResponse, error) {
+	request := dtos.ClonePlanRequest{
 		ID:   id,
 		Body: body,
 	}
@@ -1387,7 +1387,7 @@ func (s *Plans) PostPlansIDClone(ctx context.Context, id string, body types.Clon
 		SDKConfiguration: s.sdkConfiguration,
 		BaseURL:          baseURL,
 		Context:          ctx,
-		OperationID:      "post_/plans/{id}/clone",
+		OperationID:      "clonePlan",
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
@@ -1516,7 +1516,7 @@ func (s *Plans) PostPlansIDClone(ctx context.Context, id string, body types.Clon
 		}
 	}
 
-	res := &dtos.PostPlansIDCloneResponse{
+	res := &dtos.ClonePlanResponse{
 		HTTPMeta: types.HTTPMetadata{
 			Request:  req,
 			Response: httpRes,

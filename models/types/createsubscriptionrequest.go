@@ -9,11 +9,16 @@ import (
 
 type CreateSubscriptionRequest struct {
 	// Addons represents addons to be added to the subscription during creation
-	Addons             []AddAddonToSubscriptionRequest `json:"addons,omitzero"`
-	BillingCycle       *BillingCycle                   `json:"billing_cycle,omitzero"`
-	BillingPeriod      BillingPeriod                   `json:"billing_period"`
-	BillingPeriodCount *int64                          `json:"billing_period_count,omitzero"`
-	CollectionMethod   *CollectionMethod               `json:"collection_method,omitzero"`
+	Addons []AddAddonToSubscriptionRequest `json:"addons,omitzero"`
+	// BillingAnchor overrides the derived billing anchor when billing_cycle is anniversary.
+	// For monthly billing, the day-of-month (and time-of-day) define cycle boundaries: if start_date
+	// is before that day in the month, the first billing period ends on the next occurrence of that
+	// day in the same month (a shorter first period); subsequent periods follow the usual interval.
+	BillingAnchor      *time.Time        `json:"billing_anchor,omitzero"`
+	BillingCycle       *BillingCycle     `json:"billing_cycle,omitzero"`
+	BillingPeriod      BillingPeriod     `json:"billing_period"`
+	BillingPeriodCount *int64            `json:"billing_period_count,omitzero"`
+	CollectionMethod   *CollectionMethod `json:"collection_method,omitzero"`
 	// CommitmentAmount is the minimum amount a customer commits to paying for a billing period
 	CommitmentAmount   *string        `json:"commitment_amount,omitzero"`
 	CommitmentDuration *BillingPeriod `json:"commitment_duration,omitzero"`
@@ -78,6 +83,13 @@ func (c *CreateSubscriptionRequest) GetAddons() []AddAddonToSubscriptionRequest 
 		return nil
 	}
 	return c.Addons
+}
+
+func (c *CreateSubscriptionRequest) GetBillingAnchor() *time.Time {
+	if c == nil {
+		return nil
+	}
+	return c.BillingAnchor
 }
 
 func (c *CreateSubscriptionRequest) GetBillingCycle() *BillingCycle {
