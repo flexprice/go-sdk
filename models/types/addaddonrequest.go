@@ -8,10 +8,12 @@ import (
 )
 
 type AddAddonRequest struct {
-	AddonID string `json:"addon_id"`
+	AddonID string        `json:"addon_id"`
+	Cadence *AddonCadence `json:"cadence,omitzero"`
 	// LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
 	LineItemCommitments map[string]LineItemCommitmentConfig `json:"line_item_commitments,omitzero"`
 	Metadata            map[string]any                      `json:"metadata,omitzero"`
+	ProrationBehavior   *ProrationBehavior                  `json:"proration_behavior,omitzero"`
 	StartDate           *time.Time                          `json:"start_date,omitzero"`
 	SubscriptionID      string                              `json:"subscription_id"`
 }
@@ -34,6 +36,13 @@ func (a *AddAddonRequest) GetAddonID() string {
 	return a.AddonID
 }
 
+func (a *AddAddonRequest) GetCadence() *AddonCadence {
+	if a == nil {
+		return nil
+	}
+	return a.Cadence
+}
+
 func (a *AddAddonRequest) GetLineItemCommitments() map[string]LineItemCommitmentConfig {
 	if a == nil {
 		return nil
@@ -46,6 +55,13 @@ func (a *AddAddonRequest) GetMetadata() map[string]any {
 		return nil
 	}
 	return a.Metadata
+}
+
+func (a *AddAddonRequest) GetProrationBehavior() *ProrationBehavior {
+	if a == nil {
+		return nil
+	}
+	return a.ProrationBehavior
 }
 
 func (a *AddAddonRequest) GetStartDate() *time.Time {

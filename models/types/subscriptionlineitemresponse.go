@@ -8,7 +8,8 @@ import (
 )
 
 type SubscriptionLineItemResponse struct {
-	BillingPeriod *BillingPeriod `json:"billing_period,omitzero"`
+	AddonAssociationID *string        `json:"addon_association_id,omitzero"`
+	BillingPeriod      *BillingPeriod `json:"billing_period,omitzero"`
 	// from price at create; default 1
 	BillingPeriodCount *int64 `json:"billing_period_count,omitzero"`
 	// Commitment fields
@@ -59,6 +60,13 @@ func (s *SubscriptionLineItemResponse) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (s *SubscriptionLineItemResponse) GetAddonAssociationID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.AddonAssociationID
 }
 
 func (s *SubscriptionLineItemResponse) GetBillingPeriod() *BillingPeriod {

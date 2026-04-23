@@ -21,7 +21,6 @@ type CreateAddonResponse struct {
 	Prices    []PriceResponse `json:"prices,omitzero"`
 	Status    *Status         `json:"status,omitzero"`
 	TenantID  *string         `json:"tenant_id,omitzero"`
-	Type      *AddonType      `json:"type,omitzero"`
 	UpdatedAt *time.Time      `json:"updated_at,omitzero"`
 	UpdatedBy *string         `json:"updated_by,omitzero"`
 }
@@ -119,13 +118,6 @@ func (c *CreateAddonResponse) GetTenantID() *string {
 		return nil
 	}
 	return c.TenantID
-}
-
-func (c *CreateAddonResponse) GetType() *AddonType {
-	if c == nil {
-		return nil
-	}
-	return c.Type
 }
 
 func (c *CreateAddonResponse) GetUpdatedAt() *time.Time {

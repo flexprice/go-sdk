@@ -11,7 +11,6 @@ type CreateAddonRequest struct {
 	LookupKey   string         `json:"lookup_key"`
 	Metadata    map[string]any `json:"metadata,omitzero"`
 	Name        string         `json:"name"`
-	Type        AddonType      `json:"type"`
 }
 
 func (c CreateAddonRequest) MarshalJSON() ([]byte, error) {
@@ -19,7 +18,7 @@ func (c CreateAddonRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateAddonRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"lookup_key", "name", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"lookup_key", "name"}); err != nil {
 		return err
 	}
 	return nil
@@ -51,11 +50,4 @@ func (c *CreateAddonRequest) GetName() string {
 		return ""
 	}
 	return c.Name
-}
-
-func (c *CreateAddonRequest) GetType() AddonType {
-	if c == nil {
-		return AddonType("")
-	}
-	return c.Type
 }

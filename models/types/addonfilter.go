@@ -36,10 +36,9 @@ func (e *AddonFilterOrder) UnmarshalJSON(data []byte) error {
 }
 
 type AddonFilter struct {
-	AddonIds  []string   `json:"addon_ids,omitzero"`
-	AddonType *AddonType `json:"addon_type,omitzero"`
-	EndTime   *time.Time `json:"end_time,omitzero"`
-	Expand    *string    `json:"expand,omitzero"`
+	AddonIds []string   `json:"addon_ids,omitzero"`
+	EndTime  *time.Time `json:"end_time,omitzero"`
+	Expand   *string    `json:"expand,omitzero"`
 	// filters allows complex filtering based on multiple fields
 	Filters    []FilterCondition `json:"filters,omitzero"`
 	Limit      *int64            `json:"limit,omitzero"`
@@ -67,13 +66,6 @@ func (a *AddonFilter) GetAddonIds() []string {
 		return nil
 	}
 	return a.AddonIds
-}
-
-func (a *AddonFilter) GetAddonType() *AddonType {
-	if a == nil {
-		return nil
-	}
-	return a.AddonType
 }
 
 func (a *AddonFilter) GetEndTime() *time.Time {

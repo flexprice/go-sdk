@@ -4,11 +4,18 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type RemoveAddonRequest struct {
-	AddonAssociationID string  `json:"addon_association_id"`
-	Reason             *string `json:"reason,omitzero"`
+	AddonAssociationID string `json:"addon_association_id"`
+	// EffectiveDate is the date the cancellation takes effect.
+	// When nil the addon is cancelled at the end of the current period.
+	// When provided it must fall within [CurrentPeriodStart, CurrentPeriodEnd]; mid-period
+	// values combined with create_prorations will issue a wallet credit for unused time.
+	EffectiveDate     *time.Time         `json:"effective_date,omitzero"`
+	ProrationBehavior *ProrationBehavior `json:"proration_behavior,omitzero"`
+	Reason            *string            `json:"reason,omitzero"`
 }
 
 func (r RemoveAddonRequest) MarshalJSON() ([]byte, error) {
@@ -27,6 +34,20 @@ func (r *RemoveAddonRequest) GetAddonAssociationID() string {
 		return ""
 	}
 	return r.AddonAssociationID
+}
+
+func (r *RemoveAddonRequest) GetEffectiveDate() *time.Time {
+	if r == nil {
+		return nil
+	}
+	return r.EffectiveDate
+}
+
+func (r *RemoveAddonRequest) GetProrationBehavior() *ProrationBehavior {
+	if r == nil {
+		return nil
+	}
+	return r.ProrationBehavior
 }
 
 func (r *RemoveAddonRequest) GetReason() *string {

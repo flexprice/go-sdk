@@ -7,7 +7,8 @@ import (
 )
 
 type DeleteSubscriptionLineItemRequest struct {
-	EffectiveFrom *string `json:"effective_from,omitzero"`
+	EffectiveFrom     *string            `json:"effective_from,omitzero"`
+	ProrationBehavior *ProrationBehavior `json:"proration_behavior,omitzero"`
 }
 
 func (d DeleteSubscriptionLineItemRequest) MarshalJSON() ([]byte, error) {
@@ -26,4 +27,11 @@ func (d *DeleteSubscriptionLineItemRequest) GetEffectiveFrom() *string {
 		return nil
 	}
 	return d.EffectiveFrom
+}
+
+func (d *DeleteSubscriptionLineItemRequest) GetProrationBehavior() *ProrationBehavior {
+	if d == nil {
+		return nil
+	}
+	return d.ProrationBehavior
 }

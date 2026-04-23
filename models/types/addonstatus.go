@@ -7,7 +7,7 @@ type AddonStatus string
 const (
 	AddonStatusActive    AddonStatus = "active"
 	AddonStatusCancelled AddonStatus = "cancelled"
-	AddonStatusPaused    AddonStatus = "paused"
+	AddonStatusPending   AddonStatus = "pending"
 )
 
 func (e AddonStatus) ToPointer() *AddonStatus {
@@ -18,7 +18,7 @@ func (e AddonStatus) ToPointer() *AddonStatus {
 func (e *AddonStatus) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "active", "cancelled", "paused":
+		case "active", "cancelled", "pending":
 			return true
 		}
 	}

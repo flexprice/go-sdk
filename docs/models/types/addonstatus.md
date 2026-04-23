@@ -20,4 +20,4 @@ custom := types.AddonStatus("custom_value")
 | ---------------------- | ---------------------- |
 | `AddonStatusActive`    | active                 |
 | `AddonStatusCancelled` | cancelled              |
-| `AddonStatusPaused`    | paused                 |
+| `AddonStatusPending`   | pending                |

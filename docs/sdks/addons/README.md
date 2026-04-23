@@ -38,7 +38,6 @@ func main() {
     res, err := s.Addons.CreateAddon(ctx, types.CreateAddonRequest{
         LookupKey: "<value>",
         Name: "<value>",
-        Type: types.AddonTypeMultipleInstance,
     })
     if err != nil {
         log.Fatal(err)

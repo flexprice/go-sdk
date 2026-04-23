@@ -21,10 +21,11 @@ type CreateSubscriptionLineItemRequest struct {
 	Metadata                map[string]string               `json:"metadata,omitzero"`
 	Price                   *SubscriptionPriceCreateRequest `json:"price,omitzero"`
 	// PriceID references an existing price (plan, addon, or subscription-scoped). Exactly one of price_id or price must be set.
-	PriceID             *string    `json:"price_id,omitzero"`
-	Quantity            *float64   `json:"quantity,omitzero"`
-	StartDate           *time.Time `json:"start_date,omitzero"`
-	SubscriptionPhaseID *string    `json:"subscription_phase_id,omitzero"`
+	PriceID             *string            `json:"price_id,omitzero"`
+	ProrationBehavior   *ProrationBehavior `json:"proration_behavior,omitzero"`
+	Quantity            *float64           `json:"quantity,omitzero"`
+	StartDate           *time.Time         `json:"start_date,omitzero"`
+	SubscriptionPhaseID *string            `json:"subscription_phase_id,omitzero"`
 }
 
 func (c CreateSubscriptionLineItemRequest) MarshalJSON() ([]byte, error) {
@@ -120,6 +121,13 @@ func (c *CreateSubscriptionLineItemRequest) GetPriceID() *string {
 		return nil
 	}
 	return c.PriceID
+}
+
+func (c *CreateSubscriptionLineItemRequest) GetProrationBehavior() *ProrationBehavior {
+	if c == nil {
+		return nil
+	}
+	return c.ProrationBehavior
 }
 
 func (c *CreateSubscriptionLineItemRequest) GetQuantity() *float64 {
