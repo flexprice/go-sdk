@@ -63,8 +63,9 @@ type CreateSubscriptionRequest struct {
 	SubscriptionStatus *SubscriptionStatus              `json:"subscription_status,omitzero"`
 	// tax_rate_overrides is the tax rate overrides	to be applied to the subscription
 	TaxRateOverrides []TaxRateOverride `json:"tax_rate_overrides,omitzero"`
-	TrialEnd         *time.Time        `json:"trial_end,omitzero"`
-	TrialStart       *time.Time        `json:"trial_start,omitzero"`
+	// TrialPeriodDays: nil = inherit trial length from plan recurring-fixed prices (must be uniform).
+	// 0 = explicitly no trial (overrides catalog). >0 = override duration in days.
+	TrialPeriodDays *int64 `json:"trial_period_days,omitzero"`
 }
 
 func (c CreateSubscriptionRequest) MarshalJSON() ([]byte, error) {
@@ -316,16 +317,9 @@ func (c *CreateSubscriptionRequest) GetTaxRateOverrides() []TaxRateOverride {
 	return c.TaxRateOverrides
 }
 
-func (c *CreateSubscriptionRequest) GetTrialEnd() *time.Time {
+func (c *CreateSubscriptionRequest) GetTrialPeriodDays() *int64 {
 	if c == nil {
 		return nil
 	}
-	return c.TrialEnd
-}
-
-func (c *CreateSubscriptionRequest) GetTrialStart() *time.Time {
-	if c == nil {
-		return nil
-	}
-	return c.TrialStart
+	return c.TrialPeriodDays
 }

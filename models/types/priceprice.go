@@ -69,12 +69,12 @@ type PricePrice struct {
 	TierMode          *BillingTier                 `json:"tier_mode,omitzero"`
 	Tiers             []PricePriceTier             `json:"tiers,omitzero"`
 	TransformQuantity *PriceJSONBTransformQuantity `json:"transform_quantity,omitzero"`
-	// TrialPeriod is the number of days for the trial period
+	// TrialPeriodDays is the number of days for the trial period
 	// Note: This is only applicable for recurring prices (BILLING_CADENCE_RECURRING)
-	TrialPeriod *int64     `json:"trial_period,omitzero"`
-	Type        *PriceType `json:"type,omitzero"`
-	UpdatedAt   *time.Time `json:"updated_at,omitzero"`
-	UpdatedBy   *string    `json:"updated_by,omitzero"`
+	TrialPeriodDays *int64     `json:"trial_period_days,omitzero"`
+	Type            *PriceType `json:"type,omitzero"`
+	UpdatedAt       *time.Time `json:"updated_at,omitzero"`
+	UpdatedBy       *string    `json:"updated_by,omitzero"`
 }
 
 func (p PricePrice) MarshalJSON() ([]byte, error) {
@@ -340,11 +340,11 @@ func (p *PricePrice) GetTransformQuantity() *PriceJSONBTransformQuantity {
 	return p.TransformQuantity
 }
 
-func (p *PricePrice) GetTrialPeriod() *int64 {
+func (p *PricePrice) GetTrialPeriodDays() *int64 {
 	if p == nil {
 		return nil
 	}
-	return p.TrialPeriod
+	return p.TrialPeriodDays
 }
 
 func (p *PricePrice) GetType() *PriceType {

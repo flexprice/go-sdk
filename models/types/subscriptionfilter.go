@@ -72,6 +72,9 @@ type SubscriptionFilter struct {
 	SubscriptionStatus []SubscriptionStatus `json:"subscription_status,omitzero"`
 	// SubscriptionType filters by subscription type
 	SubscriptionType []SubscriptionType `json:"subscription_type,omitzero"`
+	// TrialEndDueLTE, when set, restricts to subscriptions with trial_end not nil and trial_end <= trial_end_due_lte.
+	// Use with subscription_status trialing for trial-end cron processing.
+	TrialEndDueLte *time.Time `json:"trial_end_due_lte,omitzero"`
 	// WithLineItems includes line items in the response
 	WithLineItems *bool `json:"with_line_items,omitzero"`
 }
@@ -239,6 +242,13 @@ func (s *SubscriptionFilter) GetSubscriptionType() []SubscriptionType {
 		return nil
 	}
 	return s.SubscriptionType
+}
+
+func (s *SubscriptionFilter) GetTrialEndDueLte() *time.Time {
+	if s == nil {
+		return nil
+	}
+	return s.TrialEndDueLte
 }
 
 func (s *SubscriptionFilter) GetWithLineItems() *bool {

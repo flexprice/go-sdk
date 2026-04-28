@@ -27,7 +27,7 @@ type SubscriptionPriceCreateRequest struct {
 	TierMode           *BillingTier            `json:"tier_mode,omitzero"`
 	Tiers              []CreatePriceTier       `json:"tiers,omitzero"`
 	TransformQuantity  *PriceTransformQuantity `json:"transform_quantity,omitzero"`
-	TrialPeriod        *int64                  `json:"trial_period,omitzero"`
+	TrialPeriodDays    *int64                  `json:"trial_period_days,omitzero"`
 	Type               PriceType               `json:"type"`
 }
 
@@ -175,11 +175,11 @@ func (s *SubscriptionPriceCreateRequest) GetTransformQuantity() *PriceTransformQ
 	return s.TransformQuantity
 }
 
-func (s *SubscriptionPriceCreateRequest) GetTrialPeriod() *int64 {
+func (s *SubscriptionPriceCreateRequest) GetTrialPeriodDays() *int64 {
 	if s == nil {
 		return nil
 	}
-	return s.TrialPeriod
+	return s.TrialPeriodDays
 }
 
 func (s *SubscriptionPriceCreateRequest) GetType() PriceType {

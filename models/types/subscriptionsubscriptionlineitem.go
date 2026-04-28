@@ -46,7 +46,6 @@ type SubscriptionSubscriptionLineItem struct {
 	SubscriptionID          *string                         `json:"subscription_id,omitzero"`
 	SubscriptionPhaseID     *string                         `json:"subscription_phase_id,omitzero"`
 	TenantID                *string                         `json:"tenant_id,omitzero"`
-	TrialPeriod             *int64                          `json:"trial_period,omitzero"`
 	UpdatedAt               *time.Time                      `json:"updated_at,omitzero"`
 	UpdatedBy               *string                         `json:"updated_by,omitzero"`
 }
@@ -312,13 +311,6 @@ func (s *SubscriptionSubscriptionLineItem) GetTenantID() *string {
 		return nil
 	}
 	return s.TenantID
-}
-
-func (s *SubscriptionSubscriptionLineItem) GetTrialPeriod() *int64 {
-	if s == nil {
-		return nil
-	}
-	return s.TrialPeriod
 }
 
 func (s *SubscriptionSubscriptionLineItem) GetUpdatedAt() *time.Time {

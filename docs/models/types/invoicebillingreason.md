@@ -13,10 +13,11 @@ value := types.InvoiceBillingReasonSubscriptionCreate
 
 ## Values
 
-| Name                                     | Value                                    |
-| ---------------------------------------- | ---------------------------------------- |
-| `InvoiceBillingReasonSubscriptionCreate` | SUBSCRIPTION_CREATE                      |
-| `InvoiceBillingReasonSubscriptionCycle`  | SUBSCRIPTION_CYCLE                       |
-| `InvoiceBillingReasonSubscriptionUpdate` | SUBSCRIPTION_UPDATE                      |
-| `InvoiceBillingReasonProration`          | PRORATION                                |
-| `InvoiceBillingReasonManual`             | MANUAL                                   |
+| Name                                       | Value                                      |
+| ------------------------------------------ | ------------------------------------------ |
+| `InvoiceBillingReasonSubscriptionCreate`   | SUBSCRIPTION_CREATE                        |
+| `InvoiceBillingReasonSubscriptionCycle`    | SUBSCRIPTION_CYCLE                         |
+| `InvoiceBillingReasonSubscriptionUpdate`   | SUBSCRIPTION_UPDATE                        |
+| `InvoiceBillingReasonSubscriptionTrialEnd` | SUBSCRIPTION_TRIAL_END                     |
+| `InvoiceBillingReasonProration`            | PRORATION                                  |
+| `InvoiceBillingReasonManual`               | MANUAL                                     |
