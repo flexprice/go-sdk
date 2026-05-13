@@ -11,6 +11,10 @@ type SubscriptionResponse struct {
 	// ActivePauseID references the current active pause configuration
 	// This will be null if no pause is active or scheduled
 	ActivePauseID *string `json:"active_pause_id,omitzero"`
+	// AutoInvoiceThreshold is the usage amount (in subscription currency) that triggers
+	// an intermediate invoice. Overrides the plan-level threshold when set.
+	// Nil means: inherit from the plan's threshold (which may also be nil = disabled).
+	AutoInvoiceThreshold *string `json:"auto_invoice_threshold,omitzero"`
 	// BillingAnchor is the reference point that aligns future billing cycle dates.
 	// It sets the day of week for week intervals, the day of month for month and year intervals,
 	// and the month of year for year intervals. The timestamp is in UTC format.
@@ -114,6 +118,13 @@ func (s *SubscriptionResponse) GetActivePauseID() *string {
 		return nil
 	}
 	return s.ActivePauseID
+}
+
+func (s *SubscriptionResponse) GetAutoInvoiceThreshold() *string {
+	if s == nil {
+		return nil
+	}
+	return s.AutoInvoiceThreshold
 }
 
 func (s *SubscriptionResponse) GetBillingAnchor() *time.Time {

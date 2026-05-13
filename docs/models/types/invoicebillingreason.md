@@ -22,3 +22,4 @@ value := types.InvoiceBillingReasonSubscriptionCreate
 | `InvoiceBillingReasonSubscriptionTrialStart` | SUBSCRIPTION_TRIAL_START                     |
 | `InvoiceBillingReasonProration`              | PRORATION                                    |
 | `InvoiceBillingReasonManual`                 | MANUAL                                       |
+| `InvoiceBillingReasonAutoInvoiceThreshold`   | AUTO_INVOICE_THRESHOLD                       |

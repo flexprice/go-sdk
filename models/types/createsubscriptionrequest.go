@@ -10,6 +10,12 @@ import (
 type CreateSubscriptionRequest struct {
 	// Addons represents addons to be added to the subscription during creation
 	Addons []AddAddonToSubscriptionRequest `json:"addons,omitzero"`
+	// AutoInvoiceThreshold is the usage amount (in subscription currency) that triggers
+	// an intermediate invoice mid-period. Set once at creation; cannot be changed later.
+	// Allowed only when the subscription resolves to type standalone (no parent hierarchy rows).
+	// Plan line items must be usage-based only (no fixed or other non-usage plan prices).
+	// Nil means auto invoice threshold billing is disabled for this subscription.
+	AutoInvoiceThreshold *string `json:"auto_invoice_threshold,omitzero"`
 	// BillingAnchor overrides the derived billing anchor when billing_cycle is anniversary.
 	// For monthly billing, the day-of-month (and time-of-day) define cycle boundaries: if start_date
 	// is before that day in the month, the first billing period ends on the next occurrence of that
@@ -84,6 +90,13 @@ func (c *CreateSubscriptionRequest) GetAddons() []AddAddonToSubscriptionRequest 
 		return nil
 	}
 	return c.Addons
+}
+
+func (c *CreateSubscriptionRequest) GetAutoInvoiceThreshold() *string {
+	if c == nil {
+		return nil
+	}
+	return c.AutoInvoiceThreshold
 }
 
 func (c *CreateSubscriptionRequest) GetBillingAnchor() *time.Time {
