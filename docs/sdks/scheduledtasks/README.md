@@ -93,7 +93,7 @@ func main() {
 
     res, err := s.ScheduledTasks.CreateScheduledTask(ctx, types.CreateScheduledTaskRequest{
         ConnectionID: "<id>",
-        EntityType: types.ScheduledTaskEntityTypeCreditTopups,
+        EntityType: types.ScheduledTaskEntityTypeCreditUsage,
         Interval: types.ScheduledTaskIntervalCustom,
         JobConfig: types.S3JobConfig{},
     })

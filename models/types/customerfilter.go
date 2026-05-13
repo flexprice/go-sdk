@@ -44,6 +44,7 @@ type CustomerFilter struct {
 	ExternalIds []string             `json:"external_ids,omitzero"`
 	Filters     []FilterCondition    `json:"filters,omitzero"`
 	Limit       *int64               `json:"limit,omitzero"`
+	Metadata    map[string]string    `json:"metadata,omitzero"`
 	Offset      *int64               `json:"offset,omitzero"`
 	Order       *CustomerFilterOrder `json:"order,omitzero"`
 	Sort        []SortCondition      `json:"sort,omitzero"`
@@ -116,6 +117,13 @@ func (c *CustomerFilter) GetLimit() *int64 {
 		return nil
 	}
 	return c.Limit
+}
+
+func (c *CustomerFilter) GetMetadata() map[string]string {
+	if c == nil {
+		return nil
+	}
+	return c.Metadata
 }
 
 func (c *CustomerFilter) GetOffset() *int64 {

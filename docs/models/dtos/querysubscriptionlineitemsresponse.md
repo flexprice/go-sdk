@@ -1,0 +1,9 @@
+# QuerySubscriptionLineItemsResponse
+
+
+## Fields
+
+| Field                                                                                               | Type                                                                                                | Required                                                                                            | Description                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                          | [types.HTTPMetadata](../../models/types/httpmetadata.md)                                            | :heavy_check_mark:                                                                                  | N/A                                                                                                 |
+| `ListSubscriptionLineItemsResponse`                                                                 | [*types.ListSubscriptionLineItemsResponse](../../models/types/listsubscriptionlineitemsresponse.md) | :heavy_minus_sign:                                                                                  | OK                                                                                                  |

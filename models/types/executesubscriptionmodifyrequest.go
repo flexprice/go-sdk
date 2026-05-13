@@ -7,9 +7,10 @@ import (
 )
 
 type ExecuteSubscriptionModifyRequest struct {
-	InheritanceParams    *SubModifyInheritanceRequest    `json:"inheritance_params,omitzero"`
-	QuantityChangeParams *SubModifyQuantityChangeRequest `json:"quantity_change_params,omitzero"`
-	Type                 SubscriptionModifyType          `json:"type"`
+	GroupedInvoicingParams *SubModifyGroupedInvoicingParams `json:"grouped_invoicing_params,omitzero"`
+	InheritanceParams      *SubModifyInheritanceRequest     `json:"inheritance_params,omitzero"`
+	QuantityChangeParams   *SubModifyQuantityChangeRequest  `json:"quantity_change_params,omitzero"`
+	Type                   SubscriptionModifyType           `json:"type"`
 }
 
 func (e ExecuteSubscriptionModifyRequest) MarshalJSON() ([]byte, error) {
@@ -21,6 +22,13 @@ func (e *ExecuteSubscriptionModifyRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (e *ExecuteSubscriptionModifyRequest) GetGroupedInvoicingParams() *SubModifyGroupedInvoicingParams {
+	if e == nil {
+		return nil
+	}
+	return e.GroupedInvoicingParams
 }
 
 func (e *ExecuteSubscriptionModifyRequest) GetInheritanceParams() *SubModifyInheritanceRequest {

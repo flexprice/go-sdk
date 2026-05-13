@@ -5,9 +5,11 @@ package types
 type SubscriptionType string
 
 const (
-	SubscriptionTypeStandalone SubscriptionType = "standalone"
-	SubscriptionTypeParent     SubscriptionType = "parent"
-	SubscriptionTypeInherited  SubscriptionType = "inherited"
+	SubscriptionTypeStandalone         SubscriptionType = "standalone"
+	SubscriptionTypeDelegatedInvoicing SubscriptionType = "delegated_invoicing"
+	SubscriptionTypeParent             SubscriptionType = "parent"
+	SubscriptionTypeInherited          SubscriptionType = "inherited"
+	SubscriptionTypeGroupedInvoicing   SubscriptionType = "grouped_invoicing"
 )
 
 func (e SubscriptionType) ToPointer() *SubscriptionType {
@@ -18,7 +20,7 @@ func (e SubscriptionType) ToPointer() *SubscriptionType {
 func (e *SubscriptionType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "standalone", "parent", "inherited":
+		case "standalone", "delegated_invoicing", "parent", "inherited", "grouped_invoicing":
 			return true
 		}
 	}

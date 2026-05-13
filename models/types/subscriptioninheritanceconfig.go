@@ -7,9 +7,18 @@ import (
 )
 
 type SubscriptionInheritanceConfig struct {
+	// ExternalCustomerIDsToInheritSubscription: child customer external IDs for which
+	// inherited skeleton subscriptions will be created. Only valid for parent behavior.
 	ExternalCustomerIdsToInheritSubscription []string `json:"external_customer_ids_to_inherit_subscription,omitzero"`
-	InvoicingCustomerExternalID              *string  `json:"invoicing_customer_external_id,omitzero"`
-	ParentSubscriptionID                     *string  `json:"parent_subscription_id,omitzero"`
+	// InvoicingCustomerExternalID sets a different billing recipient (external ID).
+	// Required for delegated; rejected for inherited; optional for others.
+	InvoicingCustomerExternalID *string `json:"invoicing_customer_external_id,omitzero"`
+	// ParentSubscriptionID links this subscription to an existing parent.
+	// Required for inherited and grouped_invoicing; rejected for standalone, delegated, parent.
+	ParentSubscriptionID *string `json:"parent_subscription_id,omitzero"`
+	// SubscriptionsIDsForGroupedInvoicing: existing standalone subscription IDs to convert to
+	// grouped_invoicing under this parent at creation time. Only valid for parent behavior.
+	SubscriptionsIdsForGroupedInvoicing []string `json:"subscriptions_ids_for_grouped_invoicing,omitzero"`
 }
 
 func (s SubscriptionInheritanceConfig) MarshalJSON() ([]byte, error) {
@@ -42,4 +51,11 @@ func (s *SubscriptionInheritanceConfig) GetParentSubscriptionID() *string {
 		return nil
 	}
 	return s.ParentSubscriptionID
+}
+
+func (s *SubscriptionInheritanceConfig) GetSubscriptionsIdsForGroupedInvoicing() []string {
+	if s == nil {
+		return nil
+	}
+	return s.SubscriptionsIdsForGroupedInvoicing
 }

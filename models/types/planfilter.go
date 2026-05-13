@@ -42,6 +42,7 @@ type PlanFilter struct {
 	Filters   []FilterCondition `json:"filters,omitzero"`
 	Limit     *int64            `json:"limit,omitzero"`
 	LookupKey *string           `json:"lookup_key,omitzero"`
+	Metadata  map[string]string `json:"metadata,omitzero"`
 	Offset    *int64            `json:"offset,omitzero"`
 	Order     *PlanFilterOrder  `json:"order,omitzero"`
 	PlanIds   []string          `json:"plan_ids,omitzero"`
@@ -94,6 +95,13 @@ func (p *PlanFilter) GetLookupKey() *string {
 		return nil
 	}
 	return p.LookupKey
+}
+
+func (p *PlanFilter) GetMetadata() map[string]string {
+	if p == nil {
+		return nil
+	}
+	return p.Metadata
 }
 
 func (p *PlanFilter) GetOffset() *int64 {

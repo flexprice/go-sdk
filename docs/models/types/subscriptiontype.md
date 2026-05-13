@@ -16,8 +16,10 @@ custom := types.SubscriptionType("custom_value")
 
 ## Values
 
-| Name                         | Value                        |
-| ---------------------------- | ---------------------------- |
-| `SubscriptionTypeStandalone` | standalone                   |
-| `SubscriptionTypeParent`     | parent                       |
-| `SubscriptionTypeInherited`  | inherited                    |
+| Name                                 | Value                                |
+| ------------------------------------ | ------------------------------------ |
+| `SubscriptionTypeStandalone`         | standalone                           |
+| `SubscriptionTypeDelegatedInvoicing` | delegated_invoicing                  |
+| `SubscriptionTypeParent`             | parent                               |
+| `SubscriptionTypeInherited`          | inherited                            |
+| `SubscriptionTypeGroupedInvoicing`   | grouped_invoicing                    |

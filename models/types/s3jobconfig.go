@@ -13,11 +13,13 @@ type S3JobConfig struct {
 	Encryption  *S3EncryptionType  `json:"encryption,omitzero"`
 	// Custom S3 endpoint URL (e.g., "http://minio:9000" for MinIO)
 	EndpointURL *string `json:"endpoint_url,omitzero"`
+	// Optional user-selected metadata columns
+	ExportMetadataFields []ExportMetadataField `json:"export_metadata_fields,omitzero"`
 	// Optional prefix for S3 keys (e.g., "flexprice-exports/")
 	KeyPrefix *string `json:"key_prefix,omitzero"`
 	// AWS region (e.g., "us-west-2")
 	Region *string `json:"region,omitzero"`
-	// Use path-style addressing instead of virtual-hosted-style (required for MinIO)
+	// Use path-style addressing (required for MinIO)
 	UsePathStyle *bool `json:"use_path_style,omitzero"`
 }
 
@@ -58,6 +60,13 @@ func (s *S3JobConfig) GetEndpointURL() *string {
 		return nil
 	}
 	return s.EndpointURL
+}
+
+func (s *S3JobConfig) GetExportMetadataFields() []ExportMetadataField {
+	if s == nil {
+		return nil
+	}
+	return s.ExportMetadataFields
 }
 
 func (s *S3JobConfig) GetKeyPrefix() *string {

@@ -7,6 +7,7 @@
 * [CreateSubscription](#createsubscription) - Create subscription
 * [AddSubscriptionAddon](#addsubscriptionaddon) - Add addon to subscription
 * [RemoveSubscriptionAddon](#removesubscriptionaddon) - Remove addon from subscription
+* [QuerySubscriptionLineItems](#querysubscriptionlineitems) - Search subscription line items
 * [UpdateSubscriptionLineItem](#updatesubscriptionlineitem) - Update subscription line item
 * [DeleteSubscriptionLineItem](#deletesubscriptionlineitem) - Delete subscription line item
 * [QuerySubscription](#querysubscription) - Query subscriptions
@@ -191,6 +192,60 @@ func main() {
 ### Response
 
 **[*dtos.RemoveSubscriptionAddonResponse](../../models/dtos/removesubscriptionaddonresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## QuerySubscriptionLineItems
+
+List subscription line items with a JSON filter (subscription, customer, price, pagination, expand=prices, etc.).
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="querySubscriptionLineItems" method="post" path="/subscriptions/lineitems/search" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Subscriptions.QuerySubscriptionLineItems(ctx, types.SubscriptionLineItemFilter{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListSubscriptionLineItemsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `request`                                                                            | [types.SubscriptionLineItemFilter](../../models/types/subscriptionlineitemfilter.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
+| `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+
+### Response
+
+**[*dtos.QuerySubscriptionLineItemsResponse](../../models/dtos/querysubscriptionlineitemsresponse.md), error**
 
 ### Errors
 
@@ -1066,7 +1121,7 @@ func main() {
     )
 
     res, err := s.Subscriptions.PreviewSubscriptionModify(ctx, "<id>", types.ExecuteSubscriptionModifyRequest{
-        Type: types.SubscriptionModifyTypeQuantityChange,
+        Type: types.SubscriptionModifyTypeGroupedInvoicing,
     })
     if err != nil {
         log.Fatal(err)

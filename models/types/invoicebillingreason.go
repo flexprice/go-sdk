@@ -10,12 +10,13 @@ import (
 type InvoiceBillingReason string
 
 const (
-	InvoiceBillingReasonSubscriptionCreate   InvoiceBillingReason = "SUBSCRIPTION_CREATE"
-	InvoiceBillingReasonSubscriptionCycle    InvoiceBillingReason = "SUBSCRIPTION_CYCLE"
-	InvoiceBillingReasonSubscriptionUpdate   InvoiceBillingReason = "SUBSCRIPTION_UPDATE"
-	InvoiceBillingReasonSubscriptionTrialEnd InvoiceBillingReason = "SUBSCRIPTION_TRIAL_END"
-	InvoiceBillingReasonProration            InvoiceBillingReason = "PRORATION"
-	InvoiceBillingReasonManual               InvoiceBillingReason = "MANUAL"
+	InvoiceBillingReasonSubscriptionCreate     InvoiceBillingReason = "SUBSCRIPTION_CREATE"
+	InvoiceBillingReasonSubscriptionCycle      InvoiceBillingReason = "SUBSCRIPTION_CYCLE"
+	InvoiceBillingReasonSubscriptionUpdate     InvoiceBillingReason = "SUBSCRIPTION_UPDATE"
+	InvoiceBillingReasonSubscriptionTrialEnd   InvoiceBillingReason = "SUBSCRIPTION_TRIAL_END"
+	InvoiceBillingReasonSubscriptionTrialStart InvoiceBillingReason = "SUBSCRIPTION_TRIAL_START"
+	InvoiceBillingReasonProration              InvoiceBillingReason = "PRORATION"
+	InvoiceBillingReasonManual                 InvoiceBillingReason = "MANUAL"
 )
 
 func (e InvoiceBillingReason) ToPointer() *InvoiceBillingReason {
@@ -34,6 +35,8 @@ func (e *InvoiceBillingReason) UnmarshalJSON(data []byte) error {
 	case "SUBSCRIPTION_UPDATE":
 		fallthrough
 	case "SUBSCRIPTION_TRIAL_END":
+		fallthrough
+	case "SUBSCRIPTION_TRIAL_START":
 		fallthrough
 	case "PRORATION":
 		fallthrough

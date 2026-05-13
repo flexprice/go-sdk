@@ -5,10 +5,11 @@ package types
 type ScheduledTaskEntityType string
 
 const (
-	ScheduledTaskEntityTypeEvents       ScheduledTaskEntityType = "events"
-	ScheduledTaskEntityTypeInvoice      ScheduledTaskEntityType = "invoice"
-	ScheduledTaskEntityTypeCreditTopups ScheduledTaskEntityType = "credit_topups"
-	ScheduledTaskEntityTypeCreditUsage  ScheduledTaskEntityType = "credit_usage"
+	ScheduledTaskEntityTypeEvents         ScheduledTaskEntityType = "events"
+	ScheduledTaskEntityTypeInvoice        ScheduledTaskEntityType = "invoice"
+	ScheduledTaskEntityTypeCreditTopups   ScheduledTaskEntityType = "credit_topups"
+	ScheduledTaskEntityTypeCreditUsage    ScheduledTaskEntityType = "credit_usage"
+	ScheduledTaskEntityTypeUsageAnalytics ScheduledTaskEntityType = "usage_analytics"
 )
 
 func (e ScheduledTaskEntityType) ToPointer() *ScheduledTaskEntityType {
@@ -19,7 +20,7 @@ func (e ScheduledTaskEntityType) ToPointer() *ScheduledTaskEntityType {
 func (e *ScheduledTaskEntityType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "events", "invoice", "credit_topups", "credit_usage":
+		case "events", "invoice", "credit_topups", "credit_usage", "usage_analytics":
 			return true
 		}
 	}

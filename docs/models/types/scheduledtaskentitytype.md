@@ -16,9 +16,10 @@ custom := types.ScheduledTaskEntityType("custom_value")
 
 ## Values
 
-| Name                                  | Value                                 |
-| ------------------------------------- | ------------------------------------- |
-| `ScheduledTaskEntityTypeEvents`       | events                                |
-| `ScheduledTaskEntityTypeInvoice`      | invoice                               |
-| `ScheduledTaskEntityTypeCreditTopups` | credit_topups                         |
-| `ScheduledTaskEntityTypeCreditUsage`  | credit_usage                          |
+| Name                                    | Value                                   |
+| --------------------------------------- | --------------------------------------- |
+| `ScheduledTaskEntityTypeEvents`         | events                                  |
+| `ScheduledTaskEntityTypeInvoice`        | invoice                                 |
+| `ScheduledTaskEntityTypeCreditTopups`   | credit_topups                           |
+| `ScheduledTaskEntityTypeCreditUsage`    | credit_usage                            |
+| `ScheduledTaskEntityTypeUsageAnalytics` | usage_analytics                         |

@@ -13,7 +13,8 @@ value := types.SubscriptionModifyTypeInheritance
 
 ## Values
 
-| Name                                   | Value                                  |
-| -------------------------------------- | -------------------------------------- |
-| `SubscriptionModifyTypeInheritance`    | inheritance                            |
-| `SubscriptionModifyTypeQuantityChange` | quantity_change                        |
+| Name                                     | Value                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| `SubscriptionModifyTypeInheritance`      | inheritance                              |
+| `SubscriptionModifyTypeQuantityChange`   | quantity_change                          |
+| `SubscriptionModifyTypeGroupedInvoicing` | grouped_invoicing                        |
