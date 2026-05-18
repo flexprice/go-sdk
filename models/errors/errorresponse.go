@@ -8,11 +8,10 @@ import (
 )
 
 type ErrorResponse struct {
-	Code           *types.Code              `json:"code,omitzero"`
-	Details        map[string]types.Details `json:"details,omitzero"`
-	HTTPStatusCode *int64                   `json:"http_status_code,omitzero"`
-	Message        *string                  `json:"message,omitzero"`
-	HTTPMeta       types.HTTPMetadata       `json:"-"`
+	Code           *types.ErrorCode   `json:"code,omitzero"`
+	HTTPStatusCode *int64             `json:"http_status_code,omitzero"`
+	Message        *string            `json:"message,omitzero"`
+	HTTPMeta       types.HTTPMetadata `json:"-"`
 }
 
 var _ error = &ErrorResponse{}

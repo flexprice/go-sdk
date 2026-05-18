@@ -2,7 +2,7 @@
 
 package flexprice
 
-// Generated from OpenAPI doc version 1.0 and generator version 2.882.0
+// Generated from OpenAPI doc version 1.0 and generator version 2.884.4
 
 import (
 	"context"
@@ -68,7 +68,6 @@ type Flexprice struct {
 	Features        *Features
 	Groups          *Groups
 	Integrations    *Integrations
-	MeterUsage      *MeterUsage
 	Payments        *Payments
 	Plans           *Plans
 	Prices          *Prices
@@ -160,9 +159,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.10",
+		SDKVersion: "2.1.11",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 2.1.10 2.882.0 1.0 github.com/flexprice/go-sdk/v2",
+			UserAgent:  "speakeasy-sdk/go 2.1.11 2.884.4 1.0 github.com/flexprice/go-sdk/v2",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -193,7 +192,6 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.Features = newFeatures(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Groups = newGroups(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Integrations = newIntegrations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.MeterUsage = newMeterUsage(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Payments = newPayments(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Plans = newPlans(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Prices = newPrices(sdk, sdk.sdkConfiguration, sdk.hooks)

@@ -51,6 +51,8 @@ type InvoiceResponse struct {
 	InvoicePdfURL *string        `json:"invoice_pdf_url,omitzero"`
 	InvoiceStatus *InvoiceStatus `json:"invoice_status,omitzero"`
 	InvoiceType   *InvoiceType   `json:"invoice_type,omitzero"`
+	// issue_date is the user-facing date of the invoice. Defaults to created_at if not set.
+	IssueDate *time.Time `json:"issue_date,omitzero"`
 	// last_computed_at is the timestamp when this invoice was last computed by ComputeInvoice
 	LastComputedAt *time.Time `json:"last_computed_at,omitzero"`
 	// line_items contains the individual items that make up this invoice (overrides embedded field)
@@ -269,6 +271,13 @@ func (i *InvoiceResponse) GetInvoiceType() *InvoiceType {
 		return nil
 	}
 	return i.InvoiceType
+}
+
+func (i *InvoiceResponse) GetIssueDate() *time.Time {
+	if i == nil {
+		return nil
+	}
+	return i.IssueDate
 }
 
 func (i *InvoiceResponse) GetLastComputedAt() *time.Time {

@@ -35,6 +35,9 @@ type CreateInvoiceRequest struct {
 	InvoicePdfURL *string        `json:"invoice_pdf_url,omitzero"`
 	InvoiceStatus *InvoiceStatus `json:"invoice_status,omitzero"`
 	InvoiceType   *InvoiceType   `json:"invoice_type,omitzero"`
+	// issue_date overrides the user-facing date of the invoice.
+	// Defaults to created_at if not provided.
+	IssueDate *time.Time `json:"issue_date,omitzero"`
 	// Invoice Line Item Coupons
 	LineItemCoupons []InvoiceLineItemCoupon `json:"line_item_coupons,omitzero"`
 	// line_items contains the individual items that make up this invoice
@@ -175,6 +178,13 @@ func (c *CreateInvoiceRequest) GetInvoiceType() *InvoiceType {
 		return nil
 	}
 	return c.InvoiceType
+}
+
+func (c *CreateInvoiceRequest) GetIssueDate() *time.Time {
+	if c == nil {
+		return nil
+	}
+	return c.IssueDate
 }
 
 func (c *CreateInvoiceRequest) GetLineItemCoupons() []InvoiceLineItemCoupon {

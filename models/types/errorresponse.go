@@ -6,56 +6,10 @@ import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
 )
 
-type Code string
-
-const (
-	CodeNotFound           Code = "not_found"
-	CodeAlreadyExists      Code = "already_exists"
-	CodeVersionConflict    Code = "version_conflict"
-	CodeValidationError    Code = "validation_error"
-	CodeInvalidOperation   Code = "invalid_operation"
-	CodePermissionDenied   Code = "permission_denied"
-	CodeHTTPClientError    Code = "http_client_error"
-	CodeDatabaseError      Code = "database_error"
-	CodeSystemError        Code = "system_error"
-	CodeInternalError      Code = "internal_error"
-	CodeServiceUnavailable Code = "service_unavailable"
-)
-
-func (e Code) ToPointer() *Code {
-	return &e
-}
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *Code) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "not_found", "already_exists", "version_conflict", "validation_error", "invalid_operation", "permission_denied", "http_client_error", "database_error", "system_error", "internal_error", "service_unavailable":
-			return true
-		}
-	}
-	return false
-}
-
-type Details struct {
-}
-
-func (d Details) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(d, "", false)
-}
-
-func (d *Details) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 type ErrorResponse struct {
-	Code           *Code              `json:"code,omitzero"`
-	Details        map[string]Details `json:"details,omitzero"`
-	HTTPStatusCode *int64             `json:"http_status_code,omitzero"`
-	Message        *string            `json:"message,omitzero"`
+	Code           *ErrorCode `json:"code,omitzero"`
+	HTTPStatusCode *int64     `json:"http_status_code,omitzero"`
+	Message        *string    `json:"message,omitzero"`
 }
 
 func (e ErrorResponse) MarshalJSON() ([]byte, error) {
@@ -69,18 +23,11 @@ func (e *ErrorResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (e *ErrorResponse) GetCode() *Code {
+func (e *ErrorResponse) GetCode() *ErrorCode {
 	if e == nil {
 		return nil
 	}
 	return e.Code
-}
-
-func (e *ErrorResponse) GetDetails() map[string]Details {
-	if e == nil {
-		return nil
-	}
-	return e.Details
 }
 
 func (e *ErrorResponse) GetHTTPStatusCode() *int64 {
