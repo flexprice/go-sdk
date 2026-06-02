@@ -18,3 +18,4 @@ value := types.SubscriptionModifyTypeInheritance
 | `SubscriptionModifyTypeInheritance`      | inheritance                              |
 | `SubscriptionModifyTypeQuantityChange`   | quantity_change                          |
 | `SubscriptionModifyTypeGroupedInvoicing` | grouped_invoicing                        |
+| `SubscriptionModifyTypeTrialEnd`         | trial_end                                |

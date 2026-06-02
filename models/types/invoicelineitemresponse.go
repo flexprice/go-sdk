@@ -8,18 +8,21 @@ import (
 )
 
 type InvoiceLineItemResponse struct {
-	Amount         *string         `json:"amount,omitzero"`
-	CommitmentInfo *CommitmentInfo `json:"commitment_info,omitzero"`
-	CreatedAt      *time.Time      `json:"created_at,omitzero"`
-	CreatedBy      *string         `json:"created_by,omitzero"`
-	Currency       *string         `json:"currency,omitzero"`
-	CustomerID     *string         `json:"customer_id,omitzero"`
-	DisplayName    *string         `json:"display_name,omitzero"`
-	EntityID       *string         `json:"entity_id,omitzero"`
-	EntityType     *string         `json:"entity_type,omitzero"`
-	EnvironmentID  *string         `json:"environment_id,omitzero"`
-	ID             *string         `json:"id,omitzero"`
-	InvoiceID      *string         `json:"invoice_id,omitzero"`
+	// adjusted_entitlement_quantity is the entitlement-covered portion deducted from raw usage.
+	// Nil when no entitlement was applied. Raw usage = Quantity + AdjustedEntitlementQuantity.
+	AdjustedEntitlementQuantity *string         `json:"adjusted_entitlement_quantity,omitzero"`
+	Amount                      *string         `json:"amount,omitzero"`
+	CommitmentInfo              *CommitmentInfo `json:"commitment_info,omitzero"`
+	CreatedAt                   *time.Time      `json:"created_at,omitzero"`
+	CreatedBy                   *string         `json:"created_by,omitzero"`
+	Currency                    *string         `json:"currency,omitzero"`
+	CustomerID                  *string         `json:"customer_id,omitzero"`
+	DisplayName                 *string         `json:"display_name,omitzero"`
+	EntityID                    *string         `json:"entity_id,omitzero"`
+	EntityType                  *string         `json:"entity_type,omitzero"`
+	EnvironmentID               *string         `json:"environment_id,omitzero"`
+	ID                          *string         `json:"id,omitzero"`
+	InvoiceID                   *string         `json:"invoice_id,omitzero"`
 	// invoice_level_discount is the discount amount in invoice currency applied to all line items on the invoice.
 	InvoiceLevelDiscount *string `json:"invoice_level_discount,omitzero"`
 	// line_item_discount is the discount amount in invoice currency applied directly to this line item.
@@ -31,18 +34,20 @@ type InvoiceLineItemResponse struct {
 	PeriodStart      *time.Time        `json:"period_start,omitzero"`
 	PlanDisplayName  *string           `json:"plan_display_name,omitzero"`
 	// prepaid_credits_applied is the amount in invoice currency reduced from this line item due to prepaid credits application.
-	PrepaidCreditsApplied *string    `json:"prepaid_credits_applied,omitzero"`
-	PriceID               *string    `json:"price_id,omitzero"`
-	PriceType             *string    `json:"price_type,omitzero"`
-	PriceUnit             *string    `json:"price_unit,omitzero"`
-	PriceUnitAmount       *string    `json:"price_unit_amount,omitzero"`
-	PriceUnitID           *string    `json:"price_unit_id,omitzero"`
-	Quantity              *string    `json:"quantity,omitzero"`
-	Status                *Status    `json:"status,omitzero"`
-	SubscriptionID        *string    `json:"subscription_id,omitzero"`
-	TenantID              *string    `json:"tenant_id,omitzero"`
-	UpdatedAt             *time.Time `json:"updated_at,omitzero"`
-	UpdatedBy             *string    `json:"updated_by,omitzero"`
+	PrepaidCreditsApplied *string `json:"prepaid_credits_applied,omitzero"`
+	PriceID               *string `json:"price_id,omitzero"`
+	PriceType             *string `json:"price_type,omitzero"`
+	PriceUnit             *string `json:"price_unit,omitzero"`
+	PriceUnitAmount       *string `json:"price_unit_amount,omitzero"`
+	PriceUnitID           *string `json:"price_unit_id,omitzero"`
+	Quantity              *string `json:"quantity,omitzero"`
+	Status                *Status `json:"status,omitzero"`
+	SubscriptionID        *string `json:"subscription_id,omitzero"`
+	// sub_line_item_id links this invoice line item to the subscription_line_item that generated it.
+	SubscriptionLineItemID *string    `json:"subscription_line_item_id,omitzero"`
+	TenantID               *string    `json:"tenant_id,omitzero"`
+	UpdatedAt              *time.Time `json:"updated_at,omitzero"`
+	UpdatedBy              *string    `json:"updated_by,omitzero"`
 	// usage_analytics contains usage analytics for this line item (legacy - grouped by source)
 	UsageAnalytics []SourceUsageItem `json:"usage_analytics,omitzero"`
 	// usage_breakdown contains flexible usage breakdown for this line item (supports any grouping)
@@ -58,6 +63,13 @@ func (i *InvoiceLineItemResponse) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (i *InvoiceLineItemResponse) GetAdjustedEntitlementQuantity() *string {
+	if i == nil {
+		return nil
+	}
+	return i.AdjustedEntitlementQuantity
 }
 
 func (i *InvoiceLineItemResponse) GetAmount() *string {
@@ -261,6 +273,13 @@ func (i *InvoiceLineItemResponse) GetSubscriptionID() *string {
 		return nil
 	}
 	return i.SubscriptionID
+}
+
+func (i *InvoiceLineItemResponse) GetSubscriptionLineItemID() *string {
+	if i == nil {
+		return nil
+	}
+	return i.SubscriptionLineItemID
 }
 
 func (i *InvoiceLineItemResponse) GetTenantID() *string {

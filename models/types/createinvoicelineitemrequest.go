@@ -8,6 +8,8 @@ import (
 )
 
 type CreateInvoiceLineItemRequest struct {
+	// adjusted_entitlement_quantity is the entitlement-covered units deducted from raw usage.
+	AdjustedEntitlementQuantity *string `json:"adjusted_entitlement_quantity,omitzero"`
 	// amount is the monetary amount for this line item
 	Amount         string          `json:"amount"`
 	CommitmentInfo *CommitmentInfo `json:"commitment_info,omitzero"`
@@ -47,6 +49,11 @@ type CreateInvoiceLineItemRequest struct {
 	PriceUnitAmount *string `json:"price_unit_amount,omitzero"`
 	// quantity is the quantity of units for this line item
 	Quantity string `json:"quantity"`
+	// subscription_id overrides the invoice's subscription_id for this specific line item.
+	// Used for grouped invoicing where child line items belong to child subscriptions.
+	SubscriptionID *string `json:"subscription_id,omitzero"`
+	// sub_line_item_id links this line item to the subscription_line_item that generated it.
+	SubscriptionLineItemID *string `json:"subscription_line_item_id,omitzero"`
 }
 
 func (c CreateInvoiceLineItemRequest) MarshalJSON() ([]byte, error) {
@@ -58,6 +65,13 @@ func (c *CreateInvoiceLineItemRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (c *CreateInvoiceLineItemRequest) GetAdjustedEntitlementQuantity() *string {
+	if c == nil {
+		return nil
+	}
+	return c.AdjustedEntitlementQuantity
 }
 
 func (c *CreateInvoiceLineItemRequest) GetAmount() string {
@@ -198,4 +212,18 @@ func (c *CreateInvoiceLineItemRequest) GetQuantity() string {
 		return ""
 	}
 	return c.Quantity
+}
+
+func (c *CreateInvoiceLineItemRequest) GetSubscriptionID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.SubscriptionID
+}
+
+func (c *CreateInvoiceLineItemRequest) GetSubscriptionLineItemID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.SubscriptionLineItemID
 }

@@ -13,6 +13,7 @@ const (
 	SubscriptionModifyTypeInheritance      SubscriptionModifyType = "inheritance"
 	SubscriptionModifyTypeQuantityChange   SubscriptionModifyType = "quantity_change"
 	SubscriptionModifyTypeGroupedInvoicing SubscriptionModifyType = "grouped_invoicing"
+	SubscriptionModifyTypeTrialEnd         SubscriptionModifyType = "trial_end"
 )
 
 func (e SubscriptionModifyType) ToPointer() *SubscriptionModifyType {
@@ -29,6 +30,8 @@ func (e *SubscriptionModifyType) UnmarshalJSON(data []byte) error {
 	case "quantity_change":
 		fallthrough
 	case "grouped_invoicing":
+		fallthrough
+	case "trial_end":
 		*e = SubscriptionModifyType(v)
 		return nil
 	default:

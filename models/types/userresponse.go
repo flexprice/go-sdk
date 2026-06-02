@@ -8,11 +8,12 @@ import (
 
 type UserResponse struct {
 	// Empty for service accounts
-	Email  *string         `json:"email,omitzero"`
-	ID     *string         `json:"id,omitzero"`
-	Roles  []string        `json:"roles,omitzero"`
-	Tenant *TenantResponse `json:"tenant,omitzero"`
-	Type   *UserType       `json:"type,omitzero"`
+	Email    *string           `json:"email,omitzero"`
+	ID       *string           `json:"id,omitzero"`
+	Metadata map[string]string `json:"metadata,omitzero"`
+	Roles    []string          `json:"roles,omitzero"`
+	Tenant   *TenantResponse   `json:"tenant,omitzero"`
+	Type     *UserType         `json:"type,omitzero"`
 }
 
 func (u UserResponse) MarshalJSON() ([]byte, error) {
@@ -38,6 +39,13 @@ func (u *UserResponse) GetID() *string {
 		return nil
 	}
 	return u.ID
+}
+
+func (u *UserResponse) GetMetadata() map[string]string {
+	if u == nil {
+		return nil
+	}
+	return u.Metadata
 }
 
 func (u *UserResponse) GetRoles() []string {

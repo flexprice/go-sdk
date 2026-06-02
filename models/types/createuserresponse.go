@@ -8,12 +8,13 @@ import (
 
 type CreateUserResponse struct {
 	// Empty for service accounts
-	Email    *string         `json:"email,omitzero"`
-	ID       *string         `json:"id,omitzero"`
-	Password *string         `json:"password,omitzero"`
-	Roles    []string        `json:"roles,omitzero"`
-	Tenant   *TenantResponse `json:"tenant,omitzero"`
-	Type     *UserType       `json:"type,omitzero"`
+	Email    *string           `json:"email,omitzero"`
+	ID       *string           `json:"id,omitzero"`
+	Metadata map[string]string `json:"metadata,omitzero"`
+	Password *string           `json:"password,omitzero"`
+	Roles    []string          `json:"roles,omitzero"`
+	Tenant   *TenantResponse   `json:"tenant,omitzero"`
+	Type     *UserType         `json:"type,omitzero"`
 }
 
 func (c CreateUserResponse) MarshalJSON() ([]byte, error) {
@@ -39,6 +40,13 @@ func (c *CreateUserResponse) GetID() *string {
 		return nil
 	}
 	return c.ID
+}
+
+func (c *CreateUserResponse) GetMetadata() map[string]string {
+	if c == nil {
+		return nil
+	}
+	return c.Metadata
 }
 
 func (c *CreateUserResponse) GetPassword() *string {

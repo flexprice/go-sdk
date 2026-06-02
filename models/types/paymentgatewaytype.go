@@ -15,6 +15,7 @@ const (
 	PaymentGatewayTypeNomod    PaymentGatewayType = "nomod"
 	PaymentGatewayTypeMoyasar  PaymentGatewayType = "moyasar"
 	PaymentGatewayTypePaddle   PaymentGatewayType = "paddle"
+	PaymentGatewayTypeWhop     PaymentGatewayType = "whop"
 )
 
 func (e PaymentGatewayType) ToPointer() *PaymentGatewayType {
@@ -35,6 +36,8 @@ func (e *PaymentGatewayType) UnmarshalJSON(data []byte) error {
 	case "moyasar":
 		fallthrough
 	case "paddle":
+		fallthrough
+	case "whop":
 		*e = PaymentGatewayType(v)
 		return nil
 	default:

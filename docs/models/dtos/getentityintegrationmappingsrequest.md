@@ -1,0 +1,9 @@
+# GetEntityIntegrationMappingsRequest
+
+
+## Fields
+
+| Field                                                                                                     | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `EntityType`                                                                                              | `string`                                                                                                  | :heavy_check_mark:                                                                                        | Entity type (customer, plan, invoice, subscription, payment, credit_note, addon, item, item_price, price) |
+| `EntityID`                                                                                                | `string`                                                                                                  | :heavy_check_mark:                                                                                        | Entity ID                                                                                                 |

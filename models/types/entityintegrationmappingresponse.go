@@ -14,6 +14,7 @@ type EntityIntegrationMappingResponse struct {
 	EntityType       *IntegrationEntityType `json:"entity_type,omitzero"`
 	EnvironmentID    *string                `json:"environment_id,omitzero"`
 	ID               *string                `json:"id,omitzero"`
+	Metadata         map[string]any         `json:"metadata,omitzero"`
 	ProviderEntityID *string                `json:"provider_entity_id,omitzero"`
 	ProviderType     *string                `json:"provider_type,omitzero"`
 	Status           *Status                `json:"status,omitzero"`
@@ -73,6 +74,13 @@ func (e *EntityIntegrationMappingResponse) GetID() *string {
 		return nil
 	}
 	return e.ID
+}
+
+func (e *EntityIntegrationMappingResponse) GetMetadata() map[string]any {
+	if e == nil {
+		return nil
+	}
+	return e.Metadata
 }
 
 func (e *EntityIntegrationMappingResponse) GetProviderEntityID() *string {

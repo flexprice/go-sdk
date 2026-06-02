@@ -41,7 +41,11 @@ type InvoiceFilter struct {
 	AmountDueGt *float64 `json:"amount_due_gt,omitzero"`
 	// amount_remaining_gt filters invoices with an outstanding balance greater than the specified value
 	// Useful for finding invoices that still have significant unpaid amounts
-	AmountRemainingGt *float64 `json:"amount_remaining_gt,omitzero"`
+	AmountRemainingGt *float64              `json:"amount_remaining_gt,omitzero"`
+	BillingReason     *InvoiceBillingReason `json:"billing_reason,omitzero"`
+	// currency filters invoices by their currency (ISO 4217 code, e.g. "usd", "eur").
+	// Matches on the invoices.currency column exactly.
+	Currency *string `json:"currency,omitzero"`
 	// customer_id filters invoices for a specific customer using FlexPrice's internal customer ID
 	// This is the ID returned by FlexPrice when creating or retrieving customers
 	CustomerID *string    `json:"customer_id,omitzero"`
@@ -107,6 +111,20 @@ func (i *InvoiceFilter) GetAmountRemainingGt() *float64 {
 		return nil
 	}
 	return i.AmountRemainingGt
+}
+
+func (i *InvoiceFilter) GetBillingReason() *InvoiceBillingReason {
+	if i == nil {
+		return nil
+	}
+	return i.BillingReason
+}
+
+func (i *InvoiceFilter) GetCurrency() *string {
+	if i == nil {
+		return nil
+	}
+	return i.Currency
 }
 
 func (i *InvoiceFilter) GetCustomerID() *string {

@@ -29,3 +29,4 @@ custom := types.SecretProvider("custom_value")
 | `SecretProviderNomod`      | nomod                      |
 | `SecretProviderMoyasar`    | moyasar                    |
 | `SecretProviderPaddle`     | paddle                     |
+| `SecretProviderWhop`       | whop                       |

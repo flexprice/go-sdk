@@ -18,6 +18,7 @@ const (
 	InvoiceBillingReasonProration              InvoiceBillingReason = "PRORATION"
 	InvoiceBillingReasonManual                 InvoiceBillingReason = "MANUAL"
 	InvoiceBillingReasonAutoInvoiceThreshold   InvoiceBillingReason = "AUTO_INVOICE_THRESHOLD"
+	InvoiceBillingReasonWalletAutoTopup        InvoiceBillingReason = "WALLET_AUTO_TOPUP"
 )
 
 func (e InvoiceBillingReason) ToPointer() *InvoiceBillingReason {
@@ -44,6 +45,8 @@ func (e *InvoiceBillingReason) UnmarshalJSON(data []byte) error {
 	case "MANUAL":
 		fallthrough
 	case "AUTO_INVOICE_THRESHOLD":
+		fallthrough
+	case "WALLET_AUTO_TOPUP":
 		*e = InvoiceBillingReason(v)
 		return nil
 	default:

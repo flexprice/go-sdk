@@ -1121,7 +1121,7 @@ func main() {
     )
 
     res, err := s.Subscriptions.PreviewSubscriptionModify(ctx, "<id>", types.ExecuteSubscriptionModifyRequest{
-        Type: types.SubscriptionModifyTypeGroupedInvoicing,
+        Type: types.SubscriptionModifyTypeTrialEnd,
     })
     if err != nil {
         log.Fatal(err)

@@ -86,14 +86,22 @@ type SubscriptionResponseV2 struct {
 	Phases []SubscriptionPhaseResponse `json:"phases,omitzero"`
 	Plan   *PlanResponse               `json:"plan,omitzero"`
 	// PlanID is the identifier for the plan in our system
-	PlanID            *string            `json:"plan_id,omitzero"`
-	ProrationBehavior *ProrationBehavior `json:"proration_behavior,omitzero"`
+	PlanID *string `json:"plan_id,omitzero"`
+	// PlanPricesOutOfSync is true when the subscription's synced_price_sequence
+	// is behind the plan's current max prices.sequence — i.e. plan-price
+	// changes have not yet been reconciled into this subscription's line items.
+	PlanPricesOutOfSync *bool              `json:"plan_prices_out_of_sync,omitzero"`
+	ProrationBehavior   *ProrationBehavior `json:"proration_behavior,omitzero"`
 	// StartDate is the start date of the subscription
 	StartDate          *time.Time          `json:"start_date,omitzero"`
 	Status             *Status             `json:"status,omitzero"`
 	SubscriptionStatus *SubscriptionStatus `json:"subscription_status,omitzero"`
 	SubscriptionType   *SubscriptionType   `json:"subscription_type,omitzero"`
-	TenantID           *string             `json:"tenant_id,omitzero"`
+	// SyncedPriceSequence is the plan-price sequence up to which this
+	// subscription's line items have been reconciled. Bumped by the
+	// plan-price sync after a successful pass.
+	SyncedPriceSequence *int64  `json:"synced_price_sequence,omitzero"`
+	TenantID            *string `json:"tenant_id,omitzero"`
 	// TrialEnd is the end date of the trial period
 	TrialEnd *time.Time `json:"trial_end,omitzero"`
 	// TrialStart is the start date of the trial period
@@ -402,6 +410,13 @@ func (s *SubscriptionResponseV2) GetPlanID() *string {
 	return s.PlanID
 }
 
+func (s *SubscriptionResponseV2) GetPlanPricesOutOfSync() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.PlanPricesOutOfSync
+}
+
 func (s *SubscriptionResponseV2) GetProrationBehavior() *ProrationBehavior {
 	if s == nil {
 		return nil
@@ -435,6 +450,13 @@ func (s *SubscriptionResponseV2) GetSubscriptionType() *SubscriptionType {
 		return nil
 	}
 	return s.SubscriptionType
+}
+
+func (s *SubscriptionResponseV2) GetSyncedPriceSequence() *int64 {
+	if s == nil {
+		return nil
+	}
+	return s.SyncedPriceSequence
 }
 
 func (s *SubscriptionResponseV2) GetTenantID() *string {

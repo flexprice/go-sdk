@@ -23,3 +23,4 @@ value := types.InvoiceBillingReasonSubscriptionCreate
 | `InvoiceBillingReasonProration`              | PRORATION                                    |
 | `InvoiceBillingReasonManual`                 | MANUAL                                       |
 | `InvoiceBillingReasonAutoInvoiceThreshold`   | AUTO_INVOICE_THRESHOLD                       |
+| `InvoiceBillingReasonWalletAutoTopup`        | WALLET_AUTO_TOPUP                            |

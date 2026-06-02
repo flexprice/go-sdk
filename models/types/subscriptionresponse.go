@@ -91,7 +91,11 @@ type SubscriptionResponse struct {
 	Status             *Status             `json:"status,omitzero"`
 	SubscriptionStatus *SubscriptionStatus `json:"subscription_status,omitzero"`
 	SubscriptionType   *SubscriptionType   `json:"subscription_type,omitzero"`
-	TenantID           *string             `json:"tenant_id,omitzero"`
+	// SyncedPriceSequence is the plan-price sequence up to which this
+	// subscription's line items have been reconciled. Bumped by the
+	// plan-price sync after a successful pass.
+	SyncedPriceSequence *int64  `json:"synced_price_sequence,omitzero"`
+	TenantID            *string `json:"tenant_id,omitzero"`
 	// TrialEnd is the end date of the trial period
 	TrialEnd *time.Time `json:"trial_end,omitzero"`
 	// TrialStart is the start date of the trial period
@@ -440,6 +444,13 @@ func (s *SubscriptionResponse) GetSubscriptionType() *SubscriptionType {
 		return nil
 	}
 	return s.SubscriptionType
+}
+
+func (s *SubscriptionResponse) GetSyncedPriceSequence() *int64 {
+	if s == nil {
+		return nil
+	}
+	return s.SyncedPriceSequence
 }
 
 func (s *SubscriptionResponse) GetTenantID() *string {

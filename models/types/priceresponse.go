@@ -67,6 +67,11 @@ type PriceResponse struct {
 	PriceUnitTiers []PricePriceTier   `json:"price_unit_tiers,omitzero"`
 	PriceUnitType  *PriceUnitType     `json:"price_unit_type,omitzero"`
 	PricingUnit    *PriceUnitResponse `json:"pricing_unit,omitzero"`
+	// Sequence is the monotonic stamp bumped on every state change that
+	// subscription line items need to react to. Read by the plan-price sync;
+	// set by the database (DEFAULT nextval) on create and by the price
+	// repository on termination / compatibility-affecting edits.
+	Sequence *int64 `json:"sequence,omitzero"`
 	// StartDate is the start date of the price
 	StartDate         *time.Time                   `json:"start_date,omitzero"`
 	Status            *Status                      `json:"status,omitzero"`
@@ -336,6 +341,13 @@ func (p *PriceResponse) GetPricingUnit() *PriceUnitResponse {
 		return nil
 	}
 	return p.PricingUnit
+}
+
+func (p *PriceResponse) GetSequence() *int64 {
+	if p == nil {
+		return nil
+	}
+	return p.Sequence
 }
 
 func (p *PriceResponse) GetStartDate() *time.Time {

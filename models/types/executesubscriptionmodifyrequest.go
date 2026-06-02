@@ -10,6 +10,7 @@ type ExecuteSubscriptionModifyRequest struct {
 	GroupedInvoicingParams *SubModifyGroupedInvoicingParams `json:"grouped_invoicing_params,omitzero"`
 	InheritanceParams      *SubModifyInheritanceRequest     `json:"inheritance_params,omitzero"`
 	QuantityChangeParams   *SubModifyQuantityChangeRequest  `json:"quantity_change_params,omitzero"`
+	TrialEndParams         *SubModifyTrialEndRequest        `json:"trial_end_params,omitzero"`
 	Type                   SubscriptionModifyType           `json:"type"`
 }
 
@@ -43,6 +44,13 @@ func (e *ExecuteSubscriptionModifyRequest) GetQuantityChangeParams() *SubModifyQ
 		return nil
 	}
 	return e.QuantityChangeParams
+}
+
+func (e *ExecuteSubscriptionModifyRequest) GetTrialEndParams() *SubModifyTrialEndRequest {
+	if e == nil {
+		return nil
+	}
+	return e.TrialEndParams
 }
 
 func (e *ExecuteSubscriptionModifyRequest) GetType() SubscriptionModifyType {

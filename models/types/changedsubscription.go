@@ -4,13 +4,16 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type ChangedSubscription struct {
 	// created | updated
-	Action *ChangedSubscriptionAction `json:"action,omitzero"`
-	ID     *string                    `json:"id,omitzero"`
-	Status *SubscriptionStatus        `json:"status,omitzero"`
+	Action           *ChangedSubscriptionAction `json:"action,omitzero"`
+	CurrentPeriodEnd *time.Time                 `json:"current_period_end,omitzero"`
+	ID               *string                    `json:"id,omitzero"`
+	Status           *SubscriptionStatus        `json:"status,omitzero"`
+	TrialEnd         *time.Time                 `json:"trial_end,omitzero"`
 }
 
 func (c ChangedSubscription) MarshalJSON() ([]byte, error) {
@@ -31,6 +34,13 @@ func (c *ChangedSubscription) GetAction() *ChangedSubscriptionAction {
 	return c.Action
 }
 
+func (c *ChangedSubscription) GetCurrentPeriodEnd() *time.Time {
+	if c == nil {
+		return nil
+	}
+	return c.CurrentPeriodEnd
+}
+
 func (c *ChangedSubscription) GetID() *string {
 	if c == nil {
 		return nil
@@ -43,4 +53,11 @@ func (c *ChangedSubscription) GetStatus() *SubscriptionStatus {
 		return nil
 	}
 	return c.Status
+}
+
+func (c *ChangedSubscription) GetTrialEnd() *time.Time {
+	if c == nil {
+		return nil
+	}
+	return c.TrialEnd
 }

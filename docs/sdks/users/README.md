@@ -6,6 +6,7 @@
 
 * [CreateUser](#createuser) - Create user or service account
 * [GetUserInfo](#getuserinfo) - Get current user
+* [UpdateUser](#updateuser) - Update current user
 * [QueryUser](#queryuser) - Query users
 
 ## CreateUser
@@ -113,6 +114,60 @@ func main() {
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 401                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## UpdateUser
+
+Update the current authenticated user. Only metadata updates are supported.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="updateUser" method="put" path="/users/me" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Users.UpdateUser(ctx, types.UpdateUserRequest{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.UpdateUserResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
+| `request`                                                          | [types.UpdateUserRequest](../../models/types/updateuserrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
+| `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
+
+### Response
+
+**[*dtos.UpdateUserResponse](../../models/dtos/updateuserresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 
