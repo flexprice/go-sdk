@@ -22,3 +22,4 @@ custom := types.FailurePointType("custom_value")
 | `FailurePointTypeMeterLookup`                | meter_lookup                                 |
 | `FailurePointTypePriceLookup`                | price_lookup                                 |
 | `FailurePointTypeSubscriptionLineItemLookup` | subscription_line_item_lookup                |
+| `FailurePointTypeAttributedToCustomer`       | attributed_to_customer                       |

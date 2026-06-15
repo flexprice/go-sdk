@@ -37,6 +37,7 @@ func (e *PriceFilterOrder) UnmarshalJSON(data []byte) error {
 
 type PriceFilter struct {
 	AllowExpiredPrices *bool            `default:"false" json:"allow_expired_prices"`
+	BillingPeriods     []BillingPeriod  `json:"billing_periods,omitzero"`
 	EndTime            *time.Time       `json:"end_time,omitzero"`
 	EntityIds          []string         `json:"entity_ids,omitzero"`
 	EntityType         *PriceEntityType `json:"entity_type,omitzero"`
@@ -74,6 +75,13 @@ func (p *PriceFilter) GetAllowExpiredPrices() *bool {
 		return nil
 	}
 	return p.AllowExpiredPrices
+}
+
+func (p *PriceFilter) GetBillingPeriods() []BillingPeriod {
+	if p == nil {
+		return nil
+	}
+	return p.BillingPeriods
 }
 
 func (p *PriceFilter) GetEndTime() *time.Time {

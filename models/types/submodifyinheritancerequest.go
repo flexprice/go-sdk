@@ -7,7 +7,11 @@ import (
 )
 
 type SubModifyInheritanceRequest struct {
+	Action *InheritanceAction `json:"action,omitzero"`
+	// ExternalCustomerIDsToInheritSubscription is used for action="add".
 	ExternalCustomerIdsToInheritSubscription []string `json:"external_customer_ids_to_inherit_subscription,omitzero"`
+	// ExternalCustomerIDsToRemove is used for action="remove".
+	ExternalCustomerIdsToRemove []string `json:"external_customer_ids_to_remove,omitzero"`
 }
 
 func (s SubModifyInheritanceRequest) MarshalJSON() ([]byte, error) {
@@ -21,9 +25,23 @@ func (s *SubModifyInheritanceRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (s *SubModifyInheritanceRequest) GetAction() *InheritanceAction {
+	if s == nil {
+		return nil
+	}
+	return s.Action
+}
+
 func (s *SubModifyInheritanceRequest) GetExternalCustomerIdsToInheritSubscription() []string {
 	if s == nil {
 		return nil
 	}
 	return s.ExternalCustomerIdsToInheritSubscription
+}
+
+func (s *SubModifyInheritanceRequest) GetExternalCustomerIdsToRemove() []string {
+	if s == nil {
+		return nil
+	}
+	return s.ExternalCustomerIdsToRemove
 }

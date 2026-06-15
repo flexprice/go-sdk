@@ -9,6 +9,7 @@ const (
 	FailurePointTypeMeterLookup                FailurePointType = "meter_lookup"
 	FailurePointTypePriceLookup                FailurePointType = "price_lookup"
 	FailurePointTypeSubscriptionLineItemLookup FailurePointType = "subscription_line_item_lookup"
+	FailurePointTypeAttributedToCustomer       FailurePointType = "attributed_to_customer"
 )
 
 func (e FailurePointType) ToPointer() *FailurePointType {
@@ -19,7 +20,7 @@ func (e FailurePointType) ToPointer() *FailurePointType {
 func (e *FailurePointType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "customer_lookup", "meter_lookup", "price_lookup", "subscription_line_item_lookup":
+		case "customer_lookup", "meter_lookup", "price_lookup", "subscription_line_item_lookup", "attributed_to_customer":
 			return true
 		}
 	}

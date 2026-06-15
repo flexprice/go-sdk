@@ -9,6 +9,7 @@ import (
 type CreateCouponRequest struct {
 	AmountOff         *string           `json:"amount_off,omitzero"`
 	Cadence           CouponCadence     `json:"cadence"`
+	CouponCode        *string           `json:"coupon_code,omitzero"`
 	Currency          *string           `json:"currency,omitzero"`
 	DurationInPeriods *int64            `json:"duration_in_periods,omitzero"`
 	MaxRedemptions    *int64            `json:"max_redemptions,omitzero"`
@@ -44,6 +45,13 @@ func (c *CreateCouponRequest) GetCadence() CouponCadence {
 		return CouponCadence("")
 	}
 	return c.Cadence
+}
+
+func (c *CreateCouponRequest) GetCouponCode() *string {
+	if c == nil {
+		return nil
+	}
+	return c.CouponCode
 }
 
 func (c *CreateCouponRequest) GetCurrency() *string {

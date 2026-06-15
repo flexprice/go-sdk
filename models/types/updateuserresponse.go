@@ -11,6 +11,7 @@ type UpdateUserResponse struct {
 	Email    *string           `json:"email,omitzero"`
 	ID       *string           `json:"id,omitzero"`
 	Metadata map[string]string `json:"metadata,omitzero"`
+	Name     *string           `json:"name,omitzero"`
 	Roles    []string          `json:"roles,omitzero"`
 	Tenant   *TenantResponse   `json:"tenant,omitzero"`
 	Type     *UserType         `json:"type,omitzero"`
@@ -46,6 +47,13 @@ func (u *UpdateUserResponse) GetMetadata() map[string]string {
 		return nil
 	}
 	return u.Metadata
+}
+
+func (u *UpdateUserResponse) GetName() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Name
 }
 
 func (u *UpdateUserResponse) GetRoles() []string {

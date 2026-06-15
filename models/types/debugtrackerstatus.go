@@ -9,6 +9,8 @@ const (
 	DebugTrackerStatusNotFound    DebugTrackerStatus = "not_found"
 	DebugTrackerStatusFound       DebugTrackerStatus = "found"
 	DebugTrackerStatusError       DebugTrackerStatus = "error"
+	DebugTrackerStatusProcessing  DebugTrackerStatus = "processing"
+	DebugTrackerStatusAttributed  DebugTrackerStatus = "attributed"
 )
 
 func (e DebugTrackerStatus) ToPointer() *DebugTrackerStatus {
@@ -19,7 +21,7 @@ func (e DebugTrackerStatus) ToPointer() *DebugTrackerStatus {
 func (e *DebugTrackerStatus) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "unprocessed", "not_found", "found", "error":
+		case "unprocessed", "not_found", "found", "error", "processing", "attributed":
 			return true
 		}
 	}

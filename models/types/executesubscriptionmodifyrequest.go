@@ -7,9 +7,11 @@ import (
 )
 
 type ExecuteSubscriptionModifyRequest struct {
+	CouponParams           *SubModifyCouponParams           `json:"coupon_params,omitzero"`
 	GroupedInvoicingParams *SubModifyGroupedInvoicingParams `json:"grouped_invoicing_params,omitzero"`
 	InheritanceParams      *SubModifyInheritanceRequest     `json:"inheritance_params,omitzero"`
 	QuantityChangeParams   *SubModifyQuantityChangeRequest  `json:"quantity_change_params,omitzero"`
+	TaxParams              *SubModifyTaxParams              `json:"tax_params,omitzero"`
 	TrialEndParams         *SubModifyTrialEndRequest        `json:"trial_end_params,omitzero"`
 	Type                   SubscriptionModifyType           `json:"type"`
 }
@@ -23,6 +25,13 @@ func (e *ExecuteSubscriptionModifyRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (e *ExecuteSubscriptionModifyRequest) GetCouponParams() *SubModifyCouponParams {
+	if e == nil {
+		return nil
+	}
+	return e.CouponParams
 }
 
 func (e *ExecuteSubscriptionModifyRequest) GetGroupedInvoicingParams() *SubModifyGroupedInvoicingParams {
@@ -44,6 +53,13 @@ func (e *ExecuteSubscriptionModifyRequest) GetQuantityChangeParams() *SubModifyQ
 		return nil
 	}
 	return e.QuantityChangeParams
+}
+
+func (e *ExecuteSubscriptionModifyRequest) GetTaxParams() *SubModifyTaxParams {
+	if e == nil {
+		return nil
+	}
+	return e.TaxParams
 }
 
 func (e *ExecuteSubscriptionModifyRequest) GetTrialEndParams() *SubModifyTrialEndRequest {

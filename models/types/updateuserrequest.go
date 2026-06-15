@@ -8,6 +8,7 @@ import (
 
 type UpdateUserRequest struct {
 	Metadata map[string]string `json:"metadata,omitzero"`
+	Name     *string           `json:"name,omitzero"`
 }
 
 func (u UpdateUserRequest) MarshalJSON() ([]byte, error) {
@@ -26,4 +27,11 @@ func (u *UpdateUserRequest) GetMetadata() map[string]string {
 		return nil
 	}
 	return u.Metadata
+}
+
+func (u *UpdateUserRequest) GetName() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Name
 }

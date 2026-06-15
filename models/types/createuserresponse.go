@@ -11,6 +11,7 @@ type CreateUserResponse struct {
 	Email    *string           `json:"email,omitzero"`
 	ID       *string           `json:"id,omitzero"`
 	Metadata map[string]string `json:"metadata,omitzero"`
+	Name     *string           `json:"name,omitzero"`
 	Password *string           `json:"password,omitzero"`
 	Roles    []string          `json:"roles,omitzero"`
 	Tenant   *TenantResponse   `json:"tenant,omitzero"`
@@ -47,6 +48,13 @@ func (c *CreateUserResponse) GetMetadata() map[string]string {
 		return nil
 	}
 	return c.Metadata
+}
+
+func (c *CreateUserResponse) GetName() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Name
 }
 
 func (c *CreateUserResponse) GetPassword() *string {

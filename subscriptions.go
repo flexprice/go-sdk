@@ -4811,7 +4811,7 @@ func (s *Subscriptions) CreateSubscriptionLineItem(ctx context.Context, id strin
 }
 
 // ExecuteSubscriptionModify - Execute subscription modification
-// Execute a mid-cycle subscription modification (inheritance or quantity change).
+// Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, or tax).
 func (s *Subscriptions) ExecuteSubscriptionModify(ctx context.Context, id string, body types.ExecuteSubscriptionModifyRequest, opts ...dtos.Option) (*dtos.ExecuteSubscriptionModifyResponse, error) {
 	request := dtos.ExecuteSubscriptionModifyRequest{
 		ID:   id,
@@ -5081,7 +5081,7 @@ func (s *Subscriptions) ExecuteSubscriptionModify(ctx context.Context, id string
 }
 
 // PreviewSubscriptionModify - Preview subscription modification
-// Preview the impact of a mid-cycle subscription modification without committing changes.
+// Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, or tax) without committing changes.
 func (s *Subscriptions) PreviewSubscriptionModify(ctx context.Context, id string, body types.ExecuteSubscriptionModifyRequest, opts ...dtos.Option) (*dtos.PreviewSubscriptionModifyResponse, error) {
 	request := dtos.PreviewSubscriptionModifyRequest{
 		ID:   id,

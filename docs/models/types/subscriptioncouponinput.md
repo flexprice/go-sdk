@@ -1,0 +1,11 @@
+# SubscriptionCouponInput
+
+
+## Fields
+
+| Field                                                                            | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `CouponCode`                                                                     | `string`                                                                         | :heavy_check_mark:                                                               | CouponCode is the coupon's human-readable code (case-insensitive). Required.     |
+| `EndDate`                                                                        | [*time.Time](https://pkg.go.dev/time#Time)                                       | :heavy_minus_sign:                                                               | EndDate is when the coupon ends; overrides duration_in_periods calculation.      |
+| `PriceID`                                                                        | `*string`                                                                        | :heavy_minus_sign:                                                               | PriceID is the price ID of the line item to target; omit for subscription-level. |
+| `StartDate`                                                                      | [*time.Time](https://pkg.go.dev/time#Time)                                       | :heavy_minus_sign:                                                               | StartDate is when the coupon starts; defaults to subscription/phase StartDate.   |

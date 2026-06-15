@@ -9,6 +9,8 @@ import (
 type CreateUserRequest struct {
 	// Required when type is "user"
 	Email *string `json:"email,omitzero"`
+	// Display name; optional for service accounts
+	Name *string `json:"name,omitzero"`
 	// Required when type is "service_account"
 	Roles []string `json:"roles,omitzero"`
 	Type  UserType `json:"type"`
@@ -30,6 +32,13 @@ func (c *CreateUserRequest) GetEmail() *string {
 		return nil
 	}
 	return c.Email
+}
+
+func (c *CreateUserRequest) GetName() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Name
 }
 
 func (c *CreateUserRequest) GetRoles() []string {

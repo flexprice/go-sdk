@@ -8,7 +8,12 @@ import (
 )
 
 type GetUsageAnalyticsRequest struct {
-	EndTime *time.Time `json:"end_time,omitzero"`
+	// BreakdownBucket when true augments each time-series point with BucketID/PriceID
+	// and appends a BucketSummaries rollup to each item. Requires WindowSize to be set
+	// and the item to be linked to a subscription line item that has CommitmentTimeBuckets.
+	// Default: false (opt-in, backward compatible).
+	BreakdownBucket *bool      `json:"breakdown_bucket,omitzero"`
+	EndTime         *time.Time `json:"end_time,omitzero"`
 	// allowed values: "price", "meter", "feature", "subscription_line_item","plan","addon"
 	Expand []string `json:"expand,omitzero"`
 	// ExternalCustomerID is the single external customer ID.
@@ -36,6 +41,13 @@ func (g *GetUsageAnalyticsRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (g *GetUsageAnalyticsRequest) GetBreakdownBucket() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.BreakdownBucket
 }
 
 func (g *GetUsageAnalyticsRequest) GetEndTime() *time.Time {

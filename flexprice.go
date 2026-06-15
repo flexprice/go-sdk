@@ -2,7 +2,7 @@
 
 package flexprice
 
-// Generated from OpenAPI doc version 1.0 and generator version 2.893.0
+// Generated from OpenAPI doc version 1.0 and generator version 2.904.2
 
 import (
 	"context"
@@ -52,37 +52,38 @@ func Pointer[T any](v T) *T { return &v }
 
 // Flexprice API: Flexprice API Service
 type Flexprice struct {
-	SDKVersion      string
-	Addons          *Addons
-	Entitlements    *Entitlements
-	Alerts          *Alerts
-	Costs           *Costs
-	Coupons         *Coupons
-	CreditGrants    *CreditGrants
-	CreditNotes     *CreditNotes
-	Customers       *Customers
-	Wallets         *Wallets
-	Invoices        *Invoices
-	Environments    *Environments
-	Events          *Events
-	Features        *Features
-	Groups          *Groups
-	Integrations    *Integrations
-	Payments        *Payments
-	Plans           *Plans
-	Prices          *Prices
-	PriceUnits      *PriceUnits
-	Rbac            *Rbac
-	Secrets         *Secrets
-	Subscriptions   *Subscriptions
-	Tasks           *Tasks
-	ScheduledTasks  *ScheduledTasks
-	TaxAssociations *TaxAssociations
-	TaxRates        *TaxRates
-	Tenants         *Tenants
-	Users           *Users
-	WebhookEvents   *WebhookEvents
-	Workflows       *Workflows
+	SDKVersion         string
+	Addons             *Addons
+	Entitlements       *Entitlements
+	Alerts             *Alerts
+	Costs              *Costs
+	Coupons            *Coupons
+	CouponAssociations *CouponAssociations
+	CreditGrants       *CreditGrants
+	CreditNotes        *CreditNotes
+	Customers          *Customers
+	Wallets            *Wallets
+	Invoices           *Invoices
+	Environments       *Environments
+	Events             *Events
+	Features           *Features
+	Groups             *Groups
+	Integrations       *Integrations
+	Payments           *Payments
+	Plans              *Plans
+	Prices             *Prices
+	PriceUnits         *PriceUnits
+	Rbac               *Rbac
+	Secrets            *Secrets
+	Subscriptions      *Subscriptions
+	Tasks              *Tasks
+	ScheduledTasks     *ScheduledTasks
+	TaxAssociations    *TaxAssociations
+	TaxRates           *TaxRates
+	Tenants            *Tenants
+	Users              *Users
+	WebhookEvents      *WebhookEvents
+	Workflows          *Workflows
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -159,9 +160,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.17",
+		SDKVersion: "2.1.18",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 2.1.17 2.893.0 1.0 github.com/flexprice/go-sdk/v2",
+			UserAgent:  "speakeasy-sdk/go 2.1.18 2.904.2 1.0 github.com/flexprice/go-sdk/v2",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -182,6 +183,7 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.Alerts = newAlerts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Costs = newCosts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Coupons = newCoupons(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CouponAssociations = newCouponAssociations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CreditGrants = newCreditGrants(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CreditNotes = newCreditNotes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Customers = newCustomers(sdk, sdk.sdkConfiguration, sdk.hooks)

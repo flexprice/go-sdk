@@ -8,10 +8,10 @@ import (
 )
 
 type SubscriptionPhaseCreateRequest struct {
-	// Coupons represents subscription-level coupons to be applied to this phase
+	// Deprecated: use SubscriptionCoupons instead.
 	Coupons []string   `json:"coupons,omitzero"`
 	EndDate *time.Time `json:"end_date,omitzero"`
-	// LineItemCoupons represents line item-level coupons (map of line_item_id to coupon IDs)
+	// Deprecated: use SubscriptionCoupons instead.
 	LineItemCoupons map[string][]string `json:"line_item_coupons,omitzero"`
 	// LineItems are extra line items to add during this phase, primarily one-time charges.
 	// Each item's start_date defaults to the phase's start_date when not provided.
@@ -21,6 +21,8 @@ type SubscriptionPhaseCreateRequest struct {
 	// If not provided, phase will use the same line items as the subscription (plan prices)
 	OverrideLineItems []OverrideLineItemRequest `json:"override_line_items,omitzero"`
 	StartDate         time.Time                 `json:"start_date"`
+	// SubscriptionCoupons is the preferred way to attach coupons to this phase.
+	SubscriptionCoupons []SubscriptionCouponInput `json:"subscription_coupons,omitzero"`
 }
 
 func (s SubscriptionPhaseCreateRequest) MarshalJSON() ([]byte, error) {
@@ -81,4 +83,11 @@ func (s *SubscriptionPhaseCreateRequest) GetStartDate() time.Time {
 		return time.Time{}
 	}
 	return s.StartDate
+}
+
+func (s *SubscriptionPhaseCreateRequest) GetSubscriptionCoupons() []SubscriptionCouponInput {
+	if s == nil {
+		return nil
+	}
+	return s.SubscriptionCoupons
 }

@@ -10,8 +10,11 @@ type UsageAnalyticItem struct {
 	AddOnID         *string          `json:"add_on_id,omitzero"`
 	Addon           *Addon           `json:"addon,omitzero"`
 	AggregationType *AggregationType `json:"aggregation_type,omitzero"`
-	CommitmentInfo  *CommitmentInfo  `json:"commitment_info,omitzero"`
-	Currency        *string          `json:"currency,omitzero"`
+	// BucketSummaries is populated only when BreakdownBucket=true. Contains one
+	// entry per defined CommitmentTimeBucket plus one for out-of-bucket usage.
+	BucketSummaries []BucketSummary `json:"bucket_summaries,omitzero"`
+	CommitmentInfo  *CommitmentInfo `json:"commitment_info,omitzero"`
+	Currency        *string         `json:"currency,omitzero"`
 	// Number of events that contributed to this aggregation
 	EventCount *int64      `json:"event_count,omitzero"`
 	EventName  *string     `json:"event_name,omitzero"`
@@ -78,6 +81,13 @@ func (u *UsageAnalyticItem) GetAggregationType() *AggregationType {
 		return nil
 	}
 	return u.AggregationType
+}
+
+func (u *UsageAnalyticItem) GetBucketSummaries() []BucketSummary {
+	if u == nil {
+		return nil
+	}
+	return u.BucketSummaries
 }
 
 func (u *UsageAnalyticItem) GetCommitmentInfo() *CommitmentInfo {

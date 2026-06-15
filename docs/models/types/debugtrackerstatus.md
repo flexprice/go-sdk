@@ -22,3 +22,5 @@ custom := types.DebugTrackerStatus("custom_value")
 | `DebugTrackerStatusNotFound`    | not_found                       |
 | `DebugTrackerStatusFound`       | found                           |
 | `DebugTrackerStatusError`       | error                           |
+| `DebugTrackerStatusProcessing`  | processing                      |
+| `DebugTrackerStatusAttributed`  | attributed                      |

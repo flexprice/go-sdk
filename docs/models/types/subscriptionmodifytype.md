@@ -19,3 +19,5 @@ value := types.SubscriptionModifyTypeInheritance
 | `SubscriptionModifyTypeQuantityChange`   | quantity_change                          |
 | `SubscriptionModifyTypeGroupedInvoicing` | grouped_invoicing                        |
 | `SubscriptionModifyTypeTrialEnd`         | trial_end                                |
+| `SubscriptionModifyTypeCoupon`           | coupon                                   |
+| `SubscriptionModifyTypeTax`              | tax                                      |

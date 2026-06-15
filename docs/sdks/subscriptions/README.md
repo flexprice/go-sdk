@@ -1041,7 +1041,7 @@ func main() {
 
 ## ExecuteSubscriptionModify
 
-Execute a mid-cycle subscription modification (inheritance or quantity change).
+Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, or tax).
 
 ### Example Usage
 
@@ -1098,7 +1098,7 @@ func main() {
 
 ## PreviewSubscriptionModify
 
-Preview the impact of a mid-cycle subscription modification without committing changes.
+Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, or tax) without committing changes.
 
 ### Example Usage
 
@@ -1121,7 +1121,7 @@ func main() {
     )
 
     res, err := s.Subscriptions.PreviewSubscriptionModify(ctx, "<id>", types.ExecuteSubscriptionModifyRequest{
-        Type: types.SubscriptionModifyTypeTrialEnd,
+        Type: types.SubscriptionModifyTypeCoupon,
     })
     if err != nil {
         log.Fatal(err)

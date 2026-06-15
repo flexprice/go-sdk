@@ -4,17 +4,22 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type CreateTaxAssociationRequest struct {
-	AutoApply          *bool              `json:"auto_apply,omitzero"`
-	Currency           *string            `json:"currency,omitzero"`
+	AutoApply *bool   `json:"auto_apply,omitzero"`
+	Currency  *string `json:"currency,omitzero"`
+	// EndDate sets when this association expires. Must be after StartDate when both are provided.
+	EndDate            *time.Time         `json:"end_date,omitzero"`
 	EntityID           *string            `json:"entity_id,omitzero"`
 	EntityType         *TaxRateEntityType `json:"entity_type,omitzero"`
 	ExternalCustomerID *string            `json:"external_customer_id,omitzero"`
 	Metadata           map[string]string  `json:"metadata,omitzero"`
 	Priority           *int64             `json:"priority,omitzero"`
-	TaxRateCode        string             `json:"tax_rate_code"`
+	// StartDate sets when this association becomes active. Defaults to now if omitted.
+	StartDate   *time.Time `json:"start_date,omitzero"`
+	TaxRateCode string     `json:"tax_rate_code"`
 }
 
 func (c CreateTaxAssociationRequest) MarshalJSON() ([]byte, error) {
@@ -40,6 +45,13 @@ func (c *CreateTaxAssociationRequest) GetCurrency() *string {
 		return nil
 	}
 	return c.Currency
+}
+
+func (c *CreateTaxAssociationRequest) GetEndDate() *time.Time {
+	if c == nil {
+		return nil
+	}
+	return c.EndDate
 }
 
 func (c *CreateTaxAssociationRequest) GetEntityID() *string {
@@ -75,6 +87,13 @@ func (c *CreateTaxAssociationRequest) GetPriority() *int64 {
 		return nil
 	}
 	return c.Priority
+}
+
+func (c *CreateTaxAssociationRequest) GetStartDate() *time.Time {
+	if c == nil {
+		return nil
+	}
+	return c.StartDate
 }
 
 func (c *CreateTaxAssociationRequest) GetTaxRateCode() string {

@@ -28,7 +28,8 @@ type CreateSubscriptionRequest struct {
 	// CommitmentAmount is the minimum amount a customer commits to paying for a billing period
 	CommitmentAmount   *string        `json:"commitment_amount,omitzero"`
 	CommitmentDuration *BillingPeriod `json:"commitment_duration,omitzero"`
-	Coupons            []string       `json:"coupons,omitzero"`
+	// Deprecated: use SubscriptionCoupons instead.
+	Coupons []string `json:"coupons,omitzero"`
 	// Credit grants to be applied when subscription is created
 	CreditGrants []CreateCreditGrantRequest `json:"credit_grants,omitzero"`
 	Currency     string                     `json:"currency"`
@@ -48,7 +49,8 @@ type CreateSubscriptionRequest struct {
 	Inheritance            *SubscriptionInheritanceConfig `json:"inheritance,omitzero"`
 	// LineItemCommitments allows setting commitment configuration per line item (keyed by price_id)
 	LineItemCommitments map[string]LineItemCommitmentConfig `json:"line_item_commitments,omitzero"`
-	LineItemCoupons     map[string][]string                 `json:"line_item_coupons,omitzero"`
+	// Deprecated: use SubscriptionCoupons instead.
+	LineItemCoupons map[string][]string `json:"line_item_coupons,omitzero"`
 	// LineItems are extra line items to add at creation (each with price_id or price), in addition to plan prices
 	LineItems []CreateSubscriptionLineItemRequest `json:"line_items,omitzero"`
 	LookupKey *string                             `json:"lookup_key,omitzero"`
@@ -62,11 +64,14 @@ type CreateSubscriptionRequest struct {
 	PaymentBehavior   *PaymentBehavior          `json:"payment_behavior,omitzero"`
 	PaymentTerms      *PaymentTerms             `json:"payment_terms,omitzero"`
 	// Phases represents subscription phases to be created with the subscription
-	Phases             []SubscriptionPhaseCreateRequest `json:"phases,omitzero"`
-	PlanID             string                           `json:"plan_id"`
-	ProrationBehavior  *ProrationBehavior               `json:"proration_behavior,omitzero"`
-	StartDate          *time.Time                       `json:"start_date,omitzero"`
-	SubscriptionStatus *SubscriptionStatus              `json:"subscription_status,omitzero"`
+	Phases            []SubscriptionPhaseCreateRequest `json:"phases,omitzero"`
+	PlanID            string                           `json:"plan_id"`
+	ProrationBehavior *ProrationBehavior               `json:"proration_behavior,omitzero"`
+	StartDate         *time.Time                       `json:"start_date,omitzero"`
+	// SubscriptionCoupons is the preferred way to attach coupons at creation.
+	// Accepts coupon_code; optionally targets a line item via price_id.
+	SubscriptionCoupons []SubscriptionCouponInput `json:"subscription_coupons,omitzero"`
+	SubscriptionStatus  *SubscriptionStatus       `json:"subscription_status,omitzero"`
 	// tax_rate_overrides is the tax rate overrides	to be applied to the subscription
 	TaxRateOverrides []TaxRateOverride `json:"tax_rate_overrides,omitzero"`
 	// TrialPeriodDays: nil = inherit trial length from plan recurring-fixed prices (must be uniform).
@@ -314,6 +319,13 @@ func (c *CreateSubscriptionRequest) GetStartDate() *time.Time {
 		return nil
 	}
 	return c.StartDate
+}
+
+func (c *CreateSubscriptionRequest) GetSubscriptionCoupons() []SubscriptionCouponInput {
+	if c == nil {
+		return nil
+	}
+	return c.SubscriptionCoupons
 }
 
 func (c *CreateSubscriptionRequest) GetSubscriptionStatus() *SubscriptionStatus {

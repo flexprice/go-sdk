@@ -7,6 +7,7 @@ import (
 )
 
 type DebugTracker struct {
+	AttributedToCustomer       *AttributedToCustomerResult       `json:"attributed_to_customer,omitzero"`
 	CustomerLookup             *CustomerLookupResult             `json:"customer_lookup,omitzero"`
 	FailurePoint               *FailurePoint                     `json:"failure_point,omitzero"`
 	MeterMatching              *MeterMatchingResult              `json:"meter_matching,omitzero"`
@@ -23,6 +24,13 @@ func (d *DebugTracker) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (d *DebugTracker) GetAttributedToCustomer() *AttributedToCustomerResult {
+	if d == nil {
+		return nil
+	}
+	return d.AttributedToCustomer
 }
 
 func (d *DebugTracker) GetCustomerLookup() *CustomerLookupResult {

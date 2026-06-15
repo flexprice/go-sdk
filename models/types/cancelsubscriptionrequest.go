@@ -8,6 +8,10 @@ import (
 )
 
 type CancelSubscriptionRequest struct {
+	// CancelAt is the exact date/time when the subscription should be cancelled.
+	// Required for cancellation_type "scheduled_date"; optional for "immediate" (past dates only — backdated cancellation).
+	// For "scheduled_date", accepts both future dates (deferred cancellation) and past dates (backdated cancellation).
+	// For "immediate", accepts past/current dates only; use "scheduled_date" for future dates.
 	CancelAt                       *time.Time                      `json:"cancel_at,omitzero"`
 	CancelImmediatelyInovicePolicy *CancelImmediatelyInvoicePolicy `json:"cancel_immediately_inovice_policy,omitzero"`
 	CancellationType               CancellationType                `json:"cancellation_type"`

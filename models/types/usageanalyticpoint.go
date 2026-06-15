@@ -7,6 +7,10 @@ import (
 )
 
 type UsageAnalyticPoint struct {
+	// Bucket identity (only populated when BreakdownBucket=true and the line item
+	// has CommitmentTimeBuckets). Empty strings indicate out-of-bucket windows.
+	BucketID      *string `json:"bucket_id,omitzero"`
+	BucketPriceID *string `json:"bucket_price_id,omitzero"`
 	// Commitment breakdown (only populated for windowed commitments)
 	ComputedCommitmentUtilizedAmount *string `json:"computed_commitment_utilized_amount,omitzero"`
 	ComputedOverageAmount            *string `json:"computed_overage_amount,omitzero"`
@@ -27,6 +31,20 @@ func (u *UsageAnalyticPoint) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (u *UsageAnalyticPoint) GetBucketID() *string {
+	if u == nil {
+		return nil
+	}
+	return u.BucketID
+}
+
+func (u *UsageAnalyticPoint) GetBucketPriceID() *string {
+	if u == nil {
+		return nil
+	}
+	return u.BucketPriceID
 }
 
 func (u *UsageAnalyticPoint) GetComputedCommitmentUtilizedAmount() *string {

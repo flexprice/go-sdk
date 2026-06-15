@@ -17,6 +17,7 @@ type SubscriptionSubscriptionLineItem struct {
 	CommitmentDuration      *BillingPeriod                  `json:"commitment_duration,omitzero"`
 	CommitmentOverageFactor *string                         `json:"commitment_overage_factor,omitzero"`
 	CommitmentQuantity      *string                         `json:"commitment_quantity,omitzero"`
+	CommitmentTimeBuckets   []TimeOfDayBucket               `json:"commitment_time_buckets,omitzero"`
 	CommitmentTrueUpEnabled *bool                           `json:"commitment_true_up_enabled,omitzero"`
 	CommitmentType          *CommitmentType                 `json:"commitment_type,omitzero"`
 	CommitmentWindowed      *bool                           `json:"commitment_windowed,omitzero"`
@@ -108,6 +109,13 @@ func (s *SubscriptionSubscriptionLineItem) GetCommitmentQuantity() *string {
 		return nil
 	}
 	return s.CommitmentQuantity
+}
+
+func (s *SubscriptionSubscriptionLineItem) GetCommitmentTimeBuckets() []TimeOfDayBucket {
+	if s == nil {
+		return nil
+	}
+	return s.CommitmentTimeBuckets
 }
 
 func (s *SubscriptionSubscriptionLineItem) GetCommitmentTrueUpEnabled() *bool {

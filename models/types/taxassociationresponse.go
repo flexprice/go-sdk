@@ -14,6 +14,8 @@ type TaxAssociationResponse struct {
 	CreatedBy *string    `json:"created_by,omitzero"`
 	// Currency
 	Currency *string `json:"currency,omitzero"`
+	// EndDate is the optional date until which this association is active
+	EndDate *time.Time `json:"end_date,omitzero"`
 	// ID of the entity this tax rate applies to
 	EntityID   *string            `json:"entity_id,omitzero"`
 	EntityType *TaxRateEntityType `json:"entity_type,omitzero"`
@@ -24,9 +26,11 @@ type TaxAssociationResponse struct {
 	// Metadata holds the value of the "metadata" field.
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// Priority for tax resolution (lower number = higher priority)
-	Priority *int64           `json:"priority,omitzero"`
-	Status   *Status          `json:"status,omitzero"`
-	TaxRate  *TaxRateResponse `json:"tax_rate,omitzero"`
+	Priority *int64 `json:"priority,omitzero"`
+	// StartDate is the date from which this association is active
+	StartDate *time.Time       `json:"start_date,omitzero"`
+	Status    *Status          `json:"status,omitzero"`
+	TaxRate   *TaxRateResponse `json:"tax_rate,omitzero"`
 	// Reference to the TaxRate entity
 	TaxRateID *string    `json:"tax_rate_id,omitzero"`
 	TenantID  *string    `json:"tenant_id,omitzero"`
@@ -73,6 +77,13 @@ func (t *TaxAssociationResponse) GetCurrency() *string {
 	return t.Currency
 }
 
+func (t *TaxAssociationResponse) GetEndDate() *time.Time {
+	if t == nil {
+		return nil
+	}
+	return t.EndDate
+}
+
 func (t *TaxAssociationResponse) GetEntityID() *string {
 	if t == nil {
 		return nil
@@ -113,6 +124,13 @@ func (t *TaxAssociationResponse) GetPriority() *int64 {
 		return nil
 	}
 	return t.Priority
+}
+
+func (t *TaxAssociationResponse) GetStartDate() *time.Time {
+	if t == nil {
+		return nil
+	}
+	return t.StartDate
 }
 
 func (t *TaxAssociationResponse) GetStatus() *Status {
