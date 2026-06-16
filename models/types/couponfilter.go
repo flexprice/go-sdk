@@ -35,14 +35,15 @@ func (e *CouponFilterOrder) UnmarshalJSON(data []byte) error {
 }
 
 type CouponFilter struct {
-	CouponIds []string           `json:"coupon_ids,omitzero"`
-	Expand    *string            `json:"expand,omitzero"`
-	Filters   []FilterCondition  `json:"filters,omitzero"`
-	Limit     *int64             `json:"limit,omitzero"`
-	Offset    *int64             `json:"offset,omitzero"`
-	Order     *CouponFilterOrder `json:"order,omitzero"`
-	Sort      []SortCondition    `json:"sort,omitzero"`
-	Status    *Status            `json:"status,omitzero"`
+	CouponCodes []string           `json:"coupon_codes,omitzero"`
+	CouponIds   []string           `json:"coupon_ids,omitzero"`
+	Expand      *string            `json:"expand,omitzero"`
+	Filters     []FilterCondition  `json:"filters,omitzero"`
+	Limit       *int64             `json:"limit,omitzero"`
+	Offset      *int64             `json:"offset,omitzero"`
+	Order       *CouponFilterOrder `json:"order,omitzero"`
+	Sort        []SortCondition    `json:"sort,omitzero"`
+	Status      *Status            `json:"status,omitzero"`
 }
 
 func (c CouponFilter) MarshalJSON() ([]byte, error) {
@@ -54,6 +55,13 @@ func (c *CouponFilter) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (c *CouponFilter) GetCouponCodes() []string {
+	if c == nil {
+		return nil
+	}
+	return c.CouponCodes
 }
 
 func (c *CouponFilter) GetCouponIds() []string {

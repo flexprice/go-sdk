@@ -5,6 +5,7 @@
 ### Available Operations
 
 * [CreateCoupon](#createcoupon) - Create coupon
+* [GetCouponByCode](#getcouponbycode) - Get coupon by code
 * [QueryCoupon](#querycoupon) - Query coupons
 * [GetCoupon](#getcoupon) - Get coupon
 * [UpdateCoupon](#updatecoupon) - Update coupon
@@ -65,6 +66,59 @@ func main() {
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400, 401, 403, 404   | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## GetCouponByCode
+
+Use when resolving a coupon by promo code (e.g. checkout or validation).
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getCouponByCode" method="get" path="/coupons/code/{code}" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Coupons.GetCouponByCode(ctx, "<value>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CouponResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `code`                                                | `string`                                              | :heavy_check_mark:                                    | Coupon code                                           |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.GetCouponByCodeResponse](../../models/dtos/getcouponbycoderesponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 

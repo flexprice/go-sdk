@@ -13,11 +13,9 @@ type SubModifyCouponParams struct {
 	AssociationID *string `json:"association_id,omitzero"`
 	// Required for action="add". Coupon code of the coupon to attach.
 	CouponCode *string `json:"coupon_code,omitzero"`
-	// Optional. When to apply the change; defaults to now if omitted.
-	EffectiveDate *time.Time `json:"effective_date,omitzero"`
 	// Optional. When the coupon association ends.
 	EndDate *time.Time `json:"end_date,omitzero"`
-	// Optional. When the coupon association starts; defaults to EffectiveDate.
+	// Optional. When the coupon association starts; defaults to now.
 	StartDate *time.Time `json:"start_date,omitzero"`
 	// Optional. Apply at subscription level. Mutually exclusive with SubscriptionLineItemID.
 	SubscriptionID *string `json:"subscription_id,omitzero"`
@@ -55,13 +53,6 @@ func (s *SubModifyCouponParams) GetCouponCode() *string {
 		return nil
 	}
 	return s.CouponCode
-}
-
-func (s *SubModifyCouponParams) GetEffectiveDate() *time.Time {
-	if s == nil {
-		return nil
-	}
-	return s.EffectiveDate
 }
 
 func (s *SubModifyCouponParams) GetEndDate() *time.Time {
