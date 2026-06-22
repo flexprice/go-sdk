@@ -7,10 +7,14 @@ import (
 )
 
 type UsageAnalyticPoint struct {
-	// Bucket identity (only populated when BreakdownBucket=true and the line item
-	// has CommitmentTimeBuckets). Empty strings indicate out-of-bucket windows.
-	BucketID      *string `json:"bucket_id,omitzero"`
-	BucketPriceID *string `json:"bucket_price_id,omitzero"`
+	// Buckets lists every commitment bucket this (possibly rolled-up) window
+	// overlaps — only populated when BreakdownBucket=true and the line item has
+	// CommitmentTimeBuckets. A coarse window can overlap more than one bucket, and
+	// only partially, so this is a list. Empty when the window touches no bucket.
+	// It is an informational HINT only: the point's single cost/computed_* totals
+	// mix all overlapped buckets and out-of-bucket time and CANNOT be split per
+	// bucket — read bucket_summaries for exact per-bucket cost.
+	Buckets []PointBucket `json:"buckets,omitzero"`
 	// Commitment breakdown (only populated for windowed commitments)
 	ComputedCommitmentUtilizedAmount *string `json:"computed_commitment_utilized_amount,omitzero"`
 	ComputedOverageAmount            *string `json:"computed_overage_amount,omitzero"`
@@ -33,18 +37,11 @@ func (u *UsageAnalyticPoint) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (u *UsageAnalyticPoint) GetBucketID() *string {
+func (u *UsageAnalyticPoint) GetBuckets() []PointBucket {
 	if u == nil {
 		return nil
 	}
-	return u.BucketID
-}
-
-func (u *UsageAnalyticPoint) GetBucketPriceID() *string {
-	if u == nil {
-		return nil
-	}
-	return u.BucketPriceID
+	return u.Buckets
 }
 
 func (u *UsageAnalyticPoint) GetComputedCommitmentUtilizedAmount() *string {

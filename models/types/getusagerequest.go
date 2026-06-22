@@ -31,9 +31,17 @@ type GetUsageRequest struct {
 	EventName          string              `json:"event_name"`
 	ExternalCustomerID *string             `json:"external_customer_id,omitzero"`
 	Filters            map[string][]string `json:"filters,omitzero"`
+	// GroupBy lists the analytics group_by dimensions.
+	//   - "source"        — group by event source column
+	//   - "properties.X"  — group by JSON property X
+	GroupBy []string `json:"group_by,omitzero"`
 	// GroupByProperty is the property name in event.properties to group by before aggregating.
 	// When set, aggregation is applied per unique value of this property within each bucket,
 	// then the per-group results are summed to produce the bucket total.
+	//
+	// Deprecated: prefer GroupBy []string{"properties.<X>"} for parity with
+	// other analytics endpoints. ToUsageParams translates this field into
+	// GroupBy when GroupBy is otherwise empty.
 	GroupByProperty *string `json:"group_by_property,omitzero"`
 	Multiplier      *string `json:"multiplier,omitzero"`
 	// will be empty/ignored in case of COUNT
@@ -107,6 +115,13 @@ func (g *GetUsageRequest) GetFilters() map[string][]string {
 		return nil
 	}
 	return g.Filters
+}
+
+func (g *GetUsageRequest) GetGroupBy() []string {
+	if g == nil {
+		return nil
+	}
+	return g.GroupBy
 }
 
 func (g *GetUsageRequest) GetGroupByProperty() *string {

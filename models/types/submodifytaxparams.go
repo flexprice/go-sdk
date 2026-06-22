@@ -9,10 +9,10 @@ import (
 
 type SubModifyTaxParams struct {
 	Action SubModifyTaxAction `json:"action"`
-	// Required when action="remove". ID of the TaxAssociation to soft-delete.
-	AssociationID *string `json:"association_id,omitzero"`
 	// Optional. When to apply the change; defaults to now if omitted.
 	EffectiveDate *time.Time `json:"effective_date,omitzero"`
+	// Required when action="remove". ID of the TaxAssociation to soft-delete.
+	TaxAssociationID *string `json:"tax_association_id,omitzero"`
 	// Required when action="add". ID of the active tax rate to attach.
 	TaxRateID *string `json:"tax_rate_id,omitzero"`
 }
@@ -35,18 +35,18 @@ func (s *SubModifyTaxParams) GetAction() SubModifyTaxAction {
 	return s.Action
 }
 
-func (s *SubModifyTaxParams) GetAssociationID() *string {
-	if s == nil {
-		return nil
-	}
-	return s.AssociationID
-}
-
 func (s *SubModifyTaxParams) GetEffectiveDate() *time.Time {
 	if s == nil {
 		return nil
 	}
 	return s.EffectiveDate
+}
+
+func (s *SubModifyTaxParams) GetTaxAssociationID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.TaxAssociationID
 }
 
 func (s *SubModifyTaxParams) GetTaxRateID() *string {

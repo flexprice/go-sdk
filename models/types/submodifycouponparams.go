@@ -10,7 +10,7 @@ import (
 type SubModifyCouponParams struct {
 	Action SubModifyCouponAction `json:"action"`
 	// Required when action="remove". ID of the CouponAssociation to soft-delete.
-	AssociationID *string `json:"association_id,omitzero"`
+	CouponAssociationID *string `json:"coupon_association_id,omitzero"`
 	// Required for action="add". Coupon code of the coupon to attach.
 	CouponCode *string `json:"coupon_code,omitzero"`
 	// Optional. When the coupon association ends.
@@ -41,11 +41,11 @@ func (s *SubModifyCouponParams) GetAction() SubModifyCouponAction {
 	return s.Action
 }
 
-func (s *SubModifyCouponParams) GetAssociationID() *string {
+func (s *SubModifyCouponParams) GetCouponAssociationID() *string {
 	if s == nil {
 		return nil
 	}
-	return s.AssociationID
+	return s.CouponAssociationID
 }
 
 func (s *SubModifyCouponParams) GetCouponCode() *string {

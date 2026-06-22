@@ -16,11 +16,15 @@ type SecretResponse struct {
 	Name       *string         `json:"name,omitzero"`
 	Provider   *SecretProvider `json:"provider,omitzero"`
 	// RBAC roles
-	Roles     []string    `json:"roles,omitzero"`
-	Status    *Status     `json:"status,omitzero"`
-	Type      *SecretType `json:"type,omitzero"`
-	UpdatedAt *time.Time  `json:"updated_at,omitzero"`
-	UserType  *UserType   `json:"user_type,omitzero"`
+	Roles []string `json:"roles,omitzero"`
+	// name of the service account (populated for service_account user_type)
+	ServiceAccountName *string     `json:"service_account_name,omitzero"`
+	Status             *Status     `json:"status,omitzero"`
+	Type               *SecretType `json:"type,omitzero"`
+	UpdatedAt          *time.Time  `json:"updated_at,omitzero"`
+	// user or service account this key belongs to
+	UserID   *string   `json:"user_id,omitzero"`
+	UserType *UserType `json:"user_type,omitzero"`
 }
 
 func (s SecretResponse) MarshalJSON() ([]byte, error) {
@@ -90,6 +94,13 @@ func (s *SecretResponse) GetRoles() []string {
 	return s.Roles
 }
 
+func (s *SecretResponse) GetServiceAccountName() *string {
+	if s == nil {
+		return nil
+	}
+	return s.ServiceAccountName
+}
+
 func (s *SecretResponse) GetStatus() *Status {
 	if s == nil {
 		return nil
@@ -109,6 +120,13 @@ func (s *SecretResponse) GetUpdatedAt() *time.Time {
 		return nil
 	}
 	return s.UpdatedAt
+}
+
+func (s *SecretResponse) GetUserID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.UserID
 }
 
 func (s *SecretResponse) GetUserType() *UserType {
