@@ -7,6 +7,7 @@
 * [UpdateCustomer](#updatecustomer) - Update customer
 * [CreateCustomer](#createcustomer) - Create customer
 * [GetCustomerByExternalID](#getcustomerbyexternalid) - Get customer by external ID
+* [GetCustomerEntitlementsByExternalID](#getcustomerentitlementsbyexternalid) - Get customer entitlements by external ID
 * [QueryCustomer](#querycustomer) - Query customers
 * [GetCustomerUsageSummary](#getcustomerusagesummary) - Get customer usage summary
 * [GetCustomer](#getcustomer) - Get customer
@@ -170,6 +171,59 @@ func main() {
 ### Response
 
 **[*dtos.GetCustomerByExternalIDResponse](../../models/dtos/getcustomerbyexternalidresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## GetCustomerEntitlementsByExternalID
+
+Use when checking entitlements by your app's customer id (e.g. feature gating at the edge). Supports optional filters (feature_ids, subscription_ids).
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getCustomerEntitlementsByExternalID" method="get" path="/customers/external/{external_id}/entitlements" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Customers.GetCustomerEntitlementsByExternalID(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CustomerEntitlementsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `externalID`                                          | `string`                                              | :heavy_check_mark:                                    | Customer External ID                                  |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.GetCustomerEntitlementsByExternalIDResponse](../../models/dtos/getcustomerentitlementsbyexternalidresponse.md), error**
 
 ### Errors
 

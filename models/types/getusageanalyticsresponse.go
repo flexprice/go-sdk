@@ -10,7 +10,10 @@ type GetUsageAnalyticsResponse struct {
 	Currency        *string              `json:"currency,omitzero"`
 	CustomAnalytics []CustomAnalyticItem `json:"custom_analytics,omitzero"`
 	Items           []UsageAnalyticItem  `json:"items,omitzero"`
-	TotalCost       *string              `json:"total_cost,omitzero"`
+	Subtotal        *string              `json:"subtotal,omitzero"`
+	// TotalCost is the final cost after discount (Subtotal - TotalDiscount)
+	TotalCost     *string `json:"total_cost,omitzero"`
+	TotalDiscount *string `json:"total_discount,omitzero"`
 }
 
 func (g GetUsageAnalyticsResponse) MarshalJSON() ([]byte, error) {
@@ -45,9 +48,23 @@ func (g *GetUsageAnalyticsResponse) GetItems() []UsageAnalyticItem {
 	return g.Items
 }
 
+func (g *GetUsageAnalyticsResponse) GetSubtotal() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Subtotal
+}
+
 func (g *GetUsageAnalyticsResponse) GetTotalCost() *string {
 	if g == nil {
 		return nil
 	}
 	return g.TotalCost
+}
+
+func (g *GetUsageAnalyticsResponse) GetTotalDiscount() *string {
+	if g == nil {
+		return nil
+	}
+	return g.TotalDiscount
 }

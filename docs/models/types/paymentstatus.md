@@ -26,3 +26,4 @@ custom := types.PaymentStatus("custom_value")
 | `PaymentStatusFailed`            | FAILED                           |
 | `PaymentStatusRefunded`          | REFUNDED                         |
 | `PaymentStatusPartiallyRefunded` | PARTIALLY_REFUNDED               |
+| `PaymentStatusVoided`            | VOIDED                           |

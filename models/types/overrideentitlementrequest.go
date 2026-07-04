@@ -7,6 +7,8 @@ import (
 )
 
 type OverrideEntitlementRequest struct {
+	// ConfigValue is the config value for config features
+	ConfigValue map[string]any `json:"config_value,omitzero"`
 	// EntitlementID references the plan/addon entitlement to override
 	EntitlementID string `json:"entitlement_id"`
 	// IsEnabled determines if the entitlement is enabled or disabled
@@ -27,6 +29,13 @@ func (o *OverrideEntitlementRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (o *OverrideEntitlementRequest) GetConfigValue() map[string]any {
+	if o == nil {
+		return nil
+	}
+	return o.ConfigValue
 }
 
 func (o *OverrideEntitlementRequest) GetEntitlementID() string {

@@ -7,8 +7,9 @@ import (
 )
 
 type CustomerEntitlementsResponse struct {
-	CustomerID *string             `json:"customer_id,omitzero"`
-	Features   []AggregatedFeature `json:"features,omitzero"`
+	CustomerID    *string                `json:"customer_id,omitzero"`
+	Features      []AggregatedFeature    `json:"features,omitzero"`
+	Subscriptions []SubscriptionResponse `json:"subscriptions,omitzero"`
 }
 
 func (c CustomerEntitlementsResponse) MarshalJSON() ([]byte, error) {
@@ -34,4 +35,11 @@ func (c *CustomerEntitlementsResponse) GetFeatures() []AggregatedFeature {
 		return nil
 	}
 	return c.Features
+}
+
+func (c *CustomerEntitlementsResponse) GetSubscriptions() []SubscriptionResponse {
+	if c == nil {
+		return nil
+	}
+	return c.Subscriptions
 }

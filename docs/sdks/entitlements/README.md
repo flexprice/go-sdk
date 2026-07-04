@@ -151,7 +151,7 @@ func main() {
         Items: []types.CreateEntitlementRequest{
             types.CreateEntitlementRequest{
                 FeatureID: "<id>",
-                FeatureType: types.FeatureTypeStatic,
+                FeatureType: types.FeatureTypeConfig,
             },
         },
     })

@@ -33,9 +33,12 @@ type Customer struct {
 	// Metadata
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// Name is the name of the customer
-	Name      *string    `json:"name,omitzero"`
-	Status    *Status    `json:"status,omitzero"`
-	TenantID  *string    `json:"tenant_id,omitzero"`
+	Name     *string `json:"name,omitzero"`
+	Status   *Status `json:"status,omitzero"`
+	TenantID *string `json:"tenant_id,omitzero"`
+	// Timezone is the customer's IANA timezone name (e.g. "Asia/Kolkata").
+	// Defaults to "UTC". Inherited by subscriptions at creation time.
+	Timezone  *string    `json:"timezone,omitzero"`
 	UpdatedAt *time.Time `json:"updated_at,omitzero"`
 	UpdatedBy *string    `json:"updated_by,omitzero"`
 }
@@ -161,6 +164,13 @@ func (c *Customer) GetTenantID() *string {
 		return nil
 	}
 	return c.TenantID
+}
+
+func (c *Customer) GetTimezone() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Timezone
 }
 
 func (c *Customer) GetUpdatedAt() *time.Time {

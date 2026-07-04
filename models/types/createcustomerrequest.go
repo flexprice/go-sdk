@@ -36,6 +36,9 @@ type CreateCustomerRequest struct {
 	SkipOnboardingWorkflow *bool `json:"skip_onboarding_workflow,omitzero"`
 	// tax_rate_overrides contains tax rate configurations to be linked to this customer
 	TaxRateOverrides []TaxRateOverride `json:"tax_rate_overrides,omitzero"`
+	// timezone is the customer's IANA timezone name (e.g. "Asia/Kolkata", "America/New_York")
+	// Defaults to "UTC" if not provided
+	Timezone *string `json:"timezone,omitzero"`
 }
 
 func (c CreateCustomerRequest) MarshalJSON() ([]byte, error) {
@@ -138,4 +141,11 @@ func (c *CreateCustomerRequest) GetTaxRateOverrides() []TaxRateOverride {
 		return nil
 	}
 	return c.TaxRateOverrides
+}
+
+func (c *CreateCustomerRequest) GetTimezone() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Timezone
 }

@@ -18,23 +18,28 @@ type WalletBalanceResponse struct {
 	// ex if conversion_rate is 1, then 1 USD = 1 credit
 	// ex if conversion_rate is 2, then 1 USD = 0.5 credits
 	// ex if conversion_rate is 0.5, then 1 USD = 2 credits
-	ConversionRate            *string           `json:"conversion_rate,omitzero"`
-	CreatedAt                 *time.Time        `json:"created_at,omitzero"`
-	CreatedBy                 *string           `json:"created_by,omitzero"`
-	CreditBalance             *string           `json:"credit_balance,omitzero"`
-	CreditsAvailableBreakdown *CreditBreakdown  `json:"credits_available_breakdown,omitzero"`
-	Currency                  *string           `json:"currency,omitzero"`
-	CurrentPeriodUsage        *string           `json:"current_period_usage,omitzero"`
-	CustomerID                *string           `json:"customer_id,omitzero"`
-	Description               *string           `json:"description,omitzero"`
-	EnvironmentID             *string           `json:"environment_id,omitzero"`
-	ID                        *string           `json:"id,omitzero"`
-	Metadata                  map[string]string `json:"metadata,omitzero"`
-	Name                      *string           `json:"name,omitzero"`
-	RealTimeBalance           *string           `json:"real_time_balance,omitzero"`
-	RealTimeCreditBalance     *string           `json:"real_time_credit_balance,omitzero"`
-	Status                    *Status           `json:"status,omitzero"`
-	TenantID                  *string           `json:"tenant_id,omitzero"`
+	ConversionRate            *string          `json:"conversion_rate,omitzero"`
+	CreatedAt                 *time.Time       `json:"created_at,omitzero"`
+	CreatedBy                 *string          `json:"created_by,omitzero"`
+	CreditBalance             *string          `json:"credit_balance,omitzero"`
+	CreditsAvailableBreakdown *CreditBreakdown `json:"credits_available_breakdown,omitzero"`
+	Currency                  *string          `json:"currency,omitzero"`
+	CurrentPeriodUsage        *string          `json:"current_period_usage,omitzero"`
+	CustomerID                *string          `json:"customer_id,omitzero"`
+	Description               *string          `json:"description,omitzero"`
+	EnvironmentID             *string          `json:"environment_id,omitzero"`
+	ID                        *string          `json:"id,omitzero"`
+	// IsCachedFallback is true whenever the response is sourced from cache:
+	// either an explicit cache request, or fallback after a real-time failure.
+	// Clients should treat the absence of this field as if it were true and
+	// only trust freshness when the server explicitly emits false.
+	IsCachedFallback      *bool             `json:"is_cached_fallback,omitzero"`
+	Metadata              map[string]string `json:"metadata,omitzero"`
+	Name                  *string           `json:"name,omitzero"`
+	RealTimeBalance       *string           `json:"real_time_balance,omitzero"`
+	RealTimeCreditBalance *string           `json:"real_time_credit_balance,omitzero"`
+	Status                *Status           `json:"status,omitzero"`
+	TenantID              *string           `json:"tenant_id,omitzero"`
 	// topup_conversion_rate is the conversion rate for the topup to the currency
 	// ex if topup_conversion_rate is 1, then 1 USD = 1 credit
 	// ex if topup_conversion_rate is 2, then 1 USD = 0.5 credits
@@ -175,6 +180,13 @@ func (w *WalletBalanceResponse) GetID() *string {
 		return nil
 	}
 	return w.ID
+}
+
+func (w *WalletBalanceResponse) GetIsCachedFallback() *bool {
+	if w == nil {
+		return nil
+	}
+	return w.IsCachedFallback
 }
 
 func (w *WalletBalanceResponse) GetMetadata() map[string]string {

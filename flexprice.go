@@ -2,7 +2,7 @@
 
 package flexprice
 
-// Generated from OpenAPI doc version 1.0 and generator version 2.911.0
+// Generated from OpenAPI doc version 1.0 and generator version 2.915.1
 
 import (
 	"context"
@@ -56,6 +56,7 @@ type Flexprice struct {
 	Addons             *Addons
 	Entitlements       *Entitlements
 	Alerts             *Alerts
+	Checkout           *Checkout
 	Costs              *Costs
 	Coupons            *Coupons
 	CouponAssociations *CouponAssociations
@@ -160,9 +161,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.20",
+		SDKVersion: "2.0.21",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 2.1.20 2.911.0 1.0 github.com/flexprice/go-sdk/v2",
+			UserAgent:  "speakeasy-sdk/go 2.0.21 2.915.1 1.0 github.com/flexprice/go-sdk/v2",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -181,6 +182,7 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.Addons = newAddons(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Entitlements = newEntitlements(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Alerts = newAlerts(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Checkout = newCheckout(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Costs = newCosts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Coupons = newCoupons(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CouponAssociations = newCouponAssociations(sdk, sdk.sdkConfiguration, sdk.hooks)

@@ -6,10 +6,24 @@ import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
 )
 
+type ConfigValue struct {
+}
+
+func (c ConfigValue) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *ConfigValue) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
 type AggregatedEntitlement struct {
-	IsEnabled   *bool `json:"is_enabled,omitzero"`
-	IsSoftLimit *bool `json:"is_soft_limit,omitzero"`
-	// For static/SLA features
+	ConfigValues     []map[string]ConfigValue     `json:"config_values,omitzero"`
+	IsEnabled        *bool                        `json:"is_enabled,omitzero"`
+	IsSoftLimit      *bool                        `json:"is_soft_limit,omitzero"`
 	StaticValues     []string                     `json:"static_values,omitzero"`
 	UsageLimit       *int64                       `json:"usage_limit,omitzero"`
 	UsageResetPeriod *EntitlementUsageResetPeriod `json:"usage_reset_period,omitzero"`
@@ -24,6 +38,13 @@ func (a *AggregatedEntitlement) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (a *AggregatedEntitlement) GetConfigValues() []map[string]ConfigValue {
+	if a == nil {
+		return nil
+	}
+	return a.ConfigValues
 }
 
 func (a *AggregatedEntitlement) GetIsEnabled() *bool {

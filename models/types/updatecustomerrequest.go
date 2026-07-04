@@ -30,6 +30,8 @@ type UpdateCustomerRequest struct {
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// name is the updated name or company name for the customer
 	Name *string `json:"name,omitzero"`
+	// timezone is the updated IANA timezone name for the customer (e.g. "Asia/Kolkata", "America/New_York")
+	Timezone *string `json:"timezone,omitzero"`
 }
 
 func (u UpdateCustomerRequest) MarshalJSON() ([]byte, error) {
@@ -118,4 +120,11 @@ func (u *UpdateCustomerRequest) GetName() *string {
 		return nil
 	}
 	return u.Name
+}
+
+func (u *UpdateCustomerRequest) GetTimezone() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Timezone
 }

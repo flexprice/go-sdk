@@ -36,9 +36,6 @@ type CreateSubscriptionRequest struct {
 	// customer_id is the flexprice customer id
 	// and it is prioritized over external_customer_id in case both are provided.
 	CustomerID *string `json:"customer_id,omitzero"`
-	// Timezone of the customer.
-	// If not set, the default value is UTC.
-	CustomerTimezone *string `json:"customer_timezone,omitzero"`
 	// Enable Commitment True Up Fee
 	EnableTrueUp *bool      `json:"enable_true_up,omitzero"`
 	EndDate      *time.Time `json:"end_date,omitzero"`
@@ -74,6 +71,9 @@ type CreateSubscriptionRequest struct {
 	SubscriptionStatus  *SubscriptionStatus       `json:"subscription_status,omitzero"`
 	// tax_rate_overrides is the tax rate overrides	to be applied to the subscription
 	TaxRateOverrides []TaxRateOverride `json:"tax_rate_overrides,omitzero"`
+	// Timezone of the customer.
+	// If not set, the default value is UTC.
+	Timezone *string `json:"timezone,omitzero"`
 	// TrialPeriodDays: nil = inherit trial length from plan recurring-fixed prices (must be uniform).
 	// 0 = explicitly no trial (overrides catalog). >0 = override duration in days.
 	TrialPeriodDays *int64 `json:"trial_period_days,omitzero"`
@@ -179,13 +179,6 @@ func (c *CreateSubscriptionRequest) GetCustomerID() *string {
 		return nil
 	}
 	return c.CustomerID
-}
-
-func (c *CreateSubscriptionRequest) GetCustomerTimezone() *string {
-	if c == nil {
-		return nil
-	}
-	return c.CustomerTimezone
 }
 
 func (c *CreateSubscriptionRequest) GetEnableTrueUp() *bool {
@@ -340,6 +333,13 @@ func (c *CreateSubscriptionRequest) GetTaxRateOverrides() []TaxRateOverride {
 		return nil
 	}
 	return c.TaxRateOverrides
+}
+
+func (c *CreateSubscriptionRequest) GetTimezone() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Timezone
 }
 
 func (c *CreateSubscriptionRequest) GetTrialPeriodDays() *int64 {

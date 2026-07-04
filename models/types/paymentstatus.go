@@ -13,6 +13,7 @@ const (
 	PaymentStatusFailed            PaymentStatus = "FAILED"
 	PaymentStatusRefunded          PaymentStatus = "REFUNDED"
 	PaymentStatusPartiallyRefunded PaymentStatus = "PARTIALLY_REFUNDED"
+	PaymentStatusVoided            PaymentStatus = "VOIDED"
 )
 
 func (e PaymentStatus) ToPointer() *PaymentStatus {
@@ -23,7 +24,7 @@ func (e PaymentStatus) ToPointer() *PaymentStatus {
 func (e *PaymentStatus) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "INITIATED", "PENDING", "PROCESSING", "SUCCEEDED", "OVERPAID", "FAILED", "REFUNDED", "PARTIALLY_REFUNDED":
+		case "INITIATED", "PENDING", "PROCESSING", "SUCCEEDED", "OVERPAID", "FAILED", "REFUNDED", "PARTIALLY_REFUNDED", "VOIDED":
 			return true
 		}
 	}

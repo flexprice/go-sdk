@@ -21,3 +21,4 @@ custom := types.FeatureType("custom_value")
 | `FeatureTypeMetered` | metered              |
 | `FeatureTypeBoolean` | boolean              |
 | `FeatureTypeStatic`  | static               |
+| `FeatureTypeConfig`  | config               |

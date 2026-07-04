@@ -8,10 +8,10 @@ import (
 )
 
 type CouponAssociationResponse struct {
-	Coupon    *Coupon    `json:"coupon,omitzero"`
-	CouponID  *string    `json:"coupon_id,omitzero"`
-	CreatedAt *time.Time `json:"created_at,omitzero"`
-	CreatedBy *string    `json:"created_by,omitzero"`
+	Coupon    *CouponResponse `json:"coupon,omitzero"`
+	CouponID  *string         `json:"coupon_id,omitzero"`
+	CreatedAt *time.Time      `json:"created_at,omitzero"`
+	CreatedBy *string         `json:"created_by,omitzero"`
 	// Optional
 	EndDate       *time.Time        `json:"end_date,omitzero"`
 	EnvironmentID *string           `json:"environment_id,omitzero"`
@@ -20,7 +20,8 @@ type CouponAssociationResponse struct {
 	StartDate     *time.Time        `json:"start_date,omitzero"`
 	Status        *Status           `json:"status,omitzero"`
 	// Mandatory
-	SubscriptionID *string `json:"subscription_id,omitzero"`
+	SubscriptionID       *string                       `json:"subscription_id,omitzero"`
+	SubscriptionLineItem *SubscriptionLineItemResponse `json:"subscription_line_item,omitzero"`
 	// Optional
 	SubscriptionLineItemID *string `json:"subscription_line_item_id,omitzero"`
 	// Optional
@@ -41,7 +42,7 @@ func (c *CouponAssociationResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (c *CouponAssociationResponse) GetCoupon() *Coupon {
+func (c *CouponAssociationResponse) GetCoupon() *CouponResponse {
 	if c == nil {
 		return nil
 	}
@@ -116,6 +117,13 @@ func (c *CouponAssociationResponse) GetSubscriptionID() *string {
 		return nil
 	}
 	return c.SubscriptionID
+}
+
+func (c *CouponAssociationResponse) GetSubscriptionLineItem() *SubscriptionLineItemResponse {
+	if c == nil {
+		return nil
+	}
+	return c.SubscriptionLineItem
 }
 
 func (c *CouponAssociationResponse) GetSubscriptionLineItemID() *string {

@@ -52,9 +52,8 @@ type SubscriptionResponse struct {
 	// Customer response object containing all customer information
 	Customer *CustomerResponse `json:"customer,omitzero"`
 	// CustomerID is the identifier for the customer in our system
-	CustomerID       *string `json:"customer_id,omitzero"`
-	CustomerTimezone *string `json:"customer_timezone,omitzero"`
-	EnableTrueUp     *bool   `json:"enable_true_up,omitzero"`
+	CustomerID   *string `json:"customer_id,omitzero"`
+	EnableTrueUp *bool   `json:"enable_true_up,omitzero"`
 	// EndDate is the end date of the subscription
 	EndDate *time.Time `json:"end_date,omitzero"`
 	// EnvironmentID is the environment identifier for the subscription
@@ -96,6 +95,7 @@ type SubscriptionResponse struct {
 	// plan-price sync after a successful pass.
 	SyncedPriceSequence *int64  `json:"synced_price_sequence,omitzero"`
 	TenantID            *string `json:"tenant_id,omitzero"`
+	Timezone            *string `json:"timezone,omitzero"`
 	// TrialEnd is the end date of the trial period
 	TrialEnd *time.Time `json:"trial_end,omitzero"`
 	// TrialStart is the start date of the trial period
@@ -269,13 +269,6 @@ func (s *SubscriptionResponse) GetCustomerID() *string {
 		return nil
 	}
 	return s.CustomerID
-}
-
-func (s *SubscriptionResponse) GetCustomerTimezone() *string {
-	if s == nil {
-		return nil
-	}
-	return s.CustomerTimezone
 }
 
 func (s *SubscriptionResponse) GetEnableTrueUp() *bool {
@@ -458,6 +451,13 @@ func (s *SubscriptionResponse) GetTenantID() *string {
 		return nil
 	}
 	return s.TenantID
+}
+
+func (s *SubscriptionResponse) GetTimezone() *string {
+	if s == nil {
+		return nil
+	}
+	return s.Timezone
 }
 
 func (s *SubscriptionResponse) GetTrialEnd() *time.Time {

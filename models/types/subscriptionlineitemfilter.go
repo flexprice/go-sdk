@@ -55,8 +55,9 @@ type SubscriptionLineItemFilter struct {
 	Sort                []SortCondition                  `json:"sort,omitzero"`
 	StartTime           *time.Time                       `json:"start_time,omitzero"`
 	Status              *Status                          `json:"status,omitzero"`
+	SubscriptionIds     []string                         `json:"subscription_ids,omitzero"`
 	// Specific filters
-	SubscriptionIds []string `json:"subscription_ids,omitzero"`
+	SubscriptionLineItemIds []string `json:"subscription_line_item_ids,omitzero"`
 }
 
 func (s SubscriptionLineItemFilter) MarshalJSON() ([]byte, error) {
@@ -208,4 +209,11 @@ func (s *SubscriptionLineItemFilter) GetSubscriptionIds() []string {
 		return nil
 	}
 	return s.SubscriptionIds
+}
+
+func (s *SubscriptionLineItemFilter) GetSubscriptionLineItemIds() []string {
+	if s == nil {
+		return nil
+	}
+	return s.SubscriptionLineItemIds
 }

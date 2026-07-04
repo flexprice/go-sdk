@@ -7,6 +7,7 @@ import (
 )
 
 type UpdateEntitlementRequest struct {
+	ConfigValue      map[string]any               `json:"config_value,omitzero"`
 	IsEnabled        *bool                        `json:"is_enabled,omitzero"`
 	IsSoftLimit      *bool                        `json:"is_soft_limit,omitzero"`
 	StaticValue      *string                      `json:"static_value,omitzero"`
@@ -23,6 +24,13 @@ func (u *UpdateEntitlementRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (u *UpdateEntitlementRequest) GetConfigValue() map[string]any {
+	if u == nil {
+		return nil
+	}
+	return u.ConfigValue
 }
 
 func (u *UpdateEntitlementRequest) GetIsEnabled() *bool {

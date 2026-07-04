@@ -12,4 +12,6 @@
 | `PaymentGateway`                           | `*string`                                  | :heavy_minus_sign:                         | N/A                                        |
 | `PaymentMethodID`                          | `*string`                                  | :heavy_minus_sign:                         | N/A                                        |
 | `PaymentStatus`                            | `*string`                                  | :heavy_minus_sign:                         | N/A                                        |
+| `RefundedAt`                               | [*time.Time](https://pkg.go.dev/time#Time) | :heavy_minus_sign:                         | N/A                                        |
 | `SucceededAt`                              | [*time.Time](https://pkg.go.dev/time#Time) | :heavy_minus_sign:                         | N/A                                        |
+| `VoidedAt`                                 | [*time.Time](https://pkg.go.dev/time#Time) | :heavy_minus_sign:                         | N/A                                        |

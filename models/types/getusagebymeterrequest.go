@@ -32,6 +32,7 @@ type GetUsageByMeterRequest struct {
 	Filters            map[string][]string `json:"filters,omitzero"`
 	MeterID            string              `json:"meter_id"`
 	StartTime          *time.Time          `json:"start_time,omitzero"`
+	Timezone           *string             `json:"timezone,omitzero"`
 	WindowSize         *WindowSize         `json:"window_size,omitzero"`
 }
 
@@ -100,6 +101,13 @@ func (g *GetUsageByMeterRequest) GetStartTime() *time.Time {
 		return nil
 	}
 	return g.StartTime
+}
+
+func (g *GetUsageByMeterRequest) GetTimezone() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Timezone
 }
 
 func (g *GetUsageByMeterRequest) GetWindowSize() *WindowSize {

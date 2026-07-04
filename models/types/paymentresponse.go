@@ -36,6 +36,7 @@ type PaymentResponse struct {
 	TrackAttempts          *bool                    `json:"track_attempts,omitzero"`
 	UpdatedAt              *time.Time               `json:"updated_at,omitzero"`
 	UpdatedBy              *string                  `json:"updated_by,omitzero"`
+	VoidedAt               *time.Time               `json:"voided_at,omitzero"`
 }
 
 func (p PaymentResponse) MarshalJSON() ([]byte, error) {
@@ -243,4 +244,11 @@ func (p *PaymentResponse) GetUpdatedBy() *string {
 		return nil
 	}
 	return p.UpdatedBy
+}
+
+func (p *PaymentResponse) GetVoidedAt() *time.Time {
+	if p == nil {
+		return nil
+	}
+	return p.VoidedAt
 }

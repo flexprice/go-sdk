@@ -4,9 +4,11 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type UpdateCreditGrantRequest struct {
+	EndDate  *time.Time        `json:"end_date,omitzero"`
 	Metadata map[string]string `json:"metadata,omitzero"`
 	Name     *string           `json:"name,omitzero"`
 }
@@ -20,6 +22,13 @@ func (u *UpdateCreditGrantRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (u *UpdateCreditGrantRequest) GetEndDate() *time.Time {
+	if u == nil {
+		return nil
+	}
+	return u.EndDate
 }
 
 func (u *UpdateCreditGrantRequest) GetMetadata() map[string]string {

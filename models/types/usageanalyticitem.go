@@ -42,8 +42,11 @@ type UsageAnalyticItem struct {
 	// Subscription ID
 	SubscriptionID       *string                           `json:"subscription_id,omitzero"`
 	SubscriptionLineItem *SubscriptionSubscriptionLineItem `json:"subscription_line_item,omitzero"`
-	TotalCost            *string                           `json:"total_cost,omitzero"`
-	TotalUsage           *string                           `json:"total_usage,omitzero"`
+	Subtotal             *string                           `json:"subtotal,omitzero"`
+	// TotalCost is the final cost after discount (Subtotal - TotalDiscount)
+	TotalCost     *string `json:"total_cost,omitzero"`
+	TotalDiscount *string `json:"total_discount,omitzero"`
+	TotalUsage    *string `json:"total_usage,omitzero"`
 	// Empty string when feature has no reporting unit; otherwise the value in reporting units
 	TotalUsageDisplay *string     `json:"total_usage_display,omitzero"`
 	Unit              *string     `json:"unit,omitzero"`
@@ -244,11 +247,25 @@ func (u *UsageAnalyticItem) GetSubscriptionLineItem() *SubscriptionSubscriptionL
 	return u.SubscriptionLineItem
 }
 
+func (u *UsageAnalyticItem) GetSubtotal() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Subtotal
+}
+
 func (u *UsageAnalyticItem) GetTotalCost() *string {
 	if u == nil {
 		return nil
 	}
 	return u.TotalCost
+}
+
+func (u *UsageAnalyticItem) GetTotalDiscount() *string {
+	if u == nil {
+		return nil
+	}
+	return u.TotalDiscount
 }
 
 func (u *UsageAnalyticItem) GetTotalUsage() *string {

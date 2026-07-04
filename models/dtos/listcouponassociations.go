@@ -14,6 +14,8 @@ type ListCouponAssociationsRequest struct {
 	CouponIds []string `queryParam:"style=form,explode=false,name=coupon_ids"`
 	// Return only currently active associations
 	ActiveOnly *bool `queryParam:"style=form,explode=true,name=active_only"`
+	// Comma-separated fields: coupon, subscription_line_items, subscription_line_items.prices
+	Expand *string `queryParam:"style=form,explode=true,name=expand"`
 	// Page size
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Page offset
@@ -50,6 +52,13 @@ func (l *ListCouponAssociationsRequest) GetActiveOnly() *bool {
 		return nil
 	}
 	return l.ActiveOnly
+}
+
+func (l *ListCouponAssociationsRequest) GetExpand() *string {
+	if l == nil {
+		return nil
+	}
+	return l.Expand
 }
 
 func (l *ListCouponAssociationsRequest) GetLimit() *int64 {

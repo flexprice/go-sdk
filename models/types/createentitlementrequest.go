@@ -8,6 +8,7 @@ import (
 )
 
 type CreateEntitlementRequest struct {
+	ConfigValue         map[string]any               `json:"config_value,omitzero"`
 	EndDate             *time.Time                   `json:"end_date,omitzero"`
 	EntityID            *string                      `json:"entity_id,omitzero"`
 	EntityType          *EntitlementEntityType       `json:"entity_type,omitzero"`
@@ -32,6 +33,13 @@ func (c *CreateEntitlementRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (c *CreateEntitlementRequest) GetConfigValue() map[string]any {
+	if c == nil {
+		return nil
+	}
+	return c.ConfigValue
 }
 
 func (c *CreateEntitlementRequest) GetEndDate() *time.Time {

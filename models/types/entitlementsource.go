@@ -7,6 +7,7 @@ import (
 )
 
 type EntitlementSource struct {
+	ConfigValue      map[string]any               `json:"config_value,omitzero"`
 	EntitlementID    *string                      `json:"entitlement_id,omitzero"`
 	EntityID         *string                      `json:"entity_id,omitzero"`
 	EntityName       *string                      `json:"entity_name,omitzero"`
@@ -28,6 +29,13 @@ func (e *EntitlementSource) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (e *EntitlementSource) GetConfigValue() map[string]any {
+	if e == nil {
+		return nil
+	}
+	return e.ConfigValue
 }
 
 func (e *EntitlementSource) GetEntitlementID() *string {

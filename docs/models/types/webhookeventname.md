@@ -60,3 +60,7 @@ custom := types.WebhookEventName("custom_value")
 | `WebhookEventNameInvoiceCommunicationTriggered` | invoice.communication.triggered                 |
 | `WebhookEventNameCreditNoteCreated`             | credit_note.created                             |
 | `WebhookEventNameCreditNoteUpdated`             | credit_note.updated                             |
+| `WebhookEventNameCheckoutSessionInitiated`      | checkout.session.initiated                      |
+| `WebhookEventNameCheckoutSessionCompleted`      | checkout.session.completed                      |
+| `WebhookEventNameCheckoutSessionFailed`         | checkout.session.failed                         |
+| `WebhookEventNameCheckoutSessionExpired`        | checkout.session.expired                        |

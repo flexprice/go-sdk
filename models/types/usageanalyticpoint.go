@@ -19,9 +19,12 @@ type UsageAnalyticPoint struct {
 	ComputedCommitmentUtilizedAmount *string `json:"computed_commitment_utilized_amount,omitzero"`
 	ComputedOverageAmount            *string `json:"computed_overage_amount,omitzero"`
 	ComputedTrueUpAmount             *string `json:"computed_true_up_amount,omitzero"`
-	Cost                             *string `json:"cost,omitzero"`
+	// Cost is the final cost after discount (Subtotal - Discount)
+	Cost     *string `json:"cost,omitzero"`
+	Discount *string `json:"discount,omitzero"`
 	// Number of events in this time window
 	EventCount *int64  `json:"event_count,omitzero"`
+	Subtotal   *string `json:"subtotal,omitzero"`
 	Timestamp  *string `json:"timestamp,omitzero"`
 	Usage      *string `json:"usage,omitzero"`
 }
@@ -72,11 +75,25 @@ func (u *UsageAnalyticPoint) GetCost() *string {
 	return u.Cost
 }
 
+func (u *UsageAnalyticPoint) GetDiscount() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Discount
+}
+
 func (u *UsageAnalyticPoint) GetEventCount() *int64 {
 	if u == nil {
 		return nil
 	}
 	return u.EventCount
+}
+
+func (u *UsageAnalyticPoint) GetSubtotal() *string {
+	if u == nil {
+		return nil
+	}
+	return u.Subtotal
 }
 
 func (u *UsageAnalyticPoint) GetTimestamp() *string {

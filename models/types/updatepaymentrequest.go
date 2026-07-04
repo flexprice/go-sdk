@@ -15,7 +15,9 @@ type UpdatePaymentRequest struct {
 	PaymentGateway   *string           `json:"payment_gateway,omitzero"`
 	PaymentMethodID  *string           `json:"payment_method_id,omitzero"`
 	PaymentStatus    *string           `json:"payment_status,omitzero"`
+	RefundedAt       *time.Time        `json:"refunded_at,omitzero"`
 	SucceededAt      *time.Time        `json:"succeeded_at,omitzero"`
+	VoidedAt         *time.Time        `json:"voided_at,omitzero"`
 }
 
 func (u UpdatePaymentRequest) MarshalJSON() ([]byte, error) {
@@ -78,9 +80,23 @@ func (u *UpdatePaymentRequest) GetPaymentStatus() *string {
 	return u.PaymentStatus
 }
 
+func (u *UpdatePaymentRequest) GetRefundedAt() *time.Time {
+	if u == nil {
+		return nil
+	}
+	return u.RefundedAt
+}
+
 func (u *UpdatePaymentRequest) GetSucceededAt() *time.Time {
 	if u == nil {
 		return nil
 	}
 	return u.SucceededAt
+}
+
+func (u *UpdatePaymentRequest) GetVoidedAt() *time.Time {
+	if u == nil {
+		return nil
+	}
+	return u.VoidedAt
 }

@@ -47,6 +47,7 @@ type GetUsageRequest struct {
 	// will be empty/ignored in case of COUNT
 	PropertyName *string     `json:"property_name,omitzero"`
 	StartTime    *time.Time  `json:"start_time,omitzero"`
+	Timezone     *string     `json:"timezone,omitzero"`
 	WindowSize   *WindowSize `json:"window_size,omitzero"`
 }
 
@@ -150,6 +151,13 @@ func (g *GetUsageRequest) GetStartTime() *time.Time {
 		return nil
 	}
 	return g.StartTime
+}
+
+func (g *GetUsageRequest) GetTimezone() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Timezone
 }
 
 func (g *GetUsageRequest) GetWindowSize() *WindowSize {

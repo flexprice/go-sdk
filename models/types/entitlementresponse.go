@@ -9,6 +9,7 @@ import (
 
 type EntitlementResponse struct {
 	Addon               *AddonResponse         `json:"addon,omitzero"`
+	ConfigValue         map[string]any         `json:"config_value,omitzero"`
 	CreatedAt           *time.Time             `json:"created_at,omitzero"`
 	CreatedBy           *string                `json:"created_by,omitzero"`
 	DisplayOrder        *int64                 `json:"display_order,omitzero"`
@@ -52,6 +53,13 @@ func (e *EntitlementResponse) GetAddon() *AddonResponse {
 		return nil
 	}
 	return e.Addon
+}
+
+func (e *EntitlementResponse) GetConfigValue() map[string]any {
+	if e == nil {
+		return nil
+	}
+	return e.ConfigValue
 }
 
 func (e *EntitlementResponse) GetCreatedAt() *time.Time {

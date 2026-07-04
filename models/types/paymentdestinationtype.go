@@ -2,30 +2,24 @@
 
 package types
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 type PaymentDestinationType string
 
 const (
-	PaymentDestinationTypeInvoice PaymentDestinationType = "INVOICE"
+	PaymentDestinationTypeInvoice  PaymentDestinationType = "INVOICE"
+	PaymentDestinationTypeCustomer PaymentDestinationType = "CUSTOMER"
 )
 
 func (e PaymentDestinationType) ToPointer() *PaymentDestinationType {
 	return &e
 }
-func (e *PaymentDestinationType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PaymentDestinationType) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "INVOICE", "CUSTOMER":
+			return true
+		}
 	}
-	switch v {
-	case "INVOICE":
-		*e = PaymentDestinationType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentDestinationType: %v", v)
-	}
+	return false
 }

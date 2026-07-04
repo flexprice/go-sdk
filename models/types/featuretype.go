@@ -8,6 +8,7 @@ const (
 	FeatureTypeMetered FeatureType = "metered"
 	FeatureTypeBoolean FeatureType = "boolean"
 	FeatureTypeStatic  FeatureType = "static"
+	FeatureTypeConfig  FeatureType = "config"
 )
 
 func (e FeatureType) ToPointer() *FeatureType {
@@ -18,7 +19,7 @@ func (e FeatureType) ToPointer() *FeatureType {
 func (e *FeatureType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "metered", "boolean", "static":
+		case "metered", "boolean", "static", "config":
 			return true
 		}
 	}
