@@ -8,7 +8,7 @@ import (
 
 type AlertThreshold struct {
 	Condition *AlertCondition `json:"condition,omitzero"`
-	Threshold *float64        `json:"threshold,omitzero"`
+	Threshold *string         `json:"threshold,omitzero"`
 }
 
 func (a AlertThreshold) MarshalJSON() ([]byte, error) {
@@ -29,7 +29,7 @@ func (a *AlertThreshold) GetCondition() *AlertCondition {
 	return a.Condition
 }
 
-func (a *AlertThreshold) GetThreshold() *float64 {
+func (a *AlertThreshold) GetThreshold() *string {
 	if a == nil {
 		return nil
 	}

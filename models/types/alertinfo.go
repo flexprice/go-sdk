@@ -4,12 +4,13 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type AlertInfo struct {
 	AlertSettings *AlertSettings `json:"alert_settings,omitzero"`
 	Timestamp     *string        `json:"timestamp,omitzero"`
-	ValueAtTime   *float64       `json:"value_at_time,omitzero"`
+	ValueAtTime   *time.Time     `json:"value_at_time,omitzero"`
 }
 
 func (a AlertInfo) MarshalJSON() ([]byte, error) {
@@ -37,7 +38,7 @@ func (a *AlertInfo) GetTimestamp() *string {
 	return a.Timestamp
 }
 
-func (a *AlertInfo) GetValueAtTime() *float64 {
+func (a *AlertInfo) GetValueAtTime() *time.Time {
 	if a == nil {
 		return nil
 	}
