@@ -2,7 +2,7 @@
 
 package flexprice
 
-// Generated from OpenAPI doc version 1.0 and generator version 2.916.2
+// Generated from OpenAPI doc version 1.0 and generator version 2.917.0
 
 import (
 	"context"
@@ -54,13 +54,14 @@ func Pointer[T any](v T) *T { return &v }
 type Flexprice struct {
 	SDKVersion         string
 	Addons             *Addons
+	CreditGrants       *CreditGrants
 	Entitlements       *Entitlements
 	Alerts             *Alerts
+	AlertSettings      *AlertSettings
 	Checkout           *Checkout
 	Costs              *Costs
 	Coupons            *Coupons
 	CouponAssociations *CouponAssociations
-	CreditGrants       *CreditGrants
 	CreditNotes        *CreditNotes
 	Customers          *Customers
 	Wallets            *Wallets
@@ -161,9 +162,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.0.24",
+		SDKVersion: "2.1.21",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 2.0.24 2.916.2 1.0 github.com/flexprice/go-sdk/v2",
+			UserAgent:  "speakeasy-sdk/go 2.1.21 2.917.0 1.0 github.com/flexprice/go-sdk/v2",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -180,13 +181,14 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.sdkConfiguration = sdk.hooks.SDKInit(sdk.sdkConfiguration)
 
 	sdk.Addons = newAddons(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CreditGrants = newCreditGrants(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Entitlements = newEntitlements(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Alerts = newAlerts(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.AlertSettings = newAlertSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Checkout = newCheckout(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Costs = newCosts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Coupons = newCoupons(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CouponAssociations = newCouponAssociations(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CreditGrants = newCreditGrants(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CreditNotes = newCreditNotes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Customers = newCustomers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Wallets = newWallets(sdk, sdk.sdkConfiguration, sdk.hooks)

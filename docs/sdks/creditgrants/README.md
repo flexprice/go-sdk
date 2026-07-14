@@ -4,11 +4,65 @@
 
 ### Available Operations
 
+* [GetAddonCreditGrants](#getaddoncreditgrants) - Get addon credit grants
 * [CreateCreditGrant](#createcreditgrant) - Create credit grant
 * [GetCreditGrant](#getcreditgrant) - Get credit grant
 * [UpdateCreditGrant](#updatecreditgrant) - Update credit grant
 * [DeleteCreditGrant](#deletecreditgrant) - Delete credit grant
 * [GetPlanCreditGrants](#getplancreditgrants) - Get plan credit grants
+
+## GetAddonCreditGrants
+
+Use when listing credits attached to an addon (e.g. included prepaid or promo credits).
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getAddonCreditGrants" method="get" path="/addons/{id}/creditgrants" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.CreditGrants.GetAddonCreditGrants(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListCreditGrantsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Addon ID                                              |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.GetAddonCreditGrantsResponse](../../models/dtos/getaddoncreditgrantsresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## CreateCreditGrant
 

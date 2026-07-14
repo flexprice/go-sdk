@@ -20,19 +20,22 @@ type WalletTransactionResponse struct {
 	CreditsAvailable    *string       `json:"credits_available,omitzero"`
 	Currency            *string       `json:"currency,omitzero"`
 	// Customer response object containing all customer information
-	Customer       *CustomerResponse      `json:"customer,omitzero"`
-	CustomerID     *string                `json:"customer_id,omitzero"`
-	Description    *string                `json:"description,omitzero"`
-	EnvironmentID  *string                `json:"environment_id,omitzero"`
-	ExpiryDate     *time.Time             `json:"expiry_date,omitzero"`
-	ID             *string                `json:"id,omitzero"`
-	IdempotencyKey *string                `json:"idempotency_key,omitzero"`
-	Metadata       map[string]string      `json:"metadata,omitzero"`
-	Priority       *int64                 `json:"priority,omitzero"`
-	ReferenceID    *string                `json:"reference_id,omitzero"`
-	ReferenceType  *WalletTxReferenceType `json:"reference_type,omitzero"`
-	Status         *Status                `json:"status,omitzero"`
-	TenantID       *string                `json:"tenant_id,omitzero"`
+	Customer       *CustomerResponse `json:"customer,omitzero"`
+	CustomerID     *string           `json:"customer_id,omitzero"`
+	Description    *string           `json:"description,omitzero"`
+	EnvironmentID  *string           `json:"environment_id,omitzero"`
+	ExpiryDate     *time.Time        `json:"expiry_date,omitzero"`
+	ID             *string           `json:"id,omitzero"`
+	IdempotencyKey *string           `json:"idempotency_key,omitzero"`
+	Metadata       map[string]string `json:"metadata,omitzero"`
+	// ParentTransactionID is the ID of the parent wallet_transaction this row was earned from
+	// (the purchase tx, for a bonus grant). Empty for ordinary transactions.
+	ParentTransactionID *string                `json:"parent_transaction_id,omitzero"`
+	Priority            *int64                 `json:"priority,omitzero"`
+	ReferenceID         *string                `json:"reference_id,omitzero"`
+	ReferenceType       *WalletTxReferenceType `json:"reference_type,omitzero"`
+	Status              *Status                `json:"status,omitzero"`
+	TenantID            *string                `json:"tenant_id,omitzero"`
 	// topup_conversion_rate is the conversion rate for the topup to the currency
 	TopupConversionRate *string            `json:"topup_conversion_rate,omitzero"`
 	TransactionReason   *TransactionReason `json:"transaction_reason,omitzero"`
@@ -179,6 +182,13 @@ func (w *WalletTransactionResponse) GetMetadata() map[string]string {
 		return nil
 	}
 	return w.Metadata
+}
+
+func (w *WalletTransactionResponse) GetParentTransactionID() *string {
+	if w == nil {
+		return nil
+	}
+	return w.ParentTransactionID
 }
 
 func (w *WalletTransactionResponse) GetPriority() *int64 {

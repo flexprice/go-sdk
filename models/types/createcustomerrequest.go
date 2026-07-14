@@ -29,7 +29,7 @@ type CreateCustomerRequest struct {
 	// metadata contains additional key-value pairs for storing extra information
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// name is the full name or company name of the customer
-	Name *string `json:"name,omitzero"`
+	Name string `json:"name"`
 	// skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
 	// This is used internally when a customer is created via a workflow to prevent infinite loops
 	// Default: false
@@ -46,7 +46,7 @@ func (c CreateCustomerRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateCustomerRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"external_id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"external_id", "name"}); err != nil {
 		return err
 	}
 	return nil
@@ -122,9 +122,9 @@ func (c *CreateCustomerRequest) GetMetadata() map[string]string {
 	return c.Metadata
 }
 
-func (c *CreateCustomerRequest) GetName() *string {
+func (c *CreateCustomerRequest) GetName() string {
 	if c == nil {
-		return nil
+		return ""
 	}
 	return c.Name
 }

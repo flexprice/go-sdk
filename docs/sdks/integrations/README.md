@@ -86,7 +86,7 @@ func main() {
 
     res, err := s.Integrations.LinkIntegrationMapping(ctx, types.LinkIntegrationMappingRequest{
         EntityID: "<id>",
-        EntityType: types.IntegrationEntityTypeItemPrice,
+        EntityType: types.IntegrationEntityTypePrice,
         ProviderEntityID: "<id>",
         ProviderType: "<value>",
     })

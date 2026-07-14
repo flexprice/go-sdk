@@ -29,3 +29,4 @@ custom := types.TransactionReason("custom_value")
 | `TransactionReasonManualBalanceDebit`      | MANUAL_BALANCE_DEBIT                       |
 | `TransactionReasonCreditAdjustment`        | CREDIT_ADJUSTMENT                          |
 | `TransactionReasonInvoiceVoidRefund`       | INVOICE_VOID_REFUND                        |
+| `TransactionReasonPurchasedCreditBonus`    | PURCHASED_CREDIT_BONUS                     |

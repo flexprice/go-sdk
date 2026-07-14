@@ -1,0 +1,21 @@
+# AlertSettingsResponse
+
+
+## Fields
+
+| Field                                                           | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `Config`                                                        | [*types.AlertSettings](../../models/types/alertsettings.md)     | :heavy_minus_sign:                                              | N/A                                                             |
+| `CreatedAt`                                                     | [*time.Time](https://pkg.go.dev/time#Time)                      | :heavy_minus_sign:                                              | N/A                                                             |
+| `CreatedBy`                                                     | `*string`                                                       | :heavy_minus_sign:                                              | N/A                                                             |
+| `Enabled`                                                       | `*bool`                                                         | :heavy_minus_sign:                                              | N/A                                                             |
+| `EntityID`                                                      | `*string`                                                       | :heavy_minus_sign:                                              | N/A                                                             |
+| `EntityType`                                                    | [*types.AlertEntityType](../../models/types/alertentitytype.md) | :heavy_minus_sign:                                              | N/A                                                             |
+| `EnvironmentID`                                                 | `*string`                                                       | :heavy_minus_sign:                                              | N/A                                                             |
+| `ID`                                                            | `*string`                                                       | :heavy_minus_sign:                                              | N/A                                                             |
+| `ParentEntityID`                                                | `*string`                                                       | :heavy_minus_sign:                                              | N/A                                                             |
+| `ParentEntityType`                                              | `*string`                                                       | :heavy_minus_sign:                                              | N/A                                                             |
+| `Status`                                                        | [*types.Status](../../models/types/status.md)                   | :heavy_minus_sign:                                              | N/A                                                             |
+| `TenantID`                                                      | `*string`                                                       | :heavy_minus_sign:                                              | N/A                                                             |
+| `UpdatedAt`                                                     | [*time.Time](https://pkg.go.dev/time#Time)                      | :heavy_minus_sign:                                              | N/A                                                             |
+| `UpdatedBy`                                                     | `*string`                                                       | :heavy_minus_sign:                                              | N/A                                                             |

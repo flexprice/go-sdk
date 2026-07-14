@@ -12,6 +12,7 @@
 * [PostWebhookEventsEntitlementCreated](#postwebhookeventsentitlementcreated) - entitlement.created
 * [PostWebhookEventsEntitlementDeleted](#postwebhookeventsentitlementdeleted) - entitlement.deleted
 * [PostWebhookEventsEntitlementUpdated](#postwebhookeventsentitlementupdated) - entitlement.updated
+* [PostWebhookEventsEventRejected](#postwebhookeventseventrejected) - event.rejected
 * [PostWebhookEventsFeatureCreated](#postwebhookeventsfeaturecreated) - feature.created
 * [PostWebhookEventsFeatureDeleted](#postwebhookeventsfeaturedeleted) - feature.deleted
 * [PostWebhookEventsFeatureUpdated](#postwebhookeventsfeatureupdated) - feature.updated
@@ -440,6 +441,56 @@ func main() {
 ### Response
 
 **[*dtos.PostWebhookEventsEntitlementUpdatedResponse](../../models/dtos/postwebhookeventsentitlementupdatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsEventRejected
+
+Fired when an ingested usage event produces no meter usage — either no meter is registered for its event name, or meters exist for the name but the event matched none of their filters. Throttled to at most once per configured window per event name. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/event.rejected" method="post" path="/webhook-events/event.rejected" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsEventRejected(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoRejectedEventWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsEventRejectedResponse](../../models/dtos/postwebhookeventseventrejectedresponse.md), error**
 
 ### Errors
 

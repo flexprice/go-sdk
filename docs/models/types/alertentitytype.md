@@ -16,7 +16,10 @@ custom := types.AlertEntityType("custom_value")
 
 ## Values
 
-| Name                     | Value                    |
-| ------------------------ | ------------------------ |
-| `AlertEntityTypeWallet`  | wallet                   |
-| `AlertEntityTypeFeature` | feature                  |
+| Name                                  | Value                                 |
+| ------------------------------------- | ------------------------------------- |
+| `AlertEntityTypeWallet`               | wallet                                |
+| `AlertEntityTypeFeature`              | feature                               |
+| `AlertEntityTypeSubscription`         | subscription                          |
+| `AlertEntityTypeSubscriptionLineItem` | subscription_line_item                |
+| `AlertEntityTypeGroup`                | group                                 |

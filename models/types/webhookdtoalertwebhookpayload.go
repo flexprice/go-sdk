@@ -7,8 +7,8 @@ import (
 )
 
 type WebhookDtoAlertWebhookPayload struct {
-	AlertStatus *string `json:"alert_status,omitzero"`
-	AlertType   *string `json:"alert_type,omitzero"`
+	AlertStatus *AlertState `json:"alert_status,omitzero"`
+	AlertType   *AlertType  `json:"alert_type,omitzero"`
 	// Customer response object containing all customer information
 	Customer  *CustomerResponse `json:"customer,omitzero"`
 	EventType *WebhookEventName `json:"event_type,omitzero"`
@@ -27,14 +27,14 @@ func (w *WebhookDtoAlertWebhookPayload) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (w *WebhookDtoAlertWebhookPayload) GetAlertStatus() *string {
+func (w *WebhookDtoAlertWebhookPayload) GetAlertStatus() *AlertState {
 	if w == nil {
 		return nil
 	}
 	return w.AlertStatus
 }
 
-func (w *WebhookDtoAlertWebhookPayload) GetAlertType() *string {
+func (w *WebhookDtoAlertWebhookPayload) GetAlertType() *AlertType {
 	if w == nil {
 		return nil
 	}

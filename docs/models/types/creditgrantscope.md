@@ -20,3 +20,4 @@ custom := types.CreditGrantScope("custom_value")
 | ------------------------------ | ------------------------------ |
 | `CreditGrantScopePlan`         | PLAN                           |
 | `CreditGrantScopeSubscription` | SUBSCRIPTION                   |
+| `CreditGrantScopeAddon`        | ADDON                          |

@@ -97,6 +97,7 @@ func main() {
 
     res, err := s.Customers.CreateCustomer(ctx, types.CreateCustomerRequest{
         ExternalID: "<id>",
+        Name: "<value>",
     })
     if err != nil {
         log.Fatal(err)

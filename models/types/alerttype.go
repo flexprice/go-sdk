@@ -5,9 +5,12 @@ package types
 type AlertType string
 
 const (
-	AlertTypeLowOngoingBalance    AlertType = "low_ongoing_balance"
-	AlertTypeLowCreditBalance     AlertType = "low_credit_balance"
-	AlertTypeFeatureWalletBalance AlertType = "feature_wallet_balance"
+	AlertTypeLowOngoingBalance         AlertType = "low_ongoing_balance"
+	AlertTypeLowCreditBalance          AlertType = "low_credit_balance"
+	AlertTypeFeatureWalletBalance      AlertType = "feature_wallet_balance"
+	AlertTypeSubscriptionSpend         AlertType = "subscription_spend"
+	AlertTypeSubscriptionLineItemSpend AlertType = "subscription_line_item_spend"
+	AlertTypeSubscriptionGroupSpend    AlertType = "subscription_group_spend"
 )
 
 func (e AlertType) ToPointer() *AlertType {
@@ -18,7 +21,7 @@ func (e AlertType) ToPointer() *AlertType {
 func (e *AlertType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "low_ongoing_balance", "low_credit_balance", "feature_wallet_balance":
+		case "low_ongoing_balance", "low_credit_balance", "feature_wallet_balance", "subscription_spend", "subscription_line_item_spend", "subscription_group_spend":
 			return true
 		}
 	}

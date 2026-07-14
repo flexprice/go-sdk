@@ -78,6 +78,7 @@ const (
 	TransactionReasonManualBalanceDebit      TransactionReason = "MANUAL_BALANCE_DEBIT"
 	TransactionReasonCreditAdjustment        TransactionReason = "CREDIT_ADJUSTMENT"
 	TransactionReasonInvoiceVoidRefund       TransactionReason = "INVOICE_VOID_REFUND"
+	TransactionReasonPurchasedCreditBonus    TransactionReason = "PURCHASED_CREDIT_BONUS"
 )
 
 func (e TransactionReason) ToPointer() *TransactionReason {
@@ -110,6 +111,8 @@ func (e *TransactionReason) UnmarshalJSON(data []byte) error {
 	case "CREDIT_ADJUSTMENT":
 		fallthrough
 	case "INVOICE_VOID_REFUND":
+		fallthrough
+	case "PURCHASED_CREDIT_BONUS":
 		*e = TransactionReason(v)
 		return nil
 	default:

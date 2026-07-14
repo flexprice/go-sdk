@@ -527,7 +527,7 @@ func main() {
     )
 
     res, err := s.Wallets.TopUpWallet(ctx, "<id>", types.TopUpWalletRequest{
-        TransactionReason: types.TransactionReasonCreditAdjustment,
+        TransactionReason: types.TransactionReasonInvoiceVoidRefund,
     })
     if err != nil {
         log.Fatal(err)

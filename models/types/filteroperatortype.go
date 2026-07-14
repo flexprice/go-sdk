@@ -15,6 +15,7 @@ const (
 	FilterOperatorTypeNotContains FilterOperatorType = "not_contains"
 	FilterOperatorTypeGt          FilterOperatorType = "gt"
 	FilterOperatorTypeLt          FilterOperatorType = "lt"
+	FilterOperatorTypeGte         FilterOperatorType = "gte"
 	FilterOperatorTypeIn          FilterOperatorType = "in"
 	FilterOperatorTypeNotIn       FilterOperatorType = "not_in"
 	FilterOperatorTypeBefore      FilterOperatorType = "before"
@@ -39,6 +40,8 @@ func (e *FilterOperatorType) UnmarshalJSON(data []byte) error {
 	case "gt":
 		fallthrough
 	case "lt":
+		fallthrough
+	case "gte":
 		fallthrough
 	case "in":
 		fallthrough

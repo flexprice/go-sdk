@@ -16,8 +16,11 @@ custom := types.AlertType("custom_value")
 
 ## Values
 
-| Name                            | Value                           |
-| ------------------------------- | ------------------------------- |
-| `AlertTypeLowOngoingBalance`    | low_ongoing_balance             |
-| `AlertTypeLowCreditBalance`     | low_credit_balance              |
-| `AlertTypeFeatureWalletBalance` | feature_wallet_balance          |
+| Name                                 | Value                                |
+| ------------------------------------ | ------------------------------------ |
+| `AlertTypeLowOngoingBalance`         | low_ongoing_balance                  |
+| `AlertTypeLowCreditBalance`          | low_credit_balance                   |
+| `AlertTypeFeatureWalletBalance`      | feature_wallet_balance               |
+| `AlertTypeSubscriptionSpend`         | subscription_spend                   |
+| `AlertTypeSubscriptionLineItemSpend` | subscription_line_item_spend         |
+| `AlertTypeSubscriptionGroupSpend`    | subscription_group_spend             |

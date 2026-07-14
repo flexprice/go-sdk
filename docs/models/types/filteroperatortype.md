@@ -20,6 +20,7 @@ value := types.FilterOperatorTypeEq
 | `FilterOperatorTypeNotContains` | not_contains                    |
 | `FilterOperatorTypeGt`          | gt                              |
 | `FilterOperatorTypeLt`          | lt                              |
+| `FilterOperatorTypeGte`         | gte                             |
 | `FilterOperatorTypeIn`          | in                              |
 | `FilterOperatorTypeNotIn`       | not_in                          |
 | `FilterOperatorTypeBefore`      | before                          |

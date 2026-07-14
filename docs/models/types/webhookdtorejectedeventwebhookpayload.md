@@ -1,0 +1,10 @@
+# WebhookDtoRejectedEventWebhookPayload
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `Event`                                                                                 | [*types.WebhookDtoRejectedEventData](../../models/types/webhookdtorejectedeventdata.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `EventType`                                                                             | [*types.WebhookEventName](../../models/types/webhookeventname.md)                       | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Reason`                                                                                | [*types.RejectedEventReason](../../models/types/rejectedeventreason.md)                 | :heavy_minus_sign:                                                                      | N/A                                                                                     |

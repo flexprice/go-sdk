@@ -8,6 +8,7 @@ import (
 )
 
 type CreditGrantResponse struct {
+	AddonID *string             `json:"addon_id,omitzero"`
 	Cadence *CreditGrantCadence `json:"cadence,omitzero"`
 	// amount in the currency =  number of credits * conversion_rate
 	// ex if conversion_rate is 1, then 1 USD = 1 credit
@@ -53,6 +54,13 @@ func (c *CreditGrantResponse) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (c *CreditGrantResponse) GetAddonID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.AddonID
 }
 
 func (c *CreditGrantResponse) GetCadence() *CreditGrantCadence {

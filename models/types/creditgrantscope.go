@@ -7,6 +7,7 @@ type CreditGrantScope string
 const (
 	CreditGrantScopePlan         CreditGrantScope = "PLAN"
 	CreditGrantScopeSubscription CreditGrantScope = "SUBSCRIPTION"
+	CreditGrantScopeAddon        CreditGrantScope = "ADDON"
 )
 
 func (e CreditGrantScope) ToPointer() *CreditGrantScope {
@@ -17,7 +18,7 @@ func (e CreditGrantScope) ToPointer() *CreditGrantScope {
 func (e *CreditGrantScope) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "PLAN", "SUBSCRIPTION":
+		case "PLAN", "SUBSCRIPTION", "ADDON":
 			return true
 		}
 	}

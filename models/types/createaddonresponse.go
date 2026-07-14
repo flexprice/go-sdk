@@ -10,6 +10,7 @@ import (
 type CreateAddonResponse struct {
 	CreatedAt     *time.Time            `json:"created_at,omitzero"`
 	CreatedBy     *string               `json:"created_by,omitzero"`
+	CreditGrants  []CreditGrantResponse `json:"credit_grants,omitzero"`
 	Description   *string               `json:"description,omitzero"`
 	Entitlements  []EntitlementResponse `json:"entitlements,omitzero"`
 	EnvironmentID *string               `json:"environment_id,omitzero"`
@@ -48,6 +49,13 @@ func (c *CreateAddonResponse) GetCreatedBy() *string {
 		return nil
 	}
 	return c.CreatedBy
+}
+
+func (c *CreateAddonResponse) GetCreditGrants() []CreditGrantResponse {
+	if c == nil {
+		return nil
+	}
+	return c.CreditGrants
 }
 
 func (c *CreateAddonResponse) GetDescription() *string {

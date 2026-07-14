@@ -5,16 +5,17 @@ package types
 type IntegrationEntityType string
 
 const (
-	IntegrationEntityTypeCustomer     IntegrationEntityType = "customer"
-	IntegrationEntityTypePlan         IntegrationEntityType = "plan"
-	IntegrationEntityTypeInvoice      IntegrationEntityType = "invoice"
-	IntegrationEntityTypeSubscription IntegrationEntityType = "subscription"
-	IntegrationEntityTypePayment      IntegrationEntityType = "payment"
-	IntegrationEntityTypeCreditNote   IntegrationEntityType = "credit_note"
-	IntegrationEntityTypeAddon        IntegrationEntityType = "addon"
-	IntegrationEntityTypeItem         IntegrationEntityType = "item"
-	IntegrationEntityTypeItemPrice    IntegrationEntityType = "item_price"
-	IntegrationEntityTypePrice        IntegrationEntityType = "price"
+	IntegrationEntityTypeCustomer        IntegrationEntityType = "customer"
+	IntegrationEntityTypePlan            IntegrationEntityType = "plan"
+	IntegrationEntityTypeInvoice         IntegrationEntityType = "invoice"
+	IntegrationEntityTypeSubscription    IntegrationEntityType = "subscription"
+	IntegrationEntityTypePayment         IntegrationEntityType = "payment"
+	IntegrationEntityTypeCreditNote      IntegrationEntityType = "credit_note"
+	IntegrationEntityTypeAddon           IntegrationEntityType = "addon"
+	IntegrationEntityTypeItem            IntegrationEntityType = "item"
+	IntegrationEntityTypeItemPrice       IntegrationEntityType = "item_price"
+	IntegrationEntityTypePrice           IntegrationEntityType = "price"
+	IntegrationEntityTypeInvoiceLineItem IntegrationEntityType = "invoice_line_item"
 )
 
 func (e IntegrationEntityType) ToPointer() *IntegrationEntityType {
@@ -25,7 +26,7 @@ func (e IntegrationEntityType) ToPointer() *IntegrationEntityType {
 func (e *IntegrationEntityType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "customer", "plan", "invoice", "subscription", "payment", "credit_note", "addon", "item", "item_price", "price":
+		case "customer", "plan", "invoice", "subscription", "payment", "credit_note", "addon", "item", "item_price", "price", "invoice_line_item":
 			return true
 		}
 	}
