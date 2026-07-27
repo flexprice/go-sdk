@@ -21,12 +21,14 @@ func (c *ConfigValue) UnmarshalJSON(data []byte) error {
 }
 
 type AggregatedEntitlement struct {
-	ConfigValues     []map[string]ConfigValue     `json:"config_values,omitzero"`
-	IsEnabled        *bool                        `json:"is_enabled,omitzero"`
-	IsSoftLimit      *bool                        `json:"is_soft_limit,omitzero"`
-	StaticValues     []string                     `json:"static_values,omitzero"`
-	UsageLimit       *int64                       `json:"usage_limit,omitzero"`
-	UsageResetPeriod *EntitlementUsageResetPeriod `json:"usage_reset_period,omitzero"`
+	AggregationMode  *EntitlementAggregationMode   `json:"aggregation_mode,omitzero"`
+	Buckets          []AggregatedEntitlementBucket `json:"buckets,omitzero"`
+	ConfigValues     []map[string]ConfigValue      `json:"config_values,omitzero"`
+	IsEnabled        *bool                         `json:"is_enabled,omitzero"`
+	IsSoftLimit      *bool                         `json:"is_soft_limit,omitzero"`
+	StaticValues     []string                      `json:"static_values,omitzero"`
+	UsageLimit       *int64                        `json:"usage_limit,omitzero"`
+	UsageResetPeriod *EntitlementUsageResetPeriod  `json:"usage_reset_period,omitzero"`
 }
 
 func (a AggregatedEntitlement) MarshalJSON() ([]byte, error) {
@@ -38,6 +40,20 @@ func (a *AggregatedEntitlement) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (a *AggregatedEntitlement) GetAggregationMode() *EntitlementAggregationMode {
+	if a == nil {
+		return nil
+	}
+	return a.AggregationMode
+}
+
+func (a *AggregatedEntitlement) GetBuckets() []AggregatedEntitlementBucket {
+	if a == nil {
+		return nil
+	}
+	return a.Buckets
 }
 
 func (a *AggregatedEntitlement) GetConfigValues() []map[string]ConfigValue {

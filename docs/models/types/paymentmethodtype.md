@@ -23,3 +23,4 @@ custom := types.PaymentMethodType("custom_value")
 | `PaymentMethodTypeOffline`     | OFFLINE                        |
 | `PaymentMethodTypeCredits`     | CREDITS                        |
 | `PaymentMethodTypePaymentLink` | PAYMENT_LINK                   |
+| `PaymentMethodTypeUpi`         | UPI                            |

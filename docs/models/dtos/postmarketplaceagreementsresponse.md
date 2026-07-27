@@ -1,0 +1,9 @@
+# PostMarketplaceAgreementsResponse
+
+
+## Fields
+
+| Field                                                                                                     | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
+| --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `HTTPMeta`                                                                                                | [types.HTTPMetadata](../../models/types/httpmetadata.md)                                                  | :heavy_check_mark:                                                                                        | N/A                                                                                                       |
+| `RegisterMarketplaceAgreementResponse`                                                                    | [*types.RegisterMarketplaceAgreementResponse](../../models/types/registermarketplaceagreementresponse.md) | :heavy_minus_sign:                                                                                        | Created                                                                                                   |

@@ -11,6 +11,8 @@ const (
 	AlertTypeSubscriptionSpend         AlertType = "subscription_spend"
 	AlertTypeSubscriptionLineItemSpend AlertType = "subscription_line_item_spend"
 	AlertTypeSubscriptionGroupSpend    AlertType = "subscription_group_spend"
+	AlertTypeEntitlementGrantThreshold AlertType = "entitlement_grant_threshold"
+	AlertTypeEntitlementGrantExhausted AlertType = "entitlement_grant_exhausted"
 )
 
 func (e AlertType) ToPointer() *AlertType {
@@ -21,7 +23,7 @@ func (e AlertType) ToPointer() *AlertType {
 func (e *AlertType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "low_ongoing_balance", "low_credit_balance", "feature_wallet_balance", "subscription_spend", "subscription_line_item_spend", "subscription_group_spend":
+		case "low_ongoing_balance", "low_credit_balance", "feature_wallet_balance", "subscription_spend", "subscription_line_item_spend", "subscription_group_spend", "entitlement_grant_threshold", "entitlement_grant_exhausted":
 			return true
 		}
 	}

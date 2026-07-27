@@ -10,6 +10,7 @@ const (
 	AlertEntityTypeSubscription         AlertEntityType = "subscription"
 	AlertEntityTypeSubscriptionLineItem AlertEntityType = "subscription_line_item"
 	AlertEntityTypeGroup                AlertEntityType = "group"
+	AlertEntityTypeEntitlementGrant     AlertEntityType = "entitlement_grant"
 )
 
 func (e AlertEntityType) ToPointer() *AlertEntityType {
@@ -20,7 +21,7 @@ func (e AlertEntityType) ToPointer() *AlertEntityType {
 func (e *AlertEntityType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "wallet", "feature", "subscription", "subscription_line_item", "group":
+		case "wallet", "feature", "subscription", "subscription_line_item", "group", "entitlement_grant":
 			return true
 		}
 	}

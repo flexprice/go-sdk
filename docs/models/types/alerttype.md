@@ -24,3 +24,5 @@ custom := types.AlertType("custom_value")
 | `AlertTypeSubscriptionSpend`         | subscription_spend                   |
 | `AlertTypeSubscriptionLineItemSpend` | subscription_line_item_spend         |
 | `AlertTypeSubscriptionGroupSpend`    | subscription_group_spend             |
+| `AlertTypeEntitlementGrantThreshold` | entitlement_grant_threshold          |
+| `AlertTypeEntitlementGrantExhausted` | entitlement_grant_exhausted          |

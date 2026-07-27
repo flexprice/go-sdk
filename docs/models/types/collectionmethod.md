@@ -8,6 +8,9 @@ import (
 )
 
 value := types.CollectionMethodChargeAutomatically
+
+// Open enum: custom values can be created with a direct type cast
+custom := types.CollectionMethod("custom_value")
 ```
 
 

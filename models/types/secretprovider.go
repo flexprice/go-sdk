@@ -5,19 +5,22 @@ package types
 type SecretProvider string
 
 const (
-	SecretProviderFlexprice  SecretProvider = "flexprice"
-	SecretProviderStripe     SecretProvider = "stripe"
-	SecretProviderS3         SecretProvider = "s3"
-	SecretProviderHubspot    SecretProvider = "hubspot"
-	SecretProviderRazorpay   SecretProvider = "razorpay"
-	SecretProviderChargebee  SecretProvider = "chargebee"
-	SecretProviderQuickbooks SecretProvider = "quickbooks"
-	SecretProviderZohoBooks  SecretProvider = "zoho_books"
-	SecretProviderNomod      SecretProvider = "nomod"
-	SecretProviderMoyasar    SecretProvider = "moyasar"
-	SecretProviderPaddle     SecretProvider = "paddle"
-	SecretProviderWhop       SecretProvider = "whop"
-	SecretProviderTabs       SecretProvider = "tabs"
+	SecretProviderFlexprice        SecretProvider = "flexprice"
+	SecretProviderStripe           SecretProvider = "stripe"
+	SecretProviderS3               SecretProvider = "s3"
+	SecretProviderHubspot          SecretProvider = "hubspot"
+	SecretProviderRazorpay         SecretProvider = "razorpay"
+	SecretProviderChargebee        SecretProvider = "chargebee"
+	SecretProviderQuickbooks       SecretProvider = "quickbooks"
+	SecretProviderZohoBooks        SecretProvider = "zoho_books"
+	SecretProviderNomod            SecretProvider = "nomod"
+	SecretProviderMoyasar          SecretProvider = "moyasar"
+	SecretProviderPaddle           SecretProvider = "paddle"
+	SecretProviderWhop             SecretProvider = "whop"
+	SecretProviderTabs             SecretProvider = "tabs"
+	SecretProviderAwsMarketplace   SecretProvider = "aws_marketplace"
+	SecretProviderGcpMarketplace   SecretProvider = "gcp_marketplace"
+	SecretProviderAzureMarketplace SecretProvider = "azure_marketplace"
 )
 
 func (e SecretProvider) ToPointer() *SecretProvider {
@@ -28,7 +31,7 @@ func (e SecretProvider) ToPointer() *SecretProvider {
 func (e *SecretProvider) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "flexprice", "stripe", "s3", "hubspot", "razorpay", "chargebee", "quickbooks", "zoho_books", "nomod", "moyasar", "paddle", "whop", "tabs":
+		case "flexprice", "stripe", "s3", "hubspot", "razorpay", "chargebee", "quickbooks", "zoho_books", "nomod", "moyasar", "paddle", "whop", "tabs", "aws_marketplace", "gcp_marketplace", "azure_marketplace":
 			return true
 		}
 	}

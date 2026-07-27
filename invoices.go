@@ -1082,11 +1082,12 @@ func (s *Invoices) QueryInvoice(ctx context.Context, request types.InvoiceFilter
 
 // GetInvoice - Get invoice
 // Use when loading an invoice for display or editing (e.g. portal or reconciliation). Supports group_by for usage breakdown and force_runtime_recalculation.
-func (s *Invoices) GetInvoice(ctx context.Context, id string, expandBySource *bool, groupBy []string, opts ...dtos.Option) (*dtos.GetInvoiceResponse, error) {
+func (s *Invoices) GetInvoice(ctx context.Context, id string, expandBySource *bool, groupBy []string, expand *string, opts ...dtos.Option) (*dtos.GetInvoiceResponse, error) {
 	request := dtos.GetInvoiceRequest{
 		ID:             id,
 		ExpandBySource: expandBySource,
 		GroupBy:        groupBy,
+		Expand:         expand,
 	}
 
 	o := dtos.Options{}

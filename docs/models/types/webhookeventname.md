@@ -39,6 +39,7 @@ custom := types.WebhookEventName("custom_value")
 | `WebhookEventNameWalletUpdated`                               | wallet.updated                                                |
 | `WebhookEventNameWalletTerminated`                            | wallet.terminated                                             |
 | `WebhookEventNameWalletTransactionCreated`                    | wallet.transaction.created                                    |
+| `WebhookEventNameWalletTransactionUpdated`                    | wallet.transaction.updated                                    |
 | `WebhookEventNamePaymentCreated`                              | payment.created                                               |
 | `WebhookEventNamePaymentUpdated`                              | payment.updated                                               |
 | `WebhookEventNamePaymentFailed`                               | payment.failed                                                |
@@ -56,12 +57,14 @@ custom := types.WebhookEventName("custom_value")
 | `WebhookEventNameWalletCreditBalanceRecovered`                | wallet.credit_balance.recovered                               |
 | `WebhookEventNameWalletOngoingBalanceDropped`                 | wallet.ongoing_balance.dropped                                |
 | `WebhookEventNameWalletOngoingBalanceRecovered`               | wallet.ongoing_balance.recovered                              |
+| `WebhookEventNameWalletOngoingBalanceUpdated`                 | wallet.ongoing_balance.updated                                |
 | `WebhookEventNameSubscriptionSpendThresholdReached`           | subscription.spend.threshold_reached                          |
 | `WebhookEventNameSubscriptionSpendThresholdRecovered`         | subscription.spend.threshold_recovered                        |
 | `WebhookEventNameSubscriptionLineItemSpendThresholdReached`   | subscription.line_item_spend.threshold_reached                |
 | `WebhookEventNameSubscriptionLineItemSpendThresholdRecovered` | subscription.line_item_spend.threshold_recovered              |
 | `WebhookEventNameSubscriptionGroupSpendThresholdReached`      | subscription.group_spend.threshold_reached                    |
 | `WebhookEventNameSubscriptionGroupSpendThresholdRecovered`    | subscription.group_spend.threshold_recovered                  |
+| `WebhookEventNameEntitlementGrantExhausted`                   | entitlement.grant.exhausted                                   |
 | `WebhookEventNameSubscriptionRenewalDue`                      | subscription.renewal.due                                      |
 | `WebhookEventNameInvoiceCommunicationTriggered`               | invoice.communication.triggered                               |
 | `WebhookEventNameCreditNoteCreated`                           | credit_note.created                                           |

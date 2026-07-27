@@ -2,30 +2,24 @@
 
 package types
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 type CheckoutAction string
 
 const (
 	CheckoutActionCreateSubscription CheckoutAction = "create_subscription"
+	CheckoutActionModifySubscription CheckoutAction = "modify_subscription"
 )
 
 func (e CheckoutAction) ToPointer() *CheckoutAction {
 	return &e
 }
-func (e *CheckoutAction) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *CheckoutAction) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "create_subscription", "modify_subscription":
+			return true
+		}
 	}
-	switch v {
-	case "create_subscription":
-		*e = CheckoutAction(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CheckoutAction: %v", v)
-	}
+	return false
 }

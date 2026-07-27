@@ -20,6 +20,8 @@ type CreateCustomerRequest struct {
 	AddressPostalCode *string `json:"address_postal_code,omitzero"`
 	// address_state is the state, province, or region name with maximum 100 characters
 	AddressState *string `json:"address_state,omitzero"`
+	// contact is an optional contact number for the customer (e.g. phone)
+	Contact *string `json:"contact,omitzero"`
 	// email is the customer's email address and must be a valid email format if provided
 	Email *string `json:"email,omitzero"`
 	// external_id is the unique identifier from your system to reference this customer (required)
@@ -30,6 +32,8 @@ type CreateCustomerRequest struct {
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// name is the full name or company name of the customer
 	Name string `json:"name"`
+	// onboarding_workflow_name is given if a custom onboarding workflow is to be triggered for this customer
+	OnboardingWorkflowName *string `json:"onboarding_workflow_name,omitzero"`
 	// skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
 	// This is used internally when a customer is created via a workflow to prevent infinite loops
 	// Default: false
@@ -94,6 +98,13 @@ func (c *CreateCustomerRequest) GetAddressState() *string {
 	return c.AddressState
 }
 
+func (c *CreateCustomerRequest) GetContact() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Contact
+}
+
 func (c *CreateCustomerRequest) GetEmail() *string {
 	if c == nil {
 		return nil
@@ -127,6 +138,13 @@ func (c *CreateCustomerRequest) GetName() string {
 		return ""
 	}
 	return c.Name
+}
+
+func (c *CreateCustomerRequest) GetOnboardingWorkflowName() *string {
+	if c == nil {
+		return nil
+	}
+	return c.OnboardingWorkflowName
 }
 
 func (c *CreateCustomerRequest) GetSkipOnboardingWorkflow() *bool {

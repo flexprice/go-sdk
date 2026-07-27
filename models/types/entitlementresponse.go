@@ -8,23 +8,28 @@ import (
 )
 
 type EntitlementResponse struct {
-	Addon               *AddonResponse         `json:"addon,omitzero"`
-	ConfigValue         map[string]any         `json:"config_value,omitzero"`
-	CreatedAt           *time.Time             `json:"created_at,omitzero"`
-	CreatedBy           *string                `json:"created_by,omitzero"`
-	DisplayOrder        *int64                 `json:"display_order,omitzero"`
-	EndDate             *time.Time             `json:"end_date,omitzero"`
-	EntityID            *string                `json:"entity_id,omitzero"`
-	EntityType          *EntitlementEntityType `json:"entity_type,omitzero"`
-	EnvironmentID       *string                `json:"environment_id,omitzero"`
-	Feature             *FeatureResponse       `json:"feature,omitzero"`
-	FeatureID           *string                `json:"feature_id,omitzero"`
-	FeatureType         *FeatureType           `json:"feature_type,omitzero"`
-	ID                  *string                `json:"id,omitzero"`
-	IsEnabled           *bool                  `json:"is_enabled,omitzero"`
-	IsSoftLimit         *bool                  `json:"is_soft_limit,omitzero"`
-	ParentEntitlementID *string                `json:"parent_entitlement_id,omitzero"`
-	Plan                *PlanResponse          `json:"plan,omitzero"`
+	Addon               *AddonResponse                `json:"addon,omitzero"`
+	AggregationMode     *EntitlementAggregationMode   `json:"aggregation_mode,omitzero"`
+	ConfigValue         map[string]any                `json:"config_value,omitzero"`
+	CreatedAt           *time.Time                    `json:"created_at,omitzero"`
+	CreatedBy           *string                       `json:"created_by,omitzero"`
+	DisplayOrder        *int64                        `json:"display_order,omitzero"`
+	EndDate             *time.Time                    `json:"end_date,omitzero"`
+	EntityID            *string                       `json:"entity_id,omitzero"`
+	EntityType          *EntitlementEntityType        `json:"entity_type,omitzero"`
+	EnvironmentID       *string                       `json:"environment_id,omitzero"`
+	Feature             *FeatureResponse              `json:"feature,omitzero"`
+	FeatureID           *string                       `json:"feature_id,omitzero"`
+	FeatureType         *FeatureType                  `json:"feature_type,omitzero"`
+	GrantDurationUnit   *EntitlementGrantDurationUnit `json:"grant_duration_unit,omitzero"`
+	GrantDurationValue  *int64                        `json:"grant_duration_value,omitzero"`
+	GrantMeasure        *EntitlementGrantMeasure      `json:"grant_measure,omitzero"`
+	GrantQuota          *float64                      `json:"grant_quota,omitzero"`
+	ID                  *string                       `json:"id,omitzero"`
+	IsEnabled           *bool                         `json:"is_enabled,omitzero"`
+	IsSoftLimit         *bool                         `json:"is_soft_limit,omitzero"`
+	ParentEntitlementID *string                       `json:"parent_entitlement_id,omitzero"`
+	Plan                *PlanResponse                 `json:"plan,omitzero"`
 	// TODO: Remove this once we have a proper entitlement entity type
 	PlanID           *string                      `json:"plan_id,omitzero"`
 	StartDate        *time.Time                   `json:"start_date,omitzero"`
@@ -53,6 +58,13 @@ func (e *EntitlementResponse) GetAddon() *AddonResponse {
 		return nil
 	}
 	return e.Addon
+}
+
+func (e *EntitlementResponse) GetAggregationMode() *EntitlementAggregationMode {
+	if e == nil {
+		return nil
+	}
+	return e.AggregationMode
 }
 
 func (e *EntitlementResponse) GetConfigValue() map[string]any {
@@ -130,6 +142,34 @@ func (e *EntitlementResponse) GetFeatureType() *FeatureType {
 		return nil
 	}
 	return e.FeatureType
+}
+
+func (e *EntitlementResponse) GetGrantDurationUnit() *EntitlementGrantDurationUnit {
+	if e == nil {
+		return nil
+	}
+	return e.GrantDurationUnit
+}
+
+func (e *EntitlementResponse) GetGrantDurationValue() *int64 {
+	if e == nil {
+		return nil
+	}
+	return e.GrantDurationValue
+}
+
+func (e *EntitlementResponse) GetGrantMeasure() *EntitlementGrantMeasure {
+	if e == nil {
+		return nil
+	}
+	return e.GrantMeasure
+}
+
+func (e *EntitlementResponse) GetGrantQuota() *float64 {
+	if e == nil {
+		return nil
+	}
+	return e.GrantQuota
 }
 
 func (e *EntitlementResponse) GetID() *string {

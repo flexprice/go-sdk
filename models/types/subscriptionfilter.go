@@ -75,7 +75,12 @@ type SubscriptionFilter struct {
 	// TrialEndDueLTE, when set, restricts to subscriptions with trial_end not nil and trial_end <= trial_end_due_lte.
 	// Use with subscription_status trialing for trial-end cron processing.
 	TrialEndDueLte *time.Time `json:"trial_end_due_lte,omitzero"`
-	// WithLineItems includes line items in the response
+	// WithLineItems includes line items in the response.
+	//
+	// Deprecated: use expand="subscription_line_items" instead. Retained for
+	// backwards compatibility and for internal callers that need to force-disable
+	// line item loading (set to false). The service layer ORs this with the
+	// expand check before invoking the repository.
 	WithLineItems *bool `json:"with_line_items,omitzero"`
 }
 

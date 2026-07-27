@@ -94,7 +94,7 @@ func main() {
         Currency: "CFP Franc",
         DestinationID: "<id>",
         DestinationType: types.PaymentDestinationTypeCustomer,
-        PaymentMethodType: types.PaymentMethodTypeAch,
+        PaymentMethodType: types.PaymentMethodTypeOffline,
     })
     if err != nil {
         log.Fatal(err)

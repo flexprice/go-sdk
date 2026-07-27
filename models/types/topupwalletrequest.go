@@ -14,6 +14,10 @@ type TopUpWalletRequest struct {
 	// ex if the wallet has a conversion_rate of 2 then adding an amount of
 	// 10 USD in the wallet wil add 5 credits in the wallet
 	Amount *string `json:"amount,omitzero"`
+	// bonus_credits_expiry_date_utc is the expiry (UTC, full precision) applied to the bonus
+	// credits transaction. Independent of expiry_date_utc, which governs the purchase credits.
+	// Only honored when bonus credits are actually granted (explicit BonusCreditsToAdd or slab).
+	BonusCreditsExpiryDateUtc *string `json:"bonus_credits_expiry_date_utc,omitzero"`
 	// bonus_credits_to_add is an explicit override for the bonus credits granted alongside this
 	// purchase. When nil/omitted, the bonus is resolved from the tenant's
 	// bonus_credits_topup_config slabs (if enabled). When set, it must be greater than 0 and is
@@ -25,7 +29,8 @@ type TopUpWalletRequest struct {
 	Description *string `json:"description,omitzero"`
 	// expiry_date_utc is the expiry date in UTC timezone
 	// ex 2025-01-01 00:00:00 UTC
-	ExpiryDateUtc *string `json:"expiry_date_utc,omitzero"`
+	ExpiryDateUtc    *string `json:"expiry_date_utc,omitzero"`
+	ForceSyncInvoice *bool   `json:"force_sync_invoice,omitzero"`
 	// idempotency_key is a unique key for the transaction
 	IdempotencyKey *string           `json:"idempotency_key,omitzero"`
 	Metadata       map[string]string `json:"metadata,omitzero"`
@@ -54,6 +59,13 @@ func (t *TopUpWalletRequest) GetAmount() *string {
 	return t.Amount
 }
 
+func (t *TopUpWalletRequest) GetBonusCreditsExpiryDateUtc() *string {
+	if t == nil {
+		return nil
+	}
+	return t.BonusCreditsExpiryDateUtc
+}
+
 func (t *TopUpWalletRequest) GetBonusCreditsToAdd() *string {
 	if t == nil {
 		return nil
@@ -80,6 +92,13 @@ func (t *TopUpWalletRequest) GetExpiryDateUtc() *string {
 		return nil
 	}
 	return t.ExpiryDateUtc
+}
+
+func (t *TopUpWalletRequest) GetForceSyncInvoice() *bool {
+	if t == nil {
+		return nil
+	}
+	return t.ForceSyncInvoice
 }
 
 func (t *TopUpWalletRequest) GetIdempotencyKey() *string {

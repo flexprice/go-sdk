@@ -15,6 +15,7 @@ type PaymentResponse struct {
 	Currency               *string                  `json:"currency,omitzero"`
 	DestinationID          *string                  `json:"destination_id,omitzero"`
 	DestinationType        *PaymentDestinationType  `json:"destination_type,omitzero"`
+	EnvironmentID          *string                  `json:"environment_id,omitzero"`
 	ErrorMessage           *string                  `json:"error_message,omitzero"`
 	FailedAt               *time.Time               `json:"failed_at,omitzero"`
 	GatewayMetadata        map[string]string        `json:"gateway_metadata,omitzero"`
@@ -97,6 +98,13 @@ func (p *PaymentResponse) GetDestinationType() *PaymentDestinationType {
 		return nil
 	}
 	return p.DestinationType
+}
+
+func (p *PaymentResponse) GetEnvironmentID() *string {
+	if p == nil {
+		return nil
+	}
+	return p.EnvironmentID
 }
 
 func (p *PaymentResponse) GetErrorMessage() *string {

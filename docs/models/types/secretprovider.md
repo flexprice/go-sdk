@@ -16,18 +16,21 @@ custom := types.SecretProvider("custom_value")
 
 ## Values
 
-| Name                       | Value                      |
-| -------------------------- | -------------------------- |
-| `SecretProviderFlexprice`  | flexprice                  |
-| `SecretProviderStripe`     | stripe                     |
-| `SecretProviderS3`         | s3                         |
-| `SecretProviderHubspot`    | hubspot                    |
-| `SecretProviderRazorpay`   | razorpay                   |
-| `SecretProviderChargebee`  | chargebee                  |
-| `SecretProviderQuickbooks` | quickbooks                 |
-| `SecretProviderZohoBooks`  | zoho_books                 |
-| `SecretProviderNomod`      | nomod                      |
-| `SecretProviderMoyasar`    | moyasar                    |
-| `SecretProviderPaddle`     | paddle                     |
-| `SecretProviderWhop`       | whop                       |
-| `SecretProviderTabs`       | tabs                       |
+| Name                             | Value                            |
+| -------------------------------- | -------------------------------- |
+| `SecretProviderFlexprice`        | flexprice                        |
+| `SecretProviderStripe`           | stripe                           |
+| `SecretProviderS3`               | s3                               |
+| `SecretProviderHubspot`          | hubspot                          |
+| `SecretProviderRazorpay`         | razorpay                         |
+| `SecretProviderChargebee`        | chargebee                        |
+| `SecretProviderQuickbooks`       | quickbooks                       |
+| `SecretProviderZohoBooks`        | zoho_books                       |
+| `SecretProviderNomod`            | nomod                            |
+| `SecretProviderMoyasar`          | moyasar                          |
+| `SecretProviderPaddle`           | paddle                           |
+| `SecretProviderWhop`             | whop                             |
+| `SecretProviderTabs`             | tabs                             |
+| `SecretProviderAwsMarketplace`   | aws_marketplace                  |
+| `SecretProviderGcpMarketplace`   | gcp_marketplace                  |
+| `SecretProviderAzureMarketplace` | azure_marketplace                |

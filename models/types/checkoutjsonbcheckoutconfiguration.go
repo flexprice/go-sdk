@@ -8,6 +8,7 @@ import (
 
 type CheckoutJSONBCheckoutConfiguration struct {
 	CreateSubscriptionParams *CreateSubscriptionParams `json:"create_subscription_params,omitzero"`
+	ModifySubscriptionParams *ModifySubscriptionParams `json:"modify_subscription_params,omitzero"`
 }
 
 func (c CheckoutJSONBCheckoutConfiguration) MarshalJSON() ([]byte, error) {
@@ -26,4 +27,11 @@ func (c *CheckoutJSONBCheckoutConfiguration) GetCreateSubscriptionParams() *Crea
 		return nil
 	}
 	return c.CreateSubscriptionParams
+}
+
+func (c *CheckoutJSONBCheckoutConfiguration) GetModifySubscriptionParams() *ModifySubscriptionParams {
+	if c == nil {
+		return nil
+	}
+	return c.ModifySubscriptionParams
 }

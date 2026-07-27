@@ -17,6 +17,7 @@ const (
 	ErrorCodeDatabaseError      ErrorCode = "database_error"
 	ErrorCodeServiceUnavailable ErrorCode = "service_unavailable"
 	ErrorCodeTooManyRequests    ErrorCode = "too_many_requests"
+	ErrorCodeNotImplemented     ErrorCode = "not_implemented"
 )
 
 func (e ErrorCode) ToPointer() *ErrorCode {
@@ -27,7 +28,7 @@ func (e ErrorCode) ToPointer() *ErrorCode {
 func (e *ErrorCode) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "http_client_error", "system_error", "internal_error", "not_found", "already_exists", "version_conflict", "validation_error", "invalid_operation", "permission_denied", "database_error", "service_unavailable", "too_many_requests":
+		case "http_client_error", "system_error", "internal_error", "not_found", "already_exists", "version_conflict", "validation_error", "invalid_operation", "permission_denied", "database_error", "service_unavailable", "too_many_requests", "not_implemented":
 			return true
 		}
 	}

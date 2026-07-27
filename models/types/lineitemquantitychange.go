@@ -12,7 +12,7 @@ type LineItemQuantityChange struct {
 	// If omitted, the change is effective immediately (now).
 	EffectiveDate *time.Time `json:"effective_date,omitzero"`
 	ID            string     `json:"id"`
-	Quantity      string     `json:"quantity"`
+	Quantity      *string    `json:"quantity,omitzero"`
 }
 
 func (l LineItemQuantityChange) MarshalJSON() ([]byte, error) {
@@ -20,7 +20,7 @@ func (l LineItemQuantityChange) MarshalJSON() ([]byte, error) {
 }
 
 func (l *LineItemQuantityChange) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id", "quantity"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"id"}); err != nil {
 		return err
 	}
 	return nil
@@ -40,9 +40,9 @@ func (l *LineItemQuantityChange) GetID() string {
 	return l.ID
 }
 
-func (l *LineItemQuantityChange) GetQuantity() string {
+func (l *LineItemQuantityChange) GetQuantity() *string {
 	if l == nil {
-		return ""
+		return nil
 	}
 	return l.Quantity
 }

@@ -7,8 +7,9 @@ import (
 )
 
 type SubscriptionModifyResponse struct {
-	ChangedResources *ChangedResources     `json:"changed_resources,omitzero"`
-	Subscription     *SubscriptionResponse `json:"subscription,omitzero"`
+	ChangedResources *ChangedResources        `json:"changed_resources,omitzero"`
+	CheckoutSession  *CheckoutSessionResponse `json:"checkout_session,omitzero"`
+	Subscription     *SubscriptionResponse    `json:"subscription,omitzero"`
 }
 
 func (s SubscriptionModifyResponse) MarshalJSON() ([]byte, error) {
@@ -27,6 +28,13 @@ func (s *SubscriptionModifyResponse) GetChangedResources() *ChangedResources {
 		return nil
 	}
 	return s.ChangedResources
+}
+
+func (s *SubscriptionModifyResponse) GetCheckoutSession() *CheckoutSessionResponse {
+	if s == nil {
+		return nil
+	}
+	return s.CheckoutSession
 }
 
 func (s *SubscriptionModifyResponse) GetSubscription() *SubscriptionResponse {

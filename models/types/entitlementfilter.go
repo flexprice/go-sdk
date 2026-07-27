@@ -43,15 +43,17 @@ type EntitlementFilter struct {
 	FeatureIds  []string               `json:"feature_ids,omitzero"`
 	FeatureType *FeatureType           `json:"feature_type,omitzero"`
 	// Specific filters for entitlements
-	Filters   []FilterCondition       `json:"filters,omitzero"`
-	IsEnabled *bool                   `json:"is_enabled,omitzero"`
-	Limit     *int64                  `json:"limit,omitzero"`
-	Offset    *int64                  `json:"offset,omitzero"`
-	Order     *EntitlementFilterOrder `json:"order,omitzero"`
-	PlanIds   []string                `json:"plan_ids,omitzero"`
-	Sort      []SortCondition         `json:"sort,omitzero"`
-	StartTime *time.Time              `json:"start_time,omitzero"`
-	Status    *Status                 `json:"status,omitzero"`
+	Filters []FilterCondition `json:"filters,omitzero"`
+	// HasGrantConfig filters on grant-config presence (grant_quota set or not).
+	HasGrantConfig *bool                   `json:"has_grant_config,omitzero"`
+	IsEnabled      *bool                   `json:"is_enabled,omitzero"`
+	Limit          *int64                  `json:"limit,omitzero"`
+	Offset         *int64                  `json:"offset,omitzero"`
+	Order          *EntitlementFilterOrder `json:"order,omitzero"`
+	PlanIds        []string                `json:"plan_ids,omitzero"`
+	Sort           []SortCondition         `json:"sort,omitzero"`
+	StartTime      *time.Time              `json:"start_time,omitzero"`
+	Status         *Status                 `json:"status,omitzero"`
 }
 
 func (e EntitlementFilter) MarshalJSON() ([]byte, error) {
@@ -112,6 +114,13 @@ func (e *EntitlementFilter) GetFilters() []FilterCondition {
 		return nil
 	}
 	return e.Filters
+}
+
+func (e *EntitlementFilter) GetHasGrantConfig() *bool {
+	if e == nil {
+		return nil
+	}
+	return e.HasGrantConfig
 }
 
 func (e *EntitlementFilter) GetIsEnabled() *bool {

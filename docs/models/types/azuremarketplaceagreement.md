@@ -1,0 +1,11 @@
+# AzureMarketplaceAgreement
+
+
+## Fields
+
+| Field                                                                                      | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `BeneficiaryAccountID`                                                                     | `string`                                                                                   | :heavy_check_mark:                                                                         | writes the customer mapping; not read in the report payload                                |
+| `Dimension`                                                                                | `string`                                                                                   | :heavy_check_mark:                                                                         | -> batchUsageEvent's dimension (always "usage_fee" in the cents model)                     |
+| `PlanID`                                                                                   | `string`                                                                                   | :heavy_check_mark:                                                                         | -> batchUsageEvent's planId; Azure's plan id, distinct from the request's top-level PlanID |
+| `ResourceID`                                                                               | `string`                                                                                   | :heavy_check_mark:                                                                         | -> batchUsageEvent's resourceId; the Azure SaaS subscription id                            |

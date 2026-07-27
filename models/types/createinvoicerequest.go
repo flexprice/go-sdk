@@ -25,6 +25,11 @@ type CreateInvoiceRequest struct {
 	Description *string `json:"description,omitzero"`
 	// due_date is the date by which payment is expected
 	DueDate *time.Time `json:"due_date,omitzero"`
+	// force_sync_invoice, when true, attempts to synchronously sync this invoice to
+	// Moyasar (if enabled) before returning, instead of relying solely on the async
+	// Kafka + Temporal vendor-sync pipeline. Only honored by CreateOneOffInvoice.
+	// Best-effort: sync failures do not fail invoice creation.
+	ForceSyncInvoice *bool `json:"force_sync_invoice,omitzero"`
 	// idempotency_key is an optional key used to prevent duplicate invoice creation
 	IdempotencyKey *string `json:"idempotency_key,omitzero"`
 	// Invoice Coupons
@@ -136,6 +141,13 @@ func (c *CreateInvoiceRequest) GetDueDate() *time.Time {
 		return nil
 	}
 	return c.DueDate
+}
+
+func (c *CreateInvoiceRequest) GetForceSyncInvoice() *bool {
+	if c == nil {
+		return nil
+	}
+	return c.ForceSyncInvoice
 }
 
 func (c *CreateInvoiceRequest) GetIdempotencyKey() *string {

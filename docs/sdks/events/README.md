@@ -8,10 +8,10 @@
 * [GetUsageAnalytics](#getusageanalytics) - Get usage analytics
 * [IngestEventsBulk](#ingesteventsbulk) - Bulk ingest events
 * [GetHuggingfaceInferenceData](#gethuggingfaceinferencedata) - Get Hugging Face inference data
+* [GetEvent](#getevent) - Get event
 * [ListRawEvents](#listrawevents) - List raw events
 * [GetUsageStatistics](#getusagestatistics) - Get usage statistics
 * [GetUsageByMeter](#getusagebymeter) - Get usage by meter
-* [GetEvent](#getevent) - Get event
 
 ## IngestEvent
 
@@ -190,11 +190,69 @@ func main() {
 
 ## GetHuggingfaceInferenceData
 
-Use when fetching Hugging Face inference usage or billing data (e.g. for HF-specific reporting or reconciliation).
+Use when fetching Hugging Face inference usage or billing data (e.g. for HF-specific reporting or reconciliation). Reads the meter-usage pipeline.
 
 ### Example Usage
 
 <!-- UsageSnippet language="go" operationID="getHuggingfaceInferenceData" method="post" path="/events/huggingface-inference" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Events.GetHuggingfaceInferenceData(ctx, types.GetHuggingFaceBillingDataRequest{
+        RequestIds: []string{
+            "<value 1>",
+            "<value 2>",
+        },
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.GetHuggingFaceBillingDataResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `request`                                                                                        | [types.GetHuggingFaceBillingDataRequest](../../models/types/gethuggingfacebillingdatarequest.md) | :heavy_check_mark:                                                                               | The request object to use for the request.                                                       |
+| `opts`                                                                                           | [][dtos.Option](../../models/dtos/option.md)                                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+
+### Response
+
+**[*dtos.GetHuggingfaceInferenceDataResponse](../../models/dtos/gethuggingfaceinferencedataresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## GetEvent
+
+Use when debugging a specific event (e.g. why it failed or how it was aggregated). Reads the meter-usage pipeline; includes processing status and step-by-step debug tracker when unprocessed. Uses ?id= query param because event IDs can contain "/".
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getEvent" method="get" path="/events/lookup" -->
 ```go
 package main
 
@@ -211,11 +269,11 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Events.GetHuggingfaceInferenceData(ctx)
+    res, err := s.Events.GetEvent(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
-    if res.GetHuggingFaceBillingDataResponse != nil {
+    if res.GetEventByIDResponse != nil {
         // handle response
     }
 }
@@ -226,16 +284,18 @@ func main() {
 | Parameter                                             | Type                                                  | Required                                              | Description                                           |
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Event ID                                              |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
-**[*dtos.GetHuggingfaceInferenceDataResponse](../../models/dtos/gethuggingfaceinferencedataresponse.md), error**
+**[*dtos.GetEventResponse](../../models/dtos/geteventresponse.md), error**
 
 ### Errors
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 404                  | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 
@@ -422,58 +482,5 @@ func main() {
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400, 404             | application/json     |
-| errors.ErrorResponse | 500                  | application/json     |
-| errors.APIError      | 4XX, 5XX             | \*/\*                |
-
-## GetEvent
-
-Use when debugging a specific event (e.g. why it failed or how it was aggregated). Includes processing status and debug info.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="getEvent" method="get" path="/events/{id}" -->
-```go
-package main
-
-import(
-	"context"
-	flexprice "github.com/flexprice/go-sdk/v2"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.Events.GetEvent(ctx, "<id>")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.GetEventByIDResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Event ID                                              |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
-
-### Response
-
-**[*dtos.GetEventResponse](../../models/dtos/geteventresponse.md), error**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | 404                  | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |

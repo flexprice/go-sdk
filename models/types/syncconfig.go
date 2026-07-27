@@ -7,15 +7,16 @@ import (
 )
 
 type SyncConfig struct {
-	Customer            *EntitySyncConfig    `json:"customer,omitzero"`
-	Deal                *EntitySyncConfig    `json:"deal,omitzero"`
-	Invoice             *EntitySyncConfig    `json:"invoice,omitzero"`
-	InvoiceSyncSettings *InvoiceSyncSettings `json:"invoice_sync_settings,omitzero"`
-	Payment             *EntitySyncConfig    `json:"payment,omitzero"`
-	Plan                *EntitySyncConfig    `json:"plan,omitzero"`
-	Quote               *EntitySyncConfig    `json:"quote,omitzero"`
-	S3                  *S3ExportConfig      `json:"s3,omitzero"`
-	Subscription        *EntitySyncConfig    `json:"subscription,omitzero"`
+	AwsMarketplace      *AWSMarketplaceSyncConfig `json:"aws_marketplace,omitzero"`
+	Customer            *EntitySyncConfig         `json:"customer,omitzero"`
+	Deal                *EntitySyncConfig         `json:"deal,omitzero"`
+	Invoice             *EntitySyncConfig         `json:"invoice,omitzero"`
+	InvoiceSyncSettings *InvoiceSyncSettings      `json:"invoice_sync_settings,omitzero"`
+	Payment             *EntitySyncConfig         `json:"payment,omitzero"`
+	Plan                *EntitySyncConfig         `json:"plan,omitzero"`
+	Quote               *EntitySyncConfig         `json:"quote,omitzero"`
+	S3                  *S3ExportConfig           `json:"s3,omitzero"`
+	Subscription        *EntitySyncConfig         `json:"subscription,omitzero"`
 }
 
 func (s SyncConfig) MarshalJSON() ([]byte, error) {
@@ -27,6 +28,13 @@ func (s *SyncConfig) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (s *SyncConfig) GetAwsMarketplace() *AWSMarketplaceSyncConfig {
+	if s == nil {
+		return nil
+	}
+	return s.AwsMarketplace
 }
 
 func (s *SyncConfig) GetCustomer() *EntitySyncConfig {

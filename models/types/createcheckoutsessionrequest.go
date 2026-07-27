@@ -7,15 +7,16 @@ import (
 )
 
 type CreateCheckoutSessionRequest struct {
-	Action             CheckoutAction          `json:"action"`
-	CancelURL          *string                 `json:"cancel_url,omitzero"`
-	Configuration      *CheckoutConfiguration  `json:"configuration,omitzero"`
-	CustomerExternalID string                  `json:"customer_external_id"`
-	FailureURL         *string                 `json:"failure_url,omitzero"`
-	IdempotencyKey     *string                 `json:"idempotency_key,omitzero"`
-	Metadata           map[string]string       `json:"metadata,omitzero"`
-	PaymentProvider    CheckoutPaymentProvider `json:"payment_provider"`
-	SuccessURL         *string                 `json:"success_url,omitzero"`
+	Action                CheckoutAction                 `json:"action"`
+	CancelURL             *string                        `json:"cancel_url,omitzero"`
+	Configuration         *CheckoutConfiguration         `json:"configuration,omitzero"`
+	CustomerExternalID    string                         `json:"customer_external_id"`
+	FailureURL            *string                        `json:"failure_url,omitzero"`
+	IdempotencyKey        *string                        `json:"idempotency_key,omitzero"`
+	Metadata              map[string]string              `json:"metadata,omitzero"`
+	PaymentProvider       CheckoutPaymentProvider        `json:"payment_provider"`
+	PaymentProviderConfig *CheckoutPaymentProviderConfig `json:"payment_provider_config,omitzero"`
+	SuccessURL            *string                        `json:"success_url,omitzero"`
 }
 
 func (c CreateCheckoutSessionRequest) MarshalJSON() ([]byte, error) {
@@ -83,6 +84,13 @@ func (c *CreateCheckoutSessionRequest) GetPaymentProvider() CheckoutPaymentProvi
 		return CheckoutPaymentProvider("")
 	}
 	return c.PaymentProvider
+}
+
+func (c *CreateCheckoutSessionRequest) GetPaymentProviderConfig() *CheckoutPaymentProviderConfig {
+	if c == nil {
+		return nil
+	}
+	return c.PaymentProviderConfig
 }
 
 func (c *CreateCheckoutSessionRequest) GetSuccessURL() *string {

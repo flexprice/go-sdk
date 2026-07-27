@@ -9,7 +9,7 @@ import (
 
 type GetEventRequest struct {
 	// Event ID
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	ID string `queryParam:"style=form,explode=true,name=id"`
 }
 
 func (g GetEventRequest) MarshalJSON() ([]byte, error) {

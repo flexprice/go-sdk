@@ -33,13 +33,14 @@ type CheckoutSessionResponse struct {
 	// IdempotencyKey is caller-supplied. It is unique only while the session
 	// is active (initiated|pending). The same key may be reused once the
 	// session reaches a terminal state (completed|failed|expired).
-	IdempotencyKey  *string                              `json:"idempotency_key,omitzero"`
-	Metadata        map[string]string                    `json:"metadata,omitzero"`
-	PaymentAction   *PaymentAction                       `json:"payment_action,omitzero"`
-	PaymentProvider *CheckoutPaymentProvider             `json:"payment_provider,omitzero"`
-	ProviderResult  *CheckoutJSONBCheckoutProviderResult `json:"provider_result,omitzero"`
-	Result          *CheckoutJSONBCheckoutResult         `json:"result,omitzero"`
-	Status          *Status                              `json:"status,omitzero"`
+	IdempotencyKey        *string                                     `json:"idempotency_key,omitzero"`
+	Metadata              map[string]string                           `json:"metadata,omitzero"`
+	PaymentAction         *PaymentAction                              `json:"payment_action,omitzero"`
+	PaymentProvider       *CheckoutPaymentProvider                    `json:"payment_provider,omitzero"`
+	PaymentProviderConfig *CheckoutJSONBCheckoutPaymentProviderConfig `json:"payment_provider_config,omitzero"`
+	ProviderResult        *CheckoutJSONBCheckoutProviderResult        `json:"provider_result,omitzero"`
+	Result                *CheckoutJSONBCheckoutResult                `json:"result,omitzero"`
+	Status                *Status                                     `json:"status,omitzero"`
 	// Redirect URLs sent to the payment provider. The provider redirects the
 	// user browser to the appropriate URL after the payment flow completes.
 	SuccessURL *string    `json:"success_url,omitzero"`
@@ -197,6 +198,13 @@ func (c *CheckoutSessionResponse) GetPaymentProvider() *CheckoutPaymentProvider 
 		return nil
 	}
 	return c.PaymentProvider
+}
+
+func (c *CheckoutSessionResponse) GetPaymentProviderConfig() *CheckoutJSONBCheckoutPaymentProviderConfig {
+	if c == nil {
+		return nil
+	}
+	return c.PaymentProviderConfig
 }
 
 func (c *CheckoutSessionResponse) GetProviderResult() *CheckoutJSONBCheckoutProviderResult {

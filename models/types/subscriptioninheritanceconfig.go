@@ -10,6 +10,8 @@ type SubscriptionInheritanceConfig struct {
 	// ExternalCustomerIDsToInheritSubscription: child customer external IDs for which
 	// inherited skeleton subscriptions will be created. Only valid for parent behavior.
 	ExternalCustomerIdsToInheritSubscription []string `json:"external_customer_ids_to_inherit_subscription,omitzero"`
+	// grouped_invoicing_children_to_create creates new grouped_invoicing children under this parent
+	GroupedInvoicingChildrenToCreate []GroupedInvoicingChildRequest `json:"grouped_invoicing_children_to_create,omitzero"`
 	// InvoicingCustomerExternalID sets a different billing recipient (external ID).
 	// Required for delegated; rejected for inherited; optional for others.
 	InvoicingCustomerExternalID *string `json:"invoicing_customer_external_id,omitzero"`
@@ -37,6 +39,13 @@ func (s *SubscriptionInheritanceConfig) GetExternalCustomerIdsToInheritSubscript
 		return nil
 	}
 	return s.ExternalCustomerIdsToInheritSubscription
+}
+
+func (s *SubscriptionInheritanceConfig) GetGroupedInvoicingChildrenToCreate() []GroupedInvoicingChildRequest {
+	if s == nil {
+		return nil
+	}
+	return s.GroupedInvoicingChildrenToCreate
 }
 
 func (s *SubscriptionInheritanceConfig) GetInvoicingCustomerExternalID() *string {

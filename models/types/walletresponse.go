@@ -29,6 +29,8 @@ type WalletResponse struct {
 	ID                        *string           `json:"id,omitzero"`
 	Metadata                  map[string]string `json:"metadata,omitzero"`
 	Name                      *string           `json:"name,omitzero"`
+	RealTimeBalance           *string           `json:"real_time_balance,omitzero"`
+	RealTimeCreditBalance     *string           `json:"real_time_credit_balance,omitzero"`
 	Status                    *Status           `json:"status,omitzero"`
 	TenantID                  *string           `json:"tenant_id,omitzero"`
 	// topup_conversion_rate is the conversion rate for the topup to the currency
@@ -170,6 +172,20 @@ func (w *WalletResponse) GetName() *string {
 		return nil
 	}
 	return w.Name
+}
+
+func (w *WalletResponse) GetRealTimeBalance() *string {
+	if w == nil {
+		return nil
+	}
+	return w.RealTimeBalance
+}
+
+func (w *WalletResponse) GetRealTimeCreditBalance() *string {
+	if w == nil {
+		return nil
+	}
+	return w.RealTimeCreditBalance
 }
 
 func (w *WalletResponse) GetStatus() *Status {

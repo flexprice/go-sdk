@@ -15,6 +15,11 @@ type GetCostAnalyticsRequest struct {
 	ExternalCustomerID *string `json:"external_customer_id,omitzero"`
 	// Additional filters
 	FeatureIds []string `json:"feature_ids,omitzero"`
+	// IncludeChildren, when true and ExternalCustomerID belongs to a parent
+	// customer, aggregates every inherited-child customer's usage into the
+	// revenue and cost totals. Default (false) restricts the query to the
+	// customer's own usage — mirrors the meter-usage analytics contract.
+	IncludeChildren *bool `json:"include_children,omitzero"`
 	// Pagination
 	Limit  *int64 `json:"limit,omitzero"`
 	Offset *int64 `json:"offset,omitzero"`
@@ -59,6 +64,13 @@ func (g *GetCostAnalyticsRequest) GetFeatureIds() []string {
 		return nil
 	}
 	return g.FeatureIds
+}
+
+func (g *GetCostAnalyticsRequest) GetIncludeChildren() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.IncludeChildren
 }
 
 func (g *GetCostAnalyticsRequest) GetLimit() *int64 {

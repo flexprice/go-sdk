@@ -19,9 +19,11 @@ type Customer struct {
 	// AddressPostalCode is the postal code of the customer's address
 	AddressPostalCode *string `json:"address_postal_code,omitzero"`
 	// AddressState is the state of the customer's address
-	AddressState *string    `json:"address_state,omitzero"`
-	CreatedAt    *time.Time `json:"created_at,omitzero"`
-	CreatedBy    *string    `json:"created_by,omitzero"`
+	AddressState *string `json:"address_state,omitzero"`
+	// Contact is an optional contact number for the customer (e.g. phone)
+	Contact   *string    `json:"contact,omitzero"`
+	CreatedAt *time.Time `json:"created_at,omitzero"`
+	CreatedBy *string    `json:"created_by,omitzero"`
 	// Email is the email of the customer
 	Email *string `json:"email,omitzero"`
 	// EnvironmentID is the environment identifier for the customer
@@ -94,6 +96,13 @@ func (c *Customer) GetAddressState() *string {
 		return nil
 	}
 	return c.AddressState
+}
+
+func (c *Customer) GetContact() *string {
+	if c == nil {
+		return nil
+	}
+	return c.Contact
 }
 
 func (c *Customer) GetCreatedAt() *time.Time {

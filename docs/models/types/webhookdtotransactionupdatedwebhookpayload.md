@@ -1,0 +1,11 @@
+# WebhookDtoTransactionUpdatedWebhookPayload
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Customer`                                                                          | [*types.CustomerResponse](../../models/types/customerresponse.md)                   | :heavy_minus_sign:                                                                  | Customer response object containing all customer information                        |
+| `EventType`                                                                         | [*types.WebhookEventName](../../models/types/webhookeventname.md)                   | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `UpdatedTransaction`                                                                | [*types.WalletTransactionResponse](../../models/types/wallettransactionresponse.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Wallet`                                                                            | [*types.WalletResponse](../../models/types/walletresponse.md)                       | :heavy_minus_sign:                                                                  | N/A                                                                                 |

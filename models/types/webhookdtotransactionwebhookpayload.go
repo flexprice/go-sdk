@@ -7,6 +7,8 @@ import (
 )
 
 type WebhookDtoTransactionWebhookPayload struct {
+	// Customer response object containing all customer information
+	Customer    *CustomerResponse          `json:"customer,omitzero"`
 	EventType   *WebhookEventName          `json:"event_type,omitzero"`
 	Transaction *WalletTransactionResponse `json:"transaction,omitzero"`
 	Wallet      *WalletResponse            `json:"wallet,omitzero"`
@@ -21,6 +23,13 @@ func (w *WebhookDtoTransactionWebhookPayload) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (w *WebhookDtoTransactionWebhookPayload) GetCustomer() *CustomerResponse {
+	if w == nil {
+		return nil
+	}
+	return w.Customer
 }
 
 func (w *WebhookDtoTransactionWebhookPayload) GetEventType() *WebhookEventName {

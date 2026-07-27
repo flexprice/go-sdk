@@ -26,6 +26,7 @@ const (
 	WebhookEventNameWalletUpdated                               WebhookEventName = "wallet.updated"
 	WebhookEventNameWalletTerminated                            WebhookEventName = "wallet.terminated"
 	WebhookEventNameWalletTransactionCreated                    WebhookEventName = "wallet.transaction.created"
+	WebhookEventNameWalletTransactionUpdated                    WebhookEventName = "wallet.transaction.updated"
 	WebhookEventNamePaymentCreated                              WebhookEventName = "payment.created"
 	WebhookEventNamePaymentUpdated                              WebhookEventName = "payment.updated"
 	WebhookEventNamePaymentFailed                               WebhookEventName = "payment.failed"
@@ -43,12 +44,14 @@ const (
 	WebhookEventNameWalletCreditBalanceRecovered                WebhookEventName = "wallet.credit_balance.recovered"
 	WebhookEventNameWalletOngoingBalanceDropped                 WebhookEventName = "wallet.ongoing_balance.dropped"
 	WebhookEventNameWalletOngoingBalanceRecovered               WebhookEventName = "wallet.ongoing_balance.recovered"
+	WebhookEventNameWalletOngoingBalanceUpdated                 WebhookEventName = "wallet.ongoing_balance.updated"
 	WebhookEventNameSubscriptionSpendThresholdReached           WebhookEventName = "subscription.spend.threshold_reached"
 	WebhookEventNameSubscriptionSpendThresholdRecovered         WebhookEventName = "subscription.spend.threshold_recovered"
 	WebhookEventNameSubscriptionLineItemSpendThresholdReached   WebhookEventName = "subscription.line_item_spend.threshold_reached"
 	WebhookEventNameSubscriptionLineItemSpendThresholdRecovered WebhookEventName = "subscription.line_item_spend.threshold_recovered"
 	WebhookEventNameSubscriptionGroupSpendThresholdReached      WebhookEventName = "subscription.group_spend.threshold_reached"
 	WebhookEventNameSubscriptionGroupSpendThresholdRecovered    WebhookEventName = "subscription.group_spend.threshold_recovered"
+	WebhookEventNameEntitlementGrantExhausted                   WebhookEventName = "entitlement.grant.exhausted"
 	WebhookEventNameSubscriptionRenewalDue                      WebhookEventName = "subscription.renewal.due"
 	WebhookEventNameInvoiceCommunicationTriggered               WebhookEventName = "invoice.communication.triggered"
 	WebhookEventNameCreditNoteCreated                           WebhookEventName = "credit_note.created"
@@ -68,7 +71,7 @@ func (e WebhookEventName) ToPointer() *WebhookEventName {
 func (e *WebhookEventName) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "subscription.created", "subscription.draft.created", "subscription.activated", "subscription.updated", "subscription.paused", "subscription.cancelled", "subscription.resumed", "subscription.phase.created", "subscription.phase.updated", "subscription.phase.deleted", "feature.created", "feature.updated", "feature.deleted", "feature.wallet_balance.alert", "entitlement.created", "entitlement.updated", "entitlement.deleted", "wallet.created", "wallet.updated", "wallet.terminated", "wallet.transaction.created", "payment.created", "payment.updated", "payment.failed", "payment.success", "payment.pending", "customer.created", "customer.updated", "customer.deleted", "invoice.update.finalized", "invoice.update.payment", "invoice.update.voided", "invoice.update", "invoice.payment.overdue", "wallet.credit_balance.dropped", "wallet.credit_balance.recovered", "wallet.ongoing_balance.dropped", "wallet.ongoing_balance.recovered", "subscription.spend.threshold_reached", "subscription.spend.threshold_recovered", "subscription.line_item_spend.threshold_reached", "subscription.line_item_spend.threshold_recovered", "subscription.group_spend.threshold_reached", "subscription.group_spend.threshold_recovered", "subscription.renewal.due", "invoice.communication.triggered", "credit_note.created", "credit_note.updated", "checkout.session.initiated", "checkout.session.completed", "checkout.session.failed", "checkout.session.expired", "event.rejected":
+		case "subscription.created", "subscription.draft.created", "subscription.activated", "subscription.updated", "subscription.paused", "subscription.cancelled", "subscription.resumed", "subscription.phase.created", "subscription.phase.updated", "subscription.phase.deleted", "feature.created", "feature.updated", "feature.deleted", "feature.wallet_balance.alert", "entitlement.created", "entitlement.updated", "entitlement.deleted", "wallet.created", "wallet.updated", "wallet.terminated", "wallet.transaction.created", "wallet.transaction.updated", "payment.created", "payment.updated", "payment.failed", "payment.success", "payment.pending", "customer.created", "customer.updated", "customer.deleted", "invoice.update.finalized", "invoice.update.payment", "invoice.update.voided", "invoice.update", "invoice.payment.overdue", "wallet.credit_balance.dropped", "wallet.credit_balance.recovered", "wallet.ongoing_balance.dropped", "wallet.ongoing_balance.recovered", "wallet.ongoing_balance.updated", "subscription.spend.threshold_reached", "subscription.spend.threshold_recovered", "subscription.line_item_spend.threshold_reached", "subscription.line_item_spend.threshold_recovered", "subscription.group_spend.threshold_reached", "subscription.group_spend.threshold_recovered", "entitlement.grant.exhausted", "subscription.renewal.due", "invoice.communication.triggered", "credit_note.created", "credit_note.updated", "checkout.session.initiated", "checkout.session.completed", "checkout.session.failed", "checkout.session.expired", "event.rejected":
 			return true
 		}
 	}

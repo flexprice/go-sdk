@@ -8,6 +8,9 @@ import (
 )
 
 value := types.CheckoutActionCreateSubscription
+
+// Open enum: custom values can be created with a direct type cast
+custom := types.CheckoutAction("custom_value")
 ```
 
 
@@ -16,3 +19,4 @@ value := types.CheckoutActionCreateSubscription
 | Name                               | Value                              |
 | ---------------------------------- | ---------------------------------- |
 | `CheckoutActionCreateSubscription` | create_subscription                |
+| `CheckoutActionModifySubscription` | modify_subscription                |

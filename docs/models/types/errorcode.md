@@ -30,3 +30,4 @@ custom := types.ErrorCode("custom_value")
 | `ErrorCodeDatabaseError`      | database_error                |
 | `ErrorCodeServiceUnavailable` | service_unavailable           |
 | `ErrorCodeTooManyRequests`    | too_many_requests             |
+| `ErrorCodeNotImplemented`     | not_implemented               |

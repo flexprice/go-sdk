@@ -2,11 +2,6 @@
 
 package types
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 type CollectionMethod string
 
 const (
@@ -17,18 +12,14 @@ const (
 func (e CollectionMethod) ToPointer() *CollectionMethod {
 	return &e
 }
-func (e *CollectionMethod) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *CollectionMethod) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "charge_automatically", "send_invoice":
+			return true
+		}
 	}
-	switch v {
-	case "charge_automatically":
-		fallthrough
-	case "send_invoice":
-		*e = CollectionMethod(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CollectionMethod: %v", v)
-	}
+	return false
 }

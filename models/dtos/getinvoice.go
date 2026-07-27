@@ -14,6 +14,8 @@ type GetInvoiceRequest struct {
 	ExpandBySource *bool `queryParam:"style=form,explode=true,name=expand_by_source"`
 	// Group usage breakdown by specified fields (e.g., source, feature_id, properties.org_id)
 	GroupBy []string `queryParam:"style=form,explode=false,name=group_by"`
+	// Comma-separated related fields to include. Supports 'tax_applied.tax_rate' to attach rate details to each applied tax.
+	Expand *string `queryParam:"style=form,explode=true,name=expand"`
 }
 
 func (g GetInvoiceRequest) MarshalJSON() ([]byte, error) {
@@ -46,6 +48,13 @@ func (g *GetInvoiceRequest) GetGroupBy() []string {
 		return nil
 	}
 	return g.GroupBy
+}
+
+func (g *GetInvoiceRequest) GetExpand() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Expand
 }
 
 type GetInvoiceResponse struct {

@@ -23,3 +23,4 @@ custom := types.AlertEntityType("custom_value")
 | `AlertEntityTypeSubscription`         | subscription                          |
 | `AlertEntityTypeSubscriptionLineItem` | subscription_line_item                |
 | `AlertEntityTypeGroup`                | group                                 |
+| `AlertEntityTypeEntitlementGrant`     | entitlement_grant                     |

@@ -56,6 +56,10 @@ type SubscriptionResponse struct {
 	EnableTrueUp *bool   `json:"enable_true_up,omitzero"`
 	// EndDate is the end date of the subscription
 	EndDate *time.Time `json:"end_date,omitzero"`
+	// Entitlements is populated only when the caller adds "entitlements" to
+	// the search filter's expand string. Each entry is a feature with its
+	// aggregated entitlement info (same shape as CustomerEntitlementsResponse.Features).
+	Entitlements []AggregatedFeature `json:"entitlements,omitzero"`
 	// EnvironmentID is the environment identifier for the subscription
 	EnvironmentID *string `json:"environment_id,omitzero"`
 	// GatewayPaymentMethodID is the gateway payment method ID for this subscription
@@ -283,6 +287,13 @@ func (s *SubscriptionResponse) GetEndDate() *time.Time {
 		return nil
 	}
 	return s.EndDate
+}
+
+func (s *SubscriptionResponse) GetEntitlements() []AggregatedFeature {
+	if s == nil {
+		return nil
+	}
+	return s.Entitlements
 }
 
 func (s *SubscriptionResponse) GetEnvironmentID() *string {

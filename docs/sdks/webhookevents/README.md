@@ -4,6 +4,10 @@
 
 ### Available Operations
 
+* [PostWebhookEventsCheckoutSessionCompleted](#postwebhookeventscheckoutsessioncompleted) - checkout.session.completed
+* [PostWebhookEventsCheckoutSessionExpired](#postwebhookeventscheckoutsessionexpired) - checkout.session.expired
+* [PostWebhookEventsCheckoutSessionFailed](#postwebhookeventscheckoutsessionfailed) - checkout.session.failed
+* [PostWebhookEventsCheckoutSessionInitiated](#postwebhookeventscheckoutsessioninitiated) - checkout.session.initiated
 * [PostWebhookEventsCreditNoteCreated](#postwebhookeventscreditnotecreated) - credit_note.created
 * [PostWebhookEventsCreditNoteUpdated](#postwebhookeventscreditnoteupdated) - credit_note.updated
 * [PostWebhookEventsCustomerCreated](#postwebhookeventscustomercreated) - customer.created
@@ -18,6 +22,7 @@
 * [PostWebhookEventsFeatureUpdated](#postwebhookeventsfeatureupdated) - feature.updated
 * [PostWebhookEventsFeatureWalletBalanceAlert](#postwebhookeventsfeaturewalletbalancealert) - feature.wallet_balance.alert
 * [PostWebhookEventsInvoiceCommunicationTriggered](#postwebhookeventsinvoicecommunicationtriggered) - invoice.communication.triggered
+* [PostWebhookEventsInvoiceCreateDrafted](#postwebhookeventsinvoicecreatedrafted) - invoice.create.drafted
 * [PostWebhookEventsInvoicePaymentOverdue](#postwebhookeventsinvoicepaymentoverdue) - invoice.payment.overdue
 * [PostWebhookEventsInvoiceUpdate](#postwebhookeventsinvoiceupdate) - invoice.update
 * [PostWebhookEventsInvoiceUpdateFinalized](#postwebhookeventsinvoiceupdatefinalized) - invoice.update.finalized
@@ -32,21 +37,229 @@
 * [PostWebhookEventsSubscriptionCancelled](#postwebhookeventssubscriptioncancelled) - subscription.cancelled
 * [PostWebhookEventsSubscriptionCreated](#postwebhookeventssubscriptioncreated) - subscription.created
 * [PostWebhookEventsSubscriptionDraftCreated](#postwebhookeventssubscriptiondraftcreated) - subscription.draft.created
+* [PostWebhookEventsSubscriptionGroupSpendThresholdReached](#postwebhookeventssubscriptiongroupspendthresholdreached) - subscription.group_spend.threshold_reached
+* [PostWebhookEventsSubscriptionGroupSpendThresholdRecovered](#postwebhookeventssubscriptiongroupspendthresholdrecovered) - subscription.group_spend.threshold_recovered
+* [PostWebhookEventsSubscriptionLineItemSpendThresholdReached](#postwebhookeventssubscriptionlineitemspendthresholdreached) - subscription.line_item_spend.threshold_reached
+* [PostWebhookEventsSubscriptionLineItemSpendThresholdRecovered](#postwebhookeventssubscriptionlineitemspendthresholdrecovered) - subscription.line_item_spend.threshold_recovered
 * [PostWebhookEventsSubscriptionPaused](#postwebhookeventssubscriptionpaused) - subscription.paused
 * [PostWebhookEventsSubscriptionPhaseCreated](#postwebhookeventssubscriptionphasecreated) - subscription.phase.created
 * [PostWebhookEventsSubscriptionPhaseDeleted](#postwebhookeventssubscriptionphasedeleted) - subscription.phase.deleted
 * [PostWebhookEventsSubscriptionPhaseUpdated](#postwebhookeventssubscriptionphaseupdated) - subscription.phase.updated
 * [PostWebhookEventsSubscriptionRenewalDue](#postwebhookeventssubscriptionrenewaldue) - subscription.renewal.due
 * [PostWebhookEventsSubscriptionResumed](#postwebhookeventssubscriptionresumed) - subscription.resumed
+* [PostWebhookEventsSubscriptionSpendThresholdReached](#postwebhookeventssubscriptionspendthresholdreached) - subscription.spend.threshold_reached
+* [PostWebhookEventsSubscriptionSpendThresholdRecovered](#postwebhookeventssubscriptionspendthresholdrecovered) - subscription.spend.threshold_recovered
 * [PostWebhookEventsSubscriptionUpdated](#postwebhookeventssubscriptionupdated) - subscription.updated
 * [PostWebhookEventsWalletCreated](#postwebhookeventswalletcreated) - wallet.created
 * [PostWebhookEventsWalletCreditBalanceDropped](#postwebhookeventswalletcreditbalancedropped) - wallet.credit_balance.dropped
 * [PostWebhookEventsWalletCreditBalanceRecovered](#postwebhookeventswalletcreditbalancerecovered) - wallet.credit_balance.recovered
 * [PostWebhookEventsWalletOngoingBalanceDropped](#postwebhookeventswalletongoingbalancedropped) - wallet.ongoing_balance.dropped
 * [PostWebhookEventsWalletOngoingBalanceRecovered](#postwebhookeventswalletongoingbalancerecovered) - wallet.ongoing_balance.recovered
+* [PostWebhookEventsWalletOngoingBalanceUpdated](#postwebhookeventswalletongoingbalanceupdated) - wallet.ongoing_balance.updated
 * [PostWebhookEventsWalletTerminated](#postwebhookeventswalletterminated) - wallet.terminated
 * [PostWebhookEventsWalletTransactionCreated](#postwebhookeventswallettransactioncreated) - wallet.transaction.created
+* [PostWebhookEventsWalletTransactionUpdated](#postwebhookeventswallettransactionupdated) - wallet.transaction.updated
 * [PostWebhookEventsWalletUpdated](#postwebhookeventswalletupdated) - wallet.updated
+
+## PostWebhookEventsCheckoutSessionCompleted
+
+Fired when payment is confirmed; the subscription is now active and the invoice is finalized. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/checkout.session.completed" method="post" path="/webhook-events/checkout.session.completed" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsCheckoutSessionCompleted(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoCheckoutSessionWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsCheckoutSessionCompletedResponse](../../models/dtos/postwebhookeventscheckoutsessioncompletedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsCheckoutSessionExpired
+
+Fired when a Checkout Session times out without payment; draft records are cleaned up. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/checkout.session.expired" method="post" path="/webhook-events/checkout.session.expired" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsCheckoutSessionExpired(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoCheckoutSessionWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsCheckoutSessionExpiredResponse](../../models/dtos/postwebhookeventscheckoutsessionexpiredresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsCheckoutSessionFailed
+
+Fired when payment fails or the provider cancels the payment link. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/checkout.session.failed" method="post" path="/webhook-events/checkout.session.failed" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsCheckoutSessionFailed(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoCheckoutSessionWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsCheckoutSessionFailedResponse](../../models/dtos/postwebhookeventscheckoutsessionfailedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsCheckoutSessionInitiated
+
+Fired when a Checkout Session is created and a payment URL is returned to the customer. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/checkout.session.initiated" method="post" path="/webhook-events/checkout.session.initiated" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsCheckoutSessionInitiated(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoCheckoutSessionWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsCheckoutSessionInitiatedResponse](../../models/dtos/postwebhookeventscheckoutsessioninitiatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
 
 ## PostWebhookEventsCreditNoteCreated
 
@@ -741,6 +954,56 @@ func main() {
 ### Response
 
 **[*dtos.PostWebhookEventsInvoiceCommunicationTriggeredResponse](../../models/dtos/postwebhookeventsinvoicecommunicationtriggeredresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsInvoiceCreateDrafted
+
+Fired when a new invoice is created in draft state. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/invoice.create.drafted" method="post" path="/webhook-events/invoice.create.drafted" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsInvoiceCreateDrafted(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoInvoiceWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsInvoiceCreateDraftedResponse](../../models/dtos/postwebhookeventsinvoicecreatedraftedresponse.md), error**
 
 ### Errors
 
@@ -1448,6 +1711,206 @@ func main() {
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
+## PostWebhookEventsSubscriptionGroupSpendThresholdReached
+
+Fired when a feature group's total metered spend on a subscription crosses an alert threshold (critical, warning, or info) for the current billing period. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/subscription.group_spend.threshold_reached" method="post" path="/webhook-events/subscription.group_spend.threshold_reached" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsSubscriptionGroupSpendThresholdReached(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoSpendAlertEvent != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsSubscriptionGroupSpendThresholdReachedResponse](../../models/dtos/postwebhookeventssubscriptiongroupspendthresholdreachedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsSubscriptionGroupSpendThresholdRecovered
+
+Fired when a feature group's total metered spend on a subscription falls back below all configured alert thresholds for the current billing period. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/subscription.group_spend.threshold_recovered" method="post" path="/webhook-events/subscription.group_spend.threshold_recovered" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsSubscriptionGroupSpendThresholdRecovered(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoSpendAlertEvent != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsSubscriptionGroupSpendThresholdRecoveredResponse](../../models/dtos/postwebhookeventssubscriptiongroupspendthresholdrecoveredresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsSubscriptionLineItemSpendThresholdReached
+
+Fired when a subscription line item's metered spend crosses an alert threshold (critical, warning, or info) for the current billing period. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/subscription.line_item_spend.threshold_reached" method="post" path="/webhook-events/subscription.line_item_spend.threshold_reached" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsSubscriptionLineItemSpendThresholdReached(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoSpendAlertEvent != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsSubscriptionLineItemSpendThresholdReachedResponse](../../models/dtos/postwebhookeventssubscriptionlineitemspendthresholdreachedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsSubscriptionLineItemSpendThresholdRecovered
+
+Fired when a subscription line item's metered spend falls back below all configured alert thresholds for the current billing period. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/subscription.line_item_spend.threshold_recovered" method="post" path="/webhook-events/subscription.line_item_spend.threshold_recovered" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsSubscriptionLineItemSpendThresholdRecovered(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoSpendAlertEvent != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsSubscriptionLineItemSpendThresholdRecoveredResponse](../../models/dtos/postwebhookeventssubscriptionlineitemspendthresholdrecoveredresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
 ## PostWebhookEventsSubscriptionPaused
 
 Fired when a subscription is paused. Doc-only for parsing.
@@ -1741,6 +2204,106 @@ func main() {
 ### Response
 
 **[*dtos.PostWebhookEventsSubscriptionResumedResponse](../../models/dtos/postwebhookeventssubscriptionresumedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsSubscriptionSpendThresholdReached
+
+Fired when a subscription's total metered spend crosses an alert threshold (critical, warning, or info) for the current billing period. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/subscription.spend.threshold_reached" method="post" path="/webhook-events/subscription.spend.threshold_reached" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsSubscriptionSpendThresholdReached(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoSpendAlertEvent != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsSubscriptionSpendThresholdReachedResponse](../../models/dtos/postwebhookeventssubscriptionspendthresholdreachedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsSubscriptionSpendThresholdRecovered
+
+Fired when a subscription's total metered spend falls back below all configured alert thresholds for the current billing period. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/subscription.spend.threshold_recovered" method="post" path="/webhook-events/subscription.spend.threshold_recovered" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsSubscriptionSpendThresholdRecovered(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoSpendAlertEvent != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsSubscriptionSpendThresholdRecoveredResponse](../../models/dtos/postwebhookeventssubscriptionspendthresholdrecoveredresponse.md), error**
 
 ### Errors
 
@@ -2048,6 +2611,56 @@ func main() {
 | --------------- | --------------- | --------------- |
 | errors.APIError | 4XX, 5XX        | \*/\*           |
 
+## PostWebhookEventsWalletOngoingBalanceUpdated
+
+Fired when a wallet's ongoing (real-time) balance changes. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/wallet.ongoing_balance.updated" method="post" path="/webhook-events/wallet.ongoing_balance.updated" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsWalletOngoingBalanceUpdated(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoWalletWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsWalletOngoingBalanceUpdatedResponse](../../models/dtos/postwebhookeventswalletongoingbalanceupdatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
 ## PostWebhookEventsWalletTerminated
 
 Fired when a wallet is terminated. Doc-only for parsing.
@@ -2141,6 +2754,56 @@ func main() {
 ### Response
 
 **[*dtos.PostWebhookEventsWalletTransactionCreatedResponse](../../models/dtos/postwebhookeventswallettransactioncreatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsWalletTransactionUpdated
+
+Fired when an existing wallet transaction is updated (e.g. pending to completed). Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/wallet.transaction.updated" method="post" path="/webhook-events/wallet.transaction.updated" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsWalletTransactionUpdated(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoTransactionUpdatedWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsWalletTransactionUpdatedResponse](../../models/dtos/postwebhookeventswallettransactionupdatedresponse.md), error**
 
 ### Errors
 

@@ -33,6 +33,7 @@ type SubscriptionLineItemResponse struct {
 	ID                      *string                         `json:"id,omitzero"`
 	InvoiceCadence          *InvoiceCadence                 `json:"invoice_cadence,omitzero"`
 	Metadata                map[string]string               `json:"metadata,omitzero"`
+	Meter                   *MeterMeter                     `json:"meter,omitzero"`
 	MeterDisplayName        *string                         `json:"meter_display_name,omitzero"`
 	MeterID                 *string                         `json:"meter_id,omitzero"`
 	PlanDisplayName         *string                         `json:"plan_display_name,omitzero"`
@@ -221,6 +222,13 @@ func (s *SubscriptionLineItemResponse) GetMetadata() map[string]string {
 		return nil
 	}
 	return s.Metadata
+}
+
+func (s *SubscriptionLineItemResponse) GetMeter() *MeterMeter {
+	if s == nil {
+		return nil
+	}
+	return s.Meter
 }
 
 func (s *SubscriptionLineItemResponse) GetMeterDisplayName() *string {

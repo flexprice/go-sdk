@@ -6,11 +6,42 @@ import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
 )
 
+type AutoTopupDuration struct {
+	Unit  *DurationUnit `json:"unit,omitzero"`
+	Value *int64        `json:"value,omitzero"`
+}
+
+func (a AutoTopupDuration) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AutoTopupDuration) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AutoTopupDuration) GetUnit() *DurationUnit {
+	if a == nil {
+		return nil
+	}
+	return a.Unit
+}
+
+func (a *AutoTopupDuration) GetValue() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.Value
+}
+
 type AutoTopup struct {
-	Amount    *float64 `json:"amount,omitzero"`
-	Enabled   *bool    `json:"enabled,omitzero"`
-	Invoicing *bool    `json:"invoicing,omitzero"`
-	Threshold *float64 `json:"threshold,omitzero"`
+	Amount    *float64           `json:"amount,omitzero"`
+	Cooldown  *AutoTopupDuration `json:"cooldown,omitzero"`
+	Enabled   *bool              `json:"enabled,omitzero"`
+	Invoicing *bool              `json:"invoicing,omitzero"`
+	Threshold *float64           `json:"threshold,omitzero"`
 }
 
 func (a AutoTopup) MarshalJSON() ([]byte, error) {
@@ -29,6 +60,13 @@ func (a *AutoTopup) GetAmount() *float64 {
 		return nil
 	}
 	return a.Amount
+}
+
+func (a *AutoTopup) GetCooldown() *AutoTopupDuration {
+	if a == nil {
+		return nil
+	}
+	return a.Cooldown
 }
 
 func (a *AutoTopup) GetEnabled() *bool {
