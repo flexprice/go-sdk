@@ -8,14 +8,10 @@ import (
 )
 
 type SubscriptionCouponInput struct {
-	// CouponCode is the coupon's human-readable code (case-insensitive). Required.
-	CouponCode string `json:"coupon_code"`
-	// EndDate is when the coupon ends; overrides duration_in_periods calculation.
-	EndDate *time.Time `json:"end_date,omitzero"`
-	// PriceID is the price ID of the line item to target; omit for subscription-level.
-	PriceID *string `json:"price_id,omitzero"`
-	// StartDate is when the coupon starts; defaults to subscription/phase StartDate.
-	StartDate *time.Time `json:"start_date,omitzero"`
+	CouponCode string     `json:"coupon_code"`
+	EndDate    *time.Time `json:"end_date,omitzero"`
+	PriceID    *string    `json:"price_id,omitzero"`
+	StartDate  *time.Time `json:"start_date,omitzero"`
 }
 
 func (s SubscriptionCouponInput) MarshalJSON() ([]byte, error) {

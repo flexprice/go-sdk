@@ -7,19 +7,14 @@ import (
 )
 
 type SubscriptionInheritanceConfig struct {
-	// ExternalCustomerIDsToInheritSubscription: child customer external IDs for which
-	// inherited skeleton subscriptions will be created. Only valid for parent behavior.
-	ExternalCustomerIdsToInheritSubscription []string `json:"external_customer_ids_to_inherit_subscription,omitzero"`
-	// grouped_invoicing_children_to_create creates new grouped_invoicing children under this parent
-	GroupedInvoicingChildrenToCreate []GroupedInvoicingChildRequest `json:"grouped_invoicing_children_to_create,omitzero"`
-	// InvoicingCustomerExternalID sets a different billing recipient (external ID).
-	// Required for delegated; rejected for inherited; optional for others.
+	// ExternalCustomerIDsToInheritSubscription creates inherited skeleton subscriptions for child customers. Parent only.
+	ExternalCustomerIdsToInheritSubscription []string                       `json:"external_customer_ids_to_inherit_subscription,omitzero"`
+	GroupedInvoicingChildrenToCreate         []GroupedInvoicingChildRequest `json:"grouped_invoicing_children_to_create,omitzero"`
+	// InvoicingCustomerExternalID routes invoices to a different customer. Required for delegated; rejected for inherited.
 	InvoicingCustomerExternalID *string `json:"invoicing_customer_external_id,omitzero"`
-	// ParentSubscriptionID links this subscription to an existing parent.
-	// Required for inherited and grouped_invoicing; rejected for standalone, delegated, parent.
+	// ParentSubscriptionID links to an existing parent. Required for inherited/grouped_invoicing; rejected for standalone/delegated/parent.
 	ParentSubscriptionID *string `json:"parent_subscription_id,omitzero"`
-	// SubscriptionsIDsForGroupedInvoicing: existing standalone subscription IDs to convert to
-	// grouped_invoicing under this parent at creation time. Only valid for parent behavior.
+	// SubscriptionsIDsForGroupedInvoicing converts existing standalone subscriptions to grouped_invoicing under this parent. Parent only.
 	SubscriptionsIdsForGroupedInvoicing []string `json:"subscriptions_ids_for_grouped_invoicing,omitzero"`
 }
 

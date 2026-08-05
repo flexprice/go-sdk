@@ -20,3 +20,4 @@ custom := types.CheckoutAction("custom_value")
 | ---------------------------------- | ---------------------------------- |
 | `CheckoutActionCreateSubscription` | create_subscription                |
 | `CheckoutActionModifySubscription` | modify_subscription                |
+| `CheckoutActionWalletTopup`        | wallet_topup                       |

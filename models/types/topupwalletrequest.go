@@ -22,7 +22,8 @@ type TopUpWalletRequest struct {
 	// purchase. When nil/omitted, the bonus is resolved from the tenant's
 	// bonus_credits_topup_config slabs (if enabled). When set, it must be greater than 0 and is
 	// used as-is, skipping slab resolution. To grant no bonus, omit this field entirely.
-	BonusCreditsToAdd *string `json:"bonus_credits_to_add,omitzero"`
+	BonusCreditsToAdd *string         `json:"bonus_credits_to_add,omitzero"`
+	Checkout          *CheckoutParams `json:"checkout,omitzero"`
 	// credits_to_add is the number of credits to add to the wallet
 	CreditsToAdd *string `json:"credits_to_add,omitzero"`
 	// description to add any specific details about the transaction
@@ -71,6 +72,13 @@ func (t *TopUpWalletRequest) GetBonusCreditsToAdd() *string {
 		return nil
 	}
 	return t.BonusCreditsToAdd
+}
+
+func (t *TopUpWalletRequest) GetCheckout() *CheckoutParams {
+	if t == nil {
+		return nil
+	}
+	return t.Checkout
 }
 
 func (t *TopUpWalletRequest) GetCreditsToAdd() *string {

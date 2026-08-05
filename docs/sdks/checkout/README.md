@@ -33,7 +33,7 @@ func main() {
     )
 
     res, err := s.Checkout.CreateCheckoutSession(ctx, types.CreateCheckoutSessionRequest{
-        Action: types.CheckoutActionModifySubscription,
+        Action: types.CheckoutActionWalletTopup,
         CustomerExternalID: "<id>",
         PaymentProvider: types.CheckoutPaymentProviderRazorpay,
     })

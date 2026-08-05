@@ -7,22 +7,17 @@ import (
 )
 
 type LineItemCommitmentConfig struct {
-	// CommitmentAmount is the minimum amount committed for this line item
 	CommitmentAmount   *float64       `json:"commitment_amount,omitzero"`
 	CommitmentDuration *BillingPeriod `json:"commitment_duration,omitzero"`
-	// CommitmentQuantity is the minimum quantity committed for this line item
-	CommitmentQuantity *float64 `json:"commitment_quantity,omitzero"`
-	// CommitmentTimeBuckets defines per-bucket commitment + inline price for
-	// windows whose start UTC hour falls within each configured bucket. Each
-	// bucket carries its own price (materialized by the service). Requires
-	// IsWindowCommitment=true.
+	CommitmentQuantity *float64       `json:"commitment_quantity,omitzero"`
+	// CommitmentTimeBuckets scopes commitment to specific UTC-hour windows; requires IsWindowCommitment=true.
 	CommitmentTimeBuckets []CommitmentBucketRequest `json:"commitment_time_buckets,omitzero"`
 	CommitmentType        *CommitmentType           `json:"commitment_type,omitzero"`
-	// EnableTrueUp determines if true-up fee should be applied when usage is below commitment
+	// EnableTrueUp charges the shortfall when usage is below commitment.
 	EnableTrueUp *bool `json:"enable_true_up,omitzero"`
-	// IsWindowCommitment determines if commitment is applied per window (e.g., per day) rather than per billing period
+	// IsWindowCommitment applies commitment per window (e.g. per day) rather than per billing period.
 	IsWindowCommitment *bool `json:"is_window_commitment,omitzero"`
-	// OverageFactor is a multiplier applied to usage beyond the commitment
+	// OverageFactor is a multiplier on usage beyond commitment; 1.0 = base rate.
 	OverageFactor *float64 `json:"overage_factor,omitzero"`
 }
 

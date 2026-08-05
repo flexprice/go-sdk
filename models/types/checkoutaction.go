@@ -7,6 +7,7 @@ type CheckoutAction string
 const (
 	CheckoutActionCreateSubscription CheckoutAction = "create_subscription"
 	CheckoutActionModifySubscription CheckoutAction = "modify_subscription"
+	CheckoutActionWalletTopup        CheckoutAction = "wallet_topup"
 )
 
 func (e CheckoutAction) ToPointer() *CheckoutAction {
@@ -17,7 +18,7 @@ func (e CheckoutAction) ToPointer() *CheckoutAction {
 func (e *CheckoutAction) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "create_subscription", "modify_subscription":
+		case "create_subscription", "modify_subscription", "wallet_topup":
 			return true
 		}
 	}

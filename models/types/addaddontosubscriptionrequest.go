@@ -13,8 +13,10 @@ type AddAddonToSubscriptionRequest struct {
 	// LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
 	LineItemCommitments map[string]LineItemCommitmentConfig `json:"line_item_commitments,omitzero"`
 	Metadata            map[string]any                      `json:"metadata,omitzero"`
-	ProrationBehavior   *ProrationBehavior                  `json:"proration_behavior,omitzero"`
-	StartDate           *time.Time                          `json:"start_date,omitzero"`
+	// OverrideLineItems allows overriding price/quantity/billing model for specific addon prices
+	OverrideLineItems []OverrideLineItemRequest `json:"override_line_items,omitzero"`
+	ProrationBehavior *ProrationBehavior        `json:"proration_behavior,omitzero"`
+	StartDate         *time.Time                `json:"start_date,omitzero"`
 }
 
 func (a AddAddonToSubscriptionRequest) MarshalJSON() ([]byte, error) {
@@ -54,6 +56,13 @@ func (a *AddAddonToSubscriptionRequest) GetMetadata() map[string]any {
 		return nil
 	}
 	return a.Metadata
+}
+
+func (a *AddAddonToSubscriptionRequest) GetOverrideLineItems() []OverrideLineItemRequest {
+	if a == nil {
+		return nil
+	}
+	return a.OverrideLineItems
 }
 
 func (a *AddAddonToSubscriptionRequest) GetProrationBehavior() *ProrationBehavior {

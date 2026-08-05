@@ -8,6 +8,7 @@
 * [CreateCustomer](#createcustomer) - Create customer
 * [GetCustomerByExternalID](#getcustomerbyexternalid) - Get customer by external ID
 * [GetCustomerEntitlementsByExternalID](#getcustomerentitlementsbyexternalid) - Get customer entitlements by external ID
+* [GetSubscriptionsForCustomer](#getsubscriptionsforcustomer) - Get subscriptions for customer by external ID
 * [QueryCustomer](#querycustomer) - Query customers
 * [GetCustomerUsageSummary](#getcustomerusagesummary) - Get customer usage summary
 * [GetCustomer](#getcustomer) - Get customer
@@ -225,6 +226,60 @@ func main() {
 ### Response
 
 **[*dtos.GetCustomerEntitlementsByExternalIDResponse](../../models/dtos/getcustomerentitlementsbyexternalidresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## GetSubscriptionsForCustomer
+
+Returns all subscriptions for a customer looked up by external_id, with line-item meters and entitlements attached (no pagination).
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getSubscriptionsForCustomer" method="get" path="/customers/external/{external_id}/subscriptions" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Customers.GetSubscriptionsForCustomer(ctx, "<id>", nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListSubscriptionsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
+| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                                                   | :heavy_check_mark:                                                                                                      | The context to use for the request.                                                                                     |
+| `externalID`                                                                                                            | `string`                                                                                                                | :heavy_check_mark:                                                                                                      | Customer External ID                                                                                                    |
+| `expand`                                                                                                                | `*string`                                                                                                               | :heavy_minus_sign:                                                                                                      | Comma-separated fields to expand: subscription_line_items, subscription_line_items.meters, entitlements, plan, customer |
+| `opts`                                                                                                                  | [][dtos.Option](../../models/dtos/option.md)                                                                            | :heavy_minus_sign:                                                                                                      | The options for this request.                                                                                           |
+
+### Response
+
+**[*dtos.GetSubscriptionsForCustomerResponse](../../models/dtos/getsubscriptionsforcustomerresponse.md), error**
 
 ### Errors
 

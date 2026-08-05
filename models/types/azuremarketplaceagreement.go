@@ -9,11 +9,11 @@ import (
 type AzureMarketplaceAgreement struct {
 	// writes the customer mapping; not read in the report payload
 	BeneficiaryAccountID string `json:"beneficiary_account_id"`
-	// -> batchUsageEvent's dimension (always "usage_fee" in the cents model)
+	// -> usageEvent's dimension (always "usage_fee" in the cents model)
 	Dimension string `json:"dimension"`
-	// -> batchUsageEvent's planId; Azure's plan id, distinct from the request's top-level PlanID
+	// -> usageEvent's planId; Azure's plan id, distinct from the request's top-level PlanID
 	PlanID string `json:"plan_id"`
-	// -> batchUsageEvent's resourceId; the Azure SaaS subscription id
+	// -> usageEvent's resourceId; the Azure SaaS subscription id
 	ResourceID string `json:"resource_id"`
 }
 

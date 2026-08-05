@@ -75,6 +75,13 @@ type SubscriptionFilter struct {
 	// TrialEndDueLTE, when set, restricts to subscriptions with trial_end not nil and trial_end <= trial_end_due_lte.
 	// Use with subscription_status trialing for trial-end cron processing.
 	TrialEndDueLte *time.Time `json:"trial_end_due_lte,omitzero"`
+	// WithCouponAssociations eager-loads coupon associations and their coupons.
+	//
+	// Kept separate from WithLineItems because the coupon_associations table has no
+	// index leading with subscription_id, so Ent's edge load degrades to a full table
+	// scan. Only set it when the response actually surfaces the associations; the
+	// service layer back-fills it from expand="coupon_associations".
+	WithCouponAssociations *bool `json:"with_coupon_associations,omitzero"`
 	// WithLineItems includes line items in the response.
 	//
 	// Deprecated: use expand="subscription_line_items" instead. Retained for
@@ -254,6 +261,13 @@ func (s *SubscriptionFilter) GetTrialEndDueLte() *time.Time {
 		return nil
 	}
 	return s.TrialEndDueLte
+}
+
+func (s *SubscriptionFilter) GetWithCouponAssociations() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.WithCouponAssociations
 }
 
 func (s *SubscriptionFilter) GetWithLineItems() *bool {

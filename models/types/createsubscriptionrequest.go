@@ -8,59 +8,44 @@ import (
 )
 
 type CreateSubscriptionRequest struct {
-	// Addons represents addons to be added to the subscription during creation
 	Addons []AddAddonToSubscriptionRequest `json:"addons,omitzero"`
-	// AutoInvoiceThreshold is the usage amount (in subscription currency) that triggers
-	// an intermediate invoice mid-period. Set once at creation; cannot be changed later.
-	// Allowed only when the subscription resolves to type standalone (no parent hierarchy rows).
-	// Plan line items must be usage-based only (no fixed or other non-usage plan prices).
-	// Nil means auto invoice threshold billing is disabled for this subscription.
+	// AutoInvoiceThreshold triggers a mid-period invoice when usage (in subscription currency) exceeds this amount.
+	// Standalone subscriptions only; all plan prices must be usage-based. Immutable after creation.
 	AutoInvoiceThreshold *string `json:"auto_invoice_threshold,omitzero"`
-	// BillingAnchor overrides the derived billing anchor when billing_cycle is anniversary.
-	// For monthly billing, the day-of-month (and time-of-day) define cycle boundaries: if start_date
-	// is before that day in the month, the first billing period ends on the next occurrence of that
-	// day in the same month (a shorter first period); subsequent periods follow the usual interval.
+	// BillingAnchor overrides the derived anchor for anniversary billing. For monthly billing,
+	// the day-of-month defines cycle boundaries (shorter first period if start is before that day).
 	BillingAnchor      *time.Time        `json:"billing_anchor,omitzero"`
 	BillingCycle       *BillingCycle     `json:"billing_cycle,omitzero"`
 	BillingPeriod      BillingPeriod     `json:"billing_period"`
 	BillingPeriodCount *int64            `json:"billing_period_count,omitzero"`
 	CollectionMethod   *CollectionMethod `json:"collection_method,omitzero"`
-	// CommitmentAmount is the minimum amount a customer commits to paying for a billing period
-	CommitmentAmount   *string        `json:"commitment_amount,omitzero"`
-	CommitmentDuration *BillingPeriod `json:"commitment_duration,omitzero"`
+	CommitmentAmount   *string           `json:"commitment_amount,omitzero"`
+	CommitmentDuration *BillingPeriod    `json:"commitment_duration,omitzero"`
 	// Deprecated: use SubscriptionCoupons instead.
-	Coupons []string `json:"coupons,omitzero"`
-	// Credit grants to be applied when subscription is created
+	Coupons      []string                   `json:"coupons,omitzero"`
 	CreditGrants []CreateCreditGrantRequest `json:"credit_grants,omitzero"`
 	Currency     string                     `json:"currency"`
-	// customer_id is the flexprice customer id
-	// and it is prioritized over external_customer_id in case both are provided.
-	CustomerID *string `json:"customer_id,omitzero"`
-	// Enable Commitment True Up Fee
-	EnableTrueUp *bool      `json:"enable_true_up,omitzero"`
-	EndDate      *time.Time `json:"end_date,omitzero"`
-	// external_customer_id is the customer id in your DB
-	// and must be same as what you provided as external_id while creating the customer in flexprice.
+	// CustomerID takes priority over ExternalCustomerID when both are provided.
+	CustomerID             *string                        `json:"customer_id,omitzero"`
+	EnableTrueUp           *bool                          `json:"enable_true_up,omitzero"`
+	EndDate                *time.Time                     `json:"end_date,omitzero"`
 	ExternalCustomerID     *string                        `json:"external_customer_id,omitzero"`
 	GatewayPaymentMethodID *string                        `json:"gateway_payment_method_id,omitzero"`
 	Inheritance            *SubscriptionInheritanceConfig `json:"inheritance,omitzero"`
-	// LineItemCommitments allows setting commitment configuration per line item (keyed by price_id)
+	// LineItemCommitments sets per-line-item commitment config, keyed by price_id.
 	LineItemCommitments map[string]LineItemCommitmentConfig `json:"line_item_commitments,omitzero"`
 	// Deprecated: use SubscriptionCoupons instead.
 	LineItemCoupons map[string][]string `json:"line_item_coupons,omitzero"`
-	// LineItems are extra line items to add at creation (each with price_id or price), in addition to plan prices
-	LineItems []CreateSubscriptionLineItemRequest `json:"line_items,omitzero"`
-	LookupKey *string                             `json:"lookup_key,omitzero"`
-	Metadata  map[string]string                   `json:"metadata,omitzero"`
-	// OverageFactor is a multiplier applied to usage beyond the commitment amount
-	OverageFactor *string `json:"overage_factor,omitzero"`
-	// OverrideEntitlements allows customizing specific entitlements for this subscription
-	OverrideEntitlements []OverrideEntitlementRequest `json:"override_entitlements,omitzero"`
-	// OverrideLineItems allows customizing specific prices for this subscription
-	OverrideLineItems []OverrideLineItemRequest `json:"override_line_items,omitzero"`
-	PaymentBehavior   *PaymentBehavior          `json:"payment_behavior,omitzero"`
-	PaymentTerms      *PaymentTerms             `json:"payment_terms,omitzero"`
-	// Phases represents subscription phases to be created with the subscription
+	// LineItems are extra (non-plan) line items added at creation.
+	LineItems            []CreateSubscriptionLineItemRequest `json:"line_items,omitzero"`
+	LookupKey            *string                             `json:"lookup_key,omitzero"`
+	Metadata             map[string]string                   `json:"metadata,omitzero"`
+	OverageFactor        *string                             `json:"overage_factor,omitzero"`
+	OverrideEntitlements []OverrideEntitlementRequest        `json:"override_entitlements,omitzero"`
+	// OverrideLineItems overrides specific plan prices for this subscription.
+	OverrideLineItems []OverrideLineItemRequest        `json:"override_line_items,omitzero"`
+	PaymentBehavior   *PaymentBehavior                 `json:"payment_behavior,omitzero"`
+	PaymentTerms      *PaymentTerms                    `json:"payment_terms,omitzero"`
 	Phases            []SubscriptionPhaseCreateRequest `json:"phases,omitzero"`
 	PlanID            string                           `json:"plan_id"`
 	ProrationBehavior *ProrationBehavior               `json:"proration_behavior,omitzero"`
@@ -69,13 +54,9 @@ type CreateSubscriptionRequest struct {
 	// Accepts coupon_code; optionally targets a line item via price_id.
 	SubscriptionCoupons []SubscriptionCouponInput `json:"subscription_coupons,omitzero"`
 	SubscriptionStatus  *SubscriptionStatus       `json:"subscription_status,omitzero"`
-	// tax_rate_overrides is the tax rate overrides	to be applied to the subscription
-	TaxRateOverrides []TaxRateOverride `json:"tax_rate_overrides,omitzero"`
-	// Timezone of the customer.
-	// If not set, the default value is UTC.
-	Timezone *string `json:"timezone,omitzero"`
-	// TrialPeriodDays: nil = inherit trial length from plan recurring-fixed prices (must be uniform).
-	// 0 = explicitly no trial (overrides catalog). >0 = override duration in days.
+	TaxRateOverrides    []TaxRateOverride         `json:"tax_rate_overrides,omitzero"`
+	Timezone            *string                   `json:"timezone,omitzero"`
+	// TrialPeriodDays: nil = inherit from plan prices, 0 = no trial, >0 = override in days.
 	TrialPeriodDays *int64 `json:"trial_period_days,omitzero"`
 }
 

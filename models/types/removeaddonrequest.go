@@ -9,10 +9,7 @@ import (
 
 type RemoveAddonRequest struct {
 	AddonAssociationID string `json:"addon_association_id"`
-	// EffectiveDate is the date the cancellation takes effect.
-	// When nil the addon is cancelled at the end of the current period.
-	// When provided it must fall within [CurrentPeriodStart, CurrentPeriodEnd]; mid-period
-	// values combined with create_prorations will issue a wallet credit for unused time.
+	// EffectiveDate defaults to period end when nil; mid-period with create_prorations issues a wallet credit.
 	EffectiveDate     *time.Time         `json:"effective_date,omitzero"`
 	ProrationBehavior *ProrationBehavior `json:"proration_behavior,omitzero"`
 	Reason            *string            `json:"reason,omitzero"`

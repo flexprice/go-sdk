@@ -13,12 +13,10 @@ type SubscriptionPhaseCreateRequest struct {
 	EndDate *time.Time `json:"end_date,omitzero"`
 	// Deprecated: use SubscriptionCoupons instead.
 	LineItemCoupons map[string][]string `json:"line_item_coupons,omitzero"`
-	// LineItems are extra line items to add during this phase, primarily one-time charges.
-	// Each item's start_date defaults to the phase's start_date when not provided.
+	// LineItems are extra (non-plan) line items for this phase; start_date defaults to phase start.
 	LineItems []CreateSubscriptionLineItemRequest `json:"line_items,omitzero"`
 	Metadata  map[string]string                   `json:"metadata,omitzero"`
-	// OverrideLineItems allows customizing specific prices for this phase
-	// If not provided, phase will use the same line items as the subscription (plan prices)
+	// OverrideLineItems overrides specific plan prices for this phase.
 	OverrideLineItems []OverrideLineItemRequest `json:"override_line_items,omitzero"`
 	StartDate         time.Time                 `json:"start_date"`
 	// SubscriptionCoupons is the preferred way to attach coupons to this phase.

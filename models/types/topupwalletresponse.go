@@ -7,6 +7,7 @@ import (
 )
 
 type TopUpWalletResponse struct {
+	CheckoutSession *CheckoutSessionResponse `json:"checkout_session,omitzero"`
 	// Invoice ID if an invoice was created (only for PURCHASED_CREDIT_INVOICED)
 	InvoiceID         *string                    `json:"invoice_id,omitzero"`
 	Wallet            *WalletResponse            `json:"wallet,omitzero"`
@@ -22,6 +23,13 @@ func (t *TopUpWalletResponse) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (t *TopUpWalletResponse) GetCheckoutSession() *CheckoutSessionResponse {
+	if t == nil {
+		return nil
+	}
+	return t.CheckoutSession
 }
 
 func (t *TopUpWalletResponse) GetInvoiceID() *string {

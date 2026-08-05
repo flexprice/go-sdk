@@ -7,8 +7,32 @@ import (
 )
 
 type GroupedInvoicingChildRequest struct {
-	ExternalCustomerID string `json:"external_customer_id"`
-	PlanID             string `json:"plan_id"`
+	Addons             []AddAddonToSubscriptionRequest `json:"addons,omitzero"`
+	CommitmentAmount   *string                         `json:"commitment_amount,omitzero"`
+	CommitmentDuration *BillingPeriod                  `json:"commitment_duration,omitzero"`
+	// Deprecated: use SubscriptionCoupons instead.
+	Coupons            []string                   `json:"coupons,omitzero"`
+	CreditGrants       []CreateCreditGrantRequest `json:"credit_grants,omitzero"`
+	EnableTrueUp       *bool                      `json:"enable_true_up,omitzero"`
+	ExternalCustomerID string                     `json:"external_customer_id"`
+	// LineItemCommitments sets per-line-item commitment config, keyed by price_id.
+	LineItemCommitments map[string]LineItemCommitmentConfig `json:"line_item_commitments,omitzero"`
+	// Deprecated: use SubscriptionCoupons instead.
+	LineItemCoupons map[string][]string `json:"line_item_coupons,omitzero"`
+	// LineItems are extra (non-plan) line items added at creation.
+	LineItems            []CreateSubscriptionLineItemRequest `json:"line_items,omitzero"`
+	OverageFactor        *string                             `json:"overage_factor,omitzero"`
+	OverrideEntitlements []OverrideEntitlementRequest        `json:"override_entitlements,omitzero"`
+	// OverrideLineItems overrides specific plan prices for this subscription.
+	OverrideLineItems []OverrideLineItemRequest        `json:"override_line_items,omitzero"`
+	Phases            []SubscriptionPhaseCreateRequest `json:"phases,omitzero"`
+	PlanID            string                           `json:"plan_id"`
+	// SubscriptionCoupons is the preferred way to attach coupons at creation.
+	// Accepts coupon_code; optionally targets a line item via price_id.
+	SubscriptionCoupons []SubscriptionCouponInput `json:"subscription_coupons,omitzero"`
+	TaxRateOverrides    []TaxRateOverride         `json:"tax_rate_overrides,omitzero"`
+	// TrialPeriodDays: nil = inherit from plan prices, 0 = no trial, >0 = override in days.
+	TrialPeriodDays *int64 `json:"trial_period_days,omitzero"`
 }
 
 func (g GroupedInvoicingChildRequest) MarshalJSON() ([]byte, error) {
@@ -22,6 +46,48 @@ func (g *GroupedInvoicingChildRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (g *GroupedInvoicingChildRequest) GetAddons() []AddAddonToSubscriptionRequest {
+	if g == nil {
+		return nil
+	}
+	return g.Addons
+}
+
+func (g *GroupedInvoicingChildRequest) GetCommitmentAmount() *string {
+	if g == nil {
+		return nil
+	}
+	return g.CommitmentAmount
+}
+
+func (g *GroupedInvoicingChildRequest) GetCommitmentDuration() *BillingPeriod {
+	if g == nil {
+		return nil
+	}
+	return g.CommitmentDuration
+}
+
+func (g *GroupedInvoicingChildRequest) GetCoupons() []string {
+	if g == nil {
+		return nil
+	}
+	return g.Coupons
+}
+
+func (g *GroupedInvoicingChildRequest) GetCreditGrants() []CreateCreditGrantRequest {
+	if g == nil {
+		return nil
+	}
+	return g.CreditGrants
+}
+
+func (g *GroupedInvoicingChildRequest) GetEnableTrueUp() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.EnableTrueUp
+}
+
 func (g *GroupedInvoicingChildRequest) GetExternalCustomerID() string {
 	if g == nil {
 		return ""
@@ -29,9 +95,79 @@ func (g *GroupedInvoicingChildRequest) GetExternalCustomerID() string {
 	return g.ExternalCustomerID
 }
 
+func (g *GroupedInvoicingChildRequest) GetLineItemCommitments() map[string]LineItemCommitmentConfig {
+	if g == nil {
+		return nil
+	}
+	return g.LineItemCommitments
+}
+
+func (g *GroupedInvoicingChildRequest) GetLineItemCoupons() map[string][]string {
+	if g == nil {
+		return nil
+	}
+	return g.LineItemCoupons
+}
+
+func (g *GroupedInvoicingChildRequest) GetLineItems() []CreateSubscriptionLineItemRequest {
+	if g == nil {
+		return nil
+	}
+	return g.LineItems
+}
+
+func (g *GroupedInvoicingChildRequest) GetOverageFactor() *string {
+	if g == nil {
+		return nil
+	}
+	return g.OverageFactor
+}
+
+func (g *GroupedInvoicingChildRequest) GetOverrideEntitlements() []OverrideEntitlementRequest {
+	if g == nil {
+		return nil
+	}
+	return g.OverrideEntitlements
+}
+
+func (g *GroupedInvoicingChildRequest) GetOverrideLineItems() []OverrideLineItemRequest {
+	if g == nil {
+		return nil
+	}
+	return g.OverrideLineItems
+}
+
+func (g *GroupedInvoicingChildRequest) GetPhases() []SubscriptionPhaseCreateRequest {
+	if g == nil {
+		return nil
+	}
+	return g.Phases
+}
+
 func (g *GroupedInvoicingChildRequest) GetPlanID() string {
 	if g == nil {
 		return ""
 	}
 	return g.PlanID
+}
+
+func (g *GroupedInvoicingChildRequest) GetSubscriptionCoupons() []SubscriptionCouponInput {
+	if g == nil {
+		return nil
+	}
+	return g.SubscriptionCoupons
+}
+
+func (g *GroupedInvoicingChildRequest) GetTaxRateOverrides() []TaxRateOverride {
+	if g == nil {
+		return nil
+	}
+	return g.TaxRateOverrides
+}
+
+func (g *GroupedInvoicingChildRequest) GetTrialPeriodDays() *int64 {
+	if g == nil {
+		return nil
+	}
+	return g.TrialPeriodDays
 }

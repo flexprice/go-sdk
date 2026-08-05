@@ -23,6 +23,8 @@ type GetCostAnalyticsRequest struct {
 	// Pagination
 	Limit  *int64 `json:"limit,omitzero"`
 	Offset *int64 `json:"offset,omitzero"`
+	// Property filters to filter the events by the keys in `properties` field of the event
+	PropertyFilters map[string][]string `json:"property_filters,omitzero"`
 	// Time range fields (optional - defaults to last 7 days if not provided)
 	StartTime *time.Time `json:"start_time,omitzero"`
 }
@@ -85,6 +87,13 @@ func (g *GetCostAnalyticsRequest) GetOffset() *int64 {
 		return nil
 	}
 	return g.Offset
+}
+
+func (g *GetCostAnalyticsRequest) GetPropertyFilters() map[string][]string {
+	if g == nil {
+		return nil
+	}
+	return g.PropertyFilters
 }
 
 func (g *GetCostAnalyticsRequest) GetStartTime() *time.Time {
