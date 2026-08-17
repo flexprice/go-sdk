@@ -8,14 +8,14 @@ import (
 )
 
 type WebhookDtoSpendAlertEvent struct {
-	AlertSettings        *AlertSettings                    `json:"alert_settings,omitzero"`
-	AlertStatus          *AlertState                       `json:"alert_status,omitzero"`
-	AlertType            *AlertType                        `json:"alert_type,omitzero"`
-	CurrentSpend         *string                           `json:"current_spend,omitzero"`
-	Group                *GroupResponse                    `json:"group,omitzero"`
-	Subscription         *SubscriptionResponse             `json:"subscription,omitzero"`
-	SubscriptionLineItem *SubscriptionSubscriptionLineItem `json:"subscription_line_item,omitzero"`
-	TriggeredAt          *time.Time                        `json:"triggered_at,omitzero"`
+	AlertStatus            *AlertState             `json:"alert_status,omitzero"`
+	AlertType              *AlertType              `json:"alert_type,omitzero"`
+	CurrentSpend           *string                 `json:"current_spend,omitzero"`
+	GroupID                *string                 `json:"group_id,omitzero"`
+	Subscription           *WebhookDtoSubscription `json:"subscription,omitzero"`
+	SubscriptionLineItemID *string                 `json:"subscription_line_item_id,omitzero"`
+	Threshold              *string                 `json:"threshold,omitzero"`
+	TriggeredAt            *time.Time              `json:"triggered_at,omitzero"`
 }
 
 func (w WebhookDtoSpendAlertEvent) MarshalJSON() ([]byte, error) {
@@ -27,13 +27,6 @@ func (w *WebhookDtoSpendAlertEvent) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
-}
-
-func (w *WebhookDtoSpendAlertEvent) GetAlertSettings() *AlertSettings {
-	if w == nil {
-		return nil
-	}
-	return w.AlertSettings
 }
 
 func (w *WebhookDtoSpendAlertEvent) GetAlertStatus() *AlertState {
@@ -57,25 +50,32 @@ func (w *WebhookDtoSpendAlertEvent) GetCurrentSpend() *string {
 	return w.CurrentSpend
 }
 
-func (w *WebhookDtoSpendAlertEvent) GetGroup() *GroupResponse {
+func (w *WebhookDtoSpendAlertEvent) GetGroupID() *string {
 	if w == nil {
 		return nil
 	}
-	return w.Group
+	return w.GroupID
 }
 
-func (w *WebhookDtoSpendAlertEvent) GetSubscription() *SubscriptionResponse {
+func (w *WebhookDtoSpendAlertEvent) GetSubscription() *WebhookDtoSubscription {
 	if w == nil {
 		return nil
 	}
 	return w.Subscription
 }
 
-func (w *WebhookDtoSpendAlertEvent) GetSubscriptionLineItem() *SubscriptionSubscriptionLineItem {
+func (w *WebhookDtoSpendAlertEvent) GetSubscriptionLineItemID() *string {
 	if w == nil {
 		return nil
 	}
-	return w.SubscriptionLineItem
+	return w.SubscriptionLineItemID
+}
+
+func (w *WebhookDtoSpendAlertEvent) GetThreshold() *string {
+	if w == nil {
+		return nil
+	}
+	return w.Threshold
 }
 
 func (w *WebhookDtoSpendAlertEvent) GetTriggeredAt() *time.Time {

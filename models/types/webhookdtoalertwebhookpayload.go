@@ -7,13 +7,14 @@ import (
 )
 
 type WebhookDtoAlertWebhookPayload struct {
-	AlertStatus *AlertState `json:"alert_status,omitzero"`
-	AlertType   *AlertType  `json:"alert_type,omitzero"`
-	// Customer response object containing all customer information
-	Customer  *CustomerResponse `json:"customer,omitzero"`
-	EventType *WebhookEventName `json:"event_type,omitzero"`
-	Feature   *FeatureResponse  `json:"feature,omitzero"`
-	Wallet    *WalletResponse   `json:"wallet,omitzero"`
+	AlertStatus    *AlertState       `json:"alert_status,omitzero"`
+	AlertType      *AlertType        `json:"alert_type,omitzero"`
+	CreditBalance  *string           `json:"credit_balance,omitzero"`
+	CurrentBalance *string           `json:"current_balance,omitzero"`
+	CustomerID     *string           `json:"customer_id,omitzero"`
+	EventType      *WebhookEventName `json:"event_type,omitzero"`
+	FeatureID      *string           `json:"feature_id,omitzero"`
+	WalletID       *string           `json:"wallet_id,omitzero"`
 }
 
 func (w WebhookDtoAlertWebhookPayload) MarshalJSON() ([]byte, error) {
@@ -41,11 +42,25 @@ func (w *WebhookDtoAlertWebhookPayload) GetAlertType() *AlertType {
 	return w.AlertType
 }
 
-func (w *WebhookDtoAlertWebhookPayload) GetCustomer() *CustomerResponse {
+func (w *WebhookDtoAlertWebhookPayload) GetCreditBalance() *string {
 	if w == nil {
 		return nil
 	}
-	return w.Customer
+	return w.CreditBalance
+}
+
+func (w *WebhookDtoAlertWebhookPayload) GetCurrentBalance() *string {
+	if w == nil {
+		return nil
+	}
+	return w.CurrentBalance
+}
+
+func (w *WebhookDtoAlertWebhookPayload) GetCustomerID() *string {
+	if w == nil {
+		return nil
+	}
+	return w.CustomerID
 }
 
 func (w *WebhookDtoAlertWebhookPayload) GetEventType() *WebhookEventName {
@@ -55,16 +70,16 @@ func (w *WebhookDtoAlertWebhookPayload) GetEventType() *WebhookEventName {
 	return w.EventType
 }
 
-func (w *WebhookDtoAlertWebhookPayload) GetFeature() *FeatureResponse {
+func (w *WebhookDtoAlertWebhookPayload) GetFeatureID() *string {
 	if w == nil {
 		return nil
 	}
-	return w.Feature
+	return w.FeatureID
 }
 
-func (w *WebhookDtoAlertWebhookPayload) GetWallet() *WalletResponse {
+func (w *WebhookDtoAlertWebhookPayload) GetWalletID() *string {
 	if w == nil {
 		return nil
 	}
-	return w.Wallet
+	return w.WalletID
 }

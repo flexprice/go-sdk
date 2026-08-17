@@ -7,8 +7,8 @@ import (
 )
 
 type WebhookDtoCheckoutSessionWebhookPayload struct {
-	CheckoutSession *CheckoutSessionResponse `json:"checkout_session,omitzero"`
-	EventType       *WebhookEventName        `json:"event_type,omitzero"`
+	CheckoutSession *WebhookDtoCheckoutSession `json:"checkout_session,omitzero"`
+	EventType       *WebhookEventName          `json:"event_type,omitzero"`
 }
 
 func (w WebhookDtoCheckoutSessionWebhookPayload) MarshalJSON() ([]byte, error) {
@@ -22,7 +22,7 @@ func (w *WebhookDtoCheckoutSessionWebhookPayload) UnmarshalJSON(data []byte) err
 	return nil
 }
 
-func (w *WebhookDtoCheckoutSessionWebhookPayload) GetCheckoutSession() *CheckoutSessionResponse {
+func (w *WebhookDtoCheckoutSessionWebhookPayload) GetCheckoutSession() *WebhookDtoCheckoutSession {
 	if w == nil {
 		return nil
 	}

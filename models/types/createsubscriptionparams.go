@@ -8,13 +8,14 @@ import (
 )
 
 type CreateSubscriptionParams struct {
-	BillingPeriod *BillingPeriod    `json:"billing_period,omitzero"`
-	Currency      *string           `json:"currency,omitzero"`
-	EndDate       *time.Time        `json:"end_date,omitzero"`
-	LookupKey     *string           `json:"lookup_key,omitzero"`
-	Metadata      map[string]string `json:"metadata,omitzero"`
-	PlanID        *string           `json:"plan_id,omitzero"`
-	StartDate     *time.Time        `json:"start_date,omitzero"`
+	BillingPeriod  *BillingPeriod    `json:"billing_period,omitzero"`
+	Currency       *string           `json:"currency,omitzero"`
+	EndDate        *time.Time        `json:"end_date,omitzero"`
+	LookupKey      *string           `json:"lookup_key,omitzero"`
+	Metadata       map[string]string `json:"metadata,omitzero"`
+	PlanID         *string           `json:"plan_id,omitzero"`
+	StartDate      *time.Time        `json:"start_date,omitzero"`
+	SubscriptionID *string           `json:"subscription_id,omitzero"`
 }
 
 func (c CreateSubscriptionParams) MarshalJSON() ([]byte, error) {
@@ -75,4 +76,11 @@ func (c *CreateSubscriptionParams) GetStartDate() *time.Time {
 		return nil
 	}
 	return c.StartDate
+}
+
+func (c *CreateSubscriptionParams) GetSubscriptionID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.SubscriptionID
 }

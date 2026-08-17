@@ -16,6 +16,7 @@ const (
 	SubscriptionModifyTypeTrialEnd         SubscriptionModifyType = "trial_end"
 	SubscriptionModifyTypeCoupon           SubscriptionModifyType = "coupon"
 	SubscriptionModifyTypeTax              SubscriptionModifyType = "tax"
+	SubscriptionModifyTypeAddon            SubscriptionModifyType = "addon"
 )
 
 func (e SubscriptionModifyType) ToPointer() *SubscriptionModifyType {
@@ -38,6 +39,8 @@ func (e *SubscriptionModifyType) UnmarshalJSON(data []byte) error {
 	case "coupon":
 		fallthrough
 	case "tax":
+		fallthrough
+	case "addon":
 		*e = SubscriptionModifyType(v)
 		return nil
 	default:

@@ -8,7 +8,9 @@ import (
 )
 
 type UpdateInvoiceRequest struct {
-	DueDate *time.Time `json:"due_date,omitzero"`
+	// When true, recalculates discount from existing coupon associations (draft invoices only).
+	ApplyDiscount *bool      `json:"apply_discount,omitzero"`
+	DueDate       *time.Time `json:"due_date,omitzero"`
 	// invoice_pdf_url is the URL where customers can download the PDF version of this invoice
 	InvoicePdfURL *string           `json:"invoice_pdf_url,omitzero"`
 	Metadata      map[string]string `json:"metadata,omitzero"`
@@ -23,6 +25,13 @@ func (u *UpdateInvoiceRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (u *UpdateInvoiceRequest) GetApplyDiscount() *bool {
+	if u == nil {
+		return nil
+	}
+	return u.ApplyDiscount
 }
 
 func (u *UpdateInvoiceRequest) GetDueDate() *time.Time {

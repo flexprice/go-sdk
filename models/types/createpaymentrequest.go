@@ -12,6 +12,7 @@ type CreatePaymentRequest struct {
 	Currency               string                 `json:"currency"`
 	DestinationID          string                 `json:"destination_id"`
 	DestinationType        PaymentDestinationType `json:"destination_type"`
+	GatewayOptions         *PaymentGatewayOptions `json:"gateway_options,omitzero"`
 	IdempotencyKey         *string                `json:"idempotency_key,omitzero"`
 	Metadata               map[string]string      `json:"metadata,omitzero"`
 	PaymentGateway         *PaymentGatewayType    `json:"payment_gateway,omitzero"`
@@ -66,6 +67,13 @@ func (c *CreatePaymentRequest) GetDestinationType() PaymentDestinationType {
 		return PaymentDestinationType("")
 	}
 	return c.DestinationType
+}
+
+func (c *CreatePaymentRequest) GetGatewayOptions() *PaymentGatewayOptions {
+	if c == nil {
+		return nil
+	}
+	return c.GatewayOptions
 }
 
 func (c *CreatePaymentRequest) GetIdempotencyKey() *string {

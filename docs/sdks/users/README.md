@@ -10,6 +10,7 @@
 * [QueryUser](#queryuser) - Query users
 * [UpdateServiceAccount](#updateserviceaccount) - Update service account
 * [DeleteServiceAccount](#deleteserviceaccount) - Delete service account
+* [UpdateUserRoles](#updateuserroles) - Update user roles
 
 ## CreateUser
 
@@ -334,5 +335,60 @@ func main() {
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## UpdateUserRoles
+
+Update the roles of a user account (not service accounts — their roles are fixed at creation). Restricted to super_admin; a caller cannot update their own roles. Blocked with a 400 if the user has any active (published, unexpired) API key in any environment, since a key's permissions are snapshotted at creation time and would otherwise silently keep running on the old roles; the error lists the active keys grouped by environment ID so the caller can prompt to expire them first, then retry.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="updateUserRoles" method="put" path="/users/{id}/roles" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Users.UpdateUserRoles(ctx, "<id>", types.UpdateUserRolesRequest{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.UpdateUserRolesResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `id`                                                                         | `string`                                                                     | :heavy_check_mark:                                                           | User ID                                                                      |
+| `body`                                                                       | [types.UpdateUserRolesRequest](../../models/types/updateuserrolesrequest.md) | :heavy_check_mark:                                                           | Update user roles request                                                    |
+| `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
+
+### Response
+
+**[*dtos.UpdateUserRolesResponse](../../models/dtos/updateuserrolesresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 403, 404        | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |

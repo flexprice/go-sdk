@@ -7,6 +7,7 @@ import (
 )
 
 type CheckoutJSONBCheckoutConfiguration struct {
+	AddAddonParams           *AddAddonParams           `json:"add_addon_params,omitzero"`
 	CreateSubscriptionParams *CreateSubscriptionParams `json:"create_subscription_params,omitzero"`
 	ModifySubscriptionParams *ModifySubscriptionParams `json:"modify_subscription_params,omitzero"`
 	WalletTopupParams        *WalletTopupParams        `json:"wallet_topup_params,omitzero"`
@@ -21,6 +22,13 @@ func (c *CheckoutJSONBCheckoutConfiguration) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (c *CheckoutJSONBCheckoutConfiguration) GetAddAddonParams() *AddAddonParams {
+	if c == nil {
+		return nil
+	}
+	return c.AddAddonParams
 }
 
 func (c *CheckoutJSONBCheckoutConfiguration) GetCreateSubscriptionParams() *CreateSubscriptionParams {

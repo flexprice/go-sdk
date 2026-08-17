@@ -10,7 +10,7 @@ import (
 type AddSubscriptionAddonResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	AddonAssociationResponse *types.AddonAssociationResponse
+	AddAddonToSubscriptionResponse *types.AddAddonToSubscriptionResponse
 }
 
 func (a AddSubscriptionAddonResponse) MarshalJSON() ([]byte, error) {
@@ -31,9 +31,9 @@ func (a *AddSubscriptionAddonResponse) GetHTTPMeta() types.HTTPMetadata {
 	return a.HTTPMeta
 }
 
-func (a *AddSubscriptionAddonResponse) GetAddonAssociationResponse() *types.AddonAssociationResponse {
+func (a *AddSubscriptionAddonResponse) GetAddAddonToSubscriptionResponse() *types.AddAddonToSubscriptionResponse {
 	if a == nil {
 		return nil
 	}
-	return a.AddonAssociationResponse
+	return a.AddAddonToSubscriptionResponse
 }

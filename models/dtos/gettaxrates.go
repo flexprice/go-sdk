@@ -190,7 +190,7 @@ func (g *GetTaxRatesRequest) GetTaxrateIds() []string {
 type GetTaxRatesResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK
-	TaxRateResponses []types.TaxRateResponse
+	ListTaxRatesResponse *types.ListTaxRatesResponse
 }
 
 func (g GetTaxRatesResponse) MarshalJSON() ([]byte, error) {
@@ -211,9 +211,9 @@ func (g *GetTaxRatesResponse) GetHTTPMeta() types.HTTPMetadata {
 	return g.HTTPMeta
 }
 
-func (g *GetTaxRatesResponse) GetTaxRateResponses() []types.TaxRateResponse {
+func (g *GetTaxRatesResponse) GetListTaxRatesResponse() *types.ListTaxRatesResponse {
 	if g == nil {
 		return nil
 	}
-	return g.TaxRateResponses
+	return g.ListTaxRatesResponse
 }

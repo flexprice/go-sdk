@@ -11,7 +11,7 @@ type S3JobConfig struct {
 	Bucket      *string            `json:"bucket,omitzero"`
 	Compression *S3CompressionType `json:"compression,omitzero"`
 	Encryption  *S3EncryptionType  `json:"encryption,omitzero"`
-	// Custom S3 endpoint URL (e.g., "http://minio:9000" for MinIO)
+	// Custom S3-compatible endpoint URL; must be https on a publicly routable host
 	EndpointURL *string `json:"endpoint_url,omitzero"`
 	// Optional user-selected metadata columns
 	ExportMetadataFields []ExportMetadataField `json:"export_metadata_fields,omitzero"`

@@ -7,8 +7,8 @@ import (
 )
 
 type WebhookDtoInvoiceWebhookPayload struct {
-	EventType *WebhookEventName `json:"event_type,omitzero"`
-	Invoice   *InvoiceResponse  `json:"invoice,omitzero"`
+	EventType *WebhookEventName  `json:"event_type,omitzero"`
+	Invoice   *WebhookDtoInvoice `json:"invoice,omitzero"`
 }
 
 func (w WebhookDtoInvoiceWebhookPayload) MarshalJSON() ([]byte, error) {
@@ -29,7 +29,7 @@ func (w *WebhookDtoInvoiceWebhookPayload) GetEventType() *WebhookEventName {
 	return w.EventType
 }
 
-func (w *WebhookDtoInvoiceWebhookPayload) GetInvoice() *InvoiceResponse {
+func (w *WebhookDtoInvoiceWebhookPayload) GetInvoice() *WebhookDtoInvoice {
 	if w == nil {
 		return nil
 	}

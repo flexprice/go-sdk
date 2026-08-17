@@ -7,11 +7,8 @@ import (
 )
 
 type WebhookDtoTransactionUpdatedWebhookPayload struct {
-	// Customer response object containing all customer information
-	Customer           *CustomerResponse          `json:"customer,omitzero"`
-	EventType          *WebhookEventName          `json:"event_type,omitzero"`
-	UpdatedTransaction *WalletTransactionResponse `json:"updated_transaction,omitzero"`
-	Wallet             *WalletResponse            `json:"wallet,omitzero"`
+	EventType          *WebhookEventName            `json:"event_type,omitzero"`
+	UpdatedTransaction *WebhookDtoWalletTransaction `json:"updated_transaction,omitzero"`
 }
 
 func (w WebhookDtoTransactionUpdatedWebhookPayload) MarshalJSON() ([]byte, error) {
@@ -25,13 +22,6 @@ func (w *WebhookDtoTransactionUpdatedWebhookPayload) UnmarshalJSON(data []byte) 
 	return nil
 }
 
-func (w *WebhookDtoTransactionUpdatedWebhookPayload) GetCustomer() *CustomerResponse {
-	if w == nil {
-		return nil
-	}
-	return w.Customer
-}
-
 func (w *WebhookDtoTransactionUpdatedWebhookPayload) GetEventType() *WebhookEventName {
 	if w == nil {
 		return nil
@@ -39,16 +29,9 @@ func (w *WebhookDtoTransactionUpdatedWebhookPayload) GetEventType() *WebhookEven
 	return w.EventType
 }
 
-func (w *WebhookDtoTransactionUpdatedWebhookPayload) GetUpdatedTransaction() *WalletTransactionResponse {
+func (w *WebhookDtoTransactionUpdatedWebhookPayload) GetUpdatedTransaction() *WebhookDtoWalletTransaction {
 	if w == nil {
 		return nil
 	}
 	return w.UpdatedTransaction
-}
-
-func (w *WebhookDtoTransactionUpdatedWebhookPayload) GetWallet() *WalletResponse {
-	if w == nil {
-		return nil
-	}
-	return w.Wallet
 }

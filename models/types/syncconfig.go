@@ -14,6 +14,7 @@ type SyncConfig struct {
 	InvoiceSyncSettings *InvoiceSyncSettings      `json:"invoice_sync_settings,omitzero"`
 	Payment             *EntitySyncConfig         `json:"payment,omitzero"`
 	Plan                *EntitySyncConfig         `json:"plan,omitzero"`
+	Price               *EntitySyncConfig         `json:"price,omitzero"`
 	Quote               *EntitySyncConfig         `json:"quote,omitzero"`
 	S3                  *S3ExportConfig           `json:"s3,omitzero"`
 	Subscription        *EntitySyncConfig         `json:"subscription,omitzero"`
@@ -77,6 +78,13 @@ func (s *SyncConfig) GetPlan() *EntitySyncConfig {
 		return nil
 	}
 	return s.Plan
+}
+
+func (s *SyncConfig) GetPrice() *EntitySyncConfig {
+	if s == nil {
+		return nil
+	}
+	return s.Price
 }
 
 func (s *SyncConfig) GetQuote() *EntitySyncConfig {

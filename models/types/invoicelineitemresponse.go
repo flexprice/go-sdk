@@ -30,9 +30,12 @@ type InvoiceLineItemResponse struct {
 	Metadata         map[string]string `json:"metadata,omitzero"`
 	MeterDisplayName *string           `json:"meter_display_name,omitzero"`
 	MeterID          *string           `json:"meter_id,omitzero"`
-	PeriodEnd        *time.Time        `json:"period_end,omitzero"`
-	PeriodStart      *time.Time        `json:"period_start,omitzero"`
-	PlanDisplayName  *string           `json:"plan_display_name,omitzero"`
+	// parent_line_item_id links this line item to the line item it replaced, if it was created by editing
+	// an existing line item. Forms a linked-list chain across edits; nil for line items that were never edited.
+	ParentLineItemID *string    `json:"parent_line_item_id,omitzero"`
+	PeriodEnd        *time.Time `json:"period_end,omitzero"`
+	PeriodStart      *time.Time `json:"period_start,omitzero"`
+	PlanDisplayName  *string    `json:"plan_display_name,omitzero"`
 	// prepaid_credits_applied is the amount in invoice currency reduced from this line item due to prepaid credits application.
 	PrepaidCreditsApplied *string `json:"prepaid_credits_applied,omitzero"`
 	PriceID               *string `json:"price_id,omitzero"`
@@ -189,6 +192,13 @@ func (i *InvoiceLineItemResponse) GetMeterID() *string {
 		return nil
 	}
 	return i.MeterID
+}
+
+func (i *InvoiceLineItemResponse) GetParentLineItemID() *string {
+	if i == nil {
+		return nil
+	}
+	return i.ParentLineItemID
 }
 
 func (i *InvoiceLineItemResponse) GetPeriodEnd() *time.Time {

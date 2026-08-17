@@ -21,3 +21,4 @@ value := types.SubscriptionModifyTypeInheritance
 | `SubscriptionModifyTypeTrialEnd`         | trial_end                                |
 | `SubscriptionModifyTypeCoupon`           | coupon                                   |
 | `SubscriptionModifyTypeTax`              | tax                                      |
+| `SubscriptionModifyTypeAddon`            | addon                                    |

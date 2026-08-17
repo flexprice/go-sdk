@@ -3,9 +3,61 @@
 package dtos
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
+
+// UserType - Filter by user type
+type UserType string
+
+const (
+	UserTypeUser           UserType = "user"
+	UserTypeServiceAccount UserType = "service_account"
+)
+
+func (e UserType) ToPointer() *UserType {
+	return &e
+}
+func (e *UserType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "user":
+		fallthrough
+	case "service_account":
+		*e = UserType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for UserType: %v", v)
+	}
+}
+
+type ListRbacRolesRequest struct {
+	// Filter by user type
+	UserType *UserType `queryParam:"style=form,explode=true,name=user_type"`
+}
+
+func (l ListRbacRolesRequest) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListRbacRolesRequest) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListRbacRolesRequest) GetUserType() *UserType {
+	if l == nil {
+		return nil
+	}
+	return l.UserType
+}
 
 type ListRbacRolesResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`

@@ -45,6 +45,7 @@
 * [PostWebhookEventsSubscriptionPhaseCreated](#postwebhookeventssubscriptionphasecreated) - subscription.phase.created
 * [PostWebhookEventsSubscriptionPhaseDeleted](#postwebhookeventssubscriptionphasedeleted) - subscription.phase.deleted
 * [PostWebhookEventsSubscriptionPhaseUpdated](#postwebhookeventssubscriptionphaseupdated) - subscription.phase.updated
+* [PostWebhookEventsSubscriptionPlanChanged](#postwebhookeventssubscriptionplanchanged) - subscription.plan_changed
 * [PostWebhookEventsSubscriptionRenewalDue](#postwebhookeventssubscriptionrenewaldue) - subscription.renewal.due
 * [PostWebhookEventsSubscriptionResumed](#postwebhookeventssubscriptionresumed) - subscription.resumed
 * [PostWebhookEventsSubscriptionSpendThresholdReached](#postwebhookeventssubscriptionspendthresholdreached) - subscription.spend.threshold_reached
@@ -2104,6 +2105,56 @@ func main() {
 ### Response
 
 **[*dtos.PostWebhookEventsSubscriptionPhaseUpdatedResponse](../../models/dtos/postwebhookeventssubscriptionphaseupdatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsSubscriptionPlanChanged
+
+Fired when a subscription plan changes in place (id/anchor preserved; not cancelled+created). Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/subscription.plan_changed" method="post" path="/webhook-events/subscription.plan_changed" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsSubscriptionPlanChanged(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoSubscriptionWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsSubscriptionPlanChangedResponse](../../models/dtos/postwebhookeventssubscriptionplanchangedresponse.md), error**
 
 ### Errors
 

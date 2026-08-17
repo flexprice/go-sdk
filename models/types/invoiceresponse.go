@@ -51,6 +51,9 @@ type InvoiceResponse struct {
 	InvoicePdfURL *string        `json:"invoice_pdf_url,omitzero"`
 	InvoiceStatus *InvoiceStatus `json:"invoice_status,omitzero"`
 	InvoiceType   *InvoiceType   `json:"invoice_type,omitzero"`
+	// is_manually_edited is true once a user has manually added, edited, or removed a line item on this draft invoice.
+	// Once set, automated recomputation of this invoice's line items must no-op rather than overwrite the manual edit.
+	IsManuallyEdited *bool `json:"is_manually_edited,omitzero"`
 	// issue_date is the user-facing date of the invoice. Defaults to created_at if not set.
 	IssueDate *time.Time `json:"issue_date,omitzero"`
 	// last_computed_at is the timestamp when this invoice was last computed by ComputeInvoice
@@ -271,6 +274,13 @@ func (i *InvoiceResponse) GetInvoiceType() *InvoiceType {
 		return nil
 	}
 	return i.InvoiceType
+}
+
+func (i *InvoiceResponse) GetIsManuallyEdited() *bool {
+	if i == nil {
+		return nil
+	}
+	return i.IsManuallyEdited
 }
 
 func (i *InvoiceResponse) GetIssueDate() *time.Time {

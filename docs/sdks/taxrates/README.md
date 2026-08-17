@@ -38,7 +38,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.TaxRateResponses != nil {
+    if res.ListTaxRatesResponse != nil {
         // handle response
     }
 }

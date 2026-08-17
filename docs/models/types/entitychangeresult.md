@@ -1,0 +1,11 @@
+# EntityChangeResult
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `Behaviour`                                                                                   | [*types.EntityChangeBehaviour](../../models/types/entitychangebehaviour.md)                   | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `EntityID`                                                                                    | `*string`                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `EntityType`                                                                                  | [*types.SubscriptionLineItemEntityType](../../models/types/subscriptionlineitementitytype.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `ReferenceID`                                                                                 | `*string`                                                                                     | :heavy_minus_sign:                                                                            | N/A                                                                                           |

@@ -5,8 +5,8 @@
 ### Available Operations
 
 * [CreateSubscription](#createsubscription) - Create subscription
-* [AddSubscriptionAddon](#addsubscriptionaddon) - Add addon to subscription
-* [RemoveSubscriptionAddon](#removesubscriptionaddon) - Remove addon from subscription
+* [~~AddSubscriptionAddon~~](#addsubscriptionaddon) - Add addon to subscription :warning: **Deprecated**
+* [~~RemoveSubscriptionAddon~~](#removesubscriptionaddon) - Remove addon from subscription :warning: **Deprecated**
 * [QuerySubscriptionLineItems](#querysubscriptionlineitems) - Search subscription line items
 * [UpdateSubscriptionLineItem](#updatesubscriptionlineitem) - Update subscription line item
 * [DeleteSubscriptionLineItem](#deletesubscriptionlineitem) - Delete subscription line item
@@ -19,6 +19,8 @@
 * [CancelSubscription](#cancelsubscription) - Cancel subscription
 * [ExecuteSubscriptionChange](#executesubscriptionchange) - Execute subscription plan change
 * [PreviewSubscriptionChange](#previewsubscriptionchange) - Preview subscription plan change
+* [ExecuteSubscriptionPlanChangeV2](#executesubscriptionplanchangev2) - Execute a plan change (v2, swap in place)
+* [PreviewSubscriptionPlanChangeV2](#previewsubscriptionplanchangev2) - Preview a plan change (v2, swap in place)
 * [GetSubscriptionEntitlements](#getsubscriptionentitlements) - Get subscription entitlements
 * [GetSubscriptionUpcomingGrants](#getsubscriptionupcominggrants) - Get upcoming credit grant applications
 * [CreateSubscriptionLineItem](#createsubscriptionlineitem) - Create subscription line item
@@ -88,9 +90,12 @@ func main() {
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 
-## AddSubscriptionAddon
+## ~~AddSubscriptionAddon~~
 
+Deprecated: use POST /subscriptions/{id}/modify/execute with type "addon" and action "add", which also supports previewing the proration charge first.
 Use when adding an optional product or add-on to an existing subscription (e.g. extra storage or support tier).
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -119,7 +124,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.AddonAssociationResponse != nil {
+    if res.AddAddonToSubscriptionResponse != nil {
         // handle response
     }
 }
@@ -145,9 +150,12 @@ func main() {
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 
-## RemoveSubscriptionAddon
+## ~~RemoveSubscriptionAddon~~
 
+Deprecated: use POST /subscriptions/{id}/modify/execute with type "addon" and action "remove", which also supports previewing the proration credit first.
 Use when removing an add-on from a subscription (e.g. downgrade or opt-out).
+
+> :warning: **DEPRECATED**: This will be removed in a future release, please migrate away from it as soon as possible.
 
 ### Example Usage
 
@@ -877,6 +885,122 @@ func main() {
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 
+## ExecuteSubscriptionPlanChangeV2
+
+Change a subscription's plan in place. Subscription id, billing anchor and period bounds are preserved; line items are sliced and settled in one transaction.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="executeSubscriptionPlanChangeV2" method="post" path="/subscriptions/{id}/change/v2/execute" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Subscriptions.ExecuteSubscriptionPlanChangeV2(ctx, "<id>", types.SubscriptionChangeV2Request{
+        ProrationBehavior: types.ProrationBehaviorCreateProrations,
+        TargetPlanID: "<id>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SubscriptionChangeV2Response != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Subscription ID                                                                        |
+| `body`                                                                                 | [types.SubscriptionChangeV2Request](../../models/types/subscriptionchangev2request.md) | :heavy_check_mark:                                                                     | Plan change request                                                                    |
+| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+
+### Response
+
+**[*dtos.ExecuteSubscriptionPlanChangeV2Response](../../models/dtos/executesubscriptionplanchangev2response.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## PreviewSubscriptionPlanChangeV2
+
+Preview a subscription plan change without writing. Swap-in-place: subscription id, billing anchor and period bounds are preserved.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="previewSubscriptionPlanChangeV2" method="post" path="/subscriptions/{id}/change/v2/preview" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Subscriptions.PreviewSubscriptionPlanChangeV2(ctx, "<id>", types.SubscriptionChangeV2Request{
+        ProrationBehavior: types.ProrationBehaviorNone,
+        TargetPlanID: "<id>",
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SubscriptionChangeV2Response != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Subscription ID                                                                        |
+| `body`                                                                                 | [types.SubscriptionChangeV2Request](../../models/types/subscriptionchangev2request.md) | :heavy_check_mark:                                                                     | Plan change request                                                                    |
+| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+
+### Response
+
+**[*dtos.PreviewSubscriptionPlanChangeV2Response](../../models/dtos/previewsubscriptionplanchangev2response.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
 ## GetSubscriptionEntitlements
 
 Use when checking what features or limits a subscription has (e.g. entitlement checks or feature gating). Optional feature_ids to filter.
@@ -1041,7 +1165,7 @@ func main() {
 
 ## ExecuteSubscriptionModify
 
-Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, or tax).
+Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, or addon add/remove).
 
 ### Example Usage
 
@@ -1098,7 +1222,7 @@ func main() {
 
 ## PreviewSubscriptionModify
 
-Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, or tax) without committing changes.
+Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, or addon add/remove) without committing changes.
 
 ### Example Usage
 
@@ -1121,7 +1245,7 @@ func main() {
     )
 
     res, err := s.Subscriptions.PreviewSubscriptionModify(ctx, "<id>", types.ExecuteSubscriptionModifyRequest{
-        Type: types.SubscriptionModifyTypeCoupon,
+        Type: types.SubscriptionModifyTypeTax,
     })
     if err != nil {
         log.Fatal(err)

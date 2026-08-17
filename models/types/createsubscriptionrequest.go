@@ -18,6 +18,7 @@ type CreateSubscriptionRequest struct {
 	BillingCycle       *BillingCycle     `json:"billing_cycle,omitzero"`
 	BillingPeriod      BillingPeriod     `json:"billing_period"`
 	BillingPeriodCount *int64            `json:"billing_period_count,omitzero"`
+	Checkout           *CheckoutParams   `json:"checkout,omitzero"`
 	CollectionMethod   *CollectionMethod `json:"collection_method,omitzero"`
 	CommitmentAmount   *string           `json:"commitment_amount,omitzero"`
 	CommitmentDuration *BillingPeriod    `json:"commitment_duration,omitzero"`
@@ -111,6 +112,13 @@ func (c *CreateSubscriptionRequest) GetBillingPeriodCount() *int64 {
 		return nil
 	}
 	return c.BillingPeriodCount
+}
+
+func (c *CreateSubscriptionRequest) GetCheckout() *CheckoutParams {
+	if c == nil {
+		return nil
+	}
+	return c.Checkout
 }
 
 func (c *CreateSubscriptionRequest) GetCollectionMethod() *CollectionMethod {

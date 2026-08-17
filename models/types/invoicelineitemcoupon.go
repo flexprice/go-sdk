@@ -10,7 +10,8 @@ type InvoiceLineItemCoupon struct {
 	CouponAssociationID *string `json:"coupon_association_id,omitzero"`
 	CouponID            string  `json:"coupon_id"`
 	// price_id used to match the line item
-	LineItemID string `json:"line_item_id"`
+	LineItemID             string  `json:"line_item_id"`
+	SubscriptionLineItemID *string `json:"subscription_line_item_id,omitzero"`
 }
 
 func (i InvoiceLineItemCoupon) MarshalJSON() ([]byte, error) {
@@ -43,4 +44,11 @@ func (i *InvoiceLineItemCoupon) GetLineItemID() string {
 		return ""
 	}
 	return i.LineItemID
+}
+
+func (i *InvoiceLineItemCoupon) GetSubscriptionLineItemID() *string {
+	if i == nil {
+		return nil
+	}
+	return i.SubscriptionLineItemID
 }

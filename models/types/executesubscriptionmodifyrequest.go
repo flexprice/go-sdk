@@ -7,6 +7,7 @@ import (
 )
 
 type ExecuteSubscriptionModifyRequest struct {
+	AddonParams            *SubModifyAddonParams            `json:"addon_params,omitzero"`
 	Checkout               *CheckoutParams                  `json:"checkout,omitzero"`
 	CouponParams           *SubModifyCouponParams           `json:"coupon_params,omitzero"`
 	GroupedInvoicingParams *SubModifyGroupedInvoicingParams `json:"grouped_invoicing_params,omitzero"`
@@ -26,6 +27,13 @@ func (e *ExecuteSubscriptionModifyRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (e *ExecuteSubscriptionModifyRequest) GetAddonParams() *SubModifyAddonParams {
+	if e == nil {
+		return nil
+	}
+	return e.AddonParams
 }
 
 func (e *ExecuteSubscriptionModifyRequest) GetCheckout() *CheckoutParams {

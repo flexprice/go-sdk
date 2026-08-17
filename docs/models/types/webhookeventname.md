@@ -25,6 +25,7 @@ custom := types.WebhookEventName("custom_value")
 | `WebhookEventNameSubscriptionPaused`                          | subscription.paused                                           |
 | `WebhookEventNameSubscriptionCancelled`                       | subscription.cancelled                                        |
 | `WebhookEventNameSubscriptionResumed`                         | subscription.resumed                                          |
+| `WebhookEventNameSubscriptionPlanChanged`                     | subscription.plan_changed                                     |
 | `WebhookEventNameSubscriptionPhaseCreated`                    | subscription.phase.created                                    |
 | `WebhookEventNameSubscriptionPhaseUpdated`                    | subscription.phase.updated                                    |
 | `WebhookEventNameSubscriptionPhaseDeleted`                    | subscription.phase.deleted                                    |

@@ -8,6 +8,9 @@ import (
 )
 
 value := types.AddonCadenceOnetime
+
+// Open enum: custom values can be created with a direct type cast
+custom := types.AddonCadence("custom_value")
 ```
 
 

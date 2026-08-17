@@ -29,7 +29,8 @@ type SubscriptionResponse struct {
 	// CancelAtPeriodEnd is whether the subscription was canceled at the end of the current period
 	CancelAtPeriodEnd *bool `json:"cancel_at_period_end,omitzero"`
 	// CanceledAt is the date the subscription was canceled
-	CancelledAt *time.Time `json:"cancelled_at,omitzero"`
+	CancelledAt     *time.Time               `json:"cancelled_at,omitzero"`
+	CheckoutSession *CheckoutSessionResponse `json:"checkout_session,omitzero"`
 	// CollectionMethod determines how invoices are collected
 	CollectionMethod *string `json:"collection_method,omitzero"`
 	// CommitmentAmount is the minimum amount a customer commits to paying for a billing period
@@ -189,6 +190,13 @@ func (s *SubscriptionResponse) GetCancelledAt() *time.Time {
 		return nil
 	}
 	return s.CancelledAt
+}
+
+func (s *SubscriptionResponse) GetCheckoutSession() *CheckoutSessionResponse {
+	if s == nil {
+		return nil
+	}
+	return s.CheckoutSession
 }
 
 func (s *SubscriptionResponse) GetCollectionMethod() *string {

@@ -204,12 +204,12 @@ func (s *TaxRates) GetTaxRates(ctx context.Context, request dtos.GetTaxRatesRequ
 				return nil, err
 			}
 
-			var out []types.TaxRateResponse
+			var out types.ListTaxRatesResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
 				return nil, err
 			}
 
-			res.TaxRateResponses = out
+			res.ListTaxRatesResponse = &out
 		default:
 			rawBody, err := utils.ConsumeRawBody(httpRes)
 			if err != nil {
