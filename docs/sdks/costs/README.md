@@ -7,7 +7,6 @@
 * [CreateCostsheet](#createcostsheet) - Create costsheet
 * [GetActiveCostsheet](#getactivecostsheet) - Get active costsheet
 * [GetDetailedCostAnalytics](#getdetailedcostanalytics) - Get combined revenue and cost analytics
-* [GetDetailedCostAnalyticsV2](#getdetailedcostanalyticsv2) - Get combined revenue and cost analytics (V2)
 * [QueryCostsheet](#querycostsheet) - Query costsheets
 * [GetCostsheet](#getcostsheet) - Get costsheet
 * [UpdateCostsheet](#updatecostsheet) - Update costsheet
@@ -166,60 +165,6 @@ func main() {
 ### Response
 
 **[*dtos.GetDetailedCostAnalyticsResponse](../../models/dtos/getdetailedcostanalyticsresponse.md), error**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | 400                  | application/json     |
-| errors.ErrorResponse | 500                  | application/json     |
-| errors.APIError      | 4XX, 5XX             | \*/\*                |
-
-## GetDetailedCostAnalyticsV2
-
-Use when you need the same revenue/cost/ROI analytics but computed from the costsheet usage-tracking pipeline (e.g. for consistency with usage-based cost data).
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="getDetailedCostAnalyticsV2" method="post" path="/costs/analytics-v2" -->
-```go
-package main
-
-import(
-	"context"
-	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/types"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.Costs.GetDetailedCostAnalyticsV2(ctx, types.GetCostAnalyticsRequest{})
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.GetDetailedCostAnalyticsResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `request`                                                                      | [types.GetCostAnalyticsRequest](../../models/types/getcostanalyticsrequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
-| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
-
-### Response
-
-**[*dtos.GetDetailedCostAnalyticsV2Response](../../models/dtos/getdetailedcostanalyticsv2response.md), error**
 
 ### Errors
 

@@ -5,9 +5,10 @@ package types
 type EntitlementGrantDurationUnit string
 
 const (
-	EntitlementGrantDurationUnitHour EntitlementGrantDurationUnit = "hour"
-	EntitlementGrantDurationUnitDay  EntitlementGrantDurationUnit = "day"
-	EntitlementGrantDurationUnitWeek EntitlementGrantDurationUnit = "week"
+	EntitlementGrantDurationUnitHour               EntitlementGrantDurationUnit = "hour"
+	EntitlementGrantDurationUnitDay                EntitlementGrantDurationUnit = "day"
+	EntitlementGrantDurationUnitWeek               EntitlementGrantDurationUnit = "week"
+	EntitlementGrantDurationUnitSubscriptionPeriod EntitlementGrantDurationUnit = "subscription_period"
 )
 
 func (e EntitlementGrantDurationUnit) ToPointer() *EntitlementGrantDurationUnit {
@@ -18,7 +19,7 @@ func (e EntitlementGrantDurationUnit) ToPointer() *EntitlementGrantDurationUnit 
 func (e *EntitlementGrantDurationUnit) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "hour", "day", "week":
+		case "hour", "day", "week", "subscription_period":
 			return true
 		}
 	}

@@ -7,6 +7,7 @@ import (
 )
 
 type SubscriptionChangeV2Request struct {
+	ChangeAt          *ScheduleType                     `json:"change_at,omitzero"`
 	EntityPolicies    *SubscriptionChangeEntityPolicies `json:"entity_policies,omitzero"`
 	IdempotencyKey    *string                           `json:"idempotency_key,omitzero"`
 	Metadata          map[string]string                 `json:"metadata,omitzero"`
@@ -23,6 +24,13 @@ func (s *SubscriptionChangeV2Request) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (s *SubscriptionChangeV2Request) GetChangeAt() *ScheduleType {
+	if s == nil {
+		return nil
+	}
+	return s.ChangeAt
 }
 
 func (s *SubscriptionChangeV2Request) GetEntityPolicies() *SubscriptionChangeEntityPolicies {

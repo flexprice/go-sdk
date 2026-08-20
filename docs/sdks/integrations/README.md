@@ -86,7 +86,7 @@ func main() {
 
     res, err := s.Integrations.LinkIntegrationMapping(ctx, types.LinkIntegrationMappingRequest{
         EntityID: "<id>",
-        EntityType: types.IntegrationEntityTypePrice,
+        EntityType: types.IntegrationEntityTypeInvoiceLineItem,
         ProviderEntityID: "<id>",
         ProviderType: "<value>",
     })
@@ -145,7 +145,7 @@ func main() {
 
     res, err := s.Integrations.DelinkIntegrationMapping(ctx, types.DelinkIntegrationMappingRequest{
         EntityID: "<id>",
-        EntityType: types.IntegrationEntityTypeItemPrice,
+        EntityType: types.IntegrationEntityTypePrice,
         ProviderType: "<value>",
     })
     if err != nil {

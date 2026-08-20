@@ -7,7 +7,8 @@ import (
 )
 
 type InvoiceSyncSettings struct {
-	NormalizeFixedTo *BillingPeriod `json:"normalize_fixed_to,omitzero"`
+	NormalizeFixedTo          *BillingPeriod             `json:"normalize_fixed_to,omitzero"`
+	ServicePeriodCustomFields *ServicePeriodCustomFields `json:"service_period_custom_fields,omitzero"`
 }
 
 func (i InvoiceSyncSettings) MarshalJSON() ([]byte, error) {
@@ -26,4 +27,11 @@ func (i *InvoiceSyncSettings) GetNormalizeFixedTo() *BillingPeriod {
 		return nil
 	}
 	return i.NormalizeFixedTo
+}
+
+func (i *InvoiceSyncSettings) GetServicePeriodCustomFields() *ServicePeriodCustomFields {
+	if i == nil {
+		return nil
+	}
+	return i.ServicePeriodCustomFields
 }

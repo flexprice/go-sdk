@@ -16,16 +16,17 @@ custom := types.IntegrationEntityType("custom_value")
 
 ## Values
 
-| Name                                   | Value                                  |
-| -------------------------------------- | -------------------------------------- |
-| `IntegrationEntityTypeCustomer`        | customer                               |
-| `IntegrationEntityTypePlan`            | plan                                   |
-| `IntegrationEntityTypeInvoice`         | invoice                                |
-| `IntegrationEntityTypeSubscription`    | subscription                           |
-| `IntegrationEntityTypePayment`         | payment                                |
-| `IntegrationEntityTypeCreditNote`      | credit_note                            |
-| `IntegrationEntityTypeAddon`           | addon                                  |
-| `IntegrationEntityTypeItem`            | item                                   |
-| `IntegrationEntityTypeItemPrice`       | item_price                             |
-| `IntegrationEntityTypePrice`           | price                                  |
-| `IntegrationEntityTypeInvoiceLineItem` | invoice_line_item                      |
+| Name                                        | Value                                       |
+| ------------------------------------------- | ------------------------------------------- |
+| `IntegrationEntityTypeCustomer`             | customer                                    |
+| `IntegrationEntityTypePlan`                 | plan                                        |
+| `IntegrationEntityTypeInvoice`              | invoice                                     |
+| `IntegrationEntityTypeSubscription`         | subscription                                |
+| `IntegrationEntityTypePayment`              | payment                                     |
+| `IntegrationEntityTypeCreditNote`           | credit_note                                 |
+| `IntegrationEntityTypeAddon`                | addon                                       |
+| `IntegrationEntityTypeItem`                 | item                                        |
+| `IntegrationEntityTypeItemPrice`            | item_price                                  |
+| `IntegrationEntityTypePrice`                | price                                       |
+| `IntegrationEntityTypeInvoiceLineItem`      | invoice_line_item                           |
+| `IntegrationEntityTypeSubscriptionLineItem` | subscription_line_item                      |

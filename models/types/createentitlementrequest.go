@@ -8,25 +8,26 @@ import (
 )
 
 type CreateEntitlementRequest struct {
-	AggregationMode     *EntitlementAggregationMode   `json:"aggregation_mode,omitzero"`
-	ConfigValue         map[string]any                `json:"config_value,omitzero"`
-	EndDate             *time.Time                    `json:"end_date,omitzero"`
-	EntityID            *string                       `json:"entity_id,omitzero"`
-	EntityType          *EntitlementEntityType        `json:"entity_type,omitzero"`
-	FeatureID           string                        `json:"feature_id"`
-	FeatureType         FeatureType                   `json:"feature_type"`
-	GrantDurationUnit   *EntitlementGrantDurationUnit `json:"grant_duration_unit,omitzero"`
-	GrantDurationValue  *int64                        `json:"grant_duration_value,omitzero"`
-	GrantMeasure        *EntitlementGrantMeasure      `json:"grant_measure,omitzero"`
-	GrantQuota          *string                       `json:"grant_quota,omitzero"`
-	IsEnabled           *bool                         `json:"is_enabled,omitzero"`
-	IsSoftLimit         *bool                         `json:"is_soft_limit,omitzero"`
-	ParentEntitlementID *string                       `json:"parent_entitlement_id,omitzero"`
-	PlanID              *string                       `json:"plan_id,omitzero"`
-	StartDate           *time.Time                    `json:"start_date,omitzero"`
-	StaticValue         *string                       `json:"static_value,omitzero"`
-	UsageLimit          *int64                        `json:"usage_limit,omitzero"`
-	UsageResetPeriod    *EntitlementUsageResetPeriod  `json:"usage_reset_period,omitzero"`
+	AggregationMode         *EntitlementAggregationMode         `json:"aggregation_mode,omitzero"`
+	ConfigValue             map[string]any                      `json:"config_value,omitzero"`
+	EndDate                 *time.Time                          `json:"end_date,omitzero"`
+	EntityID                *string                             `json:"entity_id,omitzero"`
+	EntityType              *EntitlementEntityType              `json:"entity_type,omitzero"`
+	FeatureID               string                              `json:"feature_id"`
+	FeatureType             FeatureType                         `json:"feature_type"`
+	GrantAllocationBehavior *EntitlementGrantAllocationBehavior `json:"grant_allocation_behavior,omitzero"`
+	GrantDurationUnit       *EntitlementGrantDurationUnit       `json:"grant_duration_unit,omitzero"`
+	GrantDurationValue      *int64                              `json:"grant_duration_value,omitzero"`
+	GrantMeasure            *EntitlementGrantMeasure            `json:"grant_measure,omitzero"`
+	GrantQuota              *string                             `json:"grant_quota,omitzero"`
+	IsEnabled               *bool                               `json:"is_enabled,omitzero"`
+	IsSoftLimit             *bool                               `json:"is_soft_limit,omitzero"`
+	ParentEntitlementID     *string                             `json:"parent_entitlement_id,omitzero"`
+	PlanID                  *string                             `json:"plan_id,omitzero"`
+	StartDate               *time.Time                          `json:"start_date,omitzero"`
+	StaticValue             *string                             `json:"static_value,omitzero"`
+	UsageLimit              *int64                              `json:"usage_limit,omitzero"`
+	UsageResetPeriod        *EntitlementUsageResetPeriod        `json:"usage_reset_period,omitzero"`
 }
 
 func (c CreateEntitlementRequest) MarshalJSON() ([]byte, error) {
@@ -87,6 +88,13 @@ func (c *CreateEntitlementRequest) GetFeatureType() FeatureType {
 		return FeatureType("")
 	}
 	return c.FeatureType
+}
+
+func (c *CreateEntitlementRequest) GetGrantAllocationBehavior() *EntitlementGrantAllocationBehavior {
+	if c == nil {
+		return nil
+	}
+	return c.GrantAllocationBehavior
 }
 
 func (c *CreateEntitlementRequest) GetGrantDurationUnit() *EntitlementGrantDurationUnit {

@@ -10,17 +10,18 @@ type UpdateEntitlementRequest struct {
 	AggregationMode *EntitlementAggregationMode `json:"aggregation_mode,omitzero"`
 	// Grant config — nil fields leave the current value alone.
 	// ClearGrantConfig=true wipes the whole grant config (back to a legacy entitlement).
-	ClearGrantConfig   *bool                         `json:"clear_grant_config,omitzero"`
-	ConfigValue        map[string]any                `json:"config_value,omitzero"`
-	GrantDurationUnit  *EntitlementGrantDurationUnit `json:"grant_duration_unit,omitzero"`
-	GrantDurationValue *int64                        `json:"grant_duration_value,omitzero"`
-	GrantMeasure       *EntitlementGrantMeasure      `json:"grant_measure,omitzero"`
-	GrantQuota         *string                       `json:"grant_quota,omitzero"`
-	IsEnabled          *bool                         `json:"is_enabled,omitzero"`
-	IsSoftLimit        *bool                         `json:"is_soft_limit,omitzero"`
-	StaticValue        *string                       `json:"static_value,omitzero"`
-	UsageLimit         *int64                        `json:"usage_limit,omitzero"`
-	UsageResetPeriod   *EntitlementUsageResetPeriod  `json:"usage_reset_period,omitzero"`
+	ClearGrantConfig        *bool                               `json:"clear_grant_config,omitzero"`
+	ConfigValue             map[string]any                      `json:"config_value,omitzero"`
+	GrantAllocationBehavior *EntitlementGrantAllocationBehavior `json:"grant_allocation_behavior,omitzero"`
+	GrantDurationUnit       *EntitlementGrantDurationUnit       `json:"grant_duration_unit,omitzero"`
+	GrantDurationValue      *int64                              `json:"grant_duration_value,omitzero"`
+	GrantMeasure            *EntitlementGrantMeasure            `json:"grant_measure,omitzero"`
+	GrantQuota              *string                             `json:"grant_quota,omitzero"`
+	IsEnabled               *bool                               `json:"is_enabled,omitzero"`
+	IsSoftLimit             *bool                               `json:"is_soft_limit,omitzero"`
+	StaticValue             *string                             `json:"static_value,omitzero"`
+	UsageLimit              *int64                              `json:"usage_limit,omitzero"`
+	UsageResetPeriod        *EntitlementUsageResetPeriod        `json:"usage_reset_period,omitzero"`
 }
 
 func (u UpdateEntitlementRequest) MarshalJSON() ([]byte, error) {
@@ -53,6 +54,13 @@ func (u *UpdateEntitlementRequest) GetConfigValue() map[string]any {
 		return nil
 	}
 	return u.ConfigValue
+}
+
+func (u *UpdateEntitlementRequest) GetGrantAllocationBehavior() *EntitlementGrantAllocationBehavior {
+	if u == nil {
+		return nil
+	}
+	return u.GrantAllocationBehavior
 }
 
 func (u *UpdateEntitlementRequest) GetGrantDurationUnit() *EntitlementGrantDurationUnit {

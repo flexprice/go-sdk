@@ -8,28 +8,29 @@ import (
 )
 
 type EntitlementResponse struct {
-	Addon               *AddonResponse                `json:"addon,omitzero"`
-	AggregationMode     *EntitlementAggregationMode   `json:"aggregation_mode,omitzero"`
-	ConfigValue         map[string]any                `json:"config_value,omitzero"`
-	CreatedAt           *time.Time                    `json:"created_at,omitzero"`
-	CreatedBy           *string                       `json:"created_by,omitzero"`
-	DisplayOrder        *int64                        `json:"display_order,omitzero"`
-	EndDate             *time.Time                    `json:"end_date,omitzero"`
-	EntityID            *string                       `json:"entity_id,omitzero"`
-	EntityType          *EntitlementEntityType        `json:"entity_type,omitzero"`
-	EnvironmentID       *string                       `json:"environment_id,omitzero"`
-	Feature             *FeatureResponse              `json:"feature,omitzero"`
-	FeatureID           *string                       `json:"feature_id,omitzero"`
-	FeatureType         *FeatureType                  `json:"feature_type,omitzero"`
-	GrantDurationUnit   *EntitlementGrantDurationUnit `json:"grant_duration_unit,omitzero"`
-	GrantDurationValue  *int64                        `json:"grant_duration_value,omitzero"`
-	GrantMeasure        *EntitlementGrantMeasure      `json:"grant_measure,omitzero"`
-	GrantQuota          *float64                      `json:"grant_quota,omitzero"`
-	ID                  *string                       `json:"id,omitzero"`
-	IsEnabled           *bool                         `json:"is_enabled,omitzero"`
-	IsSoftLimit         *bool                         `json:"is_soft_limit,omitzero"`
-	ParentEntitlementID *string                       `json:"parent_entitlement_id,omitzero"`
-	Plan                *PlanResponse                 `json:"plan,omitzero"`
+	Addon                   *AddonResponse                      `json:"addon,omitzero"`
+	AggregationMode         *EntitlementAggregationMode         `json:"aggregation_mode,omitzero"`
+	ConfigValue             map[string]any                      `json:"config_value,omitzero"`
+	CreatedAt               *time.Time                          `json:"created_at,omitzero"`
+	CreatedBy               *string                             `json:"created_by,omitzero"`
+	DisplayOrder            *int64                              `json:"display_order,omitzero"`
+	EndDate                 *time.Time                          `json:"end_date,omitzero"`
+	EntityID                *string                             `json:"entity_id,omitzero"`
+	EntityType              *EntitlementEntityType              `json:"entity_type,omitzero"`
+	EnvironmentID           *string                             `json:"environment_id,omitzero"`
+	Feature                 *FeatureResponse                    `json:"feature,omitzero"`
+	FeatureID               *string                             `json:"feature_id,omitzero"`
+	FeatureType             *FeatureType                        `json:"feature_type,omitzero"`
+	GrantAllocationBehavior *EntitlementGrantAllocationBehavior `json:"grant_allocation_behavior,omitzero"`
+	GrantDurationUnit       *EntitlementGrantDurationUnit       `json:"grant_duration_unit,omitzero"`
+	GrantDurationValue      *int64                              `json:"grant_duration_value,omitzero"`
+	GrantMeasure            *EntitlementGrantMeasure            `json:"grant_measure,omitzero"`
+	GrantQuota              *float64                            `json:"grant_quota,omitzero"`
+	ID                      *string                             `json:"id,omitzero"`
+	IsEnabled               *bool                               `json:"is_enabled,omitzero"`
+	IsSoftLimit             *bool                               `json:"is_soft_limit,omitzero"`
+	ParentEntitlementID     *string                             `json:"parent_entitlement_id,omitzero"`
+	Plan                    *PlanResponse                       `json:"plan,omitzero"`
 	// TODO: Remove this once we have a proper entitlement entity type
 	PlanID           *string                      `json:"plan_id,omitzero"`
 	StartDate        *time.Time                   `json:"start_date,omitzero"`
@@ -142,6 +143,13 @@ func (e *EntitlementResponse) GetFeatureType() *FeatureType {
 		return nil
 	}
 	return e.FeatureType
+}
+
+func (e *EntitlementResponse) GetGrantAllocationBehavior() *EntitlementGrantAllocationBehavior {
+	if e == nil {
+		return nil
+	}
+	return e.GrantAllocationBehavior
 }
 
 func (e *EntitlementResponse) GetGrantDurationUnit() *EntitlementGrantDurationUnit {

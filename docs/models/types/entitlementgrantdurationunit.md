@@ -16,8 +16,9 @@ custom := types.EntitlementGrantDurationUnit("custom_value")
 
 ## Values
 
-| Name                               | Value                              |
-| ---------------------------------- | ---------------------------------- |
-| `EntitlementGrantDurationUnitHour` | hour                               |
-| `EntitlementGrantDurationUnitDay`  | day                                |
-| `EntitlementGrantDurationUnitWeek` | week                               |
+| Name                                             | Value                                            |
+| ------------------------------------------------ | ------------------------------------------------ |
+| `EntitlementGrantDurationUnitHour`               | hour                                             |
+| `EntitlementGrantDurationUnitDay`                | day                                              |
+| `EntitlementGrantDurationUnitWeek`               | week                                             |
+| `EntitlementGrantDurationUnitSubscriptionPeriod` | subscription_period                              |

@@ -13,10 +13,15 @@ type SubscriptionChangeV2Response struct {
 	EffectiveAt      *time.Time              `json:"effective_at,omitzero"`
 	EntityChanges    []EntityChangeResult    `json:"entity_changes,omitzero"`
 	FromPlan         *PlanSummary            `json:"from_plan,omitzero"`
-	Metadata         map[string]string       `json:"metadata,omitzero"`
-	Subscription     *SubscriptionResponse   `json:"subscription,omitzero"`
-	ToPlan           *PlanSummary            `json:"to_plan,omitzero"`
-	Warnings         []string                `json:"warnings,omitzero"`
+	// IsScheduled is true when the change was deferred to the period end instead
+	// of being applied immediately.
+	IsScheduled  *bool                 `json:"is_scheduled,omitzero"`
+	Metadata     map[string]string     `json:"metadata,omitzero"`
+	ScheduleID   *string               `json:"schedule_id,omitzero"`
+	ScheduledAt  *time.Time            `json:"scheduled_at,omitzero"`
+	Subscription *SubscriptionResponse `json:"subscription,omitzero"`
+	ToPlan       *PlanSummary          `json:"to_plan,omitzero"`
+	Warnings     []string              `json:"warnings,omitzero"`
 }
 
 func (s SubscriptionChangeV2Response) MarshalJSON() ([]byte, error) {
@@ -65,11 +70,32 @@ func (s *SubscriptionChangeV2Response) GetFromPlan() *PlanSummary {
 	return s.FromPlan
 }
 
+func (s *SubscriptionChangeV2Response) GetIsScheduled() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.IsScheduled
+}
+
 func (s *SubscriptionChangeV2Response) GetMetadata() map[string]string {
 	if s == nil {
 		return nil
 	}
 	return s.Metadata
+}
+
+func (s *SubscriptionChangeV2Response) GetScheduleID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.ScheduleID
+}
+
+func (s *SubscriptionChangeV2Response) GetScheduledAt() *time.Time {
+	if s == nil {
+		return nil
+	}
+	return s.ScheduledAt
 }
 
 func (s *SubscriptionChangeV2Response) GetSubscription() *SubscriptionResponse {
