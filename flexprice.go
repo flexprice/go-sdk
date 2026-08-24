@@ -2,7 +2,7 @@
 
 package flexprice
 
-// Generated from OpenAPI doc version 1.0 and generator version 2.931.0
+// Generated from OpenAPI doc version 1.0 and generator version 2.932.9
 
 import (
 	"context"
@@ -84,6 +84,7 @@ type Flexprice struct {
 	TaxAssociations    *TaxAssociations
 	TaxRates           *TaxRates
 	Tenants            *Tenants
+	UsageRecords       *UsageRecords
 	Users              *Users
 	WebhookEvents      *WebhookEvents
 	Workflows          *Workflows
@@ -163,9 +164,9 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.25",
+		SDKVersion: "2.1.26",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 2.1.25 2.931.0 1.0 github.com/flexprice/go-sdk/v2",
+			UserAgent:  "speakeasy-sdk/go 2.1.26 2.932.9 1.0 github.com/flexprice/go-sdk/v2",
 			ServerList: ServerList,
 		},
 		hooks: hooks.New(),
@@ -212,6 +213,7 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.TaxAssociations = newTaxAssociations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.TaxRates = newTaxRates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Tenants = newTenants(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.UsageRecords = newUsageRecords(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Users = newUsers(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.WebhookEvents = newWebhookEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Workflows = newWorkflows(sdk, sdk.sdkConfiguration, sdk.hooks)

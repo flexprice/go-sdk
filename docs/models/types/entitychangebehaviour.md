@@ -20,3 +20,4 @@ custom := types.EntityChangeBehaviour("custom_value")
 | ---------------------------- | ---------------------------- |
 | `EntityChangeBehaviourCarry` | carry                        |
 | `EntityChangeBehaviourDrop`  | drop                         |
+| `EntityChangeBehaviourAdd`   | add                          |

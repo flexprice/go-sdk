@@ -7,10 +7,10 @@ import (
 )
 
 type EntityChangeResult struct {
-	Behaviour   *EntityChangeBehaviour          `json:"behaviour,omitzero"`
-	EntityID    *string                         `json:"entity_id,omitzero"`
-	EntityType  *SubscriptionLineItemEntityType `json:"entity_type,omitzero"`
-	ReferenceID *string                         `json:"reference_id,omitzero"`
+	Behaviour   *EntityChangeBehaviour        `json:"behaviour,omitzero"`
+	EntityID    *string                       `json:"entity_id,omitzero"`
+	EntityType  *SubscriptionChangeEntityType `json:"entity_type,omitzero"`
+	ReferenceID *string                       `json:"reference_id,omitzero"`
 }
 
 func (e EntityChangeResult) MarshalJSON() ([]byte, error) {
@@ -38,7 +38,7 @@ func (e *EntityChangeResult) GetEntityID() *string {
 	return e.EntityID
 }
 
-func (e *EntityChangeResult) GetEntityType() *SubscriptionLineItemEntityType {
+func (e *EntityChangeResult) GetEntityType() *SubscriptionChangeEntityType {
 	if e == nil {
 		return nil
 	}

@@ -7,12 +7,15 @@ import (
 )
 
 type SubscriptionChangeV2Request struct {
-	ChangeAt          *ScheduleType                     `json:"change_at,omitzero"`
-	EntityPolicies    *SubscriptionChangeEntityPolicies `json:"entity_policies,omitzero"`
-	IdempotencyKey    *string                           `json:"idempotency_key,omitzero"`
-	Metadata          map[string]string                 `json:"metadata,omitzero"`
-	ProrationBehavior ProrationBehavior                 `json:"proration_behavior"`
-	TargetPlanID      string                            `json:"target_plan_id"`
+	BillingPeriodBehaviour *BillingPeriodBehaviour             `json:"billing_period_behaviour,omitzero"`
+	BillingPeriodConfig    *BillingPeriodConfig                `json:"billing_period_config,omitzero"`
+	ChangeAt               *ScheduleType                       `json:"change_at,omitzero"`
+	EntityPolicies         *SubscriptionChangeEntityPolicies   `json:"entity_policies,omitzero"`
+	IdempotencyKey         *string                             `json:"idempotency_key,omitzero"`
+	Metadata               map[string]string                   `json:"metadata,omitzero"`
+	OnConflictPolicies     *SubscriptionChangeConflictPolicies `json:"on_conflict_policies,omitzero"`
+	ProrationBehavior      ProrationBehavior                   `json:"proration_behavior"`
+	TargetPlanID           string                              `json:"target_plan_id"`
 }
 
 func (s SubscriptionChangeV2Request) MarshalJSON() ([]byte, error) {
@@ -24,6 +27,20 @@ func (s *SubscriptionChangeV2Request) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (s *SubscriptionChangeV2Request) GetBillingPeriodBehaviour() *BillingPeriodBehaviour {
+	if s == nil {
+		return nil
+	}
+	return s.BillingPeriodBehaviour
+}
+
+func (s *SubscriptionChangeV2Request) GetBillingPeriodConfig() *BillingPeriodConfig {
+	if s == nil {
+		return nil
+	}
+	return s.BillingPeriodConfig
 }
 
 func (s *SubscriptionChangeV2Request) GetChangeAt() *ScheduleType {
@@ -52,6 +69,13 @@ func (s *SubscriptionChangeV2Request) GetMetadata() map[string]string {
 		return nil
 	}
 	return s.Metadata
+}
+
+func (s *SubscriptionChangeV2Request) GetOnConflictPolicies() *SubscriptionChangeConflictPolicies {
+	if s == nil {
+		return nil
+	}
+	return s.OnConflictPolicies
 }
 
 func (s *SubscriptionChangeV2Request) GetProrationBehavior() ProrationBehavior {

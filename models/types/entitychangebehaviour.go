@@ -7,6 +7,7 @@ type EntityChangeBehaviour string
 const (
 	EntityChangeBehaviourCarry EntityChangeBehaviour = "carry"
 	EntityChangeBehaviourDrop  EntityChangeBehaviour = "drop"
+	EntityChangeBehaviourAdd   EntityChangeBehaviour = "add"
 )
 
 func (e EntityChangeBehaviour) ToPointer() *EntityChangeBehaviour {
@@ -17,7 +18,7 @@ func (e EntityChangeBehaviour) ToPointer() *EntityChangeBehaviour {
 func (e *EntityChangeBehaviour) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "carry", "drop":
+		case "carry", "drop", "add":
 			return true
 		}
 	}

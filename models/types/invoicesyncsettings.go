@@ -7,8 +7,16 @@ import (
 )
 
 type InvoiceSyncSettings struct {
+	// MetadataCustomFields copies metadata values onto Zoho invoice custom fields
+	// verbatim.
+	MetadataCustomFields      []MetadataCustomField      `json:"metadata_custom_fields,omitzero"`
 	NormalizeFixedTo          *BillingPeriod             `json:"normalize_fixed_to,omitzero"`
 	ServicePeriodCustomFields *ServicePeriodCustomFields `json:"service_period_custom_fields,omitzero"`
+	// SubmitForApproval submits the synced invoice into the merchant's Zoho Books approval
+	// flow before recording payment. Zoho rejects payments on draft invoices, and merchants
+	// configure a Zoho auto-approval rule for FlexPrice-sent invoices, so we submit, wait for
+	// that rule to fire, then pay.
+	SubmitForApproval *bool `json:"submit_for_approval,omitzero"`
 }
 
 func (i InvoiceSyncSettings) MarshalJSON() ([]byte, error) {
@@ -20,6 +28,13 @@ func (i *InvoiceSyncSettings) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (i *InvoiceSyncSettings) GetMetadataCustomFields() []MetadataCustomField {
+	if i == nil {
+		return nil
+	}
+	return i.MetadataCustomFields
 }
 
 func (i *InvoiceSyncSettings) GetNormalizeFixedTo() *BillingPeriod {
@@ -34,4 +49,11 @@ func (i *InvoiceSyncSettings) GetServicePeriodCustomFields() *ServicePeriodCusto
 		return nil
 	}
 	return i.ServicePeriodCustomFields
+}
+
+func (i *InvoiceSyncSettings) GetSubmitForApproval() *bool {
+	if i == nil {
+		return nil
+	}
+	return i.SubmitForApproval
 }

@@ -8,17 +8,18 @@ import (
 )
 
 type PlanResponse struct {
-	CreatedAt     *time.Time            `json:"created_at,omitzero"`
-	CreatedBy     *string               `json:"created_by,omitzero"`
-	CreditGrants  []CreditGrantResponse `json:"credit_grants,omitzero"`
-	Description   *string               `json:"description,omitzero"`
-	DisplayOrder  *int64                `json:"display_order,omitzero"`
-	Entitlements  []EntitlementResponse `json:"entitlements,omitzero"`
-	EnvironmentID *string               `json:"environment_id,omitzero"`
-	ID            *string               `json:"id,omitzero"`
-	LookupKey     *string               `json:"lookup_key,omitzero"`
-	Metadata      map[string]string     `json:"metadata,omitzero"`
-	Name          *string               `json:"name,omitzero"`
+	CreatedAt       *time.Time                   `json:"created_at,omitzero"`
+	CreatedBy       *string                      `json:"created_by,omitzero"`
+	CreditGrants    []CreditGrantResponse        `json:"credit_grants,omitzero"`
+	Description     *string                      `json:"description,omitzero"`
+	DisplayOrder    *int64                       `json:"display_order,omitzero"`
+	Entitlements    []EntitlementResponse        `json:"entitlements,omitzero"`
+	EnvironmentID   *string                      `json:"environment_id,omitzero"`
+	ID              *string                      `json:"id,omitzero"`
+	LookupKey       *string                      `json:"lookup_key,omitzero"`
+	Metadata        map[string]string            `json:"metadata,omitzero"`
+	Name            *string                      `json:"name,omitzero"`
+	PriceSyncStatus *PlanPriceSyncStatusResponse `json:"price_sync_status,omitzero"`
 	// TODO: Add inline addons
 	Prices    []PriceResponse `json:"prices,omitzero"`
 	Status    *Status         `json:"status,omitzero"`
@@ -113,6 +114,13 @@ func (p *PlanResponse) GetName() *string {
 		return nil
 	}
 	return p.Name
+}
+
+func (p *PlanResponse) GetPriceSyncStatus() *PlanPriceSyncStatusResponse {
+	if p == nil {
+		return nil
+	}
+	return p.PriceSyncStatus
 }
 
 func (p *PlanResponse) GetPrices() []PriceResponse {

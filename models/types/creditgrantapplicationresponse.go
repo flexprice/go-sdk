@@ -14,7 +14,7 @@ type CreditGrantApplicationResponse struct {
 	CreatedAt                       *time.Time                    `json:"created_at,omitzero"`
 	CreatedBy                       *string                       `json:"created_by,omitzero"`
 	CreditGrantID                   *string                       `json:"credit_grant_id,omitzero"`
-	Credits                         *float64                      `json:"credits,omitzero"`
+	Credits                         *string                       `json:"credits,omitzero"`
 	EnvironmentID                   *string                       `json:"environment_id,omitzero"`
 	FailureReason                   *string                       `json:"failure_reason,omitzero"`
 	ID                              *string                       `json:"id,omitzero"`
@@ -85,7 +85,7 @@ func (c *CreditGrantApplicationResponse) GetCreditGrantID() *string {
 	return c.CreditGrantID
 }
 
-func (c *CreditGrantApplicationResponse) GetCredits() *float64 {
+func (c *CreditGrantApplicationResponse) GetCredits() *string {
 	if c == nil {
 		return nil
 	}

@@ -9,6 +9,7 @@ import (
 type EntityChangePolicy struct {
 	DefaultBehaviour *EntityChangeBehaviour `json:"default_behaviour,omitzero"`
 	// Overrides is keyed by addon_associations.id (instance), not catalogue addon_id.
+	// That is the id an EntityChangeResult reports as EntityID.
 	Overrides map[string]EntityChangeBehaviour `json:"overrides,omitzero"`
 }
 

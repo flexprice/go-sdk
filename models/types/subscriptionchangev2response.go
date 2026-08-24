@@ -8,11 +8,12 @@ import (
 )
 
 type SubscriptionChangeV2Response struct {
-	ChangeType       *SubscriptionChangeType `json:"change_type,omitzero"`
-	ChangedResources *ChangedResources       `json:"changed_resources,omitzero"`
-	EffectiveAt      *time.Time              `json:"effective_at,omitzero"`
-	EntityChanges    []EntityChangeResult    `json:"entity_changes,omitzero"`
-	FromPlan         *PlanSummary            `json:"from_plan,omitzero"`
+	BillingPeriod    *SubscriptionChangeBillingPeriodResult `json:"billing_period,omitzero"`
+	ChangeType       *SubscriptionChangeType                `json:"change_type,omitzero"`
+	ChangedResources *ChangedResources                      `json:"changed_resources,omitzero"`
+	EffectiveAt      *time.Time                             `json:"effective_at,omitzero"`
+	EntityChanges    []EntityChangeResult                   `json:"entity_changes,omitzero"`
+	FromPlan         *PlanSummary                           `json:"from_plan,omitzero"`
 	// IsScheduled is true when the change was deferred to the period end instead
 	// of being applied immediately.
 	IsScheduled  *bool                 `json:"is_scheduled,omitzero"`
@@ -20,8 +21,11 @@ type SubscriptionChangeV2Response struct {
 	ScheduleID   *string               `json:"schedule_id,omitzero"`
 	ScheduledAt  *time.Time            `json:"scheduled_at,omitzero"`
 	Subscription *SubscriptionResponse `json:"subscription,omitzero"`
-	ToPlan       *PlanSummary          `json:"to_plan,omitzero"`
-	Warnings     []string              `json:"warnings,omitzero"`
+	// SupersededSchedules lists the plan-change schedules this request cancelled under
+	// on_conflict_policies.on_pending_schedule. Preview reports what execute would cancel.
+	SupersededSchedules []string     `json:"superseded_schedules,omitzero"`
+	ToPlan              *PlanSummary `json:"to_plan,omitzero"`
+	Warnings            []string     `json:"warnings,omitzero"`
 }
 
 func (s SubscriptionChangeV2Response) MarshalJSON() ([]byte, error) {
@@ -33,6 +37,13 @@ func (s *SubscriptionChangeV2Response) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (s *SubscriptionChangeV2Response) GetBillingPeriod() *SubscriptionChangeBillingPeriodResult {
+	if s == nil {
+		return nil
+	}
+	return s.BillingPeriod
 }
 
 func (s *SubscriptionChangeV2Response) GetChangeType() *SubscriptionChangeType {
@@ -103,6 +114,13 @@ func (s *SubscriptionChangeV2Response) GetSubscription() *SubscriptionResponse {
 		return nil
 	}
 	return s.Subscription
+}
+
+func (s *SubscriptionChangeV2Response) GetSupersededSchedules() []string {
+	if s == nil {
+		return nil
+	}
+	return s.SupersededSchedules
 }
 
 func (s *SubscriptionChangeV2Response) GetToPlan() *PlanSummary {

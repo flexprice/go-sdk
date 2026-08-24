@@ -39,8 +39,9 @@ type PriceResponse struct {
 	EntityID   *string          `json:"entity_id,omitzero"`
 	EntityType *PriceEntityType `json:"entity_type,omitzero"`
 	// EnvironmentID is the environment identifier for the price
-	EnvironmentID *string        `json:"environment_id,omitzero"`
-	Group         *GroupResponse `json:"group,omitzero"`
+	EnvironmentID *string               `json:"environment_id,omitzero"`
+	Feature       *PriceFeatureResponse `json:"feature,omitzero"`
+	Group         *GroupResponse        `json:"group,omitzero"`
 	// GroupID references the group this price belongs to
 	GroupID *string `json:"group_id,omitzero"`
 	// ID uuid identifier for the price
@@ -222,6 +223,13 @@ func (p *PriceResponse) GetEnvironmentID() *string {
 		return nil
 	}
 	return p.EnvironmentID
+}
+
+func (p *PriceResponse) GetFeature() *PriceFeatureResponse {
+	if p == nil {
+		return nil
+	}
+	return p.Feature
 }
 
 func (p *PriceResponse) GetGroup() *GroupResponse {
