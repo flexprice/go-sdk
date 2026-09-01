@@ -12,6 +12,7 @@ type SubscriptionPriceCreateRequest struct {
 	BillingModel       BillingModel            `json:"billing_model"`
 	BillingPeriod      BillingPeriod           `json:"billing_period"`
 	BillingPeriodCount *int64                  `json:"billing_period_count,omitzero"`
+	BucketSize         *WindowSize             `json:"bucket_size,omitzero"`
 	Description        *string                 `json:"description,omitzero"`
 	DisplayName        *string                 `json:"display_name,omitzero"`
 	EndDate            *time.Time              `json:"end_date,omitzero"`
@@ -68,6 +69,13 @@ func (s *SubscriptionPriceCreateRequest) GetBillingPeriodCount() *int64 {
 		return nil
 	}
 	return s.BillingPeriodCount
+}
+
+func (s *SubscriptionPriceCreateRequest) GetBucketSize() *WindowSize {
+	if s == nil {
+		return nil
+	}
+	return s.BucketSize
 }
 
 func (s *SubscriptionPriceCreateRequest) GetDescription() *string {

@@ -53,8 +53,6 @@ type CreateInvoiceRequest struct {
 	PeriodEnd *time.Time `json:"period_end,omitzero"`
 	// period_start is the start date of the billing period
 	PeriodStart *time.Time `json:"period_start,omitzero"`
-	// prepared_tax_rates contains the tax rates pre-resolved by the caller (e.g., billing service)
-	PreparedTaxRates []TaxRateResponse `json:"prepared_tax_rates,omitzero"`
 	// subscription_id is the optional unique identifier of the subscription associated with this invoice
 	SubscriptionID *string `json:"subscription_id,omitzero"`
 	// subtotal is the amount before taxes and discounts are applied
@@ -239,13 +237,6 @@ func (c *CreateInvoiceRequest) GetPeriodStart() *time.Time {
 		return nil
 	}
 	return c.PeriodStart
-}
-
-func (c *CreateInvoiceRequest) GetPreparedTaxRates() []TaxRateResponse {
-	if c == nil {
-		return nil
-	}
-	return c.PreparedTaxRates
 }
 
 func (c *CreateInvoiceRequest) GetSubscriptionID() *string {

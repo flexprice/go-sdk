@@ -21,6 +21,7 @@ custom := types.SecretProvider("custom_value")
 | `SecretProviderFlexprice`        | flexprice                        |
 | `SecretProviderStripe`           | stripe                           |
 | `SecretProviderS3`               | s3                               |
+| `SecretProviderGcs`              | gcs                              |
 | `SecretProviderHubspot`          | hubspot                          |
 | `SecretProviderRazorpay`         | razorpay                         |
 | `SecretProviderChargebee`        | chargebee                        |

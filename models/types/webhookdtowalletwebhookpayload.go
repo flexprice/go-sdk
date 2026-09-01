@@ -8,6 +8,7 @@ import (
 
 type WebhookDtoWalletWebhookPayload struct {
 	Alert     *WebhookDtoWalletAlertInfo `json:"alert,omitzero"`
+	Customer  *WebhookDtoCustomer        `json:"customer,omitzero"`
 	EventType *WebhookEventName          `json:"event_type,omitzero"`
 	Wallet    *WebhookDtoWallet          `json:"wallet,omitzero"`
 }
@@ -28,6 +29,13 @@ func (w *WebhookDtoWalletWebhookPayload) GetAlert() *WebhookDtoWalletAlertInfo {
 		return nil
 	}
 	return w.Alert
+}
+
+func (w *WebhookDtoWalletWebhookPayload) GetCustomer() *WebhookDtoCustomer {
+	if w == nil {
+		return nil
+	}
+	return w.Customer
 }
 
 func (w *WebhookDtoWalletWebhookPayload) GetEventType() *WebhookEventName {

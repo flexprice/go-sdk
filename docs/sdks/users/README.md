@@ -10,6 +10,7 @@
 * [QueryUser](#queryuser) - Query users
 * [UpdateServiceAccount](#updateserviceaccount) - Update service account
 * [DeleteServiceAccount](#deleteserviceaccount) - Delete service account
+* [RemoveUser](#removeuser) - Remove user from tenant
 * [UpdateUserRoles](#updateuserroles) - Update user roles
 
 ## CreateUser
@@ -329,6 +330,59 @@ func main() {
 ### Response
 
 **[*dtos.DeleteServiceAccountResponse](../../models/dtos/deleteserviceaccountresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## RemoveUser
+
+Remove a human user (type=user) from the current tenant. Not supported for service accounts; use DELETE /users/{id} for those.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="removeUser" method="post" path="/users/{id}/remove" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Users.RemoveUser(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | User ID                                               |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.RemoveUserResponse](../../models/dtos/removeuserresponse.md), error**
 
 ### Errors
 

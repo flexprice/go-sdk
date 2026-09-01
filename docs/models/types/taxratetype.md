@@ -8,9 +8,6 @@ import (
 )
 
 value := types.TaxRateTypePercentage
-
-// Open enum: custom values can be created with a direct type cast
-custom := types.TaxRateType("custom_value")
 ```
 
 
@@ -19,4 +16,3 @@ custom := types.TaxRateType("custom_value")
 | Name                    | Value                   |
 | ----------------------- | ----------------------- |
 | `TaxRateTypePercentage` | percentage              |
-| `TaxRateTypeFixed`      | fixed                   |

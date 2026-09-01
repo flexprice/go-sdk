@@ -10,6 +10,7 @@ type UpdateSubscriptionLineItemRequest struct {
 	// Amount is the new price amount that overrides the original price
 	Amount       *string       `json:"amount,omitzero"`
 	BillingModel *BillingModel `json:"billing_model,omitzero"`
+	BucketSize   *WindowSize   `json:"bucket_size,omitzero"`
 	// Commitment fields
 	CommitmentAmount        *float64       `json:"commitment_amount,omitzero"`
 	CommitmentDuration      *BillingPeriod `json:"commitment_duration,omitzero"`
@@ -53,6 +54,13 @@ func (u *UpdateSubscriptionLineItemRequest) GetBillingModel() *BillingModel {
 		return nil
 	}
 	return u.BillingModel
+}
+
+func (u *UpdateSubscriptionLineItemRequest) GetBucketSize() *WindowSize {
+	if u == nil {
+		return nil
+	}
+	return u.BucketSize
 }
 
 func (u *UpdateSubscriptionLineItemRequest) GetCommitmentAmount() *float64 {

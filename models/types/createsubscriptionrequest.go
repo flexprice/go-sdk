@@ -27,12 +27,22 @@ type CreateSubscriptionRequest struct {
 	CreditGrants []CreateCreditGrantRequest `json:"credit_grants,omitzero"`
 	Currency     string                     `json:"currency"`
 	// CustomerID takes priority over ExternalCustomerID when both are provided.
-	CustomerID             *string                        `json:"customer_id,omitzero"`
-	EnableTrueUp           *bool                          `json:"enable_true_up,omitzero"`
-	EndDate                *time.Time                     `json:"end_date,omitzero"`
-	ExternalCustomerID     *string                        `json:"external_customer_id,omitzero"`
-	GatewayPaymentMethodID *string                        `json:"gateway_payment_method_id,omitzero"`
-	Inheritance            *SubscriptionInheritanceConfig `json:"inheritance,omitzero"`
+	CustomerID             *string    `json:"customer_id,omitzero"`
+	EnableTrueUp           *bool      `json:"enable_true_up,omitzero"`
+	EndDate                *time.Time `json:"end_date,omitzero"`
+	ExternalCustomerID     *string    `json:"external_customer_id,omitzero"`
+	GatewayPaymentMethodID *string    `json:"gateway_payment_method_id,omitzero"`
+	// IncludePriceIDs selects which plan prices to attach. Nil/omitted attaches matching-cadence
+	// prices plus ONETIME; [] attaches none (LineItems extras still apply); a non-empty list
+	// attaches only those IDs. Each listed ID must belong to the plan, match the subscription
+	// currency, and have a cadence that equals or strictly divides the subscription cadence.
+	// Pointer-slice distinguishes nil from [].
+	// NOTE: no `dive,required` on this tag — swaggo misinterprets `required`
+	// inside `dive` as marking the whole field required, which then shows up
+	// in the OpenAPI schema and breaks callers that omit the field. Per-element
+	// non-emptiness is enforced explicitly in Validate() below.
+	IncludePriceIds []string                       `json:"include_price_ids,omitzero"`
+	Inheritance     *SubscriptionInheritanceConfig `json:"inheritance,omitzero"`
 	// LineItemCommitments sets per-line-item commitment config, keyed by price_id.
 	LineItemCommitments map[string]LineItemCommitmentConfig `json:"line_item_commitments,omitzero"`
 	// Deprecated: use SubscriptionCoupons instead.
@@ -196,6 +206,13 @@ func (c *CreateSubscriptionRequest) GetGatewayPaymentMethodID() *string {
 		return nil
 	}
 	return c.GatewayPaymentMethodID
+}
+
+func (c *CreateSubscriptionRequest) GetIncludePriceIds() []string {
+	if c == nil {
+		return nil
+	}
+	return c.IncludePriceIds
 }
 
 func (c *CreateSubscriptionRequest) GetInheritance() *SubscriptionInheritanceConfig {

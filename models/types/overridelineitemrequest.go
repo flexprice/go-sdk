@@ -10,6 +10,7 @@ type OverrideLineItemRequest struct {
 	// Amount is the new price amount that overrides the original price (optional)
 	Amount       *string       `json:"amount,omitzero"`
 	BillingModel *BillingModel `json:"billing_model,omitzero"`
+	BucketSize   *WindowSize   `json:"bucket_size,omitzero"`
 	// PriceID references the plan price to override
 	PriceID string `json:"price_id"`
 	// PriceUnitAmount is the amount of the price unit (for CUSTOM type, FLAT_FEE/PACKAGE billing models)
@@ -47,6 +48,13 @@ func (o *OverrideLineItemRequest) GetBillingModel() *BillingModel {
 		return nil
 	}
 	return o.BillingModel
+}
+
+func (o *OverrideLineItemRequest) GetBucketSize() *WindowSize {
+	if o == nil {
+		return nil
+	}
+	return o.BucketSize
 }
 
 func (o *OverrideLineItemRequest) GetPriceID() string {

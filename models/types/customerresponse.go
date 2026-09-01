@@ -37,9 +37,10 @@ type CustomerResponse struct {
 	// Metadata
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// Name is the name of the customer
-	Name     *string `json:"name,omitzero"`
-	Status   *Status `json:"status,omitzero"`
-	TenantID *string `json:"tenant_id,omitzero"`
+	Name         *string       `json:"name,omitzero"`
+	Status       *Status       `json:"status,omitzero"`
+	TaxTreatment *TaxTreatment `json:"tax_treatment,omitzero"`
+	TenantID     *string       `json:"tenant_id,omitzero"`
 	// Timezone is the customer's IANA timezone name (e.g. "Asia/Kolkata").
 	// Defaults to "UTC". Inherited by subscriptions at creation time.
 	Timezone  *string    `json:"timezone,omitzero"`
@@ -175,6 +176,13 @@ func (c *CustomerResponse) GetStatus() *Status {
 		return nil
 	}
 	return c.Status
+}
+
+func (c *CustomerResponse) GetTaxTreatment() *TaxTreatment {
+	if c == nil {
+		return nil
+	}
+	return c.TaxTreatment
 }
 
 func (c *CustomerResponse) GetTenantID() *string {

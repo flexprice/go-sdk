@@ -11,13 +11,11 @@ type CreateTaxRateRequest struct {
 	Code string `json:"code"`
 	// description is an optional text description providing details about the tax rate
 	Description *string `json:"description,omitzero"`
-	// fixed_value is the fixed monetary amount when tax_rate_type is "fixed"
-	FixedValue *string `json:"fixed_value,omitzero"`
 	// metadata contains additional key-value pairs for storing extra information
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// name is the human-readable name for the tax rate (required)
 	Name string `json:"name"`
-	// percentage_value is the percentage value (0-100) when tax_rate_type is "percentage"
+	// percentage_value is the percentage value (0-100)
 	PercentageValue *string       `json:"percentage_value,omitzero"`
 	Scope           *TaxRateScope `json:"scope,omitzero"`
 	TaxRateType     *TaxRateType  `json:"tax_rate_type,omitzero"`
@@ -46,13 +44,6 @@ func (c *CreateTaxRateRequest) GetDescription() *string {
 		return nil
 	}
 	return c.Description
-}
-
-func (c *CreateTaxRateRequest) GetFixedValue() *string {
-	if c == nil {
-		return nil
-	}
-	return c.FixedValue
 }
 
 func (c *CreateTaxRateRequest) GetMetadata() map[string]string {

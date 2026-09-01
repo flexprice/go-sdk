@@ -28,9 +28,10 @@ type TaxAssociationResponse struct {
 	// Priority for tax resolution (lower number = higher priority)
 	Priority *int64 `json:"priority,omitzero"`
 	// StartDate is the date from which this association is active
-	StartDate *time.Time       `json:"start_date,omitzero"`
-	Status    *Status          `json:"status,omitzero"`
-	TaxRate   *TaxRateResponse `json:"tax_rate,omitzero"`
+	StartDate   *time.Time       `json:"start_date,omitzero"`
+	Status      *Status          `json:"status,omitzero"`
+	TaxBehavior *TaxBehavior     `json:"tax_behavior,omitzero"`
+	TaxRate     *TaxRateResponse `json:"tax_rate,omitzero"`
 	// Reference to the TaxRate entity
 	TaxRateID *string    `json:"tax_rate_id,omitzero"`
 	TenantID  *string    `json:"tenant_id,omitzero"`
@@ -138,6 +139,13 @@ func (t *TaxAssociationResponse) GetStatus() *Status {
 		return nil
 	}
 	return t.Status
+}
+
+func (t *TaxAssociationResponse) GetTaxBehavior() *TaxBehavior {
+	if t == nil {
+		return nil
+	}
+	return t.TaxBehavior
 }
 
 func (t *TaxAssociationResponse) GetTaxRate() *TaxRateResponse {

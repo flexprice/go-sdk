@@ -17,7 +17,8 @@ type PriceResponse struct {
 	BillingModel   *BillingModel   `json:"billing_model,omitzero"`
 	BillingPeriod  *BillingPeriod  `json:"billing_period,omitzero"`
 	// BillingPeriodCount is the count of the billing period ex 1, 3, 6, 12
-	BillingPeriodCount *int64 `json:"billing_period_count,omitzero"`
+	BillingPeriodCount *int64      `json:"billing_period_count,omitzero"`
+	BucketSize         *WindowSize `json:"bucket_size,omitzero"`
 	// ConversionRate is the conversion rate of the price unit to the fiat currency
 	ConversionRate *string    `json:"conversion_rate,omitzero"`
 	CreatedAt      *time.Time `json:"created_at,omitzero"`
@@ -139,6 +140,13 @@ func (p *PriceResponse) GetBillingPeriodCount() *int64 {
 		return nil
 	}
 	return p.BillingPeriodCount
+}
+
+func (p *PriceResponse) GetBucketSize() *WindowSize {
+	if p == nil {
+		return nil
+	}
+	return p.BucketSize
 }
 
 func (p *PriceResponse) GetConversionRate() *string {

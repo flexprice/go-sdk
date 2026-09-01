@@ -84,7 +84,9 @@ type InvoiceResponse struct {
 	// subscription_id is the ID of the subscription this invoice is associated with (only present for subscription-based invoices)
 	SubscriptionID *string `json:"subscription_id,omitzero"`
 	// subtotal is the sum of all line items before any taxes, discounts, or additional fees
-	Subtotal *string `json:"subtotal,omitzero"`
+	Subtotal               *string                 `json:"subtotal,omitzero"`
+	TaxExemptionReasonCode *TaxExemptionReasonCode `json:"tax_exemption_reason_code,omitzero"`
+	TaxSummary             *TaxSummary             `json:"tax_summary,omitzero"`
 	// tax_applied_records contains the tax applied records associated with this invoice
 	Taxes    []TaxAppliedResponse `json:"taxes,omitzero"`
 	TenantID *string              `json:"tenant_id,omitzero"`
@@ -393,6 +395,20 @@ func (i *InvoiceResponse) GetSubtotal() *string {
 		return nil
 	}
 	return i.Subtotal
+}
+
+func (i *InvoiceResponse) GetTaxExemptionReasonCode() *TaxExemptionReasonCode {
+	if i == nil {
+		return nil
+	}
+	return i.TaxExemptionReasonCode
+}
+
+func (i *InvoiceResponse) GetTaxSummary() *TaxSummary {
+	if i == nil {
+		return nil
+	}
+	return i.TaxSummary
 }
 
 func (i *InvoiceResponse) GetTaxes() []TaxAppliedResponse {

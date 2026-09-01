@@ -31,7 +31,8 @@ type UpdateCustomerRequest struct {
 	// metadata contains updated key-value pairs that will replace existing metadata
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// name is the updated name or company name for the customer
-	Name *string `json:"name,omitzero"`
+	Name         *string       `json:"name,omitzero"`
+	TaxTreatment *TaxTreatment `json:"tax_treatment,omitzero"`
 	// timezone is the updated IANA timezone name for the customer (e.g. "Asia/Kolkata", "America/New_York")
 	Timezone *string `json:"timezone,omitzero"`
 }
@@ -129,6 +130,13 @@ func (u *UpdateCustomerRequest) GetName() *string {
 		return nil
 	}
 	return u.Name
+}
+
+func (u *UpdateCustomerRequest) GetTaxTreatment() *TaxTreatment {
+	if u == nil {
+		return nil
+	}
+	return u.TaxTreatment
 }
 
 func (u *UpdateCustomerRequest) GetTimezone() *string {

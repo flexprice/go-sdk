@@ -11,6 +11,7 @@ type TaxRateOverride struct {
 	Currency    string            `json:"currency"`
 	Metadata    map[string]string `json:"metadata,omitzero"`
 	Priority    *int64            `json:"priority,omitzero"`
+	TaxBehavior *TaxBehavior      `json:"tax_behavior,omitzero"`
 	TaxRateCode string            `json:"tax_rate_code"`
 }
 
@@ -51,6 +52,13 @@ func (t *TaxRateOverride) GetPriority() *int64 {
 		return nil
 	}
 	return t.Priority
+}
+
+func (t *TaxRateOverride) GetTaxBehavior() *TaxBehavior {
+	if t == nil {
+		return nil
+	}
+	return t.TaxBehavior
 }
 
 func (t *TaxRateOverride) GetTaxRateCode() string {

@@ -13,7 +13,6 @@ type TaxRateResponse struct {
 	CreatedBy       *string           `json:"created_by,omitzero"`
 	Description     *string           `json:"description,omitzero"`
 	EnvironmentID   *string           `json:"environment_id,omitzero"`
-	FixedValue      *string           `json:"fixed_value,omitzero"`
 	ID              *string           `json:"id,omitzero"`
 	Metadata        map[string]string `json:"metadata,omitzero"`
 	Name            *string           `json:"name,omitzero"`
@@ -71,13 +70,6 @@ func (t *TaxRateResponse) GetEnvironmentID() *string {
 		return nil
 	}
 	return t.EnvironmentID
-}
-
-func (t *TaxRateResponse) GetFixedValue() *string {
-	if t == nil {
-		return nil
-	}
-	return t.FixedValue
 }
 
 func (t *TaxRateResponse) GetID() *string {

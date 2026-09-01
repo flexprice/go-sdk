@@ -12,6 +12,7 @@ type CreatePriceRequest struct {
 	BillingModel       BillingModel        `json:"billing_model"`
 	BillingPeriod      BillingPeriod       `json:"billing_period"`
 	BillingPeriodCount *int64              `json:"billing_period_count,omitzero"`
+	BucketSize         *WindowSize         `json:"bucket_size,omitzero"`
 	Currency           string              `json:"currency"`
 	Description        *string             `json:"description,omitzero"`
 	DisplayName        *string             `json:"display_name,omitzero"`
@@ -74,6 +75,13 @@ func (c *CreatePriceRequest) GetBillingPeriodCount() *int64 {
 		return nil
 	}
 	return c.BillingPeriodCount
+}
+
+func (c *CreatePriceRequest) GetBucketSize() *WindowSize {
+	if c == nil {
+		return nil
+	}
+	return c.BucketSize
 }
 
 func (c *CreatePriceRequest) GetCurrency() string {

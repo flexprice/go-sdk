@@ -7,9 +7,10 @@ import (
 )
 
 type TaxAssociationUpdateRequest struct {
-	AutoApply *bool             `json:"auto_apply,omitzero"`
-	Metadata  map[string]string `json:"metadata,omitzero"`
-	Priority  *int64            `json:"priority,omitzero"`
+	AutoApply   *bool             `json:"auto_apply,omitzero"`
+	Metadata    map[string]string `json:"metadata,omitzero"`
+	Priority    *int64            `json:"priority,omitzero"`
+	TaxBehavior *TaxBehavior      `json:"tax_behavior,omitzero"`
 }
 
 func (t TaxAssociationUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -42,4 +43,11 @@ func (t *TaxAssociationUpdateRequest) GetPriority() *int64 {
 		return nil
 	}
 	return t.Priority
+}
+
+func (t *TaxAssociationUpdateRequest) GetTaxBehavior() *TaxBehavior {
+	if t == nil {
+		return nil
+	}
+	return t.TaxBehavior
 }

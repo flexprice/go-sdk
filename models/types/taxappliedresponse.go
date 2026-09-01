@@ -21,6 +21,7 @@ type TaxAppliedResponse struct {
 	Status           *Status            `json:"status,omitzero"`
 	TaxAmount        *string            `json:"tax_amount,omitzero"`
 	TaxAssociationID *string            `json:"tax_association_id,omitzero"`
+	TaxBehavior      *TaxBehavior       `json:"tax_behavior,omitzero"`
 	TaxRate          *TaxRateResponse   `json:"tax_rate,omitzero"`
 	TaxRateID        *string            `json:"tax_rate_id,omitzero"`
 	TaxableAmount    *string            `json:"taxable_amount,omitzero"`
@@ -129,6 +130,13 @@ func (t *TaxAppliedResponse) GetTaxAssociationID() *string {
 		return nil
 	}
 	return t.TaxAssociationID
+}
+
+func (t *TaxAppliedResponse) GetTaxBehavior() *TaxBehavior {
+	if t == nil {
+		return nil
+	}
+	return t.TaxBehavior
 }
 
 func (t *TaxAppliedResponse) GetTaxRate() *TaxRateResponse {

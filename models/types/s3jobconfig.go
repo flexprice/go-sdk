@@ -16,7 +16,8 @@ type S3JobConfig struct {
 	// Optional user-selected metadata columns
 	ExportMetadataFields []ExportMetadataField `json:"export_metadata_fields,omitzero"`
 	// Optional prefix for S3 keys (e.g., "flexprice-exports/")
-	KeyPrefix *string `json:"key_prefix,omitzero"`
+	KeyPrefix *string         `json:"key_prefix,omitzero"`
+	Provider  *SecretProvider `json:"provider,omitzero"`
 	// AWS region (e.g., "us-west-2")
 	Region *string `json:"region,omitzero"`
 	// Use path-style addressing (required for MinIO)
@@ -74,6 +75,13 @@ func (s *S3JobConfig) GetKeyPrefix() *string {
 		return nil
 	}
 	return s.KeyPrefix
+}
+
+func (s *S3JobConfig) GetProvider() *SecretProvider {
+	if s == nil {
+		return nil
+	}
+	return s.Provider
 }
 
 func (s *S3JobConfig) GetRegion() *string {

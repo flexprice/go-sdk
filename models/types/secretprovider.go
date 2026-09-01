@@ -8,6 +8,7 @@ const (
 	SecretProviderFlexprice        SecretProvider = "flexprice"
 	SecretProviderStripe           SecretProvider = "stripe"
 	SecretProviderS3               SecretProvider = "s3"
+	SecretProviderGcs              SecretProvider = "gcs"
 	SecretProviderHubspot          SecretProvider = "hubspot"
 	SecretProviderRazorpay         SecretProvider = "razorpay"
 	SecretProviderChargebee        SecretProvider = "chargebee"
@@ -31,7 +32,7 @@ func (e SecretProvider) ToPointer() *SecretProvider {
 func (e *SecretProvider) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "flexprice", "stripe", "s3", "hubspot", "razorpay", "chargebee", "quickbooks", "zoho_books", "nomod", "moyasar", "paddle", "whop", "tabs", "aws_marketplace", "gcp_marketplace", "azure_marketplace":
+		case "flexprice", "stripe", "s3", "gcs", "hubspot", "razorpay", "chargebee", "quickbooks", "zoho_books", "nomod", "moyasar", "paddle", "whop", "tabs", "aws_marketplace", "gcp_marketplace", "azure_marketplace":
 			return true
 		}
 	}

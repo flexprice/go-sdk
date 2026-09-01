@@ -18,8 +18,9 @@ type CreateTaxAssociationRequest struct {
 	Metadata           map[string]string  `json:"metadata,omitzero"`
 	Priority           *int64             `json:"priority,omitzero"`
 	// StartDate sets when this association becomes active. Defaults to now if omitted.
-	StartDate   *time.Time `json:"start_date,omitzero"`
-	TaxRateCode string     `json:"tax_rate_code"`
+	StartDate   *time.Time   `json:"start_date,omitzero"`
+	TaxBehavior *TaxBehavior `json:"tax_behavior,omitzero"`
+	TaxRateCode string       `json:"tax_rate_code"`
 }
 
 func (c CreateTaxAssociationRequest) MarshalJSON() ([]byte, error) {
@@ -94,6 +95,13 @@ func (c *CreateTaxAssociationRequest) GetStartDate() *time.Time {
 		return nil
 	}
 	return c.StartDate
+}
+
+func (c *CreateTaxAssociationRequest) GetTaxBehavior() *TaxBehavior {
+	if c == nil {
+		return nil
+	}
+	return c.TaxBehavior
 }
 
 func (c *CreateTaxAssociationRequest) GetTaxRateCode() string {

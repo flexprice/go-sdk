@@ -2,24 +2,30 @@
 
 package types
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 type TaxRateType string
 
 const (
 	TaxRateTypePercentage TaxRateType = "percentage"
-	TaxRateTypeFixed      TaxRateType = "fixed"
 )
 
 func (e TaxRateType) ToPointer() *TaxRateType {
 	return &e
 }
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *TaxRateType) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "percentage", "fixed":
-			return true
-		}
+func (e *TaxRateType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
 	}
-	return false
+	switch v {
+	case "percentage":
+		*e = TaxRateType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for TaxRateType: %v", v)
+	}
 }
