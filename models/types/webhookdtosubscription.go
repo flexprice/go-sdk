@@ -8,29 +8,33 @@ import (
 )
 
 type WebhookDtoSubscription struct {
-	BillingCadence       *BillingCadence     `json:"billing_cadence,omitzero"`
-	BillingPeriod        *BillingPeriod      `json:"billing_period,omitzero"`
-	BillingPeriodCount   *int64              `json:"billing_period_count,omitzero"`
-	CancelAt             *time.Time          `json:"cancel_at,omitzero"`
-	CancelAtPeriodEnd    *bool               `json:"cancel_at_period_end,omitzero"`
-	CancelledAt          *time.Time          `json:"cancelled_at,omitzero"`
-	Currency             *string             `json:"currency,omitzero"`
-	CurrentPeriodEnd     *time.Time          `json:"current_period_end,omitzero"`
-	CurrentPeriodStart   *time.Time          `json:"current_period_start,omitzero"`
-	Customer             *WebhookDtoCustomer `json:"customer,omitzero"`
-	CustomerID           *string             `json:"customer_id,omitzero"`
-	EndDate              *time.Time          `json:"end_date,omitzero"`
-	ID                   *string             `json:"id,omitzero"`
-	LookupKey            *string             `json:"lookup_key,omitzero"`
-	Metadata             map[string]string   `json:"metadata,omitzero"`
-	ParentSubscriptionID *string             `json:"parent_subscription_id,omitzero"`
-	PauseStatus          *PauseStatus        `json:"pause_status,omitzero"`
-	PlanID               *string             `json:"plan_id,omitzero"`
-	StartDate            *time.Time          `json:"start_date,omitzero"`
-	SubscriptionStatus   *SubscriptionStatus `json:"subscription_status,omitzero"`
-	SubscriptionType     *SubscriptionType   `json:"subscription_type,omitzero"`
-	TrialEnd             *time.Time          `json:"trial_end,omitzero"`
-	TrialStart           *time.Time          `json:"trial_start,omitzero"`
+	BillingCadence       *BillingCadence                  `json:"billing_cadence,omitzero"`
+	BillingPeriod        *BillingPeriod                   `json:"billing_period,omitzero"`
+	BillingPeriodCount   *int64                           `json:"billing_period_count,omitzero"`
+	CancelAt             *time.Time                       `json:"cancel_at,omitzero"`
+	CancelAtPeriodEnd    *bool                            `json:"cancel_at_period_end,omitzero"`
+	CancelledAt          *time.Time                       `json:"cancelled_at,omitzero"`
+	CouponAssociations   []WebhookDtoCouponAssociation    `json:"coupon_associations,omitzero"`
+	Currency             *string                          `json:"currency,omitzero"`
+	CurrentPeriodEnd     *time.Time                       `json:"current_period_end,omitzero"`
+	CurrentPeriodStart   *time.Time                       `json:"current_period_start,omitzero"`
+	Customer             *WebhookDtoCustomer              `json:"customer,omitzero"`
+	CustomerID           *string                          `json:"customer_id,omitzero"`
+	EndDate              *time.Time                       `json:"end_date,omitzero"`
+	ID                   *string                          `json:"id,omitzero"`
+	InvoicingCustomerID  *string                          `json:"invoicing_customer_id,omitzero"`
+	LineItems            []WebhookDtoSubscriptionLineItem `json:"line_items,omitzero"`
+	LookupKey            *string                          `json:"lookup_key,omitzero"`
+	Metadata             map[string]string                `json:"metadata,omitzero"`
+	ParentSubscriptionID *string                          `json:"parent_subscription_id,omitzero"`
+	PauseStatus          *PauseStatus                     `json:"pause_status,omitzero"`
+	Plan                 *WebhookDtoPlan                  `json:"plan,omitzero"`
+	PlanID               *string                          `json:"plan_id,omitzero"`
+	StartDate            *time.Time                       `json:"start_date,omitzero"`
+	SubscriptionStatus   *SubscriptionStatus              `json:"subscription_status,omitzero"`
+	SubscriptionType     *SubscriptionType                `json:"subscription_type,omitzero"`
+	TrialEnd             *time.Time                       `json:"trial_end,omitzero"`
+	TrialStart           *time.Time                       `json:"trial_start,omitzero"`
 }
 
 func (w WebhookDtoSubscription) MarshalJSON() ([]byte, error) {
@@ -86,6 +90,13 @@ func (w *WebhookDtoSubscription) GetCancelledAt() *time.Time {
 	return w.CancelledAt
 }
 
+func (w *WebhookDtoSubscription) GetCouponAssociations() []WebhookDtoCouponAssociation {
+	if w == nil {
+		return nil
+	}
+	return w.CouponAssociations
+}
+
 func (w *WebhookDtoSubscription) GetCurrency() *string {
 	if w == nil {
 		return nil
@@ -135,6 +146,20 @@ func (w *WebhookDtoSubscription) GetID() *string {
 	return w.ID
 }
 
+func (w *WebhookDtoSubscription) GetInvoicingCustomerID() *string {
+	if w == nil {
+		return nil
+	}
+	return w.InvoicingCustomerID
+}
+
+func (w *WebhookDtoSubscription) GetLineItems() []WebhookDtoSubscriptionLineItem {
+	if w == nil {
+		return nil
+	}
+	return w.LineItems
+}
+
 func (w *WebhookDtoSubscription) GetLookupKey() *string {
 	if w == nil {
 		return nil
@@ -161,6 +186,13 @@ func (w *WebhookDtoSubscription) GetPauseStatus() *PauseStatus {
 		return nil
 	}
 	return w.PauseStatus
+}
+
+func (w *WebhookDtoSubscription) GetPlan() *WebhookDtoPlan {
+	if w == nil {
+		return nil
+	}
+	return w.Plan
 }
 
 func (w *WebhookDtoSubscription) GetPlanID() *string {

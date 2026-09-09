@@ -1,0 +1,16 @@
+# WebhookDtoTaxApplied
+
+
+## Fields
+
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `AppliedAt`                                                         | [*time.Time](https://pkg.go.dev/time#Time)                          | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Currency`                                                          | `*string`                                                           | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `ID`                                                                | `*string`                                                           | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Metadata`                                                          | map[string]`string`                                                 | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `TaxAmount`                                                         | `*string`                                                           | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `TaxBehavior`                                                       | [*types.TaxBehavior](../../models/types/taxbehavior.md)             | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `TaxRate`                                                           | [*types.WebhookDtoTaxRate](../../models/types/webhookdtotaxrate.md) | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `TaxRateID`                                                         | `*string`                                                           | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `TaxableAmount`                                                     | `*string`                                                           | :heavy_minus_sign:                                                  | N/A                                                                 |

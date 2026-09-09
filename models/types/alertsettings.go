@@ -7,10 +7,11 @@ import (
 )
 
 type AlertSettings struct {
-	AlertEnabled *bool           `json:"alert_enabled,omitzero"`
-	Critical     *AlertThreshold `json:"critical,omitzero"`
-	Info         *AlertThreshold `json:"info,omitzero"`
-	Warning      *AlertThreshold `json:"warning,omitzero"`
+	AlertEnabled       *bool               `json:"alert_enabled,omitzero"`
+	AlertThresholdType *AlertThresholdType `json:"alert_threshold_type,omitzero"`
+	Critical           *AlertThreshold     `json:"critical,omitzero"`
+	Info               *AlertThreshold     `json:"info,omitzero"`
+	Warning            *AlertThreshold     `json:"warning,omitzero"`
 }
 
 func (a AlertSettings) MarshalJSON() ([]byte, error) {
@@ -29,6 +30,13 @@ func (a *AlertSettings) GetAlertEnabled() *bool {
 		return nil
 	}
 	return a.AlertEnabled
+}
+
+func (a *AlertSettings) GetAlertThresholdType() *AlertThresholdType {
+	if a == nil {
+		return nil
+	}
+	return a.AlertThresholdType
 }
 
 func (a *AlertSettings) GetCritical() *AlertThreshold {

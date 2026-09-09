@@ -10,6 +10,8 @@ import (
 type ProcessCreditNoteRequest struct {
 	// Credit note ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Finalize options
+	Body *types.FinalizeCreditNoteRequest `request:"mediaType=application/json"`
 }
 
 func (p ProcessCreditNoteRequest) MarshalJSON() ([]byte, error) {
@@ -28,6 +30,13 @@ func (p *ProcessCreditNoteRequest) GetID() string {
 		return ""
 	}
 	return p.ID
+}
+
+func (p *ProcessCreditNoteRequest) GetBody() *types.FinalizeCreditNoteRequest {
+	if p == nil {
+		return nil
+	}
+	return p.Body
 }
 
 type ProcessCreditNoteResponse struct {

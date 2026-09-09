@@ -33,6 +33,9 @@
 * [PostWebhookEventsPaymentPending](#postwebhookeventspaymentpending) - payment.pending
 * [PostWebhookEventsPaymentSuccess](#postwebhookeventspaymentsuccess) - payment.success
 * [PostWebhookEventsPaymentUpdated](#postwebhookeventspaymentupdated) - payment.updated
+* [PostWebhookEventsRefundCreated](#postwebhookeventsrefundcreated) - refund.created
+* [PostWebhookEventsRefundFailed](#postwebhookeventsrefundfailed) - refund.failed
+* [PostWebhookEventsRefundSucceeded](#postwebhookeventsrefundsucceeded) - refund.succeeded
 * [PostWebhookEventsSubscriptionActivated](#postwebhookeventssubscriptionactivated) - subscription.activated
 * [PostWebhookEventsSubscriptionCancelled](#postwebhookeventssubscriptioncancelled) - subscription.cancelled
 * [PostWebhookEventsSubscriptionCreated](#postwebhookeventssubscriptioncreated) - subscription.created
@@ -914,7 +917,7 @@ func main() {
 
 ## PostWebhookEventsInvoiceCommunicationTriggered
 
-Fired when an invoice communication (e.g. email notification) is triggered. Doc-only for parsing.
+Fired when an invoice communication (e.g. email notification) is triggered. `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -964,7 +967,7 @@ func main() {
 
 ## PostWebhookEventsInvoiceCreateDrafted
 
-Fired when a new invoice is created in draft state. Doc-only for parsing.
+Fired when a new invoice is created in draft state. `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -1014,7 +1017,7 @@ func main() {
 
 ## PostWebhookEventsInvoicePaymentOverdue
 
-Fired when an invoice payment is overdue past the due date. Doc-only for parsing.
+Fired when an invoice payment is overdue past the due date. `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -1064,7 +1067,7 @@ func main() {
 
 ## PostWebhookEventsInvoiceUpdate
 
-Fired when an invoice is updated. Doc-only for parsing.
+Fired when an invoice is updated. `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -1114,7 +1117,7 @@ func main() {
 
 ## PostWebhookEventsInvoiceUpdateFinalized
 
-Fired when an invoice is finalized and locked for payment. Doc-only for parsing.
+Fired when an invoice is finalized and locked for payment. `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -1164,7 +1167,7 @@ func main() {
 
 ## PostWebhookEventsInvoiceUpdatePayment
 
-Fired when an invoice payment status changes. Doc-only for parsing.
+Fired when an invoice payment status changes. `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -1214,7 +1217,7 @@ func main() {
 
 ## PostWebhookEventsInvoiceUpdateVoided
 
-Fired when an invoice is voided (e.g. order cancelled or duplicate). Doc-only for parsing.
+Fired when an invoice is voided (e.g. order cancelled or duplicate). `invoice.line_items` omits line items with neither an amount nor a quantity (period fan-out emits one per window whether or not usage landed in it), and `invoice.subscription.plan.prices` carries only the prices this invoice references, not the plan's full catalogue. Doc-only for parsing.
 
 ### Example Usage
 
@@ -1505,6 +1508,156 @@ func main() {
 ### Response
 
 **[*dtos.PostWebhookEventsPaymentUpdatedResponse](../../models/dtos/postwebhookeventspaymentupdatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsRefundCreated
+
+Fired when a refund is planned against an invoice, before the money moves. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/refund.created" method="post" path="/webhook-events/refund.created" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsRefundCreated(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoRefundWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsRefundCreatedResponse](../../models/dtos/postwebhookeventsrefundcreatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsRefundFailed
+
+Fired when a refund fails. A gateway refund that fails is retried into the customer's wallet. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/refund.failed" method="post" path="/webhook-events/refund.failed" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsRefundFailed(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoRefundWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsRefundFailedResponse](../../models/dtos/postwebhookeventsrefundfailedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsRefundSucceeded
+
+Fired when a refund settles, to the original payment gateway or to a wallet. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/refund.succeeded" method="post" path="/webhook-events/refund.succeeded" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsRefundSucceeded(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoRefundWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsRefundSucceededResponse](../../models/dtos/postwebhookeventsrefundsucceededresponse.md), error**
 
 ### Errors
 

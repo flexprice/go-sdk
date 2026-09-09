@@ -13,11 +13,12 @@ value := types.PaymentGatewayTypeStripe
 
 ## Values
 
-| Name                         | Value                        |
-| ---------------------------- | ---------------------------- |
-| `PaymentGatewayTypeStripe`   | stripe                       |
-| `PaymentGatewayTypeRazorpay` | razorpay                     |
-| `PaymentGatewayTypeNomod`    | nomod                        |
-| `PaymentGatewayTypeMoyasar`  | moyasar                      |
-| `PaymentGatewayTypePaddle`   | paddle                       |
-| `PaymentGatewayTypeWhop`     | whop                         |
+| Name                          | Value                         |
+| ----------------------------- | ----------------------------- |
+| `PaymentGatewayTypeStripe`    | stripe                        |
+| `PaymentGatewayTypeRazorpay`  | razorpay                      |
+| `PaymentGatewayTypeNomod`     | nomod                         |
+| `PaymentGatewayTypeMoyasar`   | moyasar                       |
+| `PaymentGatewayTypePaddle`    | paddle                        |
+| `PaymentGatewayTypeWhop`      | whop                          |
+| `PaymentGatewayTypeChargebee` | chargebee                     |

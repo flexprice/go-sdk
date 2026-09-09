@@ -568,9 +568,10 @@ func (s *CreditNotes) GetCreditNote(ctx context.Context, id string, opts ...dtos
 // Use when locking a draft credit note and applying the credit (e.g. after approval). Once finalized, applied per billing provider.
 //
 // This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
-func (s *CreditNotes) ProcessCreditNote(ctx context.Context, id string, opts ...dtos.Option) (*dtos.ProcessCreditNoteResponse, error) {
+func (s *CreditNotes) ProcessCreditNote(ctx context.Context, id string, body *types.FinalizeCreditNoteRequest, opts ...dtos.Option) (*dtos.ProcessCreditNoteResponse, error) {
 	request := dtos.ProcessCreditNoteRequest{
-		ID: id,
+		ID:   id,
+		Body: body,
 	}
 
 	o := dtos.Options{}
@@ -605,6 +606,10 @@ func (s *CreditNotes) ProcessCreditNote(ctx context.Context, id string, opts ...
 		OAuth2Scopes:     nil,
 		SecuritySource:   s.sdkConfiguration.Security,
 	}
+	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Body", "json", `request:"mediaType=application/json"`)
+	if err != nil {
+		return nil, err
+	}
 
 	timeout := o.Timeout
 	if timeout == nil {
@@ -617,12 +622,15 @@ func (s *CreditNotes) ProcessCreditNote(ctx context.Context, id string, opts ...
 		defer cancel()
 	}
 
-	req, err := http.NewRequestWithContext(ctx, "POST", opURL, nil)
+	req, err := http.NewRequestWithContext(ctx, "POST", opURL, bodyReader)
 	if err != nil {
 		return nil, fmt.Errorf("error creating request: %w", err)
 	}
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
+	if reqContentType != "" {
+		req.Header.Set("Content-Type", reqContentType)
+	}
 
 	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
 		return nil, err

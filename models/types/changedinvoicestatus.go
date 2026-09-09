@@ -2,7 +2,6 @@
 
 package types
 
-// ChangedInvoiceStatus - preview | issued | INITIATED | PENDING | PROCESSING | SUCCEEDED | OVERPAID | FAILED | REFUNDED | PARTIALLY_REFUNDED
 type ChangedInvoiceStatus string
 
 const (

@@ -8,14 +8,29 @@ import (
 )
 
 type WebhookDtoInvoiceLineItem struct {
-	Amount          *string    `json:"amount,omitzero"`
-	DisplayName     *string    `json:"display_name,omitzero"`
-	ID              *string    `json:"id,omitzero"`
-	PeriodEnd       *time.Time `json:"period_end,omitzero"`
-	PeriodStart     *time.Time `json:"period_start,omitzero"`
-	PlanDisplayName *string    `json:"plan_display_name,omitzero"`
-	PriceID         *string    `json:"price_id,omitzero"`
-	Quantity        *string    `json:"quantity,omitzero"`
+	AdjustedEntitlementQuantity *string           `json:"adjusted_entitlement_quantity,omitzero"`
+	Amount                      *string           `json:"amount,omitzero"`
+	CommitmentInfo              *CommitmentInfo   `json:"commitment_info,omitzero"`
+	Currency                    *string           `json:"currency,omitzero"`
+	DisplayName                 *string           `json:"display_name,omitzero"`
+	EntityID                    *string           `json:"entity_id,omitzero"`
+	EntityType                  *string           `json:"entity_type,omitzero"`
+	ID                          *string           `json:"id,omitzero"`
+	InvoiceLevelDiscount        *string           `json:"invoice_level_discount,omitzero"`
+	LineItemDiscount            *string           `json:"line_item_discount,omitzero"`
+	Metadata                    map[string]string `json:"metadata,omitzero"`
+	MeterDisplayName            *string           `json:"meter_display_name,omitzero"`
+	MeterID                     *string           `json:"meter_id,omitzero"`
+	PeriodEnd                   *time.Time        `json:"period_end,omitzero"`
+	PeriodStart                 *time.Time        `json:"period_start,omitzero"`
+	PlanDisplayName             *string           `json:"plan_display_name,omitzero"`
+	PrepaidCreditsApplied       *string           `json:"prepaid_credits_applied,omitzero"`
+	PriceID                     *string           `json:"price_id,omitzero"`
+	PriceType                   *string           `json:"price_type,omitzero"`
+	PriceUnit                   *string           `json:"price_unit,omitzero"`
+	PriceUnitAmount             *string           `json:"price_unit_amount,omitzero"`
+	Quantity                    *string           `json:"quantity,omitzero"`
+	SubscriptionLineItemID      *string           `json:"subscription_line_item_id,omitzero"`
 }
 
 func (w WebhookDtoInvoiceLineItem) MarshalJSON() ([]byte, error) {
@@ -29,11 +44,32 @@ func (w *WebhookDtoInvoiceLineItem) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (w *WebhookDtoInvoiceLineItem) GetAdjustedEntitlementQuantity() *string {
+	if w == nil {
+		return nil
+	}
+	return w.AdjustedEntitlementQuantity
+}
+
 func (w *WebhookDtoInvoiceLineItem) GetAmount() *string {
 	if w == nil {
 		return nil
 	}
 	return w.Amount
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetCommitmentInfo() *CommitmentInfo {
+	if w == nil {
+		return nil
+	}
+	return w.CommitmentInfo
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetCurrency() *string {
+	if w == nil {
+		return nil
+	}
+	return w.Currency
 }
 
 func (w *WebhookDtoInvoiceLineItem) GetDisplayName() *string {
@@ -43,11 +79,60 @@ func (w *WebhookDtoInvoiceLineItem) GetDisplayName() *string {
 	return w.DisplayName
 }
 
+func (w *WebhookDtoInvoiceLineItem) GetEntityID() *string {
+	if w == nil {
+		return nil
+	}
+	return w.EntityID
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetEntityType() *string {
+	if w == nil {
+		return nil
+	}
+	return w.EntityType
+}
+
 func (w *WebhookDtoInvoiceLineItem) GetID() *string {
 	if w == nil {
 		return nil
 	}
 	return w.ID
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetInvoiceLevelDiscount() *string {
+	if w == nil {
+		return nil
+	}
+	return w.InvoiceLevelDiscount
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetLineItemDiscount() *string {
+	if w == nil {
+		return nil
+	}
+	return w.LineItemDiscount
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetMetadata() map[string]string {
+	if w == nil {
+		return nil
+	}
+	return w.Metadata
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetMeterDisplayName() *string {
+	if w == nil {
+		return nil
+	}
+	return w.MeterDisplayName
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetMeterID() *string {
+	if w == nil {
+		return nil
+	}
+	return w.MeterID
 }
 
 func (w *WebhookDtoInvoiceLineItem) GetPeriodEnd() *time.Time {
@@ -71,6 +156,13 @@ func (w *WebhookDtoInvoiceLineItem) GetPlanDisplayName() *string {
 	return w.PlanDisplayName
 }
 
+func (w *WebhookDtoInvoiceLineItem) GetPrepaidCreditsApplied() *string {
+	if w == nil {
+		return nil
+	}
+	return w.PrepaidCreditsApplied
+}
+
 func (w *WebhookDtoInvoiceLineItem) GetPriceID() *string {
 	if w == nil {
 		return nil
@@ -78,9 +170,37 @@ func (w *WebhookDtoInvoiceLineItem) GetPriceID() *string {
 	return w.PriceID
 }
 
+func (w *WebhookDtoInvoiceLineItem) GetPriceType() *string {
+	if w == nil {
+		return nil
+	}
+	return w.PriceType
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetPriceUnit() *string {
+	if w == nil {
+		return nil
+	}
+	return w.PriceUnit
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetPriceUnitAmount() *string {
+	if w == nil {
+		return nil
+	}
+	return w.PriceUnitAmount
+}
+
 func (w *WebhookDtoInvoiceLineItem) GetQuantity() *string {
 	if w == nil {
 		return nil
 	}
 	return w.Quantity
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetSubscriptionLineItemID() *string {
+	if w == nil {
+		return nil
+	}
+	return w.SubscriptionLineItemID
 }

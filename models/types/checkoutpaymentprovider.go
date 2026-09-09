@@ -2,30 +2,24 @@
 
 package types
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 type CheckoutPaymentProvider string
 
 const (
-	CheckoutPaymentProviderRazorpay CheckoutPaymentProvider = "razorpay"
+	CheckoutPaymentProviderRazorpay  CheckoutPaymentProvider = "razorpay"
+	CheckoutPaymentProviderChargebee CheckoutPaymentProvider = "chargebee"
 )
 
 func (e CheckoutPaymentProvider) ToPointer() *CheckoutPaymentProvider {
 	return &e
 }
-func (e *CheckoutPaymentProvider) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *CheckoutPaymentProvider) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "razorpay", "chargebee":
+			return true
+		}
 	}
-	switch v {
-	case "razorpay":
-		*e = CheckoutPaymentProvider(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for CheckoutPaymentProvider: %v", v)
-	}
+	return false
 }

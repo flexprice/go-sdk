@@ -12,6 +12,7 @@
 * [UpdateInvoice](#updateinvoice) - Update invoice
 * [TriggerInvoiceCommsWebhook](#triggerinvoicecommswebhook) - Trigger invoice communication webhook
 * [FinalizeInvoice](#finalizeinvoice) - Finalize invoice
+* [ExecuteInvoiceModify](#executeinvoicemodify) - Execute invoice modification
 * [UpdateInvoicePaymentStatus](#updateinvoicepaymentstatus) - Update invoice payment status
 * [AttemptInvoicePayment](#attemptinvoicepayment) - Attempt invoice payment
 * [GetInvoicePdf](#getinvoicepdf) - Get invoice PDF
@@ -456,6 +457,63 @@ func main() {
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## ExecuteInvoiceModify
+
+Execute a modification on a draft or finalized invoice. Supports line item changes: add (bulk), update (one line item per call; the edit is versioned, so the line item id changes), and remove (bulk, soft delete). Totals are recalculated from the remaining line items; a manual edit marks the invoice as manually edited, which disables recompute. Modifying a FINALIZED invoice voids it and recreates it as a draft copy carrying all current data (description, billing period, due date, metadata, line items); the modification lands on the copy and the response returns the new draft — chain subsequent calls to the returned invoice id; a call that still targets the voided original is rejected with an error naming the replacement.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="executeInvoiceModify" method="post" path="/invoices/{id}/modify/execute" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Invoices.ExecuteInvoiceModify(ctx, "<id>", types.ExecuteInvoiceModifyRequest{
+        Type: types.InvoiceModifyTypeLineItem,
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.InvoiceModifyResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Invoice ID                                                                             |
+| `body`                                                                                 | [types.ExecuteInvoiceModifyRequest](../../models/types/executeinvoicemodifyrequest.md) | :heavy_check_mark:                                                                     | Modification request                                                                   |
+| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+
+### Response
+
+**[*dtos.ExecuteInvoiceModifyResponse](../../models/dtos/executeinvoicemodifyresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 

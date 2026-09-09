@@ -7,9 +7,13 @@ import (
 )
 
 type CheckoutPaymentProviderConfig struct {
-	CollectionMethod *CollectionMethod  `json:"collection_method,omitzero"`
-	MaxMandateLimit  *string            `json:"max_mandate_limit,omitzero"`
-	PaymentMethod    *PaymentMethodType `json:"payment_method,omitzero"`
+	CollectionMethod *CollectionMethod `json:"collection_method,omitzero"`
+	// CustomerNotPresent is the unattended/MIT opt-in. Zero value (omitted) means
+	// the customer is present, so a missed auto-charge may fall back to a hosted
+	// authorization link. Set true only from merchant-initiated paths (auto top-up).
+	CustomerNotPresent *bool              `json:"customer_not_present,omitzero"`
+	MaxMandateLimit    *string            `json:"max_mandate_limit,omitzero"`
+	PaymentMethod      *PaymentMethodType `json:"payment_method,omitzero"`
 }
 
 func (c CheckoutPaymentProviderConfig) MarshalJSON() ([]byte, error) {
@@ -28,6 +32,13 @@ func (c *CheckoutPaymentProviderConfig) GetCollectionMethod() *CollectionMethod 
 		return nil
 	}
 	return c.CollectionMethod
+}
+
+func (c *CheckoutPaymentProviderConfig) GetCustomerNotPresent() *bool {
+	if c == nil {
+		return nil
+	}
+	return c.CustomerNotPresent
 }
 
 func (c *CheckoutPaymentProviderConfig) GetMaxMandateLimit() *string {

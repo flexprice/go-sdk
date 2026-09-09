@@ -8,45 +8,39 @@ import (
 )
 
 type CheckoutSessionResponse struct {
-	Action      *CheckoutAction `json:"action,omitzero"`
-	CancelURL   *string         `json:"cancel_url,omitzero"`
-	CancelledAt *time.Time      `json:"cancelled_at,omitzero"`
-	// CheckoutInvoiceID and CheckoutPaymentID are set once the apply step
-	// creates the corresponding Flexprice entities (completed sessions only).
-	CheckoutInvoiceID *string                             `json:"checkout_invoice_id,omitzero"`
-	CheckoutPaymentID *string                             `json:"checkout_payment_id,omitzero"`
-	CheckoutStatus    *CheckoutStatus                     `json:"checkout_status,omitzero"`
-	CompletedAt       *time.Time                          `json:"completed_at,omitzero"`
-	Configuration     *CheckoutJSONBCheckoutConfiguration `json:"configuration,omitzero"`
-	CreatedAt         *time.Time                          `json:"created_at,omitzero"`
-	CreatedBy         *string                             `json:"created_by,omitzero"`
-	CustomerID        *string                             `json:"customer_id,omitzero"`
-	EnvironmentID     *string                             `json:"environment_id,omitzero"`
-	// ExpiresAt is required. A Temporal timer fires at this time for any
-	// session still in initiated|pending, marking it expired. The caller
-	// must create a new session after expiry (expire-and-restart model).
-	ExpiresAt *time.Time `json:"expires_at,omitzero"`
-	// FailureReason is a human-readable string set on failed sessions.
-	FailureReason *string `json:"failure_reason,omitzero"`
-	FailureURL    *string `json:"failure_url,omitzero"`
-	ID            *string `json:"id,omitzero"`
-	// IdempotencyKey is caller-supplied. It is unique only while the session
-	// is active (initiated|pending). The same key may be reused once the
-	// session reaches a terminal state (completed|failed|expired).
-	IdempotencyKey        *string                                     `json:"idempotency_key,omitzero"`
-	Metadata              map[string]string                           `json:"metadata,omitzero"`
-	PaymentAction         *PaymentAction                              `json:"payment_action,omitzero"`
-	PaymentProvider       *CheckoutPaymentProvider                    `json:"payment_provider,omitzero"`
-	PaymentProviderConfig *CheckoutJSONBCheckoutPaymentProviderConfig `json:"payment_provider_config,omitzero"`
-	ProviderResult        *CheckoutJSONBCheckoutProviderResult        `json:"provider_result,omitzero"`
-	Result                *CheckoutJSONBCheckoutResult                `json:"result,omitzero"`
-	Status                *Status                                     `json:"status,omitzero"`
-	// Redirect URLs sent to the payment provider. The provider redirects the
-	// user browser to the appropriate URL after the payment flow completes.
-	SuccessURL *string    `json:"success_url,omitzero"`
-	TenantID   *string    `json:"tenant_id,omitzero"`
-	UpdatedAt  *time.Time `json:"updated_at,omitzero"`
-	UpdatedBy  *string    `json:"updated_by,omitzero"`
+	Action            *CheckoutAction   `json:"action,omitzero"`
+	CancelURL         *string           `json:"cancel_url,omitzero"`
+	CancelledAt       *time.Time        `json:"cancelled_at,omitzero"`
+	CheckoutInvoiceID *string           `json:"checkout_invoice_id,omitzero"`
+	CheckoutPaymentID *string           `json:"checkout_payment_id,omitzero"`
+	CheckoutStatus    *CheckoutStatus   `json:"checkout_status,omitzero"`
+	CompletedAt       *time.Time        `json:"completed_at,omitzero"`
+	CreatedAt         *time.Time        `json:"created_at,omitzero"`
+	CustomerID        *string           `json:"customer_id,omitzero"`
+	ExpiresAt         *time.Time        `json:"expires_at,omitzero"`
+	FailureReason     *string           `json:"failure_reason,omitzero"`
+	FailureURL        *string           `json:"failure_url,omitzero"`
+	ID                *string           `json:"id,omitzero"`
+	IdempotencyKey    *string           `json:"idempotency_key,omitzero"`
+	Metadata          map[string]string `json:"metadata,omitzero"`
+	// NextPollAfterMs is how long a client should wait before reading again.
+	// Zero means stop — either the session is terminal, or this response did not
+	// come from a polling read.
+	NextPollAfterMs *int64                   `json:"next_poll_after_ms,omitzero"`
+	Payment         *CheckoutPaymentBlock    `json:"payment,omitzero"`
+	PaymentAction   *PaymentAction           `json:"payment_action,omitzero"`
+	PaymentProvider *CheckoutPaymentProvider `json:"payment_provider,omitzero"`
+	// Stale reports that this response is stored state that was not checked against
+	// the payment provider on this request — the read was debounced, or the gateway
+	// did not answer. A UI should say "still checking" rather than presenting a
+	// stale answer as fact.
+	Stale      *bool   `json:"stale,omitzero"`
+	SuccessURL *string `json:"success_url,omitzero"`
+	// Terminal reports whether the session has finished. Clients poll until this is
+	// true rather than hardcoding the status set, which would go stale if a status
+	// is ever added.
+	Terminal  *bool      `json:"terminal,omitzero"`
+	UpdatedAt *time.Time `json:"updated_at,omitzero"`
 }
 
 func (c CheckoutSessionResponse) MarshalJSON() ([]byte, error) {
@@ -109,13 +103,6 @@ func (c *CheckoutSessionResponse) GetCompletedAt() *time.Time {
 	return c.CompletedAt
 }
 
-func (c *CheckoutSessionResponse) GetConfiguration() *CheckoutJSONBCheckoutConfiguration {
-	if c == nil {
-		return nil
-	}
-	return c.Configuration
-}
-
 func (c *CheckoutSessionResponse) GetCreatedAt() *time.Time {
 	if c == nil {
 		return nil
@@ -123,25 +110,11 @@ func (c *CheckoutSessionResponse) GetCreatedAt() *time.Time {
 	return c.CreatedAt
 }
 
-func (c *CheckoutSessionResponse) GetCreatedBy() *string {
-	if c == nil {
-		return nil
-	}
-	return c.CreatedBy
-}
-
 func (c *CheckoutSessionResponse) GetCustomerID() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CustomerID
-}
-
-func (c *CheckoutSessionResponse) GetEnvironmentID() *string {
-	if c == nil {
-		return nil
-	}
-	return c.EnvironmentID
 }
 
 func (c *CheckoutSessionResponse) GetExpiresAt() *time.Time {
@@ -186,6 +159,20 @@ func (c *CheckoutSessionResponse) GetMetadata() map[string]string {
 	return c.Metadata
 }
 
+func (c *CheckoutSessionResponse) GetNextPollAfterMs() *int64 {
+	if c == nil {
+		return nil
+	}
+	return c.NextPollAfterMs
+}
+
+func (c *CheckoutSessionResponse) GetPayment() *CheckoutPaymentBlock {
+	if c == nil {
+		return nil
+	}
+	return c.Payment
+}
+
 func (c *CheckoutSessionResponse) GetPaymentAction() *PaymentAction {
 	if c == nil {
 		return nil
@@ -200,32 +187,11 @@ func (c *CheckoutSessionResponse) GetPaymentProvider() *CheckoutPaymentProvider 
 	return c.PaymentProvider
 }
 
-func (c *CheckoutSessionResponse) GetPaymentProviderConfig() *CheckoutJSONBCheckoutPaymentProviderConfig {
+func (c *CheckoutSessionResponse) GetStale() *bool {
 	if c == nil {
 		return nil
 	}
-	return c.PaymentProviderConfig
-}
-
-func (c *CheckoutSessionResponse) GetProviderResult() *CheckoutJSONBCheckoutProviderResult {
-	if c == nil {
-		return nil
-	}
-	return c.ProviderResult
-}
-
-func (c *CheckoutSessionResponse) GetResult() *CheckoutJSONBCheckoutResult {
-	if c == nil {
-		return nil
-	}
-	return c.Result
-}
-
-func (c *CheckoutSessionResponse) GetStatus() *Status {
-	if c == nil {
-		return nil
-	}
-	return c.Status
+	return c.Stale
 }
 
 func (c *CheckoutSessionResponse) GetSuccessURL() *string {
@@ -235,11 +201,11 @@ func (c *CheckoutSessionResponse) GetSuccessURL() *string {
 	return c.SuccessURL
 }
 
-func (c *CheckoutSessionResponse) GetTenantID() *string {
+func (c *CheckoutSessionResponse) GetTerminal() *bool {
 	if c == nil {
 		return nil
 	}
-	return c.TenantID
+	return c.Terminal
 }
 
 func (c *CheckoutSessionResponse) GetUpdatedAt() *time.Time {
@@ -247,11 +213,4 @@ func (c *CheckoutSessionResponse) GetUpdatedAt() *time.Time {
 		return nil
 	}
 	return c.UpdatedAt
-}
-
-func (c *CheckoutSessionResponse) GetUpdatedBy() *string {
-	if c == nil {
-		return nil
-	}
-	return c.UpdatedBy
 }

@@ -8,32 +8,44 @@ import (
 )
 
 type WebhookDtoInvoice struct {
-	AmountDue       *string                     `json:"amount_due,omitzero"`
-	AmountPaid      *string                     `json:"amount_paid,omitzero"`
-	AmountRemaining *string                     `json:"amount_remaining,omitzero"`
-	BillingReason   *string                     `json:"billing_reason,omitzero"`
-	Currency        *string                     `json:"currency,omitzero"`
-	Customer        *WebhookDtoCustomer         `json:"customer,omitzero"`
-	CustomerID      *string                     `json:"customer_id,omitzero"`
-	DueDate         *time.Time                  `json:"due_date,omitzero"`
-	EnvironmentID   *string                     `json:"environment_id,omitzero"`
-	FinalizedAt     *time.Time                  `json:"finalized_at,omitzero"`
-	ID              *string                     `json:"id,omitzero"`
-	InvoiceNumber   *string                     `json:"invoice_number,omitzero"`
-	InvoicePdfURL   *string                     `json:"invoice_pdf_url,omitzero"`
-	InvoiceStatus   *InvoiceStatus              `json:"invoice_status,omitzero"`
-	InvoiceType     *InvoiceType                `json:"invoice_type,omitzero"`
-	LineItems       []WebhookDtoInvoiceLineItem `json:"line_items,omitzero"`
-	Metadata        map[string]string           `json:"metadata,omitzero"`
-	PaidAt          *time.Time                  `json:"paid_at,omitzero"`
-	PaymentStatus   *PaymentStatus              `json:"payment_status,omitzero"`
-	PeriodEnd       *time.Time                  `json:"period_end,omitzero"`
-	PeriodStart     *time.Time                  `json:"period_start,omitzero"`
-	Subscription    *WebhookDtoSubscription     `json:"subscription,omitzero"`
-	SubscriptionID  *string                     `json:"subscription_id,omitzero"`
-	Subtotal        *string                     `json:"subtotal,omitzero"`
-	Total           *string                     `json:"total,omitzero"`
-	VoidedAt        *time.Time                  `json:"voided_at,omitzero"`
+	AmountDue                  *string                       `json:"amount_due,omitzero"`
+	AmountPaid                 *string                       `json:"amount_paid,omitzero"`
+	AmountRemaining            *string                       `json:"amount_remaining,omitzero"`
+	BillingPeriod              *string                       `json:"billing_period,omitzero"`
+	BillingReason              *string                       `json:"billing_reason,omitzero"`
+	BillingSequence            *int64                        `json:"billing_sequence,omitzero"`
+	CouponApplications         []WebhookDtoCouponApplication `json:"coupon_applications,omitzero"`
+	CreatedAt                  *time.Time                    `json:"created_at,omitzero"`
+	Currency                   *string                       `json:"currency,omitzero"`
+	Customer                   *WebhookDtoCustomer           `json:"customer,omitzero"`
+	CustomerID                 *string                       `json:"customer_id,omitzero"`
+	Description                *string                       `json:"description,omitzero"`
+	DueDate                    *time.Time                    `json:"due_date,omitzero"`
+	EnvironmentID              *string                       `json:"environment_id,omitzero"`
+	FinalizedAt                *time.Time                    `json:"finalized_at,omitzero"`
+	ID                         *string                       `json:"id,omitzero"`
+	IdempotencyKey             *string                       `json:"idempotency_key,omitzero"`
+	InvoiceNumber              *string                       `json:"invoice_number,omitzero"`
+	InvoicePdfURL              *string                       `json:"invoice_pdf_url,omitzero"`
+	InvoiceStatus              *InvoiceStatus                `json:"invoice_status,omitzero"`
+	InvoiceType                *InvoiceType                  `json:"invoice_type,omitzero"`
+	LineItems                  []WebhookDtoInvoiceLineItem   `json:"line_items,omitzero"`
+	Metadata                   map[string]string             `json:"metadata,omitzero"`
+	PaidAt                     *time.Time                    `json:"paid_at,omitzero"`
+	PaymentStatus              *PaymentStatus                `json:"payment_status,omitzero"`
+	PeriodEnd                  *time.Time                    `json:"period_end,omitzero"`
+	PeriodStart                *time.Time                    `json:"period_start,omitzero"`
+	Subscription               *WebhookDtoSubscription       `json:"subscription,omitzero"`
+	SubscriptionID             *string                       `json:"subscription_id,omitzero"`
+	Subtotal                   *string                       `json:"subtotal,omitzero"`
+	TaxSummary                 *TaxSummary                   `json:"tax_summary,omitzero"`
+	Taxes                      []WebhookDtoTaxApplied        `json:"taxes,omitzero"`
+	Total                      *string                       `json:"total,omitzero"`
+	TotalDiscount              *string                       `json:"total_discount,omitzero"`
+	TotalPrepaidCreditsApplied *string                       `json:"total_prepaid_credits_applied,omitzero"`
+	TotalTax                   *string                       `json:"total_tax,omitzero"`
+	UpdatedAt                  *time.Time                    `json:"updated_at,omitzero"`
+	VoidedAt                   *time.Time                    `json:"voided_at,omitzero"`
 }
 
 func (w WebhookDtoInvoice) MarshalJSON() ([]byte, error) {
@@ -68,11 +80,39 @@ func (w *WebhookDtoInvoice) GetAmountRemaining() *string {
 	return w.AmountRemaining
 }
 
+func (w *WebhookDtoInvoice) GetBillingPeriod() *string {
+	if w == nil {
+		return nil
+	}
+	return w.BillingPeriod
+}
+
 func (w *WebhookDtoInvoice) GetBillingReason() *string {
 	if w == nil {
 		return nil
 	}
 	return w.BillingReason
+}
+
+func (w *WebhookDtoInvoice) GetBillingSequence() *int64 {
+	if w == nil {
+		return nil
+	}
+	return w.BillingSequence
+}
+
+func (w *WebhookDtoInvoice) GetCouponApplications() []WebhookDtoCouponApplication {
+	if w == nil {
+		return nil
+	}
+	return w.CouponApplications
+}
+
+func (w *WebhookDtoInvoice) GetCreatedAt() *time.Time {
+	if w == nil {
+		return nil
+	}
+	return w.CreatedAt
 }
 
 func (w *WebhookDtoInvoice) GetCurrency() *string {
@@ -94,6 +134,13 @@ func (w *WebhookDtoInvoice) GetCustomerID() *string {
 		return nil
 	}
 	return w.CustomerID
+}
+
+func (w *WebhookDtoInvoice) GetDescription() *string {
+	if w == nil {
+		return nil
+	}
+	return w.Description
 }
 
 func (w *WebhookDtoInvoice) GetDueDate() *time.Time {
@@ -122,6 +169,13 @@ func (w *WebhookDtoInvoice) GetID() *string {
 		return nil
 	}
 	return w.ID
+}
+
+func (w *WebhookDtoInvoice) GetIdempotencyKey() *string {
+	if w == nil {
+		return nil
+	}
+	return w.IdempotencyKey
 }
 
 func (w *WebhookDtoInvoice) GetInvoiceNumber() *string {
@@ -215,11 +269,53 @@ func (w *WebhookDtoInvoice) GetSubtotal() *string {
 	return w.Subtotal
 }
 
+func (w *WebhookDtoInvoice) GetTaxSummary() *TaxSummary {
+	if w == nil {
+		return nil
+	}
+	return w.TaxSummary
+}
+
+func (w *WebhookDtoInvoice) GetTaxes() []WebhookDtoTaxApplied {
+	if w == nil {
+		return nil
+	}
+	return w.Taxes
+}
+
 func (w *WebhookDtoInvoice) GetTotal() *string {
 	if w == nil {
 		return nil
 	}
 	return w.Total
+}
+
+func (w *WebhookDtoInvoice) GetTotalDiscount() *string {
+	if w == nil {
+		return nil
+	}
+	return w.TotalDiscount
+}
+
+func (w *WebhookDtoInvoice) GetTotalPrepaidCreditsApplied() *string {
+	if w == nil {
+		return nil
+	}
+	return w.TotalPrepaidCreditsApplied
+}
+
+func (w *WebhookDtoInvoice) GetTotalTax() *string {
+	if w == nil {
+		return nil
+	}
+	return w.TotalTax
+}
+
+func (w *WebhookDtoInvoice) GetUpdatedAt() *time.Time {
+	if w == nil {
+		return nil
+	}
+	return w.UpdatedAt
 }
 
 func (w *WebhookDtoInvoice) GetVoidedAt() *time.Time {

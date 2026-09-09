@@ -21,6 +21,7 @@ type CreateCreditNoteRequest struct {
 	// process_credit_note is a flag to process the credit note after creation
 	ProcessCreditNote *bool            `default:"true" json:"process_credit_note"`
 	Reason            CreditNoteReason `json:"reason"`
+	RefundTarget      *RefundTarget    `json:"refund_target,omitzero"`
 }
 
 func (c CreateCreditNoteRequest) MarshalJSON() ([]byte, error) {
@@ -88,4 +89,11 @@ func (c *CreateCreditNoteRequest) GetReason() CreditNoteReason {
 		return CreditNoteReason("")
 	}
 	return c.Reason
+}
+
+func (c *CreateCreditNoteRequest) GetRefundTarget() *RefundTarget {
+	if c == nil {
+		return nil
+	}
+	return c.RefundTarget
 }

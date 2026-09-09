@@ -9,7 +9,7 @@ import (
 
 type GetSubscriptionScheduleRequest struct {
 	// Schedule ID
-	ID string `pathParam:"style=simple,explode=false,name=id"`
+	ScheduleID string `pathParam:"style=simple,explode=false,name=schedule_id"`
 }
 
 func (g GetSubscriptionScheduleRequest) MarshalJSON() ([]byte, error) {
@@ -17,17 +17,17 @@ func (g GetSubscriptionScheduleRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetSubscriptionScheduleRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"schedule_id"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (g *GetSubscriptionScheduleRequest) GetID() string {
+func (g *GetSubscriptionScheduleRequest) GetScheduleID() string {
 	if g == nil {
 		return ""
 	}
-	return g.ID
+	return g.ScheduleID
 }
 
 type GetSubscriptionScheduleResponse struct {

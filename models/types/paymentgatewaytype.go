@@ -10,12 +10,13 @@ import (
 type PaymentGatewayType string
 
 const (
-	PaymentGatewayTypeStripe   PaymentGatewayType = "stripe"
-	PaymentGatewayTypeRazorpay PaymentGatewayType = "razorpay"
-	PaymentGatewayTypeNomod    PaymentGatewayType = "nomod"
-	PaymentGatewayTypeMoyasar  PaymentGatewayType = "moyasar"
-	PaymentGatewayTypePaddle   PaymentGatewayType = "paddle"
-	PaymentGatewayTypeWhop     PaymentGatewayType = "whop"
+	PaymentGatewayTypeStripe    PaymentGatewayType = "stripe"
+	PaymentGatewayTypeRazorpay  PaymentGatewayType = "razorpay"
+	PaymentGatewayTypeNomod     PaymentGatewayType = "nomod"
+	PaymentGatewayTypeMoyasar   PaymentGatewayType = "moyasar"
+	PaymentGatewayTypePaddle    PaymentGatewayType = "paddle"
+	PaymentGatewayTypeWhop      PaymentGatewayType = "whop"
+	PaymentGatewayTypeChargebee PaymentGatewayType = "chargebee"
 )
 
 func (e PaymentGatewayType) ToPointer() *PaymentGatewayType {
@@ -38,6 +39,8 @@ func (e *PaymentGatewayType) UnmarshalJSON(data []byte) error {
 	case "paddle":
 		fallthrough
 	case "whop":
+		fallthrough
+	case "chargebee":
 		*e = PaymentGatewayType(v)
 		return nil
 	default:

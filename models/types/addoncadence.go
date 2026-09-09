@@ -2,6 +2,11 @@
 
 package types
 
+import (
+	"encoding/json"
+	"fmt"
+)
+
 type AddonCadence string
 
 const (
@@ -12,14 +17,18 @@ const (
 func (e AddonCadence) ToPointer() *AddonCadence {
 	return &e
 }
-
-// IsExact returns true if the value matches a known enum value, false otherwise.
-func (e *AddonCadence) IsExact() bool {
-	if e != nil {
-		switch *e {
-		case "onetime", "recurring":
-			return true
-		}
+func (e *AddonCadence) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
 	}
-	return false
+	switch v {
+	case "onetime":
+		fallthrough
+	case "recurring":
+		*e = AddonCadence(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for AddonCadence: %v", v)
+	}
 }

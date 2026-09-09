@@ -10,6 +10,9 @@
 * [QuerySubscriptionLineItems](#querysubscriptionlineitems) - Search subscription line items
 * [UpdateSubscriptionLineItem](#updatesubscriptionlineitem) - Update subscription line item
 * [DeleteSubscriptionLineItem](#deletesubscriptionlineitem) - Delete subscription line item
+* [ListAllSubscriptionSchedules](#listallsubscriptionschedules) - List all subscription schedules
+* [GetSubscriptionSchedule](#getsubscriptionschedule) - Get subscription schedule
+* [CancelSubscriptionSchedule](#cancelsubscriptionschedule) - Cancel subscription schedule
 * [QuerySubscription](#querysubscription) - Query subscriptions
 * [GetSubscriptionUsage](#getsubscriptionusage) - Get usage by subscription
 * [GetSubscription](#getsubscription) - Get subscription
@@ -26,11 +29,8 @@
 * [CreateSubscriptionLineItem](#createsubscriptionlineitem) - Create subscription line item
 * [ExecuteSubscriptionModify](#executesubscriptionmodify) - Execute subscription modification
 * [PreviewSubscriptionModify](#previewsubscriptionmodify) - Preview subscription modification
-* [GetSubscriptionV2](#getsubscriptionv2) - Get subscription (V2)
-* [ListAllSubscriptionSchedules](#listallsubscriptionschedules) - List all subscription schedules
-* [GetSubscriptionSchedule](#getsubscriptionschedule) - Get subscription schedule
-* [CancelSubscriptionSchedule](#cancelsubscriptionschedule) - Cancel subscription schedule
 * [ListSubscriptionSchedules](#listsubscriptionschedules) - List subscription schedules
+* [GetSubscriptionV2](#getsubscriptionv2) - Get subscription (V2)
 
 ## CreateSubscription
 
@@ -373,6 +373,163 @@ func main() {
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 
+## ListAllSubscriptionSchedules
+
+Use when listing or searching scheduled changes across subscriptions (e.g. admin view). Returns schedules with optional filtering.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="listAllSubscriptionSchedules" method="get" path="/subscriptions/schedules" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Subscriptions.ListAllSubscriptionSchedules(ctx, nil, nil, nil, nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.GetPendingSchedulesResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `pendingOnly`                                         | `*bool`                                               | :heavy_minus_sign:                                    | Filter to pending schedules only                      |
+| `subscriptionID`                                      | `*string`                                             | :heavy_minus_sign:                                    | Filter by subscription ID                             |
+| `limit`                                               | `*int64`                                              | :heavy_minus_sign:                                    | Limit results                                         |
+| `offset`                                              | `*int64`                                              | :heavy_minus_sign:                                    | Offset for pagination                                 |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.ListAllSubscriptionSchedulesResponse](../../models/dtos/listallsubscriptionschedulesresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## GetSubscriptionSchedule
+
+Use when you need to load a single scheduled change (e.g. to show when a plan change or renewal takes effect).
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getSubscriptionSchedule" method="get" path="/subscriptions/schedules/{schedule_id}" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Subscriptions.GetSubscriptionSchedule(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SubscriptionScheduleResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `scheduleID`                                          | `string`                                              | :heavy_check_mark:                                    | Schedule ID                                           |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.GetSubscriptionScheduleResponse](../../models/dtos/getsubscriptionscheduleresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## CancelSubscriptionSchedule
+
+Use when cancelling a scheduled change (e.g. customer changed mind). Identify by schedule ID in path or by subscription ID + schedule type in body.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="cancelSubscriptionSchedule" method="post" path="/subscriptions/schedules/{schedule_id}/cancel" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Subscriptions.CancelSubscriptionSchedule(ctx, "<id>", nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.CancelScheduleResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `ctx`                                                                       | [context.Context](https://pkg.go.dev/context#Context)                       | :heavy_check_mark:                                                          | The context to use for the request.                                         |
+| `scheduleID`                                                                | `string`                                                                    | :heavy_check_mark:                                                          | Schedule ID (optional if using request body)                                |
+| `body`                                                                      | [*types.CancelScheduleRequest](../../models/types/cancelschedulerequest.md) | :heavy_minus_sign:                                                          | Cancel request (optional if using path parameter)                           |
+| `opts`                                                                      | [][dtos.Option](../../models/dtos/option.md)                                | :heavy_minus_sign:                                                          | The options for this request.                                               |
+
+### Response
+
+**[*dtos.CancelSubscriptionScheduleResponse](../../models/dtos/cancelsubscriptionscheduleresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
 ## QuerySubscription
 
 Use when listing or searching subscriptions (e.g. admin view or customer subscription list). Returns a paginated list; supports filtering by customer, plan, status.
@@ -680,7 +837,7 @@ func main() {
     if err != nil {
         log.Fatal(err)
     }
-    if res.AddonAssociationResponses != nil {
+    if res.ListAddonAssociationsResponse != nil {
         // handle response
     }
 }
@@ -1285,6 +1442,57 @@ func main() {
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 
+## ListSubscriptionSchedules
+
+Use when listing scheduled changes for a subscription (e.g. upcoming plan change or renewal). Returns all schedules for that subscription.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="listSubscriptionSchedules" method="get" path="/subscriptions/{id}/schedules" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Subscriptions.ListSubscriptionSchedules(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.GetPendingSchedulesResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Subscription ID                                       |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.ListSubscriptionSchedulesResponse](../../models/dtos/listsubscriptionschedulesresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
 ## GetSubscriptionV2
 
 Use when you need a subscription with related data (line items, prices, plan). Supports expand for detailed payloads without extra round-trips.
@@ -1338,211 +1546,3 @@ func main() {
 | errors.ErrorResponse | 400                  | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
-
-## ListAllSubscriptionSchedules
-
-Use when listing or searching scheduled changes across subscriptions (e.g. admin view). Returns schedules with optional filtering.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="listAllSubscriptionSchedules" method="get" path="/v1/subscription-schedules" -->
-```go
-package main
-
-import(
-	"context"
-	flexprice "github.com/flexprice/go-sdk/v2"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.Subscriptions.ListAllSubscriptionSchedules(ctx, nil, nil, nil, nil)
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.GetPendingSchedulesResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `pendingOnly`                                         | `*bool`                                               | :heavy_minus_sign:                                    | Filter to pending schedules only                      |
-| `subscriptionID`                                      | `*string`                                             | :heavy_minus_sign:                                    | Filter by subscription ID                             |
-| `limit`                                               | `*int64`                                              | :heavy_minus_sign:                                    | Limit results                                         |
-| `offset`                                              | `*int64`                                              | :heavy_minus_sign:                                    | Offset for pagination                                 |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
-
-### Response
-
-**[*dtos.ListAllSubscriptionSchedulesResponse](../../models/dtos/listallsubscriptionschedulesresponse.md), error**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
-
-## GetSubscriptionSchedule
-
-Use when you need to load a single scheduled change (e.g. to show when a plan change or renewal takes effect).
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="getSubscriptionSchedule" method="get" path="/v1/subscription-schedules/{id}" -->
-```go
-package main
-
-import(
-	"context"
-	flexprice "github.com/flexprice/go-sdk/v2"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.Subscriptions.GetSubscriptionSchedule(ctx, "<id>")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.SubscriptionScheduleResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Schedule ID                                           |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
-
-### Response
-
-**[*dtos.GetSubscriptionScheduleResponse](../../models/dtos/getsubscriptionscheduleresponse.md), error**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
-
-## CancelSubscriptionSchedule
-
-Use when cancelling a scheduled change (e.g. customer changed mind). Identify by schedule ID in path or by subscription ID + schedule type in body.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="cancelSubscriptionSchedule" method="post" path="/v1/subscriptions/schedules/{schedule_id}/cancel" -->
-```go
-package main
-
-import(
-	"context"
-	flexprice "github.com/flexprice/go-sdk/v2"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.Subscriptions.CancelSubscriptionSchedule(ctx, "<id>", nil)
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.CancelScheduleResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
-| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `ctx`                                                                       | [context.Context](https://pkg.go.dev/context#Context)                       | :heavy_check_mark:                                                          | The context to use for the request.                                         |
-| `scheduleID`                                                                | `string`                                                                    | :heavy_check_mark:                                                          | Schedule ID (optional if using request body)                                |
-| `body`                                                                      | [*types.CancelScheduleRequest](../../models/types/cancelschedulerequest.md) | :heavy_minus_sign:                                                          | Cancel request (optional if using path parameter)                           |
-| `opts`                                                                      | [][dtos.Option](../../models/dtos/option.md)                                | :heavy_minus_sign:                                                          | The options for this request.                                               |
-
-### Response
-
-**[*dtos.CancelSubscriptionScheduleResponse](../../models/dtos/cancelsubscriptionscheduleresponse.md), error**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |
-
-## ListSubscriptionSchedules
-
-Use when listing scheduled changes for a subscription (e.g. upcoming plan change or renewal). Returns all schedules for that subscription.
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="listSubscriptionSchedules" method="get" path="/v1/subscriptions/{subscription_id}/schedules" -->
-```go
-package main
-
-import(
-	"context"
-	flexprice "github.com/flexprice/go-sdk/v2"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.Subscriptions.ListSubscriptionSchedules(ctx, "<id>")
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.GetPendingSchedulesResponse != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `subscriptionID`                                      | `string`                                              | :heavy_check_mark:                                    | Subscription ID                                       |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
-
-### Response
-
-**[*dtos.ListSubscriptionSchedulesResponse](../../models/dtos/listsubscriptionschedulesresponse.md), error**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.APIError | 4XX, 5XX        | \*/\*           |

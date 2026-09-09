@@ -8,16 +8,19 @@ import (
 )
 
 type UpdatePaymentRequest struct {
-	ErrorMessage     *string           `json:"error_message,omitzero"`
-	FailedAt         *time.Time        `json:"failed_at,omitzero"`
-	GatewayPaymentID *string           `json:"gateway_payment_id,omitzero"`
-	Metadata         map[string]string `json:"metadata,omitzero"`
-	PaymentGateway   *string           `json:"payment_gateway,omitzero"`
-	PaymentMethodID  *string           `json:"payment_method_id,omitzero"`
-	PaymentStatus    *string           `json:"payment_status,omitzero"`
-	RefundedAt       *time.Time        `json:"refunded_at,omitzero"`
-	SucceededAt      *time.Time        `json:"succeeded_at,omitzero"`
-	VoidedAt         *time.Time        `json:"voided_at,omitzero"`
+	ErrorMessage     *string    `json:"error_message,omitzero"`
+	FailedAt         *time.Time `json:"failed_at,omitzero"`
+	GatewayPaymentID *string    `json:"gateway_payment_id,omitzero"`
+	// GatewayTrackingID is the pre-payment handle at the gateway — link, hosted page,
+	// invoice or order — recorded at checkout creation so the payment can be reconciled.
+	GatewayTrackingID *string           `json:"gateway_tracking_id,omitzero"`
+	Metadata          map[string]string `json:"metadata,omitzero"`
+	PaymentGateway    *string           `json:"payment_gateway,omitzero"`
+	PaymentMethodID   *string           `json:"payment_method_id,omitzero"`
+	PaymentStatus     *string           `json:"payment_status,omitzero"`
+	RefundedAt        *time.Time        `json:"refunded_at,omitzero"`
+	SucceededAt       *time.Time        `json:"succeeded_at,omitzero"`
+	VoidedAt          *time.Time        `json:"voided_at,omitzero"`
 }
 
 func (u UpdatePaymentRequest) MarshalJSON() ([]byte, error) {
@@ -50,6 +53,13 @@ func (u *UpdatePaymentRequest) GetGatewayPaymentID() *string {
 		return nil
 	}
 	return u.GatewayPaymentID
+}
+
+func (u *UpdatePaymentRequest) GetGatewayTrackingID() *string {
+	if u == nil {
+		return nil
+	}
+	return u.GatewayTrackingID
 }
 
 func (u *UpdatePaymentRequest) GetMetadata() map[string]string {

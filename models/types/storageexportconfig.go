@@ -6,71 +6,68 @@ import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
 )
 
-type S3ExportConfig struct {
-	// S3 bucket name
+type StorageExportConfig struct {
+	// Storage bucket name
 	Bucket      *string            `json:"bucket,omitzero"`
 	Compression *S3CompressionType `json:"compression,omitzero"`
 	Encryption  *S3EncryptionType  `json:"encryption,omitzero"`
-	// If true, use Flexprice-managed S3 credentials instead of user-provided
+	// If true, use Flexprice-managed storage credentials instead of user-provided
 	IsFlexpriceManaged *bool `json:"is_flexprice_managed,omitzero"`
-	// Optional prefix for S3 keys (e.g., "flexprice-exports/")
+	// Optional prefix for object keys (e.g., "flexprice-exports/")
 	KeyPrefix *string `json:"key_prefix,omitzero"`
-	// AWS region (e.g., "us-west-2")
+	// Cloud region (e.g., "us-west-2"); unused for GCS
 	Region *string `json:"region,omitzero"`
 }
 
-func (s S3ExportConfig) MarshalJSON() ([]byte, error) {
+func (s StorageExportConfig) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(s, "", false)
 }
 
-func (s *S3ExportConfig) UnmarshalJSON(data []byte) error {
+func (s *StorageExportConfig) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *S3ExportConfig) GetBucket() *string {
+func (s *StorageExportConfig) GetBucket() *string {
 	if s == nil {
 		return nil
 	}
 	return s.Bucket
 }
 
-func (s *S3ExportConfig) GetCompression() *S3CompressionType {
+func (s *StorageExportConfig) GetCompression() *S3CompressionType {
 	if s == nil {
 		return nil
 	}
 	return s.Compression
 }
 
-func (s *S3ExportConfig) GetEncryption() *S3EncryptionType {
+func (s *StorageExportConfig) GetEncryption() *S3EncryptionType {
 	if s == nil {
 		return nil
 	}
 	return s.Encryption
 }
 
-func (s *S3ExportConfig) GetIsFlexpriceManaged() *bool {
+func (s *StorageExportConfig) GetIsFlexpriceManaged() *bool {
 	if s == nil {
 		return nil
 	}
 	return s.IsFlexpriceManaged
 }
 
-func (s *S3ExportConfig) GetKeyPrefix() *string {
+func (s *StorageExportConfig) GetKeyPrefix() *string {
 	if s == nil {
 		return nil
 	}
 	return s.KeyPrefix
 }
 
-func (s *S3ExportConfig) GetRegion() *string {
+func (s *StorageExportConfig) GetRegion() *string {
 	if s == nil {
 		return nil
 	}
 	return s.Region
 }
-
-// #region class-body-s3exportconfig
-// #endregion class-body-s3exportconfig

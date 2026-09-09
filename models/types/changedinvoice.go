@@ -8,10 +8,9 @@ import (
 
 type ChangedInvoice struct {
 	// created (proration invoice) | wallet_credit (downgrade credit)
-	Action  *ChangedInvoiceAction `json:"action,omitzero"`
-	ID      *string               `json:"id,omitzero"`
-	Invoice *InvoiceResponse      `json:"invoice,omitzero"`
-	// preview | issued | INITIATED | PENDING | PROCESSING | SUCCEEDED | OVERPAID | FAILED | REFUNDED | PARTIALLY_REFUNDED
+	Action            *ChangedInvoiceAction      `json:"action,omitzero"`
+	ID                *string                    `json:"id,omitzero"`
+	Invoice           *InvoiceResponse           `json:"invoice,omitzero"`
 	Status            *ChangedInvoiceStatus      `json:"status,omitzero"`
 	WalletTransaction *WalletTransactionResponse `json:"wallet_transaction,omitzero"`
 }

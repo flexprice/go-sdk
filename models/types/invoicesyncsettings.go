@@ -7,15 +7,21 @@ import (
 )
 
 type InvoiceSyncSettings struct {
-	// MetadataCustomFields copies metadata values onto Zoho invoice custom fields
-	// verbatim.
-	MetadataCustomFields      []MetadataCustomField      `json:"metadata_custom_fields,omitzero"`
-	NormalizeFixedTo          *BillingPeriod             `json:"normalize_fixed_to,omitzero"`
+	// Zoho chart-of-accounts id ("Deposit To"). Empty omits account_id, leaving Zoho's
+	// Undeposited Funds default.a
+	DepositToAccountID *string `json:"deposit_to_account_id,omitzero"`
+	// Fixed values written to Zoho invoice custom fields on every sync, independent of
+	// any metadata source.
+	GlobalCustomFields []GlobalCustomField `json:"global_custom_fields,omitzero"`
+	// Copies metadata values onto Zoho invoice custom fields verbatim.
+	MetadataCustomFields []MetadataCustomField `json:"metadata_custom_fields,omitzero"`
+	NormalizeFixedTo     *BillingPeriod        `json:"normalize_fixed_to,omitzero"`
+	// Zoho payment modes are merchant-editable free strings with no id, so this is passed
+	// through verbatim. Empty means DefaultZohoPaymentMode.
+	PaymentMode               *string                    `json:"payment_mode,omitzero"`
 	ServicePeriodCustomFields *ServicePeriodCustomFields `json:"service_period_custom_fields,omitzero"`
-	// SubmitForApproval submits the synced invoice into the merchant's Zoho Books approval
-	// flow before recording payment. Zoho rejects payments on draft invoices, and merchants
-	// configure a Zoho auto-approval rule for FlexPrice-sent invoices, so we submit, wait for
-	// that rule to fire, then pay.
+	// Zoho rejects payments on draft invoices, and merchants configure a Zoho auto-approval
+	// rule for FlexPrice-sent invoices, so we submit, wait for that rule to fire, then pay.
 	SubmitForApproval *bool `json:"submit_for_approval,omitzero"`
 }
 
@@ -30,6 +36,20 @@ func (i *InvoiceSyncSettings) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (i *InvoiceSyncSettings) GetDepositToAccountID() *string {
+	if i == nil {
+		return nil
+	}
+	return i.DepositToAccountID
+}
+
+func (i *InvoiceSyncSettings) GetGlobalCustomFields() []GlobalCustomField {
+	if i == nil {
+		return nil
+	}
+	return i.GlobalCustomFields
+}
+
 func (i *InvoiceSyncSettings) GetMetadataCustomFields() []MetadataCustomField {
 	if i == nil {
 		return nil
@@ -42,6 +62,13 @@ func (i *InvoiceSyncSettings) GetNormalizeFixedTo() *BillingPeriod {
 		return nil
 	}
 	return i.NormalizeFixedTo
+}
+
+func (i *InvoiceSyncSettings) GetPaymentMode() *string {
+	if i == nil {
+		return nil
+	}
+	return i.PaymentMode
 }
 
 func (i *InvoiceSyncSettings) GetServicePeriodCustomFields() *ServicePeriodCustomFields {

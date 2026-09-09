@@ -8,11 +8,15 @@ import (
 )
 
 value := types.CheckoutPaymentProviderRazorpay
+
+// Open enum: custom values can be created with a direct type cast
+custom := types.CheckoutPaymentProvider("custom_value")
 ```
 
 
 ## Values
 
-| Name                              | Value                             |
-| --------------------------------- | --------------------------------- |
-| `CheckoutPaymentProviderRazorpay` | razorpay                          |
+| Name                               | Value                              |
+| ---------------------------------- | ---------------------------------- |
+| `CheckoutPaymentProviderRazorpay`  | razorpay                           |
+| `CheckoutPaymentProviderChargebee` | chargebee                          |

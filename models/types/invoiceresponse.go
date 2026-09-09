@@ -28,7 +28,8 @@ type InvoiceResponse struct {
 	CreatedAt          *time.Time                  `json:"created_at,omitzero"`
 	CreatedBy          *string                     `json:"created_by,omitzero"`
 	// currency is the three-letter ISO currency code (e.g., USD, EUR, GBP) that applies to all monetary amounts on this invoice
-	Currency *string `json:"currency,omitzero"`
+	Currency       *string         `json:"currency,omitzero"`
+	CustomCurrency *CustomCurrency `json:"custom_currency,omitzero"`
 	// Customer response object containing all customer information
 	Customer *CustomerResponse `json:"customer,omitzero"`
 	// customer_id is the ID of the customer who will receive this invoice
@@ -192,6 +193,13 @@ func (i *InvoiceResponse) GetCurrency() *string {
 		return nil
 	}
 	return i.Currency
+}
+
+func (i *InvoiceResponse) GetCustomCurrency() *CustomCurrency {
+	if i == nil {
+		return nil
+	}
+	return i.CustomCurrency
 }
 
 func (i *InvoiceResponse) GetCustomer() *CustomerResponse {

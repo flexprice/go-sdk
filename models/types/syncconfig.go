@@ -16,7 +16,7 @@ type SyncConfig struct {
 	Plan                *EntitySyncConfig         `json:"plan,omitzero"`
 	Price               *EntitySyncConfig         `json:"price,omitzero"`
 	Quote               *EntitySyncConfig         `json:"quote,omitzero"`
-	S3                  *S3ExportConfig           `json:"s3,omitzero"`
+	S3                  *StorageExportConfig      `json:"s3,omitzero"`
 	Subscription        *EntitySyncConfig         `json:"subscription,omitzero"`
 }
 
@@ -94,7 +94,7 @@ func (s *SyncConfig) GetQuote() *EntitySyncConfig {
 	return s.Quote
 }
 
-func (s *SyncConfig) GetS3() *S3ExportConfig {
+func (s *SyncConfig) GetS3() *StorageExportConfig {
 	if s == nil {
 		return nil
 	}

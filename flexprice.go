@@ -2,7 +2,7 @@
 
 package flexprice
 
-// Generated from OpenAPI doc version 1.0 and generator version 2.933.0
+// Generated from OpenAPI doc version 1.0 and generator version 2.935.1
 
 import (
 	"context"
@@ -77,6 +77,7 @@ type Flexprice struct {
 	Prices             *Prices
 	PriceUnits         *PriceUnits
 	Rbac               *Rbac
+	Refunds            *Refunds
 	Secrets            *Secrets
 	Subscriptions      *Subscriptions
 	Tasks              *Tasks
@@ -164,10 +165,13 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.29",
+		SDKVersion: "2.1.30",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:  "speakeasy-sdk/go 2.1.29 2.933.0 1.0 github.com/flexprice/go-sdk/v2",
-			ServerList: ServerList,
+			UserAgent:         "speakeasy-sdk/go 2.1.30 2.935.1 1.0 github.com/flexprice/go-sdk/v2",
+			SDKVersion:        "2.1.30",
+			GenVersion:        "2.935.1",
+			OpenAPIDocVersion: "1.0",
+			ServerList:        ServerList,
 		},
 		hooks: hooks.New(),
 	}
@@ -206,6 +210,7 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.Prices = newPrices(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.PriceUnits = newPriceUnits(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Rbac = newRbac(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Refunds = newRefunds(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Secrets = newSecrets(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Subscriptions = newSubscriptions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Tasks = newTasks(sdk, sdk.sdkConfiguration, sdk.hooks)
