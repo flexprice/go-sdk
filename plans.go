@@ -33,7 +33,7 @@ func newPlans(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hook
 
 // CreatePlan - Create plan
 // Use when defining a new pricing plan (e.g. Free, Pro, Enterprise). Attach prices and entitlements; customers subscribe to plans.
-func (s *Plans) CreatePlan(ctx context.Context, request types.CreatePlanRequest, security dtos.CreatePlanSecurity, opts ...dtos.Option) (*dtos.CreatePlanResponse, error) {
+func (s *Plans) CreatePlan(ctx context.Context, request types.CreatePlanRequest, opts ...dtos.Option) (*dtos.CreatePlanResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Plans) CreatePlan(ctx context.Context, request types.CreatePlanRequest,
 		Context:          ctx,
 		OperationID:      "createPlan",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Plans) CreatePlan(ctx context.Context, request types.CreatePlanRequest,
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -296,7 +296,7 @@ func (s *Plans) CreatePlan(ctx context.Context, request types.CreatePlanRequest,
 
 // QueryPlan - Query plans
 // Use when listing or searching plans (e.g. plan picker or admin catalog). Returns a paginated list; supports filtering and sorting.
-func (s *Plans) QueryPlan(ctx context.Context, request types.PlanFilter, security dtos.QueryPlanSecurity, opts ...dtos.Option) (*dtos.QueryPlanResponse, error) {
+func (s *Plans) QueryPlan(ctx context.Context, request types.PlanFilter, opts ...dtos.Option) (*dtos.QueryPlanResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -327,7 +327,7 @@ func (s *Plans) QueryPlan(ctx context.Context, request types.PlanFilter, securit
 		Context:          ctx,
 		OperationID:      "queryPlan",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -355,7 +355,7 @@ func (s *Plans) QueryPlan(ctx context.Context, request types.PlanFilter, securit
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -559,7 +559,7 @@ func (s *Plans) QueryPlan(ctx context.Context, request types.PlanFilter, securit
 
 // GetPlan - Get plan
 // Use when you need to load a single plan (e.g. for display or to create a subscription).
-func (s *Plans) GetPlan(ctx context.Context, security dtos.GetPlanSecurity, id string, opts ...dtos.Option) (*dtos.GetPlanResponse, error) {
+func (s *Plans) GetPlan(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetPlanResponse, error) {
 	request := dtos.GetPlanRequest{
 		ID: id,
 	}
@@ -594,7 +594,7 @@ func (s *Plans) GetPlan(ctx context.Context, security dtos.GetPlanSecurity, id s
 		Context:          ctx,
 		OperationID:      "getPlan",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -615,7 +615,7 @@ func (s *Plans) GetPlan(ctx context.Context, security dtos.GetPlanSecurity, id s
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -821,7 +821,7 @@ func (s *Plans) GetPlan(ctx context.Context, security dtos.GetPlanSecurity, id s
 
 // UpdatePlan - Update plan
 // Use when changing plan details (e.g. name, interval, or metadata). Partial update supported.
-func (s *Plans) UpdatePlan(ctx context.Context, security dtos.UpdatePlanSecurity, id string, body types.UpdatePlanRequest, opts ...dtos.Option) (*dtos.UpdatePlanResponse, error) {
+func (s *Plans) UpdatePlan(ctx context.Context, id string, body types.UpdatePlanRequest, opts ...dtos.Option) (*dtos.UpdatePlanResponse, error) {
 	request := dtos.UpdatePlanRequest{
 		ID:   id,
 		Body: body,
@@ -857,7 +857,7 @@ func (s *Plans) UpdatePlan(ctx context.Context, security dtos.UpdatePlanSecurity
 		Context:          ctx,
 		OperationID:      "updatePlan",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -885,7 +885,7 @@ func (s *Plans) UpdatePlan(ctx context.Context, security dtos.UpdatePlanSecurity
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1091,7 +1091,7 @@ func (s *Plans) UpdatePlan(ctx context.Context, security dtos.UpdatePlanSecurity
 
 // DeletePlan - Delete plan
 // Use when retiring a plan (e.g. end-of-life). Existing subscriptions may be affected. Returns 200 with success message.
-func (s *Plans) DeletePlan(ctx context.Context, security dtos.DeletePlanSecurity, id string, opts ...dtos.Option) (*dtos.DeletePlanResponse, error) {
+func (s *Plans) DeletePlan(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeletePlanResponse, error) {
 	request := dtos.DeletePlanRequest{
 		ID: id,
 	}
@@ -1126,7 +1126,7 @@ func (s *Plans) DeletePlan(ctx context.Context, security dtos.DeletePlanSecurity
 		Context:          ctx,
 		OperationID:      "deletePlan",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1147,7 +1147,7 @@ func (s *Plans) DeletePlan(ctx context.Context, security dtos.DeletePlanSecurity
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1353,7 +1353,7 @@ func (s *Plans) DeletePlan(ctx context.Context, security dtos.DeletePlanSecurity
 
 // ClonePlan - Clone a plan
 // Clone an existing plan, copying its active prices, published entitlements, and published credit grants
-func (s *Plans) ClonePlan(ctx context.Context, security dtos.ClonePlanSecurity, id string, body types.ClonePlanRequest, opts ...dtos.Option) (*dtos.ClonePlanResponse, error) {
+func (s *Plans) ClonePlan(ctx context.Context, id string, body types.ClonePlanRequest, opts ...dtos.Option) (*dtos.ClonePlanResponse, error) {
 	request := dtos.ClonePlanRequest{
 		ID:   id,
 		Body: body,
@@ -1389,7 +1389,7 @@ func (s *Plans) ClonePlan(ctx context.Context, security dtos.ClonePlanSecurity, 
 		Context:          ctx,
 		OperationID:      "clonePlan",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1417,7 +1417,7 @@ func (s *Plans) ClonePlan(ctx context.Context, security dtos.ClonePlanSecurity, 
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1625,7 +1625,7 @@ func (s *Plans) ClonePlan(ctx context.Context, security dtos.ClonePlanSecurity, 
 
 // SyncPlanPrices - Synchronize plan prices
 // Use when you have changed plan prices and need to push them to all active subscriptions (e.g. global price update). Returns workflow ID.
-func (s *Plans) SyncPlanPrices(ctx context.Context, security dtos.SyncPlanPricesSecurity, id string, opts ...dtos.Option) (*dtos.SyncPlanPricesResponse, error) {
+func (s *Plans) SyncPlanPrices(ctx context.Context, id string, opts ...dtos.Option) (*dtos.SyncPlanPricesResponse, error) {
 	request := dtos.SyncPlanPricesRequest{
 		ID: id,
 	}
@@ -1660,7 +1660,7 @@ func (s *Plans) SyncPlanPrices(ctx context.Context, security dtos.SyncPlanPrices
 		Context:          ctx,
 		OperationID:      "syncPlanPrices",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1681,7 +1681,7 @@ func (s *Plans) SyncPlanPrices(ctx context.Context, security dtos.SyncPlanPrices
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

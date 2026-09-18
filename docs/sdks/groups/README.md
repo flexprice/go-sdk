@@ -23,23 +23,20 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
     res, err := s.Groups.CreateGroup(ctx, types.CreateGroupRequest{
         EntityType: "<value>",
         LookupKey: "<value>",
         Name: "<value>",
-    }, dtos.CreateGroupSecurity{
-        Option1: &dtos.CreateGroupSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -56,7 +53,6 @@ func main() {
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
 | `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
 | `request`                                                            | [types.CreateGroupRequest](../../models/types/creategrouprequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
-| `security`                                                           | [dtos.CreateGroupSecurity](../../models/dtos/creategroupsecurity.md) | :heavy_check_mark:                                                   | The security requirements to use for the request.                    |
 | `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
 ### Response
@@ -85,20 +81,17 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Groups.QueryGroup(ctx, types.GroupFilter{}, dtos.QueryGroupSecurity{
-        Option1: &dtos.QueryGroupSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Groups.QueryGroup(ctx, types.GroupFilter{})
     if err != nil {
         log.Fatal(err)
     }
@@ -110,12 +103,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
-| `request`                                                          | [types.GroupFilter](../../models/types/groupfilter.md)             | :heavy_check_mark:                                                 | The request object to use for the request.                         |
-| `security`                                                         | [dtos.QueryGroupSecurity](../../models/dtos/querygroupsecurity.md) | :heavy_check_mark:                                                 | The security requirements to use for the request.                  |
-| `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
+| Parameter                                              | Type                                                   | Required                                               | Description                                            |
+| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
+| `ctx`                                                  | [context.Context](https://pkg.go.dev/context#Context)  | :heavy_check_mark:                                     | The context to use for the request.                    |
+| `request`                                              | [types.GroupFilter](../../models/types/groupfilter.md) | :heavy_check_mark:                                     | The request object to use for the request.             |
+| `opts`                                                 | [][dtos.Option](../../models/dtos/option.md)           | :heavy_minus_sign:                                     | The options for this request.                          |
 
 ### Response
 
@@ -142,20 +134,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Groups.GetGroup(ctx, dtos.GetGroupSecurity{
-        Option1: &dtos.GetGroupSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Groups.GetGroup(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -167,12 +156,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
-| `security`                                                     | [dtos.GetGroupSecurity](../../models/dtos/getgroupsecurity.md) | :heavy_check_mark:                                             | The security requirements to use for the request.              |
-| `id`                                                           | `string`                                                       | :heavy_check_mark:                                             | Group ID                                                       |
-| `opts`                                                         | [][dtos.Option](../../models/dtos/option.md)                   | :heavy_minus_sign:                                             | The options for this request.                                  |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Group ID                                              |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -199,20 +187,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Groups.DeleteGroup(ctx, dtos.DeleteGroupSecurity{
-        Option1: &dtos.DeleteGroupSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Groups.DeleteGroup(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -224,12 +209,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `security`                                                           | [dtos.DeleteGroupSecurity](../../models/dtos/deletegroupsecurity.md) | :heavy_check_mark:                                                   | The security requirements to use for the request.                    |
-| `id`                                                                 | `string`                                                             | :heavy_check_mark:                                                   | Group ID                                                             |
-| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Group ID                                              |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 

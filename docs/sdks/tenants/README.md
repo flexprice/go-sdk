@@ -21,20 +21,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Tenants.GetTenantBillingUsage(ctx, dtos.GetTenantBillingUsageSecurity{
-        Option1: &dtos.GetTenantBillingUsageSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Tenants.GetTenantBillingUsage(ctx)
     if err != nil {
         log.Fatal(err)
     }
@@ -46,11 +43,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `security`                                                                               | [dtos.GetTenantBillingUsageSecurity](../../models/dtos/gettenantbillingusagesecurity.md) | :heavy_check_mark:                                                                       | The security requirements to use for the request.                                        |
-| `opts`                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -78,20 +74,17 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Tenants.UpdateTenant(ctx, types.UpdateTenantRequest{}, dtos.UpdateTenantSecurity{
-        Option1: &dtos.UpdateTenantSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Tenants.UpdateTenant(ctx, types.UpdateTenantRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -107,7 +100,6 @@ func main() {
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
 | `request`                                                              | [types.UpdateTenantRequest](../../models/types/updatetenantrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
-| `security`                                                             | [dtos.UpdateTenantSecurity](../../models/dtos/updatetenantsecurity.md) | :heavy_check_mark:                                                     | The security requirements to use for the request.                      |
 | `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
 
 ### Response
@@ -135,20 +127,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Tenants.GetTenantByID(ctx, dtos.GetTenantByIDSecurity{
-        Option1: &dtos.GetTenantByIDSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Tenants.GetTenantByID(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -160,12 +149,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
-| `security`                                                               | [dtos.GetTenantByIDSecurity](../../models/dtos/gettenantbyidsecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
-| `id`                                                                     | `string`                                                                 | :heavy_check_mark:                                                       | Tenant ID                                                                |
-| `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Tenant ID                                             |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 

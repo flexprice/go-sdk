@@ -33,7 +33,7 @@ func newAlertSettings(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hoo
 
 // CreateAlertSettings - Create alert settings
 // Configure a subscription, line item, or group spend alert.
-func (s *AlertSettings) CreateAlertSettings(ctx context.Context, request types.CreateAlertSettingsRequest, security dtos.CreateAlertSettingsSecurity, opts ...dtos.Option) (*dtos.CreateAlertSettingsResponse, error) {
+func (s *AlertSettings) CreateAlertSettings(ctx context.Context, request types.CreateAlertSettingsRequest, opts ...dtos.Option) (*dtos.CreateAlertSettingsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *AlertSettings) CreateAlertSettings(ctx context.Context, request types.C
 		Context:          ctx,
 		OperationID:      "createAlertSettings",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *AlertSettings) CreateAlertSettings(ctx context.Context, request types.C
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -296,7 +296,7 @@ func (s *AlertSettings) CreateAlertSettings(ctx context.Context, request types.C
 
 // QueryAlertSettings - Query alert settings
 // List or search alert settings. Returns a paginated list.
-func (s *AlertSettings) QueryAlertSettings(ctx context.Context, request types.AlertSettingsFilter, security dtos.QueryAlertSettingsSecurity, opts ...dtos.Option) (*dtos.QueryAlertSettingsResponse, error) {
+func (s *AlertSettings) QueryAlertSettings(ctx context.Context, request types.AlertSettingsFilter, opts ...dtos.Option) (*dtos.QueryAlertSettingsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -327,7 +327,7 @@ func (s *AlertSettings) QueryAlertSettings(ctx context.Context, request types.Al
 		Context:          ctx,
 		OperationID:      "queryAlertSettings",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -355,7 +355,7 @@ func (s *AlertSettings) QueryAlertSettings(ctx context.Context, request types.Al
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -559,7 +559,7 @@ func (s *AlertSettings) QueryAlertSettings(ctx context.Context, request types.Al
 
 // GetAlertSettings - Get alert settings
 // Fetch a single alert setting by id.
-func (s *AlertSettings) GetAlertSettings(ctx context.Context, security dtos.GetAlertSettingsSecurity, id string, opts ...dtos.Option) (*dtos.GetAlertSettingsResponse, error) {
+func (s *AlertSettings) GetAlertSettings(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetAlertSettingsResponse, error) {
 	request := dtos.GetAlertSettingsRequest{
 		ID: id,
 	}
@@ -594,7 +594,7 @@ func (s *AlertSettings) GetAlertSettings(ctx context.Context, security dtos.GetA
 		Context:          ctx,
 		OperationID:      "getAlertSettings",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -615,7 +615,7 @@ func (s *AlertSettings) GetAlertSettings(ctx context.Context, security dtos.GetA
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -821,7 +821,7 @@ func (s *AlertSettings) GetAlertSettings(ctx context.Context, security dtos.GetA
 
 // UpdateAlertSettings - Update alert settings
 // Patch an alert setting's config; omitted fields keep their stored value.
-func (s *AlertSettings) UpdateAlertSettings(ctx context.Context, security dtos.UpdateAlertSettingsSecurity, id string, body types.UpdateAlertSettingsRequest, opts ...dtos.Option) (*dtos.UpdateAlertSettingsResponse, error) {
+func (s *AlertSettings) UpdateAlertSettings(ctx context.Context, id string, body types.UpdateAlertSettingsRequest, opts ...dtos.Option) (*dtos.UpdateAlertSettingsResponse, error) {
 	request := dtos.UpdateAlertSettingsRequest{
 		ID:   id,
 		Body: body,
@@ -857,7 +857,7 @@ func (s *AlertSettings) UpdateAlertSettings(ctx context.Context, security dtos.U
 		Context:          ctx,
 		OperationID:      "updateAlertSettings",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -885,7 +885,7 @@ func (s *AlertSettings) UpdateAlertSettings(ctx context.Context, security dtos.U
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1091,7 +1091,7 @@ func (s *AlertSettings) UpdateAlertSettings(ctx context.Context, security dtos.U
 
 // DeleteAlertSettings - Delete alert settings
 // Soft delete an alert setting.
-func (s *AlertSettings) DeleteAlertSettings(ctx context.Context, security dtos.DeleteAlertSettingsSecurity, id string, opts ...dtos.Option) (*dtos.DeleteAlertSettingsResponse, error) {
+func (s *AlertSettings) DeleteAlertSettings(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteAlertSettingsResponse, error) {
 	request := dtos.DeleteAlertSettingsRequest{
 		ID: id,
 	}
@@ -1126,7 +1126,7 @@ func (s *AlertSettings) DeleteAlertSettings(ctx context.Context, security dtos.D
 		Context:          ctx,
 		OperationID:      "deleteAlertSettings",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1147,7 +1147,7 @@ func (s *AlertSettings) DeleteAlertSettings(ctx context.Context, security dtos.D
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

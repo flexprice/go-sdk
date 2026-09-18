@@ -24,23 +24,20 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
     res, err := s.AlertSettings.CreateAlertSettings(ctx, types.CreateAlertSettingsRequest{
         Config: types.AlertSettings{},
         EntityID: "<id>",
         EntityType: types.AlertEntityTypeFeature,
-    }, dtos.CreateAlertSettingsSecurity{
-        Option1: &dtos.CreateAlertSettingsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -57,7 +54,6 @@ func main() {
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
 | `request`                                                                            | [types.CreateAlertSettingsRequest](../../models/types/createalertsettingsrequest.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `security`                                                                           | [dtos.CreateAlertSettingsSecurity](../../models/dtos/createalertsettingssecurity.md) | :heavy_check_mark:                                                                   | The security requirements to use for the request.                                    |
 | `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 ### Response
@@ -86,20 +82,17 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.AlertSettings.QueryAlertSettings(ctx, types.AlertSettingsFilter{}, dtos.QueryAlertSettingsSecurity{
-        Option1: &dtos.QueryAlertSettingsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.AlertSettings.QueryAlertSettings(ctx, types.AlertSettingsFilter{})
     if err != nil {
         log.Fatal(err)
     }
@@ -111,12 +104,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [types.AlertSettingsFilter](../../models/types/alertsettingsfilter.md)             | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `security`                                                                         | [dtos.QueryAlertSettingsSecurity](../../models/dtos/queryalertsettingssecurity.md) | :heavy_check_mark:                                                                 | The security requirements to use for the request.                                  |
-| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
+| `request`                                                              | [types.AlertSettingsFilter](../../models/types/alertsettingsfilter.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
 
 ### Response
 
@@ -143,20 +135,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.AlertSettings.GetAlertSettings(ctx, dtos.GetAlertSettingsSecurity{
-        Option1: &dtos.GetAlertSettingsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.AlertSettings.GetAlertSettings(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -168,12 +157,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `security`                                                                     | [dtos.GetAlertSettingsSecurity](../../models/dtos/getalertsettingssecurity.md) | :heavy_check_mark:                                                             | The security requirements to use for the request.                              |
-| `id`                                                                           | `string`                                                                       | :heavy_check_mark:                                                             | Alert Settings ID                                                              |
-| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Alert Settings ID                                     |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -200,7 +188,6 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -208,13 +195,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.AlertSettings.UpdateAlertSettings(ctx, dtos.UpdateAlertSettingsSecurity{
-        Option1: &dtos.UpdateAlertSettingsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", types.UpdateAlertSettingsRequest{
+    res, err := s.AlertSettings.UpdateAlertSettings(ctx, "<id>", types.UpdateAlertSettingsRequest{
         Config: types.AlertSettings{},
     })
     if err != nil {
@@ -231,7 +216,6 @@ func main() {
 | Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
 | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
 | `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `security`                                                                           | [dtos.UpdateAlertSettingsSecurity](../../models/dtos/updatealertsettingssecurity.md) | :heavy_check_mark:                                                                   | The security requirements to use for the request.                                    |
 | `id`                                                                                 | `string`                                                                             | :heavy_check_mark:                                                                   | Alert Settings ID                                                                    |
 | `body`                                                                               | [types.UpdateAlertSettingsRequest](../../models/types/updatealertsettingsrequest.md) | :heavy_check_mark:                                                                   | Alert settings                                                                       |
 | `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
@@ -261,20 +245,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.AlertSettings.DeleteAlertSettings(ctx, dtos.DeleteAlertSettingsSecurity{
-        Option1: &dtos.DeleteAlertSettingsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.AlertSettings.DeleteAlertSettings(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -286,12 +267,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `security`                                                                           | [dtos.DeleteAlertSettingsSecurity](../../models/dtos/deletealertsettingssecurity.md) | :heavy_check_mark:                                                                   | The security requirements to use for the request.                                    |
-| `id`                                                                                 | `string`                                                                             | :heavy_check_mark:                                                                   | Alert Settings ID                                                                    |
-| `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Alert Settings ID                                     |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 

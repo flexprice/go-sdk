@@ -33,7 +33,7 @@ func newAlerts(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hoo
 
 // QueryAlertLog - Query alert logs
 // Use when viewing or searching alert history (e.g. support triage or customer-facing alert log). Returns a paginated list; supports filtering by type, customer, subscription.
-func (s *Alerts) QueryAlertLog(ctx context.Context, request types.AlertLogFilter, security dtos.QueryAlertLogSecurity, opts ...dtos.Option) (*dtos.QueryAlertLogResponse, error) {
+func (s *Alerts) QueryAlertLog(ctx context.Context, request types.AlertLogFilter, opts ...dtos.Option) (*dtos.QueryAlertLogResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Alerts) QueryAlertLog(ctx context.Context, request types.AlertLogFilter
 		Context:          ctx,
 		OperationID:      "queryAlertLog",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Alerts) QueryAlertLog(ctx context.Context, request types.AlertLogFilter
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

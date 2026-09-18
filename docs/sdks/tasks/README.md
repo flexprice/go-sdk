@@ -31,13 +31,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Tasks.ListTasks(ctx, dtos.ListTasksRequest{}, dtos.ListTasksSecurity{
-        Option1: &dtos.ListTasksSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Tasks.ListTasks(ctx, dtos.ListTasksRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -49,12 +47,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `ctx`                                                            | [context.Context](https://pkg.go.dev/context#Context)            | :heavy_check_mark:                                               | The context to use for the request.                              |
-| `request`                                                        | [dtos.ListTasksRequest](../../models/dtos/listtasksrequest.md)   | :heavy_check_mark:                                               | The request object to use for the request.                       |
-| `security`                                                       | [dtos.ListTasksSecurity](../../models/dtos/listtaskssecurity.md) | :heavy_check_mark:                                               | The security requirements to use for the request.                |
-| `opts`                                                           | [][dtos.Option](../../models/dtos/option.md)                     | :heavy_minus_sign:                                               | The options for this request.                                    |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
+| `request`                                                      | [dtos.ListTasksRequest](../../models/dtos/listtasksrequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| `opts`                                                         | [][dtos.Option](../../models/dtos/option.md)                   | :heavy_minus_sign:                                             | The options for this request.                                  |
 
 ### Response
 
@@ -82,14 +79,15 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
     res, err := s.Tasks.CreateTask(ctx, types.CreateTaskRequest{
         EntityType: types.EntityTypeFeatures,
@@ -97,10 +95,6 @@ func main() {
         FileType: types.FileTypeJSON,
         TaskType: types.TaskTypeExport,
         UploadID: "<id>",
-    }, dtos.CreateTaskSecurity{
-        Option1: &dtos.CreateTaskSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -117,7 +111,6 @@ func main() {
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
 | `request`                                                          | [types.CreateTaskRequest](../../models/types/createtaskrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
-| `security`                                                         | [dtos.CreateTaskSecurity](../../models/dtos/createtasksecurity.md) | :heavy_check_mark:                                                 | The security requirements to use for the request.                  |
 | `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
 
 ### Response
@@ -145,20 +138,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Tasks.GetTaskResult(ctx, dtos.GetTaskResultSecurity{
-        Option1: &dtos.GetTaskResultSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Tasks.GetTaskResult(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -170,12 +160,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
-| `security`                                                               | [dtos.GetTaskResultSecurity](../../models/dtos/gettaskresultsecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
-| `workflowID`                                                             | `string`                                                                 | :heavy_check_mark:                                                       | Workflow ID                                                              |
-| `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `workflowID`                                          | `string`                                              | :heavy_check_mark:                                    | Workflow ID                                           |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -202,20 +191,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Tasks.GetTask(ctx, dtos.GetTaskSecurity{
-        Option1: &dtos.GetTaskSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Tasks.GetTask(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -227,12 +213,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
-| `security`                                                   | [dtos.GetTaskSecurity](../../models/dtos/gettasksecurity.md) | :heavy_check_mark:                                           | The security requirements to use for the request.            |
-| `id`                                                         | `string`                                                     | :heavy_check_mark:                                           | Task ID                                                      |
-| `opts`                                                       | [][dtos.Option](../../models/dtos/option.md)                 | :heavy_minus_sign:                                           | The options for this request.                                |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Task ID                                               |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -259,20 +244,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Tasks.DownloadTaskExport(ctx, dtos.DownloadTaskExportSecurity{
-        Option1: &dtos.DownloadTaskExportSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Tasks.DownloadTaskExport(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -284,12 +266,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `security`                                                                         | [dtos.DownloadTaskExportSecurity](../../models/dtos/downloadtaskexportsecurity.md) | :heavy_check_mark:                                                                 | The security requirements to use for the request.                                  |
-| `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Task ID                                                                            |
-| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Task ID                                               |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -316,7 +297,6 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -324,13 +304,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Tasks.UpdateTaskStatus(ctx, dtos.UpdateTaskStatusSecurity{
-        Option1: &dtos.UpdateTaskStatusSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", types.UpdateTaskStatusRequest{
+    res, err := s.Tasks.UpdateTaskStatus(ctx, "<id>", types.UpdateTaskStatusRequest{
         TaskStatus: types.TaskStatusProcessing,
     })
     if err != nil {
@@ -347,7 +325,6 @@ func main() {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `security`                                                                     | [dtos.UpdateTaskStatusSecurity](../../models/dtos/updatetaskstatussecurity.md) | :heavy_check_mark:                                                             | The security requirements to use for the request.                              |
 | `id`                                                                           | `string`                                                                       | :heavy_check_mark:                                                             | Task ID                                                                        |
 | `body`                                                                         | [types.UpdateTaskStatusRequest](../../models/types/updatetaskstatusrequest.md) | :heavy_check_mark:                                                             | Status update                                                                  |
 | `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |

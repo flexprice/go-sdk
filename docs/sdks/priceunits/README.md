@@ -32,13 +32,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.PriceUnits.ListPriceUnits(ctx, dtos.ListPriceUnitsRequest{}, dtos.ListPriceUnitsSecurity{
-        Option1: &dtos.ListPriceUnitsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.PriceUnits.ListPriceUnits(ctx, dtos.ListPriceUnitsRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -50,12 +48,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [dtos.ListPriceUnitsRequest](../../models/dtos/listpriceunitsrequest.md)   | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `security`                                                                 | [dtos.ListPriceUnitsSecurity](../../models/dtos/listpriceunitssecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
-| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `request`                                                                | [dtos.ListPriceUnitsRequest](../../models/dtos/listpriceunitsrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
 ### Response
 
@@ -83,14 +80,15 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
     res, err := s.PriceUnits.CreatePriceUnit(ctx, types.CreatePriceUnitRequest{
         BaseCurrency: "<value>",
@@ -98,10 +96,6 @@ func main() {
         ConversionRate: "<value>",
         Name: "<value>",
         Symbol: "<value>",
-    }, dtos.CreatePriceUnitSecurity{
-        Option1: &dtos.CreatePriceUnitSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -118,7 +112,6 @@ func main() {
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
 | `request`                                                                    | [types.CreatePriceUnitRequest](../../models/types/createpriceunitrequest.md) | :heavy_check_mark:                                                           | The request object to use for the request.                                   |
-| `security`                                                                   | [dtos.CreatePriceUnitSecurity](../../models/dtos/createpriceunitsecurity.md) | :heavy_check_mark:                                                           | The security requirements to use for the request.                            |
 | `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
 
 ### Response
@@ -146,20 +139,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.PriceUnits.GetPriceUnitByCode(ctx, dtos.GetPriceUnitByCodeSecurity{
-        Option1: &dtos.GetPriceUnitByCodeSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<value>")
+    res, err := s.PriceUnits.GetPriceUnitByCode(ctx, "<value>")
     if err != nil {
         log.Fatal(err)
     }
@@ -171,12 +161,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `security`                                                                         | [dtos.GetPriceUnitByCodeSecurity](../../models/dtos/getpriceunitbycodesecurity.md) | :heavy_check_mark:                                                                 | The security requirements to use for the request.                                  |
-| `code`                                                                             | `string`                                                                           | :heavy_check_mark:                                                                 | Price unit code                                                                    |
-| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `code`                                                | `string`                                              | :heavy_check_mark:                                    | Price unit code                                       |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -204,20 +193,17 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.PriceUnits.QueryPriceUnit(ctx, types.PriceUnitFilter{}, dtos.QueryPriceUnitSecurity{
-        Option1: &dtos.QueryPriceUnitSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.PriceUnits.QueryPriceUnit(ctx, types.PriceUnitFilter{})
     if err != nil {
         log.Fatal(err)
     }
@@ -229,12 +215,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `request`                                                                  | [types.PriceUnitFilter](../../models/types/priceunitfilter.md)             | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `security`                                                                 | [dtos.QueryPriceUnitSecurity](../../models/dtos/querypriceunitsecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
-| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
+| `request`                                                      | [types.PriceUnitFilter](../../models/types/priceunitfilter.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
+| `opts`                                                         | [][dtos.Option](../../models/dtos/option.md)                   | :heavy_minus_sign:                                             | The options for this request.                                  |
 
 ### Response
 
@@ -261,20 +246,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.PriceUnits.GetPriceUnit(ctx, dtos.GetPriceUnitSecurity{
-        Option1: &dtos.GetPriceUnitSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.PriceUnits.GetPriceUnit(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -286,12 +268,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
-| `security`                                                             | [dtos.GetPriceUnitSecurity](../../models/dtos/getpriceunitsecurity.md) | :heavy_check_mark:                                                     | The security requirements to use for the request.                      |
-| `id`                                                                   | `string`                                                               | :heavy_check_mark:                                                     | Price unit ID                                                          |
-| `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Price unit ID                                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -317,7 +298,6 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -325,13 +305,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.PriceUnits.UpdatePriceUnit(ctx, dtos.UpdatePriceUnitSecurity{
-        Option1: &dtos.UpdatePriceUnitSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", types.UpdatePriceUnitRequest{})
+    res, err := s.PriceUnits.UpdatePriceUnit(ctx, "<id>", types.UpdatePriceUnitRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -346,7 +324,6 @@ func main() {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `security`                                                                   | [dtos.UpdatePriceUnitSecurity](../../models/dtos/updatepriceunitsecurity.md) | :heavy_check_mark:                                                           | The security requirements to use for the request.                            |
 | `id`                                                                         | `string`                                                                     | :heavy_check_mark:                                                           | Price unit ID                                                                |
 | `body`                                                                       | [types.UpdatePriceUnitRequest](../../models/types/updatepriceunitrequest.md) | :heavy_check_mark:                                                           | Price unit details to update                                                 |
 | `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
@@ -375,20 +352,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.PriceUnits.DeletePriceUnit(ctx, dtos.DeletePriceUnitSecurity{
-        Option1: &dtos.DeletePriceUnitSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.PriceUnits.DeletePriceUnit(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -400,12 +374,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `security`                                                                   | [dtos.DeletePriceUnitSecurity](../../models/dtos/deletepriceunitsecurity.md) | :heavy_check_mark:                                                           | The security requirements to use for the request.                            |
-| `id`                                                                         | `string`                                                                     | :heavy_check_mark:                                                           | Price unit ID                                                                |
-| `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Price unit ID                                         |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 

@@ -5,7 +5,6 @@ package main
 import (
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -13,15 +12,13 @@ import (
 func main() {
 	ctx := context.Background()
 
-	s := flexprice.New()
+	s := flexprice.New(
+		flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+	)
 
 	res, err := s.Addons.CreateAddon(ctx, types.CreateAddonRequest{
 		LookupKey: "<value>",
 		Name:      "<value>",
-	}, dtos.CreateAddonSecurity{
-		Option1: &dtos.CreateAddonSecurityOption1{
-			APIKeyAuth: "<YOUR_API_KEY_HERE>",
-		},
 	})
 	if err != nil {
 		log.Fatal(err)

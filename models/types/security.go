@@ -7,7 +7,7 @@ import (
 )
 
 type Security struct {
-	APIKeyAuth *string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
 }
 
 func (s Security) MarshalJSON() ([]byte, error) {
@@ -15,15 +15,15 @@ func (s Security) MarshalJSON() ([]byte, error) {
 }
 
 func (s *Security) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"ApiKeyAuth"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (s *Security) GetAPIKeyAuth() *string {
+func (s *Security) GetAPIKeyAuth() string {
 	if s == nil {
-		return nil
+		return ""
 	}
 	return s.APIKeyAuth
 }

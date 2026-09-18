@@ -29,7 +29,6 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -37,13 +36,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Customers.UpdateCustomer(ctx, dtos.UpdateCustomerSecurity{
-        Option1: &dtos.UpdateCustomerSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, types.UpdateCustomerRequest{}, nil, nil)
+    res, err := s.Customers.UpdateCustomer(ctx, types.UpdateCustomerRequest{}, nil, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -58,7 +55,6 @@ func main() {
 | Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `security`                                                                 | [dtos.UpdateCustomerSecurity](../../models/dtos/updatecustomersecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
 | `body`                                                                     | [types.UpdateCustomerRequest](../../models/types/updatecustomerrequest.md) | :heavy_check_mark:                                                         | Customer                                                                   |
 | `id`                                                                       | `*string`                                                                  | :heavy_minus_sign:                                                         | Customer ID                                                                |
 | `externalCustomerID`                                                       | `*string`                                                                  | :heavy_minus_sign:                                                         | Customer External ID                                                       |
@@ -90,22 +86,19 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
     res, err := s.Customers.CreateCustomer(ctx, types.CreateCustomerRequest{
         ExternalID: "<id>",
         Name: "<value>",
-    }, dtos.CreateCustomerSecurity{
-        Option1: &dtos.CreateCustomerSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -122,7 +115,6 @@ func main() {
 | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
 | `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
 | `request`                                                                  | [types.CreateCustomerRequest](../../models/types/createcustomerrequest.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
-| `security`                                                                 | [dtos.CreateCustomerSecurity](../../models/dtos/createcustomersecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
 | `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
 ### Response
@@ -150,20 +142,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Customers.GetCustomerByExternalID(ctx, dtos.GetCustomerByExternalIDSecurity{
-        Option1: &dtos.GetCustomerByExternalIDSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Customers.GetCustomerByExternalID(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -175,12 +164,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `security`                                                                                   | [dtos.GetCustomerByExternalIDSecurity](../../models/dtos/getcustomerbyexternalidsecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
-| `externalID`                                                                                 | `string`                                                                                     | :heavy_check_mark:                                                                           | Customer External ID                                                                         |
-| `opts`                                                                                       | [][dtos.Option](../../models/dtos/option.md)                                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `externalID`                                          | `string`                                              | :heavy_check_mark:                                    | Customer External ID                                  |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -207,20 +195,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Customers.GetCustomerEntitlementsByExternalID(ctx, dtos.GetCustomerEntitlementsByExternalIDSecurity{
-        Option1: &dtos.GetCustomerEntitlementsByExternalIDSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Customers.GetCustomerEntitlementsByExternalID(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -232,12 +217,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                                            | Type                                                                                                                 | Required                                                                                                             | Description                                                                                                          |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                                | :heavy_check_mark:                                                                                                   | The context to use for the request.                                                                                  |
-| `security`                                                                                                           | [dtos.GetCustomerEntitlementsByExternalIDSecurity](../../models/dtos/getcustomerentitlementsbyexternalidsecurity.md) | :heavy_check_mark:                                                                                                   | The security requirements to use for the request.                                                                    |
-| `externalID`                                                                                                         | `string`                                                                                                             | :heavy_check_mark:                                                                                                   | Customer External ID                                                                                                 |
-| `opts`                                                                                                               | [][dtos.Option](../../models/dtos/option.md)                                                                         | :heavy_minus_sign:                                                                                                   | The options for this request.                                                                                        |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `externalID`                                          | `string`                                              | :heavy_check_mark:                                    | Customer External ID                                  |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -264,20 +248,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Customers.GetSubscriptionsForCustomer(ctx, dtos.GetSubscriptionsForCustomerSecurity{
-        Option1: &dtos.GetSubscriptionsForCustomerSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", nil)
+    res, err := s.Customers.GetSubscriptionsForCustomer(ctx, "<id>", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -292,7 +273,6 @@ func main() {
 | Parameter                                                                                                               | Type                                                                                                                    | Required                                                                                                                | Description                                                                                                             |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                                   | [context.Context](https://pkg.go.dev/context#Context)                                                                   | :heavy_check_mark:                                                                                                      | The context to use for the request.                                                                                     |
-| `security`                                                                                                              | [dtos.GetSubscriptionsForCustomerSecurity](../../models/dtos/getsubscriptionsforcustomersecurity.md)                    | :heavy_check_mark:                                                                                                      | The security requirements to use for the request.                                                                       |
 | `externalID`                                                                                                            | `string`                                                                                                                | :heavy_check_mark:                                                                                                      | Customer External ID                                                                                                    |
 | `expand`                                                                                                                | `*string`                                                                                                               | :heavy_minus_sign:                                                                                                      | Comma-separated fields to expand: subscription_line_items, subscription_line_items.meters, entitlements, plan, customer |
 | `opts`                                                                                                                  | [][dtos.Option](../../models/dtos/option.md)                                                                            | :heavy_minus_sign:                                                                                                      | The options for this request.                                                                                           |
@@ -323,20 +303,17 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Customers.QueryCustomer(ctx, types.CustomerFilter{}, dtos.QueryCustomerSecurity{
-        Option1: &dtos.QueryCustomerSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Customers.QueryCustomer(ctx, types.CustomerFilter{})
     if err != nil {
         log.Fatal(err)
     }
@@ -348,12 +325,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
-| `request`                                                                | [types.CustomerFilter](../../models/types/customerfilter.md)             | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-| `security`                                                               | [dtos.QueryCustomerSecurity](../../models/dtos/querycustomersecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
-| `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `request`                                                    | [types.CustomerFilter](../../models/types/customerfilter.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| `opts`                                                       | [][dtos.Option](../../models/dtos/option.md)                 | :heavy_minus_sign:                                           | The options for this request.                                |
 
 ### Response
 
@@ -387,13 +363,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Customers.GetCustomerUsageSummary(ctx, dtos.GetCustomerUsageSummaryRequest{}, dtos.GetCustomerUsageSummarySecurity{
-        Option1: &dtos.GetCustomerUsageSummarySecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Customers.GetCustomerUsageSummary(ctx, dtos.GetCustomerUsageSummaryRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -405,12 +379,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `request`                                                                                    | [dtos.GetCustomerUsageSummaryRequest](../../models/dtos/getcustomerusagesummaryrequest.md)   | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
-| `security`                                                                                   | [dtos.GetCustomerUsageSummarySecurity](../../models/dtos/getcustomerusagesummarysecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
-| `opts`                                                                                       | [][dtos.Option](../../models/dtos/option.md)                                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [dtos.GetCustomerUsageSummaryRequest](../../models/dtos/getcustomerusagesummaryrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `opts`                                                                                     | [][dtos.Option](../../models/dtos/option.md)                                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 ### Response
 
@@ -437,20 +410,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Customers.GetCustomer(ctx, dtos.GetCustomerSecurity{
-        Option1: &dtos.GetCustomerSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Customers.GetCustomer(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -462,12 +432,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `security`                                                           | [dtos.GetCustomerSecurity](../../models/dtos/getcustomersecurity.md) | :heavy_check_mark:                                                   | The security requirements to use for the request.                    |
-| `id`                                                                 | `string`                                                             | :heavy_check_mark:                                                   | Customer ID                                                          |
-| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Customer ID                                           |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -494,20 +463,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Customers.DeleteCustomer(ctx, dtos.DeleteCustomerSecurity{
-        Option1: &dtos.DeleteCustomerSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Customers.DeleteCustomer(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -519,12 +485,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `security`                                                                 | [dtos.DeleteCustomerSecurity](../../models/dtos/deletecustomersecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
-| `id`                                                                       | `string`                                                                   | :heavy_check_mark:                                                         | Customer ID                                                                |
-| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Customer ID                                           |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -551,20 +516,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Customers.GetCustomerEntitlements(ctx, dtos.GetCustomerEntitlementsSecurity{
-        Option1: &dtos.GetCustomerEntitlementsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Customers.GetCustomerEntitlements(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -576,12 +538,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
-| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
-| `security`                                                                                   | [dtos.GetCustomerEntitlementsSecurity](../../models/dtos/getcustomerentitlementssecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
-| `id`                                                                                         | `string`                                                                                     | :heavy_check_mark:                                                                           | Customer ID                                                                                  |
-| `opts`                                                                                       | [][dtos.Option](../../models/dtos/option.md)                                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Customer ID                                           |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -608,20 +569,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Customers.GetCustomerUpcomingGrants(ctx, dtos.GetCustomerUpcomingGrantsSecurity{
-        Option1: &dtos.GetCustomerUpcomingGrantsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Customers.GetCustomerUpcomingGrants(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -633,12 +591,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
-| `security`                                                                                       | [dtos.GetCustomerUpcomingGrantsSecurity](../../models/dtos/getcustomerupcominggrantssecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
-| `id`                                                                                             | `string`                                                                                         | :heavy_check_mark:                                                                               | Customer ID                                                                                      |
-| `opts`                                                                                           | [][dtos.Option](../../models/dtos/option.md)                                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Customer ID                                           |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 

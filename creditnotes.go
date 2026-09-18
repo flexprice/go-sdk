@@ -33,7 +33,9 @@ func newCreditNotes(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks
 
 // CreateCreditNote - Create credit note
 // Use when issuing a refund or adjustment (e.g. customer dispute or proration). Links to an invoice; create as draft then finalize.
-func (s *CreditNotes) CreateCreditNote(ctx context.Context, request types.CreateCreditNoteRequest, security dtos.CreateCreditNoteSecurity, opts ...dtos.Option) (*dtos.CreateCreditNoteResponse, error) {
+//
+// This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
+func (s *CreditNotes) CreateCreditNote(ctx context.Context, request types.CreateCreditNoteRequest, opts ...dtos.Option) (*dtos.CreateCreditNoteResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +66,7 @@ func (s *CreditNotes) CreateCreditNote(ctx context.Context, request types.Create
 		Context:          ctx,
 		OperationID:      "createCreditNote",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +94,7 @@ func (s *CreditNotes) CreateCreditNote(ctx context.Context, request types.Create
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
 		return nil, err
 	}
 
@@ -302,7 +304,7 @@ func (s *CreditNotes) CreateCreditNote(ctx context.Context, request types.Create
 
 // GetCreditNote - Get credit note
 // Use when you need to load a single credit note (e.g. for display or reconciliation).
-func (s *CreditNotes) GetCreditNote(ctx context.Context, security dtos.GetCreditNoteSecurity, id string, opts ...dtos.Option) (*dtos.GetCreditNoteResponse, error) {
+func (s *CreditNotes) GetCreditNote(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetCreditNoteResponse, error) {
 	request := dtos.GetCreditNoteRequest{
 		ID: id,
 	}
@@ -337,7 +339,7 @@ func (s *CreditNotes) GetCreditNote(ctx context.Context, security dtos.GetCredit
 		Context:          ctx,
 		OperationID:      "getCreditNote",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -358,7 +360,7 @@ func (s *CreditNotes) GetCreditNote(ctx context.Context, security dtos.GetCredit
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -564,7 +566,9 @@ func (s *CreditNotes) GetCreditNote(ctx context.Context, security dtos.GetCredit
 
 // ProcessCreditNote - Finalize credit note
 // Use when locking a draft credit note and applying the credit (e.g. after approval). Once finalized, applied per billing provider.
-func (s *CreditNotes) ProcessCreditNote(ctx context.Context, security dtos.ProcessCreditNoteSecurity, id string, body *types.FinalizeCreditNoteRequest, opts ...dtos.Option) (*dtos.ProcessCreditNoteResponse, error) {
+//
+// This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
+func (s *CreditNotes) ProcessCreditNote(ctx context.Context, id string, body *types.FinalizeCreditNoteRequest, opts ...dtos.Option) (*dtos.ProcessCreditNoteResponse, error) {
 	request := dtos.ProcessCreditNoteRequest{
 		ID:   id,
 		Body: body,
@@ -600,7 +604,7 @@ func (s *CreditNotes) ProcessCreditNote(ctx context.Context, security dtos.Proce
 		Context:          ctx,
 		OperationID:      "processCreditNote",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -628,7 +632,7 @@ func (s *CreditNotes) ProcessCreditNote(ctx context.Context, security dtos.Proce
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
 		return nil, err
 	}
 
@@ -838,7 +842,9 @@ func (s *CreditNotes) ProcessCreditNote(ctx context.Context, security dtos.Proce
 
 // VoidCreditNote - Void credit note
 // Use when cancelling a draft credit note (e.g. created by mistake). Only draft credit notes can be voided.
-func (s *CreditNotes) VoidCreditNote(ctx context.Context, security dtos.VoidCreditNoteSecurity, id string, opts ...dtos.Option) (*dtos.VoidCreditNoteResponse, error) {
+//
+// This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
+func (s *CreditNotes) VoidCreditNote(ctx context.Context, id string, opts ...dtos.Option) (*dtos.VoidCreditNoteResponse, error) {
 	request := dtos.VoidCreditNoteRequest{
 		ID: id,
 	}
@@ -873,7 +879,7 @@ func (s *CreditNotes) VoidCreditNote(ctx context.Context, security dtos.VoidCred
 		Context:          ctx,
 		OperationID:      "voidCreditNote",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -894,7 +900,7 @@ func (s *CreditNotes) VoidCreditNote(ctx context.Context, security dtos.VoidCred
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
 		return nil, err
 	}
 

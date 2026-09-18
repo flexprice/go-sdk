@@ -33,7 +33,7 @@ func newPriceUnits(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks 
 
 // ListPriceUnits - List price units
 // Use when listing price units (e.g. in a catalog or when creating prices). Returns a paginated list; supports status, sort, and pagination.
-func (s *PriceUnits) ListPriceUnits(ctx context.Context, request dtos.ListPriceUnitsRequest, security dtos.ListPriceUnitsSecurity, opts ...dtos.Option) (*dtos.ListPriceUnitsResponse, error) {
+func (s *PriceUnits) ListPriceUnits(ctx context.Context, request dtos.ListPriceUnitsRequest, opts ...dtos.Option) (*dtos.ListPriceUnitsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *PriceUnits) ListPriceUnits(ctx context.Context, request dtos.ListPriceU
 		Context:          ctx,
 		OperationID:      "listPriceUnits",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -89,7 +89,7 @@ func (s *PriceUnits) ListPriceUnits(ctx context.Context, request dtos.ListPriceU
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -293,7 +293,7 @@ func (s *PriceUnits) ListPriceUnits(ctx context.Context, request dtos.ListPriceU
 
 // CreatePriceUnit - Create price unit
 // Use when defining a new unit of measure for pricing (e.g. GB, API call, seat). Ideal for metered or usage-based prices.
-func (s *PriceUnits) CreatePriceUnit(ctx context.Context, request types.CreatePriceUnitRequest, security dtos.CreatePriceUnitSecurity, opts ...dtos.Option) (*dtos.CreatePriceUnitResponse, error) {
+func (s *PriceUnits) CreatePriceUnit(ctx context.Context, request types.CreatePriceUnitRequest, opts ...dtos.Option) (*dtos.CreatePriceUnitResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -324,7 +324,7 @@ func (s *PriceUnits) CreatePriceUnit(ctx context.Context, request types.CreatePr
 		Context:          ctx,
 		OperationID:      "createPriceUnit",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -352,7 +352,7 @@ func (s *PriceUnits) CreatePriceUnit(ctx context.Context, request types.CreatePr
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -556,7 +556,7 @@ func (s *PriceUnits) CreatePriceUnit(ctx context.Context, request types.CreatePr
 
 // GetPriceUnitByCode - Get price unit by code
 // Use when resolving a price unit by code (e.g. from an external catalog or config). Ideal for integrations.
-func (s *PriceUnits) GetPriceUnitByCode(ctx context.Context, security dtos.GetPriceUnitByCodeSecurity, code string, opts ...dtos.Option) (*dtos.GetPriceUnitByCodeResponse, error) {
+func (s *PriceUnits) GetPriceUnitByCode(ctx context.Context, code string, opts ...dtos.Option) (*dtos.GetPriceUnitByCodeResponse, error) {
 	request := dtos.GetPriceUnitByCodeRequest{
 		Code: code,
 	}
@@ -591,7 +591,7 @@ func (s *PriceUnits) GetPriceUnitByCode(ctx context.Context, security dtos.GetPr
 		Context:          ctx,
 		OperationID:      "getPriceUnitByCode",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -612,7 +612,7 @@ func (s *PriceUnits) GetPriceUnitByCode(ctx context.Context, security dtos.GetPr
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -818,7 +818,7 @@ func (s *PriceUnits) GetPriceUnitByCode(ctx context.Context, security dtos.GetPr
 
 // QueryPriceUnit - Query price units
 // Use when searching or listing price units (e.g. admin catalog). Returns a paginated list; supports filtering and sorting.
-func (s *PriceUnits) QueryPriceUnit(ctx context.Context, request types.PriceUnitFilter, security dtos.QueryPriceUnitSecurity, opts ...dtos.Option) (*dtos.QueryPriceUnitResponse, error) {
+func (s *PriceUnits) QueryPriceUnit(ctx context.Context, request types.PriceUnitFilter, opts ...dtos.Option) (*dtos.QueryPriceUnitResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -849,7 +849,7 @@ func (s *PriceUnits) QueryPriceUnit(ctx context.Context, request types.PriceUnit
 		Context:          ctx,
 		OperationID:      "queryPriceUnit",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -877,7 +877,7 @@ func (s *PriceUnits) QueryPriceUnit(ctx context.Context, request types.PriceUnit
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1081,7 +1081,7 @@ func (s *PriceUnits) QueryPriceUnit(ctx context.Context, request types.PriceUnit
 
 // GetPriceUnit - Get price unit
 // Use when you need to load a single price unit (e.g. for display or when creating a price).
-func (s *PriceUnits) GetPriceUnit(ctx context.Context, security dtos.GetPriceUnitSecurity, id string, opts ...dtos.Option) (*dtos.GetPriceUnitResponse, error) {
+func (s *PriceUnits) GetPriceUnit(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetPriceUnitResponse, error) {
 	request := dtos.GetPriceUnitRequest{
 		ID: id,
 	}
@@ -1116,7 +1116,7 @@ func (s *PriceUnits) GetPriceUnit(ctx context.Context, security dtos.GetPriceUni
 		Context:          ctx,
 		OperationID:      "getPriceUnit",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1137,7 +1137,7 @@ func (s *PriceUnits) GetPriceUnit(ctx context.Context, security dtos.GetPriceUni
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1318,7 +1318,7 @@ func (s *PriceUnits) GetPriceUnit(ctx context.Context, security dtos.GetPriceUni
 
 // UpdatePriceUnit - Update price unit
 // Use when renaming or updating metadata for a price unit. Code is immutable once created.
-func (s *PriceUnits) UpdatePriceUnit(ctx context.Context, security dtos.UpdatePriceUnitSecurity, id string, body types.UpdatePriceUnitRequest, opts ...dtos.Option) (*dtos.UpdatePriceUnitResponse, error) {
+func (s *PriceUnits) UpdatePriceUnit(ctx context.Context, id string, body types.UpdatePriceUnitRequest, opts ...dtos.Option) (*dtos.UpdatePriceUnitResponse, error) {
 	request := dtos.UpdatePriceUnitRequest{
 		ID:   id,
 		Body: body,
@@ -1354,7 +1354,7 @@ func (s *PriceUnits) UpdatePriceUnit(ctx context.Context, security dtos.UpdatePr
 		Context:          ctx,
 		OperationID:      "updatePriceUnit",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1382,7 +1382,7 @@ func (s *PriceUnits) UpdatePriceUnit(ctx context.Context, security dtos.UpdatePr
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1563,7 +1563,7 @@ func (s *PriceUnits) UpdatePriceUnit(ctx context.Context, security dtos.UpdatePr
 
 // DeletePriceUnit - Delete price unit
 // Use when removing a price unit that is no longer needed. Fails if any price references this unit.
-func (s *PriceUnits) DeletePriceUnit(ctx context.Context, security dtos.DeletePriceUnitSecurity, id string, opts ...dtos.Option) (*dtos.DeletePriceUnitResponse, error) {
+func (s *PriceUnits) DeletePriceUnit(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeletePriceUnitResponse, error) {
 	request := dtos.DeletePriceUnitRequest{
 		ID: id,
 	}
@@ -1598,7 +1598,7 @@ func (s *PriceUnits) DeletePriceUnit(ctx context.Context, security dtos.DeletePr
 		Context:          ctx,
 		OperationID:      "deletePriceUnit",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1619,7 +1619,7 @@ func (s *PriceUnits) DeletePriceUnit(ctx context.Context, security dtos.DeletePr
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

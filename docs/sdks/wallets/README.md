@@ -36,13 +36,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Wallets.GetCustomerWallets(ctx, dtos.GetCustomerWalletsRequest{}, dtos.GetCustomerWalletsSecurity{
-        Option1: &dtos.GetCustomerWalletsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Wallets.GetCustomerWallets(ctx, dtos.GetCustomerWalletsRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -54,12 +52,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `request`                                                                          | [dtos.GetCustomerWalletsRequest](../../models/dtos/getcustomerwalletsrequest.md)   | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
-| `security`                                                                         | [dtos.GetCustomerWalletsSecurity](../../models/dtos/getcustomerwalletssecurity.md) | :heavy_check_mark:                                                                 | The security requirements to use for the request.                                  |
-| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [dtos.GetCustomerWalletsRequest](../../models/dtos/getcustomerwalletsrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -86,20 +83,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Wallets.GetWalletsByCustomerID(ctx, dtos.GetWalletsByCustomerIDSecurity{
-        Option1: &dtos.GetWalletsByCustomerIDSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Wallets.GetWalletsByCustomerID(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -111,12 +105,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `security`                                                                                 | [dtos.GetWalletsByCustomerIDSecurity](../../models/dtos/getwalletsbycustomeridsecurity.md) | :heavy_check_mark:                                                                         | The security requirements to use for the request.                                          |
-| `id`                                                                                       | `string`                                                                                   | :heavy_check_mark:                                                                         | Customer ID                                                                                |
-| `opts`                                                                                     | [][dtos.Option](../../models/dtos/option.md)                                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Customer ID                                           |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -144,21 +137,18 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
     res, err := s.Wallets.CreateWallet(ctx, types.CreateWalletRequest{
         Currency: "Seychelles Rupee",
-    }, dtos.CreateWalletSecurity{
-        Option1: &dtos.CreateWalletSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -175,7 +165,6 @@ func main() {
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
 | `request`                                                              | [types.CreateWalletRequest](../../models/types/createwalletrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
-| `security`                                                             | [dtos.CreateWalletSecurity](../../models/dtos/createwalletsecurity.md) | :heavy_check_mark:                                                     | The security requirements to use for the request.                      |
 | `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
 
 ### Response
@@ -204,20 +193,17 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Wallets.QueryWallet(ctx, types.WalletFilter{}, dtos.QueryWalletSecurity{
-        Option1: &dtos.QueryWalletSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Wallets.QueryWallet(ctx, types.WalletFilter{})
     if err != nil {
         log.Fatal(err)
     }
@@ -229,12 +215,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `request`                                                            | [types.WalletFilter](../../models/types/walletfilter.md)             | :heavy_check_mark:                                                   | The request object to use for the request.                           |
-| `security`                                                           | [dtos.QueryWalletSecurity](../../models/dtos/querywalletsecurity.md) | :heavy_check_mark:                                                   | The security requirements to use for the request.                    |
-| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
+| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
+| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
+| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
+| `request`                                                | [types.WalletFilter](../../models/types/walletfilter.md) | :heavy_check_mark:                                       | The request object to use for the request.               |
+| `opts`                                                   | [][dtos.Option](../../models/dtos/option.md)             | :heavy_minus_sign:                                       | The options for this request.                            |
 
 ### Response
 
@@ -262,20 +247,17 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Wallets.QueryWalletTransaction(ctx, types.WalletTransactionFilter{}, dtos.QueryWalletTransactionSecurity{
-        Option1: &dtos.QueryWalletTransactionSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Wallets.QueryWalletTransaction(ctx, types.WalletTransactionFilter{})
     if err != nil {
         log.Fatal(err)
     }
@@ -287,12 +269,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
-| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
-| `request`                                                                                  | [types.WalletTransactionFilter](../../models/types/wallettransactionfilter.md)             | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-| `security`                                                                                 | [dtos.QueryWalletTransactionSecurity](../../models/dtos/querywallettransactionsecurity.md) | :heavy_check_mark:                                                                         | The security requirements to use for the request.                                          |
-| `opts`                                                                                     | [][dtos.Option](../../models/dtos/option.md)                                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
+| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `request`                                                                      | [types.WalletTransactionFilter](../../models/types/wallettransactionfilter.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
 
@@ -319,20 +300,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Wallets.GetWallet(ctx, dtos.GetWalletSecurity{
-        Option1: &dtos.GetWalletSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Wallets.GetWallet(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -344,12 +322,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `ctx`                                                            | [context.Context](https://pkg.go.dev/context#Context)            | :heavy_check_mark:                                               | The context to use for the request.                              |
-| `security`                                                       | [dtos.GetWalletSecurity](../../models/dtos/getwalletsecurity.md) | :heavy_check_mark:                                               | The security requirements to use for the request.                |
-| `id`                                                             | `string`                                                         | :heavy_check_mark:                                               | Wallet ID                                                        |
-| `opts`                                                           | [][dtos.Option](../../models/dtos/option.md)                     | :heavy_minus_sign:                                               | The options for this request.                                    |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Wallet ID                                             |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -376,7 +353,6 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -384,13 +360,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Wallets.UpdateWallet(ctx, dtos.UpdateWalletSecurity{
-        Option1: &dtos.UpdateWalletSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", types.UpdateWalletRequest{})
+    res, err := s.Wallets.UpdateWallet(ctx, "<id>", types.UpdateWalletRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -405,7 +379,6 @@ func main() {
 | Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
-| `security`                                                             | [dtos.UpdateWalletSecurity](../../models/dtos/updatewalletsecurity.md) | :heavy_check_mark:                                                     | The security requirements to use for the request.                      |
 | `id`                                                                   | `string`                                                               | :heavy_check_mark:                                                     | Wallet ID                                                              |
 | `body`                                                                 | [types.UpdateWalletRequest](../../models/types/updatewalletrequest.md) | :heavy_check_mark:                                                     | Update wallet request                                                  |
 | `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
@@ -435,20 +408,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Wallets.GetWalletBalance(ctx, dtos.GetWalletBalanceSecurity{
-        Option1: &dtos.GetWalletBalanceSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", nil)
+    res, err := s.Wallets.GetWalletBalance(ctx, "<id>", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -460,13 +430,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
-| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
-| `security`                                                                     | [dtos.GetWalletBalanceSecurity](../../models/dtos/getwalletbalancesecurity.md) | :heavy_check_mark:                                                             | The security requirements to use for the request.                              |
-| `id`                                                                           | `string`                                                                       | :heavy_check_mark:                                                             | Wallet ID                                                                      |
-| `expand`                                                                       | `*string`                                                                      | :heavy_minus_sign:                                                             | Expand fields (e.g., credits_available_breakdown)                              |
-| `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Wallet ID                                             |
+| `expand`                                              | `*string`                                             | :heavy_minus_sign:                                    | Expand fields (e.g., credits_available_breakdown)     |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -493,20 +462,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Wallets.TerminateWallet(ctx, dtos.TerminateWalletSecurity{
-        Option1: &dtos.TerminateWalletSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Wallets.TerminateWallet(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -518,12 +484,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `security`                                                                   | [dtos.TerminateWalletSecurity](../../models/dtos/terminatewalletsecurity.md) | :heavy_check_mark:                                                           | The security requirements to use for the request.                            |
-| `id`                                                                         | `string`                                                                     | :heavy_check_mark:                                                           | Wallet ID                                                                    |
-| `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Wallet ID                                             |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -550,7 +515,6 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -558,13 +522,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Wallets.TopUpWallet(ctx, dtos.TopUpWalletSecurity{
-        Option1: &dtos.TopUpWalletSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", types.TopUpWalletRequest{
+    res, err := s.Wallets.TopUpWallet(ctx, "<id>", types.TopUpWalletRequest{
         TransactionReason: types.TransactionReasonInvoiceVoidRefund,
     })
     if err != nil {
@@ -581,7 +543,6 @@ func main() {
 | Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
 | `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `security`                                                           | [dtos.TopUpWalletSecurity](../../models/dtos/topupwalletsecurity.md) | :heavy_check_mark:                                                   | The security requirements to use for the request.                    |
 | `id`                                                                 | `string`                                                             | :heavy_check_mark:                                                   | Wallet ID                                                            |
 | `body`                                                               | [types.TopUpWalletRequest](../../models/types/topupwalletrequest.md) | :heavy_check_mark:                                                   | Top up request                                                       |
 | `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
@@ -618,14 +579,12 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
     res, err := s.Wallets.GetWalletTransactions(ctx, dtos.GetWalletTransactionsRequest{
         IDPathParameter: "<value>",
-    }, dtos.GetWalletTransactionsSecurity{
-        Option1: &dtos.GetWalletTransactionsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -638,12 +597,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                                | Type                                                                                     | Required                                                                                 | Description                                                                              |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `ctx`                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                    | :heavy_check_mark:                                                                       | The context to use for the request.                                                      |
-| `request`                                                                                | [dtos.GetWalletTransactionsRequest](../../models/dtos/getwallettransactionsrequest.md)   | :heavy_check_mark:                                                                       | The request object to use for the request.                                               |
-| `security`                                                                               | [dtos.GetWalletTransactionsSecurity](../../models/dtos/getwallettransactionssecurity.md) | :heavy_check_mark:                                                                       | The security requirements to use for the request.                                        |
-| `opts`                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                             | :heavy_minus_sign:                                                                       | The options for this request.                                                            |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [dtos.GetWalletTransactionsRequest](../../models/dtos/getwallettransactionsrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 

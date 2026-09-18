@@ -33,7 +33,7 @@ func newUsers(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hook
 
 // CreateUser - Create user or service account
 // Create a user account (type=user, email required; returns user + password for login) or a service account (type=service_account, roles required) for API/automation access.
-func (s *Users) CreateUser(ctx context.Context, request types.CreateUserRequest, security dtos.CreateUserSecurity, opts ...dtos.Option) (*dtos.CreateUserResponse, error) {
+func (s *Users) CreateUser(ctx context.Context, request types.CreateUserRequest, opts ...dtos.Option) (*dtos.CreateUserResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Users) CreateUser(ctx context.Context, request types.CreateUserRequest,
 		Context:          ctx,
 		OperationID:      "createUser",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Users) CreateUser(ctx context.Context, request types.CreateUserRequest,
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -296,7 +296,7 @@ func (s *Users) CreateUser(ctx context.Context, request types.CreateUserRequest,
 
 // GetUserInfo - Get current user
 // Use to show the logged-in user's profile in the UI or to check permissions and roles for the current session.
-func (s *Users) GetUserInfo(ctx context.Context, security dtos.GetUserInfoSecurity, opts ...dtos.Option) (*dtos.GetUserInfoResponse, error) {
+func (s *Users) GetUserInfo(ctx context.Context, opts ...dtos.Option) (*dtos.GetUserInfoResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -327,7 +327,7 @@ func (s *Users) GetUserInfo(ctx context.Context, security dtos.GetUserInfoSecuri
 		Context:          ctx,
 		OperationID:      "getUserInfo",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -348,7 +348,7 @@ func (s *Users) GetUserInfo(ctx context.Context, security dtos.GetUserInfoSecuri
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -552,7 +552,7 @@ func (s *Users) GetUserInfo(ctx context.Context, security dtos.GetUserInfoSecuri
 
 // UpdateUser - Update current user
 // Update the current authenticated user. Supports name and metadata updates.
-func (s *Users) UpdateUser(ctx context.Context, request types.UpdateUserRequest, security dtos.UpdateUserSecurity, opts ...dtos.Option) (*dtos.UpdateUserResponse, error) {
+func (s *Users) UpdateUser(ctx context.Context, request types.UpdateUserRequest, opts ...dtos.Option) (*dtos.UpdateUserResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -583,7 +583,7 @@ func (s *Users) UpdateUser(ctx context.Context, request types.UpdateUserRequest,
 		Context:          ctx,
 		OperationID:      "updateUser",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -611,7 +611,7 @@ func (s *Users) UpdateUser(ctx context.Context, request types.UpdateUserRequest,
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -815,7 +815,7 @@ func (s *Users) UpdateUser(ctx context.Context, request types.UpdateUserRequest,
 
 // QueryUser - Query users
 // Use when listing or searching service accounts in an admin UI, or when auditing who has API access and which roles they have.
-func (s *Users) QueryUser(ctx context.Context, request types.UserFilter, security dtos.QueryUserSecurity, opts ...dtos.Option) (*dtos.QueryUserResponse, error) {
+func (s *Users) QueryUser(ctx context.Context, request types.UserFilter, opts ...dtos.Option) (*dtos.QueryUserResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -846,7 +846,7 @@ func (s *Users) QueryUser(ctx context.Context, request types.UserFilter, securit
 		Context:          ctx,
 		OperationID:      "queryUser",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -874,7 +874,7 @@ func (s *Users) QueryUser(ctx context.Context, request types.UserFilter, securit
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1078,7 +1078,7 @@ func (s *Users) QueryUser(ctx context.Context, request types.UserFilter, securit
 
 // UpdateServiceAccount - Update service account
 // Update a service account by ID (name only).
-func (s *Users) UpdateServiceAccount(ctx context.Context, security dtos.UpdateServiceAccountSecurity, id string, body types.UpdateServiceAccountRequest, opts ...dtos.Option) (*dtos.UpdateServiceAccountResponse, error) {
+func (s *Users) UpdateServiceAccount(ctx context.Context, id string, body types.UpdateServiceAccountRequest, opts ...dtos.Option) (*dtos.UpdateServiceAccountResponse, error) {
 	request := dtos.UpdateServiceAccountRequest{
 		ID:   id,
 		Body: body,
@@ -1114,7 +1114,7 @@ func (s *Users) UpdateServiceAccount(ctx context.Context, security dtos.UpdateSe
 		Context:          ctx,
 		OperationID:      "updateServiceAccount",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1142,7 +1142,7 @@ func (s *Users) UpdateServiceAccount(ctx context.Context, security dtos.UpdateSe
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1348,7 +1348,7 @@ func (s *Users) UpdateServiceAccount(ctx context.Context, security dtos.UpdateSe
 
 // DeleteServiceAccount - Delete service account
 // Soft-delete (archive) a service account by ID.
-func (s *Users) DeleteServiceAccount(ctx context.Context, security dtos.DeleteServiceAccountSecurity, id string, opts ...dtos.Option) (*dtos.DeleteServiceAccountResponse, error) {
+func (s *Users) DeleteServiceAccount(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteServiceAccountResponse, error) {
 	request := dtos.DeleteServiceAccountRequest{
 		ID: id,
 	}
@@ -1383,7 +1383,7 @@ func (s *Users) DeleteServiceAccount(ctx context.Context, security dtos.DeleteSe
 		Context:          ctx,
 		OperationID:      "deleteServiceAccount",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1404,7 +1404,7 @@ func (s *Users) DeleteServiceAccount(ctx context.Context, security dtos.DeleteSe
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1591,7 +1591,7 @@ func (s *Users) DeleteServiceAccount(ctx context.Context, security dtos.DeleteSe
 
 // RemoveUser - Remove user from tenant
 // Remove a human user (type=user) from the current tenant. Not supported for service accounts; use DELETE /users/{id} for those.
-func (s *Users) RemoveUser(ctx context.Context, security dtos.RemoveUserSecurity, id string, opts ...dtos.Option) (*dtos.RemoveUserResponse, error) {
+func (s *Users) RemoveUser(ctx context.Context, id string, opts ...dtos.Option) (*dtos.RemoveUserResponse, error) {
 	request := dtos.RemoveUserRequest{
 		ID: id,
 	}
@@ -1626,7 +1626,7 @@ func (s *Users) RemoveUser(ctx context.Context, security dtos.RemoveUserSecurity
 		Context:          ctx,
 		OperationID:      "removeUser",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1647,7 +1647,7 @@ func (s *Users) RemoveUser(ctx context.Context, security dtos.RemoveUserSecurity
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1834,7 +1834,7 @@ func (s *Users) RemoveUser(ctx context.Context, security dtos.RemoveUserSecurity
 
 // UpdateUserRoles - Update user roles
 // Update the roles of a user account (not service accounts — their roles are fixed at creation). Restricted to super_admin; a caller cannot update their own roles. Blocked with a 400 if the user has any active (published, unexpired) API key in any environment, since a key's permissions are snapshotted at creation time and would otherwise silently keep running on the old roles; the error lists the active keys grouped by environment ID so the caller can prompt to expire them first, then retry.
-func (s *Users) UpdateUserRoles(ctx context.Context, security dtos.UpdateUserRolesSecurity, id string, body types.UpdateUserRolesRequest, opts ...dtos.Option) (*dtos.UpdateUserRolesResponse, error) {
+func (s *Users) UpdateUserRoles(ctx context.Context, id string, body types.UpdateUserRolesRequest, opts ...dtos.Option) (*dtos.UpdateUserRolesResponse, error) {
 	request := dtos.UpdateUserRolesRequest{
 		ID:   id,
 		Body: body,
@@ -1870,7 +1870,7 @@ func (s *Users) UpdateUserRoles(ctx context.Context, security dtos.UpdateUserRol
 		Context:          ctx,
 		OperationID:      "updateUserRoles",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1898,7 +1898,7 @@ func (s *Users) UpdateUserRoles(ctx context.Context, security dtos.UpdateUserRol
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

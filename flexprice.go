@@ -135,7 +135,7 @@ func WithClient(client HTTPClient) SDKOption {
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(apiKeyAuth string) SDKOption {
 	return func(sdk *Flexprice) {
-		security := types.Security{APIKeyAuth: &apiKeyAuth}
+		security := types.Security{APIKeyAuth: apiKeyAuth}
 		sdk.sdkConfiguration.Security = utils.AsSecuritySource(&security)
 	}
 }

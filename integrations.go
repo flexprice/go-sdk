@@ -33,7 +33,7 @@ func newIntegrations(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hook
 
 // GetIntegrationConfig - Get integration configurations
 // Returns the base capabilities and current sync configuration for all connected providers.
-func (s *Integrations) GetIntegrationConfig(ctx context.Context, security dtos.GetIntegrationConfigSecurity, opts ...dtos.Option) (*dtos.GetIntegrationConfigResponse, error) {
+func (s *Integrations) GetIntegrationConfig(ctx context.Context, opts ...dtos.Option) (*dtos.GetIntegrationConfigResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Integrations) GetIntegrationConfig(ctx context.Context, security dtos.G
 		Context:          ctx,
 		OperationID:      "getIntegrationConfig",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -85,7 +85,7 @@ func (s *Integrations) GetIntegrationConfig(ctx context.Context, security dtos.G
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -264,7 +264,7 @@ func (s *Integrations) GetIntegrationConfig(ctx context.Context, security dtos.G
 
 // LinkIntegrationMapping - Link integration mapping
 // Link a FlexPrice entity to provider entity with provider-specific side effects.
-func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types.LinkIntegrationMappingRequest, security dtos.LinkIntegrationMappingSecurity, opts ...dtos.Option) (*dtos.LinkIntegrationMappingResponse, error) {
+func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types.LinkIntegrationMappingRequest, opts ...dtos.Option) (*dtos.LinkIntegrationMappingResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -295,7 +295,7 @@ func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types
 		Context:          ctx,
 		OperationID:      "linkIntegrationMapping",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -323,7 +323,7 @@ func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -527,7 +527,7 @@ func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types
 
 // DelinkIntegrationMapping - Delink integration mapping
 // Soft-delete (archive) the mapping between a FlexPrice entity and a provider entity.
-func (s *Integrations) DelinkIntegrationMapping(ctx context.Context, request types.DelinkIntegrationMappingRequest, security dtos.DelinkIntegrationMappingSecurity, opts ...dtos.Option) (*dtos.DelinkIntegrationMappingResponse, error) {
+func (s *Integrations) DelinkIntegrationMapping(ctx context.Context, request types.DelinkIntegrationMappingRequest, opts ...dtos.Option) (*dtos.DelinkIntegrationMappingResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -558,7 +558,7 @@ func (s *Integrations) DelinkIntegrationMapping(ctx context.Context, request typ
 		Context:          ctx,
 		OperationID:      "delinkIntegrationMapping",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -586,7 +586,7 @@ func (s *Integrations) DelinkIntegrationMapping(ctx context.Context, request typ
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -792,7 +792,7 @@ func (s *Integrations) DelinkIntegrationMapping(ctx context.Context, request typ
 
 // GetEntityIntegrationMappings - Get entity integration mappings
 // Get integration mappings for a specific entity by entity type and entity ID.
-func (s *Integrations) GetEntityIntegrationMappings(ctx context.Context, security dtos.GetEntityIntegrationMappingsSecurity, entityType string, entityID string, opts ...dtos.Option) (*dtos.GetEntityIntegrationMappingsResponse, error) {
+func (s *Integrations) GetEntityIntegrationMappings(ctx context.Context, entityType string, entityID string, opts ...dtos.Option) (*dtos.GetEntityIntegrationMappingsResponse, error) {
 	request := dtos.GetEntityIntegrationMappingsRequest{
 		EntityType: entityType,
 		EntityID:   entityID,
@@ -828,7 +828,7 @@ func (s *Integrations) GetEntityIntegrationMappings(ctx context.Context, securit
 		Context:          ctx,
 		OperationID:      "getEntityIntegrationMappings",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -853,7 +853,7 @@ func (s *Integrations) GetEntityIntegrationMappings(ctx context.Context, securit
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

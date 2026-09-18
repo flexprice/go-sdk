@@ -33,7 +33,7 @@ func newCosts(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hook
 
 // CreateCostsheet - Create costsheet
 // Use when setting up a new pricing configuration (e.g. a new product or region). Costsheets group prices and define the default for the environment.
-func (s *Costs) CreateCostsheet(ctx context.Context, request types.CreateCostsheetRequest, security dtos.CreateCostsheetSecurity, opts ...dtos.Option) (*dtos.CreateCostsheetResponse, error) {
+func (s *Costs) CreateCostsheet(ctx context.Context, request types.CreateCostsheetRequest, opts ...dtos.Option) (*dtos.CreateCostsheetResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Costs) CreateCostsheet(ctx context.Context, request types.CreateCostshe
 		Context:          ctx,
 		OperationID:      "createCostsheet",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Costs) CreateCostsheet(ctx context.Context, request types.CreateCostshe
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -298,7 +298,7 @@ func (s *Costs) CreateCostsheet(ctx context.Context, request types.CreateCostshe
 
 // GetActiveCostsheet - Get active costsheet
 // Use when you need the tenant's default pricing configuration (e.g. for checkout or plan display). Returns the active costsheet for the environment.
-func (s *Costs) GetActiveCostsheet(ctx context.Context, security dtos.GetActiveCostsheetSecurity, opts ...dtos.Option) (*dtos.GetActiveCostsheetResponse, error) {
+func (s *Costs) GetActiveCostsheet(ctx context.Context, opts ...dtos.Option) (*dtos.GetActiveCostsheetResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -329,7 +329,7 @@ func (s *Costs) GetActiveCostsheet(ctx context.Context, security dtos.GetActiveC
 		Context:          ctx,
 		OperationID:      "getActiveCostsheet",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -350,7 +350,7 @@ func (s *Costs) GetActiveCostsheet(ctx context.Context, security dtos.GetActiveC
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -554,7 +554,7 @@ func (s *Costs) GetActiveCostsheet(ctx context.Context, security dtos.GetActiveC
 
 // GetDetailedCostAnalytics - Get combined revenue and cost analytics
 // Use when building dashboards or reports that need revenue vs cost, ROI, and margin over a time period (e.g. finance views or executive summaries).
-func (s *Costs) GetDetailedCostAnalytics(ctx context.Context, request types.GetCostAnalyticsRequest, security dtos.GetDetailedCostAnalyticsSecurity, opts ...dtos.Option) (*dtos.GetDetailedCostAnalyticsResponse, error) {
+func (s *Costs) GetDetailedCostAnalytics(ctx context.Context, request types.GetCostAnalyticsRequest, opts ...dtos.Option) (*dtos.GetDetailedCostAnalyticsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -585,7 +585,7 @@ func (s *Costs) GetDetailedCostAnalytics(ctx context.Context, request types.GetC
 		Context:          ctx,
 		OperationID:      "getDetailedCostAnalytics",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -613,7 +613,7 @@ func (s *Costs) GetDetailedCostAnalytics(ctx context.Context, request types.GetC
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -817,7 +817,7 @@ func (s *Costs) GetDetailedCostAnalytics(ctx context.Context, request types.GetC
 
 // QueryCostsheet - Query costsheets
 // Use when listing or searching costsheets (e.g. admin catalog). Returns a paginated list; supports filtering and sorting.
-func (s *Costs) QueryCostsheet(ctx context.Context, request types.CostsheetFilter, security dtos.QueryCostsheetSecurity, opts ...dtos.Option) (*dtos.QueryCostsheetResponse, error) {
+func (s *Costs) QueryCostsheet(ctx context.Context, request types.CostsheetFilter, opts ...dtos.Option) (*dtos.QueryCostsheetResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -848,7 +848,7 @@ func (s *Costs) QueryCostsheet(ctx context.Context, request types.CostsheetFilte
 		Context:          ctx,
 		OperationID:      "queryCostsheet",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -876,7 +876,7 @@ func (s *Costs) QueryCostsheet(ctx context.Context, request types.CostsheetFilte
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1080,7 +1080,7 @@ func (s *Costs) QueryCostsheet(ctx context.Context, request types.CostsheetFilte
 
 // GetCostsheet - Get costsheet
 // Use when you need to load a single costsheet (e.g. for editing or display). Supports optional expand for related prices.
-func (s *Costs) GetCostsheet(ctx context.Context, security dtos.GetCostsheetSecurity, id string, expand *string, opts ...dtos.Option) (*dtos.GetCostsheetResponse, error) {
+func (s *Costs) GetCostsheet(ctx context.Context, id string, expand *string, opts ...dtos.Option) (*dtos.GetCostsheetResponse, error) {
 	request := dtos.GetCostsheetRequest{
 		ID:     id,
 		Expand: expand,
@@ -1116,7 +1116,7 @@ func (s *Costs) GetCostsheet(ctx context.Context, security dtos.GetCostsheetSecu
 		Context:          ctx,
 		OperationID:      "getCostsheet",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1141,7 +1141,7 @@ func (s *Costs) GetCostsheet(ctx context.Context, security dtos.GetCostsheetSecu
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1347,7 +1347,7 @@ func (s *Costs) GetCostsheet(ctx context.Context, security dtos.GetCostsheetSecu
 
 // UpdateCostsheet - Update costsheet
 // Use when changing costsheet name or metadata.
-func (s *Costs) UpdateCostsheet(ctx context.Context, security dtos.UpdateCostsheetSecurity, id string, body types.UpdateCostsheetRequest, opts ...dtos.Option) (*dtos.UpdateCostsheetResponse, error) {
+func (s *Costs) UpdateCostsheet(ctx context.Context, id string, body types.UpdateCostsheetRequest, opts ...dtos.Option) (*dtos.UpdateCostsheetResponse, error) {
 	request := dtos.UpdateCostsheetRequest{
 		ID:   id,
 		Body: body,
@@ -1383,7 +1383,7 @@ func (s *Costs) UpdateCostsheet(ctx context.Context, security dtos.UpdateCostshe
 		Context:          ctx,
 		OperationID:      "updateCostsheet",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1411,7 +1411,7 @@ func (s *Costs) UpdateCostsheet(ctx context.Context, security dtos.UpdateCostshe
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1619,7 +1619,7 @@ func (s *Costs) UpdateCostsheet(ctx context.Context, security dtos.UpdateCostshe
 
 // DeleteCostsheet - Delete costsheet
 // Use when retiring a costsheet (e.g. end-of-life product). Soft-deletes; status set to deleted.
-func (s *Costs) DeleteCostsheet(ctx context.Context, security dtos.DeleteCostsheetSecurity, id string, opts ...dtos.Option) (*dtos.DeleteCostsheetResponse, error) {
+func (s *Costs) DeleteCostsheet(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteCostsheetResponse, error) {
 	request := dtos.DeleteCostsheetRequest{
 		ID: id,
 	}
@@ -1654,7 +1654,7 @@ func (s *Costs) DeleteCostsheet(ctx context.Context, security dtos.DeleteCostshe
 		Context:          ctx,
 		OperationID:      "deleteCostsheet",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1675,7 +1675,7 @@ func (s *Costs) DeleteCostsheet(ctx context.Context, security dtos.DeleteCostshe
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

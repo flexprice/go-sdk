@@ -22,20 +22,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Integrations.GetIntegrationConfig(ctx, dtos.GetIntegrationConfigSecurity{
-        Option1: &dtos.GetIntegrationConfigSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Integrations.GetIntegrationConfig(ctx)
     if err != nil {
         log.Fatal(err)
     }
@@ -47,11 +44,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `security`                                                                             | [dtos.GetIntegrationConfigSecurity](../../models/dtos/getintegrationconfigsecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
-| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -78,24 +74,21 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
     res, err := s.Integrations.LinkIntegrationMapping(ctx, types.LinkIntegrationMappingRequest{
         EntityID: "<id>",
         EntityType: types.IntegrationEntityTypeInvoiceLineItem,
         ProviderEntityID: "<id>",
         ProviderType: "<value>",
-    }, dtos.LinkIntegrationMappingSecurity{
-        Option1: &dtos.LinkIntegrationMappingSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -112,7 +105,6 @@ func main() {
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
 | `request`                                                                                  | [types.LinkIntegrationMappingRequest](../../models/types/linkintegrationmappingrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
-| `security`                                                                                 | [dtos.LinkIntegrationMappingSecurity](../../models/dtos/linkintegrationmappingsecurity.md) | :heavy_check_mark:                                                                         | The security requirements to use for the request.                                          |
 | `opts`                                                                                     | [][dtos.Option](../../models/dtos/option.md)                                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 ### Response
@@ -141,23 +133,20 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
     res, err := s.Integrations.DelinkIntegrationMapping(ctx, types.DelinkIntegrationMappingRequest{
         EntityID: "<id>",
         EntityType: types.IntegrationEntityTypePrice,
         ProviderType: "<value>",
-    }, dtos.DelinkIntegrationMappingSecurity{
-        Option1: &dtos.DelinkIntegrationMappingSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -174,7 +163,6 @@ func main() {
 | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                          | :heavy_check_mark:                                                                             | The context to use for the request.                                                            |
 | `request`                                                                                      | [types.DelinkIntegrationMappingRequest](../../models/types/delinkintegrationmappingrequest.md) | :heavy_check_mark:                                                                             | The request object to use for the request.                                                     |
-| `security`                                                                                     | [dtos.DelinkIntegrationMappingSecurity](../../models/dtos/delinkintegrationmappingsecurity.md) | :heavy_check_mark:                                                                             | The security requirements to use for the request.                                              |
 | `opts`                                                                                         | [][dtos.Option](../../models/dtos/option.md)                                                   | :heavy_minus_sign:                                                                             | The options for this request.                                                                  |
 
 ### Response
@@ -202,20 +190,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Integrations.GetEntityIntegrationMappings(ctx, dtos.GetEntityIntegrationMappingsSecurity{
-        Option1: &dtos.GetEntityIntegrationMappingsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<value>", "<id>")
+    res, err := s.Integrations.GetEntityIntegrationMappings(ctx, "<value>", "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -230,7 +215,6 @@ func main() {
 | Parameter                                                                                                 | Type                                                                                                      | Required                                                                                                  | Description                                                                                               |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                                     | [context.Context](https://pkg.go.dev/context#Context)                                                     | :heavy_check_mark:                                                                                        | The context to use for the request.                                                                       |
-| `security`                                                                                                | [dtos.GetEntityIntegrationMappingsSecurity](../../models/dtos/getentityintegrationmappingssecurity.md)    | :heavy_check_mark:                                                                                        | The security requirements to use for the request.                                                         |
 | `entityType`                                                                                              | `string`                                                                                                  | :heavy_check_mark:                                                                                        | Entity type (customer, plan, invoice, subscription, payment, credit_note, addon, item, item_price, price) |
 | `entityID`                                                                                                | `string`                                                                                                  | :heavy_check_mark:                                                                                        | Entity ID                                                                                                 |
 | `opts`                                                                                                    | [][dtos.Option](../../models/dtos/option.md)                                                              | :heavy_minus_sign:                                                                                        | The options for this request.                                                                             |

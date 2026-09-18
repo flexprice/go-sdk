@@ -32,7 +32,7 @@ func newCheckout(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *h
 }
 
 // CreateCheckoutSession - Create checkout session
-func (s *Checkout) CreateCheckoutSession(ctx context.Context, request types.CreateCheckoutSessionRequest, security dtos.CreateCheckoutSessionSecurity, opts ...dtos.Option) (*dtos.CreateCheckoutSessionResponse, error) {
+func (s *Checkout) CreateCheckoutSession(ctx context.Context, request types.CreateCheckoutSessionRequest, opts ...dtos.Option) (*dtos.CreateCheckoutSessionResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -63,7 +63,7 @@ func (s *Checkout) CreateCheckoutSession(ctx context.Context, request types.Crea
 		Context:          ctx,
 		OperationID:      "createCheckoutSession",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -91,7 +91,7 @@ func (s *Checkout) CreateCheckoutSession(ctx context.Context, request types.Crea
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -296,7 +296,7 @@ func (s *Checkout) CreateCheckoutSession(ctx context.Context, request types.Crea
 }
 
 // GetCheckoutSession - Get checkout session
-func (s *Checkout) GetCheckoutSession(ctx context.Context, security dtos.GetCheckoutSessionSecurity, id string, opts ...dtos.Option) (*dtos.GetCheckoutSessionResponse, error) {
+func (s *Checkout) GetCheckoutSession(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetCheckoutSessionResponse, error) {
 	request := dtos.GetCheckoutSessionRequest{
 		ID: id,
 	}
@@ -331,7 +331,7 @@ func (s *Checkout) GetCheckoutSession(ctx context.Context, security dtos.GetChec
 		Context:          ctx,
 		OperationID:      "getCheckoutSession",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -352,7 +352,7 @@ func (s *Checkout) GetCheckoutSession(ctx context.Context, security dtos.GetChec
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -555,7 +555,7 @@ func (s *Checkout) GetCheckoutSession(ctx context.Context, security dtos.GetChec
 }
 
 // DeleteCheckoutSession - Delete checkout session
-func (s *Checkout) DeleteCheckoutSession(ctx context.Context, security dtos.DeleteCheckoutSessionSecurity, id string, opts ...dtos.Option) (*dtos.DeleteCheckoutSessionResponse, error) {
+func (s *Checkout) DeleteCheckoutSession(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteCheckoutSessionResponse, error) {
 	request := dtos.DeleteCheckoutSessionRequest{
 		ID: id,
 	}
@@ -590,7 +590,7 @@ func (s *Checkout) DeleteCheckoutSession(ctx context.Context, security dtos.Dele
 		Context:          ctx,
 		OperationID:      "deleteCheckoutSession",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -611,7 +611,7 @@ func (s *Checkout) DeleteCheckoutSession(ctx context.Context, security dtos.Dele
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -795,7 +795,7 @@ func (s *Checkout) DeleteCheckoutSession(ctx context.Context, security dtos.Dele
 }
 
 // CancelCheckoutSession - Cancel checkout session
-func (s *Checkout) CancelCheckoutSession(ctx context.Context, security dtos.CancelCheckoutSessionSecurity, id string, opts ...dtos.Option) (*dtos.CancelCheckoutSessionResponse, error) {
+func (s *Checkout) CancelCheckoutSession(ctx context.Context, id string, opts ...dtos.Option) (*dtos.CancelCheckoutSessionResponse, error) {
 	request := dtos.CancelCheckoutSessionRequest{
 		ID: id,
 	}
@@ -830,7 +830,7 @@ func (s *Checkout) CancelCheckoutSession(ctx context.Context, security dtos.Canc
 		Context:          ctx,
 		OperationID:      "cancelCheckoutSession",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -851,7 +851,7 @@ func (s *Checkout) CancelCheckoutSession(ctx context.Context, security dtos.Canc
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

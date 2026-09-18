@@ -33,7 +33,7 @@ func newWallets(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *ho
 
 // GetCustomerWallets - Get Customer Wallets
 // Use when resolving wallets by external customer id or lookup key (e.g. from your app's user id). Supports optional real-time balance and expand.
-func (s *Wallets) GetCustomerWallets(ctx context.Context, request dtos.GetCustomerWalletsRequest, security dtos.GetCustomerWalletsSecurity, opts ...dtos.Option) (*dtos.GetCustomerWalletsResponse, error) {
+func (s *Wallets) GetCustomerWallets(ctx context.Context, request dtos.GetCustomerWalletsRequest, opts ...dtos.Option) (*dtos.GetCustomerWalletsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Wallets) GetCustomerWallets(ctx context.Context, request dtos.GetCustom
 		Context:          ctx,
 		OperationID:      "getCustomerWallets",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -89,7 +89,7 @@ func (s *Wallets) GetCustomerWallets(ctx context.Context, request dtos.GetCustom
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -295,7 +295,7 @@ func (s *Wallets) GetCustomerWallets(ctx context.Context, request dtos.GetCustom
 
 // GetWalletsByCustomerID - Get wallets by customer ID
 // Use when showing a customer's wallets (e.g. balance overview by currency or in a billing portal). Supports optional expand for balance breakdown.
-func (s *Wallets) GetWalletsByCustomerID(ctx context.Context, security dtos.GetWalletsByCustomerIDSecurity, id string, opts ...dtos.Option) (*dtos.GetWalletsByCustomerIDResponse, error) {
+func (s *Wallets) GetWalletsByCustomerID(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetWalletsByCustomerIDResponse, error) {
 	request := dtos.GetWalletsByCustomerIDRequest{
 		ID: id,
 	}
@@ -330,7 +330,7 @@ func (s *Wallets) GetWalletsByCustomerID(ctx context.Context, security dtos.GetW
 		Context:          ctx,
 		OperationID:      "getWalletsByCustomerId",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -351,7 +351,7 @@ func (s *Wallets) GetWalletsByCustomerID(ctx context.Context, security dtos.GetW
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -555,7 +555,7 @@ func (s *Wallets) GetWalletsByCustomerID(ctx context.Context, security dtos.GetW
 
 // CreateWallet - Create a new wallet
 // Use when giving a customer a prepaid or credit balance (e.g. prepaid plans or promotional credits).
-func (s *Wallets) CreateWallet(ctx context.Context, request types.CreateWalletRequest, security dtos.CreateWalletSecurity, opts ...dtos.Option) (*dtos.CreateWalletResponse, error) {
+func (s *Wallets) CreateWallet(ctx context.Context, request types.CreateWalletRequest, opts ...dtos.Option) (*dtos.CreateWalletResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -586,7 +586,7 @@ func (s *Wallets) CreateWallet(ctx context.Context, request types.CreateWalletRe
 		Context:          ctx,
 		OperationID:      "createWallet",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -614,7 +614,7 @@ func (s *Wallets) CreateWallet(ctx context.Context, request types.CreateWalletRe
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -818,7 +818,7 @@ func (s *Wallets) CreateWallet(ctx context.Context, request types.CreateWalletRe
 
 // QueryWallet - Query wallets
 // Use when listing or searching wallets (e.g. admin view or reporting). Returns a paginated list; supports filtering by customer and status.
-func (s *Wallets) QueryWallet(ctx context.Context, request types.WalletFilter, security dtos.QueryWalletSecurity, opts ...dtos.Option) (*dtos.QueryWalletResponse, error) {
+func (s *Wallets) QueryWallet(ctx context.Context, request types.WalletFilter, opts ...dtos.Option) (*dtos.QueryWalletResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -849,7 +849,7 @@ func (s *Wallets) QueryWallet(ctx context.Context, request types.WalletFilter, s
 		Context:          ctx,
 		OperationID:      "queryWallet",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -877,7 +877,7 @@ func (s *Wallets) QueryWallet(ctx context.Context, request types.WalletFilter, s
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1081,7 +1081,7 @@ func (s *Wallets) QueryWallet(ctx context.Context, request types.WalletFilter, s
 
 // QueryWalletTransaction - Query wallet transactions
 // Use when searching or reporting on wallet transactions (e.g. cross-wallet history or reconciliation). Returns a paginated list; supports filtering by wallet, customer, type, date range.
-func (s *Wallets) QueryWalletTransaction(ctx context.Context, request types.WalletTransactionFilter, security dtos.QueryWalletTransactionSecurity, opts ...dtos.Option) (*dtos.QueryWalletTransactionResponse, error) {
+func (s *Wallets) QueryWalletTransaction(ctx context.Context, request types.WalletTransactionFilter, opts ...dtos.Option) (*dtos.QueryWalletTransactionResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -1112,7 +1112,7 @@ func (s *Wallets) QueryWalletTransaction(ctx context.Context, request types.Wall
 		Context:          ctx,
 		OperationID:      "queryWalletTransaction",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1140,7 +1140,7 @@ func (s *Wallets) QueryWalletTransaction(ctx context.Context, request types.Wall
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1344,7 +1344,7 @@ func (s *Wallets) QueryWalletTransaction(ctx context.Context, request types.Wall
 
 // GetWallet - Get wallet
 // Use when you need to load a single wallet (e.g. for a balance or settings view).
-func (s *Wallets) GetWallet(ctx context.Context, security dtos.GetWalletSecurity, id string, opts ...dtos.Option) (*dtos.GetWalletResponse, error) {
+func (s *Wallets) GetWallet(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetWalletResponse, error) {
 	request := dtos.GetWalletRequest{
 		ID: id,
 	}
@@ -1379,7 +1379,7 @@ func (s *Wallets) GetWallet(ctx context.Context, security dtos.GetWalletSecurity
 		Context:          ctx,
 		OperationID:      "getWallet",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1400,7 +1400,7 @@ func (s *Wallets) GetWallet(ctx context.Context, security dtos.GetWalletSecurity
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1606,7 +1606,7 @@ func (s *Wallets) GetWallet(ctx context.Context, security dtos.GetWalletSecurity
 
 // UpdateWallet - Update a wallet
 // Use when changing wallet settings (e.g. enabling or updating auto top-up thresholds).
-func (s *Wallets) UpdateWallet(ctx context.Context, security dtos.UpdateWalletSecurity, id string, body types.UpdateWalletRequest, opts ...dtos.Option) (*dtos.UpdateWalletResponse, error) {
+func (s *Wallets) UpdateWallet(ctx context.Context, id string, body types.UpdateWalletRequest, opts ...dtos.Option) (*dtos.UpdateWalletResponse, error) {
 	request := dtos.UpdateWalletRequest{
 		ID:   id,
 		Body: body,
@@ -1642,7 +1642,7 @@ func (s *Wallets) UpdateWallet(ctx context.Context, security dtos.UpdateWalletSe
 		Context:          ctx,
 		OperationID:      "updateWallet",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1670,7 +1670,7 @@ func (s *Wallets) UpdateWallet(ctx context.Context, security dtos.UpdateWalletSe
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1876,7 +1876,7 @@ func (s *Wallets) UpdateWallet(ctx context.Context, security dtos.UpdateWalletSe
 
 // GetWalletBalance - Get wallet balance
 // Use when displaying or checking current wallet balance (e.g. before charging or in a portal). Supports optional expand for credits breakdown and from_cache.
-func (s *Wallets) GetWalletBalance(ctx context.Context, security dtos.GetWalletBalanceSecurity, id string, expand *string, opts ...dtos.Option) (*dtos.GetWalletBalanceResponse, error) {
+func (s *Wallets) GetWalletBalance(ctx context.Context, id string, expand *string, opts ...dtos.Option) (*dtos.GetWalletBalanceResponse, error) {
 	request := dtos.GetWalletBalanceRequest{
 		ID:     id,
 		Expand: expand,
@@ -1912,7 +1912,7 @@ func (s *Wallets) GetWalletBalance(ctx context.Context, security dtos.GetWalletB
 		Context:          ctx,
 		OperationID:      "getWalletBalance",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1937,7 +1937,7 @@ func (s *Wallets) GetWalletBalance(ctx context.Context, security dtos.GetWalletB
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -2143,7 +2143,7 @@ func (s *Wallets) GetWalletBalance(ctx context.Context, security dtos.GetWalletB
 
 // TerminateWallet - Terminate a wallet
 // Use when closing a customer wallet (e.g. churn or migration). Closes the wallet and applies remaining balance per policy (refund or forfeit).
-func (s *Wallets) TerminateWallet(ctx context.Context, security dtos.TerminateWalletSecurity, id string, opts ...dtos.Option) (*dtos.TerminateWalletResponse, error) {
+func (s *Wallets) TerminateWallet(ctx context.Context, id string, opts ...dtos.Option) (*dtos.TerminateWalletResponse, error) {
 	request := dtos.TerminateWalletRequest{
 		ID: id,
 	}
@@ -2178,7 +2178,7 @@ func (s *Wallets) TerminateWallet(ctx context.Context, security dtos.TerminateWa
 		Context:          ctx,
 		OperationID:      "terminateWallet",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2199,7 +2199,7 @@ func (s *Wallets) TerminateWallet(ctx context.Context, security dtos.TerminateWa
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -2405,7 +2405,7 @@ func (s *Wallets) TerminateWallet(ctx context.Context, security dtos.TerminateWa
 
 // TopUpWallet - Top up wallet
 // Use when adding funds to a wallet (e.g. top-up, refund, or manual credit). Supports optional idempotency via reference.
-func (s *Wallets) TopUpWallet(ctx context.Context, security dtos.TopUpWalletSecurity, id string, body types.TopUpWalletRequest, opts ...dtos.Option) (*dtos.TopUpWalletResponse, error) {
+func (s *Wallets) TopUpWallet(ctx context.Context, id string, body types.TopUpWalletRequest, opts ...dtos.Option) (*dtos.TopUpWalletResponse, error) {
 	request := dtos.TopUpWalletRequest{
 		ID:   id,
 		Body: body,
@@ -2441,7 +2441,7 @@ func (s *Wallets) TopUpWallet(ctx context.Context, security dtos.TopUpWalletSecu
 		Context:          ctx,
 		OperationID:      "topUpWallet",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -2469,7 +2469,7 @@ func (s *Wallets) TopUpWallet(ctx context.Context, security dtos.TopUpWalletSecu
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -2675,7 +2675,7 @@ func (s *Wallets) TopUpWallet(ctx context.Context, security dtos.TopUpWalletSecu
 
 // GetWalletTransactions - Get wallet transactions
 // Use when showing transaction history for a wallet (e.g. credit/debit log or audit). Returns a paginated list; supports limit, offset, and filters.
-func (s *Wallets) GetWalletTransactions(ctx context.Context, request dtos.GetWalletTransactionsRequest, security dtos.GetWalletTransactionsSecurity, opts ...dtos.Option) (*dtos.GetWalletTransactionsResponse, error) {
+func (s *Wallets) GetWalletTransactions(ctx context.Context, request dtos.GetWalletTransactionsRequest, opts ...dtos.Option) (*dtos.GetWalletTransactionsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -2706,7 +2706,7 @@ func (s *Wallets) GetWalletTransactions(ctx context.Context, request dtos.GetWal
 		Context:          ctx,
 		OperationID:      "getWalletTransactions",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -2731,7 +2731,7 @@ func (s *Wallets) GetWalletTransactions(ctx context.Context, request dtos.GetWal
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

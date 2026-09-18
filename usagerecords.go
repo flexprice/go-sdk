@@ -33,7 +33,7 @@ func newUsageRecords(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hook
 
 // PostUsageRecordsSearch - List usage records
 // Lists usage records. Also accepts filters/sort for a filtered query.
-func (s *UsageRecords) PostUsageRecordsSearch(ctx context.Context, request types.UsageRecordFilter, security dtos.PostUsageRecordsSearchSecurity, opts ...dtos.Option) (*dtos.PostUsageRecordsSearchResponse, error) {
+func (s *UsageRecords) PostUsageRecordsSearch(ctx context.Context, request types.UsageRecordFilter, opts ...dtos.Option) (*dtos.PostUsageRecordsSearchResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *UsageRecords) PostUsageRecordsSearch(ctx context.Context, request types
 		Context:          ctx,
 		OperationID:      "post_/usage-records/search",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *UsageRecords) PostUsageRecordsSearch(ctx context.Context, request types
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

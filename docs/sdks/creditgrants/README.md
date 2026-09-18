@@ -24,20 +24,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.CreditGrants.GetAddonCreditGrants(ctx, dtos.GetAddonCreditGrantsSecurity{
-        Option1: &dtos.GetAddonCreditGrantsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.CreditGrants.GetAddonCreditGrants(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -49,12 +46,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `security`                                                                             | [dtos.GetAddonCreditGrantsSecurity](../../models/dtos/getaddoncreditgrantssecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
-| `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Addon ID                                                                               |
-| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Addon ID                                              |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -82,24 +78,21 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
     res, err := s.CreditGrants.CreateCreditGrant(ctx, types.CreateCreditGrantRequest{
         Cadence: types.CreditGrantCadenceOnetime,
         Credits: "<value>",
         Name: "<value>",
         Scope: types.CreditGrantScopePlan,
-    }, dtos.CreateCreditGrantSecurity{
-        Option1: &dtos.CreateCreditGrantSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -116,7 +109,6 @@ func main() {
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
 | `request`                                                                        | [types.CreateCreditGrantRequest](../../models/types/createcreditgrantrequest.md) | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
-| `security`                                                                       | [dtos.CreateCreditGrantSecurity](../../models/dtos/createcreditgrantsecurity.md) | :heavy_check_mark:                                                               | The security requirements to use for the request.                                |
 | `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
@@ -144,20 +136,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.CreditGrants.GetCreditGrant(ctx, dtos.GetCreditGrantSecurity{
-        Option1: &dtos.GetCreditGrantSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.CreditGrants.GetCreditGrant(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -169,12 +158,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
-| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
-| `security`                                                                 | [dtos.GetCreditGrantSecurity](../../models/dtos/getcreditgrantsecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
-| `id`                                                                       | `string`                                                                   | :heavy_check_mark:                                                         | Credit Grant ID                                                            |
-| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Credit Grant ID                                       |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -201,7 +189,6 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -209,13 +196,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.CreditGrants.UpdateCreditGrant(ctx, dtos.UpdateCreditGrantSecurity{
-        Option1: &dtos.UpdateCreditGrantSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", types.UpdateCreditGrantRequest{})
+    res, err := s.CreditGrants.UpdateCreditGrant(ctx, "<id>", types.UpdateCreditGrantRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -230,7 +215,6 @@ func main() {
 | Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
-| `security`                                                                       | [dtos.UpdateCreditGrantSecurity](../../models/dtos/updatecreditgrantsecurity.md) | :heavy_check_mark:                                                               | The security requirements to use for the request.                                |
 | `id`                                                                             | `string`                                                                         | :heavy_check_mark:                                                               | Credit Grant ID                                                                  |
 | `body`                                                                           | [types.UpdateCreditGrantRequest](../../models/types/updatecreditgrantrequest.md) | :heavy_check_mark:                                                               | Credit Grant configuration                                                       |
 | `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
@@ -260,20 +244,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.CreditGrants.DeleteCreditGrant(ctx, dtos.DeleteCreditGrantSecurity{
-        Option1: &dtos.DeleteCreditGrantSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", nil)
+    res, err := s.CreditGrants.DeleteCreditGrant(ctx, "<id>", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -288,7 +269,6 @@ func main() {
 | Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
 | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
 | `ctx`                                                                             | [context.Context](https://pkg.go.dev/context#Context)                             | :heavy_check_mark:                                                                | The context to use for the request.                                               |
-| `security`                                                                        | [dtos.DeleteCreditGrantSecurity](../../models/dtos/deletecreditgrantsecurity.md)  | :heavy_check_mark:                                                                | The security requirements to use for the request.                                 |
 | `id`                                                                              | `string`                                                                          | :heavy_check_mark:                                                                | Credit Grant ID                                                                   |
 | `body`                                                                            | [*types.DeleteCreditGrantRequest](../../models/types/deletecreditgrantrequest.md) | :heavy_minus_sign:                                                                | Optional: effective_date for subscription-scoped grants                           |
 | `opts`                                                                            | [][dtos.Option](../../models/dtos/option.md)                                      | :heavy_minus_sign:                                                                | The options for this request.                                                     |
@@ -318,20 +298,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.CreditGrants.GetPlanCreditGrants(ctx, dtos.GetPlanCreditGrantsSecurity{
-        Option1: &dtos.GetPlanCreditGrantsSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.CreditGrants.GetPlanCreditGrants(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -343,12 +320,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `security`                                                                           | [dtos.GetPlanCreditGrantsSecurity](../../models/dtos/getplancreditgrantssecurity.md) | :heavy_check_mark:                                                                   | The security requirements to use for the request.                                    |
-| `id`                                                                                 | `string`                                                                             | :heavy_check_mark:                                                                   | Plan ID                                                                              |
-| `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Plan ID                                               |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 

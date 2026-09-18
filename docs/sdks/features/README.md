@@ -24,14 +24,15 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
     res, err := s.Features.CreateFeature(ctx, types.CreateFeatureRequest{
         Meter: &types.CreateMeterRequest{
@@ -42,10 +43,6 @@ func main() {
         },
         Name: "<value>",
         Type: types.FeatureTypeMetered,
-    }, dtos.CreateFeatureSecurity{
-        Option1: &dtos.CreateFeatureSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -62,7 +59,6 @@ func main() {
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
 | `request`                                                                | [types.CreateFeatureRequest](../../models/types/createfeaturerequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
-| `security`                                                               | [dtos.CreateFeatureSecurity](../../models/dtos/createfeaturesecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
 | `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
 ### Response
@@ -91,20 +87,17 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Features.QueryFeature(ctx, types.FeatureFilter{}, dtos.QueryFeatureSecurity{
-        Option1: &dtos.QueryFeatureSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Features.QueryFeature(ctx, types.FeatureFilter{})
     if err != nil {
         log.Fatal(err)
     }
@@ -116,12 +109,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
-| `request`                                                              | [types.FeatureFilter](../../models/types/featurefilter.md)             | :heavy_check_mark:                                                     | The request object to use for the request.                             |
-| `security`                                                             | [dtos.QueryFeatureSecurity](../../models/dtos/queryfeaturesecurity.md) | :heavy_check_mark:                                                     | The security requirements to use for the request.                      |
-| `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
+| Parameter                                                  | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `ctx`                                                      | [context.Context](https://pkg.go.dev/context#Context)      | :heavy_check_mark:                                         | The context to use for the request.                        |
+| `request`                                                  | [types.FeatureFilter](../../models/types/featurefilter.md) | :heavy_check_mark:                                         | The request object to use for the request.                 |
+| `opts`                                                     | [][dtos.Option](../../models/dtos/option.md)               | :heavy_minus_sign:                                         | The options for this request.                              |
 
 ### Response
 
@@ -148,7 +140,6 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -156,13 +147,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Features.UpdateFeature(ctx, dtos.UpdateFeatureSecurity{
-        Option1: &dtos.UpdateFeatureSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", types.UpdateFeatureRequest{})
+    res, err := s.Features.UpdateFeature(ctx, "<id>", types.UpdateFeatureRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -177,7 +166,6 @@ func main() {
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
-| `security`                                                               | [dtos.UpdateFeatureSecurity](../../models/dtos/updatefeaturesecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
 | `id`                                                                     | `string`                                                                 | :heavy_check_mark:                                                       | Feature ID                                                               |
 | `body`                                                                   | [types.UpdateFeatureRequest](../../models/types/updatefeaturerequest.md) | :heavy_check_mark:                                                       | Feature update data                                                      |
 | `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
@@ -207,20 +195,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Features.DeleteFeature(ctx, dtos.DeleteFeatureSecurity{
-        Option1: &dtos.DeleteFeatureSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Features.DeleteFeature(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -232,12 +217,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
-| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
-| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
-| `security`                                                               | [dtos.DeleteFeatureSecurity](../../models/dtos/deletefeaturesecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
-| `id`                                                                     | `string`                                                                 | :heavy_check_mark:                                                       | Feature ID                                                               |
-| `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Feature ID                                            |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -264,7 +248,6 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -272,13 +255,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Features.CloneFeature(ctx, dtos.CloneFeatureSecurity{
-        Option1: &dtos.CloneFeatureSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", types.CloneFeatureRequest{})
+    res, err := s.Features.CloneFeature(ctx, "<id>", types.CloneFeatureRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -293,7 +274,6 @@ func main() {
 | Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
-| `security`                                                             | [dtos.CloneFeatureSecurity](../../models/dtos/clonefeaturesecurity.md) | :heavy_check_mark:                                                     | The security requirements to use for the request.                      |
 | `id`                                                                   | `string`                                                               | :heavy_check_mark:                                                     | Source Feature ID                                                      |
 | `body`                                                                 | [types.CloneFeatureRequest](../../models/types/clonefeaturerequest.md) | :heavy_check_mark:                                                     | Clone configuration                                                    |
 | `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |

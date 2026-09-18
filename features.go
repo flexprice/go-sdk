@@ -33,7 +33,7 @@ func newFeatures(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *h
 
 // CreateFeature - Create feature
 // Use when defining a new feature or capability to gate or meter (e.g. feature flags or usage-based limits). Ideal for boolean or usage features.
-func (s *Features) CreateFeature(ctx context.Context, request types.CreateFeatureRequest, security dtos.CreateFeatureSecurity, opts ...dtos.Option) (*dtos.CreateFeatureResponse, error) {
+func (s *Features) CreateFeature(ctx context.Context, request types.CreateFeatureRequest, opts ...dtos.Option) (*dtos.CreateFeatureResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Features) CreateFeature(ctx context.Context, request types.CreateFeatur
 		Context:          ctx,
 		OperationID:      "createFeature",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Features) CreateFeature(ctx context.Context, request types.CreateFeatur
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -296,7 +296,7 @@ func (s *Features) CreateFeature(ctx context.Context, request types.CreateFeatur
 
 // QueryFeature - Query features
 // Use when listing or searching features (e.g. catalog or entitlement setup). Returns a paginated list; supports filtering and sorting.
-func (s *Features) QueryFeature(ctx context.Context, request types.FeatureFilter, security dtos.QueryFeatureSecurity, opts ...dtos.Option) (*dtos.QueryFeatureResponse, error) {
+func (s *Features) QueryFeature(ctx context.Context, request types.FeatureFilter, opts ...dtos.Option) (*dtos.QueryFeatureResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -327,7 +327,7 @@ func (s *Features) QueryFeature(ctx context.Context, request types.FeatureFilter
 		Context:          ctx,
 		OperationID:      "queryFeature",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -355,7 +355,7 @@ func (s *Features) QueryFeature(ctx context.Context, request types.FeatureFilter
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -559,7 +559,7 @@ func (s *Features) QueryFeature(ctx context.Context, request types.FeatureFilter
 
 // UpdateFeature - Update feature
 // Use when changing feature definition (e.g. name, type, or meter). Request body contains the fields to update.
-func (s *Features) UpdateFeature(ctx context.Context, security dtos.UpdateFeatureSecurity, id string, body types.UpdateFeatureRequest, opts ...dtos.Option) (*dtos.UpdateFeatureResponse, error) {
+func (s *Features) UpdateFeature(ctx context.Context, id string, body types.UpdateFeatureRequest, opts ...dtos.Option) (*dtos.UpdateFeatureResponse, error) {
 	request := dtos.UpdateFeatureRequest{
 		ID:   id,
 		Body: body,
@@ -595,7 +595,7 @@ func (s *Features) UpdateFeature(ctx context.Context, security dtos.UpdateFeatur
 		Context:          ctx,
 		OperationID:      "updateFeature",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -623,7 +623,7 @@ func (s *Features) UpdateFeature(ctx context.Context, security dtos.UpdateFeatur
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -829,7 +829,7 @@ func (s *Features) UpdateFeature(ctx context.Context, security dtos.UpdateFeatur
 
 // DeleteFeature - Delete feature
 // Use when retiring a feature (e.g. deprecated capability). Returns 200 with success message.
-func (s *Features) DeleteFeature(ctx context.Context, security dtos.DeleteFeatureSecurity, id string, opts ...dtos.Option) (*dtos.DeleteFeatureResponse, error) {
+func (s *Features) DeleteFeature(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteFeatureResponse, error) {
 	request := dtos.DeleteFeatureRequest{
 		ID: id,
 	}
@@ -864,7 +864,7 @@ func (s *Features) DeleteFeature(ctx context.Context, security dtos.DeleteFeatur
 		Context:          ctx,
 		OperationID:      "deleteFeature",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -885,7 +885,7 @@ func (s *Features) DeleteFeature(ctx context.Context, security dtos.DeleteFeatur
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1091,7 +1091,7 @@ func (s *Features) DeleteFeature(ctx context.Context, security dtos.DeleteFeatur
 
 // CloneFeature - Clone a feature
 // Clone an existing feature
-func (s *Features) CloneFeature(ctx context.Context, security dtos.CloneFeatureSecurity, id string, body types.CloneFeatureRequest, opts ...dtos.Option) (*dtos.CloneFeatureResponse, error) {
+func (s *Features) CloneFeature(ctx context.Context, id string, body types.CloneFeatureRequest, opts ...dtos.Option) (*dtos.CloneFeatureResponse, error) {
 	request := dtos.CloneFeatureRequest{
 		ID:   id,
 		Body: body,
@@ -1127,7 +1127,7 @@ func (s *Features) CloneFeature(ctx context.Context, security dtos.CloneFeatureS
 		Context:          ctx,
 		OperationID:      "cloneFeature",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1155,7 +1155,7 @@ func (s *Features) CloneFeature(ctx context.Context, security dtos.CloneFeatureS
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 

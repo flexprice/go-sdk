@@ -27,21 +27,18 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
     res, err := s.Users.CreateUser(ctx, types.CreateUserRequest{
         Type: types.UserTypeUser,
-    }, dtos.CreateUserSecurity{
-        Option1: &dtos.CreateUserSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
     })
     if err != nil {
         log.Fatal(err)
@@ -58,7 +55,6 @@ func main() {
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
 | `request`                                                          | [types.CreateUserRequest](../../models/types/createuserrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
-| `security`                                                         | [dtos.CreateUserSecurity](../../models/dtos/createusersecurity.md) | :heavy_check_mark:                                                 | The security requirements to use for the request.                  |
 | `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
 
 ### Response
@@ -86,20 +82,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Users.GetUserInfo(ctx, dtos.GetUserInfoSecurity{
-        Option1: &dtos.GetUserInfoSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Users.GetUserInfo(ctx)
     if err != nil {
         log.Fatal(err)
     }
@@ -111,11 +104,10 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `security`                                                           | [dtos.GetUserInfoSecurity](../../models/dtos/getuserinfosecurity.md) | :heavy_check_mark:                                                   | The security requirements to use for the request.                    |
-| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -143,20 +135,17 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Users.UpdateUser(ctx, types.UpdateUserRequest{}, dtos.UpdateUserSecurity{
-        Option1: &dtos.UpdateUserSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Users.UpdateUser(ctx, types.UpdateUserRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -172,7 +161,6 @@ func main() {
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
 | `request`                                                          | [types.UpdateUserRequest](../../models/types/updateuserrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
-| `security`                                                         | [dtos.UpdateUserSecurity](../../models/dtos/updateusersecurity.md) | :heavy_check_mark:                                                 | The security requirements to use for the request.                  |
 | `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
 
 ### Response
@@ -201,20 +189,17 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Users.QueryUser(ctx, types.UserFilter{}, dtos.QueryUserSecurity{
-        Option1: &dtos.QueryUserSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    })
+    res, err := s.Users.QueryUser(ctx, types.UserFilter{})
     if err != nil {
         log.Fatal(err)
     }
@@ -226,12 +211,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
-| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
-| `ctx`                                                            | [context.Context](https://pkg.go.dev/context#Context)            | :heavy_check_mark:                                               | The context to use for the request.                              |
-| `request`                                                        | [types.UserFilter](../../models/types/userfilter.md)             | :heavy_check_mark:                                               | The request object to use for the request.                       |
-| `security`                                                       | [dtos.QueryUserSecurity](../../models/dtos/queryusersecurity.md) | :heavy_check_mark:                                               | The security requirements to use for the request.                |
-| `opts`                                                           | [][dtos.Option](../../models/dtos/option.md)                     | :heavy_minus_sign:                                               | The options for this request.                                    |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `request`                                             | [types.UserFilter](../../models/types/userfilter.md)  | :heavy_check_mark:                                    | The request object to use for the request.            |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -258,7 +242,6 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -266,13 +249,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Users.UpdateServiceAccount(ctx, dtos.UpdateServiceAccountSecurity{
-        Option1: &dtos.UpdateServiceAccountSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", types.UpdateServiceAccountRequest{
+    res, err := s.Users.UpdateServiceAccount(ctx, "<id>", types.UpdateServiceAccountRequest{
         Name: "<value>",
     })
     if err != nil {
@@ -289,7 +270,6 @@ func main() {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `security`                                                                             | [dtos.UpdateServiceAccountSecurity](../../models/dtos/updateserviceaccountsecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
 | `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Service Account ID                                                                     |
 | `body`                                                                                 | [types.UpdateServiceAccountRequest](../../models/types/updateserviceaccountrequest.md) | :heavy_check_mark:                                                                     | Update service account request                                                         |
 | `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
@@ -319,20 +299,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Users.DeleteServiceAccount(ctx, dtos.DeleteServiceAccountSecurity{
-        Option1: &dtos.DeleteServiceAccountSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Users.DeleteServiceAccount(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -344,12 +321,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `security`                                                                             | [dtos.DeleteServiceAccountSecurity](../../models/dtos/deleteserviceaccountsecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
-| `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Service Account ID                                                                     |
-| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Service Account ID                                    |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -376,20 +352,17 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Users.RemoveUser(ctx, dtos.RemoveUserSecurity{
-        Option1: &dtos.RemoveUserSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>")
+    res, err := s.Users.RemoveUser(ctx, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -401,12 +374,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
-| `security`                                                         | [dtos.RemoveUserSecurity](../../models/dtos/removeusersecurity.md) | :heavy_check_mark:                                                 | The security requirements to use for the request.                  |
-| `id`                                                               | `string`                                                           | :heavy_check_mark:                                                 | User ID                                                            |
-| `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | User ID                                               |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
 
@@ -433,7 +405,6 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -441,13 +412,11 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New()
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
 
-    res, err := s.Users.UpdateUserRoles(ctx, dtos.UpdateUserRolesSecurity{
-        Option1: &dtos.UpdateUserRolesSecurityOption1{
-            APIKeyAuth: "<YOUR_API_KEY_HERE>",
-        },
-    }, "<id>", types.UpdateUserRolesRequest{})
+    res, err := s.Users.UpdateUserRoles(ctx, "<id>", types.UpdateUserRolesRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -462,7 +431,6 @@ func main() {
 | Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
-| `security`                                                                   | [dtos.UpdateUserRolesSecurity](../../models/dtos/updateuserrolessecurity.md) | :heavy_check_mark:                                                           | The security requirements to use for the request.                            |
 | `id`                                                                         | `string`                                                                     | :heavy_check_mark:                                                           | User ID                                                                      |
 | `body`                                                                       | [types.UpdateUserRolesRequest](../../models/types/updateuserrolesrequest.md) | :heavy_check_mark:                                                           | Update user roles request                                                    |
 | `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |

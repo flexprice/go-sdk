@@ -33,7 +33,7 @@ func newTaxRates(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *h
 
 // GetTaxRates - Get tax rates
 // Use when listing tax rates (e.g. tax config UI). Returns tax rates with optional filters.
-func (s *TaxRates) GetTaxRates(ctx context.Context, request dtos.GetTaxRatesRequest, security dtos.GetTaxRatesSecurity, opts ...dtos.Option) (*dtos.GetTaxRatesResponse, error) {
+func (s *TaxRates) GetTaxRates(ctx context.Context, request dtos.GetTaxRatesRequest, opts ...dtos.Option) (*dtos.GetTaxRatesResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *TaxRates) GetTaxRates(ctx context.Context, request dtos.GetTaxRatesRequ
 		Context:          ctx,
 		OperationID:      "getTaxRates",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -89,7 +89,7 @@ func (s *TaxRates) GetTaxRates(ctx context.Context, request dtos.GetTaxRatesRequ
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -293,7 +293,7 @@ func (s *TaxRates) GetTaxRates(ctx context.Context, request dtos.GetTaxRatesRequ
 
 // CreateTaxRate - Create a tax rate
 // Use when defining a new tax rate (e.g. VAT or sales tax) for use in invoices. Attach to customers or products via tax associations.
-func (s *TaxRates) CreateTaxRate(ctx context.Context, request types.CreateTaxRateRequest, security dtos.CreateTaxRateSecurity, opts ...dtos.Option) (*dtos.CreateTaxRateResponse, error) {
+func (s *TaxRates) CreateTaxRate(ctx context.Context, request types.CreateTaxRateRequest, opts ...dtos.Option) (*dtos.CreateTaxRateResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -324,7 +324,7 @@ func (s *TaxRates) CreateTaxRate(ctx context.Context, request types.CreateTaxRat
 		Context:          ctx,
 		OperationID:      "createTaxRate",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -352,7 +352,7 @@ func (s *TaxRates) CreateTaxRate(ctx context.Context, request types.CreateTaxRat
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -556,7 +556,7 @@ func (s *TaxRates) CreateTaxRate(ctx context.Context, request types.CreateTaxRat
 
 // GetTaxRate - Get a tax rate
 // Use when you need to load a single tax rate (e.g. for display or when creating an association).
-func (s *TaxRates) GetTaxRate(ctx context.Context, security dtos.GetTaxRateSecurity, id string, opts ...dtos.Option) (*dtos.GetTaxRateResponse, error) {
+func (s *TaxRates) GetTaxRate(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetTaxRateResponse, error) {
 	request := dtos.GetTaxRateRequest{
 		ID: id,
 	}
@@ -591,7 +591,7 @@ func (s *TaxRates) GetTaxRate(ctx context.Context, security dtos.GetTaxRateSecur
 		Context:          ctx,
 		OperationID:      "getTaxRate",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -612,7 +612,7 @@ func (s *TaxRates) GetTaxRate(ctx context.Context, security dtos.GetTaxRateSecur
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -816,7 +816,7 @@ func (s *TaxRates) GetTaxRate(ctx context.Context, security dtos.GetTaxRateSecur
 
 // UpdateTaxRate - Update a tax rate
 // Use when changing a tax rate (e.g. rate value or name). Request body contains the fields to update.
-func (s *TaxRates) UpdateTaxRate(ctx context.Context, security dtos.UpdateTaxRateSecurity, id string, body types.UpdateTaxRateRequest, opts ...dtos.Option) (*dtos.UpdateTaxRateResponse, error) {
+func (s *TaxRates) UpdateTaxRate(ctx context.Context, id string, body types.UpdateTaxRateRequest, opts ...dtos.Option) (*dtos.UpdateTaxRateResponse, error) {
 	request := dtos.UpdateTaxRateRequest{
 		ID:   id,
 		Body: body,
@@ -852,7 +852,7 @@ func (s *TaxRates) UpdateTaxRate(ctx context.Context, security dtos.UpdateTaxRat
 		Context:          ctx,
 		OperationID:      "updateTaxRate",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -880,7 +880,7 @@ func (s *TaxRates) UpdateTaxRate(ctx context.Context, security dtos.UpdateTaxRat
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
@@ -1084,7 +1084,7 @@ func (s *TaxRates) UpdateTaxRate(ctx context.Context, security dtos.UpdateTaxRat
 
 // DeleteTaxRate - Delete a tax rate
 // Use when retiring a tax rate (e.g. no longer applicable). Fails if still referenced by associations.
-func (s *TaxRates) DeleteTaxRate(ctx context.Context, security dtos.DeleteTaxRateSecurity, id string, opts ...dtos.Option) (*dtos.DeleteTaxRateResponse, error) {
+func (s *TaxRates) DeleteTaxRate(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteTaxRateResponse, error) {
 	request := dtos.DeleteTaxRateRequest{
 		ID: id,
 	}
@@ -1119,7 +1119,7 @@ func (s *TaxRates) DeleteTaxRate(ctx context.Context, security dtos.DeleteTaxRat
 		Context:          ctx,
 		OperationID:      "deleteTaxRate",
 		OAuth2Scopes:     nil,
-		SecuritySource:   utils.AsSecuritySource(security),
+		SecuritySource:   s.sdkConfiguration.Security,
 	}
 
 	timeout := o.Timeout
@@ -1140,7 +1140,7 @@ func (s *TaxRates) DeleteTaxRate(ctx context.Context, security dtos.DeleteTaxRat
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
 		return nil, err
 	}
 
