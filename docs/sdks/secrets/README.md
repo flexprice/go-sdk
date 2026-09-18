@@ -21,17 +21,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Secrets.ListAPIKeys(ctx, nil, nil, nil)
+    res, err := s.Secrets.ListAPIKeys(ctx, dtos.ListAPIKeysSecurity{
+        Option1: &dtos.ListAPIKeysSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, nil, nil, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -43,13 +46,14 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `limit`                                               | `*int64`                                              | :heavy_minus_sign:                                    | Limit                                                 |
-| `offset`                                              | `*int64`                                              | :heavy_minus_sign:                                    | Offset                                                |
-| `status`                                              | `*string`                                             | :heavy_minus_sign:                                    | Status (published/archived)                           |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
+| `security`                                                           | [dtos.ListAPIKeysSecurity](../../models/dtos/listapikeyssecurity.md) | :heavy_check_mark:                                                   | The security requirements to use for the request.                    |
+| `limit`                                                              | `*int64`                                                             | :heavy_minus_sign:                                                   | Limit                                                                |
+| `offset`                                                             | `*int64`                                                             | :heavy_minus_sign:                                                   | Offset                                                               |
+| `status`                                                             | `*string`                                                            | :heavy_minus_sign:                                                   | Status (published/archived)                                          |
+| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
 ### Response
 
@@ -77,19 +81,22 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
     res, err := s.Secrets.CreateAPIKey(ctx, types.CreateAPIKeyRequest{
         Name: "<value>",
         Type: types.SecretTypePublishableKey,
+    }, dtos.CreateAPIKeySecurity{
+        Option1: &dtos.CreateAPIKeySecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -106,6 +113,7 @@ func main() {
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
 | `request`                                                              | [types.CreateAPIKeyRequest](../../models/types/createapikeyrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `security`                                                             | [dtos.CreateAPIKeySecurity](../../models/dtos/createapikeysecurity.md) | :heavy_check_mark:                                                     | The security requirements to use for the request.                      |
 | `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
 
 ### Response
@@ -133,17 +141,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Secrets.DeleteAPIKey(ctx, "<id>")
+    res, err := s.Secrets.DeleteAPIKey(ctx, dtos.DeleteAPIKeySecurity{
+        Option1: &dtos.DeleteAPIKeySecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -155,11 +166,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | API key ID                                            |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
+| `security`                                                             | [dtos.DeleteAPIKeySecurity](../../models/dtos/deleteapikeysecurity.md) | :heavy_check_mark:                                                     | The security requirements to use for the request.                      |
+| `id`                                                                   | `string`                                                               | :heavy_check_mark:                                                     | API key ID                                                             |
+| `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
 
 ### Response
 

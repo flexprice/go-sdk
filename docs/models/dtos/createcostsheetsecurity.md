@@ -1,0 +1,11 @@
+# CreateCostsheetSecurity
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                   | [*dtos.CreateCostsheetSecurityOption1](../../models/dtos/createcostsheetsecurityoption1.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option2`                                                                                   | [*dtos.CreateCostsheetSecurityOption2](../../models/dtos/createcostsheetsecurityoption2.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option3`                                                                                   | [*dtos.CreateCostsheetSecurityOption3](../../models/dtos/createcostsheetsecurityoption3.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option4`                                                                                   | [*dtos.CreateCostsheetSecurityOption4](../../models/dtos/createcostsheetsecurityoption4.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |

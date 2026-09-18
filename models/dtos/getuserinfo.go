@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type GetUserInfoSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetUserInfoSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetUserInfoSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetUserInfoSecurityOption1) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getuserinfosecurityoption1
+// #endregion class-body-getuserinfosecurityoption1
+
+type GetUserInfoSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetUserInfoSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetUserInfoSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetUserInfoSecurityOption2) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getuserinfosecurityoption2
+// #endregion class-body-getuserinfosecurityoption2
+
+type GetUserInfoSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (g GetUserInfoSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetUserInfoSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetUserInfoSecurityOption3) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+func (g *GetUserInfoSecurityOption3) GetEnvironmentID() string {
+	if g == nil {
+		return ""
+	}
+	return g.EnvironmentID
+}
+
+// #region class-body-getuserinfosecurityoption3
+// #endregion class-body-getuserinfosecurityoption3
+
+type GetUserInfoSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (g GetUserInfoSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetUserInfoSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetUserInfoSecurityOption4) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+// #region class-body-getuserinfosecurityoption4
+// #endregion class-body-getuserinfosecurityoption4
+
+type GetUserInfoSecurity struct {
+	Option1 *GetUserInfoSecurityOption1 `security:"option"`
+	Option2 *GetUserInfoSecurityOption2 `security:"option"`
+	Option3 *GetUserInfoSecurityOption3 `security:"option"`
+	Option4 *GetUserInfoSecurityOption4 `security:"option"`
+}
+
+func (g GetUserInfoSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetUserInfoSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetUserInfoSecurity) GetOption1() *GetUserInfoSecurityOption1 {
+	if g == nil {
+		return nil
+	}
+	return g.Option1
+}
+
+func (g *GetUserInfoSecurity) GetOption2() *GetUserInfoSecurityOption2 {
+	if g == nil {
+		return nil
+	}
+	return g.Option2
+}
+
+func (g *GetUserInfoSecurity) GetOption3() *GetUserInfoSecurityOption3 {
+	if g == nil {
+		return nil
+	}
+	return g.Option3
+}
+
+func (g *GetUserInfoSecurity) GetOption4() *GetUserInfoSecurityOption4 {
+	if g == nil {
+		return nil
+	}
+	return g.Option4
+}
+
 type GetUserInfoResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK

@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type ListTaxAssociationsSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (l ListTaxAssociationsSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListTaxAssociationsSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListTaxAssociationsSecurityOption1) GetAPIKeyAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.APIKeyAuth
+}
+
+// #region class-body-listtaxassociationssecurityoption1
+// #endregion class-body-listtaxassociationssecurityoption1
+
+type ListTaxAssociationsSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (l ListTaxAssociationsSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListTaxAssociationsSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListTaxAssociationsSecurityOption2) GetAPIKeyAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.APIKeyAuth
+}
+
+// #region class-body-listtaxassociationssecurityoption2
+// #endregion class-body-listtaxassociationssecurityoption2
+
+type ListTaxAssociationsSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (l ListTaxAssociationsSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListTaxAssociationsSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListTaxAssociationsSecurityOption3) GetBearerAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.BearerAuth
+}
+
+func (l *ListTaxAssociationsSecurityOption3) GetEnvironmentID() string {
+	if l == nil {
+		return ""
+	}
+	return l.EnvironmentID
+}
+
+// #region class-body-listtaxassociationssecurityoption3
+// #endregion class-body-listtaxassociationssecurityoption3
+
+type ListTaxAssociationsSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (l ListTaxAssociationsSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListTaxAssociationsSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListTaxAssociationsSecurityOption4) GetBearerAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.BearerAuth
+}
+
+// #region class-body-listtaxassociationssecurityoption4
+// #endregion class-body-listtaxassociationssecurityoption4
+
+type ListTaxAssociationsSecurity struct {
+	Option1 *ListTaxAssociationsSecurityOption1 `security:"option"`
+	Option2 *ListTaxAssociationsSecurityOption2 `security:"option"`
+	Option3 *ListTaxAssociationsSecurityOption3 `security:"option"`
+	Option4 *ListTaxAssociationsSecurityOption4 `security:"option"`
+}
+
+func (l ListTaxAssociationsSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListTaxAssociationsSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListTaxAssociationsSecurity) GetOption1() *ListTaxAssociationsSecurityOption1 {
+	if l == nil {
+		return nil
+	}
+	return l.Option1
+}
+
+func (l *ListTaxAssociationsSecurity) GetOption2() *ListTaxAssociationsSecurityOption2 {
+	if l == nil {
+		return nil
+	}
+	return l.Option2
+}
+
+func (l *ListTaxAssociationsSecurity) GetOption3() *ListTaxAssociationsSecurityOption3 {
+	if l == nil {
+		return nil
+	}
+	return l.Option3
+}
+
+func (l *ListTaxAssociationsSecurity) GetOption4() *ListTaxAssociationsSecurityOption4 {
+	if l == nil {
+		return nil
+	}
+	return l.Option4
+}
+
 type ListTaxAssociationsRequest struct {
 	// Entity Type
 	EntityType *string `queryParam:"style=form,explode=true,name=entity_type"`

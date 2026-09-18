@@ -33,9 +33,7 @@ func newCoupons(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *ho
 
 // CreateCoupon - Create coupon
 // Use when creating a discount (e.g. promo code or referral). Ideal for percent or fixed value, with optional validity and usage limits.
-//
-// This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
-func (s *Coupons) CreateCoupon(ctx context.Context, request types.CreateCouponRequest, opts ...dtos.Option) (*dtos.CreateCouponResponse, error) {
+func (s *Coupons) CreateCoupon(ctx context.Context, request types.CreateCouponRequest, security dtos.CreateCouponSecurity, opts ...dtos.Option) (*dtos.CreateCouponResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -66,7 +64,7 @@ func (s *Coupons) CreateCoupon(ctx context.Context, request types.CreateCouponRe
 		Context:          ctx,
 		OperationID:      "createCoupon",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -94,7 +92,7 @@ func (s *Coupons) CreateCoupon(ctx context.Context, request types.CreateCouponRe
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -304,7 +302,7 @@ func (s *Coupons) CreateCoupon(ctx context.Context, request types.CreateCouponRe
 
 // GetCouponByCode - Get coupon by code
 // Use when resolving a coupon by promo code (e.g. checkout or validation).
-func (s *Coupons) GetCouponByCode(ctx context.Context, code string, opts ...dtos.Option) (*dtos.GetCouponByCodeResponse, error) {
+func (s *Coupons) GetCouponByCode(ctx context.Context, security dtos.GetCouponByCodeSecurity, code string, opts ...dtos.Option) (*dtos.GetCouponByCodeResponse, error) {
 	request := dtos.GetCouponByCodeRequest{
 		Code: code,
 	}
@@ -339,7 +337,7 @@ func (s *Coupons) GetCouponByCode(ctx context.Context, code string, opts ...dtos
 		Context:          ctx,
 		OperationID:      "getCouponByCode",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -360,7 +358,7 @@ func (s *Coupons) GetCouponByCode(ctx context.Context, code string, opts ...dtos
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -566,7 +564,7 @@ func (s *Coupons) GetCouponByCode(ctx context.Context, code string, opts ...dtos
 
 // QueryCoupon - Query coupons
 // Use when listing or searching coupons (e.g. promo management). Returns a paginated list; supports filtering and sorting.
-func (s *Coupons) QueryCoupon(ctx context.Context, request types.CouponFilter, opts ...dtos.Option) (*dtos.QueryCouponResponse, error) {
+func (s *Coupons) QueryCoupon(ctx context.Context, request types.CouponFilter, security dtos.QueryCouponSecurity, opts ...dtos.Option) (*dtos.QueryCouponResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -597,7 +595,7 @@ func (s *Coupons) QueryCoupon(ctx context.Context, request types.CouponFilter, o
 		Context:          ctx,
 		OperationID:      "queryCoupon",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -625,7 +623,7 @@ func (s *Coupons) QueryCoupon(ctx context.Context, request types.CouponFilter, o
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -829,7 +827,7 @@ func (s *Coupons) QueryCoupon(ctx context.Context, request types.CouponFilter, o
 
 // GetCoupon - Get coupon
 // Use when you need to load a single coupon (e.g. for display or to validate a code).
-func (s *Coupons) GetCoupon(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetCouponResponse, error) {
+func (s *Coupons) GetCoupon(ctx context.Context, security dtos.GetCouponSecurity, id string, opts ...dtos.Option) (*dtos.GetCouponResponse, error) {
 	request := dtos.GetCouponRequest{
 		ID: id,
 	}
@@ -864,7 +862,7 @@ func (s *Coupons) GetCoupon(ctx context.Context, id string, opts ...dtos.Option)
 		Context:          ctx,
 		OperationID:      "getCoupon",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -885,7 +883,7 @@ func (s *Coupons) GetCoupon(ctx context.Context, id string, opts ...dtos.Option)
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1091,9 +1089,7 @@ func (s *Coupons) GetCoupon(ctx context.Context, id string, opts ...dtos.Option)
 
 // UpdateCoupon - Update coupon
 // Use when changing coupon config (e.g. value, validity, or usage limits).
-//
-// This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
-func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.UpdateCouponRequest, opts ...dtos.Option) (*dtos.UpdateCouponResponse, error) {
+func (s *Coupons) UpdateCoupon(ctx context.Context, security dtos.UpdateCouponSecurity, id string, body types.UpdateCouponRequest, opts ...dtos.Option) (*dtos.UpdateCouponResponse, error) {
 	request := dtos.UpdateCouponRequest{
 		ID:   id,
 		Body: body,
@@ -1129,7 +1125,7 @@ func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.Update
 		Context:          ctx,
 		OperationID:      "updateCoupon",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1157,7 +1153,7 @@ func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.Update
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1367,9 +1363,7 @@ func (s *Coupons) UpdateCoupon(ctx context.Context, id string, body types.Update
 
 // DeleteCoupon - Delete coupon
 // Use when retiring a coupon (e.g. campaign ended). Returns 200 with success message.
-//
-// This operation requires either [Security.APIKeyAuth] or [Security.APIKeyAuth] to be set via [WithSecurity].
-func (s *Coupons) DeleteCoupon(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteCouponResponse, error) {
+func (s *Coupons) DeleteCoupon(ctx context.Context, security dtos.DeleteCouponSecurity, id string, opts ...dtos.Option) (*dtos.DeleteCouponResponse, error) {
 	request := dtos.DeleteCouponRequest{
 		ID: id,
 	}
@@ -1404,7 +1398,7 @@ func (s *Coupons) DeleteCoupon(ctx context.Context, id string, opts ...dtos.Opti
 		Context:          ctx,
 		OperationID:      "deleteCoupon",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1425,7 +1419,7 @@ func (s *Coupons) DeleteCoupon(ctx context.Context, id string, opts ...dtos.Opti
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security, "APIKeyAuth", "APIKeyAuth"); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

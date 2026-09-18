@@ -1,0 +1,11 @@
+# QueryCouponSecurity
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Option1`                                                                           | [*dtos.QueryCouponSecurityOption1](../../models/dtos/querycouponsecurityoption1.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option2`                                                                           | [*dtos.QueryCouponSecurityOption2](../../models/dtos/querycouponsecurityoption2.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option3`                                                                           | [*dtos.QueryCouponSecurityOption3](../../models/dtos/querycouponsecurityoption3.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option4`                                                                           | [*dtos.QueryCouponSecurityOption4](../../models/dtos/querycouponsecurityoption4.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |

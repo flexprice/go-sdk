@@ -1,0 +1,11 @@
+# CreateTaxRateSecurity
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `Option1`                                                                               | [*dtos.CreateTaxRateSecurityOption1](../../models/dtos/createtaxratesecurityoption1.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option2`                                                                               | [*dtos.CreateTaxRateSecurityOption2](../../models/dtos/createtaxratesecurityoption2.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option3`                                                                               | [*dtos.CreateTaxRateSecurityOption3](../../models/dtos/createtaxratesecurityoption3.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option4`                                                                               | [*dtos.CreateTaxRateSecurityOption4](../../models/dtos/createtaxratesecurityoption4.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |

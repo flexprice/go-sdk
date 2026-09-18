@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type GetTaxRateSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetTaxRateSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTaxRateSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetTaxRateSecurityOption1) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-gettaxratesecurityoption1
+// #endregion class-body-gettaxratesecurityoption1
+
+type GetTaxRateSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetTaxRateSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTaxRateSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetTaxRateSecurityOption2) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-gettaxratesecurityoption2
+// #endregion class-body-gettaxratesecurityoption2
+
+type GetTaxRateSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (g GetTaxRateSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTaxRateSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetTaxRateSecurityOption3) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+func (g *GetTaxRateSecurityOption3) GetEnvironmentID() string {
+	if g == nil {
+		return ""
+	}
+	return g.EnvironmentID
+}
+
+// #region class-body-gettaxratesecurityoption3
+// #endregion class-body-gettaxratesecurityoption3
+
+type GetTaxRateSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (g GetTaxRateSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTaxRateSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetTaxRateSecurityOption4) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+// #region class-body-gettaxratesecurityoption4
+// #endregion class-body-gettaxratesecurityoption4
+
+type GetTaxRateSecurity struct {
+	Option1 *GetTaxRateSecurityOption1 `security:"option"`
+	Option2 *GetTaxRateSecurityOption2 `security:"option"`
+	Option3 *GetTaxRateSecurityOption3 `security:"option"`
+	Option4 *GetTaxRateSecurityOption4 `security:"option"`
+}
+
+func (g GetTaxRateSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetTaxRateSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetTaxRateSecurity) GetOption1() *GetTaxRateSecurityOption1 {
+	if g == nil {
+		return nil
+	}
+	return g.Option1
+}
+
+func (g *GetTaxRateSecurity) GetOption2() *GetTaxRateSecurityOption2 {
+	if g == nil {
+		return nil
+	}
+	return g.Option2
+}
+
+func (g *GetTaxRateSecurity) GetOption3() *GetTaxRateSecurityOption3 {
+	if g == nil {
+		return nil
+	}
+	return g.Option3
+}
+
+func (g *GetTaxRateSecurity) GetOption4() *GetTaxRateSecurityOption4 {
+	if g == nil {
+		return nil
+	}
+	return g.Option4
+}
+
 type GetTaxRateRequest struct {
 	// Tax rate ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

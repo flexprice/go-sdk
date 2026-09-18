@@ -1,0 +1,11 @@
+# SyncPlanPricesSecurity
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `Option1`                                                                                 | [*dtos.SyncPlanPricesSecurityOption1](../../models/dtos/syncplanpricessecurityoption1.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `Option2`                                                                                 | [*dtos.SyncPlanPricesSecurityOption2](../../models/dtos/syncplanpricessecurityoption2.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `Option3`                                                                                 | [*dtos.SyncPlanPricesSecurityOption3](../../models/dtos/syncplanpricessecurityoption3.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `Option4`                                                                                 | [*dtos.SyncPlanPricesSecurityOption4](../../models/dtos/syncplanpricessecurityoption4.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |

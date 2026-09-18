@@ -15,6 +15,7 @@ type CreateInvoiceRequest struct {
 	// billing_period is the period this invoice covers (e.g., "monthly", "yearly")
 	BillingPeriod *string               `json:"billing_period,omitzero"`
 	BillingReason *InvoiceBillingReason `json:"billing_reason,omitzero"`
+	Checkout      *CheckoutParams       `json:"checkout,omitzero"`
 	// coupons
 	Coupons []string `json:"coupons,omitzero"`
 	// currency is the three-letter ISO currency code (e.g., USD, EUR) for the invoice
@@ -104,6 +105,13 @@ func (c *CreateInvoiceRequest) GetBillingReason() *InvoiceBillingReason {
 		return nil
 	}
 	return c.BillingReason
+}
+
+func (c *CreateInvoiceRequest) GetCheckout() *CheckoutParams {
+	if c == nil {
+		return nil
+	}
+	return c.Checkout
 }
 
 func (c *CreateInvoiceRequest) GetCoupons() []string {

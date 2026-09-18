@@ -1,0 +1,11 @@
+# UpdatePriceUnitSecurity
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                   | [*dtos.UpdatePriceUnitSecurityOption1](../../models/dtos/updatepriceunitsecurityoption1.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option2`                                                                                   | [*dtos.UpdatePriceUnitSecurityOption2](../../models/dtos/updatepriceunitsecurityoption2.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option3`                                                                                   | [*dtos.UpdatePriceUnitSecurityOption3](../../models/dtos/updatepriceunitsecurityoption3.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option4`                                                                                   | [*dtos.UpdatePriceUnitSecurityOption4](../../models/dtos/updatepriceunitsecurityoption4.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |

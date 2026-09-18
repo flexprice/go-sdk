@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type ScheduleUpdateBillingPeriodSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (s ScheduleUpdateBillingPeriodSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurityOption1) GetAPIKeyAuth() string {
+	if s == nil {
+		return ""
+	}
+	return s.APIKeyAuth
+}
+
+// #region class-body-scheduleupdatebillingperiodsecurityoption1
+// #endregion class-body-scheduleupdatebillingperiodsecurityoption1
+
+type ScheduleUpdateBillingPeriodSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (s ScheduleUpdateBillingPeriodSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurityOption2) GetAPIKeyAuth() string {
+	if s == nil {
+		return ""
+	}
+	return s.APIKeyAuth
+}
+
+// #region class-body-scheduleupdatebillingperiodsecurityoption2
+// #endregion class-body-scheduleupdatebillingperiodsecurityoption2
+
+type ScheduleUpdateBillingPeriodSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (s ScheduleUpdateBillingPeriodSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurityOption3) GetBearerAuth() string {
+	if s == nil {
+		return ""
+	}
+	return s.BearerAuth
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurityOption3) GetEnvironmentID() string {
+	if s == nil {
+		return ""
+	}
+	return s.EnvironmentID
+}
+
+// #region class-body-scheduleupdatebillingperiodsecurityoption3
+// #endregion class-body-scheduleupdatebillingperiodsecurityoption3
+
+type ScheduleUpdateBillingPeriodSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (s ScheduleUpdateBillingPeriodSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurityOption4) GetBearerAuth() string {
+	if s == nil {
+		return ""
+	}
+	return s.BearerAuth
+}
+
+// #region class-body-scheduleupdatebillingperiodsecurityoption4
+// #endregion class-body-scheduleupdatebillingperiodsecurityoption4
+
+type ScheduleUpdateBillingPeriodSecurity struct {
+	Option1 *ScheduleUpdateBillingPeriodSecurityOption1 `security:"option"`
+	Option2 *ScheduleUpdateBillingPeriodSecurityOption2 `security:"option"`
+	Option3 *ScheduleUpdateBillingPeriodSecurityOption3 `security:"option"`
+	Option4 *ScheduleUpdateBillingPeriodSecurityOption4 `security:"option"`
+}
+
+func (s ScheduleUpdateBillingPeriodSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurity) GetOption1() *ScheduleUpdateBillingPeriodSecurityOption1 {
+	if s == nil {
+		return nil
+	}
+	return s.Option1
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurity) GetOption2() *ScheduleUpdateBillingPeriodSecurityOption2 {
+	if s == nil {
+		return nil
+	}
+	return s.Option2
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurity) GetOption3() *ScheduleUpdateBillingPeriodSecurityOption3 {
+	if s == nil {
+		return nil
+	}
+	return s.Option3
+}
+
+func (s *ScheduleUpdateBillingPeriodSecurity) GetOption4() *ScheduleUpdateBillingPeriodSecurityOption4 {
+	if s == nil {
+		return nil
+	}
+	return s.Option4
+}
+
 // ScheduleUpdateBillingPeriodRequest - Schedule Update Billing Period Request
 type ScheduleUpdateBillingPeriodRequest struct {
 }

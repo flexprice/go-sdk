@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type UpdateTenantSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (u UpdateTenantSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateTenantSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateTenantSecurityOption1) GetAPIKeyAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.APIKeyAuth
+}
+
+// #region class-body-updatetenantsecurityoption1
+// #endregion class-body-updatetenantsecurityoption1
+
+type UpdateTenantSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (u UpdateTenantSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateTenantSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateTenantSecurityOption2) GetAPIKeyAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.APIKeyAuth
+}
+
+// #region class-body-updatetenantsecurityoption2
+// #endregion class-body-updatetenantsecurityoption2
+
+type UpdateTenantSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (u UpdateTenantSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateTenantSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateTenantSecurityOption3) GetBearerAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.BearerAuth
+}
+
+func (u *UpdateTenantSecurityOption3) GetEnvironmentID() string {
+	if u == nil {
+		return ""
+	}
+	return u.EnvironmentID
+}
+
+// #region class-body-updatetenantsecurityoption3
+// #endregion class-body-updatetenantsecurityoption3
+
+type UpdateTenantSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (u UpdateTenantSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateTenantSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateTenantSecurityOption4) GetBearerAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.BearerAuth
+}
+
+// #region class-body-updatetenantsecurityoption4
+// #endregion class-body-updatetenantsecurityoption4
+
+type UpdateTenantSecurity struct {
+	Option1 *UpdateTenantSecurityOption1 `security:"option"`
+	Option2 *UpdateTenantSecurityOption2 `security:"option"`
+	Option3 *UpdateTenantSecurityOption3 `security:"option"`
+	Option4 *UpdateTenantSecurityOption4 `security:"option"`
+}
+
+func (u UpdateTenantSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateTenantSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateTenantSecurity) GetOption1() *UpdateTenantSecurityOption1 {
+	if u == nil {
+		return nil
+	}
+	return u.Option1
+}
+
+func (u *UpdateTenantSecurity) GetOption2() *UpdateTenantSecurityOption2 {
+	if u == nil {
+		return nil
+	}
+	return u.Option2
+}
+
+func (u *UpdateTenantSecurity) GetOption3() *UpdateTenantSecurityOption3 {
+	if u == nil {
+		return nil
+	}
+	return u.Option3
+}
+
+func (u *UpdateTenantSecurity) GetOption4() *UpdateTenantSecurityOption4 {
+	if u == nil {
+		return nil
+	}
+	return u.Option4
+}
+
 type UpdateTenantResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Updated tenant

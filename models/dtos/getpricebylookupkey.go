@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type GetPriceByLookupKeySecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetPriceByLookupKeySecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPriceByLookupKeySecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetPriceByLookupKeySecurityOption1) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getpricebylookupkeysecurityoption1
+// #endregion class-body-getpricebylookupkeysecurityoption1
+
+type GetPriceByLookupKeySecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetPriceByLookupKeySecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPriceByLookupKeySecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetPriceByLookupKeySecurityOption2) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getpricebylookupkeysecurityoption2
+// #endregion class-body-getpricebylookupkeysecurityoption2
+
+type GetPriceByLookupKeySecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (g GetPriceByLookupKeySecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPriceByLookupKeySecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetPriceByLookupKeySecurityOption3) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+func (g *GetPriceByLookupKeySecurityOption3) GetEnvironmentID() string {
+	if g == nil {
+		return ""
+	}
+	return g.EnvironmentID
+}
+
+// #region class-body-getpricebylookupkeysecurityoption3
+// #endregion class-body-getpricebylookupkeysecurityoption3
+
+type GetPriceByLookupKeySecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (g GetPriceByLookupKeySecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPriceByLookupKeySecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetPriceByLookupKeySecurityOption4) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+// #region class-body-getpricebylookupkeysecurityoption4
+// #endregion class-body-getpricebylookupkeysecurityoption4
+
+type GetPriceByLookupKeySecurity struct {
+	Option1 *GetPriceByLookupKeySecurityOption1 `security:"option"`
+	Option2 *GetPriceByLookupKeySecurityOption2 `security:"option"`
+	Option3 *GetPriceByLookupKeySecurityOption3 `security:"option"`
+	Option4 *GetPriceByLookupKeySecurityOption4 `security:"option"`
+}
+
+func (g GetPriceByLookupKeySecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetPriceByLookupKeySecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetPriceByLookupKeySecurity) GetOption1() *GetPriceByLookupKeySecurityOption1 {
+	if g == nil {
+		return nil
+	}
+	return g.Option1
+}
+
+func (g *GetPriceByLookupKeySecurity) GetOption2() *GetPriceByLookupKeySecurityOption2 {
+	if g == nil {
+		return nil
+	}
+	return g.Option2
+}
+
+func (g *GetPriceByLookupKeySecurity) GetOption3() *GetPriceByLookupKeySecurityOption3 {
+	if g == nil {
+		return nil
+	}
+	return g.Option3
+}
+
+func (g *GetPriceByLookupKeySecurity) GetOption4() *GetPriceByLookupKeySecurityOption4 {
+	if g == nil {
+		return nil
+	}
+	return g.Option4
+}
+
 type GetPriceByLookupKeyRequest struct {
 	// Lookup key
 	LookupKey string `pathParam:"style=simple,explode=false,name=lookup_key"`

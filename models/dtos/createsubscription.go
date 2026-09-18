@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type CreateSubscriptionSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (c CreateSubscriptionSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateSubscriptionSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateSubscriptionSecurityOption1) GetAPIKeyAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.APIKeyAuth
+}
+
+// #region class-body-createsubscriptionsecurityoption1
+// #endregion class-body-createsubscriptionsecurityoption1
+
+type CreateSubscriptionSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (c CreateSubscriptionSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateSubscriptionSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateSubscriptionSecurityOption2) GetAPIKeyAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.APIKeyAuth
+}
+
+// #region class-body-createsubscriptionsecurityoption2
+// #endregion class-body-createsubscriptionsecurityoption2
+
+type CreateSubscriptionSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (c CreateSubscriptionSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateSubscriptionSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateSubscriptionSecurityOption3) GetBearerAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.BearerAuth
+}
+
+func (c *CreateSubscriptionSecurityOption3) GetEnvironmentID() string {
+	if c == nil {
+		return ""
+	}
+	return c.EnvironmentID
+}
+
+// #region class-body-createsubscriptionsecurityoption3
+// #endregion class-body-createsubscriptionsecurityoption3
+
+type CreateSubscriptionSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (c CreateSubscriptionSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateSubscriptionSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateSubscriptionSecurityOption4) GetBearerAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.BearerAuth
+}
+
+// #region class-body-createsubscriptionsecurityoption4
+// #endregion class-body-createsubscriptionsecurityoption4
+
+type CreateSubscriptionSecurity struct {
+	Option1 *CreateSubscriptionSecurityOption1 `security:"option"`
+	Option2 *CreateSubscriptionSecurityOption2 `security:"option"`
+	Option3 *CreateSubscriptionSecurityOption3 `security:"option"`
+	Option4 *CreateSubscriptionSecurityOption4 `security:"option"`
+}
+
+func (c CreateSubscriptionSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateSubscriptionSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateSubscriptionSecurity) GetOption1() *CreateSubscriptionSecurityOption1 {
+	if c == nil {
+		return nil
+	}
+	return c.Option1
+}
+
+func (c *CreateSubscriptionSecurity) GetOption2() *CreateSubscriptionSecurityOption2 {
+	if c == nil {
+		return nil
+	}
+	return c.Option2
+}
+
+func (c *CreateSubscriptionSecurity) GetOption3() *CreateSubscriptionSecurityOption3 {
+	if c == nil {
+		return nil
+	}
+	return c.Option3
+}
+
+func (c *CreateSubscriptionSecurity) GetOption4() *CreateSubscriptionSecurityOption4 {
+	if c == nil {
+		return nil
+	}
+	return c.Option4
+}
+
 type CreateSubscriptionResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created

@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type GetSubscriptionAddonAssociationsSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetSubscriptionAddonAssociationsSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurityOption1) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getsubscriptionaddonassociationssecurityoption1
+// #endregion class-body-getsubscriptionaddonassociationssecurityoption1
+
+type GetSubscriptionAddonAssociationsSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetSubscriptionAddonAssociationsSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurityOption2) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getsubscriptionaddonassociationssecurityoption2
+// #endregion class-body-getsubscriptionaddonassociationssecurityoption2
+
+type GetSubscriptionAddonAssociationsSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (g GetSubscriptionAddonAssociationsSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurityOption3) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurityOption3) GetEnvironmentID() string {
+	if g == nil {
+		return ""
+	}
+	return g.EnvironmentID
+}
+
+// #region class-body-getsubscriptionaddonassociationssecurityoption3
+// #endregion class-body-getsubscriptionaddonassociationssecurityoption3
+
+type GetSubscriptionAddonAssociationsSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (g GetSubscriptionAddonAssociationsSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurityOption4) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+// #region class-body-getsubscriptionaddonassociationssecurityoption4
+// #endregion class-body-getsubscriptionaddonassociationssecurityoption4
+
+type GetSubscriptionAddonAssociationsSecurity struct {
+	Option1 *GetSubscriptionAddonAssociationsSecurityOption1 `security:"option"`
+	Option2 *GetSubscriptionAddonAssociationsSecurityOption2 `security:"option"`
+	Option3 *GetSubscriptionAddonAssociationsSecurityOption3 `security:"option"`
+	Option4 *GetSubscriptionAddonAssociationsSecurityOption4 `security:"option"`
+}
+
+func (g GetSubscriptionAddonAssociationsSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurity) GetOption1() *GetSubscriptionAddonAssociationsSecurityOption1 {
+	if g == nil {
+		return nil
+	}
+	return g.Option1
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurity) GetOption2() *GetSubscriptionAddonAssociationsSecurityOption2 {
+	if g == nil {
+		return nil
+	}
+	return g.Option2
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurity) GetOption3() *GetSubscriptionAddonAssociationsSecurityOption3 {
+	if g == nil {
+		return nil
+	}
+	return g.Option3
+}
+
+func (g *GetSubscriptionAddonAssociationsSecurity) GetOption4() *GetSubscriptionAddonAssociationsSecurityOption4 {
+	if g == nil {
+		return nil
+	}
+	return g.Option4
+}
+
 type GetSubscriptionAddonAssociationsRequest struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

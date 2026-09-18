@@ -46,20 +46,23 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
     res, err := s.Subscriptions.CreateSubscription(ctx, types.CreateSubscriptionRequest{
         BillingPeriod: types.BillingPeriodOnetime,
         Currency: "Kwacha",
         PlanID: "<id>",
+    }, dtos.CreateSubscriptionSecurity{
+        Option1: &dtos.CreateSubscriptionSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -76,6 +79,7 @@ func main() {
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
 | `request`                                                                          | [types.CreateSubscriptionRequest](../../models/types/createsubscriptionrequest.md) | :heavy_check_mark:                                                                 | The request object to use for the request.                                         |
+| `security`                                                                         | [dtos.CreateSubscriptionSecurity](../../models/dtos/createsubscriptionsecurity.md) | :heavy_check_mark:                                                                 | The security requirements to use for the request.                                  |
 | `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
 
 ### Response
@@ -107,19 +111,22 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
     res, err := s.Subscriptions.AddSubscriptionAddon(ctx, types.AddAddonRequest{
         AddonID: "<id>",
         SubscriptionID: "<id>",
+    }, dtos.AddSubscriptionAddonSecurity{
+        Option1: &dtos.AddSubscriptionAddonSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -132,11 +139,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
-| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
-| `request`                                                      | [types.AddAddonRequest](../../models/types/addaddonrequest.md) | :heavy_check_mark:                                             | The request object to use for the request.                     |
-| `opts`                                                         | [][dtos.Option](../../models/dtos/option.md)                   | :heavy_minus_sign:                                             | The options for this request.                                  |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `request`                                                                              | [types.AddAddonRequest](../../models/types/addaddonrequest.md)                         | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `security`                                                                             | [dtos.AddSubscriptionAddonSecurity](../../models/dtos/addsubscriptionaddonsecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
+| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 
@@ -167,18 +175,21 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
     res, err := s.Subscriptions.RemoveSubscriptionAddon(ctx, types.RemoveAddonRequest{
         AddonAssociationID: "<id>",
+    }, dtos.RemoveSubscriptionAddonSecurity{
+        Option1: &dtos.RemoveSubscriptionAddonSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -191,11 +202,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `request`                                                            | [types.RemoveAddonRequest](../../models/types/removeaddonrequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
-| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
+| Parameter                                                                                    | Type                                                                                         | Required                                                                                     | Description                                                                                  |
+| -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                        | :heavy_check_mark:                                                                           | The context to use for the request.                                                          |
+| `request`                                                                                    | [types.RemoveAddonRequest](../../models/types/removeaddonrequest.md)                         | :heavy_check_mark:                                                                           | The request object to use for the request.                                                   |
+| `security`                                                                                   | [dtos.RemoveSubscriptionAddonSecurity](../../models/dtos/removesubscriptionaddonsecurity.md) | :heavy_check_mark:                                                                           | The security requirements to use for the request.                                            |
+| `opts`                                                                                       | [][dtos.Option](../../models/dtos/option.md)                                                 | :heavy_minus_sign:                                                                           | The options for this request.                                                                |
 
 ### Response
 
@@ -223,17 +235,20 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.QuerySubscriptionLineItems(ctx, types.SubscriptionLineItemFilter{})
+    res, err := s.Subscriptions.QuerySubscriptionLineItems(ctx, types.SubscriptionLineItemFilter{}, dtos.QuerySubscriptionLineItemsSecurity{
+        Option1: &dtos.QuerySubscriptionLineItemsSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -245,11 +260,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
-| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
-| `request`                                                                            | [types.SubscriptionLineItemFilter](../../models/types/subscriptionlineitemfilter.md) | :heavy_check_mark:                                                                   | The request object to use for the request.                                           |
-| `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
+| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `request`                                                                                          | [types.SubscriptionLineItemFilter](../../models/types/subscriptionlineitemfilter.md)               | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
+| `security`                                                                                         | [dtos.QuerySubscriptionLineItemsSecurity](../../models/dtos/querysubscriptionlineitemssecurity.md) | :heavy_check_mark:                                                                                 | The security requirements to use for the request.                                                  |
+| `opts`                                                                                             | [][dtos.Option](../../models/dtos/option.md)                                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
 
 ### Response
 
@@ -276,6 +292,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -283,11 +300,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.UpdateSubscriptionLineItem(ctx, "<id>", types.UpdateSubscriptionLineItemRequest{})
+    res, err := s.Subscriptions.UpdateSubscriptionLineItem(ctx, dtos.UpdateSubscriptionLineItemSecurity{
+        Option1: &dtos.UpdateSubscriptionLineItemSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.UpdateSubscriptionLineItemRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -302,6 +321,7 @@ func main() {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `security`                                                                                         | [dtos.UpdateSubscriptionLineItemSecurity](../../models/dtos/updatesubscriptionlineitemsecurity.md) | :heavy_check_mark:                                                                                 | The security requirements to use for the request.                                                  |
 | `id`                                                                                               | `string`                                                                                           | :heavy_check_mark:                                                                                 | Line Item ID                                                                                       |
 | `body`                                                                                             | [types.UpdateSubscriptionLineItemRequest](../../models/types/updatesubscriptionlineitemrequest.md) | :heavy_check_mark:                                                                                 | Update Line Item Request                                                                           |
 | `opts`                                                                                             | [][dtos.Option](../../models/dtos/option.md)                                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
@@ -331,6 +351,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -338,11 +359,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.DeleteSubscriptionLineItem(ctx, "<id>", types.DeleteSubscriptionLineItemRequest{})
+    res, err := s.Subscriptions.DeleteSubscriptionLineItem(ctx, dtos.DeleteSubscriptionLineItemSecurity{
+        Option1: &dtos.DeleteSubscriptionLineItemSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.DeleteSubscriptionLineItemRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -357,6 +380,7 @@ func main() {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `security`                                                                                         | [dtos.DeleteSubscriptionLineItemSecurity](../../models/dtos/deletesubscriptionlineitemsecurity.md) | :heavy_check_mark:                                                                                 | The security requirements to use for the request.                                                  |
 | `id`                                                                                               | `string`                                                                                           | :heavy_check_mark:                                                                                 | Line Item ID                                                                                       |
 | `body`                                                                                             | [types.DeleteSubscriptionLineItemRequest](../../models/types/deletesubscriptionlineitemrequest.md) | :heavy_check_mark:                                                                                 | Delete Line Item Request                                                                           |
 | `opts`                                                                                             | [][dtos.Option](../../models/dtos/option.md)                                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
@@ -544,17 +568,20 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.QuerySubscription(ctx, types.SubscriptionFilter{})
+    res, err := s.Subscriptions.QuerySubscription(ctx, types.SubscriptionFilter{}, dtos.QuerySubscriptionSecurity{
+        Option1: &dtos.QuerySubscriptionSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -566,11 +593,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `request`                                                            | [types.SubscriptionFilter](../../models/types/subscriptionfilter.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
-| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `request`                                                                        | [types.SubscriptionFilter](../../models/types/subscriptionfilter.md)             | :heavy_check_mark:                                                               | The request object to use for the request.                                       |
+| `security`                                                                       | [dtos.QuerySubscriptionSecurity](../../models/dtos/querysubscriptionsecurity.md) | :heavy_check_mark:                                                               | The security requirements to use for the request.                                |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -599,21 +627,24 @@ import(
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/types"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
     res, err := s.Subscriptions.GetSubscriptionUsage(ctx, types.GetUsageBySubscriptionRequest{
         EndTime: types.MustNewTimeFromString("2024-03-20T00:00:00Z"),
         LifetimeUsage: flexprice.Pointer(false),
         StartTime: types.MustNewTimeFromString("2024-03-13T00:00:00Z"),
         SubscriptionID: "123",
+    }, dtos.GetSubscriptionUsageSecurity{
+        Option1: &dtos.GetSubscriptionUsageSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -630,6 +661,7 @@ func main() {
 | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
 | `request`                                                                                  | [types.GetUsageBySubscriptionRequest](../../models/types/getusagebysubscriptionrequest.md) | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `security`                                                                                 | [dtos.GetSubscriptionUsageSecurity](../../models/dtos/getsubscriptionusagesecurity.md)     | :heavy_check_mark:                                                                         | The security requirements to use for the request.                                          |
 | `opts`                                                                                     | [][dtos.Option](../../models/dtos/option.md)                                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 ### Response
@@ -657,17 +689,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.GetSubscription(ctx, "<id>")
+    res, err := s.Subscriptions.GetSubscription(ctx, dtos.GetSubscriptionSecurity{
+        Option1: &dtos.GetSubscriptionSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -679,11 +714,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Subscription ID                                       |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `security`                                                                   | [dtos.GetSubscriptionSecurity](../../models/dtos/getsubscriptionsecurity.md) | :heavy_check_mark:                                                           | The security requirements to use for the request.                            |
+| `id`                                                                         | `string`                                                                     | :heavy_check_mark:                                                           | Subscription ID                                                              |
+| `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
 
 ### Response
 
@@ -710,6 +746,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -717,11 +754,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.UpdateSubscription(ctx, "<id>", types.UpdateSubscriptionRequest{})
+    res, err := s.Subscriptions.UpdateSubscription(ctx, dtos.UpdateSubscriptionSecurity{
+        Option1: &dtos.UpdateSubscriptionSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.UpdateSubscriptionRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -736,6 +775,7 @@ func main() {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `security`                                                                         | [dtos.UpdateSubscriptionSecurity](../../models/dtos/updatesubscriptionsecurity.md) | :heavy_check_mark:                                                                 | The security requirements to use for the request.                                  |
 | `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Subscription ID                                                                    |
 | `body`                                                                             | [types.UpdateSubscriptionRequest](../../models/types/updatesubscriptionrequest.md) | :heavy_check_mark:                                                                 | Update Subscription Request                                                        |
 | `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
@@ -765,6 +805,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/types"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
@@ -773,11 +814,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.ActivateSubscription(ctx, "<id>", types.ActivateDraftSubscriptionRequest{
+    res, err := s.Subscriptions.ActivateSubscription(ctx, dtos.ActivateSubscriptionSecurity{
+        Option1: &dtos.ActivateSubscriptionSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.ActivateDraftSubscriptionRequest{
         StartDate: types.MustTimeFromString("2026-02-04T05:02:31.632Z"),
     })
     if err != nil {
@@ -794,6 +837,7 @@ func main() {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `security`                                                                                       | [dtos.ActivateSubscriptionSecurity](../../models/dtos/activatesubscriptionsecurity.md)           | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
 | `id`                                                                                             | `string`                                                                                         | :heavy_check_mark:                                                                               | Subscription ID                                                                                  |
 | `body`                                                                                           | [types.ActivateDraftSubscriptionRequest](../../models/types/activatedraftsubscriptionrequest.md) | :heavy_check_mark:                                                                               | Activate Draft Subscription Request                                                              |
 | `opts`                                                                                           | [][dtos.Option](../../models/dtos/option.md)                                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
@@ -823,17 +867,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.GetSubscriptionAddonAssociations(ctx, "<id>")
+    res, err := s.Subscriptions.GetSubscriptionAddonAssociations(ctx, dtos.GetSubscriptionAddonAssociationsSecurity{
+        Option1: &dtos.GetSubscriptionAddonAssociationsSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -845,11 +892,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Subscription ID                                       |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                                                      | Type                                                                                                           | Required                                                                                                       | Description                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                          | [context.Context](https://pkg.go.dev/context#Context)                                                          | :heavy_check_mark:                                                                                             | The context to use for the request.                                                                            |
+| `security`                                                                                                     | [dtos.GetSubscriptionAddonAssociationsSecurity](../../models/dtos/getsubscriptionaddonassociationssecurity.md) | :heavy_check_mark:                                                                                             | The security requirements to use for the request.                                                              |
+| `id`                                                                                                           | `string`                                                                                                       | :heavy_check_mark:                                                                                             | Subscription ID                                                                                                |
+| `opts`                                                                                                         | [][dtos.Option](../../models/dtos/option.md)                                                                   | :heavy_minus_sign:                                                                                             | The options for this request.                                                                                  |
 
 ### Response
 
@@ -876,6 +924,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -883,11 +932,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.CancelSubscription(ctx, "<id>", types.CancelSubscriptionRequest{
+    res, err := s.Subscriptions.CancelSubscription(ctx, dtos.CancelSubscriptionSecurity{
+        Option1: &dtos.CancelSubscriptionSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.CancelSubscriptionRequest{
         CancellationType: types.CancellationTypeImmediate,
     })
     if err != nil {
@@ -904,6 +955,7 @@ func main() {
 | Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
 | `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `security`                                                                         | [dtos.CancelSubscriptionSecurity](../../models/dtos/cancelsubscriptionsecurity.md) | :heavy_check_mark:                                                                 | The security requirements to use for the request.                                  |
 | `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Subscription ID                                                                    |
 | `body`                                                                             | [types.CancelSubscriptionRequest](../../models/types/cancelsubscriptionrequest.md) | :heavy_check_mark:                                                                 | Cancel Subscription Request                                                        |
 | `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
@@ -933,6 +985,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -940,11 +993,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.ExecuteSubscriptionChange(ctx, "<id>", types.SubscriptionChangeRequest{
+    res, err := s.Subscriptions.ExecuteSubscriptionChange(ctx, dtos.ExecuteSubscriptionChangeSecurity{
+        Option1: &dtos.ExecuteSubscriptionChangeSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.SubscriptionChangeRequest{
         BillingCadence: types.BillingCadenceRecurring,
         BillingCycle: types.BillingCycleAnniversary,
         BillingPeriod: types.BillingPeriodAnnual,
@@ -962,12 +1017,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Subscription ID                                                                    |
-| `body`                                                                             | [types.SubscriptionChangeRequest](../../models/types/subscriptionchangerequest.md) | :heavy_check_mark:                                                                 | Subscription change request                                                        |
-| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `security`                                                                                       | [dtos.ExecuteSubscriptionChangeSecurity](../../models/dtos/executesubscriptionchangesecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
+| `id`                                                                                             | `string`                                                                                         | :heavy_check_mark:                                                                               | Subscription ID                                                                                  |
+| `body`                                                                                           | [types.SubscriptionChangeRequest](../../models/types/subscriptionchangerequest.md)               | :heavy_check_mark:                                                                               | Subscription change request                                                                      |
+| `opts`                                                                                           | [][dtos.Option](../../models/dtos/option.md)                                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 ### Response
 
@@ -994,6 +1050,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -1001,11 +1058,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.PreviewSubscriptionChange(ctx, "<id>", types.SubscriptionChangeRequest{
+    res, err := s.Subscriptions.PreviewSubscriptionChange(ctx, dtos.PreviewSubscriptionChangeSecurity{
+        Option1: &dtos.PreviewSubscriptionChangeSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.SubscriptionChangeRequest{
         BillingCadence: types.BillingCadenceRecurring,
         BillingCycle: types.BillingCycleAnniversary,
         BillingPeriod: types.BillingPeriodOnetime,
@@ -1023,12 +1082,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
-| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
-| `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Subscription ID                                                                    |
-| `body`                                                                             | [types.SubscriptionChangeRequest](../../models/types/subscriptionchangerequest.md) | :heavy_check_mark:                                                                 | Subscription change preview request                                                |
-| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+| Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `security`                                                                                       | [dtos.PreviewSubscriptionChangeSecurity](../../models/dtos/previewsubscriptionchangesecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
+| `id`                                                                                             | `string`                                                                                         | :heavy_check_mark:                                                                               | Subscription ID                                                                                  |
+| `body`                                                                                           | [types.SubscriptionChangeRequest](../../models/types/subscriptionchangerequest.md)               | :heavy_check_mark:                                                                               | Subscription change preview request                                                              |
+| `opts`                                                                                           | [][dtos.Option](../../models/dtos/option.md)                                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
 
 ### Response
 
@@ -1063,6 +1123,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -1070,11 +1131,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.ExecuteSubscriptionPlanChangeV2(ctx, "<id>", types.SubscriptionChangeV2Request{
+    res, err := s.Subscriptions.ExecuteSubscriptionPlanChangeV2(ctx, dtos.ExecuteSubscriptionPlanChangeV2Security{
+        Option1: &dtos.ExecuteSubscriptionPlanChangeV2SecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.SubscriptionChangeV2Request{
         ProrationBehavior: types.ProrationBehaviorCreateProrations,
         TargetPlanID: "<id>",
     })
@@ -1089,12 +1152,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Subscription ID                                                                        |
-| `body`                                                                                 | [types.SubscriptionChangeV2Request](../../models/types/subscriptionchangev2request.md) | :heavy_check_mark:                                                                     | Plan change request                                                                    |
-| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `security`                                                                                                   | [dtos.ExecuteSubscriptionPlanChangeV2Security](../../models/dtos/executesubscriptionplanchangev2security.md) | :heavy_check_mark:                                                                                           | The security requirements to use for the request.                                                            |
+| `id`                                                                                                         | `string`                                                                                                     | :heavy_check_mark:                                                                                           | Subscription ID                                                                                              |
+| `body`                                                                                                       | [types.SubscriptionChangeV2Request](../../models/types/subscriptionchangev2request.md)                       | :heavy_check_mark:                                                                                           | Plan change request                                                                                          |
+| `opts`                                                                                                       | [][dtos.Option](../../models/dtos/option.md)                                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
 ### Response
 
@@ -1121,6 +1185,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -1128,11 +1193,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.PreviewSubscriptionPlanChangeV2(ctx, "<id>", types.SubscriptionChangeV2Request{
+    res, err := s.Subscriptions.PreviewSubscriptionPlanChangeV2(ctx, dtos.PreviewSubscriptionPlanChangeV2Security{
+        Option1: &dtos.PreviewSubscriptionPlanChangeV2SecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.SubscriptionChangeV2Request{
         ProrationBehavior: types.ProrationBehaviorNone,
         TargetPlanID: "<id>",
     })
@@ -1147,12 +1214,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
-| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
-| `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Subscription ID                                                                        |
-| `body`                                                                                 | [types.SubscriptionChangeV2Request](../../models/types/subscriptionchangev2request.md) | :heavy_check_mark:                                                                     | Plan change request                                                                    |
-| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
+| Parameter                                                                                                    | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                                        | [context.Context](https://pkg.go.dev/context#Context)                                                        | :heavy_check_mark:                                                                                           | The context to use for the request.                                                                          |
+| `security`                                                                                                   | [dtos.PreviewSubscriptionPlanChangeV2Security](../../models/dtos/previewsubscriptionplanchangev2security.md) | :heavy_check_mark:                                                                                           | The security requirements to use for the request.                                                            |
+| `id`                                                                                                         | `string`                                                                                                     | :heavy_check_mark:                                                                                           | Subscription ID                                                                                              |
+| `body`                                                                                                       | [types.SubscriptionChangeV2Request](../../models/types/subscriptionchangev2request.md)                       | :heavy_check_mark:                                                                                           | Plan change request                                                                                          |
+| `opts`                                                                                                       | [][dtos.Option](../../models/dtos/option.md)                                                                 | :heavy_minus_sign:                                                                                           | The options for this request.                                                                                |
 
 ### Response
 
@@ -1179,17 +1247,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.GetSubscriptionEntitlements(ctx, "<id>", nil)
+    res, err := s.Subscriptions.GetSubscriptionEntitlements(ctx, dtos.GetSubscriptionEntitlementsSecurity{
+        Option1: &dtos.GetSubscriptionEntitlementsSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -1201,12 +1272,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Subscription ID                                       |
-| `featureIds`                                          | []`string`                                            | :heavy_minus_sign:                                    | Feature IDs to filter by                              |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
+| `security`                                                                                           | [dtos.GetSubscriptionEntitlementsSecurity](../../models/dtos/getsubscriptionentitlementssecurity.md) | :heavy_check_mark:                                                                                   | The security requirements to use for the request.                                                    |
+| `id`                                                                                                 | `string`                                                                                             | :heavy_check_mark:                                                                                   | Subscription ID                                                                                      |
+| `featureIds`                                                                                         | []`string`                                                                                           | :heavy_minus_sign:                                                                                   | Feature IDs to filter by                                                                             |
+| `opts`                                                                                               | [][dtos.Option](../../models/dtos/option.md)                                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
 ### Response
 
@@ -1233,17 +1305,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.GetSubscriptionUpcomingGrants(ctx, "<id>")
+    res, err := s.Subscriptions.GetSubscriptionUpcomingGrants(ctx, dtos.GetSubscriptionUpcomingGrantsSecurity{
+        Option1: &dtos.GetSubscriptionUpcomingGrantsSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -1255,11 +1330,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Subscription ID                                       |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                                                | Type                                                                                                     | Required                                                                                                 | Description                                                                                              |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                    | [context.Context](https://pkg.go.dev/context#Context)                                                    | :heavy_check_mark:                                                                                       | The context to use for the request.                                                                      |
+| `security`                                                                                               | [dtos.GetSubscriptionUpcomingGrantsSecurity](../../models/dtos/getsubscriptionupcominggrantssecurity.md) | :heavy_check_mark:                                                                                       | The security requirements to use for the request.                                                        |
+| `id`                                                                                                     | `string`                                                                                                 | :heavy_check_mark:                                                                                       | Subscription ID                                                                                          |
+| `opts`                                                                                                   | [][dtos.Option](../../models/dtos/option.md)                                                             | :heavy_minus_sign:                                                                                       | The options for this request.                                                                            |
 
 ### Response
 
@@ -1286,6 +1362,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -1293,11 +1370,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.CreateSubscriptionLineItem(ctx, "<id>", types.CreateSubscriptionLineItemRequest{})
+    res, err := s.Subscriptions.CreateSubscriptionLineItem(ctx, dtos.CreateSubscriptionLineItemSecurity{
+        Option1: &dtos.CreateSubscriptionLineItemSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.CreateSubscriptionLineItemRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -1312,6 +1391,7 @@ func main() {
 | Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
 | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
 | `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
+| `security`                                                                                         | [dtos.CreateSubscriptionLineItemSecurity](../../models/dtos/createsubscriptionlineitemsecurity.md) | :heavy_check_mark:                                                                                 | The security requirements to use for the request.                                                  |
 | `id`                                                                                               | `string`                                                                                           | :heavy_check_mark:                                                                                 | Subscription ID                                                                                    |
 | `body`                                                                                             | [types.CreateSubscriptionLineItemRequest](../../models/types/createsubscriptionlineitemrequest.md) | :heavy_check_mark:                                                                                 | Create Line Item Request                                                                           |
 | `opts`                                                                                             | [][dtos.Option](../../models/dtos/option.md)                                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
@@ -1341,6 +1421,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -1348,11 +1429,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.ExecuteSubscriptionModify(ctx, "<id>", types.ExecuteSubscriptionModifyRequest{
+    res, err := s.Subscriptions.ExecuteSubscriptionModify(ctx, dtos.ExecuteSubscriptionModifySecurity{
+        Option1: &dtos.ExecuteSubscriptionModifySecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.ExecuteSubscriptionModifyRequest{
         Type: types.SubscriptionModifyTypeInheritance,
     })
     if err != nil {
@@ -1369,6 +1452,7 @@ func main() {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `security`                                                                                       | [dtos.ExecuteSubscriptionModifySecurity](../../models/dtos/executesubscriptionmodifysecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
 | `id`                                                                                             | `string`                                                                                         | :heavy_check_mark:                                                                               | Subscription ID                                                                                  |
 | `body`                                                                                           | [types.ExecuteSubscriptionModifyRequest](../../models/types/executesubscriptionmodifyrequest.md) | :heavy_check_mark:                                                                               | Modification request                                                                             |
 | `opts`                                                                                           | [][dtos.Option](../../models/dtos/option.md)                                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
@@ -1398,6 +1482,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -1405,11 +1490,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.PreviewSubscriptionModify(ctx, "<id>", types.ExecuteSubscriptionModifyRequest{
+    res, err := s.Subscriptions.PreviewSubscriptionModify(ctx, dtos.PreviewSubscriptionModifySecurity{
+        Option1: &dtos.PreviewSubscriptionModifySecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.ExecuteSubscriptionModifyRequest{
         Type: types.SubscriptionModifyTypeTax,
     })
     if err != nil {
@@ -1426,6 +1513,7 @@ func main() {
 | Parameter                                                                                        | Type                                                                                             | Required                                                                                         | Description                                                                                      |
 | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
 | `ctx`                                                                                            | [context.Context](https://pkg.go.dev/context#Context)                                            | :heavy_check_mark:                                                                               | The context to use for the request.                                                              |
+| `security`                                                                                       | [dtos.PreviewSubscriptionModifySecurity](../../models/dtos/previewsubscriptionmodifysecurity.md) | :heavy_check_mark:                                                                               | The security requirements to use for the request.                                                |
 | `id`                                                                                             | `string`                                                                                         | :heavy_check_mark:                                                                               | Subscription ID                                                                                  |
 | `body`                                                                                           | [types.ExecuteSubscriptionModifyRequest](../../models/types/executesubscriptionmodifyrequest.md) | :heavy_check_mark:                                                                               | Modification preview request                                                                     |
 | `opts`                                                                                           | [][dtos.Option](../../models/dtos/option.md)                                                     | :heavy_minus_sign:                                                                               | The options for this request.                                                                    |
@@ -1506,17 +1594,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Subscriptions.GetSubscriptionV2(ctx, "<id>", nil)
+    res, err := s.Subscriptions.GetSubscriptionV2(ctx, dtos.GetSubscriptionV2Security{
+        Option1: &dtos.GetSubscriptionV2SecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -1531,6 +1622,7 @@ func main() {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `security`                                                                             | [dtos.GetSubscriptionV2Security](../../models/dtos/getsubscriptionv2security.md)       | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
 | `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Subscription ID                                                                        |
 | `expand`                                                                               | `*string`                                                                              | :heavy_minus_sign:                                                                     | Comma-separated list of fields to expand (e.g., 'subscription_line_items,prices,plan') |
 | `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |

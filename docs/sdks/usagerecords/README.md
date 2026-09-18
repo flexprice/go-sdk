@@ -20,17 +20,20 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.UsageRecords.PostUsageRecordsSearch(ctx, types.UsageRecordFilter{})
+    res, err := s.UsageRecords.PostUsageRecordsSearch(ctx, types.UsageRecordFilter{}, dtos.PostUsageRecordsSearchSecurity{
+        Option1: &dtos.PostUsageRecordsSearchSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -42,11 +45,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
-| `request`                                                          | [types.UsageRecordFilter](../../models/types/usagerecordfilter.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
-| `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
+| Parameter                                                                                  | Type                                                                                       | Required                                                                                   | Description                                                                                |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `ctx`                                                                                      | [context.Context](https://pkg.go.dev/context#Context)                                      | :heavy_check_mark:                                                                         | The context to use for the request.                                                        |
+| `request`                                                                                  | [types.UsageRecordFilter](../../models/types/usagerecordfilter.md)                         | :heavy_check_mark:                                                                         | The request object to use for the request.                                                 |
+| `security`                                                                                 | [dtos.PostUsageRecordsSearchSecurity](../../models/dtos/postusagerecordssearchsecurity.md) | :heavy_check_mark:                                                                         | The security requirements to use for the request.                                          |
+| `opts`                                                                                     | [][dtos.Option](../../models/dtos/option.md)                                               | :heavy_minus_sign:                                                                         | The options for this request.                                                              |
 
 ### Response
 

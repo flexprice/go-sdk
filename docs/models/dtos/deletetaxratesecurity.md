@@ -1,0 +1,11 @@
+# DeleteTaxRateSecurity
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `Option1`                                                                               | [*dtos.DeleteTaxRateSecurityOption1](../../models/dtos/deletetaxratesecurityoption1.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option2`                                                                               | [*dtos.DeleteTaxRateSecurityOption2](../../models/dtos/deletetaxratesecurityoption2.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option3`                                                                               | [*dtos.DeleteTaxRateSecurityOption3](../../models/dtos/deletetaxratesecurityoption3.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option4`                                                                               | [*dtos.DeleteTaxRateSecurityOption4](../../models/dtos/deletetaxratesecurityoption4.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |

@@ -33,7 +33,7 @@ func newInvoices(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *h
 
 // GetCustomerInvoiceSummary - Get customer invoice summary
 // Use when showing a customer's invoice overview (e.g. billing portal or balance summary). Includes totals and multi-currency breakdown.
-func (s *Invoices) GetCustomerInvoiceSummary(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetCustomerInvoiceSummaryResponse, error) {
+func (s *Invoices) GetCustomerInvoiceSummary(ctx context.Context, security dtos.GetCustomerInvoiceSummarySecurity, id string, opts ...dtos.Option) (*dtos.GetCustomerInvoiceSummaryResponse, error) {
 	request := dtos.GetCustomerInvoiceSummaryRequest{
 		ID: id,
 	}
@@ -68,7 +68,7 @@ func (s *Invoices) GetCustomerInvoiceSummary(ctx context.Context, id string, opt
 		Context:          ctx,
 		OperationID:      "getCustomerInvoiceSummary",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -89,7 +89,7 @@ func (s *Invoices) GetCustomerInvoiceSummary(ctx context.Context, id string, opt
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -293,7 +293,8 @@ func (s *Invoices) GetCustomerInvoiceSummary(ctx context.Context, id string, opt
 
 // CreateInvoice - Create one-off invoice
 // Use when creating a manual or one-off invoice (e.g. custom charge or non-recurring billing). Invoice is created in draft; finalize when ready.
-func (s *Invoices) CreateInvoice(ctx context.Context, request types.CreateInvoiceRequest, opts ...dtos.Option) (*dtos.CreateInvoiceResponse, error) {
+// Pass a `checkout` object to gate the invoice behind a hosted payment session: the invoice stays DRAFT with no invoice number, and the response carries `checkout_session.payment_action.url` for the customer to pay. It finalizes only when the payment webhook lands; if the session expires the invoice is voided and archived. Poll `GET /checkout/sessions/{id}` until `terminal` is true. One-off invoices only.
+func (s *Invoices) CreateInvoice(ctx context.Context, request types.CreateInvoiceRequest, security dtos.CreateInvoiceSecurity, opts ...dtos.Option) (*dtos.CreateInvoiceResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -324,7 +325,7 @@ func (s *Invoices) CreateInvoice(ctx context.Context, request types.CreateInvoic
 		Context:          ctx,
 		OperationID:      "createInvoice",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -352,7 +353,7 @@ func (s *Invoices) CreateInvoice(ctx context.Context, request types.CreateInvoic
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -556,7 +557,7 @@ func (s *Invoices) CreateInvoice(ctx context.Context, request types.CreateInvoic
 
 // GetInvoicePreview - Get invoice preview
 // Use when showing a customer what they will be charged (e.g. preview before checkout or plan change). No invoice is created.
-func (s *Invoices) GetInvoicePreview(ctx context.Context, request types.GetPreviewInvoiceRequest, opts ...dtos.Option) (*dtos.GetInvoicePreviewResponse, error) {
+func (s *Invoices) GetInvoicePreview(ctx context.Context, request types.GetPreviewInvoiceRequest, security dtos.GetInvoicePreviewSecurity, opts ...dtos.Option) (*dtos.GetInvoicePreviewResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -587,7 +588,7 @@ func (s *Invoices) GetInvoicePreview(ctx context.Context, request types.GetPrevi
 		Context:          ctx,
 		OperationID:      "getInvoicePreview",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -615,7 +616,7 @@ func (s *Invoices) GetInvoicePreview(ctx context.Context, request types.GetPrevi
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -819,7 +820,7 @@ func (s *Invoices) GetInvoicePreview(ctx context.Context, request types.GetPrevi
 
 // QueryInvoice - Query invoices
 // Use when listing or searching invoices (e.g. admin view or customer history). Returns a paginated list; supports filtering by customer, status, date range.
-func (s *Invoices) QueryInvoice(ctx context.Context, request types.InvoiceFilter, opts ...dtos.Option) (*dtos.QueryInvoiceResponse, error) {
+func (s *Invoices) QueryInvoice(ctx context.Context, request types.InvoiceFilter, security dtos.QueryInvoiceSecurity, opts ...dtos.Option) (*dtos.QueryInvoiceResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -850,7 +851,7 @@ func (s *Invoices) QueryInvoice(ctx context.Context, request types.InvoiceFilter
 		Context:          ctx,
 		OperationID:      "queryInvoice",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -878,7 +879,7 @@ func (s *Invoices) QueryInvoice(ctx context.Context, request types.InvoiceFilter
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1082,7 +1083,7 @@ func (s *Invoices) QueryInvoice(ctx context.Context, request types.InvoiceFilter
 
 // GetInvoice - Get invoice
 // Use when loading an invoice for display or editing (e.g. portal or reconciliation). Supports group_by for usage breakdown and force_runtime_recalculation.
-func (s *Invoices) GetInvoice(ctx context.Context, id string, expandBySource *bool, groupBy []string, expand *string, opts ...dtos.Option) (*dtos.GetInvoiceResponse, error) {
+func (s *Invoices) GetInvoice(ctx context.Context, security dtos.GetInvoiceSecurity, id string, expandBySource *bool, groupBy []string, expand *string, opts ...dtos.Option) (*dtos.GetInvoiceResponse, error) {
 	request := dtos.GetInvoiceRequest{
 		ID:             id,
 		ExpandBySource: expandBySource,
@@ -1120,7 +1121,7 @@ func (s *Invoices) GetInvoice(ctx context.Context, id string, expandBySource *bo
 		Context:          ctx,
 		OperationID:      "getInvoice",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1145,7 +1146,7 @@ func (s *Invoices) GetInvoice(ctx context.Context, id string, expandBySource *bo
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1349,7 +1350,7 @@ func (s *Invoices) GetInvoice(ctx context.Context, id string, expandBySource *bo
 
 // UpdateInvoice - Update invoice
 // Use when updating invoice metadata or due date (e.g. PDF URL, net terms), or when recalculating this draft invoice's discount from its current standing coupon associations via apply_discount:true (idempotent, does not attach a new coupon). Allowed for invoices in draft or finalized status.
-func (s *Invoices) UpdateInvoice(ctx context.Context, id string, body types.UpdateInvoiceRequest, opts ...dtos.Option) (*dtos.UpdateInvoiceResponse, error) {
+func (s *Invoices) UpdateInvoice(ctx context.Context, security dtos.UpdateInvoiceSecurity, id string, body types.UpdateInvoiceRequest, opts ...dtos.Option) (*dtos.UpdateInvoiceResponse, error) {
 	request := dtos.UpdateInvoiceRequest{
 		ID:   id,
 		Body: body,
@@ -1385,7 +1386,7 @@ func (s *Invoices) UpdateInvoice(ctx context.Context, id string, body types.Upda
 		Context:          ctx,
 		OperationID:      "updateInvoice",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1413,7 +1414,7 @@ func (s *Invoices) UpdateInvoice(ctx context.Context, id string, body types.Upda
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1619,7 +1620,7 @@ func (s *Invoices) UpdateInvoice(ctx context.Context, id string, body types.Upda
 
 // TriggerInvoiceCommsWebhook - Trigger invoice communication webhook
 // Use when sending an invoice to the customer (e.g. trigger email or Slack). Payload includes full invoice details for your integration.
-func (s *Invoices) TriggerInvoiceCommsWebhook(ctx context.Context, id string, opts ...dtos.Option) (*dtos.TriggerInvoiceCommsWebhookResponse, error) {
+func (s *Invoices) TriggerInvoiceCommsWebhook(ctx context.Context, security dtos.TriggerInvoiceCommsWebhookSecurity, id string, opts ...dtos.Option) (*dtos.TriggerInvoiceCommsWebhookResponse, error) {
 	request := dtos.TriggerInvoiceCommsWebhookRequest{
 		ID: id,
 	}
@@ -1654,7 +1655,7 @@ func (s *Invoices) TriggerInvoiceCommsWebhook(ctx context.Context, id string, op
 		Context:          ctx,
 		OperationID:      "triggerInvoiceCommsWebhook",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1675,7 +1676,7 @@ func (s *Invoices) TriggerInvoiceCommsWebhook(ctx context.Context, id string, op
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1881,7 +1882,7 @@ func (s *Invoices) TriggerInvoiceCommsWebhook(ctx context.Context, id string, op
 
 // FinalizeInvoice - Finalize invoice
 // Use when locking an invoice for payment (e.g. after review). Once finalized, line items are locked; invoice can be paid or voided.
-func (s *Invoices) FinalizeInvoice(ctx context.Context, id string, opts ...dtos.Option) (*dtos.FinalizeInvoiceResponse, error) {
+func (s *Invoices) FinalizeInvoice(ctx context.Context, security dtos.FinalizeInvoiceSecurity, id string, opts ...dtos.Option) (*dtos.FinalizeInvoiceResponse, error) {
 	request := dtos.FinalizeInvoiceRequest{
 		ID: id,
 	}
@@ -1916,7 +1917,7 @@ func (s *Invoices) FinalizeInvoice(ctx context.Context, id string, opts ...dtos.
 		Context:          ctx,
 		OperationID:      "finalizeInvoice",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1937,7 +1938,7 @@ func (s *Invoices) FinalizeInvoice(ctx context.Context, id string, opts ...dtos.
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -2141,7 +2142,7 @@ func (s *Invoices) FinalizeInvoice(ctx context.Context, id string, opts ...dtos.
 
 // ExecuteInvoiceModify - Execute invoice modification
 // Execute a modification on a draft or finalized invoice. Supports line item changes: add (bulk), update (one line item per call; the edit is versioned, so the line item id changes), and remove (bulk, soft delete). Totals are recalculated from the remaining line items; a manual edit marks the invoice as manually edited, which disables recompute. Modifying a FINALIZED invoice voids it and recreates it as a draft copy carrying all current data (description, billing period, due date, metadata, line items); the modification lands on the copy and the response returns the new draft — chain subsequent calls to the returned invoice id; a call that still targets the voided original is rejected with an error naming the replacement.
-func (s *Invoices) ExecuteInvoiceModify(ctx context.Context, id string, body types.ExecuteInvoiceModifyRequest, opts ...dtos.Option) (*dtos.ExecuteInvoiceModifyResponse, error) {
+func (s *Invoices) ExecuteInvoiceModify(ctx context.Context, security dtos.ExecuteInvoiceModifySecurity, id string, body types.ExecuteInvoiceModifyRequest, opts ...dtos.Option) (*dtos.ExecuteInvoiceModifyResponse, error) {
 	request := dtos.ExecuteInvoiceModifyRequest{
 		ID:   id,
 		Body: body,
@@ -2177,7 +2178,7 @@ func (s *Invoices) ExecuteInvoiceModify(ctx context.Context, id string, body typ
 		Context:          ctx,
 		OperationID:      "executeInvoiceModify",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -2205,7 +2206,7 @@ func (s *Invoices) ExecuteInvoiceModify(ctx context.Context, id string, body typ
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -2411,7 +2412,7 @@ func (s *Invoices) ExecuteInvoiceModify(ctx context.Context, id string, body typ
 
 // UpdateInvoicePaymentStatus - Update invoice payment status
 // Use when reconciling payment status from an external gateway or manual entry (e.g. mark paid after bank confirmation).
-func (s *Invoices) UpdateInvoicePaymentStatus(ctx context.Context, id string, body types.UpdatePaymentStatusRequest, opts ...dtos.Option) (*dtos.UpdateInvoicePaymentStatusResponse, error) {
+func (s *Invoices) UpdateInvoicePaymentStatus(ctx context.Context, security dtos.UpdateInvoicePaymentStatusSecurity, id string, body types.UpdatePaymentStatusRequest, opts ...dtos.Option) (*dtos.UpdateInvoicePaymentStatusResponse, error) {
 	request := dtos.UpdateInvoicePaymentStatusRequest{
 		ID:   id,
 		Body: body,
@@ -2447,7 +2448,7 @@ func (s *Invoices) UpdateInvoicePaymentStatus(ctx context.Context, id string, bo
 		Context:          ctx,
 		OperationID:      "updateInvoicePaymentStatus",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -2475,7 +2476,7 @@ func (s *Invoices) UpdateInvoicePaymentStatus(ctx context.Context, id string, bo
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -2681,7 +2682,7 @@ func (s *Invoices) UpdateInvoicePaymentStatus(ctx context.Context, id string, bo
 
 // AttemptInvoicePayment - Attempt invoice payment
 // Use when paying an invoice with the customer's wallet balance (e.g. prepaid credits or balance applied at checkout).
-func (s *Invoices) AttemptInvoicePayment(ctx context.Context, id string, opts ...dtos.Option) (*dtos.AttemptInvoicePaymentResponse, error) {
+func (s *Invoices) AttemptInvoicePayment(ctx context.Context, security dtos.AttemptInvoicePaymentSecurity, id string, opts ...dtos.Option) (*dtos.AttemptInvoicePaymentResponse, error) {
 	request := dtos.AttemptInvoicePaymentRequest{
 		ID: id,
 	}
@@ -2716,7 +2717,7 @@ func (s *Invoices) AttemptInvoicePayment(ctx context.Context, id string, opts ..
 		Context:          ctx,
 		OperationID:      "attemptInvoicePayment",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -2737,7 +2738,7 @@ func (s *Invoices) AttemptInvoicePayment(ctx context.Context, id string, opts ..
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -2943,7 +2944,7 @@ func (s *Invoices) AttemptInvoicePayment(ctx context.Context, id string, opts ..
 
 // GetInvoicePdf - Get invoice PDF
 // Use when delivering an invoice PDF to the customer (e.g. email attachment or download). Use url=true for a presigned URL instead of binary. Use force_generate=true to regenerate and re-upload the PDF even if one already exists in S3.
-func (s *Invoices) GetInvoicePdf(ctx context.Context, id string, url_ *bool, forceGenerate *bool, opts ...dtos.Option) (*dtos.GetInvoicePdfResponse, error) {
+func (s *Invoices) GetInvoicePdf(ctx context.Context, security dtos.GetInvoicePdfSecurity, id string, url_ *bool, forceGenerate *bool, opts ...dtos.Option) (*dtos.GetInvoicePdfResponse, error) {
 	request := dtos.GetInvoicePdfRequest{
 		ID:            id,
 		URL:           url_,
@@ -2980,7 +2981,7 @@ func (s *Invoices) GetInvoicePdf(ctx context.Context, id string, url_ *bool, for
 		Context:          ctx,
 		OperationID:      "getInvoicePdf",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -3012,7 +3013,7 @@ func (s *Invoices) GetInvoicePdf(ctx context.Context, id string, url_ *bool, for
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -3166,7 +3167,7 @@ func (s *Invoices) GetInvoicePdf(ctx context.Context, id string, url_ *bool, for
 
 // RecalculateInvoice - Recalculate invoice (voided invoice)
 // Starts an async workflow that creates a fresh replacement invoice for a voided SUBSCRIPTION invoice (same billing period). Returns workflow_id and run_id; poll workflow status or GET the new invoice via recalculated_invoice_id after completion.
-func (s *Invoices) RecalculateInvoice(ctx context.Context, id string, opts ...dtos.Option) (*dtos.RecalculateInvoiceResponse, error) {
+func (s *Invoices) RecalculateInvoice(ctx context.Context, security dtos.RecalculateInvoiceSecurity, id string, opts ...dtos.Option) (*dtos.RecalculateInvoiceResponse, error) {
 	request := dtos.RecalculateInvoiceRequest{
 		ID: id,
 	}
@@ -3201,7 +3202,7 @@ func (s *Invoices) RecalculateInvoice(ctx context.Context, id string, opts ...dt
 		Context:          ctx,
 		OperationID:      "recalculateInvoice",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -3222,7 +3223,7 @@ func (s *Invoices) RecalculateInvoice(ctx context.Context, id string, opts ...dt
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -3428,7 +3429,7 @@ func (s *Invoices) RecalculateInvoice(ctx context.Context, id string, opts ...dt
 
 // RecalculateInvoiceV2 - Recalculate draft invoice (v2)
 // Recalculates a draft SUBSCRIPTION invoice in-place (replaces line items, reapplies credits/coupons/taxes). Use when subscription or usage data changed before finalizing.
-func (s *Invoices) RecalculateInvoiceV2(ctx context.Context, id string, finalize *bool, opts ...dtos.Option) (*dtos.RecalculateInvoiceV2Response, error) {
+func (s *Invoices) RecalculateInvoiceV2(ctx context.Context, security dtos.RecalculateInvoiceV2Security, id string, finalize *bool, opts ...dtos.Option) (*dtos.RecalculateInvoiceV2Response, error) {
 	request := dtos.RecalculateInvoiceV2Request{
 		ID:       id,
 		Finalize: finalize,
@@ -3464,7 +3465,7 @@ func (s *Invoices) RecalculateInvoiceV2(ctx context.Context, id string, finalize
 		Context:          ctx,
 		OperationID:      "recalculateInvoiceV2",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -3489,7 +3490,7 @@ func (s *Invoices) RecalculateInvoiceV2(ctx context.Context, id string, finalize
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -3695,7 +3696,7 @@ func (s *Invoices) RecalculateInvoiceV2(ctx context.Context, id string, finalize
 
 // VoidInvoice - Void invoice
 // Use when cancelling an invoice (e.g. order cancelled or duplicate). Only unpaid invoices can be voided.
-func (s *Invoices) VoidInvoice(ctx context.Context, id string, opts ...dtos.Option) (*dtos.VoidInvoiceResponse, error) {
+func (s *Invoices) VoidInvoice(ctx context.Context, security dtos.VoidInvoiceSecurity, id string, opts ...dtos.Option) (*dtos.VoidInvoiceResponse, error) {
 	request := dtos.VoidInvoiceRequest{
 		ID: id,
 	}
@@ -3730,7 +3731,7 @@ func (s *Invoices) VoidInvoice(ctx context.Context, id string, opts ...dtos.Opti
 		Context:          ctx,
 		OperationID:      "voidInvoice",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -3751,7 +3752,7 @@ func (s *Invoices) VoidInvoice(ctx context.Context, id string, opts ...dtos.Opti
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

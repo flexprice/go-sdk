@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type GetCustomerUsageSummarySecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetCustomerUsageSummarySecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerUsageSummarySecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetCustomerUsageSummarySecurityOption1) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getcustomerusagesummarysecurityoption1
+// #endregion class-body-getcustomerusagesummarysecurityoption1
+
+type GetCustomerUsageSummarySecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetCustomerUsageSummarySecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerUsageSummarySecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetCustomerUsageSummarySecurityOption2) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getcustomerusagesummarysecurityoption2
+// #endregion class-body-getcustomerusagesummarysecurityoption2
+
+type GetCustomerUsageSummarySecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (g GetCustomerUsageSummarySecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerUsageSummarySecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetCustomerUsageSummarySecurityOption3) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+func (g *GetCustomerUsageSummarySecurityOption3) GetEnvironmentID() string {
+	if g == nil {
+		return ""
+	}
+	return g.EnvironmentID
+}
+
+// #region class-body-getcustomerusagesummarysecurityoption3
+// #endregion class-body-getcustomerusagesummarysecurityoption3
+
+type GetCustomerUsageSummarySecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (g GetCustomerUsageSummarySecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerUsageSummarySecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetCustomerUsageSummarySecurityOption4) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+// #region class-body-getcustomerusagesummarysecurityoption4
+// #endregion class-body-getcustomerusagesummarysecurityoption4
+
+type GetCustomerUsageSummarySecurity struct {
+	Option1 *GetCustomerUsageSummarySecurityOption1 `security:"option"`
+	Option2 *GetCustomerUsageSummarySecurityOption2 `security:"option"`
+	Option3 *GetCustomerUsageSummarySecurityOption3 `security:"option"`
+	Option4 *GetCustomerUsageSummarySecurityOption4 `security:"option"`
+}
+
+func (g GetCustomerUsageSummarySecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerUsageSummarySecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetCustomerUsageSummarySecurity) GetOption1() *GetCustomerUsageSummarySecurityOption1 {
+	if g == nil {
+		return nil
+	}
+	return g.Option1
+}
+
+func (g *GetCustomerUsageSummarySecurity) GetOption2() *GetCustomerUsageSummarySecurityOption2 {
+	if g == nil {
+		return nil
+	}
+	return g.Option2
+}
+
+func (g *GetCustomerUsageSummarySecurity) GetOption3() *GetCustomerUsageSummarySecurityOption3 {
+	if g == nil {
+		return nil
+	}
+	return g.Option3
+}
+
+func (g *GetCustomerUsageSummarySecurity) GetOption4() *GetCustomerUsageSummarySecurityOption4 {
+	if g == nil {
+		return nil
+	}
+	return g.Option4
+}
+
 type GetCustomerUsageSummaryRequest struct {
 	CustomerID        *string  `queryParam:"style=form,explode=true,name=customer_id"`
 	CustomerLookupKey *string  `queryParam:"style=form,explode=true,name=customer_lookup_key"`

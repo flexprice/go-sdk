@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type CreateScheduledTaskSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (c CreateScheduledTaskSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateScheduledTaskSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateScheduledTaskSecurityOption1) GetAPIKeyAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.APIKeyAuth
+}
+
+// #region class-body-createscheduledtasksecurityoption1
+// #endregion class-body-createscheduledtasksecurityoption1
+
+type CreateScheduledTaskSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (c CreateScheduledTaskSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateScheduledTaskSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateScheduledTaskSecurityOption2) GetAPIKeyAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.APIKeyAuth
+}
+
+// #region class-body-createscheduledtasksecurityoption2
+// #endregion class-body-createscheduledtasksecurityoption2
+
+type CreateScheduledTaskSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (c CreateScheduledTaskSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateScheduledTaskSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateScheduledTaskSecurityOption3) GetBearerAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.BearerAuth
+}
+
+func (c *CreateScheduledTaskSecurityOption3) GetEnvironmentID() string {
+	if c == nil {
+		return ""
+	}
+	return c.EnvironmentID
+}
+
+// #region class-body-createscheduledtasksecurityoption3
+// #endregion class-body-createscheduledtasksecurityoption3
+
+type CreateScheduledTaskSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (c CreateScheduledTaskSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateScheduledTaskSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateScheduledTaskSecurityOption4) GetBearerAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.BearerAuth
+}
+
+// #region class-body-createscheduledtasksecurityoption4
+// #endregion class-body-createscheduledtasksecurityoption4
+
+type CreateScheduledTaskSecurity struct {
+	Option1 *CreateScheduledTaskSecurityOption1 `security:"option"`
+	Option2 *CreateScheduledTaskSecurityOption2 `security:"option"`
+	Option3 *CreateScheduledTaskSecurityOption3 `security:"option"`
+	Option4 *CreateScheduledTaskSecurityOption4 `security:"option"`
+}
+
+func (c CreateScheduledTaskSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateScheduledTaskSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateScheduledTaskSecurity) GetOption1() *CreateScheduledTaskSecurityOption1 {
+	if c == nil {
+		return nil
+	}
+	return c.Option1
+}
+
+func (c *CreateScheduledTaskSecurity) GetOption2() *CreateScheduledTaskSecurityOption2 {
+	if c == nil {
+		return nil
+	}
+	return c.Option2
+}
+
+func (c *CreateScheduledTaskSecurity) GetOption3() *CreateScheduledTaskSecurityOption3 {
+	if c == nil {
+		return nil
+	}
+	return c.Option3
+}
+
+func (c *CreateScheduledTaskSecurity) GetOption4() *CreateScheduledTaskSecurityOption4 {
+	if c == nil {
+		return nil
+	}
+	return c.Option4
+}
+
 type CreateScheduledTaskResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created

@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type CloneFeatureSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (c CloneFeatureSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CloneFeatureSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CloneFeatureSecurityOption1) GetAPIKeyAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.APIKeyAuth
+}
+
+// #region class-body-clonefeaturesecurityoption1
+// #endregion class-body-clonefeaturesecurityoption1
+
+type CloneFeatureSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (c CloneFeatureSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CloneFeatureSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CloneFeatureSecurityOption2) GetAPIKeyAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.APIKeyAuth
+}
+
+// #region class-body-clonefeaturesecurityoption2
+// #endregion class-body-clonefeaturesecurityoption2
+
+type CloneFeatureSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (c CloneFeatureSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CloneFeatureSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CloneFeatureSecurityOption3) GetBearerAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.BearerAuth
+}
+
+func (c *CloneFeatureSecurityOption3) GetEnvironmentID() string {
+	if c == nil {
+		return ""
+	}
+	return c.EnvironmentID
+}
+
+// #region class-body-clonefeaturesecurityoption3
+// #endregion class-body-clonefeaturesecurityoption3
+
+type CloneFeatureSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (c CloneFeatureSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CloneFeatureSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CloneFeatureSecurityOption4) GetBearerAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.BearerAuth
+}
+
+// #region class-body-clonefeaturesecurityoption4
+// #endregion class-body-clonefeaturesecurityoption4
+
+type CloneFeatureSecurity struct {
+	Option1 *CloneFeatureSecurityOption1 `security:"option"`
+	Option2 *CloneFeatureSecurityOption2 `security:"option"`
+	Option3 *CloneFeatureSecurityOption3 `security:"option"`
+	Option4 *CloneFeatureSecurityOption4 `security:"option"`
+}
+
+func (c CloneFeatureSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CloneFeatureSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CloneFeatureSecurity) GetOption1() *CloneFeatureSecurityOption1 {
+	if c == nil {
+		return nil
+	}
+	return c.Option1
+}
+
+func (c *CloneFeatureSecurity) GetOption2() *CloneFeatureSecurityOption2 {
+	if c == nil {
+		return nil
+	}
+	return c.Option2
+}
+
+func (c *CloneFeatureSecurity) GetOption3() *CloneFeatureSecurityOption3 {
+	if c == nil {
+		return nil
+	}
+	return c.Option3
+}
+
+func (c *CloneFeatureSecurity) GetOption4() *CloneFeatureSecurityOption4 {
+	if c == nil {
+		return nil
+	}
+	return c.Option4
+}
+
 type CloneFeatureRequest struct {
 	// Source Feature ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

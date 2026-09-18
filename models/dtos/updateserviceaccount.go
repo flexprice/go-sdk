@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type UpdateServiceAccountSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (u UpdateServiceAccountSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateServiceAccountSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateServiceAccountSecurityOption1) GetAPIKeyAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.APIKeyAuth
+}
+
+// #region class-body-updateserviceaccountsecurityoption1
+// #endregion class-body-updateserviceaccountsecurityoption1
+
+type UpdateServiceAccountSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (u UpdateServiceAccountSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateServiceAccountSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateServiceAccountSecurityOption2) GetAPIKeyAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.APIKeyAuth
+}
+
+// #region class-body-updateserviceaccountsecurityoption2
+// #endregion class-body-updateserviceaccountsecurityoption2
+
+type UpdateServiceAccountSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (u UpdateServiceAccountSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateServiceAccountSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateServiceAccountSecurityOption3) GetBearerAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.BearerAuth
+}
+
+func (u *UpdateServiceAccountSecurityOption3) GetEnvironmentID() string {
+	if u == nil {
+		return ""
+	}
+	return u.EnvironmentID
+}
+
+// #region class-body-updateserviceaccountsecurityoption3
+// #endregion class-body-updateserviceaccountsecurityoption3
+
+type UpdateServiceAccountSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (u UpdateServiceAccountSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateServiceAccountSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateServiceAccountSecurityOption4) GetBearerAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.BearerAuth
+}
+
+// #region class-body-updateserviceaccountsecurityoption4
+// #endregion class-body-updateserviceaccountsecurityoption4
+
+type UpdateServiceAccountSecurity struct {
+	Option1 *UpdateServiceAccountSecurityOption1 `security:"option"`
+	Option2 *UpdateServiceAccountSecurityOption2 `security:"option"`
+	Option3 *UpdateServiceAccountSecurityOption3 `security:"option"`
+	Option4 *UpdateServiceAccountSecurityOption4 `security:"option"`
+}
+
+func (u UpdateServiceAccountSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateServiceAccountSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateServiceAccountSecurity) GetOption1() *UpdateServiceAccountSecurityOption1 {
+	if u == nil {
+		return nil
+	}
+	return u.Option1
+}
+
+func (u *UpdateServiceAccountSecurity) GetOption2() *UpdateServiceAccountSecurityOption2 {
+	if u == nil {
+		return nil
+	}
+	return u.Option2
+}
+
+func (u *UpdateServiceAccountSecurity) GetOption3() *UpdateServiceAccountSecurityOption3 {
+	if u == nil {
+		return nil
+	}
+	return u.Option3
+}
+
+func (u *UpdateServiceAccountSecurity) GetOption4() *UpdateServiceAccountSecurityOption4 {
+	if u == nil {
+		return nil
+	}
+	return u.Option4
+}
+
 type UpdateServiceAccountRequest struct {
 	// Service Account ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

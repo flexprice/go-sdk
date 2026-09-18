@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type GetCustomerByExternalIDSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetCustomerByExternalIDSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerByExternalIDSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetCustomerByExternalIDSecurityOption1) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getcustomerbyexternalidsecurityoption1
+// #endregion class-body-getcustomerbyexternalidsecurityoption1
+
+type GetCustomerByExternalIDSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetCustomerByExternalIDSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerByExternalIDSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetCustomerByExternalIDSecurityOption2) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getcustomerbyexternalidsecurityoption2
+// #endregion class-body-getcustomerbyexternalidsecurityoption2
+
+type GetCustomerByExternalIDSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (g GetCustomerByExternalIDSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerByExternalIDSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetCustomerByExternalIDSecurityOption3) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+func (g *GetCustomerByExternalIDSecurityOption3) GetEnvironmentID() string {
+	if g == nil {
+		return ""
+	}
+	return g.EnvironmentID
+}
+
+// #region class-body-getcustomerbyexternalidsecurityoption3
+// #endregion class-body-getcustomerbyexternalidsecurityoption3
+
+type GetCustomerByExternalIDSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (g GetCustomerByExternalIDSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerByExternalIDSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetCustomerByExternalIDSecurityOption4) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+// #region class-body-getcustomerbyexternalidsecurityoption4
+// #endregion class-body-getcustomerbyexternalidsecurityoption4
+
+type GetCustomerByExternalIDSecurity struct {
+	Option1 *GetCustomerByExternalIDSecurityOption1 `security:"option"`
+	Option2 *GetCustomerByExternalIDSecurityOption2 `security:"option"`
+	Option3 *GetCustomerByExternalIDSecurityOption3 `security:"option"`
+	Option4 *GetCustomerByExternalIDSecurityOption4 `security:"option"`
+}
+
+func (g GetCustomerByExternalIDSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetCustomerByExternalIDSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetCustomerByExternalIDSecurity) GetOption1() *GetCustomerByExternalIDSecurityOption1 {
+	if g == nil {
+		return nil
+	}
+	return g.Option1
+}
+
+func (g *GetCustomerByExternalIDSecurity) GetOption2() *GetCustomerByExternalIDSecurityOption2 {
+	if g == nil {
+		return nil
+	}
+	return g.Option2
+}
+
+func (g *GetCustomerByExternalIDSecurity) GetOption3() *GetCustomerByExternalIDSecurityOption3 {
+	if g == nil {
+		return nil
+	}
+	return g.Option3
+}
+
+func (g *GetCustomerByExternalIDSecurity) GetOption4() *GetCustomerByExternalIDSecurityOption4 {
+	if g == nil {
+		return nil
+	}
+	return g.Option4
+}
+
 type GetCustomerByExternalIDRequest struct {
 	// Customer External ID
 	ExternalID string `pathParam:"style=simple,explode=false,name=external_id"`

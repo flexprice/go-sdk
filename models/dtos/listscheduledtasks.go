@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type ListScheduledTasksSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (l ListScheduledTasksSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListScheduledTasksSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListScheduledTasksSecurityOption1) GetAPIKeyAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.APIKeyAuth
+}
+
+// #region class-body-listscheduledtaskssecurityoption1
+// #endregion class-body-listscheduledtaskssecurityoption1
+
+type ListScheduledTasksSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (l ListScheduledTasksSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListScheduledTasksSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListScheduledTasksSecurityOption2) GetAPIKeyAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.APIKeyAuth
+}
+
+// #region class-body-listscheduledtaskssecurityoption2
+// #endregion class-body-listscheduledtaskssecurityoption2
+
+type ListScheduledTasksSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (l ListScheduledTasksSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListScheduledTasksSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListScheduledTasksSecurityOption3) GetBearerAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.BearerAuth
+}
+
+func (l *ListScheduledTasksSecurityOption3) GetEnvironmentID() string {
+	if l == nil {
+		return ""
+	}
+	return l.EnvironmentID
+}
+
+// #region class-body-listscheduledtaskssecurityoption3
+// #endregion class-body-listscheduledtaskssecurityoption3
+
+type ListScheduledTasksSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (l ListScheduledTasksSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListScheduledTasksSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListScheduledTasksSecurityOption4) GetBearerAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.BearerAuth
+}
+
+// #region class-body-listscheduledtaskssecurityoption4
+// #endregion class-body-listscheduledtaskssecurityoption4
+
+type ListScheduledTasksSecurity struct {
+	Option1 *ListScheduledTasksSecurityOption1 `security:"option"`
+	Option2 *ListScheduledTasksSecurityOption2 `security:"option"`
+	Option3 *ListScheduledTasksSecurityOption3 `security:"option"`
+	Option4 *ListScheduledTasksSecurityOption4 `security:"option"`
+}
+
+func (l ListScheduledTasksSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListScheduledTasksSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListScheduledTasksSecurity) GetOption1() *ListScheduledTasksSecurityOption1 {
+	if l == nil {
+		return nil
+	}
+	return l.Option1
+}
+
+func (l *ListScheduledTasksSecurity) GetOption2() *ListScheduledTasksSecurityOption2 {
+	if l == nil {
+		return nil
+	}
+	return l.Option2
+}
+
+func (l *ListScheduledTasksSecurity) GetOption3() *ListScheduledTasksSecurityOption3 {
+	if l == nil {
+		return nil
+	}
+	return l.Option3
+}
+
+func (l *ListScheduledTasksSecurity) GetOption4() *ListScheduledTasksSecurityOption4 {
+	if l == nil {
+		return nil
+	}
+	return l.Option4
+}
+
 type ListScheduledTasksRequest struct {
 	// Limit
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`

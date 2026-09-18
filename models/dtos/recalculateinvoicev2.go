@@ -7,6 +7,163 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type RecalculateInvoiceV2SecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (r RecalculateInvoiceV2SecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RecalculateInvoiceV2SecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RecalculateInvoiceV2SecurityOption1) GetAPIKeyAuth() string {
+	if r == nil {
+		return ""
+	}
+	return r.APIKeyAuth
+}
+
+// #region class-body-recalculateinvoicev2securityoption1
+// #endregion class-body-recalculateinvoicev2securityoption1
+
+type RecalculateInvoiceV2SecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (r RecalculateInvoiceV2SecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RecalculateInvoiceV2SecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RecalculateInvoiceV2SecurityOption2) GetAPIKeyAuth() string {
+	if r == nil {
+		return ""
+	}
+	return r.APIKeyAuth
+}
+
+// #region class-body-recalculateinvoicev2securityoption2
+// #endregion class-body-recalculateinvoicev2securityoption2
+
+type RecalculateInvoiceV2SecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (r RecalculateInvoiceV2SecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RecalculateInvoiceV2SecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RecalculateInvoiceV2SecurityOption3) GetBearerAuth() string {
+	if r == nil {
+		return ""
+	}
+	return r.BearerAuth
+}
+
+func (r *RecalculateInvoiceV2SecurityOption3) GetEnvironmentID() string {
+	if r == nil {
+		return ""
+	}
+	return r.EnvironmentID
+}
+
+// #region class-body-recalculateinvoicev2securityoption3
+// #endregion class-body-recalculateinvoicev2securityoption3
+
+type RecalculateInvoiceV2SecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (r RecalculateInvoiceV2SecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RecalculateInvoiceV2SecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RecalculateInvoiceV2SecurityOption4) GetBearerAuth() string {
+	if r == nil {
+		return ""
+	}
+	return r.BearerAuth
+}
+
+// #region class-body-recalculateinvoicev2securityoption4
+// #endregion class-body-recalculateinvoicev2securityoption4
+
+type RecalculateInvoiceV2Security struct {
+	Option1 *RecalculateInvoiceV2SecurityOption1 `security:"option"`
+	Option2 *RecalculateInvoiceV2SecurityOption2 `security:"option"`
+	Option3 *RecalculateInvoiceV2SecurityOption3 `security:"option"`
+	Option4 *RecalculateInvoiceV2SecurityOption4 `security:"option"`
+}
+
+func (r RecalculateInvoiceV2Security) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RecalculateInvoiceV2Security) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RecalculateInvoiceV2Security) GetOption1() *RecalculateInvoiceV2SecurityOption1 {
+	if r == nil {
+		return nil
+	}
+	return r.Option1
+}
+
+func (r *RecalculateInvoiceV2Security) GetOption2() *RecalculateInvoiceV2SecurityOption2 {
+	if r == nil {
+		return nil
+	}
+	return r.Option2
+}
+
+func (r *RecalculateInvoiceV2Security) GetOption3() *RecalculateInvoiceV2SecurityOption3 {
+	if r == nil {
+		return nil
+	}
+	return r.Option3
+}
+
+func (r *RecalculateInvoiceV2Security) GetOption4() *RecalculateInvoiceV2SecurityOption4 {
+	if r == nil {
+		return nil
+	}
+	return r.Option4
+}
+
+// #region class-body-recalculateinvoicev2security
+// #endregion class-body-recalculateinvoicev2security
+
 type RecalculateInvoiceV2Request struct {
 	// Invoice ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

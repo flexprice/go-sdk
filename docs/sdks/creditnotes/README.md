@@ -23,19 +23,22 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
     res, err := s.CreditNotes.CreateCreditNote(ctx, types.CreateCreditNoteRequest{
         InvoiceID: "<id>",
         Reason: types.CreditNoteReasonFraudulent,
+    }, dtos.CreateCreditNoteSecurity{
+        Option1: &dtos.CreateCreditNoteSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -52,6 +55,7 @@ func main() {
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
 | `request`                                                                      | [types.CreateCreditNoteRequest](../../models/types/createcreditnoterequest.md) | :heavy_check_mark:                                                             | The request object to use for the request.                                     |
+| `security`                                                                     | [dtos.CreateCreditNoteSecurity](../../models/dtos/createcreditnotesecurity.md) | :heavy_check_mark:                                                             | The security requirements to use for the request.                              |
 | `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |
 
 ### Response
@@ -79,17 +83,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.CreditNotes.GetCreditNote(ctx, "<id>")
+    res, err := s.CreditNotes.GetCreditNote(ctx, dtos.GetCreditNoteSecurity{
+        Option1: &dtos.GetCreditNoteSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -101,11 +108,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Credit note ID                                        |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `security`                                                               | [dtos.GetCreditNoteSecurity](../../models/dtos/getcreditnotesecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
+| `id`                                                                     | `string`                                                                 | :heavy_check_mark:                                                       | Credit note ID                                                           |
+| `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
 ### Response
 
@@ -132,17 +140,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.CreditNotes.ProcessCreditNote(ctx, "<id>", nil)
+    res, err := s.CreditNotes.ProcessCreditNote(ctx, dtos.ProcessCreditNoteSecurity{
+        Option1: &dtos.ProcessCreditNoteSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -157,6 +168,7 @@ func main() {
 | Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | `ctx`                                                                               | [context.Context](https://pkg.go.dev/context#Context)                               | :heavy_check_mark:                                                                  | The context to use for the request.                                                 |
+| `security`                                                                          | [dtos.ProcessCreditNoteSecurity](../../models/dtos/processcreditnotesecurity.md)    | :heavy_check_mark:                                                                  | The security requirements to use for the request.                                   |
 | `id`                                                                                | `string`                                                                            | :heavy_check_mark:                                                                  | Credit note ID                                                                      |
 | `body`                                                                              | [*types.FinalizeCreditNoteRequest](../../models/types/finalizecreditnoterequest.md) | :heavy_minus_sign:                                                                  | Finalize options                                                                    |
 | `opts`                                                                              | [][dtos.Option](../../models/dtos/option.md)                                        | :heavy_minus_sign:                                                                  | The options for this request.                                                       |
@@ -186,17 +198,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.CreditNotes.VoidCreditNote(ctx, "<id>")
+    res, err := s.CreditNotes.VoidCreditNote(ctx, dtos.VoidCreditNoteSecurity{
+        Option1: &dtos.VoidCreditNoteSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -208,11 +223,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Credit note ID                                        |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `security`                                                                 | [dtos.VoidCreditNoteSecurity](../../models/dtos/voidcreditnotesecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
+| `id`                                                                       | `string`                                                                   | :heavy_check_mark:                                                         | Credit note ID                                                             |
+| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
 ### Response
 

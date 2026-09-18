@@ -1,0 +1,11 @@
+# QueryAlertLogSecurity
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `Option1`                                                                               | [*dtos.QueryAlertLogSecurityOption1](../../models/dtos/queryalertlogsecurityoption1.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option2`                                                                               | [*dtos.QueryAlertLogSecurityOption2](../../models/dtos/queryalertlogsecurityoption2.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option3`                                                                               | [*dtos.QueryAlertLogSecurityOption3](../../models/dtos/queryalertlogsecurityoption3.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option4`                                                                               | [*dtos.QueryAlertLogSecurityOption4](../../models/dtos/queryalertlogsecurityoption4.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |

@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type CreatePriceSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (c CreatePriceSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreatePriceSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreatePriceSecurityOption1) GetAPIKeyAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.APIKeyAuth
+}
+
+// #region class-body-createpricesecurityoption1
+// #endregion class-body-createpricesecurityoption1
+
+type CreatePriceSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (c CreatePriceSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreatePriceSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreatePriceSecurityOption2) GetAPIKeyAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.APIKeyAuth
+}
+
+// #region class-body-createpricesecurityoption2
+// #endregion class-body-createpricesecurityoption2
+
+type CreatePriceSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (c CreatePriceSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreatePriceSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreatePriceSecurityOption3) GetBearerAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.BearerAuth
+}
+
+func (c *CreatePriceSecurityOption3) GetEnvironmentID() string {
+	if c == nil {
+		return ""
+	}
+	return c.EnvironmentID
+}
+
+// #region class-body-createpricesecurityoption3
+// #endregion class-body-createpricesecurityoption3
+
+type CreatePriceSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (c CreatePriceSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreatePriceSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreatePriceSecurityOption4) GetBearerAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.BearerAuth
+}
+
+// #region class-body-createpricesecurityoption4
+// #endregion class-body-createpricesecurityoption4
+
+type CreatePriceSecurity struct {
+	Option1 *CreatePriceSecurityOption1 `security:"option"`
+	Option2 *CreatePriceSecurityOption2 `security:"option"`
+	Option3 *CreatePriceSecurityOption3 `security:"option"`
+	Option4 *CreatePriceSecurityOption4 `security:"option"`
+}
+
+func (c CreatePriceSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreatePriceSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreatePriceSecurity) GetOption1() *CreatePriceSecurityOption1 {
+	if c == nil {
+		return nil
+	}
+	return c.Option1
+}
+
+func (c *CreatePriceSecurity) GetOption2() *CreatePriceSecurityOption2 {
+	if c == nil {
+		return nil
+	}
+	return c.Option2
+}
+
+func (c *CreatePriceSecurity) GetOption3() *CreatePriceSecurityOption3 {
+	if c == nil {
+		return nil
+	}
+	return c.Option3
+}
+
+func (c *CreatePriceSecurity) GetOption4() *CreatePriceSecurityOption4 {
+	if c == nil {
+		return nil
+	}
+	return c.Option4
+}
+
 type CreatePriceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created

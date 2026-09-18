@@ -33,7 +33,7 @@ func newPayments(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *h
 
 // ListPayments - List payments
 // Use when listing or searching payments (e.g. reconciliation UI or customer payment history). Returns a paginated list; supports filtering by customer, invoice, status.
-func (s *Payments) ListPayments(ctx context.Context, request dtos.ListPaymentsRequest, opts ...dtos.Option) (*dtos.ListPaymentsResponse, error) {
+func (s *Payments) ListPayments(ctx context.Context, request dtos.ListPaymentsRequest, security dtos.ListPaymentsSecurity, opts ...dtos.Option) (*dtos.ListPaymentsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Payments) ListPayments(ctx context.Context, request dtos.ListPaymentsRe
 		Context:          ctx,
 		OperationID:      "listPayments",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -89,7 +89,7 @@ func (s *Payments) ListPayments(ctx context.Context, request dtos.ListPaymentsRe
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -293,7 +293,7 @@ func (s *Payments) ListPayments(ctx context.Context, request dtos.ListPaymentsRe
 
 // CreatePayment - Create payment
 // Use when recording a payment against an invoice (e.g. after receiving funds via a gateway or manual entry).
-func (s *Payments) CreatePayment(ctx context.Context, request types.CreatePaymentRequest, opts ...dtos.Option) (*dtos.CreatePaymentResponse, error) {
+func (s *Payments) CreatePayment(ctx context.Context, request types.CreatePaymentRequest, security dtos.CreatePaymentSecurity, opts ...dtos.Option) (*dtos.CreatePaymentResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -324,7 +324,7 @@ func (s *Payments) CreatePayment(ctx context.Context, request types.CreatePaymen
 		Context:          ctx,
 		OperationID:      "createPayment",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -352,7 +352,7 @@ func (s *Payments) CreatePayment(ctx context.Context, request types.CreatePaymen
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -556,7 +556,7 @@ func (s *Payments) CreatePayment(ctx context.Context, request types.CreatePaymen
 
 // GetPayment - Get payment
 // Use when you need to load a single payment (e.g. for a receipt view or reconciliation).
-func (s *Payments) GetPayment(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetPaymentResponse, error) {
+func (s *Payments) GetPayment(ctx context.Context, security dtos.GetPaymentSecurity, id string, opts ...dtos.Option) (*dtos.GetPaymentResponse, error) {
 	request := dtos.GetPaymentRequest{
 		ID: id,
 	}
@@ -591,7 +591,7 @@ func (s *Payments) GetPayment(ctx context.Context, id string, opts ...dtos.Optio
 		Context:          ctx,
 		OperationID:      "getPayment",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -612,7 +612,7 @@ func (s *Payments) GetPayment(ctx context.Context, id string, opts ...dtos.Optio
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -818,7 +818,7 @@ func (s *Payments) GetPayment(ctx context.Context, id string, opts ...dtos.Optio
 
 // UpdatePayment - Update payment
 // Use when updating payment status or metadata (e.g. after reconciliation or adding a reference).
-func (s *Payments) UpdatePayment(ctx context.Context, id string, body types.UpdatePaymentRequest, opts ...dtos.Option) (*dtos.UpdatePaymentResponse, error) {
+func (s *Payments) UpdatePayment(ctx context.Context, security dtos.UpdatePaymentSecurity, id string, body types.UpdatePaymentRequest, opts ...dtos.Option) (*dtos.UpdatePaymentResponse, error) {
 	request := dtos.UpdatePaymentRequest{
 		ID:   id,
 		Body: body,
@@ -854,7 +854,7 @@ func (s *Payments) UpdatePayment(ctx context.Context, id string, body types.Upda
 		Context:          ctx,
 		OperationID:      "updatePayment",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -882,7 +882,7 @@ func (s *Payments) UpdatePayment(ctx context.Context, id string, body types.Upda
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1086,7 +1086,7 @@ func (s *Payments) UpdatePayment(ctx context.Context, id string, body types.Upda
 
 // DeletePayment - Delete payment
 // Use when removing or voiding a payment record (e.g. correcting erroneous entries). Returns 200 with success message.
-func (s *Payments) DeletePayment(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeletePaymentResponse, error) {
+func (s *Payments) DeletePayment(ctx context.Context, security dtos.DeletePaymentSecurity, id string, opts ...dtos.Option) (*dtos.DeletePaymentResponse, error) {
 	request := dtos.DeletePaymentRequest{
 		ID: id,
 	}
@@ -1121,7 +1121,7 @@ func (s *Payments) DeletePayment(ctx context.Context, id string, opts ...dtos.Op
 		Context:          ctx,
 		OperationID:      "deletePayment",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1142,7 +1142,7 @@ func (s *Payments) DeletePayment(ctx context.Context, id string, opts ...dtos.Op
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1348,7 +1348,7 @@ func (s *Payments) DeletePayment(ctx context.Context, id string, opts ...dtos.Op
 
 // ProcessPayment - Process payment
 // Use when you need to charge or process a payment (e.g. trigger the payment provider to capture funds). Returns updated payment with status.
-func (s *Payments) ProcessPayment(ctx context.Context, id string, opts ...dtos.Option) (*dtos.ProcessPaymentResponse, error) {
+func (s *Payments) ProcessPayment(ctx context.Context, security dtos.ProcessPaymentSecurity, id string, opts ...dtos.Option) (*dtos.ProcessPaymentResponse, error) {
 	request := dtos.ProcessPaymentRequest{
 		ID: id,
 	}
@@ -1383,7 +1383,7 @@ func (s *Payments) ProcessPayment(ctx context.Context, id string, opts ...dtos.O
 		Context:          ctx,
 		OperationID:      "processPayment",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1404,7 +1404,7 @@ func (s *Payments) ProcessPayment(ctx context.Context, id string, opts ...dtos.O
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

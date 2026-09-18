@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type PreviewSubscriptionModifySecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (p PreviewSubscriptionModifySecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PreviewSubscriptionModifySecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *PreviewSubscriptionModifySecurityOption1) GetAPIKeyAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.APIKeyAuth
+}
+
+// #region class-body-previewsubscriptionmodifysecurityoption1
+// #endregion class-body-previewsubscriptionmodifysecurityoption1
+
+type PreviewSubscriptionModifySecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (p PreviewSubscriptionModifySecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PreviewSubscriptionModifySecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *PreviewSubscriptionModifySecurityOption2) GetAPIKeyAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.APIKeyAuth
+}
+
+// #region class-body-previewsubscriptionmodifysecurityoption2
+// #endregion class-body-previewsubscriptionmodifysecurityoption2
+
+type PreviewSubscriptionModifySecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (p PreviewSubscriptionModifySecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PreviewSubscriptionModifySecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *PreviewSubscriptionModifySecurityOption3) GetBearerAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.BearerAuth
+}
+
+func (p *PreviewSubscriptionModifySecurityOption3) GetEnvironmentID() string {
+	if p == nil {
+		return ""
+	}
+	return p.EnvironmentID
+}
+
+// #region class-body-previewsubscriptionmodifysecurityoption3
+// #endregion class-body-previewsubscriptionmodifysecurityoption3
+
+type PreviewSubscriptionModifySecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (p PreviewSubscriptionModifySecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PreviewSubscriptionModifySecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *PreviewSubscriptionModifySecurityOption4) GetBearerAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.BearerAuth
+}
+
+// #region class-body-previewsubscriptionmodifysecurityoption4
+// #endregion class-body-previewsubscriptionmodifysecurityoption4
+
+type PreviewSubscriptionModifySecurity struct {
+	Option1 *PreviewSubscriptionModifySecurityOption1 `security:"option"`
+	Option2 *PreviewSubscriptionModifySecurityOption2 `security:"option"`
+	Option3 *PreviewSubscriptionModifySecurityOption3 `security:"option"`
+	Option4 *PreviewSubscriptionModifySecurityOption4 `security:"option"`
+}
+
+func (p PreviewSubscriptionModifySecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *PreviewSubscriptionModifySecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *PreviewSubscriptionModifySecurity) GetOption1() *PreviewSubscriptionModifySecurityOption1 {
+	if p == nil {
+		return nil
+	}
+	return p.Option1
+}
+
+func (p *PreviewSubscriptionModifySecurity) GetOption2() *PreviewSubscriptionModifySecurityOption2 {
+	if p == nil {
+		return nil
+	}
+	return p.Option2
+}
+
+func (p *PreviewSubscriptionModifySecurity) GetOption3() *PreviewSubscriptionModifySecurityOption3 {
+	if p == nil {
+		return nil
+	}
+	return p.Option3
+}
+
+func (p *PreviewSubscriptionModifySecurity) GetOption4() *PreviewSubscriptionModifySecurityOption4 {
+	if p == nil {
+		return nil
+	}
+	return p.Option4
+}
+
 type PreviewSubscriptionModifyRequest struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

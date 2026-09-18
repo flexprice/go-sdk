@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type DeletePaymentSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (d DeletePaymentSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePaymentSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePaymentSecurityOption1) GetAPIKeyAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.APIKeyAuth
+}
+
+// #region class-body-deletepaymentsecurityoption1
+// #endregion class-body-deletepaymentsecurityoption1
+
+type DeletePaymentSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (d DeletePaymentSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePaymentSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePaymentSecurityOption2) GetAPIKeyAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.APIKeyAuth
+}
+
+// #region class-body-deletepaymentsecurityoption2
+// #endregion class-body-deletepaymentsecurityoption2
+
+type DeletePaymentSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (d DeletePaymentSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePaymentSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePaymentSecurityOption3) GetBearerAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.BearerAuth
+}
+
+func (d *DeletePaymentSecurityOption3) GetEnvironmentID() string {
+	if d == nil {
+		return ""
+	}
+	return d.EnvironmentID
+}
+
+// #region class-body-deletepaymentsecurityoption3
+// #endregion class-body-deletepaymentsecurityoption3
+
+type DeletePaymentSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (d DeletePaymentSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePaymentSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePaymentSecurityOption4) GetBearerAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.BearerAuth
+}
+
+// #region class-body-deletepaymentsecurityoption4
+// #endregion class-body-deletepaymentsecurityoption4
+
+type DeletePaymentSecurity struct {
+	Option1 *DeletePaymentSecurityOption1 `security:"option"`
+	Option2 *DeletePaymentSecurityOption2 `security:"option"`
+	Option3 *DeletePaymentSecurityOption3 `security:"option"`
+	Option4 *DeletePaymentSecurityOption4 `security:"option"`
+}
+
+func (d DeletePaymentSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePaymentSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePaymentSecurity) GetOption1() *DeletePaymentSecurityOption1 {
+	if d == nil {
+		return nil
+	}
+	return d.Option1
+}
+
+func (d *DeletePaymentSecurity) GetOption2() *DeletePaymentSecurityOption2 {
+	if d == nil {
+		return nil
+	}
+	return d.Option2
+}
+
+func (d *DeletePaymentSecurity) GetOption3() *DeletePaymentSecurityOption3 {
+	if d == nil {
+		return nil
+	}
+	return d.Option3
+}
+
+func (d *DeletePaymentSecurity) GetOption4() *DeletePaymentSecurityOption4 {
+	if d == nil {
+		return nil
+	}
+	return d.Option4
+}
+
 type DeletePaymentRequest struct {
 	// Payment ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

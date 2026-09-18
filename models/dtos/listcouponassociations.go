@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type ListCouponAssociationsSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (l ListCouponAssociationsSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListCouponAssociationsSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListCouponAssociationsSecurityOption1) GetAPIKeyAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.APIKeyAuth
+}
+
+// #region class-body-listcouponassociationssecurityoption1
+// #endregion class-body-listcouponassociationssecurityoption1
+
+type ListCouponAssociationsSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (l ListCouponAssociationsSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListCouponAssociationsSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListCouponAssociationsSecurityOption2) GetAPIKeyAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.APIKeyAuth
+}
+
+// #region class-body-listcouponassociationssecurityoption2
+// #endregion class-body-listcouponassociationssecurityoption2
+
+type ListCouponAssociationsSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (l ListCouponAssociationsSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListCouponAssociationsSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListCouponAssociationsSecurityOption3) GetBearerAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.BearerAuth
+}
+
+func (l *ListCouponAssociationsSecurityOption3) GetEnvironmentID() string {
+	if l == nil {
+		return ""
+	}
+	return l.EnvironmentID
+}
+
+// #region class-body-listcouponassociationssecurityoption3
+// #endregion class-body-listcouponassociationssecurityoption3
+
+type ListCouponAssociationsSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (l ListCouponAssociationsSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListCouponAssociationsSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListCouponAssociationsSecurityOption4) GetBearerAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.BearerAuth
+}
+
+// #region class-body-listcouponassociationssecurityoption4
+// #endregion class-body-listcouponassociationssecurityoption4
+
+type ListCouponAssociationsSecurity struct {
+	Option1 *ListCouponAssociationsSecurityOption1 `security:"option"`
+	Option2 *ListCouponAssociationsSecurityOption2 `security:"option"`
+	Option3 *ListCouponAssociationsSecurityOption3 `security:"option"`
+	Option4 *ListCouponAssociationsSecurityOption4 `security:"option"`
+}
+
+func (l ListCouponAssociationsSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListCouponAssociationsSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListCouponAssociationsSecurity) GetOption1() *ListCouponAssociationsSecurityOption1 {
+	if l == nil {
+		return nil
+	}
+	return l.Option1
+}
+
+func (l *ListCouponAssociationsSecurity) GetOption2() *ListCouponAssociationsSecurityOption2 {
+	if l == nil {
+		return nil
+	}
+	return l.Option2
+}
+
+func (l *ListCouponAssociationsSecurity) GetOption3() *ListCouponAssociationsSecurityOption3 {
+	if l == nil {
+		return nil
+	}
+	return l.Option3
+}
+
+func (l *ListCouponAssociationsSecurity) GetOption4() *ListCouponAssociationsSecurityOption4 {
+	if l == nil {
+		return nil
+	}
+	return l.Option4
+}
+
 type ListCouponAssociationsRequest struct {
 	// Filter by subscription IDs (max 100)
 	SubscriptionIds []string `queryParam:"style=form,explode=false,name=subscription_ids"`

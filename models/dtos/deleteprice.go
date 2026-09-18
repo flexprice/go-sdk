@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type DeletePriceSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (d DeletePriceSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePriceSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePriceSecurityOption1) GetAPIKeyAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.APIKeyAuth
+}
+
+// #region class-body-deletepricesecurityoption1
+// #endregion class-body-deletepricesecurityoption1
+
+type DeletePriceSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (d DeletePriceSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePriceSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePriceSecurityOption2) GetAPIKeyAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.APIKeyAuth
+}
+
+// #region class-body-deletepricesecurityoption2
+// #endregion class-body-deletepricesecurityoption2
+
+type DeletePriceSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (d DeletePriceSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePriceSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePriceSecurityOption3) GetBearerAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.BearerAuth
+}
+
+func (d *DeletePriceSecurityOption3) GetEnvironmentID() string {
+	if d == nil {
+		return ""
+	}
+	return d.EnvironmentID
+}
+
+// #region class-body-deletepricesecurityoption3
+// #endregion class-body-deletepricesecurityoption3
+
+type DeletePriceSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (d DeletePriceSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePriceSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePriceSecurityOption4) GetBearerAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.BearerAuth
+}
+
+// #region class-body-deletepricesecurityoption4
+// #endregion class-body-deletepricesecurityoption4
+
+type DeletePriceSecurity struct {
+	Option1 *DeletePriceSecurityOption1 `security:"option"`
+	Option2 *DeletePriceSecurityOption2 `security:"option"`
+	Option3 *DeletePriceSecurityOption3 `security:"option"`
+	Option4 *DeletePriceSecurityOption4 `security:"option"`
+}
+
+func (d DeletePriceSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePriceSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePriceSecurity) GetOption1() *DeletePriceSecurityOption1 {
+	if d == nil {
+		return nil
+	}
+	return d.Option1
+}
+
+func (d *DeletePriceSecurity) GetOption2() *DeletePriceSecurityOption2 {
+	if d == nil {
+		return nil
+	}
+	return d.Option2
+}
+
+func (d *DeletePriceSecurity) GetOption3() *DeletePriceSecurityOption3 {
+	if d == nil {
+		return nil
+	}
+	return d.Option3
+}
+
+func (d *DeletePriceSecurity) GetOption4() *DeletePriceSecurityOption4 {
+	if d == nil {
+		return nil
+	}
+	return d.Option4
+}
+
 type DeletePriceRequest struct {
 	// Price ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

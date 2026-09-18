@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type CreateFeatureSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (c CreateFeatureSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateFeatureSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateFeatureSecurityOption1) GetAPIKeyAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.APIKeyAuth
+}
+
+// #region class-body-createfeaturesecurityoption1
+// #endregion class-body-createfeaturesecurityoption1
+
+type CreateFeatureSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (c CreateFeatureSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateFeatureSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateFeatureSecurityOption2) GetAPIKeyAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.APIKeyAuth
+}
+
+// #region class-body-createfeaturesecurityoption2
+// #endregion class-body-createfeaturesecurityoption2
+
+type CreateFeatureSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (c CreateFeatureSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateFeatureSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateFeatureSecurityOption3) GetBearerAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.BearerAuth
+}
+
+func (c *CreateFeatureSecurityOption3) GetEnvironmentID() string {
+	if c == nil {
+		return ""
+	}
+	return c.EnvironmentID
+}
+
+// #region class-body-createfeaturesecurityoption3
+// #endregion class-body-createfeaturesecurityoption3
+
+type CreateFeatureSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (c CreateFeatureSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateFeatureSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateFeatureSecurityOption4) GetBearerAuth() string {
+	if c == nil {
+		return ""
+	}
+	return c.BearerAuth
+}
+
+// #region class-body-createfeaturesecurityoption4
+// #endregion class-body-createfeaturesecurityoption4
+
+type CreateFeatureSecurity struct {
+	Option1 *CreateFeatureSecurityOption1 `security:"option"`
+	Option2 *CreateFeatureSecurityOption2 `security:"option"`
+	Option3 *CreateFeatureSecurityOption3 `security:"option"`
+	Option4 *CreateFeatureSecurityOption4 `security:"option"`
+}
+
+func (c CreateFeatureSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(c, "", false)
+}
+
+func (c *CreateFeatureSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (c *CreateFeatureSecurity) GetOption1() *CreateFeatureSecurityOption1 {
+	if c == nil {
+		return nil
+	}
+	return c.Option1
+}
+
+func (c *CreateFeatureSecurity) GetOption2() *CreateFeatureSecurityOption2 {
+	if c == nil {
+		return nil
+	}
+	return c.Option2
+}
+
+func (c *CreateFeatureSecurity) GetOption3() *CreateFeatureSecurityOption3 {
+	if c == nil {
+		return nil
+	}
+	return c.Option3
+}
+
+func (c *CreateFeatureSecurity) GetOption4() *CreateFeatureSecurityOption4 {
+	if c == nil {
+		return nil
+	}
+	return c.Option4
+}
+
 type CreateFeatureResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// Created

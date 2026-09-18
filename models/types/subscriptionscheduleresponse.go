@@ -7,36 +7,6 @@ import (
 	"time"
 )
 
-// Configuration - configuration contains type-specific configuration (e.g., target_plan_id for plan changes)
-type Configuration struct {
-}
-
-func (c Configuration) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(c, "", false)
-}
-
-func (c *Configuration) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
-// ExecutionResult - execution_result contains type-specific execution result
-type ExecutionResult struct {
-}
-
-func (e ExecutionResult) MarshalJSON() ([]byte, error) {
-	return utils.MarshalJSON(e, "", false)
-}
-
-func (e *ExecutionResult) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
-		return err
-	}
-	return nil
-}
-
 // SubscriptionScheduleResponse - Full details of a subscription schedule
 type SubscriptionScheduleResponse struct {
 	// can_be_cancelled indicates if the schedule can be cancelled
@@ -44,7 +14,7 @@ type SubscriptionScheduleResponse struct {
 	// cancelled_at is when the schedule was cancelled
 	CancelledAt *time.Time `json:"cancelled_at,omitzero"`
 	// configuration contains type-specific configuration (e.g., target_plan_id for plan changes)
-	Configuration *Configuration `json:"configuration,omitzero"`
+	Configuration map[string]any `json:"configuration,omitzero"`
 	// created_at timestamp
 	CreatedAt *time.Time `json:"created_at,omitzero"`
 	// days_until_execution is the number of days until execution
@@ -54,7 +24,7 @@ type SubscriptionScheduleResponse struct {
 	// executed_at is when the schedule was executed
 	ExecutedAt *time.Time `json:"executed_at,omitzero"`
 	// execution_result contains type-specific execution result
-	ExecutionResult *ExecutionResult `json:"execution_result,omitzero"`
+	ExecutionResult map[string]any `json:"execution_result,omitzero"`
 	// id of the schedule
 	ID *string `json:"id,omitzero"`
 	// metadata from the schedule
@@ -94,7 +64,7 @@ func (s *SubscriptionScheduleResponse) GetCancelledAt() *time.Time {
 	return s.CancelledAt
 }
 
-func (s *SubscriptionScheduleResponse) GetConfiguration() *Configuration {
+func (s *SubscriptionScheduleResponse) GetConfiguration() map[string]any {
 	if s == nil {
 		return nil
 	}
@@ -129,7 +99,7 @@ func (s *SubscriptionScheduleResponse) GetExecutedAt() *time.Time {
 	return s.ExecutedAt
 }
 
-func (s *SubscriptionScheduleResponse) GetExecutionResult() *ExecutionResult {
+func (s *SubscriptionScheduleResponse) GetExecutionResult() map[string]any {
 	if s == nil {
 		return nil
 	}

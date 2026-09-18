@@ -7,6 +7,193 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type ProcessCreditNoteSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (p ProcessCreditNoteSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProcessCreditNoteSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *ProcessCreditNoteSecurityOption1) GetAPIKeyAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.APIKeyAuth
+}
+
+// #region class-body-processcreditnotesecurityoption1
+// #endregion class-body-processcreditnotesecurityoption1
+
+type ProcessCreditNoteSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (p ProcessCreditNoteSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProcessCreditNoteSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *ProcessCreditNoteSecurityOption2) GetAPIKeyAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.APIKeyAuth
+}
+
+// #region class-body-processcreditnotesecurityoption2
+// #endregion class-body-processcreditnotesecurityoption2
+
+type ProcessCreditNoteSecurityOption3 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (p ProcessCreditNoteSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProcessCreditNoteSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *ProcessCreditNoteSecurityOption3) GetAPIKeyAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.APIKeyAuth
+}
+
+// #region class-body-processcreditnotesecurityoption3
+// #endregion class-body-processcreditnotesecurityoption3
+
+type ProcessCreditNoteSecurityOption4 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (p ProcessCreditNoteSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProcessCreditNoteSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *ProcessCreditNoteSecurityOption4) GetBearerAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.BearerAuth
+}
+
+func (p *ProcessCreditNoteSecurityOption4) GetEnvironmentID() string {
+	if p == nil {
+		return ""
+	}
+	return p.EnvironmentID
+}
+
+// #region class-body-processcreditnotesecurityoption4
+// #endregion class-body-processcreditnotesecurityoption4
+
+type ProcessCreditNoteSecurityOption5 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (p ProcessCreditNoteSecurityOption5) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProcessCreditNoteSecurityOption5) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *ProcessCreditNoteSecurityOption5) GetBearerAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.BearerAuth
+}
+
+// #region class-body-processcreditnotesecurityoption5
+// #endregion class-body-processcreditnotesecurityoption5
+
+type ProcessCreditNoteSecurity struct {
+	Option1 *ProcessCreditNoteSecurityOption1 `security:"option"`
+	Option2 *ProcessCreditNoteSecurityOption2 `security:"option"`
+	Option3 *ProcessCreditNoteSecurityOption3 `security:"option"`
+	Option4 *ProcessCreditNoteSecurityOption4 `security:"option"`
+	Option5 *ProcessCreditNoteSecurityOption5 `security:"option"`
+}
+
+func (p ProcessCreditNoteSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProcessCreditNoteSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *ProcessCreditNoteSecurity) GetOption1() *ProcessCreditNoteSecurityOption1 {
+	if p == nil {
+		return nil
+	}
+	return p.Option1
+}
+
+func (p *ProcessCreditNoteSecurity) GetOption2() *ProcessCreditNoteSecurityOption2 {
+	if p == nil {
+		return nil
+	}
+	return p.Option2
+}
+
+func (p *ProcessCreditNoteSecurity) GetOption3() *ProcessCreditNoteSecurityOption3 {
+	if p == nil {
+		return nil
+	}
+	return p.Option3
+}
+
+func (p *ProcessCreditNoteSecurity) GetOption4() *ProcessCreditNoteSecurityOption4 {
+	if p == nil {
+		return nil
+	}
+	return p.Option4
+}
+
+func (p *ProcessCreditNoteSecurity) GetOption5() *ProcessCreditNoteSecurityOption5 {
+	if p == nil {
+		return nil
+	}
+	return p.Option5
+}
+
 type ProcessCreditNoteRequest struct {
 	// Credit note ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

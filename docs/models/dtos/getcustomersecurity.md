@@ -1,0 +1,11 @@
+# GetCustomerSecurity
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Option1`                                                                           | [*dtos.GetCustomerSecurityOption1](../../models/dtos/getcustomersecurityoption1.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option2`                                                                           | [*dtos.GetCustomerSecurityOption2](../../models/dtos/getcustomersecurityoption2.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option3`                                                                           | [*dtos.GetCustomerSecurityOption3](../../models/dtos/getcustomersecurityoption3.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option4`                                                                           | [*dtos.GetCustomerSecurityOption4](../../models/dtos/getcustomersecurityoption4.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |

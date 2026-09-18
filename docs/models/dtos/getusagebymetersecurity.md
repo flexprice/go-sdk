@@ -1,0 +1,11 @@
+# GetUsageByMeterSecurity
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                   | [*dtos.GetUsageByMeterSecurityOption1](../../models/dtos/getusagebymetersecurityoption1.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option2`                                                                                   | [*dtos.GetUsageByMeterSecurityOption2](../../models/dtos/getusagebymetersecurityoption2.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option3`                                                                                   | [*dtos.GetUsageByMeterSecurityOption3](../../models/dtos/getusagebymetersecurityoption3.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option4`                                                                                   | [*dtos.GetUsageByMeterSecurityOption4](../../models/dtos/getusagebymetersecurityoption4.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |

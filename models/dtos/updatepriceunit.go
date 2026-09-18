@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type UpdatePriceUnitSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (u UpdatePriceUnitSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdatePriceUnitSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdatePriceUnitSecurityOption1) GetAPIKeyAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.APIKeyAuth
+}
+
+// #region class-body-updatepriceunitsecurityoption1
+// #endregion class-body-updatepriceunitsecurityoption1
+
+type UpdatePriceUnitSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (u UpdatePriceUnitSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdatePriceUnitSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdatePriceUnitSecurityOption2) GetAPIKeyAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.APIKeyAuth
+}
+
+// #region class-body-updatepriceunitsecurityoption2
+// #endregion class-body-updatepriceunitsecurityoption2
+
+type UpdatePriceUnitSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (u UpdatePriceUnitSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdatePriceUnitSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdatePriceUnitSecurityOption3) GetBearerAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.BearerAuth
+}
+
+func (u *UpdatePriceUnitSecurityOption3) GetEnvironmentID() string {
+	if u == nil {
+		return ""
+	}
+	return u.EnvironmentID
+}
+
+// #region class-body-updatepriceunitsecurityoption3
+// #endregion class-body-updatepriceunitsecurityoption3
+
+type UpdatePriceUnitSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (u UpdatePriceUnitSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdatePriceUnitSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdatePriceUnitSecurityOption4) GetBearerAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.BearerAuth
+}
+
+// #region class-body-updatepriceunitsecurityoption4
+// #endregion class-body-updatepriceunitsecurityoption4
+
+type UpdatePriceUnitSecurity struct {
+	Option1 *UpdatePriceUnitSecurityOption1 `security:"option"`
+	Option2 *UpdatePriceUnitSecurityOption2 `security:"option"`
+	Option3 *UpdatePriceUnitSecurityOption3 `security:"option"`
+	Option4 *UpdatePriceUnitSecurityOption4 `security:"option"`
+}
+
+func (u UpdatePriceUnitSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdatePriceUnitSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdatePriceUnitSecurity) GetOption1() *UpdatePriceUnitSecurityOption1 {
+	if u == nil {
+		return nil
+	}
+	return u.Option1
+}
+
+func (u *UpdatePriceUnitSecurity) GetOption2() *UpdatePriceUnitSecurityOption2 {
+	if u == nil {
+		return nil
+	}
+	return u.Option2
+}
+
+func (u *UpdatePriceUnitSecurity) GetOption3() *UpdatePriceUnitSecurityOption3 {
+	if u == nil {
+		return nil
+	}
+	return u.Option3
+}
+
+func (u *UpdatePriceUnitSecurity) GetOption4() *UpdatePriceUnitSecurityOption4 {
+	if u == nil {
+		return nil
+	}
+	return u.Option4
+}
+
 type UpdatePriceUnitRequest struct {
 	// Price unit ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

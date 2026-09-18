@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type DeleteSubscriptionLineItemSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (d DeleteSubscriptionLineItemSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteSubscriptionLineItemSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeleteSubscriptionLineItemSecurityOption1) GetAPIKeyAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.APIKeyAuth
+}
+
+// #region class-body-deletesubscriptionlineitemsecurityoption1
+// #endregion class-body-deletesubscriptionlineitemsecurityoption1
+
+type DeleteSubscriptionLineItemSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (d DeleteSubscriptionLineItemSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteSubscriptionLineItemSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeleteSubscriptionLineItemSecurityOption2) GetAPIKeyAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.APIKeyAuth
+}
+
+// #region class-body-deletesubscriptionlineitemsecurityoption2
+// #endregion class-body-deletesubscriptionlineitemsecurityoption2
+
+type DeleteSubscriptionLineItemSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (d DeleteSubscriptionLineItemSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteSubscriptionLineItemSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeleteSubscriptionLineItemSecurityOption3) GetBearerAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.BearerAuth
+}
+
+func (d *DeleteSubscriptionLineItemSecurityOption3) GetEnvironmentID() string {
+	if d == nil {
+		return ""
+	}
+	return d.EnvironmentID
+}
+
+// #region class-body-deletesubscriptionlineitemsecurityoption3
+// #endregion class-body-deletesubscriptionlineitemsecurityoption3
+
+type DeleteSubscriptionLineItemSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (d DeleteSubscriptionLineItemSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteSubscriptionLineItemSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeleteSubscriptionLineItemSecurityOption4) GetBearerAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.BearerAuth
+}
+
+// #region class-body-deletesubscriptionlineitemsecurityoption4
+// #endregion class-body-deletesubscriptionlineitemsecurityoption4
+
+type DeleteSubscriptionLineItemSecurity struct {
+	Option1 *DeleteSubscriptionLineItemSecurityOption1 `security:"option"`
+	Option2 *DeleteSubscriptionLineItemSecurityOption2 `security:"option"`
+	Option3 *DeleteSubscriptionLineItemSecurityOption3 `security:"option"`
+	Option4 *DeleteSubscriptionLineItemSecurityOption4 `security:"option"`
+}
+
+func (d DeleteSubscriptionLineItemSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteSubscriptionLineItemSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeleteSubscriptionLineItemSecurity) GetOption1() *DeleteSubscriptionLineItemSecurityOption1 {
+	if d == nil {
+		return nil
+	}
+	return d.Option1
+}
+
+func (d *DeleteSubscriptionLineItemSecurity) GetOption2() *DeleteSubscriptionLineItemSecurityOption2 {
+	if d == nil {
+		return nil
+	}
+	return d.Option2
+}
+
+func (d *DeleteSubscriptionLineItemSecurity) GetOption3() *DeleteSubscriptionLineItemSecurityOption3 {
+	if d == nil {
+		return nil
+	}
+	return d.Option3
+}
+
+func (d *DeleteSubscriptionLineItemSecurity) GetOption4() *DeleteSubscriptionLineItemSecurityOption4 {
+	if d == nil {
+		return nil
+	}
+	return d.Option4
+}
+
 type DeleteSubscriptionLineItemRequest struct {
 	// Line Item ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

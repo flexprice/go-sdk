@@ -9,6 +9,7 @@ import (
 type GetEventByIDResponse struct {
 	DebugTracker    *DebugTracker              `json:"debug_tracker,omitzero"`
 	Event           *Event                     `json:"event,omitzero"`
+	Events          []Event                    `json:"events,omitzero"`
 	ProcessedEvents []FeatureUsageInfo         `json:"processed_events,omitzero"`
 	Status          *EventProcessingStatusType `json:"status,omitzero"`
 }
@@ -36,6 +37,13 @@ func (g *GetEventByIDResponse) GetEvent() *Event {
 		return nil
 	}
 	return g.Event
+}
+
+func (g *GetEventByIDResponse) GetEvents() []Event {
+	if g == nil {
+		return nil
+	}
+	return g.Events
 }
 
 func (g *GetEventByIDResponse) GetProcessedEvents() []FeatureUsageInfo {

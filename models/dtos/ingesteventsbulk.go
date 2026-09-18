@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type IngestEventsBulkSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (i IngestEventsBulkSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *IngestEventsBulkSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (i *IngestEventsBulkSecurityOption1) GetAPIKeyAuth() string {
+	if i == nil {
+		return ""
+	}
+	return i.APIKeyAuth
+}
+
+// #region class-body-ingesteventsbulksecurityoption1
+// #endregion class-body-ingesteventsbulksecurityoption1
+
+type IngestEventsBulkSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (i IngestEventsBulkSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *IngestEventsBulkSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (i *IngestEventsBulkSecurityOption2) GetAPIKeyAuth() string {
+	if i == nil {
+		return ""
+	}
+	return i.APIKeyAuth
+}
+
+// #region class-body-ingesteventsbulksecurityoption2
+// #endregion class-body-ingesteventsbulksecurityoption2
+
+type IngestEventsBulkSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (i IngestEventsBulkSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *IngestEventsBulkSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (i *IngestEventsBulkSecurityOption3) GetBearerAuth() string {
+	if i == nil {
+		return ""
+	}
+	return i.BearerAuth
+}
+
+func (i *IngestEventsBulkSecurityOption3) GetEnvironmentID() string {
+	if i == nil {
+		return ""
+	}
+	return i.EnvironmentID
+}
+
+// #region class-body-ingesteventsbulksecurityoption3
+// #endregion class-body-ingesteventsbulksecurityoption3
+
+type IngestEventsBulkSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (i IngestEventsBulkSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *IngestEventsBulkSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (i *IngestEventsBulkSecurityOption4) GetBearerAuth() string {
+	if i == nil {
+		return ""
+	}
+	return i.BearerAuth
+}
+
+// #region class-body-ingesteventsbulksecurityoption4
+// #endregion class-body-ingesteventsbulksecurityoption4
+
+type IngestEventsBulkSecurity struct {
+	Option1 *IngestEventsBulkSecurityOption1 `security:"option"`
+	Option2 *IngestEventsBulkSecurityOption2 `security:"option"`
+	Option3 *IngestEventsBulkSecurityOption3 `security:"option"`
+	Option4 *IngestEventsBulkSecurityOption4 `security:"option"`
+}
+
+func (i IngestEventsBulkSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(i, "", false)
+}
+
+func (i *IngestEventsBulkSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &i, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (i *IngestEventsBulkSecurity) GetOption1() *IngestEventsBulkSecurityOption1 {
+	if i == nil {
+		return nil
+	}
+	return i.Option1
+}
+
+func (i *IngestEventsBulkSecurity) GetOption2() *IngestEventsBulkSecurityOption2 {
+	if i == nil {
+		return nil
+	}
+	return i.Option2
+}
+
+func (i *IngestEventsBulkSecurity) GetOption3() *IngestEventsBulkSecurityOption3 {
+	if i == nil {
+		return nil
+	}
+	return i.Option3
+}
+
+func (i *IngestEventsBulkSecurity) GetOption4() *IngestEventsBulkSecurityOption4 {
+	if i == nil {
+		return nil
+	}
+	return i.Option4
+}
+
 type IngestEventsBulkResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// message:Event accepted for processing

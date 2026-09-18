@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type GetAddonCreditGrantsSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetAddonCreditGrantsSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonCreditGrantsSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetAddonCreditGrantsSecurityOption1) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getaddoncreditgrantssecurityoption1
+// #endregion class-body-getaddoncreditgrantssecurityoption1
+
+type GetAddonCreditGrantsSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetAddonCreditGrantsSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonCreditGrantsSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetAddonCreditGrantsSecurityOption2) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getaddoncreditgrantssecurityoption2
+// #endregion class-body-getaddoncreditgrantssecurityoption2
+
+type GetAddonCreditGrantsSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (g GetAddonCreditGrantsSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonCreditGrantsSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetAddonCreditGrantsSecurityOption3) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+func (g *GetAddonCreditGrantsSecurityOption3) GetEnvironmentID() string {
+	if g == nil {
+		return ""
+	}
+	return g.EnvironmentID
+}
+
+// #region class-body-getaddoncreditgrantssecurityoption3
+// #endregion class-body-getaddoncreditgrantssecurityoption3
+
+type GetAddonCreditGrantsSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (g GetAddonCreditGrantsSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonCreditGrantsSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetAddonCreditGrantsSecurityOption4) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+// #region class-body-getaddoncreditgrantssecurityoption4
+// #endregion class-body-getaddoncreditgrantssecurityoption4
+
+type GetAddonCreditGrantsSecurity struct {
+	Option1 *GetAddonCreditGrantsSecurityOption1 `security:"option"`
+	Option2 *GetAddonCreditGrantsSecurityOption2 `security:"option"`
+	Option3 *GetAddonCreditGrantsSecurityOption3 `security:"option"`
+	Option4 *GetAddonCreditGrantsSecurityOption4 `security:"option"`
+}
+
+func (g GetAddonCreditGrantsSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonCreditGrantsSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetAddonCreditGrantsSecurity) GetOption1() *GetAddonCreditGrantsSecurityOption1 {
+	if g == nil {
+		return nil
+	}
+	return g.Option1
+}
+
+func (g *GetAddonCreditGrantsSecurity) GetOption2() *GetAddonCreditGrantsSecurityOption2 {
+	if g == nil {
+		return nil
+	}
+	return g.Option2
+}
+
+func (g *GetAddonCreditGrantsSecurity) GetOption3() *GetAddonCreditGrantsSecurityOption3 {
+	if g == nil {
+		return nil
+	}
+	return g.Option3
+}
+
+func (g *GetAddonCreditGrantsSecurity) GetOption4() *GetAddonCreditGrantsSecurityOption4 {
+	if g == nil {
+		return nil
+	}
+	return g.Option4
+}
+
 type GetAddonCreditGrantsRequest struct {
 	// Addon ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

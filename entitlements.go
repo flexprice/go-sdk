@@ -33,7 +33,7 @@ func newEntitlements(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hook
 
 // GetAddonEntitlements - Get addon entitlements
 // Use when checking what features or limits an addon grants (e.g. for display or entitlement logic).
-func (s *Entitlements) GetAddonEntitlements(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetAddonEntitlementsResponse, error) {
+func (s *Entitlements) GetAddonEntitlements(ctx context.Context, security dtos.GetAddonEntitlementsSecurity, id string, opts ...dtos.Option) (*dtos.GetAddonEntitlementsResponse, error) {
 	request := dtos.GetAddonEntitlementsRequest{
 		ID: id,
 	}
@@ -68,7 +68,7 @@ func (s *Entitlements) GetAddonEntitlements(ctx context.Context, id string, opts
 		Context:          ctx,
 		OperationID:      "getAddonEntitlements",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -89,7 +89,7 @@ func (s *Entitlements) GetAddonEntitlements(ctx context.Context, id string, opts
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -295,7 +295,7 @@ func (s *Entitlements) GetAddonEntitlements(ctx context.Context, id string, opts
 
 // CreateEntitlement - Create entitlement
 // Use when attaching a feature (and its limit) to a plan or addon (e.g. "10 seats" or "1000 API calls"). Defines what the plan/addon includes.
-func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.CreateEntitlementRequest, opts ...dtos.Option) (*dtos.CreateEntitlementResponse, error) {
+func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.CreateEntitlementRequest, security dtos.CreateEntitlementSecurity, opts ...dtos.Option) (*dtos.CreateEntitlementResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -326,7 +326,7 @@ func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.Crea
 		Context:          ctx,
 		OperationID:      "createEntitlement",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -354,7 +354,7 @@ func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.Crea
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -558,7 +558,7 @@ func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.Crea
 
 // CreateEntitlementsBulk - Create entitlements in bulk
 // Use when attaching many features to a plan or addon at once (e.g. initial plan setup or import). Bulk version of create entitlement.
-func (s *Entitlements) CreateEntitlementsBulk(ctx context.Context, request types.CreateBulkEntitlementRequest, opts ...dtos.Option) (*dtos.CreateEntitlementsBulkResponse, error) {
+func (s *Entitlements) CreateEntitlementsBulk(ctx context.Context, request types.CreateBulkEntitlementRequest, security dtos.CreateEntitlementsBulkSecurity, opts ...dtos.Option) (*dtos.CreateEntitlementsBulkResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -589,7 +589,7 @@ func (s *Entitlements) CreateEntitlementsBulk(ctx context.Context, request types
 		Context:          ctx,
 		OperationID:      "createEntitlementsBulk",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -617,7 +617,7 @@ func (s *Entitlements) CreateEntitlementsBulk(ctx context.Context, request types
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -821,7 +821,7 @@ func (s *Entitlements) CreateEntitlementsBulk(ctx context.Context, request types
 
 // QueryEntitlement - Query entitlements
 // Use when listing or searching entitlements (e.g. plan editor or audit). Returns a paginated list; supports filtering by plan, addon, feature.
-func (s *Entitlements) QueryEntitlement(ctx context.Context, request types.EntitlementFilter, opts ...dtos.Option) (*dtos.QueryEntitlementResponse, error) {
+func (s *Entitlements) QueryEntitlement(ctx context.Context, request types.EntitlementFilter, security dtos.QueryEntitlementSecurity, opts ...dtos.Option) (*dtos.QueryEntitlementResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -852,7 +852,7 @@ func (s *Entitlements) QueryEntitlement(ctx context.Context, request types.Entit
 		Context:          ctx,
 		OperationID:      "queryEntitlement",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -880,7 +880,7 @@ func (s *Entitlements) QueryEntitlement(ctx context.Context, request types.Entit
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1084,7 +1084,7 @@ func (s *Entitlements) QueryEntitlement(ctx context.Context, request types.Entit
 
 // GetEntitlement - Get entitlement
 // Use when you need to load a single entitlement (e.g. to display or edit a feature limit).
-func (s *Entitlements) GetEntitlement(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetEntitlementResponse, error) {
+func (s *Entitlements) GetEntitlement(ctx context.Context, security dtos.GetEntitlementSecurity, id string, opts ...dtos.Option) (*dtos.GetEntitlementResponse, error) {
 	request := dtos.GetEntitlementRequest{
 		ID: id,
 	}
@@ -1119,7 +1119,7 @@ func (s *Entitlements) GetEntitlement(ctx context.Context, id string, opts ...dt
 		Context:          ctx,
 		OperationID:      "getEntitlement",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1140,7 +1140,7 @@ func (s *Entitlements) GetEntitlement(ctx context.Context, id string, opts ...dt
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1344,7 +1344,7 @@ func (s *Entitlements) GetEntitlement(ctx context.Context, id string, opts ...dt
 
 // UpdateEntitlement - Update entitlement
 // Use when changing an entitlement (e.g. increasing or decreasing a limit). Request body contains the fields to update.
-func (s *Entitlements) UpdateEntitlement(ctx context.Context, id string, body types.UpdateEntitlementRequest, opts ...dtos.Option) (*dtos.UpdateEntitlementResponse, error) {
+func (s *Entitlements) UpdateEntitlement(ctx context.Context, security dtos.UpdateEntitlementSecurity, id string, body types.UpdateEntitlementRequest, opts ...dtos.Option) (*dtos.UpdateEntitlementResponse, error) {
 	request := dtos.UpdateEntitlementRequest{
 		ID:   id,
 		Body: body,
@@ -1380,7 +1380,7 @@ func (s *Entitlements) UpdateEntitlement(ctx context.Context, id string, body ty
 		Context:          ctx,
 		OperationID:      "updateEntitlement",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1408,7 +1408,7 @@ func (s *Entitlements) UpdateEntitlement(ctx context.Context, id string, body ty
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1612,7 +1612,7 @@ func (s *Entitlements) UpdateEntitlement(ctx context.Context, id string, body ty
 
 // DeleteEntitlement - Delete entitlement
 // Use when removing a feature from a plan or addon (e.g. deprecating a capability). Returns 200 with success message.
-func (s *Entitlements) DeleteEntitlement(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteEntitlementResponse, error) {
+func (s *Entitlements) DeleteEntitlement(ctx context.Context, security dtos.DeleteEntitlementSecurity, id string, opts ...dtos.Option) (*dtos.DeleteEntitlementResponse, error) {
 	request := dtos.DeleteEntitlementRequest{
 		ID: id,
 	}
@@ -1647,7 +1647,7 @@ func (s *Entitlements) DeleteEntitlement(ctx context.Context, id string, opts ..
 		Context:          ctx,
 		OperationID:      "deleteEntitlement",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1668,7 +1668,7 @@ func (s *Entitlements) DeleteEntitlement(ctx context.Context, id string, opts ..
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1872,7 +1872,7 @@ func (s *Entitlements) DeleteEntitlement(ctx context.Context, id string, opts ..
 
 // GetPlanEntitlements - Get plan entitlements
 // Use when checking what a plan includes (e.g. feature list or limits for display or gating).
-func (s *Entitlements) GetPlanEntitlements(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetPlanEntitlementsResponse, error) {
+func (s *Entitlements) GetPlanEntitlements(ctx context.Context, security dtos.GetPlanEntitlementsSecurity, id string, opts ...dtos.Option) (*dtos.GetPlanEntitlementsResponse, error) {
 	request := dtos.GetPlanEntitlementsRequest{
 		ID: id,
 	}
@@ -1907,7 +1907,7 @@ func (s *Entitlements) GetPlanEntitlements(ctx context.Context, id string, opts 
 		Context:          ctx,
 		OperationID:      "getPlanEntitlements",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1928,7 +1928,7 @@ func (s *Entitlements) GetPlanEntitlements(ctx context.Context, id string, opts 
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

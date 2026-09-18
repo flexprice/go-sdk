@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type ExecuteInvoiceModifySecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (e ExecuteInvoiceModifySecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteInvoiceModifySecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteInvoiceModifySecurityOption1) GetAPIKeyAuth() string {
+	if e == nil {
+		return ""
+	}
+	return e.APIKeyAuth
+}
+
+// #region class-body-executeinvoicemodifysecurityoption1
+// #endregion class-body-executeinvoicemodifysecurityoption1
+
+type ExecuteInvoiceModifySecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (e ExecuteInvoiceModifySecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteInvoiceModifySecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteInvoiceModifySecurityOption2) GetAPIKeyAuth() string {
+	if e == nil {
+		return ""
+	}
+	return e.APIKeyAuth
+}
+
+// #region class-body-executeinvoicemodifysecurityoption2
+// #endregion class-body-executeinvoicemodifysecurityoption2
+
+type ExecuteInvoiceModifySecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (e ExecuteInvoiceModifySecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteInvoiceModifySecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteInvoiceModifySecurityOption3) GetBearerAuth() string {
+	if e == nil {
+		return ""
+	}
+	return e.BearerAuth
+}
+
+func (e *ExecuteInvoiceModifySecurityOption3) GetEnvironmentID() string {
+	if e == nil {
+		return ""
+	}
+	return e.EnvironmentID
+}
+
+// #region class-body-executeinvoicemodifysecurityoption3
+// #endregion class-body-executeinvoicemodifysecurityoption3
+
+type ExecuteInvoiceModifySecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (e ExecuteInvoiceModifySecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteInvoiceModifySecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteInvoiceModifySecurityOption4) GetBearerAuth() string {
+	if e == nil {
+		return ""
+	}
+	return e.BearerAuth
+}
+
+// #region class-body-executeinvoicemodifysecurityoption4
+// #endregion class-body-executeinvoicemodifysecurityoption4
+
+type ExecuteInvoiceModifySecurity struct {
+	Option1 *ExecuteInvoiceModifySecurityOption1 `security:"option"`
+	Option2 *ExecuteInvoiceModifySecurityOption2 `security:"option"`
+	Option3 *ExecuteInvoiceModifySecurityOption3 `security:"option"`
+	Option4 *ExecuteInvoiceModifySecurityOption4 `security:"option"`
+}
+
+func (e ExecuteInvoiceModifySecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteInvoiceModifySecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteInvoiceModifySecurity) GetOption1() *ExecuteInvoiceModifySecurityOption1 {
+	if e == nil {
+		return nil
+	}
+	return e.Option1
+}
+
+func (e *ExecuteInvoiceModifySecurity) GetOption2() *ExecuteInvoiceModifySecurityOption2 {
+	if e == nil {
+		return nil
+	}
+	return e.Option2
+}
+
+func (e *ExecuteInvoiceModifySecurity) GetOption3() *ExecuteInvoiceModifySecurityOption3 {
+	if e == nil {
+		return nil
+	}
+	return e.Option3
+}
+
+func (e *ExecuteInvoiceModifySecurity) GetOption4() *ExecuteInvoiceModifySecurityOption4 {
+	if e == nil {
+		return nil
+	}
+	return e.Option4
+}
+
 type ExecuteInvoiceModifyRequest struct {
 	// Invoice ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

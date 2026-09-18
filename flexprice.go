@@ -2,7 +2,7 @@
 
 package flexprice
 
-// Generated from OpenAPI doc version 1.0 and generator version 2.935.1
+// Generated from OpenAPI doc version 1.0 and generator version 2.938.0
 
 import (
 	"context"
@@ -135,7 +135,7 @@ func WithClient(client HTTPClient) SDKOption {
 // WithSecurity configures the SDK to use the provided security details
 func WithSecurity(apiKeyAuth string) SDKOption {
 	return func(sdk *Flexprice) {
-		security := types.Security{APIKeyAuth: apiKeyAuth}
+		security := types.Security{APIKeyAuth: &apiKeyAuth}
 		sdk.sdkConfiguration.Security = utils.AsSecuritySource(&security)
 	}
 }
@@ -165,11 +165,11 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.30",
+		SDKVersion: "2.1.31",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 2.1.30 2.935.1 1.0 github.com/flexprice/go-sdk/v2",
-			SDKVersion:        "2.1.30",
-			GenVersion:        "2.935.1",
+			UserAgent:         "speakeasy-sdk/go 2.1.31 2.938.0 1.0 github.com/flexprice/go-sdk/v2",
+			SDKVersion:        "2.1.31",
+			GenVersion:        "2.938.0",
 			OpenAPIDocVersion: "1.0",
 			ServerList:        ServerList,
 		},

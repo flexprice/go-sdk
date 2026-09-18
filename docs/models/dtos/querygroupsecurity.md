@@ -1,0 +1,11 @@
+# QueryGroupSecurity
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `Option1`                                                                         | [*dtos.QueryGroupSecurityOption1](../../models/dtos/querygroupsecurityoption1.md) | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `Option2`                                                                         | [*dtos.QueryGroupSecurityOption2](../../models/dtos/querygroupsecurityoption2.md) | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `Option3`                                                                         | [*dtos.QueryGroupSecurityOption3](../../models/dtos/querygroupsecurityoption3.md) | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `Option4`                                                                         | [*dtos.QueryGroupSecurityOption4](../../models/dtos/querygroupsecurityoption4.md) | :heavy_minus_sign:                                                                | N/A                                                                               |

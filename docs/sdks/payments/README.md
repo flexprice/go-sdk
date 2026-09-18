@@ -31,11 +31,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Payments.ListPayments(ctx, dtos.ListPaymentsRequest{})
+    res, err := s.Payments.ListPayments(ctx, dtos.ListPaymentsRequest{}, dtos.ListPaymentsSecurity{
+        Option1: &dtos.ListPaymentsSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -47,11 +49,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
-| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
-| `request`                                                            | [dtos.ListPaymentsRequest](../../models/dtos/listpaymentsrequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
-| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
+| `request`                                                              | [dtos.ListPaymentsRequest](../../models/dtos/listpaymentsrequest.md)   | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `security`                                                             | [dtos.ListPaymentsSecurity](../../models/dtos/listpaymentssecurity.md) | :heavy_check_mark:                                                     | The security requirements to use for the request.                      |
+| `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
 
 ### Response
 
@@ -79,15 +82,14 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
     res, err := s.Payments.CreatePayment(ctx, types.CreatePaymentRequest{
         Amount: "883.46",
@@ -95,6 +97,10 @@ func main() {
         DestinationID: "<id>",
         DestinationType: types.PaymentDestinationTypeCustomer,
         PaymentMethodType: types.PaymentMethodTypeOffline,
+    }, dtos.CreatePaymentSecurity{
+        Option1: &dtos.CreatePaymentSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -111,6 +117,7 @@ func main() {
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
 | `request`                                                                | [types.CreatePaymentRequest](../../models/types/createpaymentrequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `security`                                                               | [dtos.CreatePaymentSecurity](../../models/dtos/createpaymentsecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
 | `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
 ### Response
@@ -138,17 +145,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Payments.GetPayment(ctx, "<id>")
+    res, err := s.Payments.GetPayment(ctx, dtos.GetPaymentSecurity{
+        Option1: &dtos.GetPaymentSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -160,11 +170,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Payment ID                                            |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
+| `security`                                                         | [dtos.GetPaymentSecurity](../../models/dtos/getpaymentsecurity.md) | :heavy_check_mark:                                                 | The security requirements to use for the request.                  |
+| `id`                                                               | `string`                                                           | :heavy_check_mark:                                                 | Payment ID                                                         |
+| `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
 
 ### Response
 
@@ -191,6 +202,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -198,11 +210,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Payments.UpdatePayment(ctx, "<id>", types.UpdatePaymentRequest{})
+    res, err := s.Payments.UpdatePayment(ctx, dtos.UpdatePaymentSecurity{
+        Option1: &dtos.UpdatePaymentSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.UpdatePaymentRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -217,6 +231,7 @@ func main() {
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `security`                                                               | [dtos.UpdatePaymentSecurity](../../models/dtos/updatepaymentsecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
 | `id`                                                                     | `string`                                                                 | :heavy_check_mark:                                                       | Payment ID                                                               |
 | `body`                                                                   | [types.UpdatePaymentRequest](../../models/types/updatepaymentrequest.md) | :heavy_check_mark:                                                       | Payment configuration                                                    |
 | `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
@@ -246,17 +261,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Payments.DeletePayment(ctx, "<id>")
+    res, err := s.Payments.DeletePayment(ctx, dtos.DeletePaymentSecurity{
+        Option1: &dtos.DeletePaymentSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -268,11 +286,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Payment ID                                            |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `security`                                                               | [dtos.DeletePaymentSecurity](../../models/dtos/deletepaymentsecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
+| `id`                                                                     | `string`                                                                 | :heavy_check_mark:                                                       | Payment ID                                                               |
+| `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
 ### Response
 
@@ -299,17 +318,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Payments.ProcessPayment(ctx, "<id>")
+    res, err := s.Payments.ProcessPayment(ctx, dtos.ProcessPaymentSecurity{
+        Option1: &dtos.ProcessPaymentSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -321,11 +343,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Payment ID                                            |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `security`                                                                 | [dtos.ProcessPaymentSecurity](../../models/dtos/processpaymentsecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
+| `id`                                                                       | `string`                                                                   | :heavy_check_mark:                                                         | Payment ID                                                                 |
+| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
 ### Response
 

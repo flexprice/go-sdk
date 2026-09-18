@@ -33,7 +33,7 @@ func newGroups(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hoo
 
 // CreateGroup - Create group
 // Use when organizing entities into a group (e.g. for filtering prices or plans by product line or region).
-func (s *Groups) CreateGroup(ctx context.Context, request types.CreateGroupRequest, opts ...dtos.Option) (*dtos.CreateGroupResponse, error) {
+func (s *Groups) CreateGroup(ctx context.Context, request types.CreateGroupRequest, security dtos.CreateGroupSecurity, opts ...dtos.Option) (*dtos.CreateGroupResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Groups) CreateGroup(ctx context.Context, request types.CreateGroupReque
 		Context:          ctx,
 		OperationID:      "createGroup",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Groups) CreateGroup(ctx context.Context, request types.CreateGroupReque
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -296,7 +296,7 @@ func (s *Groups) CreateGroup(ctx context.Context, request types.CreateGroupReque
 
 // QueryGroup - Query groups
 // Use when listing or searching groups (e.g. admin catalog). Returns a paginated list; supports filtering and sorting.
-func (s *Groups) QueryGroup(ctx context.Context, request types.GroupFilter, opts ...dtos.Option) (*dtos.QueryGroupResponse, error) {
+func (s *Groups) QueryGroup(ctx context.Context, request types.GroupFilter, security dtos.QueryGroupSecurity, opts ...dtos.Option) (*dtos.QueryGroupResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -327,7 +327,7 @@ func (s *Groups) QueryGroup(ctx context.Context, request types.GroupFilter, opts
 		Context:          ctx,
 		OperationID:      "queryGroup",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -355,7 +355,7 @@ func (s *Groups) QueryGroup(ctx context.Context, request types.GroupFilter, opts
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -559,7 +559,7 @@ func (s *Groups) QueryGroup(ctx context.Context, request types.GroupFilter, opts
 
 // GetGroup - Get group
 // Use when you need to load a single group (e.g. for display or to assign entities).
-func (s *Groups) GetGroup(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetGroupResponse, error) {
+func (s *Groups) GetGroup(ctx context.Context, security dtos.GetGroupSecurity, id string, opts ...dtos.Option) (*dtos.GetGroupResponse, error) {
 	request := dtos.GetGroupRequest{
 		ID: id,
 	}
@@ -594,7 +594,7 @@ func (s *Groups) GetGroup(ctx context.Context, id string, opts ...dtos.Option) (
 		Context:          ctx,
 		OperationID:      "getGroup",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -615,7 +615,7 @@ func (s *Groups) GetGroup(ctx context.Context, id string, opts ...dtos.Option) (
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -821,7 +821,7 @@ func (s *Groups) GetGroup(ctx context.Context, id string, opts ...dtos.Option) (
 
 // DeleteGroup - Delete group
 // Use when removing a group and clearing its entity associations (e.g. retiring a product line). Returns 204 or 200 on success.
-func (s *Groups) DeleteGroup(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteGroupResponse, error) {
+func (s *Groups) DeleteGroup(ctx context.Context, security dtos.DeleteGroupSecurity, id string, opts ...dtos.Option) (*dtos.DeleteGroupResponse, error) {
 	request := dtos.DeleteGroupRequest{
 		ID: id,
 	}
@@ -856,7 +856,7 @@ func (s *Groups) DeleteGroup(ctx context.Context, id string, opts ...dtos.Option
 		Context:          ctx,
 		OperationID:      "deleteGroup",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -877,7 +877,7 @@ func (s *Groups) DeleteGroup(ctx context.Context, id string, opts ...dtos.Option
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

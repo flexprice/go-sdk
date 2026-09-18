@@ -1,0 +1,11 @@
+# CreateInvoiceSecurity
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `Option1`                                                                               | [*dtos.CreateInvoiceSecurityOption1](../../models/dtos/createinvoicesecurityoption1.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option2`                                                                               | [*dtos.CreateInvoiceSecurityOption2](../../models/dtos/createinvoicesecurityoption2.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option3`                                                                               | [*dtos.CreateInvoiceSecurityOption3](../../models/dtos/createinvoicesecurityoption3.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option4`                                                                               | [*dtos.CreateInvoiceSecurityOption4](../../models/dtos/createinvoicesecurityoption4.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |

@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type GetWalletsByCustomerIDSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetWalletsByCustomerIDSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetWalletsByCustomerIDSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetWalletsByCustomerIDSecurityOption1) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getwalletsbycustomeridsecurityoption1
+// #endregion class-body-getwalletsbycustomeridsecurityoption1
+
+type GetWalletsByCustomerIDSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetWalletsByCustomerIDSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetWalletsByCustomerIDSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetWalletsByCustomerIDSecurityOption2) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getwalletsbycustomeridsecurityoption2
+// #endregion class-body-getwalletsbycustomeridsecurityoption2
+
+type GetWalletsByCustomerIDSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (g GetWalletsByCustomerIDSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetWalletsByCustomerIDSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetWalletsByCustomerIDSecurityOption3) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+func (g *GetWalletsByCustomerIDSecurityOption3) GetEnvironmentID() string {
+	if g == nil {
+		return ""
+	}
+	return g.EnvironmentID
+}
+
+// #region class-body-getwalletsbycustomeridsecurityoption3
+// #endregion class-body-getwalletsbycustomeridsecurityoption3
+
+type GetWalletsByCustomerIDSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (g GetWalletsByCustomerIDSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetWalletsByCustomerIDSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetWalletsByCustomerIDSecurityOption4) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+// #region class-body-getwalletsbycustomeridsecurityoption4
+// #endregion class-body-getwalletsbycustomeridsecurityoption4
+
+type GetWalletsByCustomerIDSecurity struct {
+	Option1 *GetWalletsByCustomerIDSecurityOption1 `security:"option"`
+	Option2 *GetWalletsByCustomerIDSecurityOption2 `security:"option"`
+	Option3 *GetWalletsByCustomerIDSecurityOption3 `security:"option"`
+	Option4 *GetWalletsByCustomerIDSecurityOption4 `security:"option"`
+}
+
+func (g GetWalletsByCustomerIDSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetWalletsByCustomerIDSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetWalletsByCustomerIDSecurity) GetOption1() *GetWalletsByCustomerIDSecurityOption1 {
+	if g == nil {
+		return nil
+	}
+	return g.Option1
+}
+
+func (g *GetWalletsByCustomerIDSecurity) GetOption2() *GetWalletsByCustomerIDSecurityOption2 {
+	if g == nil {
+		return nil
+	}
+	return g.Option2
+}
+
+func (g *GetWalletsByCustomerIDSecurity) GetOption3() *GetWalletsByCustomerIDSecurityOption3 {
+	if g == nil {
+		return nil
+	}
+	return g.Option3
+}
+
+func (g *GetWalletsByCustomerIDSecurity) GetOption4() *GetWalletsByCustomerIDSecurityOption4 {
+	if g == nil {
+		return nil
+	}
+	return g.Option4
+}
+
 type GetWalletsByCustomerIDRequest struct {
 	// Customer ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type DeleteServiceAccountSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (d DeleteServiceAccountSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteServiceAccountSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeleteServiceAccountSecurityOption1) GetAPIKeyAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.APIKeyAuth
+}
+
+// #region class-body-deleteserviceaccountsecurityoption1
+// #endregion class-body-deleteserviceaccountsecurityoption1
+
+type DeleteServiceAccountSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (d DeleteServiceAccountSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteServiceAccountSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeleteServiceAccountSecurityOption2) GetAPIKeyAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.APIKeyAuth
+}
+
+// #region class-body-deleteserviceaccountsecurityoption2
+// #endregion class-body-deleteserviceaccountsecurityoption2
+
+type DeleteServiceAccountSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (d DeleteServiceAccountSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteServiceAccountSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeleteServiceAccountSecurityOption3) GetBearerAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.BearerAuth
+}
+
+func (d *DeleteServiceAccountSecurityOption3) GetEnvironmentID() string {
+	if d == nil {
+		return ""
+	}
+	return d.EnvironmentID
+}
+
+// #region class-body-deleteserviceaccountsecurityoption3
+// #endregion class-body-deleteserviceaccountsecurityoption3
+
+type DeleteServiceAccountSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (d DeleteServiceAccountSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteServiceAccountSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeleteServiceAccountSecurityOption4) GetBearerAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.BearerAuth
+}
+
+// #region class-body-deleteserviceaccountsecurityoption4
+// #endregion class-body-deleteserviceaccountsecurityoption4
+
+type DeleteServiceAccountSecurity struct {
+	Option1 *DeleteServiceAccountSecurityOption1 `security:"option"`
+	Option2 *DeleteServiceAccountSecurityOption2 `security:"option"`
+	Option3 *DeleteServiceAccountSecurityOption3 `security:"option"`
+	Option4 *DeleteServiceAccountSecurityOption4 `security:"option"`
+}
+
+func (d DeleteServiceAccountSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeleteServiceAccountSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeleteServiceAccountSecurity) GetOption1() *DeleteServiceAccountSecurityOption1 {
+	if d == nil {
+		return nil
+	}
+	return d.Option1
+}
+
+func (d *DeleteServiceAccountSecurity) GetOption2() *DeleteServiceAccountSecurityOption2 {
+	if d == nil {
+		return nil
+	}
+	return d.Option2
+}
+
+func (d *DeleteServiceAccountSecurity) GetOption3() *DeleteServiceAccountSecurityOption3 {
+	if d == nil {
+		return nil
+	}
+	return d.Option3
+}
+
+func (d *DeleteServiceAccountSecurity) GetOption4() *DeleteServiceAccountSecurityOption4 {
+	if d == nil {
+		return nil
+	}
+	return d.Option4
+}
+
 type DeleteServiceAccountRequest struct {
 	// Service Account ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

@@ -1,0 +1,11 @@
+# DeletePlanSecurity
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `Option1`                                                                         | [*dtos.DeletePlanSecurityOption1](../../models/dtos/deleteplansecurityoption1.md) | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `Option2`                                                                         | [*dtos.DeletePlanSecurityOption2](../../models/dtos/deleteplansecurityoption2.md) | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `Option3`                                                                         | [*dtos.DeletePlanSecurityOption3](../../models/dtos/deleteplansecurityoption3.md) | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `Option4`                                                                         | [*dtos.DeletePlanSecurityOption4](../../models/dtos/deleteplansecurityoption4.md) | :heavy_minus_sign:                                                                | N/A                                                                               |

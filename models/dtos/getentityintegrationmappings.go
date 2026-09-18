@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type GetEntityIntegrationMappingsSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetEntityIntegrationMappingsSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetEntityIntegrationMappingsSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetEntityIntegrationMappingsSecurityOption1) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getentityintegrationmappingssecurityoption1
+// #endregion class-body-getentityintegrationmappingssecurityoption1
+
+type GetEntityIntegrationMappingsSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetEntityIntegrationMappingsSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetEntityIntegrationMappingsSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetEntityIntegrationMappingsSecurityOption2) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getentityintegrationmappingssecurityoption2
+// #endregion class-body-getentityintegrationmappingssecurityoption2
+
+type GetEntityIntegrationMappingsSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (g GetEntityIntegrationMappingsSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetEntityIntegrationMappingsSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetEntityIntegrationMappingsSecurityOption3) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+func (g *GetEntityIntegrationMappingsSecurityOption3) GetEnvironmentID() string {
+	if g == nil {
+		return ""
+	}
+	return g.EnvironmentID
+}
+
+// #region class-body-getentityintegrationmappingssecurityoption3
+// #endregion class-body-getentityintegrationmappingssecurityoption3
+
+type GetEntityIntegrationMappingsSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (g GetEntityIntegrationMappingsSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetEntityIntegrationMappingsSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetEntityIntegrationMappingsSecurityOption4) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+// #region class-body-getentityintegrationmappingssecurityoption4
+// #endregion class-body-getentityintegrationmappingssecurityoption4
+
+type GetEntityIntegrationMappingsSecurity struct {
+	Option1 *GetEntityIntegrationMappingsSecurityOption1 `security:"option"`
+	Option2 *GetEntityIntegrationMappingsSecurityOption2 `security:"option"`
+	Option3 *GetEntityIntegrationMappingsSecurityOption3 `security:"option"`
+	Option4 *GetEntityIntegrationMappingsSecurityOption4 `security:"option"`
+}
+
+func (g GetEntityIntegrationMappingsSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetEntityIntegrationMappingsSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetEntityIntegrationMappingsSecurity) GetOption1() *GetEntityIntegrationMappingsSecurityOption1 {
+	if g == nil {
+		return nil
+	}
+	return g.Option1
+}
+
+func (g *GetEntityIntegrationMappingsSecurity) GetOption2() *GetEntityIntegrationMappingsSecurityOption2 {
+	if g == nil {
+		return nil
+	}
+	return g.Option2
+}
+
+func (g *GetEntityIntegrationMappingsSecurity) GetOption3() *GetEntityIntegrationMappingsSecurityOption3 {
+	if g == nil {
+		return nil
+	}
+	return g.Option3
+}
+
+func (g *GetEntityIntegrationMappingsSecurity) GetOption4() *GetEntityIntegrationMappingsSecurityOption4 {
+	if g == nil {
+		return nil
+	}
+	return g.Option4
+}
+
 type GetEntityIntegrationMappingsRequest struct {
 	// Entity type (customer, plan, invoice, subscription, payment, credit_note, addon, item, item_price, price)
 	EntityType string `queryParam:"style=form,explode=true,name=entity_type"`

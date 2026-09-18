@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type UpdateEntitlementSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (u UpdateEntitlementSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateEntitlementSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateEntitlementSecurityOption1) GetAPIKeyAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.APIKeyAuth
+}
+
+// #region class-body-updateentitlementsecurityoption1
+// #endregion class-body-updateentitlementsecurityoption1
+
+type UpdateEntitlementSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (u UpdateEntitlementSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateEntitlementSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateEntitlementSecurityOption2) GetAPIKeyAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.APIKeyAuth
+}
+
+// #region class-body-updateentitlementsecurityoption2
+// #endregion class-body-updateentitlementsecurityoption2
+
+type UpdateEntitlementSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (u UpdateEntitlementSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateEntitlementSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateEntitlementSecurityOption3) GetBearerAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.BearerAuth
+}
+
+func (u *UpdateEntitlementSecurityOption3) GetEnvironmentID() string {
+	if u == nil {
+		return ""
+	}
+	return u.EnvironmentID
+}
+
+// #region class-body-updateentitlementsecurityoption3
+// #endregion class-body-updateentitlementsecurityoption3
+
+type UpdateEntitlementSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (u UpdateEntitlementSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateEntitlementSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateEntitlementSecurityOption4) GetBearerAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.BearerAuth
+}
+
+// #region class-body-updateentitlementsecurityoption4
+// #endregion class-body-updateentitlementsecurityoption4
+
+type UpdateEntitlementSecurity struct {
+	Option1 *UpdateEntitlementSecurityOption1 `security:"option"`
+	Option2 *UpdateEntitlementSecurityOption2 `security:"option"`
+	Option3 *UpdateEntitlementSecurityOption3 `security:"option"`
+	Option4 *UpdateEntitlementSecurityOption4 `security:"option"`
+}
+
+func (u UpdateEntitlementSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateEntitlementSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateEntitlementSecurity) GetOption1() *UpdateEntitlementSecurityOption1 {
+	if u == nil {
+		return nil
+	}
+	return u.Option1
+}
+
+func (u *UpdateEntitlementSecurity) GetOption2() *UpdateEntitlementSecurityOption2 {
+	if u == nil {
+		return nil
+	}
+	return u.Option2
+}
+
+func (u *UpdateEntitlementSecurity) GetOption3() *UpdateEntitlementSecurityOption3 {
+	if u == nil {
+		return nil
+	}
+	return u.Option3
+}
+
+func (u *UpdateEntitlementSecurity) GetOption4() *UpdateEntitlementSecurityOption4 {
+	if u == nil {
+		return nil
+	}
+	return u.Option4
+}
+
 type UpdateEntitlementRequest struct {
 	// Entitlement ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

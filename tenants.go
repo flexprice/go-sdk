@@ -33,7 +33,7 @@ func newTenants(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *ho
 
 // GetTenantBillingUsage - Get billing usage for the current tenant
 // Use when showing the current tenant's billing usage (e.g. admin billing page or usage caps). Returns subscription and usage for the tenant.
-func (s *Tenants) GetTenantBillingUsage(ctx context.Context, opts ...dtos.Option) (*dtos.GetTenantBillingUsageResponse, error) {
+func (s *Tenants) GetTenantBillingUsage(ctx context.Context, security dtos.GetTenantBillingUsageSecurity, opts ...dtos.Option) (*dtos.GetTenantBillingUsageResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Tenants) GetTenantBillingUsage(ctx context.Context, opts ...dtos.Option
 		Context:          ctx,
 		OperationID:      "getTenantBillingUsage",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -85,7 +85,7 @@ func (s *Tenants) GetTenantBillingUsage(ctx context.Context, opts ...dtos.Option
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -291,7 +291,7 @@ func (s *Tenants) GetTenantBillingUsage(ctx context.Context, opts ...dtos.Option
 
 // UpdateTenant - Update a tenant
 // Use when changing tenant details (e.g. name or billing info). Request body contains the fields to update.
-func (s *Tenants) UpdateTenant(ctx context.Context, request types.UpdateTenantRequest, opts ...dtos.Option) (*dtos.UpdateTenantResponse, error) {
+func (s *Tenants) UpdateTenant(ctx context.Context, request types.UpdateTenantRequest, security dtos.UpdateTenantSecurity, opts ...dtos.Option) (*dtos.UpdateTenantResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -322,7 +322,7 @@ func (s *Tenants) UpdateTenant(ctx context.Context, request types.UpdateTenantRe
 		Context:          ctx,
 		OperationID:      "updateTenant",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -350,7 +350,7 @@ func (s *Tenants) UpdateTenant(ctx context.Context, request types.UpdateTenantRe
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -556,7 +556,7 @@ func (s *Tenants) UpdateTenant(ctx context.Context, request types.UpdateTenantRe
 
 // GetTenantByID - Get tenant by ID
 // Get tenant by ID
-func (s *Tenants) GetTenantByID(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetTenantByIDResponse, error) {
+func (s *Tenants) GetTenantByID(ctx context.Context, security dtos.GetTenantByIDSecurity, id string, opts ...dtos.Option) (*dtos.GetTenantByIDResponse, error) {
 	request := dtos.GetTenantByIDRequest{
 		ID: id,
 	}
@@ -591,7 +591,7 @@ func (s *Tenants) GetTenantByID(ctx context.Context, id string, opts ...dtos.Opt
 		Context:          ctx,
 		OperationID:      "getTenantById",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -612,7 +612,7 @@ func (s *Tenants) GetTenantByID(ctx context.Context, id string, opts ...dtos.Opt
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

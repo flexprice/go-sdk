@@ -33,7 +33,7 @@ func newRbac(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hooks
 
 // ListRbacRoles - List all RBAC roles
 // Use when building role pickers or permission UIs. Returns all roles with permissions and descriptions.
-func (s *Rbac) ListRbacRoles(ctx context.Context, userType *dtos.UserType, opts ...dtos.Option) (*dtos.ListRbacRolesResponse, error) {
+func (s *Rbac) ListRbacRoles(ctx context.Context, security dtos.ListRbacRolesSecurity, userType *dtos.UserType, opts ...dtos.Option) (*dtos.ListRbacRolesResponse, error) {
 	request := dtos.ListRbacRolesRequest{
 		UserType: userType,
 	}
@@ -68,7 +68,7 @@ func (s *Rbac) ListRbacRoles(ctx context.Context, userType *dtos.UserType, opts 
 		Context:          ctx,
 		OperationID:      "listRbacRoles",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -93,7 +93,7 @@ func (s *Rbac) ListRbacRoles(ctx context.Context, userType *dtos.UserType, opts 
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -297,7 +297,7 @@ func (s *Rbac) ListRbacRoles(ctx context.Context, userType *dtos.UserType, opts 
 
 // GetRbacRole - Get a specific RBAC role
 // Use when you need to show or edit a single role (e.g. role detail page). Includes permissions, name, and description.
-func (s *Rbac) GetRbacRole(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetRbacRoleResponse, error) {
+func (s *Rbac) GetRbacRole(ctx context.Context, security dtos.GetRbacRoleSecurity, id string, opts ...dtos.Option) (*dtos.GetRbacRoleResponse, error) {
 	request := dtos.GetRbacRoleRequest{
 		ID: id,
 	}
@@ -332,7 +332,7 @@ func (s *Rbac) GetRbacRole(ctx context.Context, id string, opts ...dtos.Option) 
 		Context:          ctx,
 		OperationID:      "getRbacRole",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -353,7 +353,7 @@ func (s *Rbac) GetRbacRole(ctx context.Context, id string, opts ...dtos.Option) 
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

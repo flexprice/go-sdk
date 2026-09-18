@@ -4,6 +4,7 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type Event struct {
@@ -12,6 +13,7 @@ type Event struct {
 	EventName          *string        `json:"event_name,omitzero"`
 	ExternalCustomerID *string        `json:"external_customer_id,omitzero"`
 	ID                 *string        `json:"id,omitzero"`
+	IngestedAt         *time.Time     `json:"ingested_at,omitzero"`
 	Properties         map[string]any `json:"properties,omitzero"`
 	Source             *string        `json:"source,omitzero"`
 	Timestamp          *string        `json:"timestamp,omitzero"`
@@ -61,6 +63,13 @@ func (e *Event) GetID() *string {
 		return nil
 	}
 	return e.ID
+}
+
+func (e *Event) GetIngestedAt() *time.Time {
+	if e == nil {
+		return nil
+	}
+	return e.IngestedAt
 }
 
 func (e *Event) GetProperties() map[string]any {

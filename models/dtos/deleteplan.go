@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type DeletePlanSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (d DeletePlanSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePlanSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePlanSecurityOption1) GetAPIKeyAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.APIKeyAuth
+}
+
+// #region class-body-deleteplansecurityoption1
+// #endregion class-body-deleteplansecurityoption1
+
+type DeletePlanSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (d DeletePlanSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePlanSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePlanSecurityOption2) GetAPIKeyAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.APIKeyAuth
+}
+
+// #region class-body-deleteplansecurityoption2
+// #endregion class-body-deleteplansecurityoption2
+
+type DeletePlanSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (d DeletePlanSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePlanSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePlanSecurityOption3) GetBearerAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.BearerAuth
+}
+
+func (d *DeletePlanSecurityOption3) GetEnvironmentID() string {
+	if d == nil {
+		return ""
+	}
+	return d.EnvironmentID
+}
+
+// #region class-body-deleteplansecurityoption3
+// #endregion class-body-deleteplansecurityoption3
+
+type DeletePlanSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (d DeletePlanSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePlanSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePlanSecurityOption4) GetBearerAuth() string {
+	if d == nil {
+		return ""
+	}
+	return d.BearerAuth
+}
+
+// #region class-body-deleteplansecurityoption4
+// #endregion class-body-deleteplansecurityoption4
+
+type DeletePlanSecurity struct {
+	Option1 *DeletePlanSecurityOption1 `security:"option"`
+	Option2 *DeletePlanSecurityOption2 `security:"option"`
+	Option3 *DeletePlanSecurityOption3 `security:"option"`
+	Option4 *DeletePlanSecurityOption4 `security:"option"`
+}
+
+func (d DeletePlanSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(d, "", false)
+}
+
+func (d *DeletePlanSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &d, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (d *DeletePlanSecurity) GetOption1() *DeletePlanSecurityOption1 {
+	if d == nil {
+		return nil
+	}
+	return d.Option1
+}
+
+func (d *DeletePlanSecurity) GetOption2() *DeletePlanSecurityOption2 {
+	if d == nil {
+		return nil
+	}
+	return d.Option2
+}
+
+func (d *DeletePlanSecurity) GetOption3() *DeletePlanSecurityOption3 {
+	if d == nil {
+		return nil
+	}
+	return d.Option3
+}
+
+func (d *DeletePlanSecurity) GetOption4() *DeletePlanSecurityOption4 {
+	if d == nil {
+		return nil
+	}
+	return d.Option4
+}
+
 type DeletePlanRequest struct {
 	// Plan ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

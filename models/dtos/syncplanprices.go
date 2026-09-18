@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type SyncPlanPricesSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (s SyncPlanPricesSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SyncPlanPricesSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SyncPlanPricesSecurityOption1) GetAPIKeyAuth() string {
+	if s == nil {
+		return ""
+	}
+	return s.APIKeyAuth
+}
+
+// #region class-body-syncplanpricessecurityoption1
+// #endregion class-body-syncplanpricessecurityoption1
+
+type SyncPlanPricesSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (s SyncPlanPricesSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SyncPlanPricesSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SyncPlanPricesSecurityOption2) GetAPIKeyAuth() string {
+	if s == nil {
+		return ""
+	}
+	return s.APIKeyAuth
+}
+
+// #region class-body-syncplanpricessecurityoption2
+// #endregion class-body-syncplanpricessecurityoption2
+
+type SyncPlanPricesSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (s SyncPlanPricesSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SyncPlanPricesSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SyncPlanPricesSecurityOption3) GetBearerAuth() string {
+	if s == nil {
+		return ""
+	}
+	return s.BearerAuth
+}
+
+func (s *SyncPlanPricesSecurityOption3) GetEnvironmentID() string {
+	if s == nil {
+		return ""
+	}
+	return s.EnvironmentID
+}
+
+// #region class-body-syncplanpricessecurityoption3
+// #endregion class-body-syncplanpricessecurityoption3
+
+type SyncPlanPricesSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (s SyncPlanPricesSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SyncPlanPricesSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SyncPlanPricesSecurityOption4) GetBearerAuth() string {
+	if s == nil {
+		return ""
+	}
+	return s.BearerAuth
+}
+
+// #region class-body-syncplanpricessecurityoption4
+// #endregion class-body-syncplanpricessecurityoption4
+
+type SyncPlanPricesSecurity struct {
+	Option1 *SyncPlanPricesSecurityOption1 `security:"option"`
+	Option2 *SyncPlanPricesSecurityOption2 `security:"option"`
+	Option3 *SyncPlanPricesSecurityOption3 `security:"option"`
+	Option4 *SyncPlanPricesSecurityOption4 `security:"option"`
+}
+
+func (s SyncPlanPricesSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(s, "", false)
+}
+
+func (s *SyncPlanPricesSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &s, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *SyncPlanPricesSecurity) GetOption1() *SyncPlanPricesSecurityOption1 {
+	if s == nil {
+		return nil
+	}
+	return s.Option1
+}
+
+func (s *SyncPlanPricesSecurity) GetOption2() *SyncPlanPricesSecurityOption2 {
+	if s == nil {
+		return nil
+	}
+	return s.Option2
+}
+
+func (s *SyncPlanPricesSecurity) GetOption3() *SyncPlanPricesSecurityOption3 {
+	if s == nil {
+		return nil
+	}
+	return s.Option3
+}
+
+func (s *SyncPlanPricesSecurity) GetOption4() *SyncPlanPricesSecurityOption4 {
+	if s == nil {
+		return nil
+	}
+	return s.Option4
+}
+
 type SyncPlanPricesRequest struct {
 	// Plan ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

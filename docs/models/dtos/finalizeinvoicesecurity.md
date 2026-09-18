@@ -1,0 +1,11 @@
+# FinalizeInvoiceSecurity
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                   | [*dtos.FinalizeInvoiceSecurityOption1](../../models/dtos/finalizeinvoicesecurityoption1.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option2`                                                                                   | [*dtos.FinalizeInvoiceSecurityOption2](../../models/dtos/finalizeinvoicesecurityoption2.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option3`                                                                                   | [*dtos.FinalizeInvoiceSecurityOption3](../../models/dtos/finalizeinvoicesecurityoption3.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option4`                                                                                   | [*dtos.FinalizeInvoiceSecurityOption4](../../models/dtos/finalizeinvoicesecurityoption4.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |

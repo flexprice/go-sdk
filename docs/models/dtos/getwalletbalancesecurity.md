@@ -1,0 +1,11 @@
+# GetWalletBalanceSecurity
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                     | [*dtos.GetWalletBalanceSecurityOption1](../../models/dtos/getwalletbalancesecurityoption1.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Option2`                                                                                     | [*dtos.GetWalletBalanceSecurityOption2](../../models/dtos/getwalletbalancesecurityoption2.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Option3`                                                                                     | [*dtos.GetWalletBalanceSecurityOption3](../../models/dtos/getwalletbalancesecurityoption3.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Option4`                                                                                     | [*dtos.GetWalletBalanceSecurityOption4](../../models/dtos/getwalletbalancesecurityoption4.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |

@@ -1,0 +1,11 @@
+# GetCreditGrantSecurity
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `Option1`                                                                                 | [*dtos.GetCreditGrantSecurityOption1](../../models/dtos/getcreditgrantsecurityoption1.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `Option2`                                                                                 | [*dtos.GetCreditGrantSecurityOption2](../../models/dtos/getcreditgrantsecurityoption2.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `Option3`                                                                                 | [*dtos.GetCreditGrantSecurityOption3](../../models/dtos/getcreditgrantsecurityoption3.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |
+| `Option4`                                                                                 | [*dtos.GetCreditGrantSecurityOption4](../../models/dtos/getcreditgrantsecurityoption4.md) | :heavy_minus_sign:                                                                        | N/A                                                                                       |

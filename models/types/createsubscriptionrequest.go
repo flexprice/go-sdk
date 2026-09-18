@@ -46,7 +46,8 @@ type CreateSubscriptionRequest struct {
 	// LineItemCommitments sets per-line-item commitment config, keyed by price_id.
 	LineItemCommitments map[string]LineItemCommitmentConfig `json:"line_item_commitments,omitzero"`
 	// Deprecated: use SubscriptionCoupons instead.
-	LineItemCoupons map[string][]string `json:"line_item_coupons,omitzero"`
+	LineItemCoupons  map[string][]string `json:"line_item_coupons,omitzero"`
+	LineItemGrouping *LineItemGrouping   `json:"line_item_grouping,omitzero"`
 	// LineItems are extra (non-plan) line items added at creation.
 	LineItems            []CreateSubscriptionLineItemRequest `json:"line_items,omitzero"`
 	LookupKey            *string                             `json:"lookup_key,omitzero"`
@@ -234,6 +235,13 @@ func (c *CreateSubscriptionRequest) GetLineItemCoupons() map[string][]string {
 		return nil
 	}
 	return c.LineItemCoupons
+}
+
+func (c *CreateSubscriptionRequest) GetLineItemGrouping() *LineItemGrouping {
+	if c == nil {
+		return nil
+	}
+	return c.LineItemGrouping
 }
 
 func (c *CreateSubscriptionRequest) GetLineItems() []CreateSubscriptionLineItemRequest {

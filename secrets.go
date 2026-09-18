@@ -33,7 +33,7 @@ func newSecrets(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *ho
 
 // ListAPIKeys - List API keys
 // Use when listing API keys (e.g. admin view or rotating keys). Returns a paginated list.
-func (s *Secrets) ListAPIKeys(ctx context.Context, limit *int64, offset *int64, status *string, opts ...dtos.Option) (*dtos.ListAPIKeysResponse, error) {
+func (s *Secrets) ListAPIKeys(ctx context.Context, security dtos.ListAPIKeysSecurity, limit *int64, offset *int64, status *string, opts ...dtos.Option) (*dtos.ListAPIKeysResponse, error) {
 	request := dtos.ListAPIKeysRequest{
 		Limit:  limit,
 		Offset: offset,
@@ -70,7 +70,7 @@ func (s *Secrets) ListAPIKeys(ctx context.Context, limit *int64, offset *int64, 
 		Context:          ctx,
 		OperationID:      "listApiKeys",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -95,7 +95,7 @@ func (s *Secrets) ListAPIKeys(ctx context.Context, limit *int64, offset *int64, 
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -299,7 +299,7 @@ func (s *Secrets) ListAPIKeys(ctx context.Context, limit *int64, offset *int64, 
 
 // CreateAPIKey - Create a new API key
 // Use when issuing a new API key (e.g. for a service account or for the current user). Provide service_account_id to create for a service account.
-func (s *Secrets) CreateAPIKey(ctx context.Context, request types.CreateAPIKeyRequest, opts ...dtos.Option) (*dtos.CreateAPIKeyResponse, error) {
+func (s *Secrets) CreateAPIKey(ctx context.Context, request types.CreateAPIKeyRequest, security dtos.CreateAPIKeySecurity, opts ...dtos.Option) (*dtos.CreateAPIKeyResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -330,7 +330,7 @@ func (s *Secrets) CreateAPIKey(ctx context.Context, request types.CreateAPIKeyRe
 		Context:          ctx,
 		OperationID:      "createApiKey",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -358,7 +358,7 @@ func (s *Secrets) CreateAPIKey(ctx context.Context, request types.CreateAPIKeyRe
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -562,7 +562,7 @@ func (s *Secrets) CreateAPIKey(ctx context.Context, request types.CreateAPIKeyRe
 
 // DeleteAPIKey - Delete an API key
 // Use when revoking an API key (e.g. rotation or compromise). Permanently invalidates the key.
-func (s *Secrets) DeleteAPIKey(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteAPIKeyResponse, error) {
+func (s *Secrets) DeleteAPIKey(ctx context.Context, security dtos.DeleteAPIKeySecurity, id string, opts ...dtos.Option) (*dtos.DeleteAPIKeyResponse, error) {
 	request := dtos.DeleteAPIKeyRequest{
 		ID: id,
 	}
@@ -597,7 +597,7 @@ func (s *Secrets) DeleteAPIKey(ctx context.Context, id string, opts ...dtos.Opti
 		Context:          ctx,
 		OperationID:      "deleteApiKey",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -618,7 +618,7 @@ func (s *Secrets) DeleteAPIKey(ctx context.Context, id string, opts ...dtos.Opti
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

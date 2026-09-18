@@ -1,0 +1,11 @@
+# TerminateWalletSecurity
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                   | [*dtos.TerminateWalletSecurityOption1](../../models/dtos/terminatewalletsecurityoption1.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option2`                                                                                   | [*dtos.TerminateWalletSecurityOption2](../../models/dtos/terminatewalletsecurityoption2.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option3`                                                                                   | [*dtos.TerminateWalletSecurityOption3](../../models/dtos/terminatewalletsecurityoption3.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option4`                                                                                   | [*dtos.TerminateWalletSecurityOption4](../../models/dtos/terminatewalletsecurityoption4.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |

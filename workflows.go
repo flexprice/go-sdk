@@ -33,7 +33,7 @@ func newWorkflows(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *
 
 // QueryWorkflow - Query workflows
 // Use when listing or auditing workflow runs (e.g. ops dashboard or debugging). Returns a paginated list; supports filtering by workflow type and status.
-func (s *Workflows) QueryWorkflow(ctx context.Context, request types.WorkflowExecutionFilter, opts ...dtos.Option) (*dtos.QueryWorkflowResponse, error) {
+func (s *Workflows) QueryWorkflow(ctx context.Context, request types.WorkflowExecutionFilter, security dtos.QueryWorkflowSecurity, opts ...dtos.Option) (*dtos.QueryWorkflowResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Workflows) QueryWorkflow(ctx context.Context, request types.WorkflowExe
 		Context:          ctx,
 		OperationID:      "queryWorkflow",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Workflows) QueryWorkflow(ctx context.Context, request types.WorkflowExe
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

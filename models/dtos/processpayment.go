@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type ProcessPaymentSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (p ProcessPaymentSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProcessPaymentSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *ProcessPaymentSecurityOption1) GetAPIKeyAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.APIKeyAuth
+}
+
+// #region class-body-processpaymentsecurityoption1
+// #endregion class-body-processpaymentsecurityoption1
+
+type ProcessPaymentSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (p ProcessPaymentSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProcessPaymentSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *ProcessPaymentSecurityOption2) GetAPIKeyAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.APIKeyAuth
+}
+
+// #region class-body-processpaymentsecurityoption2
+// #endregion class-body-processpaymentsecurityoption2
+
+type ProcessPaymentSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (p ProcessPaymentSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProcessPaymentSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *ProcessPaymentSecurityOption3) GetBearerAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.BearerAuth
+}
+
+func (p *ProcessPaymentSecurityOption3) GetEnvironmentID() string {
+	if p == nil {
+		return ""
+	}
+	return p.EnvironmentID
+}
+
+// #region class-body-processpaymentsecurityoption3
+// #endregion class-body-processpaymentsecurityoption3
+
+type ProcessPaymentSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (p ProcessPaymentSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProcessPaymentSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *ProcessPaymentSecurityOption4) GetBearerAuth() string {
+	if p == nil {
+		return ""
+	}
+	return p.BearerAuth
+}
+
+// #region class-body-processpaymentsecurityoption4
+// #endregion class-body-processpaymentsecurityoption4
+
+type ProcessPaymentSecurity struct {
+	Option1 *ProcessPaymentSecurityOption1 `security:"option"`
+	Option2 *ProcessPaymentSecurityOption2 `security:"option"`
+	Option3 *ProcessPaymentSecurityOption3 `security:"option"`
+	Option4 *ProcessPaymentSecurityOption4 `security:"option"`
+}
+
+func (p ProcessPaymentSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(p, "", false)
+}
+
+func (p *ProcessPaymentSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &p, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (p *ProcessPaymentSecurity) GetOption1() *ProcessPaymentSecurityOption1 {
+	if p == nil {
+		return nil
+	}
+	return p.Option1
+}
+
+func (p *ProcessPaymentSecurity) GetOption2() *ProcessPaymentSecurityOption2 {
+	if p == nil {
+		return nil
+	}
+	return p.Option2
+}
+
+func (p *ProcessPaymentSecurity) GetOption3() *ProcessPaymentSecurityOption3 {
+	if p == nil {
+		return nil
+	}
+	return p.Option3
+}
+
+func (p *ProcessPaymentSecurity) GetOption4() *ProcessPaymentSecurityOption4 {
+	if p == nil {
+		return nil
+	}
+	return p.Option4
+}
+
 type ProcessPaymentRequest struct {
 	// Payment ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

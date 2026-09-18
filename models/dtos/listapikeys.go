@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type ListAPIKeysSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (l ListAPIKeysSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListAPIKeysSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListAPIKeysSecurityOption1) GetAPIKeyAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.APIKeyAuth
+}
+
+// #region class-body-listapikeyssecurityoption1
+// #endregion class-body-listapikeyssecurityoption1
+
+type ListAPIKeysSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (l ListAPIKeysSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListAPIKeysSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListAPIKeysSecurityOption2) GetAPIKeyAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.APIKeyAuth
+}
+
+// #region class-body-listapikeyssecurityoption2
+// #endregion class-body-listapikeyssecurityoption2
+
+type ListAPIKeysSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (l ListAPIKeysSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListAPIKeysSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListAPIKeysSecurityOption3) GetBearerAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.BearerAuth
+}
+
+func (l *ListAPIKeysSecurityOption3) GetEnvironmentID() string {
+	if l == nil {
+		return ""
+	}
+	return l.EnvironmentID
+}
+
+// #region class-body-listapikeyssecurityoption3
+// #endregion class-body-listapikeyssecurityoption3
+
+type ListAPIKeysSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (l ListAPIKeysSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListAPIKeysSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListAPIKeysSecurityOption4) GetBearerAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.BearerAuth
+}
+
+// #region class-body-listapikeyssecurityoption4
+// #endregion class-body-listapikeyssecurityoption4
+
+type ListAPIKeysSecurity struct {
+	Option1 *ListAPIKeysSecurityOption1 `security:"option"`
+	Option2 *ListAPIKeysSecurityOption2 `security:"option"`
+	Option3 *ListAPIKeysSecurityOption3 `security:"option"`
+	Option4 *ListAPIKeysSecurityOption4 `security:"option"`
+}
+
+func (l ListAPIKeysSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListAPIKeysSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListAPIKeysSecurity) GetOption1() *ListAPIKeysSecurityOption1 {
+	if l == nil {
+		return nil
+	}
+	return l.Option1
+}
+
+func (l *ListAPIKeysSecurity) GetOption2() *ListAPIKeysSecurityOption2 {
+	if l == nil {
+		return nil
+	}
+	return l.Option2
+}
+
+func (l *ListAPIKeysSecurity) GetOption3() *ListAPIKeysSecurityOption3 {
+	if l == nil {
+		return nil
+	}
+	return l.Option3
+}
+
+func (l *ListAPIKeysSecurity) GetOption4() *ListAPIKeysSecurityOption4 {
+	if l == nil {
+		return nil
+	}
+	return l.Option4
+}
+
 type ListAPIKeysRequest struct {
 	// Limit
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`

@@ -64,7 +64,8 @@ type SubscriptionResponseV2 struct {
 	ID *string `json:"id,omitzero"`
 	// InvoicingCustomerID is the customer ID to use for invoicing
 	// This can differ from the subscription customer (e.g., parent company invoicing for child company)
-	InvoicingCustomerID *string `json:"invoicing_customer_id,omitzero"`
+	InvoicingCustomerID *string           `json:"invoicing_customer_id,omitzero"`
+	LineItemGrouping    *LineItemGrouping `json:"line_item_grouping,omitzero"`
 	// LineItems is expanded only if "subscription_line_items" is in expand parameter
 	// Each line item can optionally include expanded price data
 	LineItems []SubscriptionLineItemResponse `json:"line_items,omitzero"`
@@ -317,6 +318,13 @@ func (s *SubscriptionResponseV2) GetInvoicingCustomerID() *string {
 		return nil
 	}
 	return s.InvoicingCustomerID
+}
+
+func (s *SubscriptionResponseV2) GetLineItemGrouping() *LineItemGrouping {
+	if s == nil {
+		return nil
+	}
+	return s.LineItemGrouping
 }
 
 func (s *SubscriptionResponseV2) GetLineItems() []SubscriptionLineItemResponse {

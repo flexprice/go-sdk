@@ -1,0 +1,11 @@
+# CloneFeatureSecurity
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `Option1`                                                                             | [*dtos.CloneFeatureSecurityOption1](../../models/dtos/clonefeaturesecurityoption1.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option2`                                                                             | [*dtos.CloneFeatureSecurityOption2](../../models/dtos/clonefeaturesecurityoption2.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option3`                                                                             | [*dtos.CloneFeatureSecurityOption3](../../models/dtos/clonefeaturesecurityoption3.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option4`                                                                             | [*dtos.CloneFeatureSecurityOption4](../../models/dtos/clonefeaturesecurityoption4.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |

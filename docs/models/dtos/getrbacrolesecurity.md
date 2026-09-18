@@ -1,0 +1,11 @@
+# GetRbacRoleSecurity
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Option1`                                                                           | [*dtos.GetRbacRoleSecurityOption1](../../models/dtos/getrbacrolesecurityoption1.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option2`                                                                           | [*dtos.GetRbacRoleSecurityOption2](../../models/dtos/getrbacrolesecurityoption2.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option3`                                                                           | [*dtos.GetRbacRoleSecurityOption3](../../models/dtos/getrbacrolesecurityoption3.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option4`                                                                           | [*dtos.GetRbacRoleSecurityOption4](../../models/dtos/getrbacrolesecurityoption4.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |

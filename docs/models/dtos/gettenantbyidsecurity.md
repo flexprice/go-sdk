@@ -1,0 +1,11 @@
+# GetTenantByIDSecurity
+
+
+## Fields
+
+| Field                                                                                   | Type                                                                                    | Required                                                                                | Description                                                                             |
+| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `Option1`                                                                               | [*dtos.GetTenantByIDSecurityOption1](../../models/dtos/gettenantbyidsecurityoption1.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option2`                                                                               | [*dtos.GetTenantByIDSecurityOption2](../../models/dtos/gettenantbyidsecurityoption2.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option3`                                                                               | [*dtos.GetTenantByIDSecurityOption3](../../models/dtos/gettenantbyidsecurityoption3.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |
+| `Option4`                                                                               | [*dtos.GetTenantByIDSecurityOption4](../../models/dtos/gettenantbyidsecurityoption4.md) | :heavy_minus_sign:                                                                      | N/A                                                                                     |

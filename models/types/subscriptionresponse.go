@@ -71,6 +71,7 @@ type SubscriptionResponse struct {
 	// This can differ from the subscription customer (e.g., parent company invoicing for child company)
 	InvoicingCustomerID *string                            `json:"invoicing_customer_id,omitzero"`
 	LatestInvoice       *InvoiceResponse                   `json:"latest_invoice,omitzero"`
+	LineItemGrouping    *LineItemGrouping                  `json:"line_item_grouping,omitzero"`
 	LineItems           []SubscriptionSubscriptionLineItem `json:"line_items,omitzero"`
 	// LookupKey is the key used to lookup the subscription in our system
 	LookupKey *string           `json:"lookup_key,omitzero"`
@@ -337,6 +338,13 @@ func (s *SubscriptionResponse) GetLatestInvoice() *InvoiceResponse {
 		return nil
 	}
 	return s.LatestInvoice
+}
+
+func (s *SubscriptionResponse) GetLineItemGrouping() *LineItemGrouping {
+	if s == nil {
+		return nil
+	}
+	return s.LineItemGrouping
 }
 
 func (s *SubscriptionResponse) GetLineItems() []SubscriptionSubscriptionLineItem {

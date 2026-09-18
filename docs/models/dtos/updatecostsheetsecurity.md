@@ -1,0 +1,11 @@
+# UpdateCostsheetSecurity
+
+
+## Fields
+
+| Field                                                                                       | Type                                                                                        | Required                                                                                    | Description                                                                                 |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                   | [*dtos.UpdateCostsheetSecurityOption1](../../models/dtos/updatecostsheetsecurityoption1.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option2`                                                                                   | [*dtos.UpdateCostsheetSecurityOption2](../../models/dtos/updatecostsheetsecurityoption2.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option3`                                                                                   | [*dtos.UpdateCostsheetSecurityOption3](../../models/dtos/updatecostsheetsecurityoption3.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |
+| `Option4`                                                                                   | [*dtos.UpdateCostsheetSecurityOption4](../../models/dtos/updatecostsheetsecurityoption4.md) | :heavy_minus_sign:                                                                          | N/A                                                                                         |

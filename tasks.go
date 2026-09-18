@@ -33,7 +33,7 @@ func newTasks(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hook
 
 // ListTasks - List tasks
 // Use when listing or searching async tasks (e.g. admin queue view). Returns list with optional filtering.
-func (s *Tasks) ListTasks(ctx context.Context, request dtos.ListTasksRequest, opts ...dtos.Option) (*dtos.ListTasksResponse, error) {
+func (s *Tasks) ListTasks(ctx context.Context, request dtos.ListTasksRequest, security dtos.ListTasksSecurity, opts ...dtos.Option) (*dtos.ListTasksResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Tasks) ListTasks(ctx context.Context, request dtos.ListTasksRequest, op
 		Context:          ctx,
 		OperationID:      "listTasks",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -89,7 +89,7 @@ func (s *Tasks) ListTasks(ctx context.Context, request dtos.ListTasksRequest, op
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -293,7 +293,7 @@ func (s *Tasks) ListTasks(ctx context.Context, request dtos.ListTasksRequest, op
 
 // CreateTask - Import a CSV of usage events
 // Use to submit a CSV of usage events for async ingestion. The CSV must already have been uploaded to the Flexprice-managed imports bucket (currently via CSV Box) — pass the upload_id and the backend fetches the file from S3 and streams rows into ClickHouse. Returns the task ID and Temporal workflow IDs for polling.
-func (s *Tasks) CreateTask(ctx context.Context, request types.CreateTaskRequest, opts ...dtos.Option) (*dtos.CreateTaskResponse, error) {
+func (s *Tasks) CreateTask(ctx context.Context, request types.CreateTaskRequest, security dtos.CreateTaskSecurity, opts ...dtos.Option) (*dtos.CreateTaskResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -324,7 +324,7 @@ func (s *Tasks) CreateTask(ctx context.Context, request types.CreateTaskRequest,
 		Context:          ctx,
 		OperationID:      "createTask",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -352,7 +352,7 @@ func (s *Tasks) CreateTask(ctx context.Context, request types.CreateTaskRequest,
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -556,7 +556,7 @@ func (s *Tasks) CreateTask(ctx context.Context, request types.CreateTaskRequest,
 
 // GetTaskResult - Get task processing result
 // Use when fetching the outcome of a completed task (e.g. export URL or error message). Call after task status is complete.
-func (s *Tasks) GetTaskResult(ctx context.Context, workflowID string, opts ...dtos.Option) (*dtos.GetTaskResultResponse, error) {
+func (s *Tasks) GetTaskResult(ctx context.Context, security dtos.GetTaskResultSecurity, workflowID string, opts ...dtos.Option) (*dtos.GetTaskResultResponse, error) {
 	request := dtos.GetTaskResultRequest{
 		WorkflowID: workflowID,
 	}
@@ -591,7 +591,7 @@ func (s *Tasks) GetTaskResult(ctx context.Context, workflowID string, opts ...dt
 		Context:          ctx,
 		OperationID:      "getTaskResult",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -616,7 +616,7 @@ func (s *Tasks) GetTaskResult(ctx context.Context, workflowID string, opts ...dt
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -822,7 +822,7 @@ func (s *Tasks) GetTaskResult(ctx context.Context, workflowID string, opts ...dt
 
 // GetTask - Get a task
 // Use when checking task status or progress (e.g. polling after create). Returns task by ID.
-func (s *Tasks) GetTask(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetTaskResponse, error) {
+func (s *Tasks) GetTask(ctx context.Context, security dtos.GetTaskSecurity, id string, opts ...dtos.Option) (*dtos.GetTaskResponse, error) {
 	request := dtos.GetTaskRequest{
 		ID: id,
 	}
@@ -857,7 +857,7 @@ func (s *Tasks) GetTask(ctx context.Context, id string, opts ...dtos.Option) (*d
 		Context:          ctx,
 		OperationID:      "getTask",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -878,7 +878,7 @@ func (s *Tasks) GetTask(ctx context.Context, id string, opts ...dtos.Option) (*d
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1084,7 +1084,7 @@ func (s *Tasks) GetTask(ctx context.Context, id string, opts ...dtos.Option) (*d
 
 // DownloadTaskExport - Download task export file
 // Use when letting a user download an exported file (e.g. report or data export). Returns a presigned URL; supports FlexPrice or customer-owned S3.
-func (s *Tasks) DownloadTaskExport(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DownloadTaskExportResponse, error) {
+func (s *Tasks) DownloadTaskExport(ctx context.Context, security dtos.DownloadTaskExportSecurity, id string, opts ...dtos.Option) (*dtos.DownloadTaskExportResponse, error) {
 	request := dtos.DownloadTaskExportRequest{
 		ID: id,
 	}
@@ -1119,7 +1119,7 @@ func (s *Tasks) DownloadTaskExport(ctx context.Context, id string, opts ...dtos.
 		Context:          ctx,
 		OperationID:      "downloadTaskExport",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1140,7 +1140,7 @@ func (s *Tasks) DownloadTaskExport(ctx context.Context, id string, opts ...dtos.
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1346,7 +1346,7 @@ func (s *Tasks) DownloadTaskExport(ctx context.Context, id string, opts ...dtos.
 
 // UpdateTaskStatus - Update task status
 // Use when updating task status (e.g. marking complete or failed from a worker). Typically called by backend processors.
-func (s *Tasks) UpdateTaskStatus(ctx context.Context, id string, body types.UpdateTaskStatusRequest, opts ...dtos.Option) (*dtos.UpdateTaskStatusResponse, error) {
+func (s *Tasks) UpdateTaskStatus(ctx context.Context, security dtos.UpdateTaskStatusSecurity, id string, body types.UpdateTaskStatusRequest, opts ...dtos.Option) (*dtos.UpdateTaskStatusResponse, error) {
 	request := dtos.UpdateTaskStatusRequest{
 		ID:   id,
 		Body: body,
@@ -1382,7 +1382,7 @@ func (s *Tasks) UpdateTaskStatus(ctx context.Context, id string, body types.Upda
 		Context:          ctx,
 		OperationID:      "updateTaskStatus",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1410,7 +1410,7 @@ func (s *Tasks) UpdateTaskStatus(ctx context.Context, id string, body types.Upda
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

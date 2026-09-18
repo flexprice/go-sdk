@@ -10,6 +10,7 @@ type CheckoutConfiguration struct {
 	AddAddonParams           *AddAddonParams           `json:"add_addon_params,omitzero"`
 	CreateSubscriptionParams *CreateSubscriptionParams `json:"create_subscription_params,omitzero"`
 	ModifySubscriptionParams *ModifySubscriptionParams `json:"modify_subscription_params,omitzero"`
+	PayInvoiceParams         *PayInvoiceParams         `json:"pay_invoice_params,omitzero"`
 	WalletTopupParams        *WalletTopupParams        `json:"wallet_topup_params,omitzero"`
 }
 
@@ -43,6 +44,13 @@ func (c *CheckoutConfiguration) GetModifySubscriptionParams() *ModifySubscriptio
 		return nil
 	}
 	return c.ModifySubscriptionParams
+}
+
+func (c *CheckoutConfiguration) GetPayInvoiceParams() *PayInvoiceParams {
+	if c == nil {
+		return nil
+	}
+	return c.PayInvoiceParams
 }
 
 func (c *CheckoutConfiguration) GetWalletTopupParams() *WalletTopupParams {

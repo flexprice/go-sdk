@@ -33,7 +33,7 @@ func newAddons(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hoo
 
 // CreateAddon - Create addon
 // Use when defining an optional purchasable item (e.g. extra storage or support tier). Ideal for add-ons that customers can attach to a subscription.
-func (s *Addons) CreateAddon(ctx context.Context, request types.CreateAddonRequest, opts ...dtos.Option) (*dtos.CreateAddonResponse, error) {
+func (s *Addons) CreateAddon(ctx context.Context, request types.CreateAddonRequest, security dtos.CreateAddonSecurity, opts ...dtos.Option) (*dtos.CreateAddonResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Addons) CreateAddon(ctx context.Context, request types.CreateAddonReque
 		Context:          ctx,
 		OperationID:      "createAddon",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Addons) CreateAddon(ctx context.Context, request types.CreateAddonReque
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -296,7 +296,7 @@ func (s *Addons) CreateAddon(ctx context.Context, request types.CreateAddonReque
 
 // GetAddonByLookupKey - Get addon by lookup key
 // Use when resolving an addon by external id (e.g. from your product catalog). Ideal for integrations.
-func (s *Addons) GetAddonByLookupKey(ctx context.Context, lookupKey string, opts ...dtos.Option) (*dtos.GetAddonByLookupKeyResponse, error) {
+func (s *Addons) GetAddonByLookupKey(ctx context.Context, security dtos.GetAddonByLookupKeySecurity, lookupKey string, opts ...dtos.Option) (*dtos.GetAddonByLookupKeyResponse, error) {
 	request := dtos.GetAddonByLookupKeyRequest{
 		LookupKey: lookupKey,
 	}
@@ -331,7 +331,7 @@ func (s *Addons) GetAddonByLookupKey(ctx context.Context, lookupKey string, opts
 		Context:          ctx,
 		OperationID:      "getAddonByLookupKey",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -352,7 +352,7 @@ func (s *Addons) GetAddonByLookupKey(ctx context.Context, lookupKey string, opts
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -556,7 +556,7 @@ func (s *Addons) GetAddonByLookupKey(ctx context.Context, lookupKey string, opts
 
 // QueryAddon - Query addons
 // Use when listing or searching addons (e.g. catalog or subscription builder). Returns a paginated list; supports filtering and sorting.
-func (s *Addons) QueryAddon(ctx context.Context, request types.AddonFilter, opts ...dtos.Option) (*dtos.QueryAddonResponse, error) {
+func (s *Addons) QueryAddon(ctx context.Context, request types.AddonFilter, security dtos.QueryAddonSecurity, opts ...dtos.Option) (*dtos.QueryAddonResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -587,7 +587,7 @@ func (s *Addons) QueryAddon(ctx context.Context, request types.AddonFilter, opts
 		Context:          ctx,
 		OperationID:      "queryAddon",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -615,7 +615,7 @@ func (s *Addons) QueryAddon(ctx context.Context, request types.AddonFilter, opts
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -819,7 +819,7 @@ func (s *Addons) QueryAddon(ctx context.Context, request types.AddonFilter, opts
 
 // GetAddon - Get addon
 // Use when you need to load a single addon (e.g. for display or to attach to a subscription).
-func (s *Addons) GetAddon(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetAddonResponse, error) {
+func (s *Addons) GetAddon(ctx context.Context, security dtos.GetAddonSecurity, id string, opts ...dtos.Option) (*dtos.GetAddonResponse, error) {
 	request := dtos.GetAddonRequest{
 		ID: id,
 	}
@@ -854,7 +854,7 @@ func (s *Addons) GetAddon(ctx context.Context, id string, opts ...dtos.Option) (
 		Context:          ctx,
 		OperationID:      "getAddon",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -875,7 +875,7 @@ func (s *Addons) GetAddon(ctx context.Context, id string, opts ...dtos.Option) (
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1079,7 +1079,7 @@ func (s *Addons) GetAddon(ctx context.Context, id string, opts ...dtos.Option) (
 
 // UpdateAddon - Update addon
 // Use when changing addon details (e.g. name, pricing, or metadata).
-func (s *Addons) UpdateAddon(ctx context.Context, id string, body types.UpdateAddonRequest, opts ...dtos.Option) (*dtos.UpdateAddonResponse, error) {
+func (s *Addons) UpdateAddon(ctx context.Context, security dtos.UpdateAddonSecurity, id string, body types.UpdateAddonRequest, opts ...dtos.Option) (*dtos.UpdateAddonResponse, error) {
 	request := dtos.UpdateAddonRequest{
 		ID:   id,
 		Body: body,
@@ -1115,7 +1115,7 @@ func (s *Addons) UpdateAddon(ctx context.Context, id string, body types.UpdateAd
 		Context:          ctx,
 		OperationID:      "updateAddon",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1143,7 +1143,7 @@ func (s *Addons) UpdateAddon(ctx context.Context, id string, body types.UpdateAd
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1347,7 +1347,7 @@ func (s *Addons) UpdateAddon(ctx context.Context, id string, body types.UpdateAd
 
 // DeleteAddon - Delete addon
 // Use when retiring an addon (e.g. end-of-life). Returns 200 with success message.
-func (s *Addons) DeleteAddon(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteAddonResponse, error) {
+func (s *Addons) DeleteAddon(ctx context.Context, security dtos.DeleteAddonSecurity, id string, opts ...dtos.Option) (*dtos.DeleteAddonResponse, error) {
 	request := dtos.DeleteAddonRequest{
 		ID: id,
 	}
@@ -1382,7 +1382,7 @@ func (s *Addons) DeleteAddon(ctx context.Context, id string, opts ...dtos.Option
 		Context:          ctx,
 		OperationID:      "deleteAddon",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1403,7 +1403,7 @@ func (s *Addons) DeleteAddon(ctx context.Context, id string, opts ...dtos.Option
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

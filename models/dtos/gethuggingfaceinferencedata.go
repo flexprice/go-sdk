@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type GetHuggingfaceInferenceDataSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetHuggingfaceInferenceDataSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetHuggingfaceInferenceDataSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetHuggingfaceInferenceDataSecurityOption1) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-gethuggingfaceinferencedatasecurityoption1
+// #endregion class-body-gethuggingfaceinferencedatasecurityoption1
+
+type GetHuggingfaceInferenceDataSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetHuggingfaceInferenceDataSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetHuggingfaceInferenceDataSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetHuggingfaceInferenceDataSecurityOption2) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-gethuggingfaceinferencedatasecurityoption2
+// #endregion class-body-gethuggingfaceinferencedatasecurityoption2
+
+type GetHuggingfaceInferenceDataSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (g GetHuggingfaceInferenceDataSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetHuggingfaceInferenceDataSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetHuggingfaceInferenceDataSecurityOption3) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+func (g *GetHuggingfaceInferenceDataSecurityOption3) GetEnvironmentID() string {
+	if g == nil {
+		return ""
+	}
+	return g.EnvironmentID
+}
+
+// #region class-body-gethuggingfaceinferencedatasecurityoption3
+// #endregion class-body-gethuggingfaceinferencedatasecurityoption3
+
+type GetHuggingfaceInferenceDataSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (g GetHuggingfaceInferenceDataSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetHuggingfaceInferenceDataSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetHuggingfaceInferenceDataSecurityOption4) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+// #region class-body-gethuggingfaceinferencedatasecurityoption4
+// #endregion class-body-gethuggingfaceinferencedatasecurityoption4
+
+type GetHuggingfaceInferenceDataSecurity struct {
+	Option1 *GetHuggingfaceInferenceDataSecurityOption1 `security:"option"`
+	Option2 *GetHuggingfaceInferenceDataSecurityOption2 `security:"option"`
+	Option3 *GetHuggingfaceInferenceDataSecurityOption3 `security:"option"`
+	Option4 *GetHuggingfaceInferenceDataSecurityOption4 `security:"option"`
+}
+
+func (g GetHuggingfaceInferenceDataSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetHuggingfaceInferenceDataSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetHuggingfaceInferenceDataSecurity) GetOption1() *GetHuggingfaceInferenceDataSecurityOption1 {
+	if g == nil {
+		return nil
+	}
+	return g.Option1
+}
+
+func (g *GetHuggingfaceInferenceDataSecurity) GetOption2() *GetHuggingfaceInferenceDataSecurityOption2 {
+	if g == nil {
+		return nil
+	}
+	return g.Option2
+}
+
+func (g *GetHuggingfaceInferenceDataSecurity) GetOption3() *GetHuggingfaceInferenceDataSecurityOption3 {
+	if g == nil {
+		return nil
+	}
+	return g.Option3
+}
+
+func (g *GetHuggingfaceInferenceDataSecurity) GetOption4() *GetHuggingfaceInferenceDataSecurityOption4 {
+	if g == nil {
+		return nil
+	}
+	return g.Option4
+}
+
 type GetHuggingfaceInferenceDataResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK

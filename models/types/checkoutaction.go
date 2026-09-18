@@ -9,6 +9,7 @@ const (
 	CheckoutActionModifySubscription CheckoutAction = "modify_subscription"
 	CheckoutActionWalletTopup        CheckoutAction = "wallet_topup"
 	CheckoutActionAddAddon           CheckoutAction = "add_addon"
+	CheckoutActionPayInvoice         CheckoutAction = "pay_invoice"
 )
 
 func (e CheckoutAction) ToPointer() *CheckoutAction {
@@ -19,7 +20,7 @@ func (e CheckoutAction) ToPointer() *CheckoutAction {
 func (e *CheckoutAction) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "create_subscription", "modify_subscription", "wallet_topup", "add_addon":
+		case "create_subscription", "modify_subscription", "wallet_topup", "add_addon", "pay_invoice":
 			return true
 		}
 	}

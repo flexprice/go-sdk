@@ -33,7 +33,7 @@ func newCustomers(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *
 
 // UpdateCustomer - Update customer
 // Use when updating customer details (e.g. name, email, or metadata). Identify by id or external_customer_id.
-func (s *Customers) UpdateCustomer(ctx context.Context, body types.UpdateCustomerRequest, id *string, externalCustomerID *string, opts ...dtos.Option) (*dtos.UpdateCustomerResponse, error) {
+func (s *Customers) UpdateCustomer(ctx context.Context, security dtos.UpdateCustomerSecurity, body types.UpdateCustomerRequest, id *string, externalCustomerID *string, opts ...dtos.Option) (*dtos.UpdateCustomerResponse, error) {
 	request := dtos.UpdateCustomerRequest{
 		ID:                 id,
 		ExternalCustomerID: externalCustomerID,
@@ -70,7 +70,7 @@ func (s *Customers) UpdateCustomer(ctx context.Context, body types.UpdateCustome
 		Context:          ctx,
 		OperationID:      "updateCustomer",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -102,7 +102,7 @@ func (s *Customers) UpdateCustomer(ctx context.Context, body types.UpdateCustome
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -306,7 +306,7 @@ func (s *Customers) UpdateCustomer(ctx context.Context, body types.UpdateCustome
 
 // CreateCustomer - Create customer
 // Use when onboarding a new billing customer (e.g. sign-up or CRM sync). Ideal for linking via external_customer_id to your app's user id.
-func (s *Customers) CreateCustomer(ctx context.Context, request types.CreateCustomerRequest, opts ...dtos.Option) (*dtos.CreateCustomerResponse, error) {
+func (s *Customers) CreateCustomer(ctx context.Context, request types.CreateCustomerRequest, security dtos.CreateCustomerSecurity, opts ...dtos.Option) (*dtos.CreateCustomerResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -337,7 +337,7 @@ func (s *Customers) CreateCustomer(ctx context.Context, request types.CreateCust
 		Context:          ctx,
 		OperationID:      "createCustomer",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -365,7 +365,7 @@ func (s *Customers) CreateCustomer(ctx context.Context, request types.CreateCust
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -569,7 +569,7 @@ func (s *Customers) CreateCustomer(ctx context.Context, request types.CreateCust
 
 // GetCustomerByExternalID - Get customer by external ID
 // Use when resolving a customer by your app's id (e.g. from your user table). Ideal for integrations that key by external id.
-func (s *Customers) GetCustomerByExternalID(ctx context.Context, externalID string, opts ...dtos.Option) (*dtos.GetCustomerByExternalIDResponse, error) {
+func (s *Customers) GetCustomerByExternalID(ctx context.Context, security dtos.GetCustomerByExternalIDSecurity, externalID string, opts ...dtos.Option) (*dtos.GetCustomerByExternalIDResponse, error) {
 	request := dtos.GetCustomerByExternalIDRequest{
 		ExternalID: externalID,
 	}
@@ -604,7 +604,7 @@ func (s *Customers) GetCustomerByExternalID(ctx context.Context, externalID stri
 		Context:          ctx,
 		OperationID:      "getCustomerByExternalId",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -625,7 +625,7 @@ func (s *Customers) GetCustomerByExternalID(ctx context.Context, externalID stri
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -831,7 +831,7 @@ func (s *Customers) GetCustomerByExternalID(ctx context.Context, externalID stri
 
 // GetCustomerEntitlementsByExternalID - Get customer entitlements by external ID
 // Use when checking entitlements by your app's customer id (e.g. feature gating at the edge). Supports optional filters (feature_ids, subscription_ids).
-func (s *Customers) GetCustomerEntitlementsByExternalID(ctx context.Context, externalID string, opts ...dtos.Option) (*dtos.GetCustomerEntitlementsByExternalIDResponse, error) {
+func (s *Customers) GetCustomerEntitlementsByExternalID(ctx context.Context, security dtos.GetCustomerEntitlementsByExternalIDSecurity, externalID string, opts ...dtos.Option) (*dtos.GetCustomerEntitlementsByExternalIDResponse, error) {
 	request := dtos.GetCustomerEntitlementsByExternalIDRequest{
 		ExternalID: externalID,
 	}
@@ -866,7 +866,7 @@ func (s *Customers) GetCustomerEntitlementsByExternalID(ctx context.Context, ext
 		Context:          ctx,
 		OperationID:      "getCustomerEntitlementsByExternalID",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -887,7 +887,7 @@ func (s *Customers) GetCustomerEntitlementsByExternalID(ctx context.Context, ext
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1093,7 +1093,7 @@ func (s *Customers) GetCustomerEntitlementsByExternalID(ctx context.Context, ext
 
 // GetSubscriptionsForCustomer - Get subscriptions for customer by external ID
 // Returns all subscriptions for a customer looked up by external_id, with line-item meters and entitlements attached (no pagination).
-func (s *Customers) GetSubscriptionsForCustomer(ctx context.Context, externalID string, expand *string, opts ...dtos.Option) (*dtos.GetSubscriptionsForCustomerResponse, error) {
+func (s *Customers) GetSubscriptionsForCustomer(ctx context.Context, security dtos.GetSubscriptionsForCustomerSecurity, externalID string, expand *string, opts ...dtos.Option) (*dtos.GetSubscriptionsForCustomerResponse, error) {
 	request := dtos.GetSubscriptionsForCustomerRequest{
 		ExternalID: externalID,
 		Expand:     expand,
@@ -1129,7 +1129,7 @@ func (s *Customers) GetSubscriptionsForCustomer(ctx context.Context, externalID 
 		Context:          ctx,
 		OperationID:      "getSubscriptionsForCustomer",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1154,7 +1154,7 @@ func (s *Customers) GetSubscriptionsForCustomer(ctx context.Context, externalID 
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1360,7 +1360,7 @@ func (s *Customers) GetSubscriptionsForCustomer(ctx context.Context, externalID 
 
 // QueryCustomer - Query customers
 // Use when listing or searching customers (e.g. admin CRM or reporting). Returns a paginated list; supports filtering and sorting.
-func (s *Customers) QueryCustomer(ctx context.Context, request types.CustomerFilter, opts ...dtos.Option) (*dtos.QueryCustomerResponse, error) {
+func (s *Customers) QueryCustomer(ctx context.Context, request types.CustomerFilter, security dtos.QueryCustomerSecurity, opts ...dtos.Option) (*dtos.QueryCustomerResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -1391,7 +1391,7 @@ func (s *Customers) QueryCustomer(ctx context.Context, request types.CustomerFil
 		Context:          ctx,
 		OperationID:      "queryCustomer",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1419,7 +1419,7 @@ func (s *Customers) QueryCustomer(ctx context.Context, request types.CustomerFil
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1623,7 +1623,7 @@ func (s *Customers) QueryCustomer(ctx context.Context, request types.CustomerFil
 
 // GetCustomerUsageSummary - Get customer usage summary
 // Use when showing a customer's usage (e.g. portal or overage alerts). Identify by customer_id or customer_lookup_key; supports filters.
-func (s *Customers) GetCustomerUsageSummary(ctx context.Context, request dtos.GetCustomerUsageSummaryRequest, opts ...dtos.Option) (*dtos.GetCustomerUsageSummaryResponse, error) {
+func (s *Customers) GetCustomerUsageSummary(ctx context.Context, request dtos.GetCustomerUsageSummaryRequest, security dtos.GetCustomerUsageSummarySecurity, opts ...dtos.Option) (*dtos.GetCustomerUsageSummaryResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -1654,7 +1654,7 @@ func (s *Customers) GetCustomerUsageSummary(ctx context.Context, request dtos.Ge
 		Context:          ctx,
 		OperationID:      "getCustomerUsageSummary",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1679,7 +1679,7 @@ func (s *Customers) GetCustomerUsageSummary(ctx context.Context, request dtos.Ge
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1883,7 +1883,7 @@ func (s *Customers) GetCustomerUsageSummary(ctx context.Context, request dtos.Ge
 
 // GetCustomer - Get customer
 // Use when you need to load a single customer (e.g. for a billing portal or to attach a subscription).
-func (s *Customers) GetCustomer(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetCustomerResponse, error) {
+func (s *Customers) GetCustomer(ctx context.Context, security dtos.GetCustomerSecurity, id string, opts ...dtos.Option) (*dtos.GetCustomerResponse, error) {
 	request := dtos.GetCustomerRequest{
 		ID: id,
 	}
@@ -1918,7 +1918,7 @@ func (s *Customers) GetCustomer(ctx context.Context, id string, opts ...dtos.Opt
 		Context:          ctx,
 		OperationID:      "getCustomer",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1939,7 +1939,7 @@ func (s *Customers) GetCustomer(ctx context.Context, id string, opts ...dtos.Opt
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -2143,7 +2143,7 @@ func (s *Customers) GetCustomer(ctx context.Context, id string, opts ...dtos.Opt
 
 // DeleteCustomer - Delete customer
 // Use when removing a customer (e.g. GDPR or churn). Returns 204 No Content on success.
-func (s *Customers) DeleteCustomer(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteCustomerResponse, error) {
+func (s *Customers) DeleteCustomer(ctx context.Context, security dtos.DeleteCustomerSecurity, id string, opts ...dtos.Option) (*dtos.DeleteCustomerResponse, error) {
 	request := dtos.DeleteCustomerRequest{
 		ID: id,
 	}
@@ -2178,7 +2178,7 @@ func (s *Customers) DeleteCustomer(ctx context.Context, id string, opts ...dtos.
 		Context:          ctx,
 		OperationID:      "deleteCustomer",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -2199,7 +2199,7 @@ func (s *Customers) DeleteCustomer(ctx context.Context, id string, opts ...dtos.
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -2384,7 +2384,7 @@ func (s *Customers) DeleteCustomer(ctx context.Context, id string, opts ...dtos.
 
 // GetCustomerEntitlements - Get customer entitlements
 // Use when checking what a customer can access (e.g. feature gating or usage limits). Supports optional filters (feature_ids, subscription_ids).
-func (s *Customers) GetCustomerEntitlements(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetCustomerEntitlementsResponse, error) {
+func (s *Customers) GetCustomerEntitlements(ctx context.Context, security dtos.GetCustomerEntitlementsSecurity, id string, opts ...dtos.Option) (*dtos.GetCustomerEntitlementsResponse, error) {
 	request := dtos.GetCustomerEntitlementsRequest{
 		ID: id,
 	}
@@ -2419,7 +2419,7 @@ func (s *Customers) GetCustomerEntitlements(ctx context.Context, id string, opts
 		Context:          ctx,
 		OperationID:      "getCustomerEntitlements",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -2440,7 +2440,7 @@ func (s *Customers) GetCustomerEntitlements(ctx context.Context, id string, opts
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -2644,7 +2644,7 @@ func (s *Customers) GetCustomerEntitlements(ctx context.Context, id string, opts
 
 // GetCustomerUpcomingGrants - Get upcoming credit grant applications
 // Use when showing upcoming or pending credits for a customer (e.g. in a portal or for forecasting).
-func (s *Customers) GetCustomerUpcomingGrants(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetCustomerUpcomingGrantsResponse, error) {
+func (s *Customers) GetCustomerUpcomingGrants(ctx context.Context, security dtos.GetCustomerUpcomingGrantsSecurity, id string, opts ...dtos.Option) (*dtos.GetCustomerUpcomingGrantsResponse, error) {
 	request := dtos.GetCustomerUpcomingGrantsRequest{
 		ID: id,
 	}
@@ -2679,7 +2679,7 @@ func (s *Customers) GetCustomerUpcomingGrants(ctx context.Context, id string, op
 		Context:          ctx,
 		OperationID:      "getCustomerUpcomingGrants",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -2700,7 +2700,7 @@ func (s *Customers) GetCustomerUpcomingGrants(ctx context.Context, id string, op
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

@@ -1,0 +1,11 @@
+# QueryInvoiceSecurity
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `Option1`                                                                             | [*dtos.QueryInvoiceSecurityOption1](../../models/dtos/queryinvoicesecurityoption1.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option2`                                                                             | [*dtos.QueryInvoiceSecurityOption2](../../models/dtos/queryinvoicesecurityoption2.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option3`                                                                             | [*dtos.QueryInvoiceSecurityOption3](../../models/dtos/queryinvoicesecurityoption3.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option4`                                                                             | [*dtos.QueryInvoiceSecurityOption4](../../models/dtos/queryinvoicesecurityoption4.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |

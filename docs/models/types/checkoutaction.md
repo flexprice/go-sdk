@@ -22,3 +22,4 @@ custom := types.CheckoutAction("custom_value")
 | `CheckoutActionModifySubscription` | modify_subscription                |
 | `CheckoutActionWalletTopup`        | wallet_topup                       |
 | `CheckoutActionAddAddon`           | add_addon                          |
+| `CheckoutActionPayInvoice`         | pay_invoice                        |

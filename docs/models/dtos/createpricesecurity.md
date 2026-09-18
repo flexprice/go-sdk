@@ -1,0 +1,11 @@
+# CreatePriceSecurity
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Option1`                                                                           | [*dtos.CreatePriceSecurityOption1](../../models/dtos/createpricesecurityoption1.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option2`                                                                           | [*dtos.CreatePriceSecurityOption2](../../models/dtos/createpricesecurityoption2.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option3`                                                                           | [*dtos.CreatePriceSecurityOption3](../../models/dtos/createpricesecurityoption3.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option4`                                                                           | [*dtos.CreatePriceSecurityOption4](../../models/dtos/createpricesecurityoption4.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |

@@ -1,0 +1,11 @@
+# CreatePricesBulkSecurity
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                     | [*dtos.CreatePricesBulkSecurityOption1](../../models/dtos/createpricesbulksecurityoption1.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Option2`                                                                                     | [*dtos.CreatePricesBulkSecurityOption2](../../models/dtos/createpricesbulksecurityoption2.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Option3`                                                                                     | [*dtos.CreatePricesBulkSecurityOption3](../../models/dtos/createpricesbulksecurityoption3.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Option4`                                                                                     | [*dtos.CreatePricesBulkSecurityOption4](../../models/dtos/createpricesbulksecurityoption4.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |

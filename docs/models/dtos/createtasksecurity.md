@@ -1,0 +1,11 @@
+# CreateTaskSecurity
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `Option1`                                                                         | [*dtos.CreateTaskSecurityOption1](../../models/dtos/createtasksecurityoption1.md) | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `Option2`                                                                         | [*dtos.CreateTaskSecurityOption2](../../models/dtos/createtasksecurityoption2.md) | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `Option3`                                                                         | [*dtos.CreateTaskSecurityOption3](../../models/dtos/createtasksecurityoption3.md) | :heavy_minus_sign:                                                                | N/A                                                                               |
+| `Option4`                                                                         | [*dtos.CreateTaskSecurityOption4](../../models/dtos/createtasksecurityoption4.md) | :heavy_minus_sign:                                                                | N/A                                                                               |

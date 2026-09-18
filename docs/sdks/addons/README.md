@@ -25,19 +25,22 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
     res, err := s.Addons.CreateAddon(ctx, types.CreateAddonRequest{
         LookupKey: "<value>",
         Name: "<value>",
+    }, dtos.CreateAddonSecurity{
+        Option1: &dtos.CreateAddonSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -54,6 +57,7 @@ func main() {
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
 | `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
 | `request`                                                            | [types.CreateAddonRequest](../../models/types/createaddonrequest.md) | :heavy_check_mark:                                                   | The request object to use for the request.                           |
+| `security`                                                           | [dtos.CreateAddonSecurity](../../models/dtos/createaddonsecurity.md) | :heavy_check_mark:                                                   | The security requirements to use for the request.                    |
 | `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
 ### Response
@@ -81,17 +85,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Addons.GetAddonByLookupKey(ctx, "<value>")
+    res, err := s.Addons.GetAddonByLookupKey(ctx, dtos.GetAddonByLookupKeySecurity{
+        Option1: &dtos.GetAddonByLookupKeySecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<value>")
     if err != nil {
         log.Fatal(err)
     }
@@ -103,11 +110,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `lookupKey`                                           | `string`                                              | :heavy_check_mark:                                    | Addon Lookup Key                                      |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `security`                                                                           | [dtos.GetAddonByLookupKeySecurity](../../models/dtos/getaddonbylookupkeysecurity.md) | :heavy_check_mark:                                                                   | The security requirements to use for the request.                                    |
+| `lookupKey`                                                                          | `string`                                                                             | :heavy_check_mark:                                                                   | Addon Lookup Key                                                                     |
+| `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 ### Response
 
@@ -135,17 +143,20 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Addons.QueryAddon(ctx, types.AddonFilter{})
+    res, err := s.Addons.QueryAddon(ctx, types.AddonFilter{}, dtos.QueryAddonSecurity{
+        Option1: &dtos.QueryAddonSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -157,11 +168,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                              | Type                                                   | Required                                               | Description                                            |
-| ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `ctx`                                                  | [context.Context](https://pkg.go.dev/context#Context)  | :heavy_check_mark:                                     | The context to use for the request.                    |
-| `request`                                              | [types.AddonFilter](../../models/types/addonfilter.md) | :heavy_check_mark:                                     | The request object to use for the request.             |
-| `opts`                                                 | [][dtos.Option](../../models/dtos/option.md)           | :heavy_minus_sign:                                     | The options for this request.                          |
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
+| `request`                                                          | [types.AddonFilter](../../models/types/addonfilter.md)             | :heavy_check_mark:                                                 | The request object to use for the request.                         |
+| `security`                                                         | [dtos.QueryAddonSecurity](../../models/dtos/queryaddonsecurity.md) | :heavy_check_mark:                                                 | The security requirements to use for the request.                  |
+| `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
 
 ### Response
 
@@ -188,17 +200,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Addons.GetAddon(ctx, "<id>")
+    res, err := s.Addons.GetAddon(ctx, dtos.GetAddonSecurity{
+        Option1: &dtos.GetAddonSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -210,11 +225,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Addon ID                                              |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                      | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `ctx`                                                          | [context.Context](https://pkg.go.dev/context#Context)          | :heavy_check_mark:                                             | The context to use for the request.                            |
+| `security`                                                     | [dtos.GetAddonSecurity](../../models/dtos/getaddonsecurity.md) | :heavy_check_mark:                                             | The security requirements to use for the request.              |
+| `id`                                                           | `string`                                                       | :heavy_check_mark:                                             | Addon ID                                                       |
+| `opts`                                                         | [][dtos.Option](../../models/dtos/option.md)                   | :heavy_minus_sign:                                             | The options for this request.                                  |
 
 ### Response
 
@@ -241,6 +257,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -248,11 +265,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Addons.UpdateAddon(ctx, "<id>", types.UpdateAddonRequest{})
+    res, err := s.Addons.UpdateAddon(ctx, dtos.UpdateAddonSecurity{
+        Option1: &dtos.UpdateAddonSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.UpdateAddonRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -267,6 +286,7 @@ func main() {
 | Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
 | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
 | `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
+| `security`                                                           | [dtos.UpdateAddonSecurity](../../models/dtos/updateaddonsecurity.md) | :heavy_check_mark:                                                   | The security requirements to use for the request.                    |
 | `id`                                                                 | `string`                                                             | :heavy_check_mark:                                                   | Addon ID                                                             |
 | `body`                                                               | [types.UpdateAddonRequest](../../models/types/updateaddonrequest.md) | :heavy_check_mark:                                                   | Update Addon Request                                                 |
 | `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
@@ -296,17 +316,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Addons.DeleteAddon(ctx, "<id>")
+    res, err := s.Addons.DeleteAddon(ctx, dtos.DeleteAddonSecurity{
+        Option1: &dtos.DeleteAddonSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -318,11 +341,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Addon ID                                              |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
+| `security`                                                           | [dtos.DeleteAddonSecurity](../../models/dtos/deleteaddonsecurity.md) | :heavy_check_mark:                                                   | The security requirements to use for the request.                    |
+| `id`                                                                 | `string`                                                             | :heavy_check_mark:                                                   | Addon ID                                                             |
+| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
 ### Response
 

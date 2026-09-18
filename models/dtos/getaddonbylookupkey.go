@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type GetAddonByLookupKeySecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetAddonByLookupKeySecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonByLookupKeySecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetAddonByLookupKeySecurityOption1) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getaddonbylookupkeysecurityoption1
+// #endregion class-body-getaddonbylookupkeysecurityoption1
+
+type GetAddonByLookupKeySecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (g GetAddonByLookupKeySecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonByLookupKeySecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetAddonByLookupKeySecurityOption2) GetAPIKeyAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.APIKeyAuth
+}
+
+// #region class-body-getaddonbylookupkeysecurityoption2
+// #endregion class-body-getaddonbylookupkeysecurityoption2
+
+type GetAddonByLookupKeySecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (g GetAddonByLookupKeySecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonByLookupKeySecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetAddonByLookupKeySecurityOption3) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+func (g *GetAddonByLookupKeySecurityOption3) GetEnvironmentID() string {
+	if g == nil {
+		return ""
+	}
+	return g.EnvironmentID
+}
+
+// #region class-body-getaddonbylookupkeysecurityoption3
+// #endregion class-body-getaddonbylookupkeysecurityoption3
+
+type GetAddonByLookupKeySecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (g GetAddonByLookupKeySecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonByLookupKeySecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetAddonByLookupKeySecurityOption4) GetBearerAuth() string {
+	if g == nil {
+		return ""
+	}
+	return g.BearerAuth
+}
+
+// #region class-body-getaddonbylookupkeysecurityoption4
+// #endregion class-body-getaddonbylookupkeysecurityoption4
+
+type GetAddonByLookupKeySecurity struct {
+	Option1 *GetAddonByLookupKeySecurityOption1 `security:"option"`
+	Option2 *GetAddonByLookupKeySecurityOption2 `security:"option"`
+	Option3 *GetAddonByLookupKeySecurityOption3 `security:"option"`
+	Option4 *GetAddonByLookupKeySecurityOption4 `security:"option"`
+}
+
+func (g GetAddonByLookupKeySecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(g, "", false)
+}
+
+func (g *GetAddonByLookupKeySecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &g, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *GetAddonByLookupKeySecurity) GetOption1() *GetAddonByLookupKeySecurityOption1 {
+	if g == nil {
+		return nil
+	}
+	return g.Option1
+}
+
+func (g *GetAddonByLookupKeySecurity) GetOption2() *GetAddonByLookupKeySecurityOption2 {
+	if g == nil {
+		return nil
+	}
+	return g.Option2
+}
+
+func (g *GetAddonByLookupKeySecurity) GetOption3() *GetAddonByLookupKeySecurityOption3 {
+	if g == nil {
+		return nil
+	}
+	return g.Option3
+}
+
+func (g *GetAddonByLookupKeySecurity) GetOption4() *GetAddonByLookupKeySecurityOption4 {
+	if g == nil {
+		return nil
+	}
+	return g.Option4
+}
+
 type GetAddonByLookupKeyRequest struct {
 	// Addon Lookup Key
 	LookupKey string `pathParam:"style=simple,explode=false,name=lookup_key"`

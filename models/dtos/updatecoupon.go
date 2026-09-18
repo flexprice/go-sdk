@@ -7,6 +7,193 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type UpdateCouponSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (u UpdateCouponSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateCouponSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateCouponSecurityOption1) GetAPIKeyAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.APIKeyAuth
+}
+
+// #region class-body-updatecouponsecurityoption1
+// #endregion class-body-updatecouponsecurityoption1
+
+type UpdateCouponSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (u UpdateCouponSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateCouponSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateCouponSecurityOption2) GetAPIKeyAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.APIKeyAuth
+}
+
+// #region class-body-updatecouponsecurityoption2
+// #endregion class-body-updatecouponsecurityoption2
+
+type UpdateCouponSecurityOption3 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (u UpdateCouponSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateCouponSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateCouponSecurityOption3) GetAPIKeyAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.APIKeyAuth
+}
+
+// #region class-body-updatecouponsecurityoption3
+// #endregion class-body-updatecouponsecurityoption3
+
+type UpdateCouponSecurityOption4 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (u UpdateCouponSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateCouponSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateCouponSecurityOption4) GetBearerAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.BearerAuth
+}
+
+func (u *UpdateCouponSecurityOption4) GetEnvironmentID() string {
+	if u == nil {
+		return ""
+	}
+	return u.EnvironmentID
+}
+
+// #region class-body-updatecouponsecurityoption4
+// #endregion class-body-updatecouponsecurityoption4
+
+type UpdateCouponSecurityOption5 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (u UpdateCouponSecurityOption5) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateCouponSecurityOption5) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateCouponSecurityOption5) GetBearerAuth() string {
+	if u == nil {
+		return ""
+	}
+	return u.BearerAuth
+}
+
+// #region class-body-updatecouponsecurityoption5
+// #endregion class-body-updatecouponsecurityoption5
+
+type UpdateCouponSecurity struct {
+	Option1 *UpdateCouponSecurityOption1 `security:"option"`
+	Option2 *UpdateCouponSecurityOption2 `security:"option"`
+	Option3 *UpdateCouponSecurityOption3 `security:"option"`
+	Option4 *UpdateCouponSecurityOption4 `security:"option"`
+	Option5 *UpdateCouponSecurityOption5 `security:"option"`
+}
+
+func (u UpdateCouponSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(u, "", false)
+}
+
+func (u *UpdateCouponSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (u *UpdateCouponSecurity) GetOption1() *UpdateCouponSecurityOption1 {
+	if u == nil {
+		return nil
+	}
+	return u.Option1
+}
+
+func (u *UpdateCouponSecurity) GetOption2() *UpdateCouponSecurityOption2 {
+	if u == nil {
+		return nil
+	}
+	return u.Option2
+}
+
+func (u *UpdateCouponSecurity) GetOption3() *UpdateCouponSecurityOption3 {
+	if u == nil {
+		return nil
+	}
+	return u.Option3
+}
+
+func (u *UpdateCouponSecurity) GetOption4() *UpdateCouponSecurityOption4 {
+	if u == nil {
+		return nil
+	}
+	return u.Option4
+}
+
+func (u *UpdateCouponSecurity) GetOption5() *UpdateCouponSecurityOption5 {
+	if u == nil {
+		return nil
+	}
+	return u.Option5
+}
+
 type UpdateCouponRequest struct {
 	// Coupon ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

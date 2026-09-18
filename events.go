@@ -33,7 +33,7 @@ func newEvents(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hoo
 
 // IngestEvent - Ingest event
 // Use when sending a single usage event from your app (e.g. one API call or one GB stored). Events are processed asynchronously; returns 202 with event_id.
-func (s *Events) IngestEvent(ctx context.Context, request types.IngestEventRequest, opts ...dtos.Option) (*dtos.IngestEventResponse, error) {
+func (s *Events) IngestEvent(ctx context.Context, request types.IngestEventRequest, security dtos.IngestEventSecurity, opts ...dtos.Option) (*dtos.IngestEventResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Events) IngestEvent(ctx context.Context, request types.IngestEventReque
 		Context:          ctx,
 		OperationID:      "ingestEvent",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Events) IngestEvent(ctx context.Context, request types.IngestEventReque
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -296,7 +296,7 @@ func (s *Events) IngestEvent(ctx context.Context, request types.IngestEventReque
 
 // GetUsageAnalytics - Get usage analytics
 // Use when building analytics views (e.g. usage by feature or customer over time). Supports filtering, grouping, and time-series breakdown.
-func (s *Events) GetUsageAnalytics(ctx context.Context, request types.GetUsageAnalyticsRequest, opts ...dtos.Option) (*dtos.GetUsageAnalyticsResponse, error) {
+func (s *Events) GetUsageAnalytics(ctx context.Context, request types.GetUsageAnalyticsRequest, security dtos.GetUsageAnalyticsSecurity, opts ...dtos.Option) (*dtos.GetUsageAnalyticsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -327,7 +327,7 @@ func (s *Events) GetUsageAnalytics(ctx context.Context, request types.GetUsageAn
 		Context:          ctx,
 		OperationID:      "getUsageAnalytics",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -355,7 +355,7 @@ func (s *Events) GetUsageAnalytics(ctx context.Context, request types.GetUsageAn
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -559,7 +559,7 @@ func (s *Events) GetUsageAnalytics(ctx context.Context, request types.GetUsageAn
 
 // IngestEventsBulk - Bulk ingest events
 // Use when batching usage events (e.g. backfill or high-volume ingestion). More efficient than single event calls; returns 202 when accepted.
-func (s *Events) IngestEventsBulk(ctx context.Context, request types.BulkIngestEventRequest, opts ...dtos.Option) (*dtos.IngestEventsBulkResponse, error) {
+func (s *Events) IngestEventsBulk(ctx context.Context, request types.BulkIngestEventRequest, security dtos.IngestEventsBulkSecurity, opts ...dtos.Option) (*dtos.IngestEventsBulkResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -590,7 +590,7 @@ func (s *Events) IngestEventsBulk(ctx context.Context, request types.BulkIngestE
 		Context:          ctx,
 		OperationID:      "ingestEventsBulk",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -618,7 +618,7 @@ func (s *Events) IngestEventsBulk(ctx context.Context, request types.BulkIngestE
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -822,7 +822,7 @@ func (s *Events) IngestEventsBulk(ctx context.Context, request types.BulkIngestE
 
 // GetHuggingfaceInferenceData - Get Hugging Face inference data
 // Use when fetching Hugging Face inference usage or billing data (e.g. for HF-specific reporting or reconciliation). Reads the meter-usage pipeline.
-func (s *Events) GetHuggingfaceInferenceData(ctx context.Context, request types.GetHuggingFaceBillingDataRequest, opts ...dtos.Option) (*dtos.GetHuggingfaceInferenceDataResponse, error) {
+func (s *Events) GetHuggingfaceInferenceData(ctx context.Context, request types.GetHuggingFaceBillingDataRequest, security dtos.GetHuggingfaceInferenceDataSecurity, opts ...dtos.Option) (*dtos.GetHuggingfaceInferenceDataResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -853,7 +853,7 @@ func (s *Events) GetHuggingfaceInferenceData(ctx context.Context, request types.
 		Context:          ctx,
 		OperationID:      "getHuggingfaceInferenceData",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -881,7 +881,7 @@ func (s *Events) GetHuggingfaceInferenceData(ctx context.Context, request types.
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1060,7 +1060,7 @@ func (s *Events) GetHuggingfaceInferenceData(ctx context.Context, request types.
 
 // GetEvent - Get event
 // Use when debugging a specific event (e.g. why it failed or how it was aggregated). Reads the meter-usage pipeline; includes processing status and step-by-step debug tracker when unprocessed. Uses ?id= query param because event IDs can contain "/".
-func (s *Events) GetEvent(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetEventResponse, error) {
+func (s *Events) GetEvent(ctx context.Context, security dtos.GetEventSecurity, id string, opts ...dtos.Option) (*dtos.GetEventResponse, error) {
 	request := dtos.GetEventRequest{
 		ID: id,
 	}
@@ -1095,7 +1095,7 @@ func (s *Events) GetEvent(ctx context.Context, id string, opts ...dtos.Option) (
 		Context:          ctx,
 		OperationID:      "getEvent",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1120,7 +1120,7 @@ func (s *Events) GetEvent(ctx context.Context, id string, opts ...dtos.Option) (
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1324,7 +1324,7 @@ func (s *Events) GetEvent(ctx context.Context, id string, opts ...dtos.Option) (
 
 // ListRawEvents - List raw events
 // Use when debugging ingestion or exporting raw event data (e.g. support or audit). Returns a paginated list; supports time range and sorting.
-func (s *Events) ListRawEvents(ctx context.Context, request types.GetEventsRequest, opts ...dtos.Option) (*dtos.ListRawEventsResponse, error) {
+func (s *Events) ListRawEvents(ctx context.Context, request types.GetEventsRequest, security dtos.ListRawEventsSecurity, opts ...dtos.Option) (*dtos.ListRawEventsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -1355,7 +1355,7 @@ func (s *Events) ListRawEvents(ctx context.Context, request types.GetEventsReque
 		Context:          ctx,
 		OperationID:      "listRawEvents",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1383,7 +1383,7 @@ func (s *Events) ListRawEvents(ctx context.Context, request types.GetEventsReque
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1587,7 +1587,7 @@ func (s *Events) ListRawEvents(ctx context.Context, request types.GetEventsReque
 
 // GetUsageStatistics - Get usage statistics
 // Use when building usage reports or dashboards across events. Supports filters and grouping; defaults to last 7 days if no range provided.
-func (s *Events) GetUsageStatistics(ctx context.Context, request types.GetUsageRequest, opts ...dtos.Option) (*dtos.GetUsageStatisticsResponse, error) {
+func (s *Events) GetUsageStatistics(ctx context.Context, request types.GetUsageRequest, security dtos.GetUsageStatisticsSecurity, opts ...dtos.Option) (*dtos.GetUsageStatisticsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -1618,7 +1618,7 @@ func (s *Events) GetUsageStatistics(ctx context.Context, request types.GetUsageR
 		Context:          ctx,
 		OperationID:      "getUsageStatistics",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1646,7 +1646,7 @@ func (s *Events) GetUsageStatistics(ctx context.Context, request types.GetUsageR
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1850,7 +1850,7 @@ func (s *Events) GetUsageStatistics(ctx context.Context, request types.GetUsageR
 
 // GetUsageByMeter - Get usage by meter
 // Use when showing usage for a specific meter (e.g. dashboard or overage check). Supports time range, filters, and grouping by customer or subscription.
-func (s *Events) GetUsageByMeter(ctx context.Context, request types.GetUsageByMeterRequest, opts ...dtos.Option) (*dtos.GetUsageByMeterResponse, error) {
+func (s *Events) GetUsageByMeter(ctx context.Context, request types.GetUsageByMeterRequest, security dtos.GetUsageByMeterSecurity, opts ...dtos.Option) (*dtos.GetUsageByMeterResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -1881,7 +1881,7 @@ func (s *Events) GetUsageByMeter(ctx context.Context, request types.GetUsageByMe
 		Context:          ctx,
 		OperationID:      "getUsageByMeter",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1909,7 +1909,7 @@ func (s *Events) GetUsageByMeter(ctx context.Context, request types.GetUsageByMe
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

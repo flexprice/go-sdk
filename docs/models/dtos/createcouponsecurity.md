@@ -1,0 +1,12 @@
+# CreateCouponSecurity
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `Option1`                                                                             | [*dtos.CreateCouponSecurityOption1](../../models/dtos/createcouponsecurityoption1.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option2`                                                                             | [*dtos.CreateCouponSecurityOption2](../../models/dtos/createcouponsecurityoption2.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option3`                                                                             | [*dtos.CreateCouponSecurityOption3](../../models/dtos/createcouponsecurityoption3.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option4`                                                                             | [*dtos.CreateCouponSecurityOption4](../../models/dtos/createcouponsecurityoption4.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option5`                                                                             | [*dtos.CreateCouponSecurityOption5](../../models/dtos/createcouponsecurityoption5.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |

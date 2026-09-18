@@ -9,6 +9,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type ListRbacRolesSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (l ListRbacRolesSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListRbacRolesSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListRbacRolesSecurityOption1) GetAPIKeyAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.APIKeyAuth
+}
+
+// #region class-body-listrbacrolessecurityoption1
+// #endregion class-body-listrbacrolessecurityoption1
+
+type ListRbacRolesSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (l ListRbacRolesSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListRbacRolesSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListRbacRolesSecurityOption2) GetAPIKeyAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.APIKeyAuth
+}
+
+// #region class-body-listrbacrolessecurityoption2
+// #endregion class-body-listrbacrolessecurityoption2
+
+type ListRbacRolesSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (l ListRbacRolesSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListRbacRolesSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListRbacRolesSecurityOption3) GetBearerAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.BearerAuth
+}
+
+func (l *ListRbacRolesSecurityOption3) GetEnvironmentID() string {
+	if l == nil {
+		return ""
+	}
+	return l.EnvironmentID
+}
+
+// #region class-body-listrbacrolessecurityoption3
+// #endregion class-body-listrbacrolessecurityoption3
+
+type ListRbacRolesSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (l ListRbacRolesSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListRbacRolesSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListRbacRolesSecurityOption4) GetBearerAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.BearerAuth
+}
+
+// #region class-body-listrbacrolessecurityoption4
+// #endregion class-body-listrbacrolessecurityoption4
+
+type ListRbacRolesSecurity struct {
+	Option1 *ListRbacRolesSecurityOption1 `security:"option"`
+	Option2 *ListRbacRolesSecurityOption2 `security:"option"`
+	Option3 *ListRbacRolesSecurityOption3 `security:"option"`
+	Option4 *ListRbacRolesSecurityOption4 `security:"option"`
+}
+
+func (l ListRbacRolesSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *ListRbacRolesSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *ListRbacRolesSecurity) GetOption1() *ListRbacRolesSecurityOption1 {
+	if l == nil {
+		return nil
+	}
+	return l.Option1
+}
+
+func (l *ListRbacRolesSecurity) GetOption2() *ListRbacRolesSecurityOption2 {
+	if l == nil {
+		return nil
+	}
+	return l.Option2
+}
+
+func (l *ListRbacRolesSecurity) GetOption3() *ListRbacRolesSecurityOption3 {
+	if l == nil {
+		return nil
+	}
+	return l.Option3
+}
+
+func (l *ListRbacRolesSecurity) GetOption4() *ListRbacRolesSecurityOption4 {
+	if l == nil {
+		return nil
+	}
+	return l.Option4
+}
+
 // UserType - Filter by user type
 type UserType string
 

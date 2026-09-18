@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type QueryInvoiceSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (q QueryInvoiceSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
+}
+
+func (q *QueryInvoiceSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (q *QueryInvoiceSecurityOption1) GetAPIKeyAuth() string {
+	if q == nil {
+		return ""
+	}
+	return q.APIKeyAuth
+}
+
+// #region class-body-queryinvoicesecurityoption1
+// #endregion class-body-queryinvoicesecurityoption1
+
+type QueryInvoiceSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (q QueryInvoiceSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
+}
+
+func (q *QueryInvoiceSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (q *QueryInvoiceSecurityOption2) GetAPIKeyAuth() string {
+	if q == nil {
+		return ""
+	}
+	return q.APIKeyAuth
+}
+
+// #region class-body-queryinvoicesecurityoption2
+// #endregion class-body-queryinvoicesecurityoption2
+
+type QueryInvoiceSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (q QueryInvoiceSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
+}
+
+func (q *QueryInvoiceSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (q *QueryInvoiceSecurityOption3) GetBearerAuth() string {
+	if q == nil {
+		return ""
+	}
+	return q.BearerAuth
+}
+
+func (q *QueryInvoiceSecurityOption3) GetEnvironmentID() string {
+	if q == nil {
+		return ""
+	}
+	return q.EnvironmentID
+}
+
+// #region class-body-queryinvoicesecurityoption3
+// #endregion class-body-queryinvoicesecurityoption3
+
+type QueryInvoiceSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (q QueryInvoiceSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
+}
+
+func (q *QueryInvoiceSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (q *QueryInvoiceSecurityOption4) GetBearerAuth() string {
+	if q == nil {
+		return ""
+	}
+	return q.BearerAuth
+}
+
+// #region class-body-queryinvoicesecurityoption4
+// #endregion class-body-queryinvoicesecurityoption4
+
+type QueryInvoiceSecurity struct {
+	Option1 *QueryInvoiceSecurityOption1 `security:"option"`
+	Option2 *QueryInvoiceSecurityOption2 `security:"option"`
+	Option3 *QueryInvoiceSecurityOption3 `security:"option"`
+	Option4 *QueryInvoiceSecurityOption4 `security:"option"`
+}
+
+func (q QueryInvoiceSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
+}
+
+func (q *QueryInvoiceSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (q *QueryInvoiceSecurity) GetOption1() *QueryInvoiceSecurityOption1 {
+	if q == nil {
+		return nil
+	}
+	return q.Option1
+}
+
+func (q *QueryInvoiceSecurity) GetOption2() *QueryInvoiceSecurityOption2 {
+	if q == nil {
+		return nil
+	}
+	return q.Option2
+}
+
+func (q *QueryInvoiceSecurity) GetOption3() *QueryInvoiceSecurityOption3 {
+	if q == nil {
+		return nil
+	}
+	return q.Option3
+}
+
+func (q *QueryInvoiceSecurity) GetOption4() *QueryInvoiceSecurityOption4 {
+	if q == nil {
+		return nil
+	}
+	return q.Option4
+}
+
 type QueryInvoiceResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK

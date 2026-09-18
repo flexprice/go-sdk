@@ -1,0 +1,11 @@
+# UpdateTaskStatusSecurity
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                     | [*dtos.UpdateTaskStatusSecurityOption1](../../models/dtos/updatetaskstatussecurityoption1.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Option2`                                                                                     | [*dtos.UpdateTaskStatusSecurityOption2](../../models/dtos/updatetaskstatussecurityoption2.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Option3`                                                                                     | [*dtos.UpdateTaskStatusSecurityOption3](../../models/dtos/updatetaskstatussecurityoption3.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Option4`                                                                                     | [*dtos.UpdateTaskStatusSecurityOption4](../../models/dtos/updatetaskstatussecurityoption4.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |

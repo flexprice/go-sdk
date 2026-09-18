@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type LinkIntegrationMappingSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (l LinkIntegrationMappingSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkIntegrationMappingSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *LinkIntegrationMappingSecurityOption1) GetAPIKeyAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.APIKeyAuth
+}
+
+// #region class-body-linkintegrationmappingsecurityoption1
+// #endregion class-body-linkintegrationmappingsecurityoption1
+
+type LinkIntegrationMappingSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (l LinkIntegrationMappingSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkIntegrationMappingSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *LinkIntegrationMappingSecurityOption2) GetAPIKeyAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.APIKeyAuth
+}
+
+// #region class-body-linkintegrationmappingsecurityoption2
+// #endregion class-body-linkintegrationmappingsecurityoption2
+
+type LinkIntegrationMappingSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (l LinkIntegrationMappingSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkIntegrationMappingSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *LinkIntegrationMappingSecurityOption3) GetBearerAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.BearerAuth
+}
+
+func (l *LinkIntegrationMappingSecurityOption3) GetEnvironmentID() string {
+	if l == nil {
+		return ""
+	}
+	return l.EnvironmentID
+}
+
+// #region class-body-linkintegrationmappingsecurityoption3
+// #endregion class-body-linkintegrationmappingsecurityoption3
+
+type LinkIntegrationMappingSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (l LinkIntegrationMappingSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkIntegrationMappingSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *LinkIntegrationMappingSecurityOption4) GetBearerAuth() string {
+	if l == nil {
+		return ""
+	}
+	return l.BearerAuth
+}
+
+// #region class-body-linkintegrationmappingsecurityoption4
+// #endregion class-body-linkintegrationmappingsecurityoption4
+
+type LinkIntegrationMappingSecurity struct {
+	Option1 *LinkIntegrationMappingSecurityOption1 `security:"option"`
+	Option2 *LinkIntegrationMappingSecurityOption2 `security:"option"`
+	Option3 *LinkIntegrationMappingSecurityOption3 `security:"option"`
+	Option4 *LinkIntegrationMappingSecurityOption4 `security:"option"`
+}
+
+func (l LinkIntegrationMappingSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(l, "", false)
+}
+
+func (l *LinkIntegrationMappingSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &l, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (l *LinkIntegrationMappingSecurity) GetOption1() *LinkIntegrationMappingSecurityOption1 {
+	if l == nil {
+		return nil
+	}
+	return l.Option1
+}
+
+func (l *LinkIntegrationMappingSecurity) GetOption2() *LinkIntegrationMappingSecurityOption2 {
+	if l == nil {
+		return nil
+	}
+	return l.Option2
+}
+
+func (l *LinkIntegrationMappingSecurity) GetOption3() *LinkIntegrationMappingSecurityOption3 {
+	if l == nil {
+		return nil
+	}
+	return l.Option3
+}
+
+func (l *LinkIntegrationMappingSecurity) GetOption4() *LinkIntegrationMappingSecurityOption4 {
+	if l == nil {
+		return nil
+	}
+	return l.Option4
+}
+
 type LinkIntegrationMappingResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK

@@ -1,0 +1,11 @@
+# TopUpWalletSecurity
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Option1`                                                                           | [*dtos.TopUpWalletSecurityOption1](../../models/dtos/topupwalletsecurityoption1.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option2`                                                                           | [*dtos.TopUpWalletSecurityOption2](../../models/dtos/topupwalletsecurityoption2.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option3`                                                                           | [*dtos.TopUpWalletSecurityOption3](../../models/dtos/topupwalletsecurityoption3.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Option4`                                                                           | [*dtos.TopUpWalletSecurityOption4](../../models/dtos/topupwalletsecurityoption4.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |

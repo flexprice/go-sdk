@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type ExecuteSubscriptionModifySecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (e ExecuteSubscriptionModifySecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteSubscriptionModifySecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteSubscriptionModifySecurityOption1) GetAPIKeyAuth() string {
+	if e == nil {
+		return ""
+	}
+	return e.APIKeyAuth
+}
+
+// #region class-body-executesubscriptionmodifysecurityoption1
+// #endregion class-body-executesubscriptionmodifysecurityoption1
+
+type ExecuteSubscriptionModifySecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (e ExecuteSubscriptionModifySecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteSubscriptionModifySecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteSubscriptionModifySecurityOption2) GetAPIKeyAuth() string {
+	if e == nil {
+		return ""
+	}
+	return e.APIKeyAuth
+}
+
+// #region class-body-executesubscriptionmodifysecurityoption2
+// #endregion class-body-executesubscriptionmodifysecurityoption2
+
+type ExecuteSubscriptionModifySecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (e ExecuteSubscriptionModifySecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteSubscriptionModifySecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteSubscriptionModifySecurityOption3) GetBearerAuth() string {
+	if e == nil {
+		return ""
+	}
+	return e.BearerAuth
+}
+
+func (e *ExecuteSubscriptionModifySecurityOption3) GetEnvironmentID() string {
+	if e == nil {
+		return ""
+	}
+	return e.EnvironmentID
+}
+
+// #region class-body-executesubscriptionmodifysecurityoption3
+// #endregion class-body-executesubscriptionmodifysecurityoption3
+
+type ExecuteSubscriptionModifySecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (e ExecuteSubscriptionModifySecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteSubscriptionModifySecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteSubscriptionModifySecurityOption4) GetBearerAuth() string {
+	if e == nil {
+		return ""
+	}
+	return e.BearerAuth
+}
+
+// #region class-body-executesubscriptionmodifysecurityoption4
+// #endregion class-body-executesubscriptionmodifysecurityoption4
+
+type ExecuteSubscriptionModifySecurity struct {
+	Option1 *ExecuteSubscriptionModifySecurityOption1 `security:"option"`
+	Option2 *ExecuteSubscriptionModifySecurityOption2 `security:"option"`
+	Option3 *ExecuteSubscriptionModifySecurityOption3 `security:"option"`
+	Option4 *ExecuteSubscriptionModifySecurityOption4 `security:"option"`
+}
+
+func (e ExecuteSubscriptionModifySecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteSubscriptionModifySecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteSubscriptionModifySecurity) GetOption1() *ExecuteSubscriptionModifySecurityOption1 {
+	if e == nil {
+		return nil
+	}
+	return e.Option1
+}
+
+func (e *ExecuteSubscriptionModifySecurity) GetOption2() *ExecuteSubscriptionModifySecurityOption2 {
+	if e == nil {
+		return nil
+	}
+	return e.Option2
+}
+
+func (e *ExecuteSubscriptionModifySecurity) GetOption3() *ExecuteSubscriptionModifySecurityOption3 {
+	if e == nil {
+		return nil
+	}
+	return e.Option3
+}
+
+func (e *ExecuteSubscriptionModifySecurity) GetOption4() *ExecuteSubscriptionModifySecurityOption4 {
+	if e == nil {
+		return nil
+	}
+	return e.Option4
+}
+
 type ExecuteSubscriptionModifyRequest struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

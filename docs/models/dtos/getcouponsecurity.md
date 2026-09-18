@@ -1,0 +1,11 @@
+# GetCouponSecurity
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `Option1`                                                                       | [*dtos.GetCouponSecurityOption1](../../models/dtos/getcouponsecurityoption1.md) | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `Option2`                                                                       | [*dtos.GetCouponSecurityOption2](../../models/dtos/getcouponsecurityoption2.md) | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `Option3`                                                                       | [*dtos.GetCouponSecurityOption3](../../models/dtos/getcouponsecurityoption3.md) | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `Option4`                                                                       | [*dtos.GetCouponSecurityOption4](../../models/dtos/getcouponsecurityoption4.md) | :heavy_minus_sign:                                                              | N/A                                                                             |

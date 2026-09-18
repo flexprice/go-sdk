@@ -19,6 +19,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -26,11 +27,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Environments.CloneEnvironment(ctx, "<id>", types.CloneEnvironmentRequest{})
+    res, err := s.Environments.CloneEnvironment(ctx, dtos.CloneEnvironmentSecurity{
+        Option1: &dtos.CloneEnvironmentSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.CloneEnvironmentRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -45,6 +48,7 @@ func main() {
 | Parameter                                                                      | Type                                                                           | Required                                                                       | Description                                                                    |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
 | `ctx`                                                                          | [context.Context](https://pkg.go.dev/context#Context)                          | :heavy_check_mark:                                                             | The context to use for the request.                                            |
+| `security`                                                                     | [dtos.CloneEnvironmentSecurity](../../models/dtos/cloneenvironmentsecurity.md) | :heavy_check_mark:                                                             | The security requirements to use for the request.                              |
 | `id`                                                                           | `string`                                                                       | :heavy_check_mark:                                                             | Source Environment ID                                                          |
 | `body`                                                                         | [types.CloneEnvironmentRequest](../../models/types/cloneenvironmentrequest.md) | :heavy_check_mark:                                                             | Clone configuration                                                            |
 | `opts`                                                                         | [][dtos.Option](../../models/dtos/option.md)                                   | :heavy_minus_sign:                                                             | The options for this request.                                                  |

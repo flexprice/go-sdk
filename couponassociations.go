@@ -33,7 +33,7 @@ func newCouponAssociations(rootSDK *Flexprice, sdkConfig config.SDKConfiguration
 
 // ListCouponAssociations - List coupon associations
 // List coupon associations with optional filters. Coupon associations are created and removed via the subscription modify API.
-func (s *CouponAssociations) ListCouponAssociations(ctx context.Context, request dtos.ListCouponAssociationsRequest, opts ...dtos.Option) (*dtos.ListCouponAssociationsResponse, error) {
+func (s *CouponAssociations) ListCouponAssociations(ctx context.Context, request dtos.ListCouponAssociationsRequest, security dtos.ListCouponAssociationsSecurity, opts ...dtos.Option) (*dtos.ListCouponAssociationsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *CouponAssociations) ListCouponAssociations(ctx context.Context, request
 		Context:          ctx,
 		OperationID:      "listCouponAssociations",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -89,7 +89,7 @@ func (s *CouponAssociations) ListCouponAssociations(ctx context.Context, request
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -293,7 +293,7 @@ func (s *CouponAssociations) ListCouponAssociations(ctx context.Context, request
 
 // GetCouponAssociation - Get coupon association
 // Get a single coupon association by ID. Coupon associations are created and removed via the subscription modify API.
-func (s *CouponAssociations) GetCouponAssociation(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetCouponAssociationResponse, error) {
+func (s *CouponAssociations) GetCouponAssociation(ctx context.Context, security dtos.GetCouponAssociationSecurity, id string, opts ...dtos.Option) (*dtos.GetCouponAssociationResponse, error) {
 	request := dtos.GetCouponAssociationRequest{
 		ID: id,
 	}
@@ -328,7 +328,7 @@ func (s *CouponAssociations) GetCouponAssociation(ctx context.Context, id string
 		Context:          ctx,
 		OperationID:      "getCouponAssociation",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -349,7 +349,7 @@ func (s *CouponAssociations) GetCouponAssociation(ctx context.Context, id string
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

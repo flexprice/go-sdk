@@ -7,6 +7,163 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type ExecuteSubscriptionPlanChangeV2SecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (e ExecuteSubscriptionPlanChangeV2SecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2SecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2SecurityOption1) GetAPIKeyAuth() string {
+	if e == nil {
+		return ""
+	}
+	return e.APIKeyAuth
+}
+
+// #region class-body-executesubscriptionplanchangev2securityoption1
+// #endregion class-body-executesubscriptionplanchangev2securityoption1
+
+type ExecuteSubscriptionPlanChangeV2SecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (e ExecuteSubscriptionPlanChangeV2SecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2SecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2SecurityOption2) GetAPIKeyAuth() string {
+	if e == nil {
+		return ""
+	}
+	return e.APIKeyAuth
+}
+
+// #region class-body-executesubscriptionplanchangev2securityoption2
+// #endregion class-body-executesubscriptionplanchangev2securityoption2
+
+type ExecuteSubscriptionPlanChangeV2SecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (e ExecuteSubscriptionPlanChangeV2SecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2SecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2SecurityOption3) GetBearerAuth() string {
+	if e == nil {
+		return ""
+	}
+	return e.BearerAuth
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2SecurityOption3) GetEnvironmentID() string {
+	if e == nil {
+		return ""
+	}
+	return e.EnvironmentID
+}
+
+// #region class-body-executesubscriptionplanchangev2securityoption3
+// #endregion class-body-executesubscriptionplanchangev2securityoption3
+
+type ExecuteSubscriptionPlanChangeV2SecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (e ExecuteSubscriptionPlanChangeV2SecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2SecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2SecurityOption4) GetBearerAuth() string {
+	if e == nil {
+		return ""
+	}
+	return e.BearerAuth
+}
+
+// #region class-body-executesubscriptionplanchangev2securityoption4
+// #endregion class-body-executesubscriptionplanchangev2securityoption4
+
+type ExecuteSubscriptionPlanChangeV2Security struct {
+	Option1 *ExecuteSubscriptionPlanChangeV2SecurityOption1 `security:"option"`
+	Option2 *ExecuteSubscriptionPlanChangeV2SecurityOption2 `security:"option"`
+	Option3 *ExecuteSubscriptionPlanChangeV2SecurityOption3 `security:"option"`
+	Option4 *ExecuteSubscriptionPlanChangeV2SecurityOption4 `security:"option"`
+}
+
+func (e ExecuteSubscriptionPlanChangeV2Security) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(e, "", false)
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2Security) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &e, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2Security) GetOption1() *ExecuteSubscriptionPlanChangeV2SecurityOption1 {
+	if e == nil {
+		return nil
+	}
+	return e.Option1
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2Security) GetOption2() *ExecuteSubscriptionPlanChangeV2SecurityOption2 {
+	if e == nil {
+		return nil
+	}
+	return e.Option2
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2Security) GetOption3() *ExecuteSubscriptionPlanChangeV2SecurityOption3 {
+	if e == nil {
+		return nil
+	}
+	return e.Option3
+}
+
+func (e *ExecuteSubscriptionPlanChangeV2Security) GetOption4() *ExecuteSubscriptionPlanChangeV2SecurityOption4 {
+	if e == nil {
+		return nil
+	}
+	return e.Option4
+}
+
+// #region class-body-executesubscriptionplanchangev2security
+// #endregion class-body-executesubscriptionplanchangev2security
+
 type ExecuteSubscriptionPlanChangeV2Request struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

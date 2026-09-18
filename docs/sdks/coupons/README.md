@@ -25,20 +25,23 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
     res, err := s.Coupons.CreateCoupon(ctx, types.CreateCouponRequest{
         Cadence: types.CouponCadenceRepeated,
         Name: "<value>",
         Type: types.CouponTypePercentage,
+    }, dtos.CreateCouponSecurity{
+        Option1: &dtos.CreateCouponSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -55,6 +58,7 @@ func main() {
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
 | `request`                                                              | [types.CreateCouponRequest](../../models/types/createcouponrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `security`                                                             | [dtos.CreateCouponSecurity](../../models/dtos/createcouponsecurity.md) | :heavy_check_mark:                                                     | The security requirements to use for the request.                      |
 | `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
 
 ### Response
@@ -82,17 +86,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Coupons.GetCouponByCode(ctx, "<value>")
+    res, err := s.Coupons.GetCouponByCode(ctx, dtos.GetCouponByCodeSecurity{
+        Option1: &dtos.GetCouponByCodeSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<value>")
     if err != nil {
         log.Fatal(err)
     }
@@ -104,11 +111,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `code`                                                | `string`                                              | :heavy_check_mark:                                    | Coupon code                                           |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                    | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `ctx`                                                                        | [context.Context](https://pkg.go.dev/context#Context)                        | :heavy_check_mark:                                                           | The context to use for the request.                                          |
+| `security`                                                                   | [dtos.GetCouponByCodeSecurity](../../models/dtos/getcouponbycodesecurity.md) | :heavy_check_mark:                                                           | The security requirements to use for the request.                            |
+| `code`                                                                       | `string`                                                                     | :heavy_check_mark:                                                           | Coupon code                                                                  |
+| `opts`                                                                       | [][dtos.Option](../../models/dtos/option.md)                                 | :heavy_minus_sign:                                                           | The options for this request.                                                |
 
 ### Response
 
@@ -136,17 +144,20 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Coupons.QueryCoupon(ctx, types.CouponFilter{})
+    res, err := s.Coupons.QueryCoupon(ctx, types.CouponFilter{}, dtos.QueryCouponSecurity{
+        Option1: &dtos.QueryCouponSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -158,11 +169,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                | Type                                                     | Required                                                 | Description                                              |
-| -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- | -------------------------------------------------------- |
-| `ctx`                                                    | [context.Context](https://pkg.go.dev/context#Context)    | :heavy_check_mark:                                       | The context to use for the request.                      |
-| `request`                                                | [types.CouponFilter](../../models/types/couponfilter.md) | :heavy_check_mark:                                       | The request object to use for the request.               |
-| `opts`                                                   | [][dtos.Option](../../models/dtos/option.md)             | :heavy_minus_sign:                                       | The options for this request.                            |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
+| `request`                                                            | [types.CouponFilter](../../models/types/couponfilter.md)             | :heavy_check_mark:                                                   | The request object to use for the request.                           |
+| `security`                                                           | [dtos.QueryCouponSecurity](../../models/dtos/querycouponsecurity.md) | :heavy_check_mark:                                                   | The security requirements to use for the request.                    |
+| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
 ### Response
 
@@ -189,17 +201,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Coupons.GetCoupon(ctx, "<id>")
+    res, err := s.Coupons.GetCoupon(ctx, dtos.GetCouponSecurity{
+        Option1: &dtos.GetCouponSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -211,11 +226,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Coupon ID                                             |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `ctx`                                                            | [context.Context](https://pkg.go.dev/context#Context)            | :heavy_check_mark:                                               | The context to use for the request.                              |
+| `security`                                                       | [dtos.GetCouponSecurity](../../models/dtos/getcouponsecurity.md) | :heavy_check_mark:                                               | The security requirements to use for the request.                |
+| `id`                                                             | `string`                                                         | :heavy_check_mark:                                               | Coupon ID                                                        |
+| `opts`                                                           | [][dtos.Option](../../models/dtos/option.md)                     | :heavy_minus_sign:                                               | The options for this request.                                    |
 
 ### Response
 
@@ -242,6 +258,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -249,11 +266,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Coupons.UpdateCoupon(ctx, "<id>", types.UpdateCouponRequest{})
+    res, err := s.Coupons.UpdateCoupon(ctx, dtos.UpdateCouponSecurity{
+        Option1: &dtos.UpdateCouponSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.UpdateCouponRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -268,6 +287,7 @@ func main() {
 | Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
+| `security`                                                             | [dtos.UpdateCouponSecurity](../../models/dtos/updatecouponsecurity.md) | :heavy_check_mark:                                                     | The security requirements to use for the request.                      |
 | `id`                                                                   | `string`                                                               | :heavy_check_mark:                                                     | Coupon ID                                                              |
 | `body`                                                                 | [types.UpdateCouponRequest](../../models/types/updatecouponrequest.md) | :heavy_check_mark:                                                     | Coupon update request                                                  |
 | `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
@@ -297,17 +317,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Coupons.DeleteCoupon(ctx, "<id>")
+    res, err := s.Coupons.DeleteCoupon(ctx, dtos.DeleteCouponSecurity{
+        Option1: &dtos.DeleteCouponSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -319,11 +342,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Coupon ID                                             |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
+| `security`                                                             | [dtos.DeleteCouponSecurity](../../models/dtos/deletecouponsecurity.md) | :heavy_check_mark:                                                     | The security requirements to use for the request.                      |
+| `id`                                                                   | `string`                                                               | :heavy_check_mark:                                                     | Coupon ID                                                              |
+| `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
 
 ### Response
 

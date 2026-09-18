@@ -30,11 +30,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.TaxRates.GetTaxRates(ctx, dtos.GetTaxRatesRequest{})
+    res, err := s.TaxRates.GetTaxRates(ctx, dtos.GetTaxRatesRequest{}, dtos.GetTaxRatesSecurity{
+        Option1: &dtos.GetTaxRatesSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -46,11 +48,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
-| `request`                                                          | [dtos.GetTaxRatesRequest](../../models/dtos/gettaxratesrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
-| `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
+| Parameter                                                            | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `ctx`                                                                | [context.Context](https://pkg.go.dev/context#Context)                | :heavy_check_mark:                                                   | The context to use for the request.                                  |
+| `request`                                                            | [dtos.GetTaxRatesRequest](../../models/dtos/gettaxratesrequest.md)   | :heavy_check_mark:                                                   | The request object to use for the request.                           |
+| `security`                                                           | [dtos.GetTaxRatesSecurity](../../models/dtos/gettaxratessecurity.md) | :heavy_check_mark:                                                   | The security requirements to use for the request.                    |
+| `opts`                                                               | [][dtos.Option](../../models/dtos/option.md)                         | :heavy_minus_sign:                                                   | The options for this request.                                        |
 
 ### Response
 
@@ -78,19 +81,22 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
     res, err := s.TaxRates.CreateTaxRate(ctx, types.CreateTaxRateRequest{
         Code: "<value>",
         Name: "<value>",
+    }, dtos.CreateTaxRateSecurity{
+        Option1: &dtos.CreateTaxRateSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -107,6 +113,7 @@ func main() {
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
 | `request`                                                                | [types.CreateTaxRateRequest](../../models/types/createtaxraterequest.md) | :heavy_check_mark:                                                       | The request object to use for the request.                               |
+| `security`                                                               | [dtos.CreateTaxRateSecurity](../../models/dtos/createtaxratesecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
 | `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
 ### Response
@@ -134,17 +141,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.TaxRates.GetTaxRate(ctx, "<id>")
+    res, err := s.TaxRates.GetTaxRate(ctx, dtos.GetTaxRateSecurity{
+        Option1: &dtos.GetTaxRateSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -156,11 +166,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Tax rate ID                                           |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
+| `security`                                                         | [dtos.GetTaxRateSecurity](../../models/dtos/gettaxratesecurity.md) | :heavy_check_mark:                                                 | The security requirements to use for the request.                  |
+| `id`                                                               | `string`                                                           | :heavy_check_mark:                                                 | Tax rate ID                                                        |
+| `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
 
 ### Response
 
@@ -187,6 +198,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -194,11 +206,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.TaxRates.UpdateTaxRate(ctx, "<id>", types.UpdateTaxRateRequest{})
+    res, err := s.TaxRates.UpdateTaxRate(ctx, dtos.UpdateTaxRateSecurity{
+        Option1: &dtos.UpdateTaxRateSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.UpdateTaxRateRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -213,6 +227,7 @@ func main() {
 | Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
 | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
 | `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `security`                                                               | [dtos.UpdateTaxRateSecurity](../../models/dtos/updatetaxratesecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
 | `id`                                                                     | `string`                                                                 | :heavy_check_mark:                                                       | Tax rate ID                                                              |
 | `body`                                                                   | [types.UpdateTaxRateRequest](../../models/types/updatetaxraterequest.md) | :heavy_check_mark:                                                       | Tax rate to update                                                       |
 | `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
@@ -242,17 +257,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.TaxRates.DeleteTaxRate(ctx, "<id>")
+    res, err := s.TaxRates.DeleteTaxRate(ctx, dtos.DeleteTaxRateSecurity{
+        Option1: &dtos.DeleteTaxRateSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -264,11 +282,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Tax rate ID                                           |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ctx`                                                                    | [context.Context](https://pkg.go.dev/context#Context)                    | :heavy_check_mark:                                                       | The context to use for the request.                                      |
+| `security`                                                               | [dtos.DeleteTaxRateSecurity](../../models/dtos/deletetaxratesecurity.md) | :heavy_check_mark:                                                       | The security requirements to use for the request.                        |
+| `id`                                                                     | `string`                                                                 | :heavy_check_mark:                                                       | Tax rate ID                                                              |
+| `opts`                                                                   | [][dtos.Option](../../models/dtos/option.md)                             | :heavy_minus_sign:                                                       | The options for this request.                                            |
 
 ### Response
 

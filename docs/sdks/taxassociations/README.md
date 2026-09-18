@@ -23,17 +23,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.TaxAssociations.ListTaxAssociations(ctx, nil, nil, nil, nil)
+    res, err := s.TaxAssociations.ListTaxAssociations(ctx, dtos.ListTaxAssociationsSecurity{
+        Option1: &dtos.ListTaxAssociationsSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, nil, nil, nil, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -45,14 +48,15 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `entityType`                                          | `*string`                                             | :heavy_minus_sign:                                    | Entity Type                                           |
-| `entityID`                                            | `*string`                                             | :heavy_minus_sign:                                    | Entity ID                                             |
-| `externalCustomerID`                                  | `*string`                                             | :heavy_minus_sign:                                    | External Customer ID                                  |
-| `taxRateID`                                           | `*string`                                             | :heavy_minus_sign:                                    | Tax Rate ID                                           |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                            | Type                                                                                 | Required                                                                             | Description                                                                          |
+| ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ |
+| `ctx`                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                | :heavy_check_mark:                                                                   | The context to use for the request.                                                  |
+| `security`                                                                           | [dtos.ListTaxAssociationsSecurity](../../models/dtos/listtaxassociationssecurity.md) | :heavy_check_mark:                                                                   | The security requirements to use for the request.                                    |
+| `entityType`                                                                         | `*string`                                                                            | :heavy_minus_sign:                                                                   | Entity Type                                                                          |
+| `entityID`                                                                           | `*string`                                                                            | :heavy_minus_sign:                                                                   | Entity ID                                                                            |
+| `externalCustomerID`                                                                 | `*string`                                                                            | :heavy_minus_sign:                                                                   | External Customer ID                                                                 |
+| `taxRateID`                                                                          | `*string`                                                                            | :heavy_minus_sign:                                                                   | Tax Rate ID                                                                          |
+| `opts`                                                                               | [][dtos.Option](../../models/dtos/option.md)                                         | :heavy_minus_sign:                                                                   | The options for this request.                                                        |
 
 ### Response
 
@@ -80,18 +84,21 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
     res, err := s.TaxAssociations.CreateTaxAssociation(ctx, types.CreateTaxAssociationRequest{
         TaxRateCode: "<value>",
+    }, dtos.CreateTaxAssociationSecurity{
+        Option1: &dtos.CreateTaxAssociationSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -108,6 +115,7 @@ func main() {
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
 | `request`                                                                              | [types.CreateTaxAssociationRequest](../../models/types/createtaxassociationrequest.md) | :heavy_check_mark:                                                                     | The request object to use for the request.                                             |
+| `security`                                                                             | [dtos.CreateTaxAssociationSecurity](../../models/dtos/createtaxassociationsecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
 | `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
@@ -135,17 +143,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.TaxAssociations.GetTaxAssociation(ctx, "<id>")
+    res, err := s.TaxAssociations.GetTaxAssociation(ctx, dtos.GetTaxAssociationSecurity{
+        Option1: &dtos.GetTaxAssociationSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -157,11 +168,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Tax Config ID                                         |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `security`                                                                       | [dtos.GetTaxAssociationSecurity](../../models/dtos/gettaxassociationsecurity.md) | :heavy_check_mark:                                                               | The security requirements to use for the request.                                |
+| `id`                                                                             | `string`                                                                         | :heavy_check_mark:                                                               | Tax Config ID                                                                    |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
 
 ### Response
 
@@ -188,6 +200,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -195,11 +208,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.TaxAssociations.UpdateTaxAssociation(ctx, "<id>", types.TaxAssociationUpdateRequest{})
+    res, err := s.TaxAssociations.UpdateTaxAssociation(ctx, dtos.UpdateTaxAssociationSecurity{
+        Option1: &dtos.UpdateTaxAssociationSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.TaxAssociationUpdateRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -214,6 +229,7 @@ func main() {
 | Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
 | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `security`                                                                             | [dtos.UpdateTaxAssociationSecurity](../../models/dtos/updatetaxassociationsecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
 | `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Tax Config ID                                                                          |
 | `body`                                                                                 | [types.TaxAssociationUpdateRequest](../../models/types/taxassociationupdaterequest.md) | :heavy_check_mark:                                                                     | Tax Config Request                                                                     |
 | `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
@@ -243,17 +259,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.TaxAssociations.DeleteTaxAssociation(ctx, "<id>")
+    res, err := s.TaxAssociations.DeleteTaxAssociation(ctx, dtos.DeleteTaxAssociationSecurity{
+        Option1: &dtos.DeleteTaxAssociationSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -265,11 +284,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Tax Config ID                                         |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                              | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `ctx`                                                                                  | [context.Context](https://pkg.go.dev/context#Context)                                  | :heavy_check_mark:                                                                     | The context to use for the request.                                                    |
+| `security`                                                                             | [dtos.DeleteTaxAssociationSecurity](../../models/dtos/deletetaxassociationsecurity.md) | :heavy_check_mark:                                                                     | The security requirements to use for the request.                                      |
+| `id`                                                                                   | `string`                                                                               | :heavy_check_mark:                                                                     | Tax Config ID                                                                          |
+| `opts`                                                                                 | [][dtos.Option](../../models/dtos/option.md)                                           | :heavy_minus_sign:                                                                     | The options for this request.                                                          |
 
 ### Response
 

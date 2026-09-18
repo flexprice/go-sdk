@@ -33,7 +33,7 @@ func newPrices(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *hoo
 
 // CreatePrice - Create price
 // Use when adding a new price to a plan or catalog (e.g. per-seat, flat, or metered). Ideal for both simple and usage-based pricing.
-func (s *Prices) CreatePrice(ctx context.Context, request types.CreatePriceRequest, opts ...dtos.Option) (*dtos.CreatePriceResponse, error) {
+func (s *Prices) CreatePrice(ctx context.Context, request types.CreatePriceRequest, security dtos.CreatePriceSecurity, opts ...dtos.Option) (*dtos.CreatePriceResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Prices) CreatePrice(ctx context.Context, request types.CreatePriceReque
 		Context:          ctx,
 		OperationID:      "createPrice",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Prices) CreatePrice(ctx context.Context, request types.CreatePriceReque
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -296,7 +296,7 @@ func (s *Prices) CreatePrice(ctx context.Context, request types.CreatePriceReque
 
 // CreatePricesBulk - Create prices in bulk
 // Use when creating many prices at once (e.g. importing a catalog or setting up a plan with multiple tiers).
-func (s *Prices) CreatePricesBulk(ctx context.Context, request types.CreateBulkPriceRequest, opts ...dtos.Option) (*dtos.CreatePricesBulkResponse, error) {
+func (s *Prices) CreatePricesBulk(ctx context.Context, request types.CreateBulkPriceRequest, security dtos.CreatePricesBulkSecurity, opts ...dtos.Option) (*dtos.CreatePricesBulkResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -327,7 +327,7 @@ func (s *Prices) CreatePricesBulk(ctx context.Context, request types.CreateBulkP
 		Context:          ctx,
 		OperationID:      "createPricesBulk",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -355,7 +355,7 @@ func (s *Prices) CreatePricesBulk(ctx context.Context, request types.CreateBulkP
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -559,7 +559,7 @@ func (s *Prices) CreatePricesBulk(ctx context.Context, request types.CreateBulkP
 
 // GetPriceByLookupKey - Get price by lookup key
 // Use when resolving a price by external id (e.g. from your catalog or CMS). Ideal for integrations.
-func (s *Prices) GetPriceByLookupKey(ctx context.Context, lookupKey string, opts ...dtos.Option) (*dtos.GetPriceByLookupKeyResponse, error) {
+func (s *Prices) GetPriceByLookupKey(ctx context.Context, security dtos.GetPriceByLookupKeySecurity, lookupKey string, opts ...dtos.Option) (*dtos.GetPriceByLookupKeyResponse, error) {
 	request := dtos.GetPriceByLookupKeyRequest{
 		LookupKey: lookupKey,
 	}
@@ -594,7 +594,7 @@ func (s *Prices) GetPriceByLookupKey(ctx context.Context, lookupKey string, opts
 		Context:          ctx,
 		OperationID:      "getPriceByLookupKey",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -615,7 +615,7 @@ func (s *Prices) GetPriceByLookupKey(ctx context.Context, lookupKey string, opts
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -821,7 +821,7 @@ func (s *Prices) GetPriceByLookupKey(ctx context.Context, lookupKey string, opts
 
 // QueryPrice - Query prices
 // Use when listing or searching prices (e.g. plan builder or catalog). Returns a paginated list; supports filtering and sorting.
-func (s *Prices) QueryPrice(ctx context.Context, request types.PriceFilter, opts ...dtos.Option) (*dtos.QueryPriceResponse, error) {
+func (s *Prices) QueryPrice(ctx context.Context, request types.PriceFilter, security dtos.QueryPriceSecurity, opts ...dtos.Option) (*dtos.QueryPriceResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -852,7 +852,7 @@ func (s *Prices) QueryPrice(ctx context.Context, request types.PriceFilter, opts
 		Context:          ctx,
 		OperationID:      "queryPrice",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -880,7 +880,7 @@ func (s *Prices) QueryPrice(ctx context.Context, request types.PriceFilter, opts
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1084,7 +1084,7 @@ func (s *Prices) QueryPrice(ctx context.Context, request types.PriceFilter, opts
 
 // GetPrice - Get price
 // Use when you need to load a single price (e.g. for display or editing). Response includes expanded meter and price unit when applicable.
-func (s *Prices) GetPrice(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetPriceResponse, error) {
+func (s *Prices) GetPrice(ctx context.Context, security dtos.GetPriceSecurity, id string, opts ...dtos.Option) (*dtos.GetPriceResponse, error) {
 	request := dtos.GetPriceRequest{
 		ID: id,
 	}
@@ -1119,7 +1119,7 @@ func (s *Prices) GetPrice(ctx context.Context, id string, opts ...dtos.Option) (
 		Context:          ctx,
 		OperationID:      "getPrice",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1140,7 +1140,7 @@ func (s *Prices) GetPrice(ctx context.Context, id string, opts ...dtos.Option) (
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1344,7 +1344,7 @@ func (s *Prices) GetPrice(ctx context.Context, id string, opts ...dtos.Option) (
 
 // UpdatePrice - Update price
 // Use when changing price configuration (e.g. amount, billing scheme, or metadata).
-func (s *Prices) UpdatePrice(ctx context.Context, id string, body types.UpdatePriceRequest, opts ...dtos.Option) (*dtos.UpdatePriceResponse, error) {
+func (s *Prices) UpdatePrice(ctx context.Context, security dtos.UpdatePriceSecurity, id string, body types.UpdatePriceRequest, opts ...dtos.Option) (*dtos.UpdatePriceResponse, error) {
 	request := dtos.UpdatePriceRequest{
 		ID:   id,
 		Body: body,
@@ -1380,7 +1380,7 @@ func (s *Prices) UpdatePrice(ctx context.Context, id string, body types.UpdatePr
 		Context:          ctx,
 		OperationID:      "updatePrice",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1408,7 +1408,7 @@ func (s *Prices) UpdatePrice(ctx context.Context, id string, body types.UpdatePr
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1612,7 +1612,7 @@ func (s *Prices) UpdatePrice(ctx context.Context, id string, body types.UpdatePr
 
 // DeletePrice - Delete price
 // Use when retiring a price (e.g. end-of-life or replacement). Optional effective date or cascade for subscriptions.
-func (s *Prices) DeletePrice(ctx context.Context, id string, body types.DeletePriceRequest, opts ...dtos.Option) (*dtos.DeletePriceResponse, error) {
+func (s *Prices) DeletePrice(ctx context.Context, security dtos.DeletePriceSecurity, id string, body types.DeletePriceRequest, opts ...dtos.Option) (*dtos.DeletePriceResponse, error) {
 	request := dtos.DeletePriceRequest{
 		ID:   id,
 		Body: body,
@@ -1648,7 +1648,7 @@ func (s *Prices) DeletePrice(ctx context.Context, id string, body types.DeletePr
 		Context:          ctx,
 		OperationID:      "deletePrice",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1676,7 +1676,7 @@ func (s *Prices) DeletePrice(ctx context.Context, id string, body types.DeletePr
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

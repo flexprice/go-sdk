@@ -33,7 +33,7 @@ func newCreditGrants(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hook
 
 // GetAddonCreditGrants - Get addon credit grants
 // Use when listing credits attached to an addon (e.g. included prepaid or promo credits).
-func (s *CreditGrants) GetAddonCreditGrants(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetAddonCreditGrantsResponse, error) {
+func (s *CreditGrants) GetAddonCreditGrants(ctx context.Context, security dtos.GetAddonCreditGrantsSecurity, id string, opts ...dtos.Option) (*dtos.GetAddonCreditGrantsResponse, error) {
 	request := dtos.GetAddonCreditGrantsRequest{
 		ID: id,
 	}
@@ -68,7 +68,7 @@ func (s *CreditGrants) GetAddonCreditGrants(ctx context.Context, id string, opts
 		Context:          ctx,
 		OperationID:      "getAddonCreditGrants",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -89,7 +89,7 @@ func (s *CreditGrants) GetAddonCreditGrants(ctx context.Context, id string, opts
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -295,7 +295,7 @@ func (s *CreditGrants) GetAddonCreditGrants(ctx context.Context, id string, opts
 
 // CreateCreditGrant - Create credit grant
 // Use when giving a customer or plan credits (e.g. prepaid balance or promotional credits). Scope can be plan or subscription; supports start/end dates.
-func (s *CreditGrants) CreateCreditGrant(ctx context.Context, request types.CreateCreditGrantRequest, opts ...dtos.Option) (*dtos.CreateCreditGrantResponse, error) {
+func (s *CreditGrants) CreateCreditGrant(ctx context.Context, request types.CreateCreditGrantRequest, security dtos.CreateCreditGrantSecurity, opts ...dtos.Option) (*dtos.CreateCreditGrantResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -326,7 +326,7 @@ func (s *CreditGrants) CreateCreditGrant(ctx context.Context, request types.Crea
 		Context:          ctx,
 		OperationID:      "createCreditGrant",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -354,7 +354,7 @@ func (s *CreditGrants) CreateCreditGrant(ctx context.Context, request types.Crea
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -558,7 +558,7 @@ func (s *CreditGrants) CreateCreditGrant(ctx context.Context, request types.Crea
 
 // GetCreditGrant - Get credit grant
 // Use when you need to load a single credit grant (e.g. for display or to check balance).
-func (s *CreditGrants) GetCreditGrant(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetCreditGrantResponse, error) {
+func (s *CreditGrants) GetCreditGrant(ctx context.Context, security dtos.GetCreditGrantSecurity, id string, opts ...dtos.Option) (*dtos.GetCreditGrantResponse, error) {
 	request := dtos.GetCreditGrantRequest{
 		ID: id,
 	}
@@ -593,7 +593,7 @@ func (s *CreditGrants) GetCreditGrant(ctx context.Context, id string, opts ...dt
 		Context:          ctx,
 		OperationID:      "getCreditGrant",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -614,7 +614,7 @@ func (s *CreditGrants) GetCreditGrant(ctx context.Context, id string, opts ...dt
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -818,7 +818,7 @@ func (s *CreditGrants) GetCreditGrant(ctx context.Context, id string, opts ...dt
 
 // UpdateCreditGrant - Update credit grant
 // Use when changing a credit grant (e.g. amount or end date). Request body contains the fields to update.
-func (s *CreditGrants) UpdateCreditGrant(ctx context.Context, id string, body types.UpdateCreditGrantRequest, opts ...dtos.Option) (*dtos.UpdateCreditGrantResponse, error) {
+func (s *CreditGrants) UpdateCreditGrant(ctx context.Context, security dtos.UpdateCreditGrantSecurity, id string, body types.UpdateCreditGrantRequest, opts ...dtos.Option) (*dtos.UpdateCreditGrantResponse, error) {
 	request := dtos.UpdateCreditGrantRequest{
 		ID:   id,
 		Body: body,
@@ -854,7 +854,7 @@ func (s *CreditGrants) UpdateCreditGrant(ctx context.Context, id string, body ty
 		Context:          ctx,
 		OperationID:      "updateCreditGrant",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -882,7 +882,7 @@ func (s *CreditGrants) UpdateCreditGrant(ctx context.Context, id string, body ty
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1086,7 +1086,7 @@ func (s *CreditGrants) UpdateCreditGrant(ctx context.Context, id string, body ty
 
 // DeleteCreditGrant - Delete credit grant
 // Use when removing or ending a credit grant (e.g. revoke promo or close prepaid). Plan-scoped grants are archived; subscription-scoped supports optional effective_date in body.
-func (s *CreditGrants) DeleteCreditGrant(ctx context.Context, id string, body *types.DeleteCreditGrantRequest, opts ...dtos.Option) (*dtos.DeleteCreditGrantResponse, error) {
+func (s *CreditGrants) DeleteCreditGrant(ctx context.Context, security dtos.DeleteCreditGrantSecurity, id string, body *types.DeleteCreditGrantRequest, opts ...dtos.Option) (*dtos.DeleteCreditGrantResponse, error) {
 	request := dtos.DeleteCreditGrantRequest{
 		ID:   id,
 		Body: body,
@@ -1122,7 +1122,7 @@ func (s *CreditGrants) DeleteCreditGrant(ctx context.Context, id string, body *t
 		Context:          ctx,
 		OperationID:      "deleteCreditGrant",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1150,7 +1150,7 @@ func (s *CreditGrants) DeleteCreditGrant(ctx context.Context, id string, body *t
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1354,7 +1354,7 @@ func (s *CreditGrants) DeleteCreditGrant(ctx context.Context, id string, body *t
 
 // GetPlanCreditGrants - Get plan credit grants
 // Use when listing credits attached to a plan (e.g. included prepaid or promo credits).
-func (s *CreditGrants) GetPlanCreditGrants(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetPlanCreditGrantsResponse, error) {
+func (s *CreditGrants) GetPlanCreditGrants(ctx context.Context, security dtos.GetPlanCreditGrantsSecurity, id string, opts ...dtos.Option) (*dtos.GetPlanCreditGrantsResponse, error) {
 	request := dtos.GetPlanCreditGrantsRequest{
 		ID: id,
 	}
@@ -1389,7 +1389,7 @@ func (s *CreditGrants) GetPlanCreditGrants(ctx context.Context, id string, opts 
 		Context:          ctx,
 		OperationID:      "getPlanCreditGrants",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1410,7 +1410,7 @@ func (s *CreditGrants) GetPlanCreditGrants(ctx context.Context, id string, opts 
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

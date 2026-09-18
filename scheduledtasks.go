@@ -33,7 +33,7 @@ func newScheduledTasks(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, ho
 
 // ListScheduledTasks - List scheduled tasks
 // Use when listing or managing scheduled tasks in an admin UI. Returns a list; supports filtering by status, type, and pagination.
-func (s *ScheduledTasks) ListScheduledTasks(ctx context.Context, request dtos.ListScheduledTasksRequest, opts ...dtos.Option) (*dtos.ListScheduledTasksResponse, error) {
+func (s *ScheduledTasks) ListScheduledTasks(ctx context.Context, request dtos.ListScheduledTasksRequest, security dtos.ListScheduledTasksSecurity, opts ...dtos.Option) (*dtos.ListScheduledTasksResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *ScheduledTasks) ListScheduledTasks(ctx context.Context, request dtos.Li
 		Context:          ctx,
 		OperationID:      "listScheduledTasks",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -89,7 +89,7 @@ func (s *ScheduledTasks) ListScheduledTasks(ctx context.Context, request dtos.Li
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -293,7 +293,7 @@ func (s *ScheduledTasks) ListScheduledTasks(ctx context.Context, request dtos.Li
 
 // CreateScheduledTask - Create scheduled task
 // Use when setting up recurring data exports or other scheduled jobs. Ideal for report generation or syncing data on a schedule.
-func (s *ScheduledTasks) CreateScheduledTask(ctx context.Context, request types.CreateScheduledTaskRequest, opts ...dtos.Option) (*dtos.CreateScheduledTaskResponse, error) {
+func (s *ScheduledTasks) CreateScheduledTask(ctx context.Context, request types.CreateScheduledTaskRequest, security dtos.CreateScheduledTaskSecurity, opts ...dtos.Option) (*dtos.CreateScheduledTaskResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -324,7 +324,7 @@ func (s *ScheduledTasks) CreateScheduledTask(ctx context.Context, request types.
 		Context:          ctx,
 		OperationID:      "createScheduledTask",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -352,7 +352,7 @@ func (s *ScheduledTasks) CreateScheduledTask(ctx context.Context, request types.
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -556,7 +556,7 @@ func (s *ScheduledTasks) CreateScheduledTask(ctx context.Context, request types.
 
 // ScheduleDraftFinalization - Schedule draft finalization
 // Triggers the draft invoice finalization workflow that scans computed draft invoices whose finalization delay has elapsed and finalizes them (assign invoice number, sync to vendors, attempt payment).
-func (s *ScheduledTasks) ScheduleDraftFinalization(ctx context.Context, opts ...dtos.Option) (*dtos.ScheduleDraftFinalizationResponse, error) {
+func (s *ScheduledTasks) ScheduleDraftFinalization(ctx context.Context, security dtos.ScheduleDraftFinalizationSecurity, opts ...dtos.Option) (*dtos.ScheduleDraftFinalizationResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -587,7 +587,7 @@ func (s *ScheduledTasks) ScheduleDraftFinalization(ctx context.Context, opts ...
 		Context:          ctx,
 		OperationID:      "scheduleDraftFinalization",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -608,7 +608,7 @@ func (s *ScheduledTasks) ScheduleDraftFinalization(ctx context.Context, opts ...
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -812,7 +812,7 @@ func (s *ScheduledTasks) ScheduleDraftFinalization(ctx context.Context, opts ...
 
 // ScheduleUpdateBillingPeriod - Schedule update billing period
 // Use when you need to trigger a billing-period update workflow (e.g. to recalculate or sync billing windows).
-func (s *ScheduledTasks) ScheduleUpdateBillingPeriod(ctx context.Context, request dtos.ScheduleUpdateBillingPeriodRequest, opts ...dtos.Option) (*dtos.ScheduleUpdateBillingPeriodResponse, error) {
+func (s *ScheduledTasks) ScheduleUpdateBillingPeriod(ctx context.Context, request dtos.ScheduleUpdateBillingPeriodRequest, security dtos.ScheduleUpdateBillingPeriodSecurity, opts ...dtos.Option) (*dtos.ScheduleUpdateBillingPeriodResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -843,7 +843,7 @@ func (s *ScheduledTasks) ScheduleUpdateBillingPeriod(ctx context.Context, reques
 		Context:          ctx,
 		OperationID:      "scheduleUpdateBillingPeriod",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -871,7 +871,7 @@ func (s *ScheduledTasks) ScheduleUpdateBillingPeriod(ctx context.Context, reques
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1075,7 +1075,7 @@ func (s *ScheduledTasks) ScheduleUpdateBillingPeriod(ctx context.Context, reques
 
 // GetScheduledTask - Get scheduled task
 // Use when you need to load a single scheduled task (e.g. to show details in a UI or check its configuration).
-func (s *ScheduledTasks) GetScheduledTask(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetScheduledTaskResponse, error) {
+func (s *ScheduledTasks) GetScheduledTask(ctx context.Context, security dtos.GetScheduledTaskSecurity, id string, opts ...dtos.Option) (*dtos.GetScheduledTaskResponse, error) {
 	request := dtos.GetScheduledTaskRequest{
 		ID: id,
 	}
@@ -1110,7 +1110,7 @@ func (s *ScheduledTasks) GetScheduledTask(ctx context.Context, id string, opts .
 		Context:          ctx,
 		OperationID:      "getScheduledTask",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1131,7 +1131,7 @@ func (s *ScheduledTasks) GetScheduledTask(ctx context.Context, id string, opts .
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1337,7 +1337,7 @@ func (s *ScheduledTasks) GetScheduledTask(ctx context.Context, id string, opts .
 
 // UpdateScheduledTask - Update a scheduled task
 // Use when pausing or resuming a scheduled task. Only the enabled field can be changed.
-func (s *ScheduledTasks) UpdateScheduledTask(ctx context.Context, id string, body types.UpdateScheduledTaskRequest, opts ...dtos.Option) (*dtos.UpdateScheduledTaskResponse, error) {
+func (s *ScheduledTasks) UpdateScheduledTask(ctx context.Context, security dtos.UpdateScheduledTaskSecurity, id string, body types.UpdateScheduledTaskRequest, opts ...dtos.Option) (*dtos.UpdateScheduledTaskResponse, error) {
 	request := dtos.UpdateScheduledTaskRequest{
 		ID:   id,
 		Body: body,
@@ -1373,7 +1373,7 @@ func (s *ScheduledTasks) UpdateScheduledTask(ctx context.Context, id string, bod
 		Context:          ctx,
 		OperationID:      "updateScheduledTask",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1401,7 +1401,7 @@ func (s *ScheduledTasks) UpdateScheduledTask(ctx context.Context, id string, bod
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1607,7 +1607,7 @@ func (s *ScheduledTasks) UpdateScheduledTask(ctx context.Context, id string, bod
 
 // DeleteScheduledTask - Delete a scheduled task
 // Use when removing a scheduled task from the active roster. Archives the task and removes it from the scheduler (soft delete).
-func (s *ScheduledTasks) DeleteScheduledTask(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteScheduledTaskResponse, error) {
+func (s *ScheduledTasks) DeleteScheduledTask(ctx context.Context, security dtos.DeleteScheduledTaskSecurity, id string, opts ...dtos.Option) (*dtos.DeleteScheduledTaskResponse, error) {
 	request := dtos.DeleteScheduledTaskRequest{
 		ID: id,
 	}
@@ -1642,7 +1642,7 @@ func (s *ScheduledTasks) DeleteScheduledTask(ctx context.Context, id string, opt
 		Context:          ctx,
 		OperationID:      "deleteScheduledTask",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1663,7 +1663,7 @@ func (s *ScheduledTasks) DeleteScheduledTask(ctx context.Context, id string, opt
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1850,7 +1850,7 @@ func (s *ScheduledTasks) DeleteScheduledTask(ctx context.Context, id string, opt
 
 // TriggerScheduledTaskRun - Trigger force run
 // Use when you need to run a scheduled export immediately (e.g. on-demand report or catch-up). Supports optional custom time range.
-func (s *ScheduledTasks) TriggerScheduledTaskRun(ctx context.Context, id string, body *types.TriggerForceRunRequest, opts ...dtos.Option) (*dtos.TriggerScheduledTaskRunResponse, error) {
+func (s *ScheduledTasks) TriggerScheduledTaskRun(ctx context.Context, security dtos.TriggerScheduledTaskRunSecurity, id string, body *types.TriggerForceRunRequest, opts ...dtos.Option) (*dtos.TriggerScheduledTaskRunResponse, error) {
 	request := dtos.TriggerScheduledTaskRunRequest{
 		ID:   id,
 		Body: body,
@@ -1886,7 +1886,7 @@ func (s *ScheduledTasks) TriggerScheduledTaskRun(ctx context.Context, id string,
 		Context:          ctx,
 		OperationID:      "triggerScheduledTaskRun",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, true, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1914,7 +1914,7 @@ func (s *ScheduledTasks) TriggerScheduledTaskRun(ctx context.Context, id string,
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

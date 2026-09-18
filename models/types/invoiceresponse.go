@@ -22,7 +22,8 @@ type InvoiceResponse struct {
 	// billing_reason indicates why this invoice was generated (e.g., "subscription_billing", "manual_charge")
 	BillingReason *string `json:"billing_reason,omitzero"`
 	// billing_sequence is the sequential number indicating the billing cycle for subscription invoices
-	BillingSequence *int64 `json:"billing_sequence,omitzero"`
+	BillingSequence *int64                   `json:"billing_sequence,omitzero"`
+	CheckoutSession *CheckoutSessionResponse `json:"checkout_session,omitzero"`
 	// coupon_applications contains the coupon applications associated with this invoice (overrides embedded field)
 	CouponApplications []CouponApplicationResponse `json:"coupon_applications,omitzero"`
 	CreatedAt          *time.Time                  `json:"created_at,omitzero"`
@@ -77,6 +78,7 @@ type InvoiceResponse struct {
 	// refunded_amount is the total sum of credit notes of type "refund".
 	// These are actual refunds issued to the customer.
 	RefundedAmount *string               `json:"refunded_amount,omitzero"`
+	SourceType     *InvoiceSourceType    `json:"source_type,omitzero"`
 	Status         *Status               `json:"status,omitzero"`
 	Subscription   *SubscriptionResponse `json:"subscription,omitzero"`
 	// subscription_customer_id is the subscription owner's customer ID (Subscription.CustomerID).
@@ -165,6 +167,13 @@ func (i *InvoiceResponse) GetBillingSequence() *int64 {
 		return nil
 	}
 	return i.BillingSequence
+}
+
+func (i *InvoiceResponse) GetCheckoutSession() *CheckoutSessionResponse {
+	if i == nil {
+		return nil
+	}
+	return i.CheckoutSession
 }
 
 func (i *InvoiceResponse) GetCouponApplications() []CouponApplicationResponse {
@@ -368,6 +377,13 @@ func (i *InvoiceResponse) GetRefundedAmount() *string {
 		return nil
 	}
 	return i.RefundedAmount
+}
+
+func (i *InvoiceResponse) GetSourceType() *InvoiceSourceType {
+	if i == nil {
+		return nil
+	}
+	return i.SourceType
 }
 
 func (i *InvoiceResponse) GetStatus() *Status {

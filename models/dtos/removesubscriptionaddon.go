@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type RemoveSubscriptionAddonSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (r RemoveSubscriptionAddonSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RemoveSubscriptionAddonSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RemoveSubscriptionAddonSecurityOption1) GetAPIKeyAuth() string {
+	if r == nil {
+		return ""
+	}
+	return r.APIKeyAuth
+}
+
+// #region class-body-removesubscriptionaddonsecurityoption1
+// #endregion class-body-removesubscriptionaddonsecurityoption1
+
+type RemoveSubscriptionAddonSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (r RemoveSubscriptionAddonSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RemoveSubscriptionAddonSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RemoveSubscriptionAddonSecurityOption2) GetAPIKeyAuth() string {
+	if r == nil {
+		return ""
+	}
+	return r.APIKeyAuth
+}
+
+// #region class-body-removesubscriptionaddonsecurityoption2
+// #endregion class-body-removesubscriptionaddonsecurityoption2
+
+type RemoveSubscriptionAddonSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (r RemoveSubscriptionAddonSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RemoveSubscriptionAddonSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RemoveSubscriptionAddonSecurityOption3) GetBearerAuth() string {
+	if r == nil {
+		return ""
+	}
+	return r.BearerAuth
+}
+
+func (r *RemoveSubscriptionAddonSecurityOption3) GetEnvironmentID() string {
+	if r == nil {
+		return ""
+	}
+	return r.EnvironmentID
+}
+
+// #region class-body-removesubscriptionaddonsecurityoption3
+// #endregion class-body-removesubscriptionaddonsecurityoption3
+
+type RemoveSubscriptionAddonSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (r RemoveSubscriptionAddonSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RemoveSubscriptionAddonSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RemoveSubscriptionAddonSecurityOption4) GetBearerAuth() string {
+	if r == nil {
+		return ""
+	}
+	return r.BearerAuth
+}
+
+// #region class-body-removesubscriptionaddonsecurityoption4
+// #endregion class-body-removesubscriptionaddonsecurityoption4
+
+type RemoveSubscriptionAddonSecurity struct {
+	Option1 *RemoveSubscriptionAddonSecurityOption1 `security:"option"`
+	Option2 *RemoveSubscriptionAddonSecurityOption2 `security:"option"`
+	Option3 *RemoveSubscriptionAddonSecurityOption3 `security:"option"`
+	Option4 *RemoveSubscriptionAddonSecurityOption4 `security:"option"`
+}
+
+func (r RemoveSubscriptionAddonSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(r, "", false)
+}
+
+func (r *RemoveSubscriptionAddonSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &r, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *RemoveSubscriptionAddonSecurity) GetOption1() *RemoveSubscriptionAddonSecurityOption1 {
+	if r == nil {
+		return nil
+	}
+	return r.Option1
+}
+
+func (r *RemoveSubscriptionAddonSecurity) GetOption2() *RemoveSubscriptionAddonSecurityOption2 {
+	if r == nil {
+		return nil
+	}
+	return r.Option2
+}
+
+func (r *RemoveSubscriptionAddonSecurity) GetOption3() *RemoveSubscriptionAddonSecurityOption3 {
+	if r == nil {
+		return nil
+	}
+	return r.Option3
+}
+
+func (r *RemoveSubscriptionAddonSecurity) GetOption4() *RemoveSubscriptionAddonSecurityOption4 {
+	if r == nil {
+		return nil
+	}
+	return r.Option4
+}
+
 type RemoveSubscriptionAddonResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK

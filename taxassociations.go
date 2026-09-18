@@ -33,7 +33,7 @@ func newTaxAssociations(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, h
 
 // ListTaxAssociations - List tax associations
 // Use when listing tax associations (e.g. tax config or audit). Returns list with optional filtering.
-func (s *TaxAssociations) ListTaxAssociations(ctx context.Context, entityType *string, entityID *string, externalCustomerID *string, taxRateID *string, opts ...dtos.Option) (*dtos.ListTaxAssociationsResponse, error) {
+func (s *TaxAssociations) ListTaxAssociations(ctx context.Context, security dtos.ListTaxAssociationsSecurity, entityType *string, entityID *string, externalCustomerID *string, taxRateID *string, opts ...dtos.Option) (*dtos.ListTaxAssociationsResponse, error) {
 	request := dtos.ListTaxAssociationsRequest{
 		EntityType:         entityType,
 		EntityID:           entityID,
@@ -71,7 +71,7 @@ func (s *TaxAssociations) ListTaxAssociations(ctx context.Context, entityType *s
 		Context:          ctx,
 		OperationID:      "listTaxAssociations",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -96,7 +96,7 @@ func (s *TaxAssociations) ListTaxAssociations(ctx context.Context, entityType *s
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -300,7 +300,7 @@ func (s *TaxAssociations) ListTaxAssociations(ctx context.Context, entityType *s
 
 // CreateTaxAssociation - Create Tax Association
 // Use when linking a tax rate to an entity (e.g. customer, product, or region) so that rate applies on invoices.
-func (s *TaxAssociations) CreateTaxAssociation(ctx context.Context, request types.CreateTaxAssociationRequest, opts ...dtos.Option) (*dtos.CreateTaxAssociationResponse, error) {
+func (s *TaxAssociations) CreateTaxAssociation(ctx context.Context, request types.CreateTaxAssociationRequest, security dtos.CreateTaxAssociationSecurity, opts ...dtos.Option) (*dtos.CreateTaxAssociationResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -331,7 +331,7 @@ func (s *TaxAssociations) CreateTaxAssociation(ctx context.Context, request type
 		Context:          ctx,
 		OperationID:      "createTaxAssociation",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -359,7 +359,7 @@ func (s *TaxAssociations) CreateTaxAssociation(ctx context.Context, request type
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -563,7 +563,7 @@ func (s *TaxAssociations) CreateTaxAssociation(ctx context.Context, request type
 
 // GetTaxAssociation - Get Tax Association
 // Use when you need to load a single tax association (e.g. for display or editing).
-func (s *TaxAssociations) GetTaxAssociation(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetTaxAssociationResponse, error) {
+func (s *TaxAssociations) GetTaxAssociation(ctx context.Context, security dtos.GetTaxAssociationSecurity, id string, opts ...dtos.Option) (*dtos.GetTaxAssociationResponse, error) {
 	request := dtos.GetTaxAssociationRequest{
 		ID: id,
 	}
@@ -598,7 +598,7 @@ func (s *TaxAssociations) GetTaxAssociation(ctx context.Context, id string, opts
 		Context:          ctx,
 		OperationID:      "getTaxAssociation",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -619,7 +619,7 @@ func (s *TaxAssociations) GetTaxAssociation(ctx context.Context, id string, opts
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -823,7 +823,7 @@ func (s *TaxAssociations) GetTaxAssociation(ctx context.Context, id string, opts
 
 // UpdateTaxAssociation - Update tax association
 // Use when changing a tax association (e.g. switch rate or entity). Request body contains the fields to update.
-func (s *TaxAssociations) UpdateTaxAssociation(ctx context.Context, id string, body types.TaxAssociationUpdateRequest, opts ...dtos.Option) (*dtos.UpdateTaxAssociationResponse, error) {
+func (s *TaxAssociations) UpdateTaxAssociation(ctx context.Context, security dtos.UpdateTaxAssociationSecurity, id string, body types.TaxAssociationUpdateRequest, opts ...dtos.Option) (*dtos.UpdateTaxAssociationResponse, error) {
 	request := dtos.UpdateTaxAssociationRequest{
 		ID:   id,
 		Body: body,
@@ -859,7 +859,7 @@ func (s *TaxAssociations) UpdateTaxAssociation(ctx context.Context, id string, b
 		Context:          ctx,
 		OperationID:      "updateTaxAssociation",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -887,7 +887,7 @@ func (s *TaxAssociations) UpdateTaxAssociation(ctx context.Context, id string, b
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1091,7 +1091,7 @@ func (s *TaxAssociations) UpdateTaxAssociation(ctx context.Context, id string, b
 
 // DeleteTaxAssociation - Delete tax association
 // Use when removing a tax association (e.g. entity no longer subject to that rate).
-func (s *TaxAssociations) DeleteTaxAssociation(ctx context.Context, id string, opts ...dtos.Option) (*dtos.DeleteTaxAssociationResponse, error) {
+func (s *TaxAssociations) DeleteTaxAssociation(ctx context.Context, security dtos.DeleteTaxAssociationSecurity, id string, opts ...dtos.Option) (*dtos.DeleteTaxAssociationResponse, error) {
 	request := dtos.DeleteTaxAssociationRequest{
 		ID: id,
 	}
@@ -1126,7 +1126,7 @@ func (s *TaxAssociations) DeleteTaxAssociation(ctx context.Context, id string, o
 		Context:          ctx,
 		OperationID:      "deleteTaxAssociation",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -1147,7 +1147,7 @@ func (s *TaxAssociations) DeleteTaxAssociation(ctx context.Context, id string, o
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

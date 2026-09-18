@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type QueryPlanSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (q QueryPlanSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
+}
+
+func (q *QueryPlanSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (q *QueryPlanSecurityOption1) GetAPIKeyAuth() string {
+	if q == nil {
+		return ""
+	}
+	return q.APIKeyAuth
+}
+
+// #region class-body-queryplansecurityoption1
+// #endregion class-body-queryplansecurityoption1
+
+type QueryPlanSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (q QueryPlanSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
+}
+
+func (q *QueryPlanSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (q *QueryPlanSecurityOption2) GetAPIKeyAuth() string {
+	if q == nil {
+		return ""
+	}
+	return q.APIKeyAuth
+}
+
+// #region class-body-queryplansecurityoption2
+// #endregion class-body-queryplansecurityoption2
+
+type QueryPlanSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (q QueryPlanSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
+}
+
+func (q *QueryPlanSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (q *QueryPlanSecurityOption3) GetBearerAuth() string {
+	if q == nil {
+		return ""
+	}
+	return q.BearerAuth
+}
+
+func (q *QueryPlanSecurityOption3) GetEnvironmentID() string {
+	if q == nil {
+		return ""
+	}
+	return q.EnvironmentID
+}
+
+// #region class-body-queryplansecurityoption3
+// #endregion class-body-queryplansecurityoption3
+
+type QueryPlanSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (q QueryPlanSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
+}
+
+func (q *QueryPlanSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (q *QueryPlanSecurityOption4) GetBearerAuth() string {
+	if q == nil {
+		return ""
+	}
+	return q.BearerAuth
+}
+
+// #region class-body-queryplansecurityoption4
+// #endregion class-body-queryplansecurityoption4
+
+type QueryPlanSecurity struct {
+	Option1 *QueryPlanSecurityOption1 `security:"option"`
+	Option2 *QueryPlanSecurityOption2 `security:"option"`
+	Option3 *QueryPlanSecurityOption3 `security:"option"`
+	Option4 *QueryPlanSecurityOption4 `security:"option"`
+}
+
+func (q QueryPlanSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(q, "", false)
+}
+
+func (q *QueryPlanSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &q, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (q *QueryPlanSecurity) GetOption1() *QueryPlanSecurityOption1 {
+	if q == nil {
+		return nil
+	}
+	return q.Option1
+}
+
+func (q *QueryPlanSecurity) GetOption2() *QueryPlanSecurityOption2 {
+	if q == nil {
+		return nil
+	}
+	return q.Option2
+}
+
+func (q *QueryPlanSecurity) GetOption3() *QueryPlanSecurityOption3 {
+	if q == nil {
+		return nil
+	}
+	return q.Option3
+}
+
+func (q *QueryPlanSecurity) GetOption4() *QueryPlanSecurityOption4 {
+	if q == nil {
+		return nil
+	}
+	return q.Option4
+}
+
 type QueryPlanResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
 	// OK

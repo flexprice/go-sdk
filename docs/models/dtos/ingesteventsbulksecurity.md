@@ -1,0 +1,11 @@
+# IngestEventsBulkSecurity
+
+
+## Fields
+
+| Field                                                                                         | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `Option1`                                                                                     | [*dtos.IngestEventsBulkSecurityOption1](../../models/dtos/ingesteventsbulksecurityoption1.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Option2`                                                                                     | [*dtos.IngestEventsBulkSecurityOption2](../../models/dtos/ingesteventsbulksecurityoption2.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Option3`                                                                                     | [*dtos.IngestEventsBulkSecurityOption3](../../models/dtos/ingesteventsbulksecurityoption3.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |
+| `Option4`                                                                                     | [*dtos.IngestEventsBulkSecurityOption4](../../models/dtos/ingesteventsbulksecurityoption4.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |

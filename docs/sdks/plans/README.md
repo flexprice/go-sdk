@@ -26,18 +26,21 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
     res, err := s.Plans.CreatePlan(ctx, types.CreatePlanRequest{
         Name: "<value>",
+    }, dtos.CreatePlanSecurity{
+        Option1: &dtos.CreatePlanSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
     })
     if err != nil {
         log.Fatal(err)
@@ -54,6 +57,7 @@ func main() {
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
 | `request`                                                          | [types.CreatePlanRequest](../../models/types/createplanrequest.md) | :heavy_check_mark:                                                 | The request object to use for the request.                         |
+| `security`                                                         | [dtos.CreatePlanSecurity](../../models/dtos/createplansecurity.md) | :heavy_check_mark:                                                 | The security requirements to use for the request.                  |
 | `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
 
 ### Response
@@ -82,17 +86,20 @@ import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Plans.QueryPlan(ctx, types.PlanFilter{})
+    res, err := s.Plans.QueryPlan(ctx, types.PlanFilter{}, dtos.QueryPlanSecurity{
+        Option1: &dtos.QueryPlanSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    })
     if err != nil {
         log.Fatal(err)
     }
@@ -104,11 +111,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `request`                                             | [types.PlanFilter](../../models/types/planfilter.md)  | :heavy_check_mark:                                    | The request object to use for the request.            |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `ctx`                                                            | [context.Context](https://pkg.go.dev/context#Context)            | :heavy_check_mark:                                               | The context to use for the request.                              |
+| `request`                                                        | [types.PlanFilter](../../models/types/planfilter.md)             | :heavy_check_mark:                                               | The request object to use for the request.                       |
+| `security`                                                       | [dtos.QueryPlanSecurity](../../models/dtos/queryplansecurity.md) | :heavy_check_mark:                                               | The security requirements to use for the request.                |
+| `opts`                                                           | [][dtos.Option](../../models/dtos/option.md)                     | :heavy_minus_sign:                                               | The options for this request.                                    |
 
 ### Response
 
@@ -135,17 +143,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Plans.GetPlan(ctx, "<id>")
+    res, err := s.Plans.GetPlan(ctx, dtos.GetPlanSecurity{
+        Option1: &dtos.GetPlanSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -157,11 +168,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Plan ID                                               |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `security`                                                   | [dtos.GetPlanSecurity](../../models/dtos/getplansecurity.md) | :heavy_check_mark:                                           | The security requirements to use for the request.            |
+| `id`                                                         | `string`                                                     | :heavy_check_mark:                                           | Plan ID                                                      |
+| `opts`                                                       | [][dtos.Option](../../models/dtos/option.md)                 | :heavy_minus_sign:                                           | The options for this request.                                |
 
 ### Response
 
@@ -188,6 +200,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -195,11 +208,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Plans.UpdatePlan(ctx, "<id>", types.UpdatePlanRequest{})
+    res, err := s.Plans.UpdatePlan(ctx, dtos.UpdatePlanSecurity{
+        Option1: &dtos.UpdatePlanSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.UpdatePlanRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -214,6 +229,7 @@ func main() {
 | Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
 | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
+| `security`                                                         | [dtos.UpdatePlanSecurity](../../models/dtos/updateplansecurity.md) | :heavy_check_mark:                                                 | The security requirements to use for the request.                  |
 | `id`                                                               | `string`                                                           | :heavy_check_mark:                                                 | Plan ID                                                            |
 | `body`                                                             | [types.UpdatePlanRequest](../../models/types/updateplanrequest.md) | :heavy_check_mark:                                                 | Plan update                                                        |
 | `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
@@ -243,17 +259,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Plans.DeletePlan(ctx, "<id>")
+    res, err := s.Plans.DeletePlan(ctx, dtos.DeletePlanSecurity{
+        Option1: &dtos.DeletePlanSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -265,11 +284,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Plan ID                                               |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                          | Type                                                               | Required                                                           | Description                                                        |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `ctx`                                                              | [context.Context](https://pkg.go.dev/context#Context)              | :heavy_check_mark:                                                 | The context to use for the request.                                |
+| `security`                                                         | [dtos.DeletePlanSecurity](../../models/dtos/deleteplansecurity.md) | :heavy_check_mark:                                                 | The security requirements to use for the request.                  |
+| `id`                                                               | `string`                                                           | :heavy_check_mark:                                                 | Plan ID                                                            |
+| `opts`                                                             | [][dtos.Option](../../models/dtos/option.md)                       | :heavy_minus_sign:                                                 | The options for this request.                                      |
 
 ### Response
 
@@ -296,6 +316,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"github.com/flexprice/go-sdk/v2/models/types"
 	"log"
 )
@@ -303,11 +324,13 @@ import(
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Plans.ClonePlan(ctx, "<id>", types.ClonePlanRequest{})
+    res, err := s.Plans.ClonePlan(ctx, dtos.ClonePlanSecurity{
+        Option1: &dtos.ClonePlanSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>", types.ClonePlanRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -322,6 +345,7 @@ func main() {
 | Parameter                                                        | Type                                                             | Required                                                         | Description                                                      |
 | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
 | `ctx`                                                            | [context.Context](https://pkg.go.dev/context#Context)            | :heavy_check_mark:                                               | The context to use for the request.                              |
+| `security`                                                       | [dtos.ClonePlanSecurity](../../models/dtos/cloneplansecurity.md) | :heavy_check_mark:                                               | The security requirements to use for the request.                |
 | `id`                                                             | `string`                                                         | :heavy_check_mark:                                               | Source Plan ID                                                   |
 | `body`                                                           | [types.ClonePlanRequest](../../models/types/cloneplanrequest.md) | :heavy_check_mark:                                               | Clone configuration                                              |
 | `opts`                                                           | [][dtos.Option](../../models/dtos/option.md)                     | :heavy_minus_sign:                                               | The options for this request.                                    |
@@ -351,17 +375,20 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
 func main() {
     ctx := context.Background()
 
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
+    s := flexprice.New()
 
-    res, err := s.Plans.SyncPlanPrices(ctx, "<id>")
+    res, err := s.Plans.SyncPlanPrices(ctx, dtos.SyncPlanPricesSecurity{
+        Option1: &dtos.SyncPlanPricesSecurityOption1{
+            APIKeyAuth: "<YOUR_API_KEY_HERE>",
+        },
+    }, "<id>")
     if err != nil {
         log.Fatal(err)
     }
@@ -373,11 +400,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Plan ID                                               |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `security`                                                                 | [dtos.SyncPlanPricesSecurity](../../models/dtos/syncplanpricessecurity.md) | :heavy_check_mark:                                                         | The security requirements to use for the request.                          |
+| `id`                                                                       | `string`                                                                   | :heavy_check_mark:                                                         | Plan ID                                                                    |
+| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
 
 ### Response
 

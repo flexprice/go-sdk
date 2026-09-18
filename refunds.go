@@ -33,7 +33,7 @@ func newRefunds(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hooks *ho
 
 // ListRefunds - List refunds
 // Use to see where refunded money actually went and whether it has settled. Filter by invoice_ids to get every settlement row for one invoice.
-func (s *Refunds) ListRefunds(ctx context.Context, request dtos.ListRefundsRequest, opts ...dtos.Option) (*dtos.ListRefundsResponse, error) {
+func (s *Refunds) ListRefunds(ctx context.Context, request dtos.ListRefundsRequest, security dtos.ListRefundsSecurity, opts ...dtos.Option) (*dtos.ListRefundsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Refunds) ListRefunds(ctx context.Context, request dtos.ListRefundsReque
 		Context:          ctx,
 		OperationID:      "listRefunds",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -89,7 +89,7 @@ func (s *Refunds) ListRefunds(ctx context.Context, request dtos.ListRefundsReque
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -295,7 +295,7 @@ func (s *Refunds) ListRefunds(ctx context.Context, request dtos.ListRefundsReque
 
 // GetRefund - Get refund
 // Use to inspect a single refund: its destination, settled amount and failure reason.
-func (s *Refunds) GetRefund(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetRefundResponse, error) {
+func (s *Refunds) GetRefund(ctx context.Context, security dtos.GetRefundSecurity, id string, opts ...dtos.Option) (*dtos.GetRefundResponse, error) {
 	request := dtos.GetRefundRequest{
 		ID: id,
 	}
@@ -330,7 +330,7 @@ func (s *Refunds) GetRefund(ctx context.Context, id string, opts ...dtos.Option)
 		Context:          ctx,
 		OperationID:      "getRefund",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -351,7 +351,7 @@ func (s *Refunds) GetRefund(ctx context.Context, id string, opts ...dtos.Option)
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -557,7 +557,7 @@ func (s *Refunds) GetRefund(ctx context.Context, id string, opts ...dtos.Option)
 
 // RetryRefund - Retry refund
 // Use when a refund failed or is stuck pending. A failed gateway refund is retried into the customer's wallet; an already-settled refund is rejected.
-func (s *Refunds) RetryRefund(ctx context.Context, id string, opts ...dtos.Option) (*dtos.RetryRefundResponse, error) {
+func (s *Refunds) RetryRefund(ctx context.Context, security dtos.RetryRefundSecurity, id string, opts ...dtos.Option) (*dtos.RetryRefundResponse, error) {
 	request := dtos.RetryRefundRequest{
 		ID: id,
 	}
@@ -592,7 +592,7 @@ func (s *Refunds) RetryRefund(ctx context.Context, id string, opts ...dtos.Optio
 		Context:          ctx,
 		OperationID:      "retryRefund",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -613,7 +613,7 @@ func (s *Refunds) RetryRefund(ctx context.Context, id string, opts ...dtos.Optio
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

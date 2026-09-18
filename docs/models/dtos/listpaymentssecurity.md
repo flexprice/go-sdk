@@ -1,0 +1,11 @@
+# ListPaymentsSecurity
+
+
+## Fields
+
+| Field                                                                                 | Type                                                                                  | Required                                                                              | Description                                                                           |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `Option1`                                                                             | [*dtos.ListPaymentsSecurityOption1](../../models/dtos/listpaymentssecurityoption1.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option2`                                                                             | [*dtos.ListPaymentsSecurityOption2](../../models/dtos/listpaymentssecurityoption2.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option3`                                                                             | [*dtos.ListPaymentsSecurityOption3](../../models/dtos/listpaymentssecurityoption3.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |
+| `Option4`                                                                             | [*dtos.ListPaymentsSecurityOption4](../../models/dtos/listpaymentssecurityoption4.md) | :heavy_minus_sign:                                                                    | N/A                                                                                   |

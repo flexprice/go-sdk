@@ -32,7 +32,7 @@ func newEnvironments(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hook
 
 // CloneEnvironment - Clone an environment
 // Clone all published features and plans from the source environment into a target environment. If target_environment_id is provided, entities are cloned into that existing environment. Otherwise a new environment is created from name and type first.
-func (s *Environments) CloneEnvironment(ctx context.Context, id string, body types.CloneEnvironmentRequest, opts ...dtos.Option) (*dtos.CloneEnvironmentResponse, error) {
+func (s *Environments) CloneEnvironment(ctx context.Context, security dtos.CloneEnvironmentSecurity, id string, body types.CloneEnvironmentRequest, opts ...dtos.Option) (*dtos.CloneEnvironmentResponse, error) {
 	request := dtos.CloneEnvironmentRequest{
 		ID:   id,
 		Body: body,
@@ -68,7 +68,7 @@ func (s *Environments) CloneEnvironment(ctx context.Context, id string, body typ
 		Context:          ctx,
 		OperationID:      "cloneEnvironment",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -96,7 +96,7 @@ func (s *Environments) CloneEnvironment(ctx context.Context, id string, body typ
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 

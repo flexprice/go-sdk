@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type FinalizeInvoiceSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (f FinalizeInvoiceSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FinalizeInvoiceSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (f *FinalizeInvoiceSecurityOption1) GetAPIKeyAuth() string {
+	if f == nil {
+		return ""
+	}
+	return f.APIKeyAuth
+}
+
+// #region class-body-finalizeinvoicesecurityoption1
+// #endregion class-body-finalizeinvoicesecurityoption1
+
+type FinalizeInvoiceSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (f FinalizeInvoiceSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FinalizeInvoiceSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (f *FinalizeInvoiceSecurityOption2) GetAPIKeyAuth() string {
+	if f == nil {
+		return ""
+	}
+	return f.APIKeyAuth
+}
+
+// #region class-body-finalizeinvoicesecurityoption2
+// #endregion class-body-finalizeinvoicesecurityoption2
+
+type FinalizeInvoiceSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (f FinalizeInvoiceSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FinalizeInvoiceSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (f *FinalizeInvoiceSecurityOption3) GetBearerAuth() string {
+	if f == nil {
+		return ""
+	}
+	return f.BearerAuth
+}
+
+func (f *FinalizeInvoiceSecurityOption3) GetEnvironmentID() string {
+	if f == nil {
+		return ""
+	}
+	return f.EnvironmentID
+}
+
+// #region class-body-finalizeinvoicesecurityoption3
+// #endregion class-body-finalizeinvoicesecurityoption3
+
+type FinalizeInvoiceSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (f FinalizeInvoiceSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FinalizeInvoiceSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (f *FinalizeInvoiceSecurityOption4) GetBearerAuth() string {
+	if f == nil {
+		return ""
+	}
+	return f.BearerAuth
+}
+
+// #region class-body-finalizeinvoicesecurityoption4
+// #endregion class-body-finalizeinvoicesecurityoption4
+
+type FinalizeInvoiceSecurity struct {
+	Option1 *FinalizeInvoiceSecurityOption1 `security:"option"`
+	Option2 *FinalizeInvoiceSecurityOption2 `security:"option"`
+	Option3 *FinalizeInvoiceSecurityOption3 `security:"option"`
+	Option4 *FinalizeInvoiceSecurityOption4 `security:"option"`
+}
+
+func (f FinalizeInvoiceSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(f, "", false)
+}
+
+func (f *FinalizeInvoiceSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &f, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (f *FinalizeInvoiceSecurity) GetOption1() *FinalizeInvoiceSecurityOption1 {
+	if f == nil {
+		return nil
+	}
+	return f.Option1
+}
+
+func (f *FinalizeInvoiceSecurity) GetOption2() *FinalizeInvoiceSecurityOption2 {
+	if f == nil {
+		return nil
+	}
+	return f.Option2
+}
+
+func (f *FinalizeInvoiceSecurity) GetOption3() *FinalizeInvoiceSecurityOption3 {
+	if f == nil {
+		return nil
+	}
+	return f.Option3
+}
+
+func (f *FinalizeInvoiceSecurity) GetOption4() *FinalizeInvoiceSecurityOption4 {
+	if f == nil {
+		return nil
+	}
+	return f.Option4
+}
+
 type FinalizeInvoiceRequest struct {
 	// Invoice ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

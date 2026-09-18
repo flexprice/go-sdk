@@ -7,6 +7,160 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
+type AttemptInvoicePaymentSecurityOption1 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (a AttemptInvoicePaymentSecurityOption1) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttemptInvoicePaymentSecurityOption1) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AttemptInvoicePaymentSecurityOption1) GetAPIKeyAuth() string {
+	if a == nil {
+		return ""
+	}
+	return a.APIKeyAuth
+}
+
+// #region class-body-attemptinvoicepaymentsecurityoption1
+// #endregion class-body-attemptinvoicepaymentsecurityoption1
+
+type AttemptInvoicePaymentSecurityOption2 struct {
+	APIKeyAuth string `security:"scheme,type=apiKey,subtype=header,name=x-api-key"`
+}
+
+func (a AttemptInvoicePaymentSecurityOption2) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttemptInvoicePaymentSecurityOption2) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"ApiKeyAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AttemptInvoicePaymentSecurityOption2) GetAPIKeyAuth() string {
+	if a == nil {
+		return ""
+	}
+	return a.APIKeyAuth
+}
+
+// #region class-body-attemptinvoicepaymentsecurityoption2
+// #endregion class-body-attemptinvoicepaymentsecurityoption2
+
+type AttemptInvoicePaymentSecurityOption3 struct {
+	BearerAuth    string `security:"scheme,type=http,subtype=bearer,composite,name=Authorization"`
+	EnvironmentID string `security:"scheme,type=apiKey,subtype=header,composite,name=X-Environment-ID"`
+}
+
+func (a AttemptInvoicePaymentSecurityOption3) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttemptInvoicePaymentSecurityOption3) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"BearerAuth", "EnvironmentId"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AttemptInvoicePaymentSecurityOption3) GetBearerAuth() string {
+	if a == nil {
+		return ""
+	}
+	return a.BearerAuth
+}
+
+func (a *AttemptInvoicePaymentSecurityOption3) GetEnvironmentID() string {
+	if a == nil {
+		return ""
+	}
+	return a.EnvironmentID
+}
+
+// #region class-body-attemptinvoicepaymentsecurityoption3
+// #endregion class-body-attemptinvoicepaymentsecurityoption3
+
+type AttemptInvoicePaymentSecurityOption4 struct {
+	BearerAuth string `security:"scheme,type=http,subtype=bearer,name=Authorization"`
+}
+
+func (a AttemptInvoicePaymentSecurityOption4) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttemptInvoicePaymentSecurityOption4) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, []string{"BearerAuth"}); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AttemptInvoicePaymentSecurityOption4) GetBearerAuth() string {
+	if a == nil {
+		return ""
+	}
+	return a.BearerAuth
+}
+
+// #region class-body-attemptinvoicepaymentsecurityoption4
+// #endregion class-body-attemptinvoicepaymentsecurityoption4
+
+type AttemptInvoicePaymentSecurity struct {
+	Option1 *AttemptInvoicePaymentSecurityOption1 `security:"option"`
+	Option2 *AttemptInvoicePaymentSecurityOption2 `security:"option"`
+	Option3 *AttemptInvoicePaymentSecurityOption3 `security:"option"`
+	Option4 *AttemptInvoicePaymentSecurityOption4 `security:"option"`
+}
+
+func (a AttemptInvoicePaymentSecurity) MarshalJSON() ([]byte, error) {
+	return utils.MarshalJSON(a, "", false)
+}
+
+func (a *AttemptInvoicePaymentSecurity) UnmarshalJSON(data []byte) error {
+	if err := utils.UnmarshalJSON(data, &a, "", false, nil); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (a *AttemptInvoicePaymentSecurity) GetOption1() *AttemptInvoicePaymentSecurityOption1 {
+	if a == nil {
+		return nil
+	}
+	return a.Option1
+}
+
+func (a *AttemptInvoicePaymentSecurity) GetOption2() *AttemptInvoicePaymentSecurityOption2 {
+	if a == nil {
+		return nil
+	}
+	return a.Option2
+}
+
+func (a *AttemptInvoicePaymentSecurity) GetOption3() *AttemptInvoicePaymentSecurityOption3 {
+	if a == nil {
+		return nil
+	}
+	return a.Option3
+}
+
+func (a *AttemptInvoicePaymentSecurity) GetOption4() *AttemptInvoicePaymentSecurityOption4 {
+	if a == nil {
+		return nil
+	}
+	return a.Option4
+}
+
 type AttemptInvoicePaymentRequest struct {
 	// Invoice ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`

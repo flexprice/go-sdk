@@ -33,7 +33,7 @@ func newSubscriptions(rootSDK *Flexprice, sdkConfig config.SDKConfiguration, hoo
 
 // CreateSubscription - Create subscription
 // Use when onboarding a customer to a plan or starting a new subscription. Ideal for draft subscriptions (activate later) or active from start.
-func (s *Subscriptions) CreateSubscription(ctx context.Context, request types.CreateSubscriptionRequest, opts ...dtos.Option) (*dtos.CreateSubscriptionResponse, error) {
+func (s *Subscriptions) CreateSubscription(ctx context.Context, request types.CreateSubscriptionRequest, security dtos.CreateSubscriptionSecurity, opts ...dtos.Option) (*dtos.CreateSubscriptionResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -64,7 +64,7 @@ func (s *Subscriptions) CreateSubscription(ctx context.Context, request types.Cr
 		Context:          ctx,
 		OperationID:      "createSubscription",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -92,7 +92,7 @@ func (s *Subscriptions) CreateSubscription(ctx context.Context, request types.Cr
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -299,7 +299,7 @@ func (s *Subscriptions) CreateSubscription(ctx context.Context, request types.Cr
 // Use when adding an optional product or add-on to an existing subscription (e.g. extra storage or support tier).
 //
 // Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *Subscriptions) AddSubscriptionAddon(ctx context.Context, request types.AddAddonRequest, opts ...dtos.Option) (*dtos.AddSubscriptionAddonResponse, error) {
+func (s *Subscriptions) AddSubscriptionAddon(ctx context.Context, request types.AddAddonRequest, security dtos.AddSubscriptionAddonSecurity, opts ...dtos.Option) (*dtos.AddSubscriptionAddonResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -330,7 +330,7 @@ func (s *Subscriptions) AddSubscriptionAddon(ctx context.Context, request types.
 		Context:          ctx,
 		OperationID:      "addSubscriptionAddon",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -358,7 +358,7 @@ func (s *Subscriptions) AddSubscriptionAddon(ctx context.Context, request types.
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -565,7 +565,7 @@ func (s *Subscriptions) AddSubscriptionAddon(ctx context.Context, request types.
 // Use when removing an add-on from a subscription (e.g. downgrade or opt-out).
 //
 // Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
-func (s *Subscriptions) RemoveSubscriptionAddon(ctx context.Context, request types.RemoveAddonRequest, opts ...dtos.Option) (*dtos.RemoveSubscriptionAddonResponse, error) {
+func (s *Subscriptions) RemoveSubscriptionAddon(ctx context.Context, request types.RemoveAddonRequest, security dtos.RemoveSubscriptionAddonSecurity, opts ...dtos.Option) (*dtos.RemoveSubscriptionAddonResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -596,7 +596,7 @@ func (s *Subscriptions) RemoveSubscriptionAddon(ctx context.Context, request typ
 		Context:          ctx,
 		OperationID:      "removeSubscriptionAddon",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -624,7 +624,7 @@ func (s *Subscriptions) RemoveSubscriptionAddon(ctx context.Context, request typ
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -828,7 +828,7 @@ func (s *Subscriptions) RemoveSubscriptionAddon(ctx context.Context, request typ
 
 // QuerySubscriptionLineItems - Search subscription line items
 // List subscription line items with a JSON filter (subscription, customer, price, pagination, expand=prices, etc.).
-func (s *Subscriptions) QuerySubscriptionLineItems(ctx context.Context, request types.SubscriptionLineItemFilter, opts ...dtos.Option) (*dtos.QuerySubscriptionLineItemsResponse, error) {
+func (s *Subscriptions) QuerySubscriptionLineItems(ctx context.Context, request types.SubscriptionLineItemFilter, security dtos.QuerySubscriptionLineItemsSecurity, opts ...dtos.Option) (*dtos.QuerySubscriptionLineItemsResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -859,7 +859,7 @@ func (s *Subscriptions) QuerySubscriptionLineItems(ctx context.Context, request 
 		Context:          ctx,
 		OperationID:      "querySubscriptionLineItems",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -887,7 +887,7 @@ func (s *Subscriptions) QuerySubscriptionLineItems(ctx context.Context, request 
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1091,7 +1091,7 @@ func (s *Subscriptions) QuerySubscriptionLineItems(ctx context.Context, request 
 
 // UpdateSubscriptionLineItem - Update subscription line item
 // Use when changing a subscription line item (e.g. quantity or price). Implemented by ending the current line and creating a new one for clean billing.
-func (s *Subscriptions) UpdateSubscriptionLineItem(ctx context.Context, id string, body types.UpdateSubscriptionLineItemRequest, opts ...dtos.Option) (*dtos.UpdateSubscriptionLineItemResponse, error) {
+func (s *Subscriptions) UpdateSubscriptionLineItem(ctx context.Context, security dtos.UpdateSubscriptionLineItemSecurity, id string, body types.UpdateSubscriptionLineItemRequest, opts ...dtos.Option) (*dtos.UpdateSubscriptionLineItemResponse, error) {
 	request := dtos.UpdateSubscriptionLineItemRequest{
 		ID:   id,
 		Body: body,
@@ -1127,7 +1127,7 @@ func (s *Subscriptions) UpdateSubscriptionLineItem(ctx context.Context, id strin
 		Context:          ctx,
 		OperationID:      "updateSubscriptionLineItem",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1155,7 +1155,7 @@ func (s *Subscriptions) UpdateSubscriptionLineItem(ctx context.Context, id strin
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -1359,7 +1359,7 @@ func (s *Subscriptions) UpdateSubscriptionLineItem(ctx context.Context, id strin
 
 // DeleteSubscriptionLineItem - Delete subscription line item
 // Use when removing a charge or seat from a subscription (e.g. downgrade). Line item ends; retained for history but no longer billed.
-func (s *Subscriptions) DeleteSubscriptionLineItem(ctx context.Context, id string, body types.DeleteSubscriptionLineItemRequest, opts ...dtos.Option) (*dtos.DeleteSubscriptionLineItemResponse, error) {
+func (s *Subscriptions) DeleteSubscriptionLineItem(ctx context.Context, security dtos.DeleteSubscriptionLineItemSecurity, id string, body types.DeleteSubscriptionLineItemRequest, opts ...dtos.Option) (*dtos.DeleteSubscriptionLineItemResponse, error) {
 	request := dtos.DeleteSubscriptionLineItemRequest{
 		ID:   id,
 		Body: body,
@@ -1395,7 +1395,7 @@ func (s *Subscriptions) DeleteSubscriptionLineItem(ctx context.Context, id strin
 		Context:          ctx,
 		OperationID:      "deleteSubscriptionLineItem",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -1423,7 +1423,7 @@ func (s *Subscriptions) DeleteSubscriptionLineItem(ctx context.Context, id strin
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -2272,7 +2272,7 @@ func (s *Subscriptions) CancelSubscriptionSchedule(ctx context.Context, schedule
 
 // QuerySubscription - Query subscriptions
 // Use when listing or searching subscriptions (e.g. admin view or customer subscription list). Returns a paginated list; supports filtering by customer, plan, status.
-func (s *Subscriptions) QuerySubscription(ctx context.Context, request types.SubscriptionFilter, opts ...dtos.Option) (*dtos.QuerySubscriptionResponse, error) {
+func (s *Subscriptions) QuerySubscription(ctx context.Context, request types.SubscriptionFilter, security dtos.QuerySubscriptionSecurity, opts ...dtos.Option) (*dtos.QuerySubscriptionResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -2303,7 +2303,7 @@ func (s *Subscriptions) QuerySubscription(ctx context.Context, request types.Sub
 		Context:          ctx,
 		OperationID:      "querySubscription",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -2331,7 +2331,7 @@ func (s *Subscriptions) QuerySubscription(ctx context.Context, request types.Sub
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -2535,7 +2535,7 @@ func (s *Subscriptions) QuerySubscription(ctx context.Context, request types.Sub
 
 // GetSubscriptionUsage - Get usage by subscription
 // Use when showing usage for a subscription (e.g. in a portal or for overage checks). Supports time range and filters.
-func (s *Subscriptions) GetSubscriptionUsage(ctx context.Context, request types.GetUsageBySubscriptionRequest, opts ...dtos.Option) (*dtos.GetSubscriptionUsageResponse, error) {
+func (s *Subscriptions) GetSubscriptionUsage(ctx context.Context, request types.GetUsageBySubscriptionRequest, security dtos.GetSubscriptionUsageSecurity, opts ...dtos.Option) (*dtos.GetSubscriptionUsageResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,
@@ -2566,7 +2566,7 @@ func (s *Subscriptions) GetSubscriptionUsage(ctx context.Context, request types.
 		Context:          ctx,
 		OperationID:      "getSubscriptionUsage",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Request", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -2594,7 +2594,7 @@ func (s *Subscriptions) GetSubscriptionUsage(ctx context.Context, request types.
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -2798,7 +2798,7 @@ func (s *Subscriptions) GetSubscriptionUsage(ctx context.Context, request types.
 
 // GetSubscription - Get subscription
 // Use when you need to load a single subscription (e.g. for a billing portal or to check status).
-func (s *Subscriptions) GetSubscription(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetSubscriptionResponse, error) {
+func (s *Subscriptions) GetSubscription(ctx context.Context, security dtos.GetSubscriptionSecurity, id string, opts ...dtos.Option) (*dtos.GetSubscriptionResponse, error) {
 	request := dtos.GetSubscriptionRequest{
 		ID: id,
 	}
@@ -2833,7 +2833,7 @@ func (s *Subscriptions) GetSubscription(ctx context.Context, id string, opts ...
 		Context:          ctx,
 		OperationID:      "getSubscription",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -2854,7 +2854,7 @@ func (s *Subscriptions) GetSubscription(ctx context.Context, id string, opts ...
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -3058,7 +3058,7 @@ func (s *Subscriptions) GetSubscription(ctx context.Context, id string, opts ...
 
 // UpdateSubscription - Update subscription
 // Use when changing subscription details (e.g. quantity, billing anchor, or parent). Supports partial update; send "" to clear parent_subscription_id.
-func (s *Subscriptions) UpdateSubscription(ctx context.Context, id string, body types.UpdateSubscriptionRequest, opts ...dtos.Option) (*dtos.UpdateSubscriptionResponse, error) {
+func (s *Subscriptions) UpdateSubscription(ctx context.Context, security dtos.UpdateSubscriptionSecurity, id string, body types.UpdateSubscriptionRequest, opts ...dtos.Option) (*dtos.UpdateSubscriptionResponse, error) {
 	request := dtos.UpdateSubscriptionRequest{
 		ID:   id,
 		Body: body,
@@ -3094,7 +3094,7 @@ func (s *Subscriptions) UpdateSubscription(ctx context.Context, id string, body 
 		Context:          ctx,
 		OperationID:      "updateSubscription",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -3122,7 +3122,7 @@ func (s *Subscriptions) UpdateSubscription(ctx context.Context, id string, body 
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -3326,7 +3326,7 @@ func (s *Subscriptions) UpdateSubscription(ctx context.Context, id string, body 
 
 // ActivateSubscription - Activate draft subscription
 // Use when turning a draft subscription live (e.g. after collecting payment or completing setup). Once activated, billing and entitlements apply.
-func (s *Subscriptions) ActivateSubscription(ctx context.Context, id string, body types.ActivateDraftSubscriptionRequest, opts ...dtos.Option) (*dtos.ActivateSubscriptionResponse, error) {
+func (s *Subscriptions) ActivateSubscription(ctx context.Context, security dtos.ActivateSubscriptionSecurity, id string, body types.ActivateDraftSubscriptionRequest, opts ...dtos.Option) (*dtos.ActivateSubscriptionResponse, error) {
 	request := dtos.ActivateSubscriptionRequest{
 		ID:   id,
 		Body: body,
@@ -3362,7 +3362,7 @@ func (s *Subscriptions) ActivateSubscription(ctx context.Context, id string, bod
 		Context:          ctx,
 		OperationID:      "activateSubscription",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -3390,7 +3390,7 @@ func (s *Subscriptions) ActivateSubscription(ctx context.Context, id string, bod
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -3594,7 +3594,7 @@ func (s *Subscriptions) ActivateSubscription(ctx context.Context, id string, bod
 
 // GetSubscriptionAddonAssociations - Get active addon associations
 // Use when listing which add-ons are currently attached to a subscription (e.g. for display or editing).
-func (s *Subscriptions) GetSubscriptionAddonAssociations(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetSubscriptionAddonAssociationsResponse, error) {
+func (s *Subscriptions) GetSubscriptionAddonAssociations(ctx context.Context, security dtos.GetSubscriptionAddonAssociationsSecurity, id string, opts ...dtos.Option) (*dtos.GetSubscriptionAddonAssociationsResponse, error) {
 	request := dtos.GetSubscriptionAddonAssociationsRequest{
 		ID: id,
 	}
@@ -3629,7 +3629,7 @@ func (s *Subscriptions) GetSubscriptionAddonAssociations(ctx context.Context, id
 		Context:          ctx,
 		OperationID:      "getSubscriptionAddonAssociations",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -3650,7 +3650,7 @@ func (s *Subscriptions) GetSubscriptionAddonAssociations(ctx context.Context, id
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -3856,7 +3856,7 @@ func (s *Subscriptions) GetSubscriptionAddonAssociations(ctx context.Context, id
 
 // CancelSubscription - Cancel subscription
 // Use when a customer churns or downgrades. Supports immediate or end-of-period cancellation and proration. Ideal for self-serve or support-driven cancellations.
-func (s *Subscriptions) CancelSubscription(ctx context.Context, id string, body types.CancelSubscriptionRequest, opts ...dtos.Option) (*dtos.CancelSubscriptionResponse, error) {
+func (s *Subscriptions) CancelSubscription(ctx context.Context, security dtos.CancelSubscriptionSecurity, id string, body types.CancelSubscriptionRequest, opts ...dtos.Option) (*dtos.CancelSubscriptionResponse, error) {
 	request := dtos.CancelSubscriptionRequest{
 		ID:   id,
 		Body: body,
@@ -3892,7 +3892,7 @@ func (s *Subscriptions) CancelSubscription(ctx context.Context, id string, body 
 		Context:          ctx,
 		OperationID:      "cancelSubscription",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -3920,7 +3920,7 @@ func (s *Subscriptions) CancelSubscription(ctx context.Context, id string, body 
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -4124,7 +4124,7 @@ func (s *Subscriptions) CancelSubscription(ctx context.Context, id string, body 
 
 // ExecuteSubscriptionChange - Execute subscription plan change
 // Use when applying a plan change (e.g. upgrade or downgrade). Executes proration and generates invoice or credit as needed.
-func (s *Subscriptions) ExecuteSubscriptionChange(ctx context.Context, id string, body types.SubscriptionChangeRequest, opts ...dtos.Option) (*dtos.ExecuteSubscriptionChangeResponse, error) {
+func (s *Subscriptions) ExecuteSubscriptionChange(ctx context.Context, security dtos.ExecuteSubscriptionChangeSecurity, id string, body types.SubscriptionChangeRequest, opts ...dtos.Option) (*dtos.ExecuteSubscriptionChangeResponse, error) {
 	request := dtos.ExecuteSubscriptionChangeRequest{
 		ID:   id,
 		Body: body,
@@ -4160,7 +4160,7 @@ func (s *Subscriptions) ExecuteSubscriptionChange(ctx context.Context, id string
 		Context:          ctx,
 		OperationID:      "executeSubscriptionChange",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -4188,7 +4188,7 @@ func (s *Subscriptions) ExecuteSubscriptionChange(ctx context.Context, id string
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -4394,7 +4394,7 @@ func (s *Subscriptions) ExecuteSubscriptionChange(ctx context.Context, id string
 
 // PreviewSubscriptionChange - Preview subscription plan change
 // Use when showing a customer the cost of a plan change before they confirm (e.g. upgrade/downgrade preview with proration).
-func (s *Subscriptions) PreviewSubscriptionChange(ctx context.Context, id string, body types.SubscriptionChangeRequest, opts ...dtos.Option) (*dtos.PreviewSubscriptionChangeResponse, error) {
+func (s *Subscriptions) PreviewSubscriptionChange(ctx context.Context, security dtos.PreviewSubscriptionChangeSecurity, id string, body types.SubscriptionChangeRequest, opts ...dtos.Option) (*dtos.PreviewSubscriptionChangeResponse, error) {
 	request := dtos.PreviewSubscriptionChangeRequest{
 		ID:   id,
 		Body: body,
@@ -4430,7 +4430,7 @@ func (s *Subscriptions) PreviewSubscriptionChange(ctx context.Context, id string
 		Context:          ctx,
 		OperationID:      "previewSubscriptionChange",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -4458,7 +4458,7 @@ func (s *Subscriptions) PreviewSubscriptionChange(ctx context.Context, id string
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -4672,7 +4672,7 @@ func (s *Subscriptions) PreviewSubscriptionChange(ctx context.Context, id string
 // Only one plan change may be pending per subscription. By default (on_conflict_policies.on_pending_schedule = 'reject') a second request returns 400; cancel the existing schedule via POST /subscriptions/schedules/{schedule_id}/cancel first. Pending schedules are listable via GET /subscriptions/{id}/schedules.
 //
 // Set on_conflict_policies.on_pending_schedule to 'supersede' to replace the queued change instead: the pending schedule is cancelled and this request applied in the same transaction, so both land or neither does. The cancelled schedule ids are returned in superseded_schedules, and preview reports the same list without writing.
-func (s *Subscriptions) ExecuteSubscriptionPlanChangeV2(ctx context.Context, id string, body types.SubscriptionChangeV2Request, opts ...dtos.Option) (*dtos.ExecuteSubscriptionPlanChangeV2Response, error) {
+func (s *Subscriptions) ExecuteSubscriptionPlanChangeV2(ctx context.Context, security dtos.ExecuteSubscriptionPlanChangeV2Security, id string, body types.SubscriptionChangeV2Request, opts ...dtos.Option) (*dtos.ExecuteSubscriptionPlanChangeV2Response, error) {
 	request := dtos.ExecuteSubscriptionPlanChangeV2Request{
 		ID:   id,
 		Body: body,
@@ -4708,7 +4708,7 @@ func (s *Subscriptions) ExecuteSubscriptionPlanChangeV2(ctx context.Context, id 
 		Context:          ctx,
 		OperationID:      "executeSubscriptionPlanChangeV2",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -4736,7 +4736,7 @@ func (s *Subscriptions) ExecuteSubscriptionPlanChangeV2(ctx context.Context, id 
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -4942,7 +4942,7 @@ func (s *Subscriptions) ExecuteSubscriptionPlanChangeV2(ctx context.Context, id 
 
 // PreviewSubscriptionPlanChangeV2 - Preview a plan change (v2, swap in place)
 // Preview a subscription plan change without writing. Swap-in-place: subscription id, billing anchor and period bounds are preserved.
-func (s *Subscriptions) PreviewSubscriptionPlanChangeV2(ctx context.Context, id string, body types.SubscriptionChangeV2Request, opts ...dtos.Option) (*dtos.PreviewSubscriptionPlanChangeV2Response, error) {
+func (s *Subscriptions) PreviewSubscriptionPlanChangeV2(ctx context.Context, security dtos.PreviewSubscriptionPlanChangeV2Security, id string, body types.SubscriptionChangeV2Request, opts ...dtos.Option) (*dtos.PreviewSubscriptionPlanChangeV2Response, error) {
 	request := dtos.PreviewSubscriptionPlanChangeV2Request{
 		ID:   id,
 		Body: body,
@@ -4978,7 +4978,7 @@ func (s *Subscriptions) PreviewSubscriptionPlanChangeV2(ctx context.Context, id 
 		Context:          ctx,
 		OperationID:      "previewSubscriptionPlanChangeV2",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -5006,7 +5006,7 @@ func (s *Subscriptions) PreviewSubscriptionPlanChangeV2(ctx context.Context, id 
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -5212,7 +5212,7 @@ func (s *Subscriptions) PreviewSubscriptionPlanChangeV2(ctx context.Context, id 
 
 // GetSubscriptionEntitlements - Get subscription entitlements
 // Use when checking what features or limits a subscription has (e.g. entitlement checks or feature gating). Optional feature_ids to filter.
-func (s *Subscriptions) GetSubscriptionEntitlements(ctx context.Context, id string, featureIds []string, opts ...dtos.Option) (*dtos.GetSubscriptionEntitlementsResponse, error) {
+func (s *Subscriptions) GetSubscriptionEntitlements(ctx context.Context, security dtos.GetSubscriptionEntitlementsSecurity, id string, featureIds []string, opts ...dtos.Option) (*dtos.GetSubscriptionEntitlementsResponse, error) {
 	request := dtos.GetSubscriptionEntitlementsRequest{
 		ID:         id,
 		FeatureIds: featureIds,
@@ -5248,7 +5248,7 @@ func (s *Subscriptions) GetSubscriptionEntitlements(ctx context.Context, id stri
 		Context:          ctx,
 		OperationID:      "getSubscriptionEntitlements",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -5273,7 +5273,7 @@ func (s *Subscriptions) GetSubscriptionEntitlements(ctx context.Context, id stri
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -5479,7 +5479,7 @@ func (s *Subscriptions) GetSubscriptionEntitlements(ctx context.Context, id stri
 
 // GetSubscriptionUpcomingGrants - Get upcoming credit grant applications
 // Use when showing upcoming or pending credits for a subscription (e.g. in a portal or for forecasting).
-func (s *Subscriptions) GetSubscriptionUpcomingGrants(ctx context.Context, id string, opts ...dtos.Option) (*dtos.GetSubscriptionUpcomingGrantsResponse, error) {
+func (s *Subscriptions) GetSubscriptionUpcomingGrants(ctx context.Context, security dtos.GetSubscriptionUpcomingGrantsSecurity, id string, opts ...dtos.Option) (*dtos.GetSubscriptionUpcomingGrantsResponse, error) {
 	request := dtos.GetSubscriptionUpcomingGrantsRequest{
 		ID: id,
 	}
@@ -5514,7 +5514,7 @@ func (s *Subscriptions) GetSubscriptionUpcomingGrants(ctx context.Context, id st
 		Context:          ctx,
 		OperationID:      "getSubscriptionUpcomingGrants",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -5535,7 +5535,7 @@ func (s *Subscriptions) GetSubscriptionUpcomingGrants(ctx context.Context, id st
 	req.Header.Set("Accept", "application/json")
 	req.Header.Set("User-Agent", s.sdkConfiguration.UserAgent)
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -5741,7 +5741,7 @@ func (s *Subscriptions) GetSubscriptionUpcomingGrants(ctx context.Context, id st
 
 // CreateSubscriptionLineItem - Create subscription line item
 // Use when adding a new charge or seat to a subscription (e.g. extra seat or one-time add). Supports price_id or inline price.
-func (s *Subscriptions) CreateSubscriptionLineItem(ctx context.Context, id string, body types.CreateSubscriptionLineItemRequest, opts ...dtos.Option) (*dtos.CreateSubscriptionLineItemResponse, error) {
+func (s *Subscriptions) CreateSubscriptionLineItem(ctx context.Context, security dtos.CreateSubscriptionLineItemSecurity, id string, body types.CreateSubscriptionLineItemRequest, opts ...dtos.Option) (*dtos.CreateSubscriptionLineItemResponse, error) {
 	request := dtos.CreateSubscriptionLineItemRequest{
 		ID:   id,
 		Body: body,
@@ -5777,7 +5777,7 @@ func (s *Subscriptions) CreateSubscriptionLineItem(ctx context.Context, id strin
 		Context:          ctx,
 		OperationID:      "createSubscriptionLineItem",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -5805,7 +5805,7 @@ func (s *Subscriptions) CreateSubscriptionLineItem(ctx context.Context, id strin
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -6011,7 +6011,7 @@ func (s *Subscriptions) CreateSubscriptionLineItem(ctx context.Context, id strin
 
 // ExecuteSubscriptionModify - Execute subscription modification
 // Execute a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, or addon add/remove).
-func (s *Subscriptions) ExecuteSubscriptionModify(ctx context.Context, id string, body types.ExecuteSubscriptionModifyRequest, opts ...dtos.Option) (*dtos.ExecuteSubscriptionModifyResponse, error) {
+func (s *Subscriptions) ExecuteSubscriptionModify(ctx context.Context, security dtos.ExecuteSubscriptionModifySecurity, id string, body types.ExecuteSubscriptionModifyRequest, opts ...dtos.Option) (*dtos.ExecuteSubscriptionModifyResponse, error) {
 	request := dtos.ExecuteSubscriptionModifyRequest{
 		ID:   id,
 		Body: body,
@@ -6047,7 +6047,7 @@ func (s *Subscriptions) ExecuteSubscriptionModify(ctx context.Context, id string
 		Context:          ctx,
 		OperationID:      "executeSubscriptionModify",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -6075,7 +6075,7 @@ func (s *Subscriptions) ExecuteSubscriptionModify(ctx context.Context, id string
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -6281,7 +6281,7 @@ func (s *Subscriptions) ExecuteSubscriptionModify(ctx context.Context, id string
 
 // PreviewSubscriptionModify - Preview subscription modification
 // Preview the impact of a mid-cycle subscription modification (inheritance, quantity change, grouped invoicing, trial end, coupon, tax, or addon add/remove) without committing changes.
-func (s *Subscriptions) PreviewSubscriptionModify(ctx context.Context, id string, body types.ExecuteSubscriptionModifyRequest, opts ...dtos.Option) (*dtos.PreviewSubscriptionModifyResponse, error) {
+func (s *Subscriptions) PreviewSubscriptionModify(ctx context.Context, security dtos.PreviewSubscriptionModifySecurity, id string, body types.ExecuteSubscriptionModifyRequest, opts ...dtos.Option) (*dtos.PreviewSubscriptionModifyResponse, error) {
 	request := dtos.PreviewSubscriptionModifyRequest{
 		ID:   id,
 		Body: body,
@@ -6317,7 +6317,7 @@ func (s *Subscriptions) PreviewSubscriptionModify(ctx context.Context, id string
 		Context:          ctx,
 		OperationID:      "previewSubscriptionModify",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 	bodyReader, reqContentType, err := utils.SerializeRequestBody(ctx, request, false, false, "Body", "json", `request:"mediaType=application/json"`)
 	if err != nil {
@@ -6345,7 +6345,7 @@ func (s *Subscriptions) PreviewSubscriptionModify(ctx context.Context, id string
 		req.Header.Set("Content-Type", reqContentType)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
@@ -6761,7 +6761,7 @@ func (s *Subscriptions) ListSubscriptionSchedules(ctx context.Context, id string
 
 // GetSubscriptionV2 - Get subscription (V2)
 // Use when you need a subscription with related data (line items, prices, plan). Supports expand for detailed payloads without extra round-trips.
-func (s *Subscriptions) GetSubscriptionV2(ctx context.Context, id string, expand *string, opts ...dtos.Option) (*dtos.GetSubscriptionV2Response, error) {
+func (s *Subscriptions) GetSubscriptionV2(ctx context.Context, security dtos.GetSubscriptionV2Security, id string, expand *string, opts ...dtos.Option) (*dtos.GetSubscriptionV2Response, error) {
 	request := dtos.GetSubscriptionV2Request{
 		ID:     id,
 		Expand: expand,
@@ -6797,7 +6797,7 @@ func (s *Subscriptions) GetSubscriptionV2(ctx context.Context, id string, expand
 		Context:          ctx,
 		OperationID:      "getSubscriptionV2",
 		OAuth2Scopes:     nil,
-		SecuritySource:   s.sdkConfiguration.Security,
+		SecuritySource:   utils.AsSecuritySource(security),
 	}
 
 	timeout := o.Timeout
@@ -6822,7 +6822,7 @@ func (s *Subscriptions) GetSubscriptionV2(ctx context.Context, id string, expand
 		return nil, fmt.Errorf("error populating query params: %w", err)
 	}
 
-	if err := utils.PopulateSecurity(ctx, req, s.sdkConfiguration.Security); err != nil {
+	if err := utils.PopulateSecurity(ctx, req, utils.AsSecuritySource(security)); err != nil {
 		return nil, err
 	}
 
