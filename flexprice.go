@@ -58,6 +58,7 @@ type Flexprice struct {
 	Entitlements       *Entitlements
 	Alerts             *Alerts
 	AlertSettings      *AlertSettings
+	Analytics          *Analytics
 	Checkout           *Checkout
 	Costs              *Costs
 	Coupons            *Coupons
@@ -165,10 +166,10 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.31",
+		SDKVersion: "2.1.32",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 2.1.31 2.938.0 1.0 github.com/flexprice/go-sdk/v2",
-			SDKVersion:        "2.1.31",
+			UserAgent:         "speakeasy-sdk/go 2.1.32 2.938.0 1.0 github.com/flexprice/go-sdk/v2",
+			SDKVersion:        "2.1.32",
 			GenVersion:        "2.938.0",
 			OpenAPIDocVersion: "1.0",
 			ServerList:        ServerList,
@@ -191,6 +192,7 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.Entitlements = newEntitlements(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Alerts = newAlerts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AlertSettings = newAlertSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Analytics = newAnalytics(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Checkout = newCheckout(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Costs = newCosts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Coupons = newCoupons(sdk, sdk.sdkConfiguration, sdk.hooks)

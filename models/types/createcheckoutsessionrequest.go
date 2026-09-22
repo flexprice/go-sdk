@@ -11,6 +11,7 @@ type CreateCheckoutSessionRequest struct {
 	CancelURL             *string                        `json:"cancel_url,omitzero"`
 	Configuration         *CheckoutConfiguration         `json:"configuration,omitzero"`
 	CustomerExternalID    string                         `json:"customer_external_id"`
+	EntityCreationOptions *EntityCreationOptions         `json:"entity_creation_options,omitzero"`
 	FailureURL            *string                        `json:"failure_url,omitzero"`
 	IdempotencyKey        *string                        `json:"idempotency_key,omitzero"`
 	Metadata              map[string]string              `json:"metadata,omitzero"`
@@ -56,6 +57,13 @@ func (c *CreateCheckoutSessionRequest) GetCustomerExternalID() string {
 		return ""
 	}
 	return c.CustomerExternalID
+}
+
+func (c *CreateCheckoutSessionRequest) GetEntityCreationOptions() *EntityCreationOptions {
+	if c == nil {
+		return nil
+	}
+	return c.EntityCreationOptions
 }
 
 func (c *CreateCheckoutSessionRequest) GetFailureURL() *string {

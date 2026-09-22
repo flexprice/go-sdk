@@ -2,11 +2,6 @@
 
 package types
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 type FilterOperatorType string
 
 const (
@@ -25,34 +20,14 @@ const (
 func (e FilterOperatorType) ToPointer() *FilterOperatorType {
 	return &e
 }
-func (e *FilterOperatorType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *FilterOperatorType) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "eq", "contains", "not_contains", "gt", "lt", "gte", "in", "not_in", "before", "after":
+			return true
+		}
 	}
-	switch v {
-	case "eq":
-		fallthrough
-	case "contains":
-		fallthrough
-	case "not_contains":
-		fallthrough
-	case "gt":
-		fallthrough
-	case "lt":
-		fallthrough
-	case "gte":
-		fallthrough
-	case "in":
-		fallthrough
-	case "not_in":
-		fallthrough
-	case "before":
-		fallthrough
-	case "after":
-		*e = FilterOperatorType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for FilterOperatorType: %v", v)
-	}
+	return false
 }

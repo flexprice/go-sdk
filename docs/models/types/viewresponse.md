@@ -1,0 +1,11 @@
+# ViewResponse
+
+
+## Fields
+
+| Field                                                                           | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `Definition`                                                                    | [*types.AnalyticsViewDefinition](../../models/types/analyticsviewdefinition.md) | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `ID`                                                                            | `*string`                                                                       | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `Name`                                                                          | `*string`                                                                       | :heavy_minus_sign:                                                              | N/A                                                                             |
+| `Version`                                                                       | `*int64`                                                                        | :heavy_minus_sign:                                                              | N/A                                                                             |

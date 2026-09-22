@@ -8,7 +8,8 @@ import (
 )
 
 type RemoveAddonRequest struct {
-	AddonAssociationID string `json:"addon_association_id"`
+	AddonAssociationID string        `json:"addon_association_id"`
+	ChangeAt           *ScheduleType `json:"change_at,omitzero"`
 	// EffectiveDate defaults to period end when nil; mid-period with create_prorations issues a wallet credit.
 	EffectiveDate     *time.Time         `json:"effective_date,omitzero"`
 	ProrationBehavior *ProrationBehavior `json:"proration_behavior,omitzero"`
@@ -31,6 +32,13 @@ func (r *RemoveAddonRequest) GetAddonAssociationID() string {
 		return ""
 	}
 	return r.AddonAssociationID
+}
+
+func (r *RemoveAddonRequest) GetChangeAt() *ScheduleType {
+	if r == nil {
+		return nil
+	}
+	return r.ChangeAt
 }
 
 func (r *RemoveAddonRequest) GetEffectiveDate() *time.Time {

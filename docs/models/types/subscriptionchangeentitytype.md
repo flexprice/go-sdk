@@ -19,7 +19,7 @@ custom := types.SubscriptionChangeEntityType("custom_value")
 | Name                                           | Value                                          |
 | ---------------------------------------------- | ---------------------------------------------- |
 | `SubscriptionChangeEntityTypePlan`             | plan                                           |
-| `SubscriptionChangeEntityTypeAddon`            | addon                                          |
+| `SubscriptionChangeEntityTypeAddonAssociation` | addon_association                              |
 | `SubscriptionChangeEntityTypeCreditGrant`      | credit_grant                                   |
 | `SubscriptionChangeEntityTypeEntitlement`      | entitlement                                    |
 | `SubscriptionChangeEntityTypeEntitlementGrant` | entitlement_grant                              |

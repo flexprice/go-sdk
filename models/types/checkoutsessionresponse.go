@@ -8,21 +8,22 @@ import (
 )
 
 type CheckoutSessionResponse struct {
-	Action            *CheckoutAction   `json:"action,omitzero"`
-	CancelURL         *string           `json:"cancel_url,omitzero"`
-	CancelledAt       *time.Time        `json:"cancelled_at,omitzero"`
-	CheckoutInvoiceID *string           `json:"checkout_invoice_id,omitzero"`
-	CheckoutPaymentID *string           `json:"checkout_payment_id,omitzero"`
-	CheckoutStatus    *CheckoutStatus   `json:"checkout_status,omitzero"`
-	CompletedAt       *time.Time        `json:"completed_at,omitzero"`
-	CreatedAt         *time.Time        `json:"created_at,omitzero"`
-	CustomerID        *string           `json:"customer_id,omitzero"`
-	ExpiresAt         *time.Time        `json:"expires_at,omitzero"`
-	FailureReason     *string           `json:"failure_reason,omitzero"`
-	FailureURL        *string           `json:"failure_url,omitzero"`
-	ID                *string           `json:"id,omitzero"`
-	IdempotencyKey    *string           `json:"idempotency_key,omitzero"`
-	Metadata          map[string]string `json:"metadata,omitzero"`
+	Action               *CheckoutAction       `json:"action,omitzero"`
+	CancelURL            *string               `json:"cancel_url,omitzero"`
+	CancelledAt          *time.Time            `json:"cancelled_at,omitzero"`
+	CheckoutInvoiceID    *string               `json:"checkout_invoice_id,omitzero"`
+	CheckoutPaymentID    *string               `json:"checkout_payment_id,omitzero"`
+	CheckoutStatus       *CheckoutStatus       `json:"checkout_status,omitzero"`
+	CompletedAt          *time.Time            `json:"completed_at,omitzero"`
+	CreatedAt            *time.Time            `json:"created_at,omitzero"`
+	CustomerID           *string               `json:"customer_id,omitzero"`
+	EntityCreationResult *EntityCreationResult `json:"entity_creation_result,omitzero"`
+	ExpiresAt            *time.Time            `json:"expires_at,omitzero"`
+	FailureReason        *string               `json:"failure_reason,omitzero"`
+	FailureURL           *string               `json:"failure_url,omitzero"`
+	ID                   *string               `json:"id,omitzero"`
+	IdempotencyKey       *string               `json:"idempotency_key,omitzero"`
+	Metadata             map[string]string     `json:"metadata,omitzero"`
 	// NextPollAfterMs is how long a client should wait before reading again.
 	// Zero means stop — either the session is terminal, or this response did not
 	// come from a polling read.
@@ -115,6 +116,13 @@ func (c *CheckoutSessionResponse) GetCustomerID() *string {
 		return nil
 	}
 	return c.CustomerID
+}
+
+func (c *CheckoutSessionResponse) GetEntityCreationResult() *EntityCreationResult {
+	if c == nil {
+		return nil
+	}
+	return c.EntityCreationResult
 }
 
 func (c *CheckoutSessionResponse) GetExpiresAt() *time.Time {

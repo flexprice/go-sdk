@@ -8,6 +8,9 @@ import (
 )
 
 value := types.SortDirectionAsc
+
+// Open enum: custom values can be created with a direct type cast
+custom := types.SortDirection("custom_value")
 ```
 
 

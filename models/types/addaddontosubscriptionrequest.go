@@ -8,8 +8,9 @@ import (
 )
 
 type AddAddonToSubscriptionRequest struct {
-	AddonID string        `json:"addon_id"`
-	Cadence *AddonCadence `json:"cadence,omitzero"`
+	AddonID  string        `json:"addon_id"`
+	Cadence  *AddonCadence `json:"cadence,omitzero"`
+	ChangeAt *ScheduleType `json:"change_at,omitzero"`
 	// LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
 	LineItemCommitments map[string]LineItemCommitmentConfig `json:"line_item_commitments,omitzero"`
 	Metadata            map[string]any                      `json:"metadata,omitzero"`
@@ -42,6 +43,13 @@ func (a *AddAddonToSubscriptionRequest) GetCadence() *AddonCadence {
 		return nil
 	}
 	return a.Cadence
+}
+
+func (a *AddAddonToSubscriptionRequest) GetChangeAt() *ScheduleType {
+	if a == nil {
+		return nil
+	}
+	return a.ChangeAt
 }
 
 func (a *AddAddonToSubscriptionRequest) GetLineItemCommitments() map[string]LineItemCommitmentConfig {

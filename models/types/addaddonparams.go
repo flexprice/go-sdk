@@ -7,8 +7,9 @@ import (
 )
 
 type AddAddonParams struct {
-	Addons         []AddAddonRef `json:"addons,omitzero"`
-	SubscriptionID *string       `json:"subscription_id,omitzero"`
+	Addons         []AddAddonRef    `json:"addons,omitzero"`
+	Removes        []RemoveAddonRef `json:"removes,omitzero"`
+	SubscriptionID *string          `json:"subscription_id,omitzero"`
 }
 
 func (a AddAddonParams) MarshalJSON() ([]byte, error) {
@@ -27,6 +28,13 @@ func (a *AddAddonParams) GetAddons() []AddAddonRef {
 		return nil
 	}
 	return a.Addons
+}
+
+func (a *AddAddonParams) GetRemoves() []RemoveAddonRef {
+	if a == nil {
+		return nil
+	}
+	return a.Removes
 }
 
 func (a *AddAddonParams) GetSubscriptionID() *string {

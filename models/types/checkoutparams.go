@@ -8,6 +8,7 @@ import (
 
 type CheckoutParams struct {
 	CancelURL             *string                        `json:"cancel_url,omitzero"`
+	EntityCreationOptions *EntityCreationOptions         `json:"entity_creation_options,omitzero"`
 	FailureURL            *string                        `json:"failure_url,omitzero"`
 	IdempotencyKey        *string                        `json:"idempotency_key,omitzero"`
 	Metadata              map[string]string              `json:"metadata,omitzero"`
@@ -32,6 +33,13 @@ func (c *CheckoutParams) GetCancelURL() *string {
 		return nil
 	}
 	return c.CancelURL
+}
+
+func (c *CheckoutParams) GetEntityCreationOptions() *EntityCreationOptions {
+	if c == nil {
+		return nil
+	}
+	return c.EntityCreationOptions
 }
 
 func (c *CheckoutParams) GetFailureURL() *string {

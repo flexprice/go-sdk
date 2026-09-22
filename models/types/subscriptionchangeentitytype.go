@@ -6,7 +6,7 @@ type SubscriptionChangeEntityType string
 
 const (
 	SubscriptionChangeEntityTypePlan             SubscriptionChangeEntityType = "plan"
-	SubscriptionChangeEntityTypeAddon            SubscriptionChangeEntityType = "addon"
+	SubscriptionChangeEntityTypeAddonAssociation SubscriptionChangeEntityType = "addon_association"
 	SubscriptionChangeEntityTypeCreditGrant      SubscriptionChangeEntityType = "credit_grant"
 	SubscriptionChangeEntityTypeEntitlement      SubscriptionChangeEntityType = "entitlement"
 	SubscriptionChangeEntityTypeEntitlementGrant SubscriptionChangeEntityType = "entitlement_grant"
@@ -20,7 +20,7 @@ func (e SubscriptionChangeEntityType) ToPointer() *SubscriptionChangeEntityType 
 func (e *SubscriptionChangeEntityType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "plan", "addon", "credit_grant", "entitlement", "entitlement_grant":
+		case "plan", "addon_association", "credit_grant", "entitlement", "entitlement_grant":
 			return true
 		}
 	}

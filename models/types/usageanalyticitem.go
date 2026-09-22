@@ -16,12 +16,14 @@ type UsageAnalyticItem struct {
 	CommitmentInfo  *CommitmentInfo `json:"commitment_info,omitzero"`
 	Currency        *string         `json:"currency,omitzero"`
 	// Number of events that contributed to this aggregation
-	EventCount *int64      `json:"event_count,omitzero"`
-	EventName  *string     `json:"event_name,omitzero"`
-	Feature    *Feature    `json:"feature,omitzero"`
-	FeatureID  *string     `json:"feature_id,omitzero"`
-	Group      *GroupGroup `json:"group,omitzero"`
-	Meter      *MeterMeter `json:"meter,omitzero"`
+	EventCount *int64  `json:"event_count,omitzero"`
+	EventName  *string `json:"event_name,omitzero"`
+	// Populated only when "external_customer_id" is a group_by dimension
+	ExternalCustomerID *string     `json:"external_customer_id,omitzero"`
+	Feature            *Feature    `json:"feature,omitzero"`
+	FeatureID          *string     `json:"feature_id,omitzero"`
+	Group              *GroupGroup `json:"group,omitzero"`
+	Meter              *MeterMeter `json:"meter,omitzero"`
 	// Meter ID
 	MeterID *string              `json:"meter_id,omitzero"`
 	Name    *string              `json:"name,omitzero"`
@@ -119,6 +121,13 @@ func (u *UsageAnalyticItem) GetEventName() *string {
 		return nil
 	}
 	return u.EventName
+}
+
+func (u *UsageAnalyticItem) GetExternalCustomerID() *string {
+	if u == nil {
+		return nil
+	}
+	return u.ExternalCustomerID
 }
 
 func (u *UsageAnalyticItem) GetFeature() *Feature {

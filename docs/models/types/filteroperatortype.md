@@ -8,6 +8,9 @@ import (
 )
 
 value := types.FilterOperatorTypeEq
+
+// Open enum: custom values can be created with a direct type cast
+custom := types.FilterOperatorType("custom_value")
 ```
 
 
