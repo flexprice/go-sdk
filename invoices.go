@@ -227,7 +227,7 @@ func (s *Invoices) GetCustomerInvoiceSummary(ctx context.Context, id string, opt
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -252,7 +252,7 @@ func (s *Invoices) GetCustomerInvoiceSummary(ctx context.Context, id string, opt
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -491,7 +491,7 @@ func (s *Invoices) CreateInvoice(ctx context.Context, request types.CreateInvoic
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -516,7 +516,7 @@ func (s *Invoices) CreateInvoice(ctx context.Context, request types.CreateInvoic
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -754,7 +754,7 @@ func (s *Invoices) GetInvoicePreview(ctx context.Context, request types.GetPrevi
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -779,7 +779,7 @@ func (s *Invoices) GetInvoicePreview(ctx context.Context, request types.GetPrevi
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1017,7 +1017,7 @@ func (s *Invoices) QueryInvoice(ctx context.Context, request types.InvoiceFilter
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1042,7 +1042,7 @@ func (s *Invoices) QueryInvoice(ctx context.Context, request types.InvoiceFilter
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1284,7 +1284,7 @@ func (s *Invoices) GetInvoice(ctx context.Context, id string, expandBySource *bo
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1309,7 +1309,7 @@ func (s *Invoices) GetInvoice(ctx context.Context, id string, expandBySource *bo
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1554,7 +1554,7 @@ func (s *Invoices) UpdateInvoice(ctx context.Context, id string, body types.Upda
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1579,7 +1579,7 @@ func (s *Invoices) UpdateInvoice(ctx context.Context, id string, body types.Upda
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1816,7 +1816,7 @@ func (s *Invoices) TriggerInvoiceCommsWebhook(ctx context.Context, id string, op
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1841,7 +1841,7 @@ func (s *Invoices) TriggerInvoiceCommsWebhook(ctx context.Context, id string, op
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -2076,7 +2076,7 @@ func (s *Invoices) FinalizeInvoice(ctx context.Context, id string, opts ...dtos.
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -2101,7 +2101,7 @@ func (s *Invoices) FinalizeInvoice(ctx context.Context, id string, opts ...dtos.
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -2346,7 +2346,7 @@ func (s *Invoices) ExecuteInvoiceModify(ctx context.Context, id string, body typ
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -2371,7 +2371,7 @@ func (s *Invoices) ExecuteInvoiceModify(ctx context.Context, id string, body typ
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -2616,7 +2616,7 @@ func (s *Invoices) UpdateInvoicePaymentStatus(ctx context.Context, id string, bo
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -2641,7 +2641,7 @@ func (s *Invoices) UpdateInvoicePaymentStatus(ctx context.Context, id string, bo
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -2878,7 +2878,7 @@ func (s *Invoices) AttemptInvoicePayment(ctx context.Context, id string, opts ..
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -2903,7 +2903,7 @@ func (s *Invoices) AttemptInvoicePayment(ctx context.Context, id string, opts ..
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -3363,7 +3363,7 @@ func (s *Invoices) RecalculateInvoice(ctx context.Context, id string, opts ...dt
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -3388,7 +3388,7 @@ func (s *Invoices) RecalculateInvoice(ctx context.Context, id string, opts ...dt
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -3630,7 +3630,7 @@ func (s *Invoices) RecalculateInvoiceV2(ctx context.Context, id string, finalize
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -3655,7 +3655,7 @@ func (s *Invoices) RecalculateInvoiceV2(ctx context.Context, id string, finalize
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -3890,7 +3890,7 @@ func (s *Invoices) VoidInvoice(ctx context.Context, id string, opts ...dtos.Opti
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -3915,7 +3915,7 @@ func (s *Invoices) VoidInvoice(ctx context.Context, id string, opts ...dtos.Opti
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{

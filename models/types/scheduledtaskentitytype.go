@@ -10,6 +10,7 @@ const (
 	ScheduledTaskEntityTypeCreditTopups   ScheduledTaskEntityType = "credit_topups"
 	ScheduledTaskEntityTypeCreditUsage    ScheduledTaskEntityType = "credit_usage"
 	ScheduledTaskEntityTypeUsageAnalytics ScheduledTaskEntityType = "usage_analytics"
+	ScheduledTaskEntityTypeRevenueFacts   ScheduledTaskEntityType = "revenue_facts"
 )
 
 func (e ScheduledTaskEntityType) ToPointer() *ScheduledTaskEntityType {
@@ -20,7 +21,7 @@ func (e ScheduledTaskEntityType) ToPointer() *ScheduledTaskEntityType {
 func (e *ScheduledTaskEntityType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "events", "invoice", "credit_topups", "credit_usage", "usage_analytics":
+		case "events", "invoice", "credit_topups", "credit_usage", "usage_analytics", "revenue_facts":
 			return true
 		}
 	}

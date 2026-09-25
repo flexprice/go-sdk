@@ -230,7 +230,7 @@ func (s *Groups) CreateGroup(ctx context.Context, request types.CreateGroupReque
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -255,7 +255,7 @@ func (s *Groups) CreateGroup(ctx context.Context, request types.CreateGroupReque
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -493,7 +493,7 @@ func (s *Groups) QueryGroup(ctx context.Context, request types.GroupFilter, opts
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -518,7 +518,7 @@ func (s *Groups) QueryGroup(ctx context.Context, request types.GroupFilter, opts
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -755,7 +755,7 @@ func (s *Groups) GetGroup(ctx context.Context, id string, opts ...dtos.Option) (
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -780,7 +780,7 @@ func (s *Groups) GetGroup(ctx context.Context, id string, opts ...dtos.Option) (
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -998,7 +998,7 @@ func (s *Groups) DeleteGroup(ctx context.Context, id string, opts ...dtos.Option
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1023,7 +1023,7 @@ func (s *Groups) DeleteGroup(ctx context.Context, id string, opts ...dtos.Option
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{

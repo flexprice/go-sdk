@@ -23,3 +23,4 @@ custom := types.ScheduledTaskEntityType("custom_value")
 | `ScheduledTaskEntityTypeCreditTopups`   | credit_topups                           |
 | `ScheduledTaskEntityTypeCreditUsage`    | credit_usage                            |
 | `ScheduledTaskEntityTypeUsageAnalytics` | usage_analytics                         |
+| `ScheduledTaskEntityTypeRevenueFacts`   | revenue_facts                           |

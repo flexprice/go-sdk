@@ -57,6 +57,10 @@ type PriceFilter struct {
 	StartTime      *time.Time `json:"start_time,omitzero"`
 	Status         *Status    `json:"status,omitzero"`
 	SubscriptionID *string    `json:"subscription_id,omitzero"`
+	// UpdatedAfter matches prices edited since the given time. TimeRangeFilter
+	// above filters on created_at, so it cannot see an edit to an existing
+	// price.
+	UpdatedAfter *string `json:"updated_after,omitzero"`
 }
 
 func (p PriceFilter) MarshalJSON() ([]byte, error) {
@@ -201,4 +205,11 @@ func (p *PriceFilter) GetSubscriptionID() *string {
 		return nil
 	}
 	return p.SubscriptionID
+}
+
+func (p *PriceFilter) GetUpdatedAfter() *string {
+	if p == nil {
+		return nil
+	}
+	return p.UpdatedAfter
 }

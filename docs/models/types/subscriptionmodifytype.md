@@ -22,3 +22,4 @@ value := types.SubscriptionModifyTypeInheritance
 | `SubscriptionModifyTypeCoupon`           | coupon                                   |
 | `SubscriptionModifyTypeTax`              | tax                                      |
 | `SubscriptionModifyTypeAddon`            | addon                                    |
+| `SubscriptionModifyTypeLineItemChange`   | line_item_change                         |

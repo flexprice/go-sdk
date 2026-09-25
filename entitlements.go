@@ -229,7 +229,7 @@ func (s *Entitlements) GetAddonEntitlements(ctx context.Context, id string, opts
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -254,7 +254,7 @@ func (s *Entitlements) GetAddonEntitlements(ctx context.Context, id string, opts
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -492,7 +492,7 @@ func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.Crea
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -517,7 +517,7 @@ func (s *Entitlements) CreateEntitlement(ctx context.Context, request types.Crea
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -755,7 +755,7 @@ func (s *Entitlements) CreateEntitlementsBulk(ctx context.Context, request types
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -780,7 +780,7 @@ func (s *Entitlements) CreateEntitlementsBulk(ctx context.Context, request types
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1018,7 +1018,7 @@ func (s *Entitlements) QueryEntitlement(ctx context.Context, request types.Entit
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1043,7 +1043,7 @@ func (s *Entitlements) QueryEntitlement(ctx context.Context, request types.Entit
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1278,7 +1278,7 @@ func (s *Entitlements) GetEntitlement(ctx context.Context, id string, opts ...dt
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1303,7 +1303,7 @@ func (s *Entitlements) GetEntitlement(ctx context.Context, id string, opts ...dt
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1546,7 +1546,7 @@ func (s *Entitlements) UpdateEntitlement(ctx context.Context, id string, body ty
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1571,7 +1571,7 @@ func (s *Entitlements) UpdateEntitlement(ctx context.Context, id string, body ty
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1806,7 +1806,7 @@ func (s *Entitlements) DeleteEntitlement(ctx context.Context, id string, opts ..
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1831,7 +1831,7 @@ func (s *Entitlements) DeleteEntitlement(ctx context.Context, id string, opts ..
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -2068,7 +2068,7 @@ func (s *Entitlements) GetPlanEntitlements(ctx context.Context, id string, opts 
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -2093,7 +2093,7 @@ func (s *Entitlements) GetPlanEntitlements(ctx context.Context, id string, opts 
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{

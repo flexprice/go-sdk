@@ -223,7 +223,7 @@ func (s *Integrations) GetIntegrationConfig(ctx context.Context, opts ...dtos.Op
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -461,7 +461,7 @@ func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -486,7 +486,7 @@ func (s *Integrations) LinkIntegrationMapping(ctx context.Context, request types
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -726,7 +726,7 @@ func (s *Integrations) DelinkIntegrationMapping(ctx context.Context, request typ
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -751,7 +751,7 @@ func (s *Integrations) DelinkIntegrationMapping(ctx context.Context, request typ
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -991,7 +991,7 @@ func (s *Integrations) GetEntityIntegrationMappings(ctx context.Context, entityT
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{
@@ -1016,7 +1016,7 @@ func (s *Integrations) GetEntityIntegrationMappings(ctx context.Context, entityT
 
 			var out errors.ErrorResponse
 			if err := utils.UnmarshalJsonFromResponseBody(bytes.NewBuffer(rawBody), &out, ""); err != nil {
-				return nil, err
+				return nil, errors.NewResponseValidationError("response did not match the declared error schema", httpRes.StatusCode, string(rawBody), httpRes, err)
 			}
 
 			out.HTTPMeta = types.HTTPMetadata{

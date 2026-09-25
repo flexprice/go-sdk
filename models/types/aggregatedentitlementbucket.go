@@ -12,6 +12,7 @@ type AggregatedEntitlementBucket struct {
 	GrantDurationValue *int64                        `json:"grant_duration_value,omitzero"`
 	GrantMeasure       *EntitlementGrantMeasure      `json:"grant_measure,omitzero"`
 	GrantQuota         *string                       `json:"grant_quota,omitzero"`
+	GrantUnlimited     *bool                         `json:"grant_unlimited,omitzero"`
 	SourceEntityID     *string                       `json:"source_entity_id,omitzero"`
 	UsageLimit         *int64                        `json:"usage_limit,omitzero"`
 }
@@ -60,6 +61,13 @@ func (a *AggregatedEntitlementBucket) GetGrantQuota() *string {
 		return nil
 	}
 	return a.GrantQuota
+}
+
+func (a *AggregatedEntitlementBucket) GetGrantUnlimited() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.GrantUnlimited
 }
 
 func (a *AggregatedEntitlementBucket) GetSourceEntityID() *string {

@@ -55,6 +55,8 @@ type InvoiceFilter struct {
 	// This is the ID you provided when creating the customer in FlexPrice
 	ExternalCustomerID *string           `json:"external_customer_id,omitzero"`
 	Filters            []FilterCondition `json:"filters,omitzero"`
+	// finalized_at_gte filters invoices finalized at or after the given instant
+	FinalizedAtGte *time.Time `json:"finalized_at_gte,omitzero"`
 	// invoice_ids restricts results to invoices with the specified IDs
 	// Use this to retrieve specific invoices when you know their exact identifiers
 	InvoiceIds []string `json:"invoice_ids,omitzero"`
@@ -86,6 +88,8 @@ type InvoiceFilter struct {
 	// subscription_id filters invoices generated for a specific subscription
 	// Only returns invoices that were created as part of the specified subscription's billing
 	SubscriptionID *string `json:"subscription_id,omitzero"`
+	// voided_at_gte filters invoices voided at or after the given instant
+	VoidedAtGte *time.Time `json:"voided_at_gte,omitzero"`
 }
 
 func (i InvoiceFilter) MarshalJSON() ([]byte, error) {
@@ -160,6 +164,13 @@ func (i *InvoiceFilter) GetFilters() []FilterCondition {
 		return nil
 	}
 	return i.Filters
+}
+
+func (i *InvoiceFilter) GetFinalizedAtGte() *time.Time {
+	if i == nil {
+		return nil
+	}
+	return i.FinalizedAtGte
 }
 
 func (i *InvoiceFilter) GetInvoiceIds() []string {
@@ -279,4 +290,11 @@ func (i *InvoiceFilter) GetSubscriptionID() *string {
 		return nil
 	}
 	return i.SubscriptionID
+}
+
+func (i *InvoiceFilter) GetVoidedAtGte() *time.Time {
+	if i == nil {
+		return nil
+	}
+	return i.VoidedAtGte
 }

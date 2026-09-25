@@ -2,7 +2,7 @@
 
 package flexprice
 
-// Generated from OpenAPI doc version 1.0 and generator version 2.938.0
+// Generated from OpenAPI doc version 1.0 and generator version 2.941.0
 
 import (
 	"context"
@@ -166,11 +166,11 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.32",
+		SDKVersion: "2.1.33",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 2.1.32 2.938.0 1.0 github.com/flexprice/go-sdk/v2",
-			SDKVersion:        "2.1.32",
-			GenVersion:        "2.938.0",
+			UserAgent:         "speakeasy-sdk/go 2.1.33 2.941.0 1.0 github.com/flexprice/go-sdk/v2",
+			SDKVersion:        "2.1.33",
+			GenVersion:        "2.941.0",
 			OpenAPIDocVersion: "1.0",
 			ServerList:        ServerList,
 		},

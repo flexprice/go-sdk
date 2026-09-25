@@ -8,15 +8,26 @@ import (
 )
 
 type FeatureUsageSummary struct {
-	CurrentUsage     *string             `json:"current_usage,omitzero"`
-	Feature          *FeatureResponse    `json:"feature,omitzero"`
-	IsEnabled        *bool               `json:"is_enabled,omitzero"`
-	IsSoftLimit      *bool               `json:"is_soft_limit,omitzero"`
-	IsUnlimited      *bool               `json:"is_unlimited,omitzero"`
-	NextUsageResetAt *time.Time          `json:"next_usage_reset_at,omitzero"`
-	Sources          []EntitlementSource `json:"sources,omitzero"`
-	TotalLimit       *int64              `json:"total_limit,omitzero"`
-	UsagePercent     *string             `json:"usage_percent,omitzero"`
+	// Buckets is one entry per independent budget on a parallel feature. The scalar
+	// figures above cannot describe several budgets at once — a sum is not spendable
+	// from any one of them — so a client showing a parallel feature reads these instead.
+	// Empty for additive features, where the scalars are the whole truth.
+	Buckets            []AggregatedEntitlementBucket `json:"buckets,omitzero"`
+	CurrentUsage       *string                       `json:"current_usage,omitzero"`
+	Feature            *FeatureResponse              `json:"feature,omitzero"`
+	GrantDurationUnit  *EntitlementGrantDurationUnit `json:"grant_duration_unit,omitzero"`
+	GrantDurationValue *int64                        `json:"grant_duration_value,omitzero"`
+	GrantMeasure       *EntitlementGrantMeasure      `json:"grant_measure,omitzero"`
+	GrantQuota         *string                       `json:"grant_quota,omitzero"`
+	GrantState         *GrantState                   `json:"grant_state,omitzero"`
+	GrantUnlimited     *bool                         `json:"grant_unlimited,omitzero"`
+	IsEnabled          *bool                         `json:"is_enabled,omitzero"`
+	IsSoftLimit        *bool                         `json:"is_soft_limit,omitzero"`
+	IsUnlimited        *bool                         `json:"is_unlimited,omitzero"`
+	NextUsageResetAt   *time.Time                    `json:"next_usage_reset_at,omitzero"`
+	Sources            []EntitlementSource           `json:"sources,omitzero"`
+	TotalLimit         *int64                        `json:"total_limit,omitzero"`
+	UsagePercent       *string                       `json:"usage_percent,omitzero"`
 }
 
 func (f FeatureUsageSummary) MarshalJSON() ([]byte, error) {
@@ -28,6 +39,13 @@ func (f *FeatureUsageSummary) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (f *FeatureUsageSummary) GetBuckets() []AggregatedEntitlementBucket {
+	if f == nil {
+		return nil
+	}
+	return f.Buckets
 }
 
 func (f *FeatureUsageSummary) GetCurrentUsage() *string {
@@ -42,6 +60,48 @@ func (f *FeatureUsageSummary) GetFeature() *FeatureResponse {
 		return nil
 	}
 	return f.Feature
+}
+
+func (f *FeatureUsageSummary) GetGrantDurationUnit() *EntitlementGrantDurationUnit {
+	if f == nil {
+		return nil
+	}
+	return f.GrantDurationUnit
+}
+
+func (f *FeatureUsageSummary) GetGrantDurationValue() *int64 {
+	if f == nil {
+		return nil
+	}
+	return f.GrantDurationValue
+}
+
+func (f *FeatureUsageSummary) GetGrantMeasure() *EntitlementGrantMeasure {
+	if f == nil {
+		return nil
+	}
+	return f.GrantMeasure
+}
+
+func (f *FeatureUsageSummary) GetGrantQuota() *string {
+	if f == nil {
+		return nil
+	}
+	return f.GrantQuota
+}
+
+func (f *FeatureUsageSummary) GetGrantState() *GrantState {
+	if f == nil {
+		return nil
+	}
+	return f.GrantState
+}
+
+func (f *FeatureUsageSummary) GetGrantUnlimited() *bool {
+	if f == nil {
+		return nil
+	}
+	return f.GrantUnlimited
 }
 
 func (f *FeatureUsageSummary) GetIsEnabled() *bool {

@@ -8,6 +8,7 @@ import (
 
 type ModifySubscriptionParams struct {
 	LineItemModifications []ModifySubscriptionLineItem `json:"line_item_modifications,omitzero"`
+	ModifyType            *ModifySubscriptionType      `json:"modify_type,omitzero"`
 	SubscriptionID        *string                      `json:"subscription_id,omitzero"`
 }
 
@@ -27,6 +28,13 @@ func (m *ModifySubscriptionParams) GetLineItemModifications() []ModifySubscripti
 		return nil
 	}
 	return m.LineItemModifications
+}
+
+func (m *ModifySubscriptionParams) GetModifyType() *ModifySubscriptionType {
+	if m == nil {
+		return nil
+	}
+	return m.ModifyType
 }
 
 func (m *ModifySubscriptionParams) GetSubscriptionID() *string {

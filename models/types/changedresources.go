@@ -7,9 +7,10 @@ import (
 )
 
 type ChangedResources struct {
-	Invoices      []ChangedInvoice      `json:"invoices,omitzero"`
-	LineItems     []ChangedLineItem     `json:"line_items,omitzero"`
-	Subscriptions []ChangedSubscription `json:"subscriptions,omitzero"`
+	AddonAssociations []ChangedAddonAssociation `json:"addon_associations,omitzero"`
+	Invoices          []ChangedInvoice          `json:"invoices,omitzero"`
+	LineItems         []ChangedLineItem         `json:"line_items,omitzero"`
+	Subscriptions     []ChangedSubscription     `json:"subscriptions,omitzero"`
 }
 
 func (c ChangedResources) MarshalJSON() ([]byte, error) {
@@ -21,6 +22,13 @@ func (c *ChangedResources) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (c *ChangedResources) GetAddonAssociations() []ChangedAddonAssociation {
+	if c == nil {
+		return nil
+	}
+	return c.AddonAssociations
 }
 
 func (c *ChangedResources) GetInvoices() []ChangedInvoice {

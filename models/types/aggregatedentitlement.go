@@ -21,14 +21,20 @@ func (c *ConfigValue) UnmarshalJSON(data []byte) error {
 }
 
 type AggregatedEntitlement struct {
-	AggregationMode  *EntitlementAggregationMode   `json:"aggregation_mode,omitzero"`
-	Buckets          []AggregatedEntitlementBucket `json:"buckets,omitzero"`
-	ConfigValues     []map[string]ConfigValue      `json:"config_values,omitzero"`
-	IsEnabled        *bool                         `json:"is_enabled,omitzero"`
-	IsSoftLimit      *bool                         `json:"is_soft_limit,omitzero"`
-	StaticValues     []string                      `json:"static_values,omitzero"`
-	UsageLimit       *int64                        `json:"usage_limit,omitzero"`
-	UsageResetPeriod *EntitlementUsageResetPeriod  `json:"usage_reset_period,omitzero"`
+	AggregationMode    *EntitlementAggregationMode   `json:"aggregation_mode,omitzero"`
+	Buckets            []AggregatedEntitlementBucket `json:"buckets,omitzero"`
+	ConfigValues       []map[string]ConfigValue      `json:"config_values,omitzero"`
+	GrantDurationUnit  *EntitlementGrantDurationUnit `json:"grant_duration_unit,omitzero"`
+	GrantDurationValue *int64                        `json:"grant_duration_value,omitzero"`
+	GrantMeasure       *EntitlementGrantMeasure      `json:"grant_measure,omitzero"`
+	GrantQuota         *string                       `json:"grant_quota,omitzero"`
+	GrantState         *GrantState                   `json:"grant_state,omitzero"`
+	GrantUnlimited     *bool                         `json:"grant_unlimited,omitzero"`
+	IsEnabled          *bool                         `json:"is_enabled,omitzero"`
+	IsSoftLimit        *bool                         `json:"is_soft_limit,omitzero"`
+	StaticValues       []string                      `json:"static_values,omitzero"`
+	UsageLimit         *int64                        `json:"usage_limit,omitzero"`
+	UsageResetPeriod   *EntitlementUsageResetPeriod  `json:"usage_reset_period,omitzero"`
 }
 
 func (a AggregatedEntitlement) MarshalJSON() ([]byte, error) {
@@ -61,6 +67,48 @@ func (a *AggregatedEntitlement) GetConfigValues() []map[string]ConfigValue {
 		return nil
 	}
 	return a.ConfigValues
+}
+
+func (a *AggregatedEntitlement) GetGrantDurationUnit() *EntitlementGrantDurationUnit {
+	if a == nil {
+		return nil
+	}
+	return a.GrantDurationUnit
+}
+
+func (a *AggregatedEntitlement) GetGrantDurationValue() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.GrantDurationValue
+}
+
+func (a *AggregatedEntitlement) GetGrantMeasure() *EntitlementGrantMeasure {
+	if a == nil {
+		return nil
+	}
+	return a.GrantMeasure
+}
+
+func (a *AggregatedEntitlement) GetGrantQuota() *string {
+	if a == nil {
+		return nil
+	}
+	return a.GrantQuota
+}
+
+func (a *AggregatedEntitlement) GetGrantState() *GrantState {
+	if a == nil {
+		return nil
+	}
+	return a.GrantState
+}
+
+func (a *AggregatedEntitlement) GetGrantUnlimited() *bool {
+	if a == nil {
+		return nil
+	}
+	return a.GrantUnlimited
 }
 
 func (a *AggregatedEntitlement) GetIsEnabled() *bool {

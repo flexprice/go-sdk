@@ -11,7 +11,6 @@ type AnalyticsViewDefinition struct {
 	Filters    []AnalyticsFilter     `json:"filters,omitzero"`
 	Limit      *int64                `json:"limit,omitzero"`
 	Metrics    []Metric              `json:"metrics"`
-	Name       *string               `json:"name,omitzero"`
 	Shape      Shape                 `json:"shape"`
 	Sort       []AnalyticsSortSpec   `json:"sort,omitzero"`
 	Time       *AnalyticsTimeSpecRaw `json:"time,omitzero"`
@@ -55,13 +54,6 @@ func (a *AnalyticsViewDefinition) GetMetrics() []Metric {
 		return []Metric{}
 	}
 	return a.Metrics
-}
-
-func (a *AnalyticsViewDefinition) GetName() *string {
-	if a == nil {
-		return nil
-	}
-	return a.Name
 }
 
 func (a *AnalyticsViewDefinition) GetShape() Shape {

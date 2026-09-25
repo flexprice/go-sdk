@@ -8,6 +8,7 @@ import (
 )
 
 type ModifySubscriptionLineItem struct {
+	Amount        *string    `json:"amount,omitzero"`
 	EffectiveDate *time.Time `json:"effective_date,omitzero"`
 	LineItemID    *string    `json:"line_item_id,omitzero"`
 	Quantity      *string    `json:"quantity,omitzero"`
@@ -22,6 +23,13 @@ func (m *ModifySubscriptionLineItem) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (m *ModifySubscriptionLineItem) GetAmount() *string {
+	if m == nil {
+		return nil
+	}
+	return m.Amount
 }
 
 func (m *ModifySubscriptionLineItem) GetEffectiveDate() *time.Time {

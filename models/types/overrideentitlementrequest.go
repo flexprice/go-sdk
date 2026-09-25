@@ -7,10 +7,17 @@ import (
 )
 
 type OverrideEntitlementRequest struct {
+	AggregationMode *EntitlementAggregationMode `json:"aggregation_mode,omitzero"`
 	// ConfigValue is the config value for config features
 	ConfigValue map[string]any `json:"config_value,omitzero"`
 	// EntitlementID references the plan/addon entitlement to override
-	EntitlementID string `json:"entitlement_id"`
+	EntitlementID           string                              `json:"entitlement_id"`
+	GrantAllocationBehavior *EntitlementGrantAllocationBehavior `json:"grant_allocation_behavior,omitzero"`
+	GrantDurationUnit       *EntitlementGrantDurationUnit       `json:"grant_duration_unit,omitzero"`
+	GrantDurationValue      *int64                              `json:"grant_duration_value,omitzero"`
+	GrantMeasure            *EntitlementGrantMeasure            `json:"grant_measure,omitzero"`
+	GrantQuota              *string                             `json:"grant_quota,omitzero"`
+	GrantUnlimited          *bool                               `json:"grant_unlimited,omitzero"`
 	// IsEnabled determines if the entitlement is enabled or disabled
 	IsEnabled *bool `json:"is_enabled,omitzero"`
 	// StaticValue is the static value for static features
@@ -31,6 +38,13 @@ func (o *OverrideEntitlementRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (o *OverrideEntitlementRequest) GetAggregationMode() *EntitlementAggregationMode {
+	if o == nil {
+		return nil
+	}
+	return o.AggregationMode
+}
+
 func (o *OverrideEntitlementRequest) GetConfigValue() map[string]any {
 	if o == nil {
 		return nil
@@ -43,6 +57,48 @@ func (o *OverrideEntitlementRequest) GetEntitlementID() string {
 		return ""
 	}
 	return o.EntitlementID
+}
+
+func (o *OverrideEntitlementRequest) GetGrantAllocationBehavior() *EntitlementGrantAllocationBehavior {
+	if o == nil {
+		return nil
+	}
+	return o.GrantAllocationBehavior
+}
+
+func (o *OverrideEntitlementRequest) GetGrantDurationUnit() *EntitlementGrantDurationUnit {
+	if o == nil {
+		return nil
+	}
+	return o.GrantDurationUnit
+}
+
+func (o *OverrideEntitlementRequest) GetGrantDurationValue() *int64 {
+	if o == nil {
+		return nil
+	}
+	return o.GrantDurationValue
+}
+
+func (o *OverrideEntitlementRequest) GetGrantMeasure() *EntitlementGrantMeasure {
+	if o == nil {
+		return nil
+	}
+	return o.GrantMeasure
+}
+
+func (o *OverrideEntitlementRequest) GetGrantQuota() *string {
+	if o == nil {
+		return nil
+	}
+	return o.GrantQuota
+}
+
+func (o *OverrideEntitlementRequest) GetGrantUnlimited() *bool {
+	if o == nil {
+		return nil
+	}
+	return o.GrantUnlimited
 }
 
 func (o *OverrideEntitlementRequest) GetIsEnabled() *bool {

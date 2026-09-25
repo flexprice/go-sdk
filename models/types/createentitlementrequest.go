@@ -20,6 +20,7 @@ type CreateEntitlementRequest struct {
 	GrantDurationValue      *int64                              `json:"grant_duration_value,omitzero"`
 	GrantMeasure            *EntitlementGrantMeasure            `json:"grant_measure,omitzero"`
 	GrantQuota              *string                             `json:"grant_quota,omitzero"`
+	GrantUnlimited          *bool                               `json:"grant_unlimited,omitzero"`
 	IsEnabled               *bool                               `json:"is_enabled,omitzero"`
 	IsSoftLimit             *bool                               `json:"is_soft_limit,omitzero"`
 	ParentEntitlementID     *string                             `json:"parent_entitlement_id,omitzero"`
@@ -123,6 +124,13 @@ func (c *CreateEntitlementRequest) GetGrantQuota() *string {
 		return nil
 	}
 	return c.GrantQuota
+}
+
+func (c *CreateEntitlementRequest) GetGrantUnlimited() *bool {
+	if c == nil {
+		return nil
+	}
+	return c.GrantUnlimited
 }
 
 func (c *CreateEntitlementRequest) GetIsEnabled() *bool {

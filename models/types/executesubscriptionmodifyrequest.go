@@ -13,6 +13,7 @@ type ExecuteSubscriptionModifyRequest struct {
 	CouponParams           *SubModifyCouponParams           `json:"coupon_params,omitzero"`
 	GroupedInvoicingParams *SubModifyGroupedInvoicingParams `json:"grouped_invoicing_params,omitzero"`
 	InheritanceParams      *SubModifyInheritanceRequest     `json:"inheritance_params,omitzero"`
+	LineItemChangeParams   *SubModifyLineItemChangeRequest  `json:"line_item_change_params,omitzero"`
 	QuantityChangeParams   *SubModifyQuantityChangeRequest  `json:"quantity_change_params,omitzero"`
 	TaxParams              *SubModifyTaxParams              `json:"tax_params,omitzero"`
 	TrialEndParams         *SubModifyTrialEndRequest        `json:"trial_end_params,omitzero"`
@@ -70,6 +71,13 @@ func (e *ExecuteSubscriptionModifyRequest) GetInheritanceParams() *SubModifyInhe
 		return nil
 	}
 	return e.InheritanceParams
+}
+
+func (e *ExecuteSubscriptionModifyRequest) GetLineItemChangeParams() *SubModifyLineItemChangeRequest {
+	if e == nil {
+		return nil
+	}
+	return e.LineItemChangeParams
 }
 
 func (e *ExecuteSubscriptionModifyRequest) GetQuantityChangeParams() *SubModifyQuantityChangeRequest {
