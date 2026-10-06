@@ -15,6 +15,7 @@
 * [DeleteCustomer](#deletecustomer) - Delete customer
 * [GetCustomerEntitlements](#getcustomerentitlements) - Get customer entitlements
 * [GetCustomerUpcomingGrants](#getcustomerupcominggrants) - Get upcoming credit grant applications
+* [ListCustomerPaymentMethods](#listcustomerpaymentmethods) - List customer payment methods
 
 ## UpdateCustomer
 
@@ -600,6 +601,60 @@ func main() {
 ### Response
 
 **[*dtos.GetCustomerUpcomingGrantsResponse](../../models/dtos/getcustomerupcominggrantsresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## ListCustomerPaymentMethods
+
+Use when you need a customer's saved payment methods across every connected gateway, including whether each can be auto-charged. Only gateways that can list saved methods are included.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="listCustomerPaymentMethods" method="get" path="/customers/{id}/payment-methods" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Customers.ListCustomerPaymentMethods(ctx, "<id>", nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SavedPaymentMethodsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Customer ID                                           |
+| `providers`                                           | []`string`                                            | :heavy_minus_sign:                                    | Limit to these payment gateways                       |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.ListCustomerPaymentMethodsResponse](../../models/dtos/listcustomerpaymentmethodsresponse.md), error**
 
 ### Errors
 

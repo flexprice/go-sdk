@@ -1,0 +1,11 @@
+# WebhookDtoInvoiceSyncWebhookPayload
+
+
+## Fields
+
+| Field                                                                               | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `Error`                                                                             | `*string`                                                                           | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `EventType`                                                                         | [*types.WebhookEventName](../../models/types/webhookeventname.md)                   | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `Invoice`                                                                           | [*types.WebhookDtoInvoice](../../models/types/webhookdtoinvoice.md)                 | :heavy_minus_sign:                                                                  | N/A                                                                                 |
+| `ProviderDetails`                                                                   | [*types.WebhookDtoProviderDetails](../../models/types/webhookdtoproviderdetails.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |

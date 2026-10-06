@@ -2,11 +2,6 @@
 
 package types
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 type PaymentGatewayType string
 
 const (
@@ -22,28 +17,14 @@ const (
 func (e PaymentGatewayType) ToPointer() *PaymentGatewayType {
 	return &e
 }
-func (e *PaymentGatewayType) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *PaymentGatewayType) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "stripe", "razorpay", "nomod", "moyasar", "paddle", "whop", "chargebee":
+			return true
+		}
 	}
-	switch v {
-	case "stripe":
-		fallthrough
-	case "razorpay":
-		fallthrough
-	case "nomod":
-		fallthrough
-	case "moyasar":
-		fallthrough
-	case "paddle":
-		fallthrough
-	case "whop":
-		fallthrough
-	case "chargebee":
-		*e = PaymentGatewayType(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for PaymentGatewayType: %v", v)
-	}
+	return false
 }

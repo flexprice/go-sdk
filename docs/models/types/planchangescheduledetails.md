@@ -1,0 +1,10 @@
+# PlanChangeScheduleDetails
+
+
+## Fields
+
+| Field                                                                                             | Type                                                                                              | Required                                                                                          | Description                                                                                       |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `BillingPeriodBehaviour`                                                                          | [*types.BillingPeriodBehaviour](../../models/types/billingperiodbehaviour.md)                     | :heavy_minus_sign:                                                                                | N/A                                                                                               |
+| `EntityPolicies`                                                                                  | [*types.SubscriptionChangeEntityPolicies](../../models/types/subscriptionchangeentitypolicies.md) | :heavy_minus_sign:                                                                                | N/A                                                                                               |
+| `TargetPlanID`                                                                                    | `*string`                                                                                         | :heavy_minus_sign:                                                                                | N/A                                                                                               |

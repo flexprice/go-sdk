@@ -3,15 +3,84 @@
 package dtos
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
+
+type ScheduleType string
+
+const (
+	ScheduleTypePlanChange   ScheduleType = "plan_change"
+	ScheduleTypeCancellation ScheduleType = "cancellation"
+)
+
+func (e ScheduleType) ToPointer() *ScheduleType {
+	return &e
+}
+func (e *ScheduleType) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "plan_change":
+		fallthrough
+	case "cancellation":
+		*e = ScheduleType(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ScheduleType: %v", v)
+	}
+}
+
+type ScheduleStatus string
+
+const (
+	ScheduleStatusPending   ScheduleStatus = "pending"
+	ScheduleStatusExecuting ScheduleStatus = "executing"
+	ScheduleStatusExecuted  ScheduleStatus = "executed"
+	ScheduleStatusCancelled ScheduleStatus = "cancelled"
+	ScheduleStatusFailed    ScheduleStatus = "failed"
+)
+
+func (e ScheduleStatus) ToPointer() *ScheduleStatus {
+	return &e
+}
+func (e *ScheduleStatus) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "pending":
+		fallthrough
+	case "executing":
+		fallthrough
+	case "executed":
+		fallthrough
+	case "cancelled":
+		fallthrough
+	case "failed":
+		*e = ScheduleStatus(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for ScheduleStatus: %v", v)
+	}
+}
 
 type ListAllSubscriptionSchedulesRequest struct {
 	// Filter to pending schedules only
 	PendingOnly *bool `queryParam:"style=form,explode=true,name=pending_only"`
 	// Filter by subscription ID
 	SubscriptionID *string `queryParam:"style=form,explode=true,name=subscription_id"`
+	// Filter by subscription IDs
+	SubscriptionIds []string `queryParam:"style=form,explode=true,name=subscription_ids"`
+	// Filter by schedule type
+	ScheduleType []ScheduleType `queryParam:"style=form,explode=true,name=schedule_type"`
+	// Filter by schedule status
+	ScheduleStatus []ScheduleStatus `queryParam:"style=form,explode=true,name=schedule_status"`
 	// Limit results
 	Limit *int64 `queryParam:"style=form,explode=true,name=limit"`
 	// Offset for pagination
@@ -41,6 +110,27 @@ func (l *ListAllSubscriptionSchedulesRequest) GetSubscriptionID() *string {
 		return nil
 	}
 	return l.SubscriptionID
+}
+
+func (l *ListAllSubscriptionSchedulesRequest) GetSubscriptionIds() []string {
+	if l == nil {
+		return nil
+	}
+	return l.SubscriptionIds
+}
+
+func (l *ListAllSubscriptionSchedulesRequest) GetScheduleType() []ScheduleType {
+	if l == nil {
+		return nil
+	}
+	return l.ScheduleType
+}
+
+func (l *ListAllSubscriptionSchedulesRequest) GetScheduleStatus() []ScheduleStatus {
+	if l == nil {
+		return nil
+	}
+	return l.ScheduleStatus
 }
 
 func (l *ListAllSubscriptionSchedulesRequest) GetLimit() *int64 {

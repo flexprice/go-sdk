@@ -386,6 +386,7 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
 	"log"
 )
 
@@ -396,7 +397,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.ListAllSubscriptionSchedules(ctx, nil, nil, nil, nil)
+    res, err := s.Subscriptions.ListAllSubscriptionSchedules(ctx, dtos.ListAllSubscriptionSchedulesRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -408,14 +409,11 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `pendingOnly`                                         | `*bool`                                               | :heavy_minus_sign:                                    | Filter to pending schedules only                      |
-| `subscriptionID`                                      | `*string`                                             | :heavy_minus_sign:                                    | Filter by subscription ID                             |
-| `limit`                                               | `*int64`                                              | :heavy_minus_sign:                                    | Limit results                                         |
-| `offset`                                              | `*int64`                                              | :heavy_minus_sign:                                    | Offset for pagination                                 |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                                                            | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `ctx`                                                                                                | [context.Context](https://pkg.go.dev/context#Context)                                                | :heavy_check_mark:                                                                                   | The context to use for the request.                                                                  |
+| `request`                                                                                            | [dtos.ListAllSubscriptionSchedulesRequest](../../models/dtos/listallsubscriptionschedulesrequest.md) | :heavy_check_mark:                                                                                   | The request object to use for the request.                                                           |
+| `opts`                                                                                               | [][dtos.Option](../../models/dtos/option.md)                                                         | :heavy_minus_sign:                                                                                   | The options for this request.                                                                        |
 
 ### Response
 

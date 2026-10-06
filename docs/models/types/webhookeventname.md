@@ -57,6 +57,8 @@ custom := types.WebhookEventName("custom_value")
 | `WebhookEventNameInvoiceUpdateVoided`                         | invoice.update.voided                                         |
 | `WebhookEventNameInvoiceUpdate`                               | invoice.update                                                |
 | `WebhookEventNameInvoicePaymentOverdue`                       | invoice.payment.overdue                                       |
+| `WebhookEventNameInvoiceSyncSuccess`                          | invoice.sync.success                                          |
+| `WebhookEventNameInvoiceSyncFailed`                           | invoice.sync.failed                                           |
 | `WebhookEventNameWalletCreditBalanceDropped`                  | wallet.credit_balance.dropped                                 |
 | `WebhookEventNameWalletCreditBalanceRecovered`                | wallet.credit_balance.recovered                               |
 | `WebhookEventNameWalletOngoingBalanceDropped`                 | wallet.ongoing_balance.dropped                                |

@@ -23,7 +23,7 @@ type UsageAnalyticItem struct {
 	Feature            *Feature    `json:"feature,omitzero"`
 	FeatureID          *string     `json:"feature_id,omitzero"`
 	Group              *GroupGroup `json:"group,omitzero"`
-	Meter              *MeterMeter `json:"meter,omitzero"`
+	Meter              *Meter      `json:"meter,omitzero"`
 	// Meter ID
 	MeterID *string              `json:"meter_id,omitzero"`
 	Name    *string              `json:"name,omitzero"`
@@ -151,7 +151,7 @@ func (u *UsageAnalyticItem) GetGroup() *GroupGroup {
 	return u.Group
 }
 
-func (u *UsageAnalyticItem) GetMeter() *MeterMeter {
+func (u *UsageAnalyticItem) GetMeter() *Meter {
 	if u == nil {
 		return nil
 	}

@@ -1627,14 +1627,7 @@ func (s *Subscriptions) DeleteSubscriptionLineItem(ctx context.Context, id strin
 
 // ListAllSubscriptionSchedules - List all subscription schedules
 // Use when listing or searching scheduled changes across subscriptions (e.g. admin view). Returns schedules with optional filtering.
-func (s *Subscriptions) ListAllSubscriptionSchedules(ctx context.Context, pendingOnly *bool, subscriptionID *string, limit *int64, offset *int64, opts ...dtos.Option) (*dtos.ListAllSubscriptionSchedulesResponse, error) {
-	request := dtos.ListAllSubscriptionSchedulesRequest{
-		PendingOnly:    pendingOnly,
-		SubscriptionID: subscriptionID,
-		Limit:          limit,
-		Offset:         offset,
-	}
-
+func (s *Subscriptions) ListAllSubscriptionSchedules(ctx context.Context, request dtos.ListAllSubscriptionSchedulesRequest, opts ...dtos.Option) (*dtos.ListAllSubscriptionSchedulesResponse, error) {
 	o := dtos.Options{}
 	supportedOptions := []string{
 		dtos.SupportedOptionRetries,

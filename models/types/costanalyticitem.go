@@ -14,7 +14,7 @@ type CostAnalyticItem struct {
 	Currency           *string           `json:"currency,omitzero"`
 	CustomerID         *string           `json:"customer_id,omitzero"`
 	ExternalCustomerID *string           `json:"external_customer_id,omitzero"`
-	Meter              *MeterMeter       `json:"meter,omitzero"`
+	Meter              *Meter            `json:"meter,omitzero"`
 	MeterID            *string           `json:"meter_id,omitzero"`
 	MeterName          *string           `json:"meter_name,omitzero"`
 	Price              *PricePrice       `json:"price,omitzero"`
@@ -73,7 +73,7 @@ func (c *CostAnalyticItem) GetExternalCustomerID() *string {
 	return c.ExternalCustomerID
 }
 
-func (c *CostAnalyticItem) GetMeter() *MeterMeter {
+func (c *CostAnalyticItem) GetMeter() *Meter {
 	if c == nil {
 		return nil
 	}

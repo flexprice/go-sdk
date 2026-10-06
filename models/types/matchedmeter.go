@@ -7,9 +7,9 @@ import (
 )
 
 type MatchedMeter struct {
-	EventName *string     `json:"event_name,omitzero"`
-	Meter     *MeterMeter `json:"meter,omitzero"`
-	MeterID   *string     `json:"meter_id,omitzero"`
+	EventName *string `json:"event_name,omitzero"`
+	Meter     *Meter  `json:"meter,omitzero"`
+	MeterID   *string `json:"meter_id,omitzero"`
 }
 
 func (m MatchedMeter) MarshalJSON() ([]byte, error) {
@@ -30,7 +30,7 @@ func (m *MatchedMeter) GetEventName() *string {
 	return m.EventName
 }
 
-func (m *MatchedMeter) GetMeter() *MeterMeter {
+func (m *MatchedMeter) GetMeter() *Meter {
 	if m == nil {
 		return nil
 	}

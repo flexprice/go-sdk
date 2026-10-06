@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-type MeterMeter struct {
+type Meter struct {
 	Aggregation *MeterAggregation `json:"aggregation,omitzero"`
 	CreatedAt   *time.Time        `json:"created_at,omitzero"`
 	CreatedBy   *string           `json:"created_by,omitzero"`
@@ -31,102 +31,102 @@ type MeterMeter struct {
 	UpdatedBy  *string     `json:"updated_by,omitzero"`
 }
 
-func (m MeterMeter) MarshalJSON() ([]byte, error) {
+func (m Meter) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(m, "", false)
 }
 
-func (m *MeterMeter) UnmarshalJSON(data []byte) error {
+func (m *Meter) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &m, "", false, nil); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (m *MeterMeter) GetAggregation() *MeterAggregation {
+func (m *Meter) GetAggregation() *MeterAggregation {
 	if m == nil {
 		return nil
 	}
 	return m.Aggregation
 }
 
-func (m *MeterMeter) GetCreatedAt() *time.Time {
+func (m *Meter) GetCreatedAt() *time.Time {
 	if m == nil {
 		return nil
 	}
 	return m.CreatedAt
 }
 
-func (m *MeterMeter) GetCreatedBy() *string {
+func (m *Meter) GetCreatedBy() *string {
 	if m == nil {
 		return nil
 	}
 	return m.CreatedBy
 }
 
-func (m *MeterMeter) GetEnvironmentID() *string {
+func (m *Meter) GetEnvironmentID() *string {
 	if m == nil {
 		return nil
 	}
 	return m.EnvironmentID
 }
 
-func (m *MeterMeter) GetEventName() *string {
+func (m *Meter) GetEventName() *string {
 	if m == nil {
 		return nil
 	}
 	return m.EventName
 }
 
-func (m *MeterMeter) GetFilters() []MeterFilter {
+func (m *Meter) GetFilters() []MeterFilter {
 	if m == nil {
 		return nil
 	}
 	return m.Filters
 }
 
-func (m *MeterMeter) GetID() *string {
+func (m *Meter) GetID() *string {
 	if m == nil {
 		return nil
 	}
 	return m.ID
 }
 
-func (m *MeterMeter) GetName() *string {
+func (m *Meter) GetName() *string {
 	if m == nil {
 		return nil
 	}
 	return m.Name
 }
 
-func (m *MeterMeter) GetResetUsage() *ResetUsage {
+func (m *Meter) GetResetUsage() *ResetUsage {
 	if m == nil {
 		return nil
 	}
 	return m.ResetUsage
 }
 
-func (m *MeterMeter) GetStatus() *Status {
+func (m *Meter) GetStatus() *Status {
 	if m == nil {
 		return nil
 	}
 	return m.Status
 }
 
-func (m *MeterMeter) GetTenantID() *string {
+func (m *Meter) GetTenantID() *string {
 	if m == nil {
 		return nil
 	}
 	return m.TenantID
 }
 
-func (m *MeterMeter) GetUpdatedAt() *time.Time {
+func (m *Meter) GetUpdatedAt() *time.Time {
 	if m == nil {
 		return nil
 	}
 	return m.UpdatedAt
 }
 
-func (m *MeterMeter) GetUpdatedBy() *string {
+func (m *Meter) GetUpdatedBy() *string {
 	if m == nil {
 		return nil
 	}

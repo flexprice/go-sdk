@@ -1,0 +1,24 @@
+# FXRateResponse
+
+
+## Fields
+
+| Field                                                     | Type                                                      | Required                                                  | Description                                               |
+| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
+| `CreatedAt`                                               | [*time.Time](https://pkg.go.dev/time#Time)                | :heavy_minus_sign:                                        | N/A                                                       |
+| `CreatedBy`                                               | `*string`                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `EndDate`                                                 | [*time.Time](https://pkg.go.dev/time#Time)                | :heavy_minus_sign:                                        | N/A                                                       |
+| `EnvironmentID`                                           | `*string`                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `FromCurrency`                                            | `*string`                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `ID`                                                      | `*string`                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `Metadata`                                                | map[string]`string`                                       | :heavy_minus_sign:                                        | N/A                                                       |
+| `Rate`                                                    | `*string`                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `Scope`                                                   | [*types.FXRateScope](../../models/types/fxratescope.md)   | :heavy_minus_sign:                                        | N/A                                                       |
+| `ScopeID`                                                 | `*string`                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `Source`                                                  | [*types.FXRateSource](../../models/types/fxratesource.md) | :heavy_minus_sign:                                        | N/A                                                       |
+| `StartDate`                                               | [*time.Time](https://pkg.go.dev/time#Time)                | :heavy_minus_sign:                                        | N/A                                                       |
+| `Status`                                                  | [*types.Status](../../models/types/status.md)             | :heavy_minus_sign:                                        | N/A                                                       |
+| `TenantID`                                                | `*string`                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `ToCurrency`                                              | `*string`                                                 | :heavy_minus_sign:                                        | N/A                                                       |
+| `UpdatedAt`                                               | [*time.Time](https://pkg.go.dev/time#Time)                | :heavy_minus_sign:                                        | N/A                                                       |
+| `UpdatedBy`                                               | `*string`                                                 | :heavy_minus_sign:                                        | N/A                                                       |

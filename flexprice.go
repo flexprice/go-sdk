@@ -2,7 +2,7 @@
 
 package flexprice
 
-// Generated from OpenAPI doc version 1.0 and generator version 2.941.0
+// Generated from OpenAPI doc version 1.0 and generator version 2.943.0
 
 import (
 	"context"
@@ -70,6 +70,7 @@ type Flexprice struct {
 	Environments       *Environments
 	Events             *Events
 	Features           *Features
+	FXRates            *FXRates
 	Groups             *Groups
 	Integrations       *Integrations
 	Marketplace        *Marketplace
@@ -166,11 +167,11 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.33",
+		SDKVersion: "2.1.34",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 2.1.33 2.941.0 1.0 github.com/flexprice/go-sdk/v2",
-			SDKVersion:        "2.1.33",
-			GenVersion:        "2.941.0",
+			UserAgent:         "speakeasy-sdk/go 2.1.34 2.943.0 1.0 github.com/flexprice/go-sdk/v2",
+			SDKVersion:        "2.1.34",
+			GenVersion:        "2.943.0",
 			OpenAPIDocVersion: "1.0",
 			ServerList:        ServerList,
 		},
@@ -204,6 +205,7 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.Environments = newEnvironments(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Events = newEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Features = newFeatures(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.FXRates = newFXRates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Groups = newGroups(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Integrations = newIntegrations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Marketplace = newMarketplace(sdk, sdk.sdkConfiguration, sdk.hooks)

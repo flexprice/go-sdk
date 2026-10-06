@@ -24,6 +24,8 @@
 * [PostWebhookEventsInvoiceCommunicationTriggered](#postwebhookeventsinvoicecommunicationtriggered) - invoice.communication.triggered
 * [PostWebhookEventsInvoiceCreateDrafted](#postwebhookeventsinvoicecreatedrafted) - invoice.create.drafted
 * [PostWebhookEventsInvoicePaymentOverdue](#postwebhookeventsinvoicepaymentoverdue) - invoice.payment.overdue
+* [PostWebhookEventsInvoiceSyncFailed](#postwebhookeventsinvoicesyncfailed) - invoice.sync.failed
+* [PostWebhookEventsInvoiceSyncSuccess](#postwebhookeventsinvoicesyncsuccess) - invoice.sync.success
 * [PostWebhookEventsInvoiceUpdate](#postwebhookeventsinvoiceupdate) - invoice.update
 * [PostWebhookEventsInvoiceUpdateFinalized](#postwebhookeventsinvoiceupdatefinalized) - invoice.update.finalized
 * [PostWebhookEventsInvoiceUpdatePayment](#postwebhookeventsinvoiceupdatepayment) - invoice.update.payment
@@ -1058,6 +1060,106 @@ func main() {
 ### Response
 
 **[*dtos.PostWebhookEventsInvoicePaymentOverdueResponse](../../models/dtos/postwebhookeventsinvoicepaymentoverdueresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsInvoiceSyncFailed
+
+Fired once per provider when an invoice sync fails after its last retry.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/invoice.sync.failed" method="post" path="/webhook-events/invoice.sync.failed" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsInvoiceSyncFailed(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoInvoiceSyncWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsInvoiceSyncFailedResponse](../../models/dtos/postwebhookeventsinvoicesyncfailedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsInvoiceSyncSuccess
+
+Fired once per provider when an invoice is synced to that provider.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/invoice.sync.success" method="post" path="/webhook-events/invoice.sync.success" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsInvoiceSyncSuccess(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoInvoiceSyncWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsInvoiceSyncSuccessResponse](../../models/dtos/postwebhookeventsinvoicesyncsuccessresponse.md), error**
 
 ### Errors
 

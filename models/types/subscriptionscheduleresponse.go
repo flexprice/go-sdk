@@ -13,8 +13,9 @@ type SubscriptionScheduleResponse struct {
 	CanBeCancelled *bool `json:"can_be_cancelled,omitzero"`
 	// cancelled_at is when the schedule was cancelled
 	CancelledAt *time.Time `json:"cancelled_at,omitzero"`
-	// configuration contains type-specific configuration (e.g., target_plan_id for plan changes)
-	Configuration map[string]any `json:"configuration,omitzero"`
+	// configuration is the raw type-specific configuration. Deprecated: use configuration_details.
+	Configuration        map[string]any        `json:"configuration,omitzero"`
+	ConfigurationDetails *ConfigurationDetails `json:"configuration_details,omitzero"`
 	// created_at timestamp
 	CreatedAt *time.Time `json:"created_at,omitzero"`
 	// days_until_execution is the number of days until execution
@@ -22,8 +23,9 @@ type SubscriptionScheduleResponse struct {
 	// error_message contains the error if execution failed
 	ErrorMessage *string `json:"error_message,omitzero"`
 	// executed_at is when the schedule was executed
-	ExecutedAt *time.Time `json:"executed_at,omitzero"`
-	// execution_result contains type-specific execution result
+	ExecutedAt       *time.Time        `json:"executed_at,omitzero"`
+	ExecutionDetails *ExecutionDetails `json:"execution_details,omitzero"`
+	// execution_result is the raw type-specific execution result. Deprecated: use execution_details.
 	ExecutionResult map[string]any `json:"execution_result,omitzero"`
 	// id of the schedule
 	ID *string `json:"id,omitzero"`
@@ -71,6 +73,13 @@ func (s *SubscriptionScheduleResponse) GetConfiguration() map[string]any {
 	return s.Configuration
 }
 
+func (s *SubscriptionScheduleResponse) GetConfigurationDetails() *ConfigurationDetails {
+	if s == nil {
+		return nil
+	}
+	return s.ConfigurationDetails
+}
+
 func (s *SubscriptionScheduleResponse) GetCreatedAt() *time.Time {
 	if s == nil {
 		return nil
@@ -97,6 +106,13 @@ func (s *SubscriptionScheduleResponse) GetExecutedAt() *time.Time {
 		return nil
 	}
 	return s.ExecutedAt
+}
+
+func (s *SubscriptionScheduleResponse) GetExecutionDetails() *ExecutionDetails {
+	if s == nil {
+		return nil
+	}
+	return s.ExecutionDetails
 }
 
 func (s *SubscriptionScheduleResponse) GetExecutionResult() map[string]any {

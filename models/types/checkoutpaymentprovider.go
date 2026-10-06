@@ -7,6 +7,7 @@ type CheckoutPaymentProvider string
 const (
 	CheckoutPaymentProviderRazorpay  CheckoutPaymentProvider = "razorpay"
 	CheckoutPaymentProviderChargebee CheckoutPaymentProvider = "chargebee"
+	CheckoutPaymentProviderStripe    CheckoutPaymentProvider = "stripe"
 )
 
 func (e CheckoutPaymentProvider) ToPointer() *CheckoutPaymentProvider {
@@ -17,7 +18,7 @@ func (e CheckoutPaymentProvider) ToPointer() *CheckoutPaymentProvider {
 func (e *CheckoutPaymentProvider) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "razorpay", "chargebee":
+		case "razorpay", "chargebee", "stripe":
 			return true
 		}
 	}

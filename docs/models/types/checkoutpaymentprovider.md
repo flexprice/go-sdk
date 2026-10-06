@@ -20,3 +20,4 @@ custom := types.CheckoutPaymentProvider("custom_value")
 | ---------------------------------- | ---------------------------------- |
 | `CheckoutPaymentProviderRazorpay`  | razorpay                           |
 | `CheckoutPaymentProviderChargebee` | chargebee                          |
+| `CheckoutPaymentProviderStripe`    | stripe                             |

@@ -10,6 +10,12 @@ import (
 type GetEventRequest struct {
 	// Event ID
 	ID string `queryParam:"style=form,explode=true,name=id"`
+	// External customer ID the event was ingested with
+	ExternalCustomerID string `queryParam:"style=form,explode=true,name=external_customer_id"`
+	// Start of the event timestamp window (RFC3339); defaults to 14 days before end_time
+	StartTime *string `queryParam:"style=form,explode=true,name=start_time"`
+	// End of the event timestamp window (RFC3339); defaults to now
+	EndTime *string `queryParam:"style=form,explode=true,name=end_time"`
 }
 
 func (g GetEventRequest) MarshalJSON() ([]byte, error) {
@@ -17,7 +23,7 @@ func (g GetEventRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (g *GetEventRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"id", "external_customer_id"}); err != nil {
 		return err
 	}
 	return nil
@@ -28,6 +34,27 @@ func (g *GetEventRequest) GetID() string {
 		return ""
 	}
 	return g.ID
+}
+
+func (g *GetEventRequest) GetExternalCustomerID() string {
+	if g == nil {
+		return ""
+	}
+	return g.ExternalCustomerID
+}
+
+func (g *GetEventRequest) GetStartTime() *string {
+	if g == nil {
+		return nil
+	}
+	return g.StartTime
+}
+
+func (g *GetEventRequest) GetEndTime() *string {
+	if g == nil {
+		return nil
+	}
+	return g.EndTime
 }
 
 type GetEventResponse struct {
