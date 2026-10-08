@@ -7,9 +7,9 @@ import (
 )
 
 type UpdateTenantRequest struct {
-	BillingDetails *TenantBillingDetails `json:"billing_details,omitzero"`
-	Metadata       map[string]string     `json:"metadata,omitzero"`
-	Name           *string               `json:"name,omitzero"`
+	BillingDetails *UpdateTenantBillingDetails `json:"billing_details,omitzero"`
+	Metadata       map[string]string           `json:"metadata,omitzero"`
+	Name           *string                     `json:"name,omitzero"`
 }
 
 func (u UpdateTenantRequest) MarshalJSON() ([]byte, error) {
@@ -23,7 +23,7 @@ func (u *UpdateTenantRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (u *UpdateTenantRequest) GetBillingDetails() *TenantBillingDetails {
+func (u *UpdateTenantRequest) GetBillingDetails() *UpdateTenantBillingDetails {
 	if u == nil {
 		return nil
 	}

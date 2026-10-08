@@ -1,0 +1,14 @@
+# FxConversion
+
+
+## Fields
+
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `BillingCurrency`                                                      | `*string`                                                              | :heavy_minus_sign:                                                     | BillingCurrency is the currency the invoice was issued in.             |
+| `ChargeCurrency`                                                       | `*string`                                                              | :heavy_minus_sign:                                                     | ChargeCurrency is the invoice's original (draft) currency.             |
+| `ConvertedAt`                                                          | [*time.Time](https://pkg.go.dev/time#Time)                             | :heavy_minus_sign:                                                     | ConvertedAt is when the conversion ran.                                |
+| `Rate`                                                                 | `*string`                                                              | :heavy_minus_sign:                                                     | Rate is the frozen rate: billing per 1 charge unit.                    |
+| `RateID`                                                               | `*string`                                                              | :heavy_minus_sign:                                                     | RateID is the fx_rates row used, for reference only; never read again. |
+| `Scope`                                                                | [*types.FXRateScope](../../models/types/fxratescope.md)                | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `Source`                                                               | [*types.FxConversionSource](../../models/types/fxconversionsource.md)  | :heavy_minus_sign:                                                     | N/A                                                                    |

@@ -25,7 +25,11 @@ type UpdateSubscriptionLineItemRequest struct {
 	EffectiveFrom *string `json:"effective_from,omitzero"`
 	// Metadata for the new line item
 	Metadata map[string]string `json:"metadata,omitzero"`
-	TierMode *BillingTier      `json:"tier_mode,omitzero"`
+	// PriceUnitAmount is the amount for a CUSTOM price unit price (FLAT_FEE/PACKAGE billing models)
+	PriceUnitAmount *string `json:"price_unit_amount,omitzero"`
+	// PriceUnitTiers are the tiers for a CUSTOM price unit price (TIERED billing model)
+	PriceUnitTiers []CreatePriceTier `json:"price_unit_tiers,omitzero"`
+	TierMode       *BillingTier      `json:"tier_mode,omitzero"`
 	// Tiers determines the pricing tiers for this line item
 	Tiers             []CreatePriceTier       `json:"tiers,omitzero"`
 	TransformQuantity *PriceTransformQuantity `json:"transform_quantity,omitzero"`
@@ -131,6 +135,20 @@ func (u *UpdateSubscriptionLineItemRequest) GetMetadata() map[string]string {
 		return nil
 	}
 	return u.Metadata
+}
+
+func (u *UpdateSubscriptionLineItemRequest) GetPriceUnitAmount() *string {
+	if u == nil {
+		return nil
+	}
+	return u.PriceUnitAmount
+}
+
+func (u *UpdateSubscriptionLineItemRequest) GetPriceUnitTiers() []CreatePriceTier {
+	if u == nil {
+		return nil
+	}
+	return u.PriceUnitTiers
 }
 
 func (u *UpdateSubscriptionLineItemRequest) GetTierMode() *BillingTier {

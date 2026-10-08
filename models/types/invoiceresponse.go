@@ -42,7 +42,8 @@ type InvoiceResponse struct {
 	// environment_id is the ID of the environment this invoice belongs to (for multi-environment setups)
 	EnvironmentID *string `json:"environment_id,omitzero"`
 	// finalized_at is the timestamp when this invoice was finalized and made ready for payment
-	FinalizedAt *time.Time `json:"finalized_at,omitzero"`
+	FinalizedAt  *time.Time    `json:"finalized_at,omitzero"`
+	FxConversion *FxConversion `json:"fx_conversion,omitzero"`
 	// id is the unique identifier for this invoice
 	ID *string `json:"id,omitzero"`
 	// idempotency_key is a unique key used to prevent duplicate invoice creation when retrying API calls
@@ -251,6 +252,13 @@ func (i *InvoiceResponse) GetFinalizedAt() *time.Time {
 		return nil
 	}
 	return i.FinalizedAt
+}
+
+func (i *InvoiceResponse) GetFxConversion() *FxConversion {
+	if i == nil {
+		return nil
+	}
+	return i.FxConversion
 }
 
 func (i *InvoiceResponse) GetID() *string {

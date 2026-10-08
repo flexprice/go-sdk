@@ -20,6 +20,8 @@ type UpdateCustomerRequest struct {
 	AddressPostalCode *string `json:"address_postal_code,omitzero"`
 	// address_state is the updated state, province, or region name with maximum 100 characters
 	AddressState *string `json:"address_state,omitzero"`
+	// billing_currency updates the invoicing currency; send "" to clear it back to the charge currency
+	BillingCurrency *string `json:"billing_currency,omitzero"`
 	// contact is the updated contact number for the customer (e.g. phone)
 	Contact *string `json:"contact,omitzero"`
 	// email is the updated email address and must be a valid email format if provided
@@ -88,6 +90,13 @@ func (u *UpdateCustomerRequest) GetAddressState() *string {
 		return nil
 	}
 	return u.AddressState
+}
+
+func (u *UpdateCustomerRequest) GetBillingCurrency() *string {
+	if u == nil {
+		return nil
+	}
+	return u.BillingCurrency
 }
 
 func (u *UpdateCustomerRequest) GetContact() *string {

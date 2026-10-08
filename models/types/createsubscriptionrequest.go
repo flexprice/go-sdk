@@ -27,11 +27,14 @@ type CreateSubscriptionRequest struct {
 	CreditGrants []CreateCreditGrantRequest `json:"credit_grants,omitzero"`
 	Currency     string                     `json:"currency"`
 	// CustomerID takes priority over ExternalCustomerID when both are provided.
-	CustomerID             *string    `json:"customer_id,omitzero"`
-	EnableTrueUp           *bool      `json:"enable_true_up,omitzero"`
-	EndDate                *time.Time `json:"end_date,omitzero"`
-	ExternalCustomerID     *string    `json:"external_customer_id,omitzero"`
-	GatewayPaymentMethodID *string    `json:"gateway_payment_method_id,omitzero"`
+	CustomerID         *string    `json:"customer_id,omitzero"`
+	EnableTrueUp       *bool      `json:"enable_true_up,omitzero"`
+	EndDate            *time.Time `json:"end_date,omitzero"`
+	ExternalCustomerID *string    `json:"external_customer_id,omitzero"`
+	// FxRates sets subscription-scope rates to the invoicing customer's billing currency, one per
+	// non-overlapping window. Rejected when nothing needs converting or the pair has no tenant rate.
+	FxRates                []InlineFXRate `json:"fx_rates,omitzero"`
+	GatewayPaymentMethodID *string        `json:"gateway_payment_method_id,omitzero"`
 	// IncludePriceIDs selects which plan prices to attach. Nil/omitted attaches matching-cadence
 	// prices plus ONETIME; [] attaches none (LineItems extras still apply); a non-empty list
 	// attaches only those IDs. Each listed ID must belong to the plan, match the subscription
@@ -200,6 +203,13 @@ func (c *CreateSubscriptionRequest) GetExternalCustomerID() *string {
 		return nil
 	}
 	return c.ExternalCustomerID
+}
+
+func (c *CreateSubscriptionRequest) GetFxRates() []InlineFXRate {
+	if c == nil {
+		return nil
+	}
+	return c.FxRates
 }
 
 func (c *CreateSubscriptionRequest) GetGatewayPaymentMethodID() *string {

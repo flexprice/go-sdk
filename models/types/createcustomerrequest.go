@@ -20,6 +20,8 @@ type CreateCustomerRequest struct {
 	AddressPostalCode *string `json:"address_postal_code,omitzero"`
 	// address_state is the state, province, or region name with maximum 100 characters
 	AddressState *string `json:"address_state,omitzero"`
+	// billing_currency is the fiat currency invoices are issued in; empty means the charge currency is used as-is
+	BillingCurrency *string `json:"billing_currency,omitzero"`
 	// contact is an optional contact number for the customer (e.g. phone)
 	Contact *string `json:"contact,omitzero"`
 	// email is the customer's email address and must be a valid email format if provided
@@ -97,6 +99,13 @@ func (c *CreateCustomerRequest) GetAddressState() *string {
 		return nil
 	}
 	return c.AddressState
+}
+
+func (c *CreateCustomerRequest) GetBillingCurrency() *string {
+	if c == nil {
+		return nil
+	}
+	return c.BillingCurrency
 }
 
 func (c *CreateCustomerRequest) GetContact() *string {

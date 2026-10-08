@@ -21,6 +21,8 @@ type CustomerResponse struct {
 	AddressPostalCode *string `json:"address_postal_code,omitzero"`
 	// AddressState is the state of the customer's address
 	AddressState *string `json:"address_state,omitzero"`
+	// BillingCurrency is the fiat currency invoices are issued in; nil means charge currency is used as-is.
+	BillingCurrency *string `json:"billing_currency,omitzero"`
 	// Contact is an optional contact number for the customer (e.g. phone)
 	Contact   *string    `json:"contact,omitzero"`
 	CreatedAt *time.Time `json:"created_at,omitzero"`
@@ -99,6 +101,13 @@ func (c *CustomerResponse) GetAddressState() *string {
 		return nil
 	}
 	return c.AddressState
+}
+
+func (c *CustomerResponse) GetBillingCurrency() *string {
+	if c == nil {
+		return nil
+	}
+	return c.BillingCurrency
 }
 
 func (c *CustomerResponse) GetContact() *string {

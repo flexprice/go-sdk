@@ -22,6 +22,7 @@ type InvoiceLineItemResponse struct {
 	EntityID                    *string                 `json:"entity_id,omitzero"`
 	EntityType                  *string                 `json:"entity_type,omitzero"`
 	EnvironmentID               *string                 `json:"environment_id,omitzero"`
+	FxConversion                *FxConversion           `json:"fx_conversion,omitzero"`
 	ID                          *string                 `json:"id,omitzero"`
 	InvoiceID                   *string                 `json:"invoice_id,omitzero"`
 	// invoice_level_discount is the discount amount in invoice currency applied to all line items on the invoice.
@@ -151,6 +152,13 @@ func (i *InvoiceLineItemResponse) GetEnvironmentID() *string {
 		return nil
 	}
 	return i.EnvironmentID
+}
+
+func (i *InvoiceLineItemResponse) GetFxConversion() *FxConversion {
+	if i == nil {
+		return nil
+	}
+	return i.FxConversion
 }
 
 func (i *InvoiceLineItemResponse) GetID() *string {
