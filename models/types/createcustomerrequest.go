@@ -24,6 +24,8 @@ type CreateCustomerRequest struct {
 	BillingCurrency *string `json:"billing_currency,omitzero"`
 	// contact is an optional contact number for the customer (e.g. phone)
 	Contact *string `json:"contact,omitzero"`
+	// contact_persons are people at the customer; at most one may be primary
+	ContactPersons []CustomerContactPerson `json:"contact_persons"`
 	// email is the customer's email address and must be a valid email format if provided
 	Email *string `json:"email,omitzero"`
 	// external_id is the unique identifier from your system to reference this customer (required)
@@ -53,7 +55,7 @@ func (c CreateCustomerRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateCustomerRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"external_id", "name"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"contact_persons", "external_id", "name"}); err != nil {
 		return err
 	}
 	return nil
@@ -113,6 +115,13 @@ func (c *CreateCustomerRequest) GetContact() *string {
 		return nil
 	}
 	return c.Contact
+}
+
+func (c *CreateCustomerRequest) GetContactPersons() []CustomerContactPerson {
+	if c == nil {
+		return []CustomerContactPerson{}
+	}
+	return c.ContactPersons
 }
 
 func (c *CreateCustomerRequest) GetEmail() *string {

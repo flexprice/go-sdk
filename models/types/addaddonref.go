@@ -11,6 +11,7 @@ type AddAddonRef struct {
 	AddonID           *string            `json:"addon_id,omitzero"`
 	AssociationID     *string            `json:"association_id,omitzero"`
 	Cadence           *AddonCadence      `json:"cadence,omitzero"`
+	Coupons           []CouponRef        `json:"coupons,omitzero"`
 	ProrationBehavior *ProrationBehavior `json:"proration_behavior,omitzero"`
 	StartDate         *time.Time         `json:"start_date,omitzero"`
 }
@@ -45,6 +46,13 @@ func (a *AddAddonRef) GetCadence() *AddonCadence {
 		return nil
 	}
 	return a.Cadence
+}
+
+func (a *AddAddonRef) GetCoupons() []CouponRef {
+	if a == nil {
+		return nil
+	}
+	return a.Coupons
 }
 
 func (a *AddAddonRef) GetProrationBehavior() *ProrationBehavior {

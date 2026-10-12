@@ -26,6 +26,7 @@ type CreateCreditGrantRequest struct {
 	PeriodCount            *int64                         `json:"period_count,omitzero"`
 	PlanID                 *string                        `json:"plan_id,omitzero"`
 	Priority               *int64                         `json:"priority,omitzero"`
+	ProrationBehavior      *ProrationBehavior             `json:"proration_behavior,omitzero"`
 	Scope                  CreditGrantScope               `json:"scope"`
 	StartDate              *time.Time                     `json:"start_date,omitzero"`
 	SubscriptionID         *string                        `json:"subscription_id,omitzero"`
@@ -143,6 +144,13 @@ func (c *CreateCreditGrantRequest) GetPriority() *int64 {
 		return nil
 	}
 	return c.Priority
+}
+
+func (c *CreateCreditGrantRequest) GetProrationBehavior() *ProrationBehavior {
+	if c == nil {
+		return nil
+	}
+	return c.ProrationBehavior
 }
 
 func (c *CreateCreditGrantRequest) GetScope() CreditGrantScope {

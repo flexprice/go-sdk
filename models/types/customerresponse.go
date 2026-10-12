@@ -24,9 +24,10 @@ type CustomerResponse struct {
 	// BillingCurrency is the fiat currency invoices are issued in; nil means charge currency is used as-is.
 	BillingCurrency *string `json:"billing_currency,omitzero"`
 	// Contact is an optional contact number for the customer (e.g. phone)
-	Contact   *string    `json:"contact,omitzero"`
-	CreatedAt *time.Time `json:"created_at,omitzero"`
-	CreatedBy *string    `json:"created_by,omitzero"`
+	Contact        *string                 `json:"contact,omitzero"`
+	ContactPersons []CustomerContactPerson `json:"contact_persons,omitzero"`
+	CreatedAt      *time.Time              `json:"created_at,omitzero"`
+	CreatedBy      *string                 `json:"created_by,omitzero"`
 	// Email is the email of the customer
 	Email *string `json:"email,omitzero"`
 	// EnvironmentID is the environment identifier for the customer
@@ -115,6 +116,13 @@ func (c *CustomerResponse) GetContact() *string {
 		return nil
 	}
 	return c.Contact
+}
+
+func (c *CustomerResponse) GetContactPersons() []CustomerContactPerson {
+	if c == nil {
+		return nil
+	}
+	return c.ContactPersons
 }
 
 func (c *CustomerResponse) GetCreatedAt() *time.Time {

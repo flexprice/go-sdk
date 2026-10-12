@@ -23,6 +23,7 @@ type WebhookDtoInvoice struct {
 	DueDate                    *time.Time                    `json:"due_date,omitzero"`
 	EnvironmentID              *string                       `json:"environment_id,omitzero"`
 	FinalizedAt                *time.Time                    `json:"finalized_at,omitzero"`
+	FxConversion               *FxConversion                 `json:"fx_conversion,omitzero"`
 	ID                         *string                       `json:"id,omitzero"`
 	IdempotencyKey             *string                       `json:"idempotency_key,omitzero"`
 	InvoiceNumber              *string                       `json:"invoice_number,omitzero"`
@@ -162,6 +163,13 @@ func (w *WebhookDtoInvoice) GetFinalizedAt() *time.Time {
 		return nil
 	}
 	return w.FinalizedAt
+}
+
+func (w *WebhookDtoInvoice) GetFxConversion() *FxConversion {
+	if w == nil {
+		return nil
+	}
+	return w.FxConversion
 }
 
 func (w *WebhookDtoInvoice) GetID() *string {

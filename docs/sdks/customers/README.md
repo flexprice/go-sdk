@@ -41,7 +41,9 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Customers.UpdateCustomer(ctx, types.UpdateCustomerRequest{}, nil, nil)
+    res, err := s.Customers.UpdateCustomer(ctx, types.UpdateCustomerRequest{
+        ContactPersons: []types.CustomerContactPerson{},
+    }, nil, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -98,6 +100,7 @@ func main() {
     )
 
     res, err := s.Customers.CreateCustomer(ctx, types.CreateCustomerRequest{
+        ContactPersons: []types.CustomerContactPerson{},
         ExternalID: "<id>",
         Name: "<value>",
     })

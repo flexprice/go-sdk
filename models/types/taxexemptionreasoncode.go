@@ -7,6 +7,10 @@ type TaxExemptionReasonCode string
 const (
 	TaxExemptionReasonCodeCustomerExempt  TaxExemptionReasonCode = "customer_exempt"
 	TaxExemptionReasonCodeNoTaxConfigured TaxExemptionReasonCode = "no_tax_configured"
+	TaxExemptionReasonCodeReverseCharge   TaxExemptionReasonCode = "reverse_charge"
+	TaxExemptionReasonCodeNotCollecting   TaxExemptionReasonCode = "not_collecting"
+	TaxExemptionReasonCodeNotSubjectToTax TaxExemptionReasonCode = "not_subject_to_tax"
+	TaxExemptionReasonCodeNotSupported    TaxExemptionReasonCode = "not_supported"
 )
 
 func (e TaxExemptionReasonCode) ToPointer() *TaxExemptionReasonCode {
@@ -17,7 +21,7 @@ func (e TaxExemptionReasonCode) ToPointer() *TaxExemptionReasonCode {
 func (e *TaxExemptionReasonCode) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "customer_exempt", "no_tax_configured":
+		case "customer_exempt", "no_tax_configured", "reverse_charge", "not_collecting", "not_subject_to_tax", "not_supported":
 			return true
 		}
 	}

@@ -24,6 +24,7 @@ type TopUpWalletRequest struct {
 	// used as-is, skipping slab resolution. To grant no bonus, omit this field entirely.
 	BonusCreditsToAdd *string         `json:"bonus_credits_to_add,omitzero"`
 	Checkout          *CheckoutParams `json:"checkout,omitzero"`
+	Coupons           []TopUpCoupon   `json:"coupons,omitzero"`
 	// credits_to_add is the number of credits to add to the wallet
 	CreditsToAdd *string `json:"credits_to_add,omitzero"`
 	// description to add any specific details about the transaction
@@ -79,6 +80,13 @@ func (t *TopUpWalletRequest) GetCheckout() *CheckoutParams {
 		return nil
 	}
 	return t.Checkout
+}
+
+func (t *TopUpWalletRequest) GetCoupons() []TopUpCoupon {
+	if t == nil {
+		return nil
+	}
+	return t.Coupons
 }
 
 func (t *TopUpWalletRequest) GetCreditsToAdd() *string {

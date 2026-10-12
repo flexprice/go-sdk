@@ -8,26 +8,32 @@ import (
 )
 
 type TaxAppliedResponse struct {
-	AppliedAt        *time.Time         `json:"applied_at,omitzero"`
-	CreatedAt        *time.Time         `json:"created_at,omitzero"`
-	CreatedBy        *string            `json:"created_by,omitzero"`
-	Currency         *string            `json:"currency,omitzero"`
-	EntityID         *string            `json:"entity_id,omitzero"`
-	EntityType       *TaxRateEntityType `json:"entity_type,omitzero"`
-	EnvironmentID    *string            `json:"environment_id,omitzero"`
-	ID               *string            `json:"id,omitzero"`
-	IdempotencyKey   *string            `json:"idempotency_key,omitzero"`
-	Metadata         map[string]string  `json:"metadata,omitzero"`
-	Status           *Status            `json:"status,omitzero"`
-	TaxAmount        *string            `json:"tax_amount,omitzero"`
-	TaxAssociationID *string            `json:"tax_association_id,omitzero"`
-	TaxBehavior      *TaxBehavior       `json:"tax_behavior,omitzero"`
-	TaxRate          *TaxRateResponse   `json:"tax_rate,omitzero"`
-	TaxRateID        *string            `json:"tax_rate_id,omitzero"`
-	TaxableAmount    *string            `json:"taxable_amount,omitzero"`
-	TenantID         *string            `json:"tenant_id,omitzero"`
-	UpdatedAt        *time.Time         `json:"updated_at,omitzero"`
-	UpdatedBy        *string            `json:"updated_by,omitzero"`
+	AppliedAt          *time.Time          `json:"applied_at,omitzero"`
+	CreatedAt          *time.Time          `json:"created_at,omitzero"`
+	CreatedBy          *string             `json:"created_by,omitzero"`
+	Currency           *string             `json:"currency,omitzero"`
+	EntityID           *string             `json:"entity_id,omitzero"`
+	EntityType         *TaxRateEntityType  `json:"entity_type,omitzero"`
+	EnvironmentID      *string             `json:"environment_id,omitzero"`
+	ExternalTaxDetails *ExternalTaxDetails `json:"external_tax_details,omitzero"`
+	ID                 *string             `json:"id,omitzero"`
+	IdempotencyKey     *string             `json:"idempotency_key,omitzero"`
+	Metadata           map[string]string   `json:"metadata,omitzero"`
+	Provider           *TaxProvider        `json:"provider,omitzero"`
+	Status             *Status             `json:"status,omitzero"`
+	TaxAmount          *string             `json:"tax_amount,omitzero"`
+	TaxAssociationID   *string             `json:"tax_association_id,omitzero"`
+	TaxBehavior        *TaxBehavior        `json:"tax_behavior,omitzero"`
+	TaxRate            *TaxRateResponse    `json:"tax_rate,omitzero"`
+	// Null when an external engine calculated the tax: there is no Flexprice rate to point at.
+	TaxRateID *string `json:"tax_rate_id,omitzero"`
+	// TaxTransactionID is the provider transaction recording the filed tax, stamped at commit.
+	TaxTransactionID   *string             `json:"tax_transaction_id,omitzero"`
+	TaxTransactionType *TaxTransactionType `json:"tax_transaction_type,omitzero"`
+	TaxableAmount      *string             `json:"taxable_amount,omitzero"`
+	TenantID           *string             `json:"tenant_id,omitzero"`
+	UpdatedAt          *time.Time          `json:"updated_at,omitzero"`
+	UpdatedBy          *string             `json:"updated_by,omitzero"`
 }
 
 func (t TaxAppliedResponse) MarshalJSON() ([]byte, error) {
@@ -90,6 +96,13 @@ func (t *TaxAppliedResponse) GetEnvironmentID() *string {
 	return t.EnvironmentID
 }
 
+func (t *TaxAppliedResponse) GetExternalTaxDetails() *ExternalTaxDetails {
+	if t == nil {
+		return nil
+	}
+	return t.ExternalTaxDetails
+}
+
 func (t *TaxAppliedResponse) GetID() *string {
 	if t == nil {
 		return nil
@@ -109,6 +122,13 @@ func (t *TaxAppliedResponse) GetMetadata() map[string]string {
 		return nil
 	}
 	return t.Metadata
+}
+
+func (t *TaxAppliedResponse) GetProvider() *TaxProvider {
+	if t == nil {
+		return nil
+	}
+	return t.Provider
 }
 
 func (t *TaxAppliedResponse) GetStatus() *Status {
@@ -151,6 +171,20 @@ func (t *TaxAppliedResponse) GetTaxRateID() *string {
 		return nil
 	}
 	return t.TaxRateID
+}
+
+func (t *TaxAppliedResponse) GetTaxTransactionID() *string {
+	if t == nil {
+		return nil
+	}
+	return t.TaxTransactionID
+}
+
+func (t *TaxAppliedResponse) GetTaxTransactionType() *TaxTransactionType {
+	if t == nil {
+		return nil
+	}
+	return t.TaxTransactionType
 }
 
 func (t *TaxAppliedResponse) GetTaxableAmount() *string {

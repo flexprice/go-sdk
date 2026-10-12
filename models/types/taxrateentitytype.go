@@ -9,6 +9,7 @@ const (
 	TaxRateEntityTypeSubscription TaxRateEntityType = "subscription"
 	TaxRateEntityTypeInvoice      TaxRateEntityType = "invoice"
 	TaxRateEntityTypeTenant       TaxRateEntityType = "tenant"
+	TaxRateEntityTypeCreditNote   TaxRateEntityType = "credit_note"
 )
 
 func (e TaxRateEntityType) ToPointer() *TaxRateEntityType {
@@ -19,7 +20,7 @@ func (e TaxRateEntityType) ToPointer() *TaxRateEntityType {
 func (e *TaxRateEntityType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "customer", "subscription", "invoice", "tenant":
+		case "customer", "subscription", "invoice", "tenant", "credit_note":
 			return true
 		}
 	}

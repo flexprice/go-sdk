@@ -24,6 +24,8 @@ type UpdateCustomerRequest struct {
 	BillingCurrency *string `json:"billing_currency,omitzero"`
 	// contact is the updated contact number for the customer (e.g. phone)
 	Contact *string `json:"contact,omitzero"`
+	// contact_persons replaces the customer's contact persons when provided; at most one may be primary
+	ContactPersons []CustomerContactPerson `json:"contact_persons"`
 	// email is the updated email address and must be a valid email format if provided
 	Email *string `json:"email,omitzero"`
 	// external_id is the updated external identifier for the customer
@@ -44,7 +46,7 @@ func (u UpdateCustomerRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (u *UpdateCustomerRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &u, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &u, "", false, []string{"contact_persons"}); err != nil {
 		return err
 	}
 	return nil
@@ -104,6 +106,13 @@ func (u *UpdateCustomerRequest) GetContact() *string {
 		return nil
 	}
 	return u.Contact
+}
+
+func (u *UpdateCustomerRequest) GetContactPersons() []CustomerContactPerson {
+	if u == nil {
+		return []CustomerContactPerson{}
+	}
+	return u.ContactPersons
 }
 
 func (u *UpdateCustomerRequest) GetEmail() *string {

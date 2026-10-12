@@ -9,6 +9,8 @@ import (
 
 type WalletTransactionResponse struct {
 	Amount *string `json:"amount,omitzero"`
+	// ConsumptionBreakdown is set on debits: the credits drawn from each credit batch.
+	ConsumptionBreakdown []WalletTxConsumption `json:"consumption_breakdown,omitzero"`
 	// conversion_rate is the conversion rate for the transaction to the currency
 	ConversionRate      *string       `json:"conversion_rate,omitzero"`
 	CreatedAt           *time.Time    `json:"created_at,omitzero"`
@@ -34,6 +36,8 @@ type WalletTransactionResponse struct {
 	Priority            *int64                 `json:"priority,omitzero"`
 	ReferenceID         *string                `json:"reference_id,omitzero"`
 	ReferenceType       *WalletTxReferenceType `json:"reference_type,omitzero"`
+	SourceID            *string                `json:"source_id,omitzero"`
+	SourceType          *WalletTxSourceType    `json:"source_type,omitzero"`
 	Status              *Status                `json:"status,omitzero"`
 	TenantID            *string                `json:"tenant_id,omitzero"`
 	// topup_conversion_rate is the conversion rate for the topup to the currency
@@ -63,6 +67,13 @@ func (w *WalletTransactionResponse) GetAmount() *string {
 		return nil
 	}
 	return w.Amount
+}
+
+func (w *WalletTransactionResponse) GetConsumptionBreakdown() []WalletTxConsumption {
+	if w == nil {
+		return nil
+	}
+	return w.ConsumptionBreakdown
 }
 
 func (w *WalletTransactionResponse) GetConversionRate() *string {
@@ -210,6 +221,20 @@ func (w *WalletTransactionResponse) GetReferenceType() *WalletTxReferenceType {
 		return nil
 	}
 	return w.ReferenceType
+}
+
+func (w *WalletTransactionResponse) GetSourceID() *string {
+	if w == nil {
+		return nil
+	}
+	return w.SourceID
+}
+
+func (w *WalletTransactionResponse) GetSourceType() *WalletTxSourceType {
+	if w == nil {
+		return nil
+	}
+	return w.SourceType
 }
 
 func (w *WalletTransactionResponse) GetStatus() *Status {

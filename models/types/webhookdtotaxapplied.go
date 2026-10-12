@@ -8,15 +8,18 @@ import (
 )
 
 type WebhookDtoTaxApplied struct {
-	AppliedAt     *time.Time         `json:"applied_at,omitzero"`
-	Currency      *string            `json:"currency,omitzero"`
-	ID            *string            `json:"id,omitzero"`
-	Metadata      map[string]string  `json:"metadata,omitzero"`
-	TaxAmount     *string            `json:"tax_amount,omitzero"`
-	TaxBehavior   *TaxBehavior       `json:"tax_behavior,omitzero"`
-	TaxRate       *WebhookDtoTaxRate `json:"tax_rate,omitzero"`
-	TaxRateID     *string            `json:"tax_rate_id,omitzero"`
-	TaxableAmount *string            `json:"taxable_amount,omitzero"`
+	AppliedAt          *time.Time          `json:"applied_at,omitzero"`
+	Currency           *string             `json:"currency,omitzero"`
+	ExternalTaxDetails *ExternalTaxDetails `json:"external_tax_details,omitzero"`
+	ID                 *string             `json:"id,omitzero"`
+	Metadata           map[string]string   `json:"metadata,omitzero"`
+	Provider           *TaxProvider        `json:"provider,omitzero"`
+	TaxAmount          *string             `json:"tax_amount,omitzero"`
+	TaxBehavior        *TaxBehavior        `json:"tax_behavior,omitzero"`
+	TaxRate            *WebhookDtoTaxRate  `json:"tax_rate,omitzero"`
+	TaxRateID          *string             `json:"tax_rate_id,omitzero"`
+	TaxTransactionType *TaxTransactionType `json:"tax_transaction_type,omitzero"`
+	TaxableAmount      *string             `json:"taxable_amount,omitzero"`
 }
 
 func (w WebhookDtoTaxApplied) MarshalJSON() ([]byte, error) {
@@ -44,6 +47,13 @@ func (w *WebhookDtoTaxApplied) GetCurrency() *string {
 	return w.Currency
 }
 
+func (w *WebhookDtoTaxApplied) GetExternalTaxDetails() *ExternalTaxDetails {
+	if w == nil {
+		return nil
+	}
+	return w.ExternalTaxDetails
+}
+
 func (w *WebhookDtoTaxApplied) GetID() *string {
 	if w == nil {
 		return nil
@@ -56,6 +66,13 @@ func (w *WebhookDtoTaxApplied) GetMetadata() map[string]string {
 		return nil
 	}
 	return w.Metadata
+}
+
+func (w *WebhookDtoTaxApplied) GetProvider() *TaxProvider {
+	if w == nil {
+		return nil
+	}
+	return w.Provider
 }
 
 func (w *WebhookDtoTaxApplied) GetTaxAmount() *string {
@@ -84,6 +101,13 @@ func (w *WebhookDtoTaxApplied) GetTaxRateID() *string {
 		return nil
 	}
 	return w.TaxRateID
+}
+
+func (w *WebhookDtoTaxApplied) GetTaxTransactionType() *TaxTransactionType {
+	if w == nil {
+		return nil
+	}
+	return w.TaxTransactionType
 }
 
 func (w *WebhookDtoTaxApplied) GetTaxableAmount() *string {

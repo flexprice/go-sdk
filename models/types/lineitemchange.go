@@ -9,10 +9,12 @@ import (
 
 type LineItemChange struct {
 	// Amount reprices the charge. Flat fee only for now.
-	Amount        *string    `json:"amount,omitzero"`
-	EffectiveDate *time.Time `json:"effective_date,omitzero"`
-	ID            string     `json:"id"`
-	Quantity      *string    `json:"quantity,omitzero"`
+	Amount *string `json:"amount,omitzero"`
+	// Coupons apply to the new line item created by this change.
+	Coupons       []SubscriptionCouponInput `json:"coupons,omitzero"`
+	EffectiveDate *time.Time                `json:"effective_date,omitzero"`
+	ID            string                    `json:"id"`
+	Quantity      *string                   `json:"quantity,omitzero"`
 }
 
 func (l LineItemChange) MarshalJSON() ([]byte, error) {
@@ -31,6 +33,13 @@ func (l *LineItemChange) GetAmount() *string {
 		return nil
 	}
 	return l.Amount
+}
+
+func (l *LineItemChange) GetCoupons() []SubscriptionCouponInput {
+	if l == nil {
+		return nil
+	}
+	return l.Coupons
 }
 
 func (l *LineItemChange) GetEffectiveDate() *time.Time {

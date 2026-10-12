@@ -21,6 +21,7 @@ custom := types.ScheduledTaskEntityType("custom_value")
 | `ScheduledTaskEntityTypeEvents`         | events                                  |
 | `ScheduledTaskEntityTypeInvoice`        | invoice                                 |
 | `ScheduledTaskEntityTypeCreditTopups`   | credit_topups                           |
+| `ScheduledTaskEntityTypeWalletDebits`   | wallet_debits                           |
 | `ScheduledTaskEntityTypeCreditUsage`    | credit_usage                            |
 | `ScheduledTaskEntityTypeUsageAnalytics` | usage_analytics                         |
 | `ScheduledTaskEntityTypeRevenueFacts`   | revenue_facts                           |

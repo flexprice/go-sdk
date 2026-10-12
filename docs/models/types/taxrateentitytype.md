@@ -22,3 +22,4 @@ custom := types.TaxRateEntityType("custom_value")
 | `TaxRateEntityTypeSubscription` | subscription                    |
 | `TaxRateEntityTypeInvoice`      | invoice                         |
 | `TaxRateEntityTypeTenant`       | tenant                          |
+| `TaxRateEntityTypeCreditNote`   | credit_note                     |

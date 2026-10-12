@@ -20,3 +20,7 @@ custom := types.TaxExemptionReasonCode("custom_value")
 | --------------------------------------- | --------------------------------------- |
 | `TaxExemptionReasonCodeCustomerExempt`  | customer_exempt                         |
 | `TaxExemptionReasonCodeNoTaxConfigured` | no_tax_configured                       |
+| `TaxExemptionReasonCodeReverseCharge`   | reverse_charge                          |
+| `TaxExemptionReasonCodeNotCollecting`   | not_collecting                          |
+| `TaxExemptionReasonCodeNotSubjectToTax` | not_subject_to_tax                      |
+| `TaxExemptionReasonCodeNotSupported`    | not_supported                           |

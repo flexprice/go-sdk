@@ -8,22 +8,25 @@ import (
 )
 
 type WebhookDtoWalletTransaction struct {
-	Amount              *string                `json:"amount,omitzero"`
-	CreditAmount        *string                `json:"credit_amount,omitzero"`
-	CreditBalanceAfter  *string                `json:"credit_balance_after,omitzero"`
-	CreditBalanceBefore *string                `json:"credit_balance_before,omitzero"`
-	Currency            *string                `json:"currency,omitzero"`
-	CustomerID          *string                `json:"customer_id,omitzero"`
-	Description         *string                `json:"description,omitzero"`
-	ExpiryDate          *time.Time             `json:"expiry_date,omitzero"`
-	ID                  *string                `json:"id,omitzero"`
-	Metadata            map[string]string      `json:"metadata,omitzero"`
-	ReferenceID         *string                `json:"reference_id,omitzero"`
-	ReferenceType       *WalletTxReferenceType `json:"reference_type,omitzero"`
-	TransactionReason   *TransactionReason     `json:"transaction_reason,omitzero"`
-	TransactionStatus   *TransactionStatus     `json:"transaction_status,omitzero"`
-	Type                *TransactionType       `json:"type,omitzero"`
-	WalletID            *string                `json:"wallet_id,omitzero"`
+	Amount               *string                `json:"amount,omitzero"`
+	ConsumptionBreakdown []WalletTxConsumption  `json:"consumption_breakdown,omitzero"`
+	CreditAmount         *string                `json:"credit_amount,omitzero"`
+	CreditBalanceAfter   *string                `json:"credit_balance_after,omitzero"`
+	CreditBalanceBefore  *string                `json:"credit_balance_before,omitzero"`
+	Currency             *string                `json:"currency,omitzero"`
+	CustomerID           *string                `json:"customer_id,omitzero"`
+	Description          *string                `json:"description,omitzero"`
+	ExpiryDate           *time.Time             `json:"expiry_date,omitzero"`
+	ID                   *string                `json:"id,omitzero"`
+	Metadata             map[string]string      `json:"metadata,omitzero"`
+	ReferenceID          *string                `json:"reference_id,omitzero"`
+	ReferenceType        *WalletTxReferenceType `json:"reference_type,omitzero"`
+	SourceID             *string                `json:"source_id,omitzero"`
+	SourceType           *WalletTxSourceType    `json:"source_type,omitzero"`
+	TransactionReason    *TransactionReason     `json:"transaction_reason,omitzero"`
+	TransactionStatus    *TransactionStatus     `json:"transaction_status,omitzero"`
+	Type                 *TransactionType       `json:"type,omitzero"`
+	WalletID             *string                `json:"wallet_id,omitzero"`
 }
 
 func (w WebhookDtoWalletTransaction) MarshalJSON() ([]byte, error) {
@@ -42,6 +45,13 @@ func (w *WebhookDtoWalletTransaction) GetAmount() *string {
 		return nil
 	}
 	return w.Amount
+}
+
+func (w *WebhookDtoWalletTransaction) GetConsumptionBreakdown() []WalletTxConsumption {
+	if w == nil {
+		return nil
+	}
+	return w.ConsumptionBreakdown
 }
 
 func (w *WebhookDtoWalletTransaction) GetCreditAmount() *string {
@@ -119,6 +129,20 @@ func (w *WebhookDtoWalletTransaction) GetReferenceType() *WalletTxReferenceType 
 		return nil
 	}
 	return w.ReferenceType
+}
+
+func (w *WebhookDtoWalletTransaction) GetSourceID() *string {
+	if w == nil {
+		return nil
+	}
+	return w.SourceID
+}
+
+func (w *WebhookDtoWalletTransaction) GetSourceType() *WalletTxSourceType {
+	if w == nil {
+		return nil
+	}
+	return w.SourceType
 }
 
 func (w *WebhookDtoWalletTransaction) GetTransactionReason() *TransactionReason {

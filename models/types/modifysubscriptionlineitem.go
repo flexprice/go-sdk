@@ -8,10 +8,11 @@ import (
 )
 
 type ModifySubscriptionLineItem struct {
-	Amount        *string    `json:"amount,omitzero"`
-	EffectiveDate *time.Time `json:"effective_date,omitzero"`
-	LineItemID    *string    `json:"line_item_id,omitzero"`
-	Quantity      *string    `json:"quantity,omitzero"`
+	Amount        *string     `json:"amount,omitzero"`
+	Coupons       []CouponRef `json:"coupons,omitzero"`
+	EffectiveDate *time.Time  `json:"effective_date,omitzero"`
+	LineItemID    *string     `json:"line_item_id,omitzero"`
+	Quantity      *string     `json:"quantity,omitzero"`
 }
 
 func (m ModifySubscriptionLineItem) MarshalJSON() ([]byte, error) {
@@ -30,6 +31,13 @@ func (m *ModifySubscriptionLineItem) GetAmount() *string {
 		return nil
 	}
 	return m.Amount
+}
+
+func (m *ModifySubscriptionLineItem) GetCoupons() []CouponRef {
+	if m == nil {
+		return nil
+	}
+	return m.Coupons
 }
 
 func (m *ModifySubscriptionLineItem) GetEffectiveDate() *time.Time {

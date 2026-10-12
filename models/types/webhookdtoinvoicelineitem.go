@@ -15,6 +15,7 @@ type WebhookDtoInvoiceLineItem struct {
 	DisplayName                 *string           `json:"display_name,omitzero"`
 	EntityID                    *string           `json:"entity_id,omitzero"`
 	EntityType                  *string           `json:"entity_type,omitzero"`
+	FxConversion                *FxConversion     `json:"fx_conversion,omitzero"`
 	ID                          *string           `json:"id,omitzero"`
 	InvoiceLevelDiscount        *string           `json:"invoice_level_discount,omitzero"`
 	LineItemDiscount            *string           `json:"line_item_discount,omitzero"`
@@ -91,6 +92,13 @@ func (w *WebhookDtoInvoiceLineItem) GetEntityType() *string {
 		return nil
 	}
 	return w.EntityType
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetFxConversion() *FxConversion {
+	if w == nil {
+		return nil
+	}
+	return w.FxConversion
 }
 
 func (w *WebhookDtoInvoiceLineItem) GetID() *string {
