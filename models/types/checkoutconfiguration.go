@@ -7,6 +7,7 @@ import (
 )
 
 type CheckoutConfiguration struct {
+	AddAddonBatchParams      []AddAddonParams          `json:"add_addon_batch_params,omitzero"`
 	AddAddonParams           *AddAddonParams           `json:"add_addon_params,omitzero"`
 	CreateSubscriptionParams *CreateSubscriptionParams `json:"create_subscription_params,omitzero"`
 	ModifySubscriptionParams *ModifySubscriptionParams `json:"modify_subscription_params,omitzero"`
@@ -23,6 +24,13 @@ func (c *CheckoutConfiguration) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (c *CheckoutConfiguration) GetAddAddonBatchParams() []AddAddonParams {
+	if c == nil {
+		return nil
+	}
+	return c.AddAddonBatchParams
 }
 
 func (c *CheckoutConfiguration) GetAddAddonParams() *AddAddonParams {

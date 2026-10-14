@@ -13,7 +13,7 @@ type CancelSubscriptionRequest struct {
 	// For "scheduled_date", accepts both future dates (deferred cancellation) and past dates (backdated cancellation).
 	// For "immediate", accepts past/current dates only; use "scheduled_date" for future dates.
 	CancelAt                       *time.Time                      `json:"cancel_at,omitzero"`
-	CancelImmediatelyInovicePolicy *CancelImmediatelyInvoicePolicy `json:"cancel_immediately_inovice_policy,omitzero"`
+	CancelImmediatelyInvoicePolicy *CancelImmediatelyInvoicePolicy `json:"cancel_immediately_invoice_policy,omitzero"`
 	CancellationType               CancellationType                `json:"cancellation_type"`
 	ProrationBehavior              *ProrationBehavior              `json:"proration_behavior,omitzero"`
 	// Reason for cancellation (for audit and business intelligence)
@@ -38,11 +38,11 @@ func (c *CancelSubscriptionRequest) GetCancelAt() *time.Time {
 	return c.CancelAt
 }
 
-func (c *CancelSubscriptionRequest) GetCancelImmediatelyInovicePolicy() *CancelImmediatelyInvoicePolicy {
+func (c *CancelSubscriptionRequest) GetCancelImmediatelyInvoicePolicy() *CancelImmediatelyInvoicePolicy {
 	if c == nil {
 		return nil
 	}
-	return c.CancelImmediatelyInovicePolicy
+	return c.CancelImmediatelyInvoicePolicy
 }
 
 func (c *CancelSubscriptionRequest) GetCancellationType() CancellationType {

@@ -10,6 +10,7 @@
 * [GetAddon](#getaddon) - Get addon
 * [UpdateAddon](#updateaddon) - Update addon
 * [DeleteAddon](#deleteaddon) - Delete addon
+* [SyncAddonPrices](#syncaddonprices) - Synchronize addon prices
 
 ## CreateAddon
 
@@ -333,5 +334,58 @@ func main() {
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## SyncAddonPrices
+
+Use when you have changed an addon's usage charges and need to push them to all active subscriptions holding the addon. Returns workflow ID.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="syncAddonPrices" method="post" path="/addons/{id}/sync/subscriptions" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Addons.SyncAddonPrices(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ModelsTemporalWorkflowResult != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Addon ID                                              |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.SyncAddonPricesResponse](../../models/dtos/syncaddonpricesresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404, 422        | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |

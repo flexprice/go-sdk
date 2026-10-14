@@ -7,8 +7,10 @@ import (
 )
 
 type SubModifyGroupedInvoicingParams struct {
-	Action               GroupedInvoicingAction `json:"action"`
-	ChildSubscriptionIds []string               `json:"child_subscription_ids,omitzero"`
+	Action GroupedInvoicingAction `json:"action"`
+	// Changes is required for action 'modify'; the path subscription is the parent.
+	Changes              []GroupedInvoicingChange `json:"changes,omitzero"`
+	ChildSubscriptionIds []string                 `json:"child_subscription_ids,omitzero"`
 	// ParentSubscriptionID is required for action 'add'.
 	ParentSubscriptionID *string `json:"parent_subscription_id,omitzero"`
 }
@@ -29,6 +31,13 @@ func (s *SubModifyGroupedInvoicingParams) GetAction() GroupedInvoicingAction {
 		return GroupedInvoicingAction("")
 	}
 	return s.Action
+}
+
+func (s *SubModifyGroupedInvoicingParams) GetChanges() []GroupedInvoicingChange {
+	if s == nil {
+		return nil
+	}
+	return s.Changes
 }
 
 func (s *SubModifyGroupedInvoicingParams) GetChildSubscriptionIds() []string {

@@ -16,14 +16,11 @@ func main() {
 		flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	res, err := s.Addons.CreateAddon(ctx, types.CreateAddonRequest{
-		LookupKey: "<value>",
-		Name:      "<value>",
-	})
+	res, err := s.Activity.ListActivity(ctx, types.ListActivityRequest{})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.CreateAddonResponse != nil {
+	if res.ListActivityResponse != nil {
 		// handle response
 	}
 }

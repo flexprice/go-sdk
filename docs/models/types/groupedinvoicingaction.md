@@ -17,3 +17,4 @@ value := types.GroupedInvoicingActionAdd
 | ------------------------------ | ------------------------------ |
 | `GroupedInvoicingActionAdd`    | add                            |
 | `GroupedInvoicingActionRemove` | remove                         |
+| `GroupedInvoicingActionModify` | modify                         |

@@ -12,6 +12,7 @@ type GroupedInvoicingAction string
 const (
 	GroupedInvoicingActionAdd    GroupedInvoicingAction = "add"
 	GroupedInvoicingActionRemove GroupedInvoicingAction = "remove"
+	GroupedInvoicingActionModify GroupedInvoicingAction = "modify"
 )
 
 func (e GroupedInvoicingAction) ToPointer() *GroupedInvoicingAction {
@@ -26,6 +27,8 @@ func (e *GroupedInvoicingAction) UnmarshalJSON(data []byte) error {
 	case "add":
 		fallthrough
 	case "remove":
+		fallthrough
+	case "modify":
 		*e = GroupedInvoicingAction(v)
 		return nil
 	default:

@@ -24,3 +24,5 @@ custom := types.PaymentTerms("custom_value")
 | `PaymentTermsSixtyNet`       | 60 NET                       |
 | `PaymentTermsSeventyFiveNet` | 75 NET                       |
 | `PaymentTermsNinetyNet`      | 90 NET                       |
+| `PaymentTermsEndOfMonth`     | END_OF_MONTH                 |
+| `PaymentTermsEndOfNextMonth` | END_OF_NEXT_MONTH            |

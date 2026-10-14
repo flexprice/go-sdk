@@ -53,6 +53,7 @@ func Pointer[T any](v T) *T { return &v }
 // Flexprice API: Flexprice API Service
 type Flexprice struct {
 	SDKVersion         string
+	Activity           *Activity
 	Addons             *Addons
 	CreditGrants       *CreditGrants
 	Entitlements       *Entitlements
@@ -167,10 +168,10 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.37",
+		SDKVersion: "2.1.38",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 2.1.37 2.948.4 1.0 github.com/flexprice/go-sdk/v2",
-			SDKVersion:        "2.1.37",
+			UserAgent:         "speakeasy-sdk/go 2.1.38 2.948.4 1.0 github.com/flexprice/go-sdk/v2",
+			SDKVersion:        "2.1.38",
 			GenVersion:        "2.948.4",
 			OpenAPIDocVersion: "1.0",
 			ServerList:        ServerList,
@@ -188,6 +189,7 @@ func New(opts ...SDKOption) *Flexprice {
 
 	sdk.sdkConfiguration = sdk.hooks.SDKInit(sdk.sdkConfiguration)
 
+	sdk.Activity = newActivity(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Addons = newAddons(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CreditGrants = newCreditGrants(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Entitlements = newEntitlements(sdk, sdk.sdkConfiguration, sdk.hooks)

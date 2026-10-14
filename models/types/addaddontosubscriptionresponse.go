@@ -24,9 +24,12 @@ type AddAddonToSubscriptionResponse struct {
 	Metadata           map[string]any              `json:"metadata,omitzero"`
 	StartDate          *time.Time                  `json:"start_date,omitzero"`
 	Status             *Status                     `json:"status,omitzero"`
-	TenantID           *string                     `json:"tenant_id,omitzero"`
-	UpdatedAt          *time.Time                  `json:"updated_at,omitzero"`
-	UpdatedBy          *string                     `json:"updated_by,omitzero"`
+	// SyncedPriceSequence is the addon price sequence this association's line items
+	// have been reconciled up to. Written only by the addon usage-price sync.
+	SyncedPriceSequence *int64     `json:"synced_price_sequence,omitzero"`
+	TenantID            *string    `json:"tenant_id,omitzero"`
+	UpdatedAt           *time.Time `json:"updated_at,omitzero"`
+	UpdatedBy           *string    `json:"updated_by,omitzero"`
 }
 
 func (a AddAddonToSubscriptionResponse) MarshalJSON() ([]byte, error) {
@@ -150,6 +153,13 @@ func (a *AddAddonToSubscriptionResponse) GetStatus() *Status {
 		return nil
 	}
 	return a.Status
+}
+
+func (a *AddAddonToSubscriptionResponse) GetSyncedPriceSequence() *int64 {
+	if a == nil {
+		return nil
+	}
+	return a.SyncedPriceSequence
 }
 
 func (a *AddAddonToSubscriptionResponse) GetTenantID() *string {

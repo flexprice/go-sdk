@@ -8,16 +8,17 @@ import (
 )
 
 type CreateAddonResponse struct {
-	CreatedAt     *time.Time            `json:"created_at,omitzero"`
-	CreatedBy     *string               `json:"created_by,omitzero"`
-	CreditGrants  []CreditGrantResponse `json:"credit_grants,omitzero"`
-	Description   *string               `json:"description,omitzero"`
-	Entitlements  []EntitlementResponse `json:"entitlements,omitzero"`
-	EnvironmentID *string               `json:"environment_id,omitzero"`
-	ID            *string               `json:"id,omitzero"`
-	LookupKey     *string               `json:"lookup_key,omitzero"`
-	Metadata      map[string]any        `json:"metadata,omitzero"`
-	Name          *string               `json:"name,omitzero"`
+	CreatedAt       *time.Time                    `json:"created_at,omitzero"`
+	CreatedBy       *string                       `json:"created_by,omitzero"`
+	CreditGrants    []CreditGrantResponse         `json:"credit_grants,omitzero"`
+	Description     *string                       `json:"description,omitzero"`
+	Entitlements    []EntitlementResponse         `json:"entitlements,omitzero"`
+	EnvironmentID   *string                       `json:"environment_id,omitzero"`
+	ID              *string                       `json:"id,omitzero"`
+	LookupKey       *string                       `json:"lookup_key,omitzero"`
+	Metadata        map[string]any                `json:"metadata,omitzero"`
+	Name            *string                       `json:"name,omitzero"`
+	PriceSyncStatus *AddonPriceSyncStatusResponse `json:"price_sync_status,omitzero"`
 	// Optional expanded fields
 	Prices    []PriceResponse `json:"prices,omitzero"`
 	Status    *Status         `json:"status,omitzero"`
@@ -105,6 +106,13 @@ func (c *CreateAddonResponse) GetName() *string {
 		return nil
 	}
 	return c.Name
+}
+
+func (c *CreateAddonResponse) GetPriceSyncStatus() *AddonPriceSyncStatusResponse {
+	if c == nil {
+		return nil
+	}
+	return c.PriceSyncStatus
 }
 
 func (c *CreateAddonResponse) GetPrices() []PriceResponse {

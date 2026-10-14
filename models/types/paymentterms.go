@@ -11,6 +11,8 @@ const (
 	PaymentTermsSixtyNet       PaymentTerms = "60 NET"
 	PaymentTermsSeventyFiveNet PaymentTerms = "75 NET"
 	PaymentTermsNinetyNet      PaymentTerms = "90 NET"
+	PaymentTermsEndOfMonth     PaymentTerms = "END_OF_MONTH"
+	PaymentTermsEndOfNextMonth PaymentTerms = "END_OF_NEXT_MONTH"
 )
 
 func (e PaymentTerms) ToPointer() *PaymentTerms {
@@ -21,7 +23,7 @@ func (e PaymentTerms) ToPointer() *PaymentTerms {
 func (e *PaymentTerms) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "15 NET", "30 NET", "45 NET", "60 NET", "75 NET", "90 NET":
+		case "15 NET", "30 NET", "45 NET", "60 NET", "75 NET", "90 NET", "END_OF_MONTH", "END_OF_NEXT_MONTH":
 			return true
 		}
 	}

@@ -11,10 +11,11 @@ type ChangedAddonAssociation struct {
 	AddonID     *string      `json:"addon_id,omitzero"`
 	AddonStatus *AddonStatus `json:"addon_status,omitzero"`
 	// created | ended
-	ChangeAction *ChangedAddonAssociationAction `json:"change_action,omitzero"`
-	EndDate      *time.Time                     `json:"end_date,omitzero"`
-	ID           *string                        `json:"id,omitzero"`
-	StartDate    *time.Time                     `json:"start_date,omitzero"`
+	ChangeAction   *ChangedAddonAssociationAction `json:"change_action,omitzero"`
+	EndDate        *time.Time                     `json:"end_date,omitzero"`
+	ID             *string                        `json:"id,omitzero"`
+	StartDate      *time.Time                     `json:"start_date,omitzero"`
+	SubscriptionID *string                        `json:"subscription_id,omitzero"`
 }
 
 func (c ChangedAddonAssociation) MarshalJSON() ([]byte, error) {
@@ -68,4 +69,11 @@ func (c *ChangedAddonAssociation) GetStartDate() *time.Time {
 		return nil
 	}
 	return c.StartDate
+}
+
+func (c *ChangedAddonAssociation) GetSubscriptionID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.SubscriptionID
 }
