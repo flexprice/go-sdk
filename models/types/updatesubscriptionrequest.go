@@ -8,8 +8,9 @@ import (
 )
 
 type UpdateSubscriptionRequest struct {
-	CancelAt          *time.Time `json:"cancel_at,omitzero"`
-	CancelAtPeriodEnd *bool      `json:"cancel_at_period_end,omitzero"`
+	CancelAt *time.Time `json:"cancel_at,omitzero"`
+	// Pointer so omitting the field leaves the stored value unchanged; sending it sets the flag.
+	CancelAtPeriodEnd *bool `json:"cancel_at_period_end,omitzero"`
 	// ParentSubscriptionID sets or clears the parent subscription. Omit to leave unchanged; send "" to clear.
 	ParentSubscriptionID *string             `json:"parent_subscription_id,omitzero"`
 	Status               *SubscriptionStatus `json:"status,omitzero"`
