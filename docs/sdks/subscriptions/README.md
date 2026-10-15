@@ -29,6 +29,8 @@
 * [CreateSubscriptionLineItem](#createsubscriptionlineitem) - Create subscription line item
 * [ExecuteSubscriptionModify](#executesubscriptionmodify) - Execute subscription modification
 * [PreviewSubscriptionModify](#previewsubscriptionmodify) - Preview subscription modification
+* [PauseSubscription](#pausesubscription) - Pause subscription
+* [ResumeSubscription](#resumesubscription) - Resume subscription
 * [ListSubscriptionSchedules](#listsubscriptionschedules) - List subscription schedules
 * [GetSubscriptionV2](#getsubscriptionv2) - Get subscription (V2)
 
@@ -1433,6 +1435,116 @@ func main() {
 ### Response
 
 **[*dtos.PreviewSubscriptionModifyResponse](../../models/dtos/previewsubscriptionmodifyresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## PauseSubscription
+
+Use when a customer stops temporarily. Pauses an active subscription now: usage and arrear fixed charges up to the pause are billed on a closing invoice, and every paused period after it gets a $0 skipped invoice.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="pauseSubscription" method="post" path="/subscriptions/{id}/pause" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Subscriptions.PauseSubscription(ctx, "<id>", types.PauseSubscriptionRequest{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.PauseSubscriptionResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `id`                                                                             | `string`                                                                         | :heavy_check_mark:                                                               | Subscription ID                                                                  |
+| `body`                                                                           | [types.PauseSubscriptionRequest](../../models/types/pausesubscriptionrequest.md) | :heavy_check_mark:                                                               | Pause subscription request                                                       |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+
+### Response
+
+**[*dtos.PauseSubscriptionResponse](../../models/dtos/pausesubscriptionresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## ResumeSubscription
+
+Use when a paused customer comes back. Resumes a paused subscription now on its existing billing anchor: the first period runs from the resume to the next billing date and its advance charges are invoiced at once.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="resumeSubscription" method="post" path="/subscriptions/{id}/resume" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Subscriptions.ResumeSubscription(ctx, "<id>", types.ResumeSubscriptionRequest{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ResumeSubscriptionResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                          | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `ctx`                                                                              | [context.Context](https://pkg.go.dev/context#Context)                              | :heavy_check_mark:                                                                 | The context to use for the request.                                                |
+| `id`                                                                               | `string`                                                                           | :heavy_check_mark:                                                                 | Subscription ID                                                                    |
+| `body`                                                                             | [types.ResumeSubscriptionRequest](../../models/types/resumesubscriptionrequest.md) | :heavy_check_mark:                                                                 | Resume subscription request                                                        |
+| `opts`                                                                             | [][dtos.Option](../../models/dtos/option.md)                                       | :heavy_minus_sign:                                                                 | The options for this request.                                                      |
+
+### Response
+
+**[*dtos.ResumeSubscriptionResponse](../../models/dtos/resumesubscriptionresponse.md), error**
 
 ### Errors
 

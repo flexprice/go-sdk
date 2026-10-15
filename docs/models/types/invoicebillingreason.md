@@ -24,3 +24,5 @@ value := types.InvoiceBillingReasonSubscriptionCreate
 | `InvoiceBillingReasonManual`                 | MANUAL                                       |
 | `InvoiceBillingReasonAutoInvoiceThreshold`   | AUTO_INVOICE_THRESHOLD                       |
 | `InvoiceBillingReasonWalletAutoTopup`        | WALLET_AUTO_TOPUP                            |
+| `InvoiceBillingReasonSubscriptionPaused`     | SUBSCRIPTION_PAUSED                          |
+| `InvoiceBillingReasonSubscriptionResume`     | SUBSCRIPTION_RESUME                          |
