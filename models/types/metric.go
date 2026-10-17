@@ -7,6 +7,7 @@ type Metric string
 const (
 	MetricUsageQuantity Metric = "usage_quantity"
 	MetricEventCount    Metric = "event_count"
+	MetricInvoiceTotal  Metric = "invoice_total"
 )
 
 func (e Metric) ToPointer() *Metric {
@@ -17,7 +18,7 @@ func (e Metric) ToPointer() *Metric {
 func (e *Metric) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "usage_quantity", "event_count":
+		case "usage_quantity", "event_count", "invoice_total":
 			return true
 		}
 	}

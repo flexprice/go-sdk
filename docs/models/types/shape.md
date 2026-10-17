@@ -20,3 +20,4 @@ custom := types.Shape("custom_value")
 | ----------------- | ----------------- |
 | `ShapeTimeseries` | timeseries        |
 | `ShapeBreakdown`  | breakdown         |
+| `ShapeScalar`     | scalar            |

@@ -4,12 +4,15 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type ModifySubscriptionParams struct {
 	LineItemModifications []ModifySubscriptionLineItem `json:"line_item_modifications,omitzero"`
 	ModifyType            *ModifySubscriptionType      `json:"modify_type,omitzero"`
 	SubscriptionID        *string                      `json:"subscription_id,omitzero"`
+	// TrialEndAt is where a trial_end checkout starts the first paid period.
+	TrialEndAt *time.Time `json:"trial_end_at,omitzero"`
 }
 
 func (m ModifySubscriptionParams) MarshalJSON() ([]byte, error) {
@@ -42,4 +45,11 @@ func (m *ModifySubscriptionParams) GetSubscriptionID() *string {
 		return nil
 	}
 	return m.SubscriptionID
+}
+
+func (m *ModifySubscriptionParams) GetTrialEndAt() *time.Time {
+	if m == nil {
+		return nil
+	}
+	return m.TrialEndAt
 }

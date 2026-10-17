@@ -38,7 +38,7 @@ func main() {
             Metrics: []types.Metric{
                 types.MetricUsageQuantity,
             },
-            Shape: types.ShapeBreakdown,
+            Shape: types.ShapeScalar,
         },
     })
     if err != nil {
@@ -154,9 +154,9 @@ func main() {
     res, err := s.Analytics.CreateAnalyticsView(ctx, types.CreateViewRequest{
         Definition: types.AnalyticsViewDefinition{
             Metrics: []types.Metric{
-                types.MetricEventCount,
+                types.MetricInvoiceTotal,
             },
-            Shape: types.ShapeBreakdown,
+            Shape: types.ShapeScalar,
         },
         Name: "<value>",
     })

@@ -17,3 +17,4 @@ value := types.ModifySubscriptionTypeQuantityChange
 | -------------------------------------- | -------------------------------------- |
 | `ModifySubscriptionTypeQuantityChange` | quantity_change                        |
 | `ModifySubscriptionTypeLineItemChange` | line_item_change                       |
+| `ModifySubscriptionTypeTrialEnd`       | trial_end                              |

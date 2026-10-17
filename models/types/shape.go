@@ -7,6 +7,7 @@ type Shape string
 const (
 	ShapeTimeseries Shape = "timeseries"
 	ShapeBreakdown  Shape = "breakdown"
+	ShapeScalar     Shape = "scalar"
 )
 
 func (e Shape) ToPointer() *Shape {
@@ -17,7 +18,7 @@ func (e Shape) ToPointer() *Shape {
 func (e *Shape) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "timeseries", "breakdown":
+		case "timeseries", "breakdown", "scalar":
 			return true
 		}
 	}

@@ -12,6 +12,7 @@ type ModifySubscriptionType string
 const (
 	ModifySubscriptionTypeQuantityChange ModifySubscriptionType = "quantity_change"
 	ModifySubscriptionTypeLineItemChange ModifySubscriptionType = "line_item_change"
+	ModifySubscriptionTypeTrialEnd       ModifySubscriptionType = "trial_end"
 )
 
 func (e ModifySubscriptionType) ToPointer() *ModifySubscriptionType {
@@ -26,6 +27,8 @@ func (e *ModifySubscriptionType) UnmarshalJSON(data []byte) error {
 	case "quantity_change":
 		fallthrough
 	case "line_item_change":
+		fallthrough
+	case "trial_end":
 		*e = ModifySubscriptionType(v)
 		return nil
 	default:

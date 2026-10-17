@@ -8,6 +8,7 @@ import (
 
 type AnalyticsViewDefinition struct {
 	Dimensions []string              `json:"dimensions,omitzero"`
+	Family     *Family               `json:"family,omitzero"`
 	Filters    []AnalyticsFilter     `json:"filters,omitzero"`
 	Limit      *int64                `json:"limit,omitzero"`
 	Metrics    []Metric              `json:"metrics"`
@@ -33,6 +34,13 @@ func (a *AnalyticsViewDefinition) GetDimensions() []string {
 		return nil
 	}
 	return a.Dimensions
+}
+
+func (a *AnalyticsViewDefinition) GetFamily() *Family {
+	if a == nil {
+		return nil
+	}
+	return a.Family
 }
 
 func (a *AnalyticsViewDefinition) GetFilters() []AnalyticsFilter {

@@ -20,3 +20,4 @@ custom := types.Metric("custom_value")
 | --------------------- | --------------------- |
 | `MetricUsageQuantity` | usage_quantity        |
 | `MetricEventCount`    | event_count           |
+| `MetricInvoiceTotal`  | invoice_total         |

@@ -9,6 +9,7 @@
 * [GetCustomerByExternalID](#getcustomerbyexternalid) - Get customer by external ID
 * [GetCustomerEntitlementsByExternalID](#getcustomerentitlementsbyexternalid) - Get customer entitlements by external ID
 * [GetSubscriptionsForCustomer](#getsubscriptionsforcustomer) - Get subscriptions for customer by external ID
+* [CreateCustomerPortalSession](#createcustomerportalsession) - Create customer portal session
 * [QueryCustomer](#querycustomer) - Query customers
 * [GetCustomerUsageSummary](#getcustomerusagesummary) - Get customer usage summary
 * [GetCustomer](#getcustomer) - Get customer
@@ -281,6 +282,59 @@ func main() {
 ### Response
 
 **[*dtos.GetSubscriptionsForCustomerResponse](../../models/dtos/getsubscriptionsforcustomerresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## CreateCustomerPortalSession
+
+Use when sending a customer to their self-serve billing portal (invoices, usage, payment methods). Returns a short-lived URL and token scoped to that customer.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="createCustomerPortalSession" method="get" path="/customers/portal/{external_id}" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Customers.CreateCustomerPortalSession(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.PortalSessionResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `externalID`                                          | `string`                                              | :heavy_check_mark:                                    | Customer external ID                                  |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.CreateCustomerPortalSessionResponse](../../models/dtos/createcustomerportalsessionresponse.md), error**
 
 ### Errors
 
