@@ -8,12 +8,14 @@ import (
 )
 
 type AddAddonRef struct {
-	AddonID           *string            `json:"addon_id,omitzero"`
-	AssociationID     *string            `json:"association_id,omitzero"`
-	Cadence           *AddonCadence      `json:"cadence,omitzero"`
-	Coupons           []CouponRef        `json:"coupons,omitzero"`
-	ProrationBehavior *ProrationBehavior `json:"proration_behavior,omitzero"`
-	StartDate         *time.Time         `json:"start_date,omitzero"`
+	AddonID       *string       `json:"addon_id,omitzero"`
+	AssociationID *string       `json:"association_id,omitzero"`
+	Cadence       *AddonCadence `json:"cadence,omitzero"`
+	Coupons       []CouponRef   `json:"coupons,omitzero"`
+	// Price overrides minted at execute time; completion repoints the line items instead of minting again.
+	PriceOverrides    []AddonPriceOverrideRef `json:"price_overrides,omitzero"`
+	ProrationBehavior *ProrationBehavior      `json:"proration_behavior,omitzero"`
+	StartDate         *time.Time              `json:"start_date,omitzero"`
 }
 
 func (a AddAddonRef) MarshalJSON() ([]byte, error) {
@@ -53,6 +55,13 @@ func (a *AddAddonRef) GetCoupons() []CouponRef {
 		return nil
 	}
 	return a.Coupons
+}
+
+func (a *AddAddonRef) GetPriceOverrides() []AddonPriceOverrideRef {
+	if a == nil {
+		return nil
+	}
+	return a.PriceOverrides
 }
 
 func (a *AddAddonRef) GetProrationBehavior() *ProrationBehavior {
