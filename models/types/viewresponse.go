@@ -4,12 +4,16 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type ViewResponse struct {
+	CreatedAt  *time.Time               `json:"created_at,omitzero"`
+	CreatedBy  *string                  `json:"created_by,omitzero"`
 	Definition *AnalyticsViewDefinition `json:"definition,omitzero"`
 	ID         *string                  `json:"id,omitzero"`
 	Name       *string                  `json:"name,omitzero"`
+	UpdatedAt  *time.Time               `json:"updated_at,omitzero"`
 	Version    *int64                   `json:"version,omitzero"`
 }
 
@@ -22,6 +26,20 @@ func (v *ViewResponse) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (v *ViewResponse) GetCreatedAt() *time.Time {
+	if v == nil {
+		return nil
+	}
+	return v.CreatedAt
+}
+
+func (v *ViewResponse) GetCreatedBy() *string {
+	if v == nil {
+		return nil
+	}
+	return v.CreatedBy
 }
 
 func (v *ViewResponse) GetDefinition() *AnalyticsViewDefinition {
@@ -43,6 +61,13 @@ func (v *ViewResponse) GetName() *string {
 		return nil
 	}
 	return v.Name
+}
+
+func (v *ViewResponse) GetUpdatedAt() *time.Time {
+	if v == nil {
+		return nil
+	}
+	return v.UpdatedAt
 }
 
 func (v *ViewResponse) GetVersion() *int64 {

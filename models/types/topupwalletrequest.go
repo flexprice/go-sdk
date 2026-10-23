@@ -4,6 +4,7 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type TopUpWalletRequest struct {
@@ -29,6 +30,9 @@ type TopUpWalletRequest struct {
 	CreditsToAdd *string `json:"credits_to_add,omitzero"`
 	// description to add any specific details about the transaction
 	Description *string `json:"description,omitzero"`
+	// effective_date is stored as the credit transaction's created_at.
+	// Omit to use the current time. Must not be in the future.
+	EffectiveDate *time.Time `json:"effective_date,omitzero"`
 	// expiry_date_utc is the expiry date in UTC timezone
 	// ex 2025-01-01 00:00:00 UTC
 	ExpiryDateUtc    *string `json:"expiry_date_utc,omitzero"`
@@ -101,6 +105,13 @@ func (t *TopUpWalletRequest) GetDescription() *string {
 		return nil
 	}
 	return t.Description
+}
+
+func (t *TopUpWalletRequest) GetEffectiveDate() *time.Time {
+	if t == nil {
+		return nil
+	}
+	return t.EffectiveDate
 }
 
 func (t *TopUpWalletRequest) GetExpiryDateUtc() *string {

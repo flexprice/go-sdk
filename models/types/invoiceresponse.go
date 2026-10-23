@@ -44,6 +44,8 @@ type InvoiceResponse struct {
 	// finalized_at is the timestamp when this invoice was finalized and made ready for payment
 	FinalizedAt  *time.Time    `json:"finalized_at,omitzero"`
 	FxConversion *FxConversion `json:"fx_conversion,omitzero"`
+	// hosted_invoice_url is the page where the customer can view, download and pay this invoice
+	HostedInvoiceURL *string `json:"hosted_invoice_url,omitzero"`
 	// id is the unique identifier for this invoice
 	ID *string `json:"id,omitzero"`
 	// idempotency_key is a unique key used to prevent duplicate invoice creation when retrying API calls
@@ -259,6 +261,13 @@ func (i *InvoiceResponse) GetFxConversion() *FxConversion {
 		return nil
 	}
 	return i.FxConversion
+}
+
+func (i *InvoiceResponse) GetHostedInvoiceURL() *string {
+	if i == nil {
+		return nil
+	}
+	return i.HostedInvoiceURL
 }
 
 func (i *InvoiceResponse) GetID() *string {

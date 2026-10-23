@@ -6,16 +6,63 @@ import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
 )
 
+type AnalyticsViewDefinitionCompare string
+
+const (
+	AnalyticsViewDefinitionComparePreviousPeriod AnalyticsViewDefinitionCompare = "previous_period"
+	AnalyticsViewDefinitionComparePreviousYear   AnalyticsViewDefinitionCompare = "previous_year"
+)
+
+func (e AnalyticsViewDefinitionCompare) ToPointer() *AnalyticsViewDefinitionCompare {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *AnalyticsViewDefinitionCompare) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "previous_period", "previous_year":
+			return true
+		}
+	}
+	return false
+}
+
+type Display string
+
+const (
+	DisplayChart Display = "chart"
+	DisplayTable Display = "table"
+)
+
+func (e Display) ToPointer() *Display {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *Display) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "chart", "table":
+			return true
+		}
+	}
+	return false
+}
+
 type AnalyticsViewDefinition struct {
-	Dimensions []string              `json:"dimensions,omitzero"`
-	Family     *Family               `json:"family,omitzero"`
-	Filters    []AnalyticsFilter     `json:"filters,omitzero"`
-	Limit      *int64                `json:"limit,omitzero"`
-	Metrics    []Metric              `json:"metrics"`
-	Shape      Shape                 `json:"shape"`
-	Sort       []AnalyticsSortSpec   `json:"sort,omitzero"`
-	Time       *AnalyticsTimeSpecRaw `json:"time,omitzero"`
-	Variables  []AnalyticsVariable   `json:"variables,omitzero"`
+	Compare    *AnalyticsViewDefinitionCompare `json:"compare,omitzero"`
+	Currency   *string                         `json:"currency,omitzero"`
+	Dimensions []string                        `json:"dimensions,omitzero"`
+	Display    *Display                        `json:"display,omitzero"`
+	Family     *Family                         `json:"family,omitzero"`
+	Filters    []AnalyticsFilter               `json:"filters,omitzero"`
+	Limit      *int64                          `json:"limit,omitzero"`
+	Metrics    []Metric                        `json:"metrics"`
+	Shape      Shape                           `json:"shape"`
+	Sort       []AnalyticsSortSpec             `json:"sort,omitzero"`
+	Time       *AnalyticsTimeSpecRaw           `json:"time,omitzero"`
+	Variables  []AnalyticsVariable             `json:"variables,omitzero"`
 }
 
 func (a AnalyticsViewDefinition) MarshalJSON() ([]byte, error) {
@@ -29,11 +76,32 @@ func (a *AnalyticsViewDefinition) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (a *AnalyticsViewDefinition) GetCompare() *AnalyticsViewDefinitionCompare {
+	if a == nil {
+		return nil
+	}
+	return a.Compare
+}
+
+func (a *AnalyticsViewDefinition) GetCurrency() *string {
+	if a == nil {
+		return nil
+	}
+	return a.Currency
+}
+
 func (a *AnalyticsViewDefinition) GetDimensions() []string {
 	if a == nil {
 		return nil
 	}
 	return a.Dimensions
+}
+
+func (a *AnalyticsViewDefinition) GetDisplay() *Display {
+	if a == nil {
+		return nil
+	}
+	return a.Display
 }
 
 func (a *AnalyticsViewDefinition) GetFamily() *Family {

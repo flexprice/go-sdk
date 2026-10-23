@@ -5,9 +5,21 @@ package types
 type Metric string
 
 const (
-	MetricUsageQuantity Metric = "usage_quantity"
-	MetricEventCount    Metric = "event_count"
-	MetricInvoiceTotal  Metric = "invoice_total"
+	MetricUsageQuantity      Metric = "usage_quantity"
+	MetricEventCount         Metric = "event_count"
+	MetricEventsVolume       Metric = "events_volume"
+	MetricInvoiceTotal       Metric = "invoice_total"
+	MetricTotalReceivables   Metric = "total_receivables"
+	MetricReceivablesAging   Metric = "receivables_aging"
+	MetricDaysToPay          Metric = "days_to_pay"
+	MetricArpu               Metric = "arpu"
+	MetricArpuPaid           Metric = "arpu_paid"
+	MetricCreditConsumption  Metric = "credit_consumption"
+	MetricCreditTopups       Metric = "credit_topups"
+	MetricNetBilling         Metric = "net_billing"
+	MetricInvoiceTotalIssued Metric = "invoice_total_issued"
+	MetricNetBillingIssued   Metric = "net_billing_issued"
+	MetricActiveCustomers    Metric = "active_customers"
 )
 
 func (e Metric) ToPointer() *Metric {
@@ -18,7 +30,7 @@ func (e Metric) ToPointer() *Metric {
 func (e *Metric) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "usage_quantity", "event_count", "invoice_total":
+		case "usage_quantity", "event_count", "events_volume", "invoice_total", "total_receivables", "receivables_aging", "days_to_pay", "arpu", "arpu_paid", "credit_consumption", "credit_topups", "net_billing", "invoice_total_issued", "net_billing_issued", "active_customers":
 			return true
 		}
 	}

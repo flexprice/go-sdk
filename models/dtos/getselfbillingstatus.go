@@ -7,33 +7,33 @@ import (
 	"github.com/flexprice/go-sdk/v2/models/types"
 )
 
-type GetTenantBillingUsageResponse struct {
+type GetSelfBillingStatusResponse struct {
 	HTTPMeta types.HTTPMetadata `json:"-"`
-	// Tenant billing usage
-	TenantBillingUsage *types.TenantBillingUsage
+	// OK
+	SelfBillingStatusResponse *types.SelfBillingStatusResponse
 }
 
-func (g GetTenantBillingUsageResponse) MarshalJSON() ([]byte, error) {
+func (g GetSelfBillingStatusResponse) MarshalJSON() ([]byte, error) {
 	return utils.MarshalJSON(g, "", false)
 }
 
-func (g *GetTenantBillingUsageResponse) UnmarshalJSON(data []byte) error {
+func (g *GetSelfBillingStatusResponse) UnmarshalJSON(data []byte) error {
 	if err := utils.UnmarshalJSON(data, &g, "", false, []string{"HttpMeta"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (g *GetTenantBillingUsageResponse) GetHTTPMeta() types.HTTPMetadata {
+func (g *GetSelfBillingStatusResponse) GetHTTPMeta() types.HTTPMetadata {
 	if g == nil {
 		return types.HTTPMetadata{}
 	}
 	return g.HTTPMeta
 }
 
-func (g *GetTenantBillingUsageResponse) GetTenantBillingUsage() *types.TenantBillingUsage {
+func (g *GetSelfBillingStatusResponse) GetSelfBillingStatusResponse() *types.SelfBillingStatusResponse {
 	if g == nil {
 		return nil
 	}
-	return g.TenantBillingUsage
+	return g.SelfBillingStatusResponse
 }

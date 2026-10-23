@@ -20,3 +20,4 @@ custom := types.Family("custom_value")
 | --------------- | --------------- |
 | `FamilyUsage`   | usage           |
 | `FamilyBilling` | billing         |
+| `FamilyReport`  | report          |

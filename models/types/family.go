@@ -7,6 +7,7 @@ type Family string
 const (
 	FamilyUsage   Family = "usage"
 	FamilyBilling Family = "billing"
+	FamilyReport  Family = "report"
 )
 
 func (e Family) ToPointer() *Family {
@@ -17,7 +18,7 @@ func (e Family) ToPointer() *Family {
 func (e *Family) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "usage", "billing":
+		case "usage", "billing", "report":
 			return true
 		}
 	}

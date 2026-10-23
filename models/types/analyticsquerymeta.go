@@ -7,7 +7,11 @@ import (
 )
 
 type AnalyticsQueryMeta struct {
+	From        *string `json:"from,omitzero"`
+	PrevFrom    *string `json:"prev_from,omitzero"`
+	PrevTo      *string `json:"prev_to,omitzero"`
 	QuerySource *string `json:"query_source,omitzero"`
+	To          *string `json:"to,omitzero"`
 }
 
 func (a AnalyticsQueryMeta) MarshalJSON() ([]byte, error) {
@@ -21,9 +25,37 @@ func (a *AnalyticsQueryMeta) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
+func (a *AnalyticsQueryMeta) GetFrom() *string {
+	if a == nil {
+		return nil
+	}
+	return a.From
+}
+
+func (a *AnalyticsQueryMeta) GetPrevFrom() *string {
+	if a == nil {
+		return nil
+	}
+	return a.PrevFrom
+}
+
+func (a *AnalyticsQueryMeta) GetPrevTo() *string {
+	if a == nil {
+		return nil
+	}
+	return a.PrevTo
+}
+
 func (a *AnalyticsQueryMeta) GetQuerySource() *string {
 	if a == nil {
 		return nil
 	}
 	return a.QuerySource
+}
+
+func (a *AnalyticsQueryMeta) GetTo() *string {
+	if a == nil {
+		return nil
+	}
+	return a.To
 }
