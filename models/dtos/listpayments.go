@@ -83,6 +83,8 @@ type ListPaymentsRequest struct {
 	Sort              *string             `queryParam:"style=form,explode=true,name=sort"`
 	StartTime         *string             `queryParam:"style=form,explode=true,name=start_time"`
 	Status            *ListPaymentsStatus `queryParam:"style=form,explode=true,name=status"`
+	// UpdatedAtGTE bounds updated_at, which every lifecycle change bumps.
+	UpdatedAtGte *string `queryParam:"style=form,explode=true,name=updated_at_gte"`
 }
 
 func (l ListPaymentsRequest) MarshalJSON() ([]byte, error) {
@@ -213,6 +215,13 @@ func (l *ListPaymentsRequest) GetStatus() *ListPaymentsStatus {
 		return nil
 	}
 	return l.Status
+}
+
+func (l *ListPaymentsRequest) GetUpdatedAtGte() *string {
+	if l == nil {
+		return nil
+	}
+	return l.UpdatedAtGte
 }
 
 type ListPaymentsResponse struct {

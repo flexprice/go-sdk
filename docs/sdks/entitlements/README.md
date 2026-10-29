@@ -90,10 +90,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Entitlements.CreateEntitlement(ctx, types.CreateEntitlementRequest{
-        FeatureID: "<id>",
-        FeatureType: types.FeatureTypeMetered,
-    })
+    res, err := s.Entitlements.CreateEntitlement(ctx, types.CreateEntitlementRequest{})
     if err != nil {
         log.Fatal(err)
     }
@@ -149,10 +146,7 @@ func main() {
 
     res, err := s.Entitlements.CreateEntitlementsBulk(ctx, types.CreateBulkEntitlementRequest{
         Items: []types.CreateEntitlementRequest{
-            types.CreateEntitlementRequest{
-                FeatureID: "<id>",
-                FeatureType: types.FeatureTypeConfig,
-            },
+            types.CreateEntitlementRequest{},
         },
     })
     if err != nil {

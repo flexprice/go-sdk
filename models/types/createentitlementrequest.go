@@ -8,13 +8,14 @@ import (
 )
 
 type CreateEntitlementRequest struct {
-	AggregationMode         *EntitlementAggregationMode         `json:"aggregation_mode,omitzero"`
-	ConfigValue             map[string]any                      `json:"config_value,omitzero"`
-	EndDate                 *time.Time                          `json:"end_date,omitzero"`
-	EntityID                *string                             `json:"entity_id,omitzero"`
-	EntityType              *EntitlementEntityType              `json:"entity_type,omitzero"`
-	FeatureID               string                              `json:"feature_id"`
-	FeatureType             FeatureType                         `json:"feature_type"`
+	AggregationMode *EntitlementAggregationMode `json:"aggregation_mode,omitzero"`
+	ConfigValue     map[string]any              `json:"config_value,omitzero"`
+	EndDate         *time.Time                  `json:"end_date,omitzero"`
+	EntityID        *string                     `json:"entity_id,omitzero"`
+	EntityType      *EntitlementEntityType      `json:"entity_type,omitzero"`
+	// Required, except on a subscription entitlement grant (entity_type SUBSCRIPTION with grant config), which has no feature.
+	FeatureID               *string                             `json:"feature_id,omitzero"`
+	FeatureType             *FeatureType                        `json:"feature_type,omitzero"`
 	GrantAllocationBehavior *EntitlementGrantAllocationBehavior `json:"grant_allocation_behavior,omitzero"`
 	GrantDurationUnit       *EntitlementGrantDurationUnit       `json:"grant_duration_unit,omitzero"`
 	GrantDurationValue      *int64                              `json:"grant_duration_value,omitzero"`
@@ -37,7 +38,7 @@ func (c CreateEntitlementRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateEntitlementRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"feature_id", "feature_type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, nil); err != nil {
 		return err
 	}
 	return nil
@@ -78,16 +79,16 @@ func (c *CreateEntitlementRequest) GetEntityType() *EntitlementEntityType {
 	return c.EntityType
 }
 
-func (c *CreateEntitlementRequest) GetFeatureID() string {
+func (c *CreateEntitlementRequest) GetFeatureID() *string {
 	if c == nil {
-		return ""
+		return nil
 	}
 	return c.FeatureID
 }
 
-func (c *CreateEntitlementRequest) GetFeatureType() FeatureType {
+func (c *CreateEntitlementRequest) GetFeatureType() *FeatureType {
 	if c == nil {
-		return FeatureType("")
+		return nil
 	}
 	return c.FeatureType
 }

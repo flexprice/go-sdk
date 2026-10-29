@@ -30,6 +30,7 @@ type CreatePriceRequest struct {
 	MinQuantity       *int64                  `json:"min_quantity,omitzero"`
 	PriceUnitConfig   *PriceUnitConfig        `json:"price_unit_config,omitzero"`
 	PriceUnitType     PriceUnitType           `json:"price_unit_type"`
+	ProductID         *string                 `json:"product_id,omitzero"`
 	StartDate         *time.Time              `json:"start_date,omitzero"`
 	TierMode          *BillingTier            `json:"tier_mode,omitzero"`
 	Tiers             []CreatePriceTier       `json:"tiers,omitzero"`
@@ -187,6 +188,13 @@ func (c *CreatePriceRequest) GetPriceUnitType() PriceUnitType {
 		return PriceUnitType("")
 	}
 	return c.PriceUnitType
+}
+
+func (c *CreatePriceRequest) GetProductID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.ProductID
 }
 
 func (c *CreatePriceRequest) GetStartDate() *time.Time {

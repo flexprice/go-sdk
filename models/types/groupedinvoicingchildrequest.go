@@ -30,7 +30,9 @@ type GroupedInvoicingChildRequest struct {
 	// SubscriptionCoupons is the preferred way to attach coupons at creation.
 	// Accepts coupon_code; optionally targets a line item via price_id.
 	SubscriptionCoupons []SubscriptionCouponInput `json:"subscription_coupons,omitzero"`
-	TaxRateOverrides    []TaxRateOverride         `json:"tax_rate_overrides,omitzero"`
+	// SubscriptionEntitlementGrants are dollar entitlement grants shared by every usage line, created with the subscription.
+	SubscriptionEntitlementGrants []CreateSubscriptionEntitlementGrantRequest `json:"subscription_entitlement_grants,omitzero"`
+	TaxRateOverrides              []TaxRateOverride                           `json:"tax_rate_overrides,omitzero"`
 	// TrialPeriodDays: nil = inherit from plan prices, 0 = no trial, >0 = override in days.
 	TrialPeriodDays *int64 `json:"trial_period_days,omitzero"`
 }
@@ -156,6 +158,13 @@ func (g *GroupedInvoicingChildRequest) GetSubscriptionCoupons() []SubscriptionCo
 		return nil
 	}
 	return g.SubscriptionCoupons
+}
+
+func (g *GroupedInvoicingChildRequest) GetSubscriptionEntitlementGrants() []CreateSubscriptionEntitlementGrantRequest {
+	if g == nil {
+		return nil
+	}
+	return g.SubscriptionEntitlementGrants
 }
 
 func (g *GroupedInvoicingChildRequest) GetTaxRateOverrides() []TaxRateOverride {

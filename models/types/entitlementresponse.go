@@ -26,6 +26,7 @@ type EntitlementResponse struct {
 	GrantDurationValue      *int64                              `json:"grant_duration_value,omitzero"`
 	GrantMeasure            *EntitlementGrantMeasure            `json:"grant_measure,omitzero"`
 	GrantQuota              *string                             `json:"grant_quota,omitzero"`
+	GrantScope              *EntitlementGrantScopeEntityType    `json:"grant_scope,omitzero"`
 	ID                      *string                             `json:"id,omitzero"`
 	IsEnabled               *bool                               `json:"is_enabled,omitzero"`
 	IsSoftLimit             *bool                               `json:"is_soft_limit,omitzero"`
@@ -178,6 +179,13 @@ func (e *EntitlementResponse) GetGrantQuota() *string {
 		return nil
 	}
 	return e.GrantQuota
+}
+
+func (e *EntitlementResponse) GetGrantScope() *EntitlementGrantScopeEntityType {
+	if e == nil {
+		return nil
+	}
+	return e.GrantScope
 }
 
 func (e *EntitlementResponse) GetID() *string {

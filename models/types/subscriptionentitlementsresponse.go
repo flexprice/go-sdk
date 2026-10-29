@@ -7,9 +7,10 @@ import (
 )
 
 type SubscriptionEntitlementsResponse struct {
-	Features       []AggregatedFeature `json:"features,omitzero"`
-	PlanID         *string             `json:"plan_id,omitzero"`
-	SubscriptionID *string             `json:"subscription_id,omitzero"`
+	Features                      []AggregatedFeature                    `json:"features,omitzero"`
+	PlanID                        *string                                `json:"plan_id,omitzero"`
+	SubscriptionEntitlementGrants *SubscriptionEntitlementGrantsResponse `json:"subscription_entitlement_grants,omitzero"`
+	SubscriptionID                *string                                `json:"subscription_id,omitzero"`
 }
 
 func (s SubscriptionEntitlementsResponse) MarshalJSON() ([]byte, error) {
@@ -35,6 +36,13 @@ func (s *SubscriptionEntitlementsResponse) GetPlanID() *string {
 		return nil
 	}
 	return s.PlanID
+}
+
+func (s *SubscriptionEntitlementsResponse) GetSubscriptionEntitlementGrants() *SubscriptionEntitlementGrantsResponse {
+	if s == nil {
+		return nil
+	}
+	return s.SubscriptionEntitlementGrants
 }
 
 func (s *SubscriptionEntitlementsResponse) GetSubscriptionID() *string {

@@ -27,7 +27,9 @@ type UpdatePriceRequest struct {
 	PriceUnitAmount *string `json:"price_unit_amount,omitzero"`
 	// PriceUnitTiers are the price unit tiers (for CUSTOM price unit type, TIERED billing model)
 	PriceUnitTiers []CreatePriceTier `json:"price_unit_tiers,omitzero"`
-	TierMode       *BillingTier      `json:"tier_mode,omitzero"`
+	// ProductID sets the price's product while it has none; once set it never changes.
+	ProductID *string      `json:"product_id,omitzero"`
+	TierMode  *BillingTier `json:"tier_mode,omitzero"`
 	// Tiers determines the pricing tiers for this line item
 	Tiers             []CreatePriceTier       `json:"tiers,omitzero"`
 	TransformQuantity *PriceTransformQuantity `json:"transform_quantity,omitzero"`
@@ -119,6 +121,13 @@ func (u *UpdatePriceRequest) GetPriceUnitTiers() []CreatePriceTier {
 		return nil
 	}
 	return u.PriceUnitTiers
+}
+
+func (u *UpdatePriceRequest) GetProductID() *string {
+	if u == nil {
+		return nil
+	}
+	return u.ProductID
 }
 
 func (u *UpdatePriceRequest) GetTierMode() *BillingTier {

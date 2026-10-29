@@ -69,6 +69,7 @@ type PriceResponse struct {
 	PriceUnitTiers []PricePriceTier   `json:"price_unit_tiers,omitzero"`
 	PriceUnitType  *PriceUnitType     `json:"price_unit_type,omitzero"`
 	PricingUnit    *PriceUnitResponse `json:"pricing_unit,omitzero"`
+	ProductID      *string            `json:"product_id,omitzero"`
 	// Sequence is the monotonic stamp bumped on every state change that
 	// subscription line items need to react to. Read by the plan-price sync;
 	// set by the database (DEFAULT nextval) on create and by the price
@@ -357,6 +358,13 @@ func (p *PriceResponse) GetPricingUnit() *PriceUnitResponse {
 		return nil
 	}
 	return p.PricingUnit
+}
+
+func (p *PriceResponse) GetProductID() *string {
+	if p == nil {
+		return nil
+	}
+	return p.ProductID
 }
 
 func (p *PriceResponse) GetSequence() *int64 {

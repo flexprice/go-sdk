@@ -52,6 +52,7 @@ type PriceFilter struct {
 	// Price override filtering fields
 	PlanIds        []string   `json:"plan_ids,omitzero"`
 	PriceIds       []string   `json:"price_ids,omitzero"`
+	ProductIds     []string   `json:"product_ids,omitzero"`
 	Sort           *string    `json:"sort,omitzero"`
 	StartDateLt    *string    `json:"start_date_lt,omitzero"`
 	StartTime      *time.Time `json:"start_time,omitzero"`
@@ -170,6 +171,13 @@ func (p *PriceFilter) GetPriceIds() []string {
 		return nil
 	}
 	return p.PriceIds
+}
+
+func (p *PriceFilter) GetProductIds() []string {
+	if p == nil {
+		return nil
+	}
+	return p.ProductIds
 }
 
 func (p *PriceFilter) GetSort() *string {

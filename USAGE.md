@@ -16,11 +16,11 @@ func main() {
 		flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
 	)
 
-	res, err := s.Activity.ListActivity(ctx, types.ListActivityRequest{})
+	res, err := s.AccountingPeriods.QueryAccountingPeriod(ctx, types.AccountingperiodFilter{})
 	if err != nil {
 		log.Fatal(err)
 	}
-	if res.ListActivityResponse != nil {
+	if res.ListAccountingPeriodsResponse != nil {
 		// handle response
 	}
 }

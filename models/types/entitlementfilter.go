@@ -44,6 +44,9 @@ type EntitlementFilter struct {
 	FeatureType *FeatureType           `json:"feature_type,omitzero"`
 	// Specific filters for entitlements
 	Filters []FilterCondition `json:"filters,omitzero"`
+	// GrantScopes selects entitlements by grant scope. Empty means feature only, so
+	// subscription entitlement grants, which have no feature, never reach feature-based reads.
+	GrantScopes []EntitlementGrantScopeEntityType `json:"grant_scopes,omitzero"`
 	// HasGrantConfig filters on grant-config presence (grant_quota set or not).
 	HasGrantConfig *bool                   `json:"has_grant_config,omitzero"`
 	IsEnabled      *bool                   `json:"is_enabled,omitzero"`
@@ -114,6 +117,13 @@ func (e *EntitlementFilter) GetFilters() []FilterCondition {
 		return nil
 	}
 	return e.Filters
+}
+
+func (e *EntitlementFilter) GetGrantScopes() []EntitlementGrantScopeEntityType {
+	if e == nil {
+		return nil
+	}
+	return e.GrantScopes
 }
 
 func (e *EntitlementFilter) GetHasGrantConfig() *bool {

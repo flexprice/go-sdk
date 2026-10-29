@@ -71,9 +71,11 @@ type CreateSubscriptionRequest struct {
 	// SubscriptionCoupons is the preferred way to attach coupons at creation.
 	// Accepts coupon_code; optionally targets a line item via price_id.
 	SubscriptionCoupons []SubscriptionCouponInput `json:"subscription_coupons,omitzero"`
-	SubscriptionStatus  *SubscriptionStatus       `json:"subscription_status,omitzero"`
-	TaxRateOverrides    []TaxRateOverride         `json:"tax_rate_overrides,omitzero"`
-	Timezone            *string                   `json:"timezone,omitzero"`
+	// SubscriptionEntitlementGrants are dollar entitlement grants shared by every usage line, created with the subscription.
+	SubscriptionEntitlementGrants []CreateSubscriptionEntitlementGrantRequest `json:"subscription_entitlement_grants,omitzero"`
+	SubscriptionStatus            *SubscriptionStatus                         `json:"subscription_status,omitzero"`
+	TaxRateOverrides              []TaxRateOverride                           `json:"tax_rate_overrides,omitzero"`
+	Timezone                      *string                                     `json:"timezone,omitzero"`
 	// TrialPeriodDays: nil = inherit from plan prices, 0 = no trial, >0 = override in days.
 	TrialPeriodDays *int64 `json:"trial_period_days,omitzero"`
 }
@@ -353,6 +355,13 @@ func (c *CreateSubscriptionRequest) GetSubscriptionCoupons() []SubscriptionCoupo
 		return nil
 	}
 	return c.SubscriptionCoupons
+}
+
+func (c *CreateSubscriptionRequest) GetSubscriptionEntitlementGrants() []CreateSubscriptionEntitlementGrantRequest {
+	if c == nil {
+		return nil
+	}
+	return c.SubscriptionEntitlementGrants
 }
 
 func (c *CreateSubscriptionRequest) GetSubscriptionStatus() *SubscriptionStatus {

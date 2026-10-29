@@ -52,48 +52,54 @@ func Pointer[T any](v T) *T { return &v }
 
 // Flexprice API: Flexprice API Service
 type Flexprice struct {
-	SDKVersion         string
-	Activity           *Activity
-	Addons             *Addons
-	CreditGrants       *CreditGrants
-	Entitlements       *Entitlements
-	Alerts             *Alerts
-	AlertSettings      *AlertSettings
-	Analytics          *Analytics
-	Checkout           *Checkout
-	Commitments        *Commitments
-	Costs              *Costs
-	Coupons            *Coupons
-	CouponAssociations *CouponAssociations
-	CreditNotes        *CreditNotes
-	Customers          *Customers
-	Wallets            *Wallets
-	Invoices           *Invoices
-	Environments       *Environments
-	Events             *Events
-	Features           *Features
-	FXRates            *FXRates
-	Groups             *Groups
-	Integrations       *Integrations
-	Marketplace        *Marketplace
-	Payments           *Payments
-	Plans              *Plans
-	SelfBilling        *SelfBilling
-	Prices             *Prices
-	PriceUnits         *PriceUnits
-	Rbac               *Rbac
-	Refunds            *Refunds
-	Secrets            *Secrets
-	Subscriptions      *Subscriptions
-	Tasks              *Tasks
-	ScheduledTasks     *ScheduledTasks
-	TaxAssociations    *TaxAssociations
-	TaxRates           *TaxRates
-	Tenants            *Tenants
-	UsageRecords       *UsageRecords
-	Users              *Users
-	WebhookEvents      *WebhookEvents
-	Workflows          *Workflows
+	SDKVersion             string
+	AccountingPeriods      *AccountingPeriods
+	Activity               *Activity
+	Addons                 *Addons
+	CreditGrants           *CreditGrants
+	Entitlements           *Entitlements
+	Alerts                 *Alerts
+	AlertSettings          *AlertSettings
+	Analytics              *Analytics
+	Checkout               *Checkout
+	Commitments            *Commitments
+	Contracts              *Contracts
+	Costs                  *Costs
+	Coupons                *Coupons
+	CouponAssociations     *CouponAssociations
+	CreditNotes            *CreditNotes
+	Customers              *Customers
+	Wallets                *Wallets
+	Invoices               *Invoices
+	Environments           *Environments
+	Events                 *Events
+	Features               *Features
+	FXRates                *FXRates
+	Groups                 *Groups
+	Integrations           *Integrations
+	JournalEntries         *JournalEntries
+	Marketplace            *Marketplace
+	Payments               *Payments
+	PerformanceObligations *PerformanceObligations
+	Plans                  *Plans
+	SelfBilling            *SelfBilling
+	Prices                 *Prices
+	PriceUnits             *PriceUnits
+	Products               *Products
+	Rbac                   *Rbac
+	Refunds                *Refunds
+	RevenueReports         *RevenueReports
+	Secrets                *Secrets
+	Subscriptions          *Subscriptions
+	Tasks                  *Tasks
+	ScheduledTasks         *ScheduledTasks
+	TaxAssociations        *TaxAssociations
+	TaxRates               *TaxRates
+	Tenants                *Tenants
+	UsageRecords           *UsageRecords
+	Users                  *Users
+	WebhookEvents          *WebhookEvents
+	Workflows              *Workflows
 
 	sdkConfiguration config.SDKConfiguration
 	hooks            *hooks.Hooks
@@ -170,10 +176,10 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.44",
+		SDKVersion: "2.1.45",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 2.1.44 2.948.4 1.0 github.com/flexprice/go-sdk/v2",
-			SDKVersion:        "2.1.44",
+			UserAgent:         "speakeasy-sdk/go 2.1.45 2.948.4 1.0 github.com/flexprice/go-sdk/v2",
+			SDKVersion:        "2.1.45",
 			GenVersion:        "2.948.4",
 			OpenAPIDocVersion: "1.0",
 			ServerList:        ServerList,
@@ -191,6 +197,7 @@ func New(opts ...SDKOption) *Flexprice {
 
 	sdk.sdkConfiguration = sdk.hooks.SDKInit(sdk.sdkConfiguration)
 
+	sdk.AccountingPeriods = newAccountingPeriods(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Activity = newActivity(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Addons = newAddons(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CreditGrants = newCreditGrants(sdk, sdk.sdkConfiguration, sdk.hooks)
@@ -200,6 +207,7 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.Analytics = newAnalytics(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Checkout = newCheckout(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Commitments = newCommitments(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Contracts = newContracts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Costs = newCosts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Coupons = newCoupons(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CouponAssociations = newCouponAssociations(sdk, sdk.sdkConfiguration, sdk.hooks)
@@ -213,14 +221,18 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.FXRates = newFXRates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Groups = newGroups(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Integrations = newIntegrations(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.JournalEntries = newJournalEntries(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Marketplace = newMarketplace(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Payments = newPayments(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.PerformanceObligations = newPerformanceObligations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Plans = newPlans(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.SelfBilling = newSelfBilling(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Prices = newPrices(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.PriceUnits = newPriceUnits(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Products = newProducts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Rbac = newRbac(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Refunds = newRefunds(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.RevenueReports = newRevenueReports(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Secrets = newSecrets(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Subscriptions = newSubscriptions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Tasks = newTasks(sdk, sdk.sdkConfiguration, sdk.hooks)

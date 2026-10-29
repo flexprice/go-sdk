@@ -1,0 +1,16 @@
+# ListProductsRequest
+
+
+## Fields
+
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `EndTime`                                                           | `*string`                                                           | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Expand`                                                            | `*string`                                                           | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Limit`                                                             | `*int64`                                                            | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `LookupKeys`                                                        | []`string`                                                          | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Offset`                                                            | `*int64`                                                            | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Order`                                                             | [*dtos.ListProductsOrder](../../models/dtos/listproductsorder.md)   | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `ProductIds`                                                        | []`string`                                                          | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `StartTime`                                                         | `*string`                                                           | :heavy_minus_sign:                                                  | N/A                                                                 |
+| `Status`                                                            | [*dtos.ListProductsStatus](../../models/dtos/listproductsstatus.md) | :heavy_minus_sign:                                                  | N/A                                                                 |

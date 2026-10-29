@@ -92,6 +92,8 @@ type InvoiceFilter struct {
 	// subscription_id filters invoices generated for a specific subscription
 	// Only returns invoices that were created as part of the specified subscription's billing
 	SubscriptionID *string `json:"subscription_id,omitzero"`
+	// updated_at_gte filters invoices updated at or after the given instant
+	UpdatedAtGte *time.Time `json:"updated_at_gte,omitzero"`
 	// voided_at_gte filters invoices voided at or after the given instant
 	VoidedAtGte *time.Time `json:"voided_at_gte,omitzero"`
 }
@@ -308,6 +310,13 @@ func (i *InvoiceFilter) GetSubscriptionID() *string {
 		return nil
 	}
 	return i.SubscriptionID
+}
+
+func (i *InvoiceFilter) GetUpdatedAtGte() *time.Time {
+	if i == nil {
+		return nil
+	}
+	return i.UpdatedAtGte
 }
 
 func (i *InvoiceFilter) GetVoidedAtGte() *time.Time {

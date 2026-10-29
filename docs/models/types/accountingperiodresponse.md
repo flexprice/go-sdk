@@ -1,0 +1,14 @@
+# AccountingPeriodResponse
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `CreatedAt`                                                                   | [*time.Time](https://pkg.go.dev/time#Time)                                    | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `ID`                                                                          | `*string`                                                                     | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `PeriodEnd`                                                                   | [*time.Time](https://pkg.go.dev/time#Time)                                    | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `PeriodStart`                                                                 | [*time.Time](https://pkg.go.dev/time#Time)                                    | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `PeriodStatus`                                                                | [*types.AccountingPeriodStatus](../../models/types/accountingperiodstatus.md) | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `Status`                                                                      | [*types.Status](../../models/types/status.md)                                 | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `UpdatedAt`                                                                   | [*time.Time](https://pkg.go.dev/time#Time)                                    | :heavy_minus_sign:                                                            | N/A                                                                           |

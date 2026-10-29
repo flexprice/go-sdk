@@ -63,6 +63,7 @@ type PricePrice struct {
 	// PriceUnitTiers are the tiers for the price unit when BillingModel is TIERED
 	PriceUnitTiers []PricePriceTier `json:"price_unit_tiers,omitzero"`
 	PriceUnitType  *PriceUnitType   `json:"price_unit_type,omitzero"`
+	ProductID      *string          `json:"product_id,omitzero"`
 	// Sequence is the monotonic stamp bumped on every state change that
 	// subscription line items need to react to. Read by the plan-price sync;
 	// set by the database (DEFAULT nextval) on create and by the price
@@ -309,6 +310,13 @@ func (p *PricePrice) GetPriceUnitType() *PriceUnitType {
 		return nil
 	}
 	return p.PriceUnitType
+}
+
+func (p *PricePrice) GetProductID() *string {
+	if p == nil {
+		return nil
+	}
+	return p.ProductID
 }
 
 func (p *PricePrice) GetSequence() *int64 {
