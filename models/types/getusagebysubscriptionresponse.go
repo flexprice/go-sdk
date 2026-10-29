@@ -12,10 +12,12 @@ type GetUsageBySubscriptionResponse struct {
 	Charges          []SubscriptionUsageByMetersResponse `json:"charges,omitzero"`
 	CommitmentAmount *float64                            `json:"commitment_amount,omitzero"`
 	// Amount of commitment used
-	CommitmentUtilized *float64   `json:"commitment_utilized,omitzero"`
-	Currency           *string    `json:"currency,omitzero"`
-	DisplayAmount      *string    `json:"display_amount,omitzero"`
-	EndTime            *time.Time `json:"end_time,omitzero"`
+	CommitmentUtilized *float64 `json:"commitment_utilized,omitzero"`
+	// Commitments is the per-commitment usage breakdown for the window; nil when commitments v2 is off or none apply.
+	Commitments   []CommitmentUsageBreakdown `json:"commitments,omitzero"`
+	Currency      *string                    `json:"currency,omitzero"`
+	DisplayAmount *string                    `json:"display_amount,omitzero"`
+	EndTime       *time.Time                 `json:"end_time,omitzero"`
 	// Whether any usage exceeded commitment
 	HasOverage *bool `json:"has_overage,omitzero"`
 	// Amount charged at overage rate
@@ -61,6 +63,13 @@ func (g *GetUsageBySubscriptionResponse) GetCommitmentUtilized() *float64 {
 		return nil
 	}
 	return g.CommitmentUtilized
+}
+
+func (g *GetUsageBySubscriptionResponse) GetCommitments() []CommitmentUsageBreakdown {
+	if g == nil {
+		return nil
+	}
+	return g.Commitments
 }
 
 func (g *GetUsageBySubscriptionResponse) GetCurrency() *string {

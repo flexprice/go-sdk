@@ -36,6 +36,9 @@ custom := types.WebhookEventName("custom_value")
 | `WebhookEventNameEntitlementCreated`                          | entitlement.created                                           |
 | `WebhookEventNameEntitlementUpdated`                          | entitlement.updated                                           |
 | `WebhookEventNameEntitlementDeleted`                          | entitlement.deleted                                           |
+| `WebhookEventNameCommitmentCreated`                           | commitment.created                                            |
+| `WebhookEventNameCommitmentUpdated`                           | commitment.updated                                            |
+| `WebhookEventNameCommitmentTerminated`                        | commitment.terminated                                         |
 | `WebhookEventNameWalletCreated`                               | wallet.created                                                |
 | `WebhookEventNameWalletUpdated`                               | wallet.updated                                                |
 | `WebhookEventNameWalletTerminated`                            | wallet.terminated                                             |

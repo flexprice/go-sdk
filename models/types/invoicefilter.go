@@ -70,12 +70,16 @@ type InvoiceFilter struct {
 	// payment_status filters by the payment state of invoices
 	// Multiple statuses can be specified to include invoices with any of the listed payment states
 	PaymentStatus []PaymentStatus `json:"payment_status,omitzero"`
+	// period_end_gt filters invoices with period_end > value
+	PeriodEndGt *string `json:"period_end_gt,omitzero"`
 	// period_end_gte filters invoices with period_end >= value
 	PeriodEndGte *string `json:"period_end_gte,omitzero"`
 	// period_end_lte filters invoices with period_end <= value
 	PeriodEndLte *string `json:"period_end_lte,omitzero"`
 	// period_start_gte filters invoices with period_start >= value
 	PeriodStartGte *string `json:"period_start_gte,omitzero"`
+	// period_start_lt filters invoices with period_start < value
+	PeriodStartLt *string `json:"period_start_lt,omitzero"`
 	// period_start_lte filters invoices with period_start <= value
 	PeriodStartLte *string `json:"period_start_lte,omitzero"`
 	// SkipLineItems if true, will not include line items in the response
@@ -222,6 +226,13 @@ func (i *InvoiceFilter) GetPaymentStatus() []PaymentStatus {
 	return i.PaymentStatus
 }
 
+func (i *InvoiceFilter) GetPeriodEndGt() *string {
+	if i == nil {
+		return nil
+	}
+	return i.PeriodEndGt
+}
+
 func (i *InvoiceFilter) GetPeriodEndGte() *string {
 	if i == nil {
 		return nil
@@ -241,6 +252,13 @@ func (i *InvoiceFilter) GetPeriodStartGte() *string {
 		return nil
 	}
 	return i.PeriodStartGte
+}
+
+func (i *InvoiceFilter) GetPeriodStartLt() *string {
+	if i == nil {
+		return nil
+	}
+	return i.PeriodStartLt
 }
 
 func (i *InvoiceFilter) GetPeriodStartLte() *string {

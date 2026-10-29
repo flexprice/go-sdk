@@ -9,7 +9,8 @@ import (
 type CreatePriceTier struct {
 	// flat_amount is the flat amount for the given tier (optional)
 	// Applied on top of unit_amount*quantity. Useful for cases like "2.7$ + 5c"
-	FlatAmount *string `json:"flat_amount,omitzero"`
+	FlatAmount        *string                 `json:"flat_amount,omitzero"`
+	TransformQuantity *PriceTransformQuantity `json:"transform_quantity,omitzero"`
 	// unit_amount is the amount per unit for the given tier
 	UnitAmount string `json:"unit_amount"`
 	// up_to is the quantity up to which this tier applies. It is null for the last tier.
@@ -35,6 +36,13 @@ func (c *CreatePriceTier) GetFlatAmount() *string {
 		return nil
 	}
 	return c.FlatAmount
+}
+
+func (c *CreatePriceTier) GetTransformQuantity() *PriceTransformQuantity {
+	if c == nil {
+		return nil
+	}
+	return c.TransformQuantity
 }
 
 func (c *CreatePriceTier) GetUnitAmount() string {

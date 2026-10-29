@@ -9,6 +9,7 @@ import (
 
 type SelfBillingSummaryResponse struct {
 	Invoices           []SelfBillingInvoice          `json:"invoices,omitzero"`
+	Plan               *SelfBillingPlanResponse      `json:"plan,omitzero"`
 	Status             *TenantInternalStatus         `json:"status,omitzero"`
 	SubscriptionStatus *SubscriptionStatus           `json:"subscription_status,omitzero"`
 	TrialEndsAt        *time.Time                    `json:"trial_ends_at,omitzero"`
@@ -31,6 +32,13 @@ func (s *SelfBillingSummaryResponse) GetInvoices() []SelfBillingInvoice {
 		return nil
 	}
 	return s.Invoices
+}
+
+func (s *SelfBillingSummaryResponse) GetPlan() *SelfBillingPlanResponse {
+	if s == nil {
+		return nil
+	}
+	return s.Plan
 }
 
 func (s *SelfBillingSummaryResponse) GetStatus() *TenantInternalStatus {

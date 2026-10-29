@@ -27,8 +27,9 @@ type CreateEntitlementRequest struct {
 	PlanID                  *string                             `json:"plan_id,omitzero"`
 	StartDate               *time.Time                          `json:"start_date,omitzero"`
 	StaticValue             *string                             `json:"static_value,omitzero"`
-	UsageLimit              *int64                              `json:"usage_limit,omitzero"`
-	UsageResetPeriod        *EntitlementUsageResetPeriod        `json:"usage_reset_period,omitzero"`
+	// Deprecated: use grant_quota; a metered usage_limit is converted to a grant on create.
+	UsageLimit       *int64                       `json:"usage_limit,omitzero"`
+	UsageResetPeriod *EntitlementUsageResetPeriod `json:"usage_reset_period,omitzero"`
 }
 
 func (c CreateEntitlementRequest) MarshalJSON() ([]byte, error) {

@@ -18,8 +18,9 @@ type UpdateEntitlementRequest struct {
 	IsEnabled               *bool                               `json:"is_enabled,omitzero"`
 	IsSoftLimit             *bool                               `json:"is_soft_limit,omitzero"`
 	StaticValue             *string                             `json:"static_value,omitzero"`
-	UsageLimit              *int64                              `json:"usage_limit,omitzero"`
-	UsageResetPeriod        *EntitlementUsageResetPeriod        `json:"usage_reset_period,omitzero"`
+	// Deprecated: use grant_quota.
+	UsageLimit       *int64                       `json:"usage_limit,omitzero"`
+	UsageResetPeriod *EntitlementUsageResetPeriod `json:"usage_reset_period,omitzero"`
 }
 
 func (u UpdateEntitlementRequest) MarshalJSON() ([]byte, error) {

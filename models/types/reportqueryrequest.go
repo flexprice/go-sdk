@@ -99,6 +99,7 @@ type ReportQueryRequest struct {
 	Filters    []ReportFilter             `json:"filters,omitzero"`
 	Grain      *ReportQueryRequestGrain   `json:"grain,omitzero"`
 	Limit      *int64                     `json:"limit,omitzero"`
+	Offset     *int64                     `json:"offset,omitzero"`
 	Range      string                     `json:"range"`
 	Shape      ReportQueryRequestShape    `json:"shape"`
 	Sort       []ReportSort               `json:"sort,omitzero"`
@@ -155,6 +156,13 @@ func (r *ReportQueryRequest) GetLimit() *int64 {
 		return nil
 	}
 	return r.Limit
+}
+
+func (r *ReportQueryRequest) GetOffset() *int64 {
+	if r == nil {
+		return nil
+	}
+	return r.Offset
 }
 
 func (r *ReportQueryRequest) GetRange() string {

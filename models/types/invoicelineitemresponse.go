@@ -10,21 +10,23 @@ import (
 type InvoiceLineItemResponse struct {
 	// adjusted_entitlement_quantity is the entitlement-covered portion deducted from raw usage.
 	// Nil when no entitlement was applied. Raw usage = Quantity + AdjustedEntitlementQuantity.
-	AdjustedEntitlementQuantity *string                 `json:"adjusted_entitlement_quantity,omitzero"`
-	Amount                      *string                 `json:"amount,omitzero"`
-	CommitmentInfo              *CommitmentInfo         `json:"commitment_info,omitzero"`
-	CreatedAt                   *time.Time              `json:"created_at,omitzero"`
-	CreatedBy                   *string                 `json:"created_by,omitzero"`
-	Currency                    *string                 `json:"currency,omitzero"`
-	CustomCurrency              *CustomCurrencyLineItem `json:"custom_currency,omitzero"`
-	CustomerID                  *string                 `json:"customer_id,omitzero"`
-	DisplayName                 *string                 `json:"display_name,omitzero"`
-	EntityID                    *string                 `json:"entity_id,omitzero"`
-	EntityType                  *string                 `json:"entity_type,omitzero"`
-	EnvironmentID               *string                 `json:"environment_id,omitzero"`
-	FxConversion                *FxConversion           `json:"fx_conversion,omitzero"`
-	ID                          *string                 `json:"id,omitzero"`
-	InvoiceID                   *string                 `json:"invoice_id,omitzero"`
+	AdjustedEntitlementQuantity *string `json:"adjusted_entitlement_quantity,omitzero"`
+	Amount                      *string `json:"amount,omitzero"`
+	// commitment_id links this line item to the commitment it bills.
+	CommitmentID   *string                 `json:"commitment_id,omitzero"`
+	CommitmentInfo *CommitmentInfo         `json:"commitment_info,omitzero"`
+	CreatedAt      *time.Time              `json:"created_at,omitzero"`
+	CreatedBy      *string                 `json:"created_by,omitzero"`
+	Currency       *string                 `json:"currency,omitzero"`
+	CustomCurrency *CustomCurrencyLineItem `json:"custom_currency,omitzero"`
+	CustomerID     *string                 `json:"customer_id,omitzero"`
+	DisplayName    *string                 `json:"display_name,omitzero"`
+	EntityID       *string                 `json:"entity_id,omitzero"`
+	EntityType     *string                 `json:"entity_type,omitzero"`
+	EnvironmentID  *string                 `json:"environment_id,omitzero"`
+	FxConversion   *FxConversion           `json:"fx_conversion,omitzero"`
+	ID             *string                 `json:"id,omitzero"`
+	InvoiceID      *string                 `json:"invoice_id,omitzero"`
 	// invoice_level_discount is the discount amount in invoice currency applied to all line items on the invoice.
 	InvoiceLevelDiscount *string `json:"invoice_level_discount,omitzero"`
 	// line_item_discount is the discount amount in invoice currency applied directly to this line item.
@@ -82,6 +84,13 @@ func (i *InvoiceLineItemResponse) GetAmount() *string {
 		return nil
 	}
 	return i.Amount
+}
+
+func (i *InvoiceLineItemResponse) GetCommitmentID() *string {
+	if i == nil {
+		return nil
+	}
+	return i.CommitmentID
 }
 
 func (i *InvoiceLineItemResponse) GetCommitmentInfo() *CommitmentInfo {

@@ -7,6 +7,7 @@
 * [IngestEvent](#ingestevent) - Ingest event
 * [GetUsageAnalytics](#getusageanalytics) - Get usage analytics
 * [IngestEventsBulk](#ingesteventsbulk) - Bulk ingest events
+* [DeleteEvents](#deleteevents) - Delete events
 * [GetEvent](#getevent) - Get event
 * [ListRawEvents](#listrawevents) - List raw events
 * [GetUsageStatistics](#getusagestatistics) - Get usage statistics
@@ -184,6 +185,68 @@ func main() {
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## DeleteEvents
+
+Hard-deletes ingested events and the meter usage they produced for the named customers and period, optionally narrowed by feature or by exact event id. Refused when anything in scope has already been invoiced. Irreversible.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="deleteEvents" method="post" path="/events/delete" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/types"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Events.DeleteEvents(ctx, types.DeleteEventsRequest{
+        ExternalCustomerIds: []string{
+            "<value 1>",
+            "<value 2>",
+        },
+        PeriodEnd: types.MustTimeFromString("2026-03-28T00:00:00Z"),
+        PeriodStart: types.MustTimeFromString("2026-03-01T00:00:00Z"),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.DeleteEventsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                              | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `ctx`                                                                  | [context.Context](https://pkg.go.dev/context#Context)                  | :heavy_check_mark:                                                     | The context to use for the request.                                    |
+| `request`                                                              | [types.DeleteEventsRequest](../../models/types/deleteeventsrequest.md) | :heavy_check_mark:                                                     | The request object to use for the request.                             |
+| `opts`                                                                 | [][dtos.Option](../../models/dtos/option.md)                           | :heavy_minus_sign:                                                     | The options for this request.                                          |
+
+### Response
+
+**[*dtos.DeleteEventsResponse](../../models/dtos/deleteeventsresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 403, 409        | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 

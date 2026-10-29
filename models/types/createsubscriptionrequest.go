@@ -22,6 +22,9 @@ type CreateSubscriptionRequest struct {
 	CollectionMethod   *CollectionMethod `json:"collection_method,omitzero"`
 	CommitmentAmount   *string           `json:"commitment_amount,omitzero"`
 	CommitmentDuration *BillingPeriod    `json:"commitment_duration,omitzero"`
+	// Commitments are created with the subscription. subscription_id, and entity_id on a subscription scope,
+	// are set server-side.
+	Commitments []CreateCommitmentRequest `json:"commitments,omitzero"`
 	// Deprecated: use SubscriptionCoupons instead.
 	Coupons      []string                   `json:"coupons,omitzero"`
 	CreditGrants []CreateCreditGrantRequest `json:"credit_grants,omitzero"`
@@ -154,6 +157,13 @@ func (c *CreateSubscriptionRequest) GetCommitmentDuration() *BillingPeriod {
 		return nil
 	}
 	return c.CommitmentDuration
+}
+
+func (c *CreateSubscriptionRequest) GetCommitments() []CreateCommitmentRequest {
+	if c == nil {
+		return nil
+	}
+	return c.Commitments
 }
 
 func (c *CreateSubscriptionRequest) GetCoupons() []string {

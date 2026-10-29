@@ -37,19 +37,22 @@ type SubscriptionSubscriptionLineItem struct {
 	MeterDisplayName        *string                         `json:"meter_display_name,omitzero"`
 	MeterID                 *string                         `json:"meter_id,omitzero"`
 	PlanDisplayName         *string                         `json:"plan_display_name,omitzero"`
-	Price                   *PricePrice                     `json:"price,omitzero"`
-	PriceID                 *string                         `json:"price_id,omitzero"`
-	PriceType               *PriceType                      `json:"price_type,omitzero"`
-	PriceUnit               *string                         `json:"price_unit,omitzero"`
-	PriceUnitID             *string                         `json:"price_unit_id,omitzero"`
-	Quantity                *string                         `json:"quantity,omitzero"`
-	StartDate               *time.Time                      `json:"start_date,omitzero"`
-	Status                  *Status                         `json:"status,omitzero"`
-	SubscriptionID          *string                         `json:"subscription_id,omitzero"`
-	SubscriptionPhaseID     *string                         `json:"subscription_phase_id,omitzero"`
-	TenantID                *string                         `json:"tenant_id,omitzero"`
-	UpdatedAt               *time.Time                      `json:"updated_at,omitzero"`
-	UpdatedBy               *string                         `json:"updated_by,omitzero"`
+	// Version lineage, set by the service when a line item is replaced by a new version
+	PredecessorLineItemID *string     `json:"predecessor_line_item_id,omitzero"`
+	Price                 *PricePrice `json:"price,omitzero"`
+	PriceID               *string     `json:"price_id,omitzero"`
+	PriceType             *PriceType  `json:"price_type,omitzero"`
+	PriceUnit             *string     `json:"price_unit,omitzero"`
+	PriceUnitID           *string     `json:"price_unit_id,omitzero"`
+	Quantity              *string     `json:"quantity,omitzero"`
+	StartDate             *time.Time  `json:"start_date,omitzero"`
+	Status                *Status     `json:"status,omitzero"`
+	SubscriptionID        *string     `json:"subscription_id,omitzero"`
+	SubscriptionPhaseID   *string     `json:"subscription_phase_id,omitzero"`
+	SuccessorLineItemID   *string     `json:"successor_line_item_id,omitzero"`
+	TenantID              *string     `json:"tenant_id,omitzero"`
+	UpdatedAt             *time.Time  `json:"updated_at,omitzero"`
+	UpdatedBy             *string     `json:"updated_by,omitzero"`
 }
 
 func (s SubscriptionSubscriptionLineItem) MarshalJSON() ([]byte, error) {
@@ -252,6 +255,13 @@ func (s *SubscriptionSubscriptionLineItem) GetPlanDisplayName() *string {
 	return s.PlanDisplayName
 }
 
+func (s *SubscriptionSubscriptionLineItem) GetPredecessorLineItemID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.PredecessorLineItemID
+}
+
 func (s *SubscriptionSubscriptionLineItem) GetPrice() *PricePrice {
 	if s == nil {
 		return nil
@@ -320,6 +330,13 @@ func (s *SubscriptionSubscriptionLineItem) GetSubscriptionPhaseID() *string {
 		return nil
 	}
 	return s.SubscriptionPhaseID
+}
+
+func (s *SubscriptionSubscriptionLineItem) GetSuccessorLineItemID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.SuccessorLineItemID
 }
 
 func (s *SubscriptionSubscriptionLineItem) GetTenantID() *string {

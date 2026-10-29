@@ -1,0 +1,12 @@
+# CommitmentPriceInput
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `Amount`                                                                      | `*string`                                                                     | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `BillingModel`                                                                | [*types.BillingModel](../../models/types/billingmodel.md)                     | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `TierMode`                                                                    | [*types.BillingTier](../../models/types/billingtier.md)                       | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `Tiers`                                                                       | [][types.CreatePriceTier](../../models/types/createpricetier.md)              | :heavy_minus_sign:                                                            | N/A                                                                           |
+| `TransformQuantity`                                                           | [*types.PriceTransformQuantity](../../models/types/pricetransformquantity.md) | :heavy_minus_sign:                                                            | N/A                                                                           |

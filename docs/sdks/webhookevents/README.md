@@ -8,6 +8,9 @@
 * [PostWebhookEventsCheckoutSessionExpired](#postwebhookeventscheckoutsessionexpired) - checkout.session.expired
 * [PostWebhookEventsCheckoutSessionFailed](#postwebhookeventscheckoutsessionfailed) - checkout.session.failed
 * [PostWebhookEventsCheckoutSessionInitiated](#postwebhookeventscheckoutsessioninitiated) - checkout.session.initiated
+* [PostWebhookEventsCommitmentCreated](#postwebhookeventscommitmentcreated) - commitment.created
+* [PostWebhookEventsCommitmentTerminated](#postwebhookeventscommitmentterminated) - commitment.terminated
+* [PostWebhookEventsCommitmentUpdated](#postwebhookeventscommitmentupdated) - commitment.updated
 * [PostWebhookEventsCreditNoteCreated](#postwebhookeventscreditnotecreated) - credit_note.created
 * [PostWebhookEventsCreditNoteUpdated](#postwebhookeventscreditnoteupdated) - credit_note.updated
 * [PostWebhookEventsCustomerCreated](#postwebhookeventscustomercreated) - customer.created
@@ -260,6 +263,156 @@ func main() {
 ### Response
 
 **[*dtos.PostWebhookEventsCheckoutSessionInitiatedResponse](../../models/dtos/postwebhookeventscheckoutsessioninitiatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsCommitmentCreated
+
+Fired when a commitment is created on a subscription. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/commitment.created" method="post" path="/webhook-events/commitment.created" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsCommitmentCreated(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoCommitmentWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsCommitmentCreatedResponse](../../models/dtos/postwebhookeventscommitmentcreatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsCommitmentTerminated
+
+Fired when a commitment is terminated. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/commitment.terminated" method="post" path="/webhook-events/commitment.terminated" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsCommitmentTerminated(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoCommitmentWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsCommitmentTerminatedResponse](../../models/dtos/postwebhookeventscommitmentterminatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsCommitmentUpdated
+
+Fired when a commitment's descriptive fields are updated. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/commitment.updated" method="post" path="/webhook-events/commitment.updated" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsCommitmentUpdated(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoCommitmentWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsCommitmentUpdatedResponse](../../models/dtos/postwebhookeventscommitmentupdatedresponse.md), error**
 
 ### Errors
 

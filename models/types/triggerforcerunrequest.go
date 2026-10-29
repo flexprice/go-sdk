@@ -8,8 +8,10 @@ import (
 )
 
 type TriggerForceRunRequest struct {
-	EndTime   *time.Time `json:"end_time,omitzero"`
-	StartTime *time.Time `json:"start_time,omitzero"`
+	// Limits a wallet_ledger export to these customers; empty means every customer.
+	CustomerExternalIds []string   `json:"customer_external_ids"`
+	EndTime             *time.Time `json:"end_time,omitzero"`
+	StartTime           *time.Time `json:"start_time,omitzero"`
 }
 
 func (t TriggerForceRunRequest) MarshalJSON() ([]byte, error) {
@@ -17,10 +19,17 @@ func (t TriggerForceRunRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (t *TriggerForceRunRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &t, "", false, nil); err != nil {
+	if err := utils.UnmarshalJSON(data, &t, "", false, []string{"customer_external_ids"}); err != nil {
 		return err
 	}
 	return nil
+}
+
+func (t *TriggerForceRunRequest) GetCustomerExternalIds() []string {
+	if t == nil {
+		return []string{}
+	}
+	return t.CustomerExternalIds
 }
 
 func (t *TriggerForceRunRequest) GetEndTime() *time.Time {

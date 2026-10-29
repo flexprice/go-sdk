@@ -14,8 +14,9 @@ type InvoiceSyncSettings struct {
 	// any metadata source.
 	GlobalCustomFields []GlobalCustomField `json:"global_custom_fields,omitzero"`
 	// Copies metadata values onto Zoho invoice custom fields verbatim.
-	MetadataCustomFields []MetadataCustomField `json:"metadata_custom_fields,omitzero"`
-	NormalizeFixedTo     *BillingPeriod        `json:"normalize_fixed_to,omitzero"`
+	MetadataCustomFields []MetadataCustomField       `json:"metadata_custom_fields,omitzero"`
+	NormalizeFixedTo     *BillingPeriod              `json:"normalize_fixed_to,omitzero"`
+	PaymentGateways      *ZohoPaymentGatewaySettings `json:"payment_gateways,omitzero"`
 	// Zoho payment modes are merchant-editable free strings with no id, so this is passed
 	// through verbatim. Empty means DefaultZohoPaymentMode.
 	PaymentMode               *string                    `json:"payment_mode,omitzero"`
@@ -62,6 +63,13 @@ func (i *InvoiceSyncSettings) GetNormalizeFixedTo() *BillingPeriod {
 		return nil
 	}
 	return i.NormalizeFixedTo
+}
+
+func (i *InvoiceSyncSettings) GetPaymentGateways() *ZohoPaymentGatewaySettings {
+	if i == nil {
+		return nil
+	}
+	return i.PaymentGateways
 }
 
 func (i *InvoiceSyncSettings) GetPaymentMode() *string {

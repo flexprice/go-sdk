@@ -1,0 +1,9 @@
+# CommitmentScopeInput
+
+
+## Fields
+
+| Field                                                                                                   | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `EntityID`                                                                                              | `*string`                                                                                               | :heavy_minus_sign:                                                                                      | EntityID may be omitted on an inline subscription-scoped commitment; the new subscription's ID is used. |
+| `EntityType`                                                                                            | [types.CommitmentScopeType](../../models/types/commitmentscopetype.md)                                  | :heavy_check_mark:                                                                                      | N/A                                                                                                     |
