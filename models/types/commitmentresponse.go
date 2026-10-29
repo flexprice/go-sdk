@@ -8,16 +8,17 @@ import (
 )
 
 type CommitmentResponse struct {
-	ActiveWindows        []ActiveWindow              `json:"active_windows,omitzero"`
-	Binding              *bool                       `json:"binding,omitzero"`
-	CollectionMethod     *CommitmentCollectionMethod `json:"collection_method,omitzero"`
-	CommitmentStatus     *CommitmentStatus           `json:"commitment_status,omitzero"`
-	CommitmentValue      *string                     `json:"commitment_value,omitzero"`
-	CommittedPriceID     *string                     `json:"committed_price_id,omitzero"`
-	CreatedAt            *time.Time                  `json:"created_at,omitzero"`
-	CreatedBy            *string                     `json:"created_by,omitzero"`
-	Currency             *string                     `json:"currency,omitzero"`
-	CustomerID           *string                     `json:"customer_id,omitzero"`
+	ActiveWindows    []ActiveWindow              `json:"active_windows,omitzero"`
+	Binding          *bool                       `json:"binding,omitzero"`
+	CollectionMethod *CommitmentCollectionMethod `json:"collection_method,omitzero"`
+	CommitmentStatus *CommitmentStatus           `json:"commitment_status,omitzero"`
+	CommitmentValue  *string                     `json:"commitment_value,omitzero"`
+	CommittedPriceID *string                     `json:"committed_price_id,omitzero"`
+	CreatedAt        *time.Time                  `json:"created_at,omitzero"`
+	CreatedBy        *string                     `json:"created_by,omitzero"`
+	Currency         *string                     `json:"currency,omitzero"`
+	CustomerID       *string                     `json:"customer_id,omitzero"`
+	// EndDate is exclusive; nil for an open-ended commitment, which runs until terminated.
 	EndDate              *time.Time                  `json:"end_date,omitzero"`
 	EnvironmentID        *string                     `json:"environment_id,omitzero"`
 	ID                   *string                     `json:"id,omitzero"`

@@ -24,8 +24,8 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/types"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/types"
 	"log"
 )
 
@@ -37,14 +37,13 @@ func main() {
     )
 
     res, err := s.Commitments.CreateCommitment(ctx, types.CreateCommitmentRequest{
-        EndDate: types.MustTimeFromString("2024-12-01T13:56:43.281Z"),
         Measurement: types.CommitmentMeasurementBillingPeriod,
         Name: "<value>",
         Scope: types.CommitmentScopeInput{
             EntityType: types.CommitmentScopeTypeGroup,
         },
-        StartDate: types.MustTimeFromString("2026-08-30T15:34:29.816Z"),
-        Type: types.CommitmentTypeAmount,
+        StartDate: types.MustTimeFromString("2025-03-05T22:53:12.661Z"),
+        Type: types.CommitmentTypeQuantity,
     })
     if err != nil {
         log.Fatal(err)
@@ -88,8 +87,8 @@ package main
 import(
 	"context"
 	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/types"
 	"github.com/flexprice/go-sdk/v2/models/types"
+	"github.com/flexprice/go-sdk/v2/types"
 	"log"
 )
 
@@ -101,13 +100,12 @@ func main() {
     )
 
     res, err := s.Commitments.PreviewCommitment(ctx, types.CreateCommitmentRequest{
-        EndDate: types.MustTimeFromString("2025-03-29T18:57:47.888Z"),
-        Measurement: types.CommitmentMeasurementWindow,
+        Measurement: types.CommitmentMeasurementBillingPeriod,
         Name: "<value>",
         Scope: types.CommitmentScopeInput{
-            EntityType: types.CommitmentScopeTypeGroup,
+            EntityType: types.CommitmentScopeTypeMeter,
         },
-        StartDate: types.MustTimeFromString("2024-09-25T08:18:25.213Z"),
+        StartDate: types.MustTimeFromString("2024-11-23T11:41:25.905Z"),
         Type: types.CommitmentTypeAmount,
     })
     if err != nil {

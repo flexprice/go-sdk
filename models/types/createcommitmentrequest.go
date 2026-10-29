@@ -10,20 +10,21 @@ import (
 type CreateCommitmentRequest struct {
 	ActiveWindows []ActiveWindow `json:"active_windows,omitzero"`
 	// default false
-	Binding            *bool                       `json:"binding,omitzero"`
-	CollectionMethod   *CommitmentCollectionMethod `json:"collection_method,omitzero"`
-	CommittedPrice     *CommitmentPriceInput       `json:"committed_price,omitzero"`
-	EndDate            time.Time                   `json:"end_date"`
-	IdempotencyKey     *string                     `json:"idempotency_key,omitzero"`
-	InvoiceDescription *string                     `json:"invoice_description,omitzero"`
-	InvoiceLabel       *string                     `json:"invoice_label,omitzero"`
-	Measurement        CommitmentMeasurement       `json:"measurement"`
-	Metadata           map[string]string           `json:"metadata,omitzero"`
-	Name               string                      `json:"name"`
-	OveragePrice       *CommitmentPriceInput       `json:"overage_price,omitzero"`
-	Priority           *int64                      `json:"priority,omitzero"`
-	Scope              CommitmentScopeInput        `json:"scope"`
-	StartDate          time.Time                   `json:"start_date"`
+	Binding          *bool                       `json:"binding,omitzero"`
+	CollectionMethod *CommitmentCollectionMethod `json:"collection_method,omitzero"`
+	CommittedPrice   *CommitmentPriceInput       `json:"committed_price,omitzero"`
+	// EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated.
+	EndDate            *time.Time            `json:"end_date,omitzero"`
+	IdempotencyKey     *string               `json:"idempotency_key,omitzero"`
+	InvoiceDescription *string               `json:"invoice_description,omitzero"`
+	InvoiceLabel       *string               `json:"invoice_label,omitzero"`
+	Measurement        CommitmentMeasurement `json:"measurement"`
+	Metadata           map[string]string     `json:"metadata,omitzero"`
+	Name               string                `json:"name"`
+	OveragePrice       *CommitmentPriceInput `json:"overage_price,omitzero"`
+	Priority           *int64                `json:"priority,omitzero"`
+	Scope              CommitmentScopeInput  `json:"scope"`
+	StartDate          time.Time             `json:"start_date"`
 	// SubscriptionID is required on POST /commitments and set server-side on inline commitments.
 	SubscriptionID *string        `json:"subscription_id,omitzero"`
 	Timezone       *string        `json:"timezone,omitzero"`
@@ -36,7 +37,7 @@ func (c CreateCommitmentRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreateCommitmentRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"end_date", "measurement", "name", "scope", "start_date", "type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"measurement", "name", "scope", "start_date", "type"}); err != nil {
 		return err
 	}
 	return nil
@@ -70,9 +71,9 @@ func (c *CreateCommitmentRequest) GetCommittedPrice() *CommitmentPriceInput {
 	return c.CommittedPrice
 }
 
-func (c *CreateCommitmentRequest) GetEndDate() time.Time {
+func (c *CreateCommitmentRequest) GetEndDate() *time.Time {
 	if c == nil {
-		return time.Time{}
+		return nil
 	}
 	return c.EndDate
 }

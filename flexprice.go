@@ -176,10 +176,10 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.45",
+		SDKVersion: "2.1.46",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 2.1.45 2.948.4 1.0 github.com/flexprice/go-sdk/v2",
-			SDKVersion:        "2.1.45",
+			UserAgent:         "speakeasy-sdk/go 2.1.46 2.948.4 1.0 github.com/flexprice/go-sdk/v2",
+			SDKVersion:        "2.1.46",
 			GenVersion:        "2.948.4",
 			OpenAPIDocVersion: "1.0",
 			ServerList:        ServerList,
