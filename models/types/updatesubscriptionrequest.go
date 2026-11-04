@@ -13,6 +13,7 @@ type UpdateSubscriptionRequest struct {
 	CancelAtPeriodEnd *bool `json:"cancel_at_period_end,omitzero"`
 	// ParentSubscriptionID sets or clears the parent subscription. Omit to leave unchanged; send "" to clear.
 	ParentSubscriptionID *string             `json:"parent_subscription_id,omitzero"`
+	ProrationBehavior    *ProrationBehavior  `json:"proration_behavior,omitzero"`
 	Status               *SubscriptionStatus `json:"status,omitzero"`
 }
 
@@ -46,6 +47,13 @@ func (u *UpdateSubscriptionRequest) GetParentSubscriptionID() *string {
 		return nil
 	}
 	return u.ParentSubscriptionID
+}
+
+func (u *UpdateSubscriptionRequest) GetProrationBehavior() *ProrationBehavior {
+	if u == nil {
+		return nil
+	}
+	return u.ProrationBehavior
 }
 
 func (u *UpdateSubscriptionRequest) GetStatus() *SubscriptionStatus {

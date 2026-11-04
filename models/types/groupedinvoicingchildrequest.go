@@ -27,6 +27,7 @@ type GroupedInvoicingChildRequest struct {
 	OverrideLineItems []OverrideLineItemRequest        `json:"override_line_items,omitzero"`
 	Phases            []SubscriptionPhaseCreateRequest `json:"phases,omitzero"`
 	PlanID            string                           `json:"plan_id"`
+	ProrationBehavior *ProrationBehavior               `json:"proration_behavior,omitzero"`
 	// SubscriptionCoupons is the preferred way to attach coupons at creation.
 	// Accepts coupon_code; optionally targets a line item via price_id.
 	SubscriptionCoupons []SubscriptionCouponInput `json:"subscription_coupons,omitzero"`
@@ -151,6 +152,13 @@ func (g *GroupedInvoicingChildRequest) GetPlanID() string {
 		return ""
 	}
 	return g.PlanID
+}
+
+func (g *GroupedInvoicingChildRequest) GetProrationBehavior() *ProrationBehavior {
+	if g == nil {
+		return nil
+	}
+	return g.ProrationBehavior
 }
 
 func (g *GroupedInvoicingChildRequest) GetSubscriptionCoupons() []SubscriptionCouponInput {

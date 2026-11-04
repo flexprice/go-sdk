@@ -33,6 +33,7 @@
 * [PostWebhookEventsInvoiceUpdateFinalized](#postwebhookeventsinvoiceupdatefinalized) - invoice.update.finalized
 * [PostWebhookEventsInvoiceUpdatePayment](#postwebhookeventsinvoiceupdatepayment) - invoice.update.payment
 * [PostWebhookEventsInvoiceUpdateVoided](#postwebhookeventsinvoiceupdatevoided) - invoice.update.voided
+* [PostWebhookEventsPaymentAttemptFailed](#postwebhookeventspaymentattemptfailed) - payment.attempt.failed
 * [PostWebhookEventsPaymentCreated](#postwebhookeventspaymentcreated) - payment.created
 * [PostWebhookEventsPaymentFailed](#postwebhookeventspaymentfailed) - payment.failed
 * [PostWebhookEventsPaymentPending](#postwebhookeventspaymentpending) - payment.pending
@@ -1513,6 +1514,56 @@ func main() {
 ### Response
 
 **[*dtos.PostWebhookEventsInvoiceUpdateVoidedResponse](../../models/dtos/postwebhookeventsinvoiceupdatevoidedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsPaymentAttemptFailed
+
+Fired when one charge attempt is declined and the payment stays open for retry. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/payment.attempt.failed" method="post" path="/webhook-events/payment.attempt.failed" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsPaymentAttemptFailed(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoPaymentAttemptWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsPaymentAttemptFailedResponse](../../models/dtos/postwebhookeventspaymentattemptfailedresponse.md), error**
 
 ### Errors
 

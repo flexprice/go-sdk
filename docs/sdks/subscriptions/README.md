@@ -10,6 +10,7 @@
 * [QuerySubscriptionLineItems](#querysubscriptionlineitems) - Search subscription line items
 * [UpdateSubscriptionLineItem](#updatesubscriptionlineitem) - Update subscription line item
 * [DeleteSubscriptionLineItem](#deletesubscriptionlineitem) - Delete subscription line item
+* [GetSubscriptionLineItemHistory](#getsubscriptionlineitemhistory) - Get subscription line item history
 * [ListAllSubscriptionSchedules](#listallsubscriptionschedules) - List all subscription schedules
 * [GetSubscriptionSchedule](#getsubscriptionschedule) - Get subscription schedule
 * [CancelSubscriptionSchedule](#cancelsubscriptionschedule) - Cancel subscription schedule
@@ -372,6 +373,59 @@ func main() {
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## GetSubscriptionLineItemHistory
+
+Use when you need every version of a subscription line item, oldest first. Pass the ID of any version; the same timeline is returned. Versions cancelled before they started are left out unless requested directly.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getSubscriptionLineItemHistory" method="get" path="/subscriptions/lineitems/{id}/history" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Subscriptions.GetSubscriptionLineItemHistory(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListSubscriptionLineItemsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Line item ID                                          |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.GetSubscriptionLineItemHistoryResponse](../../models/dtos/getsubscriptionlineitemhistoryresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 

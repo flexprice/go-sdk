@@ -8,16 +8,17 @@ import (
 )
 
 type PaymentAttemptResponse struct {
-	AttemptNumber *int64            `json:"attempt_number,omitzero"`
-	CreatedAt     *time.Time        `json:"created_at,omitzero"`
-	CreatedBy     *string           `json:"created_by,omitzero"`
-	ErrorMessage  *string           `json:"error_message,omitzero"`
-	ID            *string           `json:"id,omitzero"`
-	Metadata      map[string]string `json:"metadata,omitzero"`
-	PaymentID     *string           `json:"payment_id,omitzero"`
-	TenantID      *string           `json:"tenant_id,omitzero"`
-	UpdatedAt     *time.Time        `json:"updated_at,omitzero"`
-	UpdatedBy     *string           `json:"updated_by,omitzero"`
+	AttemptNumber    *int64            `json:"attempt_number,omitzero"`
+	CreatedAt        *time.Time        `json:"created_at,omitzero"`
+	CreatedBy        *string           `json:"created_by,omitzero"`
+	ErrorMessage     *string           `json:"error_message,omitzero"`
+	GatewayAttemptID *string           `json:"gateway_attempt_id,omitzero"`
+	ID               *string           `json:"id,omitzero"`
+	Metadata         map[string]string `json:"metadata,omitzero"`
+	PaymentID        *string           `json:"payment_id,omitzero"`
+	TenantID         *string           `json:"tenant_id,omitzero"`
+	UpdatedAt        *time.Time        `json:"updated_at,omitzero"`
+	UpdatedBy        *string           `json:"updated_by,omitzero"`
 }
 
 func (p PaymentAttemptResponse) MarshalJSON() ([]byte, error) {
@@ -57,6 +58,13 @@ func (p *PaymentAttemptResponse) GetErrorMessage() *string {
 		return nil
 	}
 	return p.ErrorMessage
+}
+
+func (p *PaymentAttemptResponse) GetGatewayAttemptID() *string {
+	if p == nil {
+		return nil
+	}
+	return p.GatewayAttemptID
 }
 
 func (p *PaymentAttemptResponse) GetID() *string {

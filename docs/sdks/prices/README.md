@@ -11,6 +11,7 @@
 * [GetPrice](#getprice) - Get price
 * [UpdatePrice](#updateprice) - Update price
 * [DeletePrice](#deleteprice) - Delete price
+* [GetPriceHistory](#getpricehistory) - Get price history
 
 ## CreatePrice
 
@@ -398,5 +399,58 @@ func main() {
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## GetPriceHistory
+
+Use when you need every version of a plan price, oldest first. Pass the ID of any version; the same timeline is returned.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getPriceHistory" method="get" path="/prices/{id}/history" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Prices.GetPriceHistory(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListPricesResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Price ID                                              |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.GetPriceHistoryResponse](../../models/dtos/getpricehistoryresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |

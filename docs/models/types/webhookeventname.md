@@ -47,6 +47,7 @@ custom := types.WebhookEventName("custom_value")
 | `WebhookEventNamePaymentCreated`                              | payment.created                                               |
 | `WebhookEventNamePaymentUpdated`                              | payment.updated                                               |
 | `WebhookEventNamePaymentFailed`                               | payment.failed                                                |
+| `WebhookEventNamePaymentAttemptFailed`                        | payment.attempt.failed                                        |
 | `WebhookEventNamePaymentSuccess`                              | payment.success                                               |
 | `WebhookEventNamePaymentPending`                              | payment.pending                                               |
 | `WebhookEventNameRefundCreated`                               | refund.created                                                |
