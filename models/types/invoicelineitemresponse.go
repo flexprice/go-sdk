@@ -12,6 +12,8 @@ type InvoiceLineItemResponse struct {
 	// Nil when no entitlement was applied. Raw usage = Quantity + AdjustedEntitlementQuantity.
 	AdjustedEntitlementQuantity *string `json:"adjusted_entitlement_quantity,omitzero"`
 	Amount                      *string `json:"amount,omitzero"`
+	// billing_instalment_id links this line item to the billing instalment it bills.
+	BillingInstalmentID *string `json:"billing_instalment_id,omitzero"`
 	// commitment_id links this line item to the commitment it bills.
 	CommitmentID   *string                 `json:"commitment_id,omitzero"`
 	CommitmentInfo *CommitmentInfo         `json:"commitment_info,omitzero"`
@@ -84,6 +86,13 @@ func (i *InvoiceLineItemResponse) GetAmount() *string {
 		return nil
 	}
 	return i.Amount
+}
+
+func (i *InvoiceLineItemResponse) GetBillingInstalmentID() *string {
+	if i == nil {
+		return nil
+	}
+	return i.BillingInstalmentID
 }
 
 func (i *InvoiceLineItemResponse) GetCommitmentID() *string {

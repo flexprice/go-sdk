@@ -8,8 +8,9 @@ import (
 )
 
 type TerminateCommitmentRequest struct {
-	CancellationFee *string    `json:"cancellation_fee,omitzero"`
-	EffectiveAt     *time.Time `json:"effective_at,omitzero"`
+	CancellationFee *CancellationFeeInput `json:"cancellation_fee,omitzero"`
+	// EffectiveAt defaults to now; within a second after a billing period edge it is taken as that edge.
+	EffectiveAt *time.Time `json:"effective_at,omitzero"`
 }
 
 func (t TerminateCommitmentRequest) MarshalJSON() ([]byte, error) {
@@ -23,7 +24,7 @@ func (t *TerminateCommitmentRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (t *TerminateCommitmentRequest) GetCancellationFee() *string {
+func (t *TerminateCommitmentRequest) GetCancellationFee() *CancellationFeeInput {
 	if t == nil {
 		return nil
 	}

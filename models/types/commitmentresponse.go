@@ -8,7 +8,9 @@ import (
 )
 
 type CommitmentResponse struct {
-	ActiveWindows    []ActiveWindow              `json:"active_windows,omitzero"`
+	ActiveWindows []ActiveWindow `json:"active_windows,omitzero"`
+	// BillingTerms and Instalments are set by create and preview.
+	BillingTerms     []BillingtermTerm           `json:"billing_terms,omitzero"`
 	Binding          *bool                       `json:"binding,omitzero"`
 	CollectionMethod *CommitmentCollectionMethod `json:"collection_method,omitzero"`
 	CommitmentStatus *CommitmentStatus           `json:"commitment_status,omitzero"`
@@ -23,7 +25,8 @@ type CommitmentResponse struct {
 	EnvironmentID        *string                     `json:"environment_id,omitzero"`
 	ID                   *string                     `json:"id,omitzero"`
 	IdempotencyKey       *string                     `json:"idempotency_key,omitzero"`
-	InstalmentInvoicing  *string                     `json:"instalment_invoicing,omitzero"`
+	InstalmentInvoicing  *InstalmentDelivery         `json:"instalment_invoicing,omitzero"`
+	Instalments          []BillingtermInstalment     `json:"instalments,omitzero"`
 	InvoiceDescription   *string                     `json:"invoice_description,omitzero"`
 	InvoiceLabel         *string                     `json:"invoice_label,omitzero"`
 	Measurement          *CommitmentMeasurement      `json:"measurement,omitzero"`
@@ -64,6 +67,13 @@ func (c *CommitmentResponse) GetActiveWindows() []ActiveWindow {
 		return nil
 	}
 	return c.ActiveWindows
+}
+
+func (c *CommitmentResponse) GetBillingTerms() []BillingtermTerm {
+	if c == nil {
+		return nil
+	}
+	return c.BillingTerms
 }
 
 func (c *CommitmentResponse) GetBinding() *bool {
@@ -157,11 +167,18 @@ func (c *CommitmentResponse) GetIdempotencyKey() *string {
 	return c.IdempotencyKey
 }
 
-func (c *CommitmentResponse) GetInstalmentInvoicing() *string {
+func (c *CommitmentResponse) GetInstalmentInvoicing() *InstalmentDelivery {
 	if c == nil {
 		return nil
 	}
 	return c.InstalmentInvoicing
+}
+
+func (c *CommitmentResponse) GetInstalments() []BillingtermInstalment {
+	if c == nil {
+		return nil
+	}
+	return c.Instalments
 }
 
 func (c *CommitmentResponse) GetInvoiceDescription() *string {

@@ -35,6 +35,8 @@ type SubscriptionResponseV2 struct {
 	// CommitmentAmount is the minimum amount a customer commits to paying for a billing period
 	CommitmentAmount   *string        `json:"commitment_amount,omitzero"`
 	CommitmentDuration *BillingPeriod `json:"commitment_duration,omitzero"`
+	// Commitments are included when "commitments" is in expand parameter
+	Commitments []CommitmentResponse `json:"commitments,omitzero"`
 	// CouponAssociations are included when "coupon_associations" is in expand parameter
 	CouponAssociations []CouponAssociationResponse `json:"coupon_associations,omitzero"`
 	CreatedAt          *time.Time                  `json:"created_at,omitzero"`
@@ -213,6 +215,13 @@ func (s *SubscriptionResponseV2) GetCommitmentDuration() *BillingPeriod {
 		return nil
 	}
 	return s.CommitmentDuration
+}
+
+func (s *SubscriptionResponseV2) GetCommitments() []CommitmentResponse {
+	if s == nil {
+		return nil
+	}
+	return s.Commitments
 }
 
 func (s *SubscriptionResponseV2) GetCouponAssociations() []CouponAssociationResponse {

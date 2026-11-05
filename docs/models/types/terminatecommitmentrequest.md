@@ -3,7 +3,7 @@
 
 ## Fields
 
-| Field                                      | Type                                       | Required                                   | Description                                |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| `CancellationFee`                          | `*string`                                  | :heavy_minus_sign:                         | N/A                                        |
-| `EffectiveAt`                              | [*time.Time](https://pkg.go.dev/time#Time) | :heavy_minus_sign:                         | N/A                                        |
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `CancellationFee`                                                                                  | [*types.CancellationFeeInput](../../models/types/cancellationfeeinput.md)                          | :heavy_minus_sign:                                                                                 | N/A                                                                                                |
+| `EffectiveAt`                                                                                      | [*time.Time](https://pkg.go.dev/time#Time)                                                         | :heavy_minus_sign:                                                                                 | EffectiveAt defaults to now; within a second after a billing period edge it is taken as that edge. |

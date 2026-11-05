@@ -21,6 +21,8 @@ const (
 	InvoiceBillingReasonWalletAutoTopup        InvoiceBillingReason = "WALLET_AUTO_TOPUP"
 	InvoiceBillingReasonSubscriptionPaused     InvoiceBillingReason = "SUBSCRIPTION_PAUSED"
 	InvoiceBillingReasonSubscriptionResume     InvoiceBillingReason = "SUBSCRIPTION_RESUME"
+	InvoiceBillingReasonBillingTerms           InvoiceBillingReason = "BILLING_TERMS"
+	InvoiceBillingReasonCommitmentTermination  InvoiceBillingReason = "COMMITMENT_TERMINATION"
 )
 
 func (e InvoiceBillingReason) ToPointer() *InvoiceBillingReason {
@@ -53,6 +55,10 @@ func (e *InvoiceBillingReason) UnmarshalJSON(data []byte) error {
 	case "SUBSCRIPTION_PAUSED":
 		fallthrough
 	case "SUBSCRIPTION_RESUME":
+		fallthrough
+	case "BILLING_TERMS":
+		fallthrough
+	case "COMMITMENT_TERMINATION":
 		*e = InvoiceBillingReason(v)
 		return nil
 	default:

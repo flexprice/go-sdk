@@ -4,9 +4,12 @@ package types
 
 import (
 	"github.com/flexprice/go-sdk/v2/internal/utils"
+	"time"
 )
 
 type UpdateCommitmentRequest struct {
+	// EndDate can't be changed yet; terminate the commitment to end it.
+	EndDate            *time.Time        `json:"end_date,omitzero"`
 	InvoiceDescription *string           `json:"invoice_description,omitzero"`
 	InvoiceLabel       *string           `json:"invoice_label,omitzero"`
 	Metadata           map[string]string `json:"metadata,omitzero"`
@@ -22,6 +25,13 @@ func (u *UpdateCommitmentRequest) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (u *UpdateCommitmentRequest) GetEndDate() *time.Time {
+	if u == nil {
+		return nil
+	}
+	return u.EndDate
 }
 
 func (u *UpdateCommitmentRequest) GetInvoiceDescription() *string {

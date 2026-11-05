@@ -26,3 +26,5 @@ value := types.InvoiceBillingReasonSubscriptionCreate
 | `InvoiceBillingReasonWalletAutoTopup`        | WALLET_AUTO_TOPUP                            |
 | `InvoiceBillingReasonSubscriptionPaused`     | SUBSCRIPTION_PAUSED                          |
 | `InvoiceBillingReasonSubscriptionResume`     | SUBSCRIPTION_RESUME                          |
+| `InvoiceBillingReasonBillingTerms`           | BILLING_TERMS                                |
+| `InvoiceBillingReasonCommitmentTermination`  | COMMITMENT_TERMINATION                       |

@@ -10,7 +10,7 @@ import (
 type GetSubscriptionV2Request struct {
 	// Subscription ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
-	// Comma-separated list of fields to expand (e.g., 'subscription_line_items,prices,plan')
+	// Comma-separated list of fields to expand (e.g., 'subscription_line_items,prices,plan,commitments')
 	Expand *string `queryParam:"style=form,explode=true,name=expand"`
 }
 

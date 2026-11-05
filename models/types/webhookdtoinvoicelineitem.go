@@ -10,6 +10,7 @@ import (
 type WebhookDtoInvoiceLineItem struct {
 	AdjustedEntitlementQuantity *string           `json:"adjusted_entitlement_quantity,omitzero"`
 	Amount                      *string           `json:"amount,omitzero"`
+	BillingInstalmentID         *string           `json:"billing_instalment_id,omitzero"`
 	CommitmentInfo              *CommitmentInfo   `json:"commitment_info,omitzero"`
 	Currency                    *string           `json:"currency,omitzero"`
 	DisplayName                 *string           `json:"display_name,omitzero"`
@@ -57,6 +58,13 @@ func (w *WebhookDtoInvoiceLineItem) GetAmount() *string {
 		return nil
 	}
 	return w.Amount
+}
+
+func (w *WebhookDtoInvoiceLineItem) GetBillingInstalmentID() *string {
+	if w == nil {
+		return nil
+	}
+	return w.BillingInstalmentID
 }
 
 func (w *WebhookDtoInvoiceLineItem) GetCommitmentInfo() *CommitmentInfo {

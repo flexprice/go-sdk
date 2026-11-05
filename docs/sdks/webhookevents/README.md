@@ -4,6 +4,12 @@
 
 ### Available Operations
 
+* [PostWebhookEventsBillingInstalmentCancelled](#postwebhookeventsbillinginstalmentcancelled) - billing_instalment.cancelled
+* [PostWebhookEventsBillingInstalmentCreated](#postwebhookeventsbillinginstalmentcreated) - billing_instalment.created
+* [PostWebhookEventsBillingInstalmentInvoiced](#postwebhookeventsbillinginstalmentinvoiced) - billing_instalment.invoiced
+* [PostWebhookEventsBillingInstalmentUpdated](#postwebhookeventsbillinginstalmentupdated) - billing_instalment.updated
+* [PostWebhookEventsBillingTermsCreated](#postwebhookeventsbillingtermscreated) - billing_terms.created
+* [PostWebhookEventsBillingTermsUpdated](#postwebhookeventsbillingtermsupdated) - billing_terms.updated
 * [PostWebhookEventsCheckoutSessionCompleted](#postwebhookeventscheckoutsessioncompleted) - checkout.session.completed
 * [PostWebhookEventsCheckoutSessionExpired](#postwebhookeventscheckoutsessionexpired) - checkout.session.expired
 * [PostWebhookEventsCheckoutSessionFailed](#postwebhookeventscheckoutsessionfailed) - checkout.session.failed
@@ -70,6 +76,306 @@
 * [PostWebhookEventsWalletTransactionCreated](#postwebhookeventswallettransactioncreated) - wallet.transaction.created
 * [PostWebhookEventsWalletTransactionUpdated](#postwebhookeventswallettransactionupdated) - wallet.transaction.updated
 * [PostWebhookEventsWalletUpdated](#postwebhookeventswalletupdated) - wallet.updated
+
+## PostWebhookEventsBillingInstalmentCancelled
+
+Fired when a billing instalment is cancelled. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/billing_instalment.cancelled" method="post" path="/webhook-events/billing_instalment.cancelled" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsBillingInstalmentCancelled(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoBillingInstalmentWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsBillingInstalmentCancelledResponse](../../models/dtos/postwebhookeventsbillinginstalmentcancelledresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsBillingInstalmentCreated
+
+Fired when a billing instalment is scheduled for an entity (like a commitment). Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/billing_instalment.created" method="post" path="/webhook-events/billing_instalment.created" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsBillingInstalmentCreated(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoBillingInstalmentWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsBillingInstalmentCreatedResponse](../../models/dtos/postwebhookeventsbillinginstalmentcreatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsBillingInstalmentInvoiced
+
+Fired when the invoice carrying a billing instalment is finalized. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/billing_instalment.invoiced" method="post" path="/webhook-events/billing_instalment.invoiced" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsBillingInstalmentInvoiced(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoBillingInstalmentWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsBillingInstalmentInvoicedResponse](../../models/dtos/postwebhookeventsbillinginstalmentinvoicedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsBillingInstalmentUpdated
+
+Fired when a trigger moves a billing instalment's bill date, or a voided invoice puts it back on schedule. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/billing_instalment.updated" method="post" path="/webhook-events/billing_instalment.updated" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsBillingInstalmentUpdated(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoBillingInstalmentWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsBillingInstalmentUpdatedResponse](../../models/dtos/postwebhookeventsbillinginstalmentupdatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsBillingTermsCreated
+
+Fired when billing terms are saved against an entity (like a commitment). Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/billing_terms.created" method="post" path="/webhook-events/billing_terms.created" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsBillingTermsCreated(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoBillingTermsWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsBillingTermsCreatedResponse](../../models/dtos/postwebhookeventsbillingtermscreatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsBillingTermsUpdated
+
+Fired when an entity's (like a commitment's) billing terms are replaced. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/billing_terms.updated" method="post" path="/webhook-events/billing_terms.updated" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsBillingTermsUpdated(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoBillingTermsWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsBillingTermsUpdatedResponse](../../models/dtos/postwebhookeventsbillingtermsupdatedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
 
 ## PostWebhookEventsCheckoutSessionCompleted
 

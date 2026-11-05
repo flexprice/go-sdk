@@ -9,22 +9,26 @@ import (
 
 type CreateCommitmentRequest struct {
 	ActiveWindows []ActiveWindow `json:"active_windows,omitzero"`
+	// BillingTerms apply only to collection_method billing_terms, which requires at least one.
+	BillingTerms []BillingTermInput `json:"billing_terms,omitzero"`
 	// default false
 	Binding          *bool                       `json:"binding,omitzero"`
 	CollectionMethod *CommitmentCollectionMethod `json:"collection_method,omitzero"`
 	CommittedPrice   *CommitmentPriceInput       `json:"committed_price,omitzero"`
 	// EndDate is exclusive; omit it for an open-ended commitment, which bills every period until terminated.
-	EndDate            *time.Time            `json:"end_date,omitzero"`
-	IdempotencyKey     *string               `json:"idempotency_key,omitzero"`
-	InvoiceDescription *string               `json:"invoice_description,omitzero"`
-	InvoiceLabel       *string               `json:"invoice_label,omitzero"`
-	Measurement        CommitmentMeasurement `json:"measurement"`
-	Metadata           map[string]string     `json:"metadata,omitzero"`
-	Name               string                `json:"name"`
-	OveragePrice       *CommitmentPriceInput `json:"overage_price,omitzero"`
-	Priority           *int64                `json:"priority,omitzero"`
-	Scope              CommitmentScopeInput  `json:"scope"`
-	StartDate          time.Time             `json:"start_date"`
+	EndDate             *time.Time            `json:"end_date,omitzero"`
+	IdempotencyKey      *string               `json:"idempotency_key,omitzero"`
+	InstalmentInvoicing *InstalmentDelivery   `json:"instalment_invoicing,omitzero"`
+	InvoiceDescription  *string               `json:"invoice_description,omitzero"`
+	InvoiceLabel        *string               `json:"invoice_label,omitzero"`
+	Measurement         CommitmentMeasurement `json:"measurement"`
+	Metadata            map[string]string     `json:"metadata,omitzero"`
+	Name                string                `json:"name"`
+	OveragePrice        *CommitmentPriceInput `json:"overage_price,omitzero"`
+	Priority            *int64                `json:"priority,omitzero"`
+	Scope               CommitmentScopeInput  `json:"scope"`
+	// StartDate and EndDate within a second after a billing period edge are taken as that edge.
+	StartDate time.Time `json:"start_date"`
 	// SubscriptionID is required on POST /commitments and set server-side on inline commitments.
 	SubscriptionID *string        `json:"subscription_id,omitzero"`
 	Timezone       *string        `json:"timezone,omitzero"`
@@ -48,6 +52,13 @@ func (c *CreateCommitmentRequest) GetActiveWindows() []ActiveWindow {
 		return nil
 	}
 	return c.ActiveWindows
+}
+
+func (c *CreateCommitmentRequest) GetBillingTerms() []BillingTermInput {
+	if c == nil {
+		return nil
+	}
+	return c.BillingTerms
 }
 
 func (c *CreateCommitmentRequest) GetBinding() *bool {
@@ -83,6 +94,13 @@ func (c *CreateCommitmentRequest) GetIdempotencyKey() *string {
 		return nil
 	}
 	return c.IdempotencyKey
+}
+
+func (c *CreateCommitmentRequest) GetInstalmentInvoicing() *InstalmentDelivery {
+	if c == nil {
+		return nil
+	}
+	return c.InstalmentInvoicing
 }
 
 func (c *CreateCommitmentRequest) GetInvoiceDescription() *string {
