@@ -36,20 +36,22 @@ func (e *CustomerFilterOrder) UnmarshalJSON(data []byte) error {
 }
 
 type CustomerFilter struct {
-	CustomerIds []string             `json:"customer_ids,omitzero"`
-	Email       *string              `json:"email,omitzero"`
-	EndTime     *time.Time           `json:"end_time,omitzero"`
-	Expand      *string              `json:"expand,omitzero"`
-	ExternalID  *string              `json:"external_id,omitzero"`
-	ExternalIds []string             `json:"external_ids,omitzero"`
-	Filters     []FilterCondition    `json:"filters,omitzero"`
-	Limit       *int64               `json:"limit,omitzero"`
-	Metadata    map[string]string    `json:"metadata,omitzero"`
-	Offset      *int64               `json:"offset,omitzero"`
-	Order       *CustomerFilterOrder `json:"order,omitzero"`
-	Sort        []SortCondition      `json:"sort,omitzero"`
-	StartTime   *time.Time           `json:"start_time,omitzero"`
-	Status      *Status              `json:"status,omitzero"`
+	// billing_entity_id filters by the customer's billing entity
+	BillingEntityID *string              `json:"billing_entity_id,omitzero"`
+	CustomerIds     []string             `json:"customer_ids,omitzero"`
+	Email           *string              `json:"email,omitzero"`
+	EndTime         *time.Time           `json:"end_time,omitzero"`
+	Expand          *string              `json:"expand,omitzero"`
+	ExternalID      *string              `json:"external_id,omitzero"`
+	ExternalIds     []string             `json:"external_ids,omitzero"`
+	Filters         []FilterCondition    `json:"filters,omitzero"`
+	Limit           *int64               `json:"limit,omitzero"`
+	Metadata        map[string]string    `json:"metadata,omitzero"`
+	Offset          *int64               `json:"offset,omitzero"`
+	Order           *CustomerFilterOrder `json:"order,omitzero"`
+	Sort            []SortCondition      `json:"sort,omitzero"`
+	StartTime       *time.Time           `json:"start_time,omitzero"`
+	Status          *Status              `json:"status,omitzero"`
 }
 
 func (c CustomerFilter) MarshalJSON() ([]byte, error) {
@@ -61,6 +63,13 @@ func (c *CustomerFilter) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (c *CustomerFilter) GetBillingEntityID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.BillingEntityID
 }
 
 func (c *CustomerFilter) GetCustomerIds() []string {

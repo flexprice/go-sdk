@@ -20,8 +20,9 @@ type CreateSubscriptionRequest struct {
 	BillingPeriodCount *int64            `json:"billing_period_count,omitzero"`
 	Checkout           *CheckoutParams   `json:"checkout,omitzero"`
 	CollectionMethod   *CollectionMethod `json:"collection_method,omitzero"`
-	CommitmentAmount   *string           `json:"commitment_amount,omitzero"`
-	CommitmentDuration *BillingPeriod    `json:"commitment_duration,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentAmount   *string        `json:"commitment_amount,omitzero"`
+	CommitmentDuration *BillingPeriod `json:"commitment_duration,omitzero"`
 	// Commitments are created with the subscription. subscription_id, and entity_id on a subscription scope,
 	// are set server-side.
 	Commitments []CreateCommitmentRequest `json:"commitments,omitzero"`
@@ -30,7 +31,8 @@ type CreateSubscriptionRequest struct {
 	CreditGrants []CreateCreditGrantRequest `json:"credit_grants,omitzero"`
 	Currency     string                     `json:"currency"`
 	// CustomerID takes priority over ExternalCustomerID when both are provided.
-	CustomerID         *string    `json:"customer_id,omitzero"`
+	CustomerID *string `json:"customer_id,omitzero"`
+	// Deprecated: use POST /commitments instead.
 	EnableTrueUp       *bool      `json:"enable_true_up,omitzero"`
 	EndDate            *time.Time `json:"end_date,omitzero"`
 	ExternalCustomerID *string    `json:"external_customer_id,omitzero"`
@@ -49,17 +51,18 @@ type CreateSubscriptionRequest struct {
 	// non-emptiness is enforced explicitly in Validate() below.
 	IncludePriceIds []string                       `json:"include_price_ids,omitzero"`
 	Inheritance     *SubscriptionInheritanceConfig `json:"inheritance,omitzero"`
-	// LineItemCommitments sets per-line-item commitment config, keyed by price_id.
+	// Deprecated: use POST /commitments instead.
 	LineItemCommitments map[string]LineItemCommitmentConfig `json:"line_item_commitments,omitzero"`
 	// Deprecated: use SubscriptionCoupons instead.
 	LineItemCoupons  map[string][]string `json:"line_item_coupons,omitzero"`
 	LineItemGrouping *LineItemGrouping   `json:"line_item_grouping,omitzero"`
 	// LineItems are extra (non-plan) line items added at creation.
-	LineItems            []CreateSubscriptionLineItemRequest `json:"line_items,omitzero"`
-	LookupKey            *string                             `json:"lookup_key,omitzero"`
-	Metadata             map[string]string                   `json:"metadata,omitzero"`
-	OverageFactor        *string                             `json:"overage_factor,omitzero"`
-	OverrideEntitlements []OverrideEntitlementRequest        `json:"override_entitlements,omitzero"`
+	LineItems []CreateSubscriptionLineItemRequest `json:"line_items,omitzero"`
+	LookupKey *string                             `json:"lookup_key,omitzero"`
+	Metadata  map[string]string                   `json:"metadata,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	OverageFactor        *string                      `json:"overage_factor,omitzero"`
+	OverrideEntitlements []OverrideEntitlementRequest `json:"override_entitlements,omitzero"`
 	// OverrideLineItems overrides specific plan prices for this subscription.
 	OverrideLineItems []OverrideLineItemRequest        `json:"override_line_items,omitzero"`
 	PaymentBehavior   *PaymentBehavior                 `json:"payment_behavior,omitzero"`
@@ -67,6 +70,7 @@ type CreateSubscriptionRequest struct {
 	Phases            []SubscriptionPhaseCreateRequest `json:"phases,omitzero"`
 	PlanID            string                           `json:"plan_id"`
 	ProrationBehavior *ProrationBehavior               `json:"proration_behavior,omitzero"`
+	Settings          *SettingsOverride                `json:"settings,omitzero"`
 	StartDate         *time.Time                       `json:"start_date,omitzero"`
 	// SubscriptionCoupons is the preferred way to attach coupons at creation.
 	// Accepts coupon_code; optionally targets a line item via price_id.
@@ -341,6 +345,13 @@ func (c *CreateSubscriptionRequest) GetProrationBehavior() *ProrationBehavior {
 		return nil
 	}
 	return c.ProrationBehavior
+}
+
+func (c *CreateSubscriptionRequest) GetSettings() *SettingsOverride {
+	if c == nil {
+		return nil
+	}
+	return c.Settings
 }
 
 func (c *CreateSubscriptionRequest) GetStartDate() *time.Time {

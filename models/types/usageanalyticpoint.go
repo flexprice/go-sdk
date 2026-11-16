@@ -17,8 +17,12 @@ type UsageAnalyticPoint struct {
 	Buckets []PointBucket `json:"buckets,omitzero"`
 	// Commitment breakdown (only populated for windowed commitments)
 	ComputedCommitmentUtilizedAmount *string `json:"computed_commitment_utilized_amount,omitzero"`
-	ComputedOverageAmount            *string `json:"computed_overage_amount,omitzero"`
-	ComputedTrueUpAmount             *string `json:"computed_true_up_amount,omitzero"`
+	// Usage units behind the commitment breakdown, for v2 commitments
+	ComputedCommitmentUtilizedQuantity *string `json:"computed_commitment_utilized_quantity,omitzero"`
+	ComputedOverageAmount              *string `json:"computed_overage_amount,omitzero"`
+	ComputedOverageQuantity            *string `json:"computed_overage_quantity,omitzero"`
+	ComputedTrueUpAmount               *string `json:"computed_true_up_amount,omitzero"`
+	ComputedTrueUpQuantity             *string `json:"computed_true_up_quantity,omitzero"`
 	// Cost is the final cost after discount (Subtotal - Discount)
 	Cost     *string `json:"cost,omitzero"`
 	Discount *string `json:"discount,omitzero"`
@@ -54,6 +58,13 @@ func (u *UsageAnalyticPoint) GetComputedCommitmentUtilizedAmount() *string {
 	return u.ComputedCommitmentUtilizedAmount
 }
 
+func (u *UsageAnalyticPoint) GetComputedCommitmentUtilizedQuantity() *string {
+	if u == nil {
+		return nil
+	}
+	return u.ComputedCommitmentUtilizedQuantity
+}
+
 func (u *UsageAnalyticPoint) GetComputedOverageAmount() *string {
 	if u == nil {
 		return nil
@@ -61,11 +72,25 @@ func (u *UsageAnalyticPoint) GetComputedOverageAmount() *string {
 	return u.ComputedOverageAmount
 }
 
+func (u *UsageAnalyticPoint) GetComputedOverageQuantity() *string {
+	if u == nil {
+		return nil
+	}
+	return u.ComputedOverageQuantity
+}
+
 func (u *UsageAnalyticPoint) GetComputedTrueUpAmount() *string {
 	if u == nil {
 		return nil
 	}
 	return u.ComputedTrueUpAmount
+}
+
+func (u *UsageAnalyticPoint) GetComputedTrueUpQuantity() *string {
+	if u == nil {
+		return nil
+	}
+	return u.ComputedTrueUpQuantity
 }
 
 func (u *UsageAnalyticPoint) GetCost() *string {

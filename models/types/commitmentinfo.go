@@ -7,14 +7,20 @@ import (
 )
 
 type CommitmentInfo struct {
+	// Amount is the commitment amount (v1), or computed_commitment_utilized_amount + computed_true_up_amount (v2).
 	Amount                           *string `json:"amount,omitzero"`
 	ComputedCommitmentUtilizedAmount *string `json:"computed_commitment_utilized_amount,omitzero"`
-	ComputedOverageAmount            *string `json:"computed_overage_amount,omitzero"`
+	// Usage units behind the computed amounts: usage a billing-terms commitment covers counts as utilized at no
+	// charge, and a quantity commitment's true-up counts its unused units.
+	ComputedCommitmentUtilizedQuantity *string `json:"computed_commitment_utilized_quantity,omitzero"`
+	ComputedOverageAmount              *string `json:"computed_overage_amount,omitzero"`
+	ComputedOverageQuantity            *string `json:"computed_overage_quantity,omitzero"`
 	// total_cost = computed_commitment_utilized_amount + computed_overage_amount + computed_true_up_amount
-	ComputedTrueUpAmount *string        `json:"computed_true_up_amount,omitzero"`
-	Duration             *BillingPeriod `json:"duration,omitzero"`
-	IsWindowed           *bool          `json:"is_windowed,omitzero"`
-	OverageFactor        *string        `json:"overage_factor,omitzero"`
+	ComputedTrueUpAmount   *string        `json:"computed_true_up_amount,omitzero"`
+	ComputedTrueUpQuantity *string        `json:"computed_true_up_quantity,omitzero"`
+	Duration               *BillingPeriod `json:"duration,omitzero"`
+	IsWindowed             *bool          `json:"is_windowed,omitzero"`
+	OverageFactor          *string        `json:"overage_factor,omitzero"`
 	// Only used for quantity-based commitments
 	Quantity      *string         `json:"quantity,omitzero"`
 	TrueUpEnabled *bool           `json:"true_up_enabled,omitzero"`
@@ -46,6 +52,13 @@ func (c *CommitmentInfo) GetComputedCommitmentUtilizedAmount() *string {
 	return c.ComputedCommitmentUtilizedAmount
 }
 
+func (c *CommitmentInfo) GetComputedCommitmentUtilizedQuantity() *string {
+	if c == nil {
+		return nil
+	}
+	return c.ComputedCommitmentUtilizedQuantity
+}
+
 func (c *CommitmentInfo) GetComputedOverageAmount() *string {
 	if c == nil {
 		return nil
@@ -53,11 +66,25 @@ func (c *CommitmentInfo) GetComputedOverageAmount() *string {
 	return c.ComputedOverageAmount
 }
 
+func (c *CommitmentInfo) GetComputedOverageQuantity() *string {
+	if c == nil {
+		return nil
+	}
+	return c.ComputedOverageQuantity
+}
+
 func (c *CommitmentInfo) GetComputedTrueUpAmount() *string {
 	if c == nil {
 		return nil
 	}
 	return c.ComputedTrueUpAmount
+}
+
+func (c *CommitmentInfo) GetComputedTrueUpQuantity() *string {
+	if c == nil {
+		return nil
+	}
+	return c.ComputedTrueUpQuantity
 }
 
 func (c *CommitmentInfo) GetDuration() *BillingPeriod {

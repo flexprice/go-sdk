@@ -6,8 +6,6 @@
 
 * [ListScheduledTasks](#listscheduledtasks) - List scheduled tasks
 * [CreateScheduledTask](#createscheduledtask) - Create scheduled task
-* [ScheduleDraftFinalization](#scheduledraftfinalization) - Schedule draft finalization
-* [ScheduleUpdateBillingPeriod](#scheduleupdatebillingperiod) - Schedule update billing period
 * [GetScheduledTask](#getscheduledtask) - Get scheduled task
 * [UpdateScheduledTask](#updatescheduledtask) - Update a scheduled task
 * [DeleteScheduledTask](#deletescheduledtask) - Delete a scheduled task
@@ -117,112 +115,6 @@ func main() {
 ### Response
 
 **[*dtos.CreateScheduledTaskResponse](../../models/dtos/createscheduledtaskresponse.md), error**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | 400                  | application/json     |
-| errors.ErrorResponse | 500                  | application/json     |
-| errors.APIError      | 4XX, 5XX             | \*/\*                |
-
-## ScheduleDraftFinalization
-
-Triggers the draft invoice finalization workflow that scans computed draft invoices whose finalization delay has elapsed and finalizes them (assign invoice number, sync to vendors, attempt payment).
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="scheduleDraftFinalization" method="post" path="/tasks/scheduled/schedule-draft-finalization" -->
-```go
-package main
-
-import(
-	"context"
-	flexprice "github.com/flexprice/go-sdk/v2"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.ScheduledTasks.ScheduleDraftFinalization(ctx)
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Object != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
-
-### Response
-
-**[*dtos.ScheduleDraftFinalizationResponse](../../models/dtos/scheduledraftfinalizationresponse.md), error**
-
-### Errors
-
-| Error Type           | Status Code          | Content Type         |
-| -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | 400                  | application/json     |
-| errors.ErrorResponse | 500                  | application/json     |
-| errors.APIError      | 4XX, 5XX             | \*/\*                |
-
-## ScheduleUpdateBillingPeriod
-
-Use when you need to trigger a billing-period update workflow (e.g. to recalculate or sync billing windows).
-
-### Example Usage
-
-<!-- UsageSnippet language="go" operationID="scheduleUpdateBillingPeriod" method="post" path="/tasks/scheduled/schedule-update-billing-period" -->
-```go
-package main
-
-import(
-	"context"
-	flexprice "github.com/flexprice/go-sdk/v2"
-	"github.com/flexprice/go-sdk/v2/models/dtos"
-	"log"
-)
-
-func main() {
-    ctx := context.Background()
-
-    s := flexprice.New(
-        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
-    )
-
-    res, err := s.ScheduledTasks.ScheduleUpdateBillingPeriod(ctx, dtos.ScheduleUpdateBillingPeriodRequest{})
-    if err != nil {
-        log.Fatal(err)
-    }
-    if res.Object != nil {
-        // handle response
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                          | Type                                                                                               | Required                                                                                           | Description                                                                                        |
-| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `ctx`                                                                                              | [context.Context](https://pkg.go.dev/context#Context)                                              | :heavy_check_mark:                                                                                 | The context to use for the request.                                                                |
-| `request`                                                                                          | [dtos.ScheduleUpdateBillingPeriodRequest](../../models/dtos/scheduleupdatebillingperiodrequest.md) | :heavy_check_mark:                                                                                 | The request object to use for the request.                                                         |
-| `opts`                                                                                             | [][dtos.Option](../../models/dtos/option.md)                                                       | :heavy_minus_sign:                                                                                 | The options for this request.                                                                      |
-
-### Response
-
-**[*dtos.ScheduleUpdateBillingPeriodResponse](../../models/dtos/scheduleupdatebillingperiodresponse.md), error**
 
 ### Errors
 

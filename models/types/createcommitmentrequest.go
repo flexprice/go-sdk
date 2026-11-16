@@ -31,7 +31,6 @@ type CreateCommitmentRequest struct {
 	StartDate time.Time `json:"start_date"`
 	// SubscriptionID is required on POST /commitments and set server-side on inline commitments.
 	SubscriptionID *string        `json:"subscription_id,omitzero"`
-	Timezone       *string        `json:"timezone,omitzero"`
 	Type           CommitmentType `json:"type"`
 	Value          *string        `json:"value,omitzero"`
 }
@@ -171,13 +170,6 @@ func (c *CreateCommitmentRequest) GetSubscriptionID() *string {
 		return nil
 	}
 	return c.SubscriptionID
-}
-
-func (c *CreateCommitmentRequest) GetTimezone() *string {
-	if c == nil {
-		return nil
-	}
-	return c.Timezone
 }
 
 func (c *CreateCommitmentRequest) GetType() CommitmentType {

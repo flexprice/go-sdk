@@ -22,6 +22,8 @@ type UpdateCustomerRequest struct {
 	AddressState *string `json:"address_state,omitzero"`
 	// billing_currency updates the invoicing currency; send "" to clear it back to the charge currency
 	BillingCurrency *string `json:"billing_currency,omitzero"`
+	// billing_entity_id cannot be changed; sending it is rejected
+	BillingEntityID *string `json:"billing_entity_id,omitzero"`
 	// contact is the updated contact number for the customer (e.g. phone)
 	Contact *string `json:"contact,omitzero"`
 	// contact_persons replaces the customer's contact persons when provided; at most one may be primary
@@ -35,8 +37,9 @@ type UpdateCustomerRequest struct {
 	// metadata contains updated key-value pairs that will replace existing metadata
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// name is the updated name or company name for the customer
-	Name         *string       `json:"name,omitzero"`
-	TaxTreatment *TaxTreatment `json:"tax_treatment,omitzero"`
+	Name         *string           `json:"name,omitzero"`
+	Settings     *SettingsOverride `json:"settings,omitzero"`
+	TaxTreatment *TaxTreatment     `json:"tax_treatment,omitzero"`
 	// timezone is the updated IANA timezone name for the customer (e.g. "Asia/Kolkata", "America/New_York")
 	Timezone *string `json:"timezone,omitzero"`
 }
@@ -101,6 +104,13 @@ func (u *UpdateCustomerRequest) GetBillingCurrency() *string {
 	return u.BillingCurrency
 }
 
+func (u *UpdateCustomerRequest) GetBillingEntityID() *string {
+	if u == nil {
+		return nil
+	}
+	return u.BillingEntityID
+}
+
 func (u *UpdateCustomerRequest) GetContact() *string {
 	if u == nil {
 		return nil
@@ -148,6 +158,13 @@ func (u *UpdateCustomerRequest) GetName() *string {
 		return nil
 	}
 	return u.Name
+}
+
+func (u *UpdateCustomerRequest) GetSettings() *SettingsOverride {
+	if u == nil {
+		return nil
+	}
+	return u.Settings
 }
 
 func (u *UpdateCustomerRequest) GetTaxTreatment() *TaxTreatment {

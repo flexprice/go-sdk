@@ -14,6 +14,7 @@ type UpdateSubscriptionRequest struct {
 	// ParentSubscriptionID sets or clears the parent subscription. Omit to leave unchanged; send "" to clear.
 	ParentSubscriptionID *string             `json:"parent_subscription_id,omitzero"`
 	ProrationBehavior    *ProrationBehavior  `json:"proration_behavior,omitzero"`
+	Settings             *SettingsOverride   `json:"settings,omitzero"`
 	Status               *SubscriptionStatus `json:"status,omitzero"`
 }
 
@@ -54,6 +55,13 @@ func (u *UpdateSubscriptionRequest) GetProrationBehavior() *ProrationBehavior {
 		return nil
 	}
 	return u.ProrationBehavior
+}
+
+func (u *UpdateSubscriptionRequest) GetSettings() *SettingsOverride {
+	if u == nil {
+		return nil
+	}
+	return u.Settings
 }
 
 func (u *UpdateSubscriptionRequest) GetStatus() *SubscriptionStatus {

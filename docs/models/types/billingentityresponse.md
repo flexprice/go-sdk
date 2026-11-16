@@ -1,0 +1,20 @@
+# BillingEntityResponse
+
+
+## Fields
+
+| Field                                                         | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `BillingDetails`                                              | [*types.BillingDetails](../../models/types/billingdetails.md) | :heavy_minus_sign:                                            | N/A                                                           |
+| `CreatedAt`                                                   | [*time.Time](https://pkg.go.dev/time#Time)                    | :heavy_minus_sign:                                            | N/A                                                           |
+| `CreatedBy`                                                   | `*string`                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `EnvironmentID`                                               | `*string`                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `ID`                                                          | `*string`                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `InvoiceNumberPrefix`                                         | `*string`                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `IsDefault`                                                   | `*bool`                                                       | :heavy_minus_sign:                                            | N/A                                                           |
+| `Metadata`                                                    | map[string]`string`                                           | :heavy_minus_sign:                                            | N/A                                                           |
+| `Name`                                                        | `*string`                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `Status`                                                      | [*types.Status](../../models/types/status.md)                 | :heavy_minus_sign:                                            | N/A                                                           |
+| `TenantID`                                                    | `*string`                                                     | :heavy_minus_sign:                                            | N/A                                                           |
+| `UpdatedAt`                                                   | [*time.Time](https://pkg.go.dev/time#Time)                    | :heavy_minus_sign:                                            | N/A                                                           |
+| `UpdatedBy`                                                   | `*string`                                                     | :heavy_minus_sign:                                            | N/A                                                           |

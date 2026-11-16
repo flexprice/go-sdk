@@ -88,6 +88,8 @@ type PriceResponse struct {
 	Type            *PriceType `json:"type,omitzero"`
 	UpdatedAt       *time.Time `json:"updated_at,omitzero"`
 	UpdatedBy       *string    `json:"updated_by,omitzero"`
+	// Warnings lists defaults applied on create that the caller may want to set explicitly.
+	Warnings []string `json:"warnings,omitzero"`
 }
 
 func (p PriceResponse) MarshalJSON() ([]byte, error) {
@@ -442,4 +444,11 @@ func (p *PriceResponse) GetUpdatedBy() *string {
 		return nil
 	}
 	return p.UpdatedBy
+}
+
+func (p *PriceResponse) GetWarnings() []string {
+	if p == nil {
+		return nil
+	}
+	return p.Warnings
 }

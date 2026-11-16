@@ -9,6 +9,7 @@ import (
 
 type WebhookDtoPayment struct {
 	Amount            *string                 `json:"amount,omitzero"`
+	ConnectionID      *string                 `json:"connection_id,omitzero"`
 	Currency          *string                 `json:"currency,omitzero"`
 	DestinationID     *string                 `json:"destination_id,omitzero"`
 	DestinationType   *PaymentDestinationType `json:"destination_type,omitzero"`
@@ -40,6 +41,13 @@ func (w *WebhookDtoPayment) GetAmount() *string {
 		return nil
 	}
 	return w.Amount
+}
+
+func (w *WebhookDtoPayment) GetConnectionID() *string {
+	if w == nil {
+		return nil
+	}
+	return w.ConnectionID
 }
 
 func (w *WebhookDtoPayment) GetCurrency() *string {

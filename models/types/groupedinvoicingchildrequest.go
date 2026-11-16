@@ -7,22 +7,25 @@ import (
 )
 
 type GroupedInvoicingChildRequest struct {
-	Addons             []AddAddonToSubscriptionRequest `json:"addons,omitzero"`
-	CommitmentAmount   *string                         `json:"commitment_amount,omitzero"`
-	CommitmentDuration *BillingPeriod                  `json:"commitment_duration,omitzero"`
+	Addons []AddAddonToSubscriptionRequest `json:"addons,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentAmount   *string        `json:"commitment_amount,omitzero"`
+	CommitmentDuration *BillingPeriod `json:"commitment_duration,omitzero"`
 	// Deprecated: use SubscriptionCoupons instead.
-	Coupons            []string                   `json:"coupons,omitzero"`
-	CreditGrants       []CreateCreditGrantRequest `json:"credit_grants,omitzero"`
-	EnableTrueUp       *bool                      `json:"enable_true_up,omitzero"`
-	ExternalCustomerID string                     `json:"external_customer_id"`
-	// LineItemCommitments sets per-line-item commitment config, keyed by price_id.
+	Coupons      []string                   `json:"coupons,omitzero"`
+	CreditGrants []CreateCreditGrantRequest `json:"credit_grants,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	EnableTrueUp       *bool  `json:"enable_true_up,omitzero"`
+	ExternalCustomerID string `json:"external_customer_id"`
+	// Deprecated: use POST /commitments instead.
 	LineItemCommitments map[string]LineItemCommitmentConfig `json:"line_item_commitments,omitzero"`
 	// Deprecated: use SubscriptionCoupons instead.
 	LineItemCoupons map[string][]string `json:"line_item_coupons,omitzero"`
 	// LineItems are extra (non-plan) line items added at creation.
-	LineItems            []CreateSubscriptionLineItemRequest `json:"line_items,omitzero"`
-	OverageFactor        *string                             `json:"overage_factor,omitzero"`
-	OverrideEntitlements []OverrideEntitlementRequest        `json:"override_entitlements,omitzero"`
+	LineItems []CreateSubscriptionLineItemRequest `json:"line_items,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	OverageFactor        *string                      `json:"overage_factor,omitzero"`
+	OverrideEntitlements []OverrideEntitlementRequest `json:"override_entitlements,omitzero"`
 	// OverrideLineItems overrides specific plan prices for this subscription.
 	OverrideLineItems []OverrideLineItemRequest        `json:"override_line_items,omitzero"`
 	Phases            []SubscriptionPhaseCreateRequest `json:"phases,omitzero"`

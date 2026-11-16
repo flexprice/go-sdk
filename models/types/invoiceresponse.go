@@ -16,7 +16,10 @@ type InvoiceResponse struct {
 	// amount_paid is the amount that has already been paid towards this invoice
 	AmountPaid *string `json:"amount_paid,omitzero"`
 	// amount_remaining is the outstanding amount still owed on this invoice (calculated as amount_due minus amount_paid)
-	AmountRemaining *string `json:"amount_remaining,omitzero"`
+	AmountRemaining *string               `json:"amount_remaining,omitzero"`
+	BillingEntity   *InvoiceBillingEntity `json:"billing_entity,omitzero"`
+	// BillingEntityID is the entity that bills the invoice; nil while the environment has no billing entities. Never changes once set.
+	BillingEntityID *string `json:"billing_entity_id,omitzero"`
 	// billing_period describes the billing period this invoice covers (e.g., "January 2024", "Q1 2024")
 	BillingPeriod *string `json:"billing_period,omitzero"`
 	// billing_reason indicates why this invoice was generated (e.g., "subscription_billing", "manual_charge")
@@ -149,6 +152,20 @@ func (i *InvoiceResponse) GetAmountRemaining() *string {
 		return nil
 	}
 	return i.AmountRemaining
+}
+
+func (i *InvoiceResponse) GetBillingEntity() *InvoiceBillingEntity {
+	if i == nil {
+		return nil
+	}
+	return i.BillingEntity
+}
+
+func (i *InvoiceResponse) GetBillingEntityID() *string {
+	if i == nil {
+		return nil
+	}
+	return i.BillingEntityID
 }
 
 func (i *InvoiceResponse) GetBillingPeriod() *string {

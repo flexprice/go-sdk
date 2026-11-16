@@ -8,32 +8,34 @@ import (
 )
 
 type BillingtermInstalment struct {
-	Amount             *string                `json:"amount,omitzero"`
-	BillOn             *string                `json:"bill_on,omitzero"`
-	BillTrigger        *InstalmentBillTrigger `json:"bill_trigger,omitzero"`
-	BillingTermID      *string                `json:"billing_term_id,omitzero"`
-	CreatedAt          *time.Time             `json:"created_at,omitzero"`
-	CreatedBy          *string                `json:"created_by,omitzero"`
-	Currency           *string                `json:"currency,omitzero"`
-	CustomerID         *string                `json:"customer_id,omitzero"`
-	Delivery           *InstalmentDelivery    `json:"delivery,omitzero"`
-	EnvironmentID      *string                `json:"environment_id,omitzero"`
-	ID                 *string                `json:"id,omitzero"`
-	InstalmentStatus   *InstalmentStatus      `json:"instalment_status,omitzero"`
-	InvoiceID          *string                `json:"invoice_id,omitzero"`
-	InvoiceLabel       *string                `json:"invoice_label,omitzero"`
-	Kind               *InstalmentKind        `json:"kind,omitzero"`
-	Metadata           map[string]string      `json:"metadata,omitzero"`
-	OwnerID            *string                `json:"owner_id,omitzero"`
-	OwnerType          *BillingTermOwnerType  `json:"owner_type,omitzero"`
-	ServicePeriodEnd   *time.Time             `json:"service_period_end,omitzero"`
-	ServicePeriodStart *time.Time             `json:"service_period_start,omitzero"`
-	Status             *Status                `json:"status,omitzero"`
-	SubscriptionID     *string                `json:"subscription_id,omitzero"`
-	TenantID           *string                `json:"tenant_id,omitzero"`
-	TriggeredAt        *time.Time             `json:"triggered_at,omitzero"`
-	UpdatedAt          *time.Time             `json:"updated_at,omitzero"`
-	UpdatedBy          *string                `json:"updated_by,omitzero"`
+	Amount           *string                `json:"amount,omitzero"`
+	BillOn           *string                `json:"bill_on,omitzero"`
+	BillTrigger      *InstalmentBillTrigger `json:"bill_trigger,omitzero"`
+	BillingTermID    *string                `json:"billing_term_id,omitzero"`
+	CreatedAt        *time.Time             `json:"created_at,omitzero"`
+	CreatedBy        *string                `json:"created_by,omitzero"`
+	Currency         *string                `json:"currency,omitzero"`
+	CustomerID       *string                `json:"customer_id,omitzero"`
+	Delivery         *InstalmentDelivery    `json:"delivery,omitzero"`
+	EnvironmentID    *string                `json:"environment_id,omitzero"`
+	ID               *string                `json:"id,omitzero"`
+	InstalmentStatus *InstalmentStatus      `json:"instalment_status,omitzero"`
+	InvoiceID        *string                `json:"invoice_id,omitzero"`
+	InvoiceLabel     *string                `json:"invoice_label,omitzero"`
+	// InvoicedAt is when the invoice billing the instalment was finalized.
+	InvoicedAt         *time.Time            `json:"invoiced_at,omitzero"`
+	Kind               *InstalmentKind       `json:"kind,omitzero"`
+	Metadata           map[string]string     `json:"metadata,omitzero"`
+	OwnerID            *string               `json:"owner_id,omitzero"`
+	OwnerType          *BillingTermOwnerType `json:"owner_type,omitzero"`
+	ServicePeriodEnd   *time.Time            `json:"service_period_end,omitzero"`
+	ServicePeriodStart *time.Time            `json:"service_period_start,omitzero"`
+	Status             *Status               `json:"status,omitzero"`
+	SubscriptionID     *string               `json:"subscription_id,omitzero"`
+	TenantID           *string               `json:"tenant_id,omitzero"`
+	TriggeredAt        *time.Time            `json:"triggered_at,omitzero"`
+	UpdatedAt          *time.Time            `json:"updated_at,omitzero"`
+	UpdatedBy          *string               `json:"updated_by,omitzero"`
 }
 
 func (b BillingtermInstalment) MarshalJSON() ([]byte, error) {
@@ -143,6 +145,13 @@ func (b *BillingtermInstalment) GetInvoiceLabel() *string {
 		return nil
 	}
 	return b.InvoiceLabel
+}
+
+func (b *BillingtermInstalment) GetInvoicedAt() *time.Time {
+	if b == nil {
+		return nil
+	}
+	return b.InvoicedAt
 }
 
 func (b *BillingtermInstalment) GetKind() *InstalmentKind {

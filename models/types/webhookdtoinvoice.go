@@ -11,6 +11,7 @@ type WebhookDtoInvoice struct {
 	AmountDue                  *string                       `json:"amount_due,omitzero"`
 	AmountPaid                 *string                       `json:"amount_paid,omitzero"`
 	AmountRemaining            *string                       `json:"amount_remaining,omitzero"`
+	BillingEntityID            *string                       `json:"billing_entity_id,omitzero"`
 	BillingPeriod              *string                       `json:"billing_period,omitzero"`
 	BillingReason              *string                       `json:"billing_reason,omitzero"`
 	BillingSequence            *int64                        `json:"billing_sequence,omitzero"`
@@ -79,6 +80,13 @@ func (w *WebhookDtoInvoice) GetAmountRemaining() *string {
 		return nil
 	}
 	return w.AmountRemaining
+}
+
+func (w *WebhookDtoInvoice) GetBillingEntityID() *string {
+	if w == nil {
+		return nil
+	}
+	return w.BillingEntityID
 }
 
 func (w *WebhookDtoInvoice) GetBillingPeriod() *string {

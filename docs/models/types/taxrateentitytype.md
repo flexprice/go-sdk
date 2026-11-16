@@ -16,10 +16,11 @@ custom := types.TaxRateEntityType("custom_value")
 
 ## Values
 
-| Name                            | Value                           |
-| ------------------------------- | ------------------------------- |
-| `TaxRateEntityTypeCustomer`     | customer                        |
-| `TaxRateEntityTypeSubscription` | subscription                    |
-| `TaxRateEntityTypeInvoice`      | invoice                         |
-| `TaxRateEntityTypeTenant`       | tenant                          |
-| `TaxRateEntityTypeCreditNote`   | credit_note                     |
+| Name                             | Value                            |
+| -------------------------------- | -------------------------------- |
+| `TaxRateEntityTypeCustomer`      | customer                         |
+| `TaxRateEntityTypeSubscription`  | subscription                     |
+| `TaxRateEntityTypeInvoice`       | invoice                          |
+| `TaxRateEntityTypeTenant`        | tenant                           |
+| `TaxRateEntityTypeCreditNote`    | credit_note                      |
+| `TaxRateEntityTypeBillingEntity` | billing_entity                   |

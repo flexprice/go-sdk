@@ -43,7 +43,6 @@ type CommitmentResponse struct {
 	TenantID             *string                     `json:"tenant_id,omitzero"`
 	TerminatedAt         *time.Time                  `json:"terminated_at,omitzero"`
 	TerminationInvoiceID *string                     `json:"termination_invoice_id,omitzero"`
-	Timezone             *string                     `json:"timezone,omitzero"`
 	TotalAmount          *string                     `json:"total_amount,omitzero"`
 	Type                 *CommitmentType             `json:"type,omitzero"`
 	UpdatedAt            *time.Time                  `json:"updated_at,omitzero"`
@@ -291,13 +290,6 @@ func (c *CommitmentResponse) GetTerminationInvoiceID() *string {
 		return nil
 	}
 	return c.TerminationInvoiceID
-}
-
-func (c *CommitmentResponse) GetTimezone() *string {
-	if c == nil {
-		return nil
-	}
-	return c.Timezone
 }
 
 func (c *CommitmentResponse) GetTotalAmount() *string {

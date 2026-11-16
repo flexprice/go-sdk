@@ -8,19 +8,24 @@ import (
 )
 
 type CreateSubscriptionLineItemRequest struct {
-	// Commitment fields
-	CommitmentAmount        *float64                        `json:"commitment_amount,omitzero"`
-	CommitmentDuration      *BillingPeriod                  `json:"commitment_duration,omitzero"`
-	CommitmentOverageFactor *float64                        `json:"commitment_overage_factor,omitzero"`
-	CommitmentQuantity      *float64                        `json:"commitment_quantity,omitzero"`
-	CommitmentTimeBuckets   []CommitmentBucketRequest       `json:"commitment_time_buckets,omitzero"`
-	CommitmentTrueUpEnabled *bool                           `json:"commitment_true_up_enabled,omitzero"`
-	CommitmentType          *CommitmentType                 `json:"commitment_type,omitzero"`
-	CommitmentWindowed      *bool                           `json:"commitment_windowed,omitzero"`
-	DisplayName             *string                         `json:"display_name,omitzero"`
-	EndDate                 *time.Time                      `json:"end_date,omitzero"`
-	Metadata                map[string]string               `json:"metadata,omitzero"`
-	Price                   *SubscriptionPriceCreateRequest `json:"price,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentAmount   *float64       `json:"commitment_amount,omitzero"`
+	CommitmentDuration *BillingPeriod `json:"commitment_duration,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentOverageFactor *float64 `json:"commitment_overage_factor,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentQuantity *float64 `json:"commitment_quantity,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentTimeBuckets []CommitmentBucketRequest `json:"commitment_time_buckets,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentTrueUpEnabled *bool           `json:"commitment_true_up_enabled,omitzero"`
+	CommitmentType          *CommitmentType `json:"commitment_type,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentWindowed *bool                           `json:"commitment_windowed,omitzero"`
+	DisplayName        *string                         `json:"display_name,omitzero"`
+	EndDate            *time.Time                      `json:"end_date,omitzero"`
+	Metadata           map[string]string               `json:"metadata,omitzero"`
+	Price              *SubscriptionPriceCreateRequest `json:"price,omitzero"`
 	// PriceID references an existing price (plan, addon, or subscription-scoped). Exactly one of price_id or price must be set.
 	PriceID             *string            `json:"price_id,omitzero"`
 	ProrationBehavior   *ProrationBehavior `json:"proration_behavior,omitzero"`

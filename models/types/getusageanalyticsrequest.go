@@ -14,7 +14,7 @@ type GetUsageAnalyticsRequest struct {
 	// Default: false (opt-in, backward compatible).
 	BreakdownBucket *bool      `json:"breakdown_bucket,omitzero"`
 	EndTime         *time.Time `json:"end_time,omitzero"`
-	// allowed values: "price", "meter", "feature", "subscription_line_item","plan","addon"
+	// allowed values: "price", "meter", "feature", "subscription_line_item","plan","addon","source","instalments"
 	Expand []string `json:"expand,omitzero"`
 	// ExternalCustomerID is the single external customer ID.
 	// Optional when ExternalCustomerIDs is provided; required otherwise.

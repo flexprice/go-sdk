@@ -15,7 +15,9 @@ type SelfBillingCheckoutRequest struct {
 	AddressState      *string `json:"address_state,omitzero"`
 	Email             string  `json:"email"`
 	Name              string  `json:"name"`
-	TaxID             *string `json:"tax_id,omitzero"`
+	// PlanID is the offered plan to buy; empty means the default plan, or a negotiated trial's own plan.
+	PlanID *string `json:"plan_id,omitzero"`
+	TaxID  *string `json:"tax_id,omitzero"`
 }
 
 func (s SelfBillingCheckoutRequest) MarshalJSON() ([]byte, error) {
@@ -83,6 +85,13 @@ func (s *SelfBillingCheckoutRequest) GetName() string {
 		return ""
 	}
 	return s.Name
+}
+
+func (s *SelfBillingCheckoutRequest) GetPlanID() *string {
+	if s == nil {
+		return nil
+	}
+	return s.PlanID
 }
 
 func (s *SelfBillingCheckoutRequest) GetTaxID() *string {

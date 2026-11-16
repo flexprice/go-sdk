@@ -13,6 +13,7 @@ type WebhookDtoCustomer struct {
 	AddressLine2      *string           `json:"address_line2,omitzero"`
 	AddressPostalCode *string           `json:"address_postal_code,omitzero"`
 	AddressState      *string           `json:"address_state,omitzero"`
+	BillingEntityID   *string           `json:"billing_entity_id,omitzero"`
 	Email             *string           `json:"email,omitzero"`
 	EnvironmentID     *string           `json:"environment_id,omitzero"`
 	ExternalID        *string           `json:"external_id,omitzero"`
@@ -73,6 +74,13 @@ func (w *WebhookDtoCustomer) GetAddressState() *string {
 		return nil
 	}
 	return w.AddressState
+}
+
+func (w *WebhookDtoCustomer) GetBillingEntityID() *string {
+	if w == nil {
+		return nil
+	}
+	return w.BillingEntityID
 }
 
 func (w *WebhookDtoCustomer) GetEmail() *string {

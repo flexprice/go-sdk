@@ -41,8 +41,10 @@ type InvoiceFilter struct {
 	AmountDueGt *float64 `json:"amount_due_gt,omitzero"`
 	// amount_remaining_gt filters invoices with an outstanding balance greater than the specified value
 	// Useful for finding invoices that still have significant unpaid amounts
-	AmountRemainingGt *float64              `json:"amount_remaining_gt,omitzero"`
-	BillingReason     *InvoiceBillingReason `json:"billing_reason,omitzero"`
+	AmountRemainingGt *float64 `json:"amount_remaining_gt,omitzero"`
+	// billing_entity_id filters by the customer's billing entity
+	BillingEntityID *string               `json:"billing_entity_id,omitzero"`
+	BillingReason   *InvoiceBillingReason `json:"billing_reason,omitzero"`
 	// currency filters invoices by their currency (ISO 4217 code, e.g. "usd", "eur").
 	// Matches on the invoices.currency column exactly.
 	Currency *string `json:"currency,omitzero"`
@@ -121,6 +123,13 @@ func (i *InvoiceFilter) GetAmountRemainingGt() *float64 {
 		return nil
 	}
 	return i.AmountRemainingGt
+}
+
+func (i *InvoiceFilter) GetBillingEntityID() *string {
+	if i == nil {
+		return nil
+	}
+	return i.BillingEntityID
 }
 
 func (i *InvoiceFilter) GetBillingReason() *InvoiceBillingReason {

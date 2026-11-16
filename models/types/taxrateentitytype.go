@@ -5,11 +5,12 @@ package types
 type TaxRateEntityType string
 
 const (
-	TaxRateEntityTypeCustomer     TaxRateEntityType = "customer"
-	TaxRateEntityTypeSubscription TaxRateEntityType = "subscription"
-	TaxRateEntityTypeInvoice      TaxRateEntityType = "invoice"
-	TaxRateEntityTypeTenant       TaxRateEntityType = "tenant"
-	TaxRateEntityTypeCreditNote   TaxRateEntityType = "credit_note"
+	TaxRateEntityTypeCustomer      TaxRateEntityType = "customer"
+	TaxRateEntityTypeSubscription  TaxRateEntityType = "subscription"
+	TaxRateEntityTypeInvoice       TaxRateEntityType = "invoice"
+	TaxRateEntityTypeTenant        TaxRateEntityType = "tenant"
+	TaxRateEntityTypeCreditNote    TaxRateEntityType = "credit_note"
+	TaxRateEntityTypeBillingEntity TaxRateEntityType = "billing_entity"
 )
 
 func (e TaxRateEntityType) ToPointer() *TaxRateEntityType {
@@ -20,7 +21,7 @@ func (e TaxRateEntityType) ToPointer() *TaxRateEntityType {
 func (e *TaxRateEntityType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "customer", "subscription", "invoice", "tenant", "credit_note":
+		case "customer", "subscription", "invoice", "tenant", "credit_note", "billing_entity":
 			return true
 		}
 	}

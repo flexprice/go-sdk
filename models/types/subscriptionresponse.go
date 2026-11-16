@@ -93,6 +93,7 @@ type SubscriptionResponse struct {
 	// PlanID is the identifier for the plan in our system
 	PlanID            *string            `json:"plan_id,omitzero"`
 	ProrationBehavior *ProrationBehavior `json:"proration_behavior,omitzero"`
+	Settings          *SettingsOverride  `json:"settings,omitzero"`
 	// StartDate is the start date of the subscription
 	StartDate          *time.Time          `json:"start_date,omitzero"`
 	Status             *Status             `json:"status,omitzero"`
@@ -445,6 +446,13 @@ func (s *SubscriptionResponse) GetProrationBehavior() *ProrationBehavior {
 		return nil
 	}
 	return s.ProrationBehavior
+}
+
+func (s *SubscriptionResponse) GetSettings() *SettingsOverride {
+	if s == nil {
+		return nil
+	}
+	return s.Settings
 }
 
 func (s *SubscriptionResponse) GetStartDate() *time.Time {

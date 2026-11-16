@@ -65,6 +65,7 @@ type Flexprice struct {
 	Alerts                 *Alerts
 	AlertSettings          *AlertSettings
 	Analytics              *Analytics
+	BillingEntities        *BillingEntities
 	Checkout               *Checkout
 	Commitments            *Commitments
 	Contracts              *Contracts
@@ -180,10 +181,10 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.48",
+		SDKVersion: "2.1.49",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 2.1.48 2.948.4 1.0 github.com/flexprice/go-sdk/v2",
-			SDKVersion:        "2.1.48",
+			UserAgent:         "speakeasy-sdk/go 2.1.49 2.948.4 1.0 github.com/flexprice/go-sdk/v2",
+			SDKVersion:        "2.1.49",
 			GenVersion:        "2.948.4",
 			OpenAPIDocVersion: "1.0",
 			ServerList:        ServerList,
@@ -209,6 +210,7 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.Alerts = newAlerts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AlertSettings = newAlertSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Analytics = newAnalytics(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.BillingEntities = newBillingEntities(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Checkout = newCheckout(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Commitments = newCommitments(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Contracts = newContracts(sdk, sdk.sdkConfiguration, sdk.hooks)

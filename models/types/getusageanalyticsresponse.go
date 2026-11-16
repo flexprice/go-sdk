@@ -9,11 +9,16 @@ import (
 type GetUsageAnalyticsResponse struct {
 	Currency        *string              `json:"currency,omitzero"`
 	CustomAnalytics []CustomAnalyticItem `json:"custom_analytics,omitzero"`
-	Items           []UsageAnalyticItem  `json:"items,omitzero"`
-	Subtotal        *string              `json:"subtotal,omitzero"`
+	// Instalments lists, with expand "instalments", the instalments invoiced in the range for the v2 commitments covering
+	// a queried meter; it is empty with property or source filters, or when no usage line runs in the range.
+	Instalments []UsageAnalyticInstalment `json:"instalments,omitzero"`
+	Items       []UsageAnalyticItem       `json:"items,omitzero"`
+	Subtotal    *string                   `json:"subtotal,omitzero"`
 	// TotalCost is the final cost after discount (Subtotal - TotalDiscount)
-	TotalCost     *string `json:"total_cost,omitzero"`
-	TotalDiscount *string `json:"total_discount,omitzero"`
+	TotalCost *string `json:"total_cost,omitzero"`
+	// TotalCostWithInstalments is TotalCost plus the amounts of Instalments, set when expand includes "instalments".
+	TotalCostWithInstalments *string `json:"total_cost_with_instalments,omitzero"`
+	TotalDiscount            *string `json:"total_discount,omitzero"`
 }
 
 func (g GetUsageAnalyticsResponse) MarshalJSON() ([]byte, error) {
@@ -41,6 +46,13 @@ func (g *GetUsageAnalyticsResponse) GetCustomAnalytics() []CustomAnalyticItem {
 	return g.CustomAnalytics
 }
 
+func (g *GetUsageAnalyticsResponse) GetInstalments() []UsageAnalyticInstalment {
+	if g == nil {
+		return nil
+	}
+	return g.Instalments
+}
+
 func (g *GetUsageAnalyticsResponse) GetItems() []UsageAnalyticItem {
 	if g == nil {
 		return nil
@@ -60,6 +72,13 @@ func (g *GetUsageAnalyticsResponse) GetTotalCost() *string {
 		return nil
 	}
 	return g.TotalCost
+}
+
+func (g *GetUsageAnalyticsResponse) GetTotalCostWithInstalments() *string {
+	if g == nil {
+		return nil
+	}
+	return g.TotalCostWithInstalments
 }
 
 func (g *GetUsageAnalyticsResponse) GetTotalDiscount() *string {

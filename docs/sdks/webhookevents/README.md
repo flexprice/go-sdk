@@ -32,6 +32,7 @@
 * [PostWebhookEventsFeatureWalletBalanceAlert](#postwebhookeventsfeaturewalletbalancealert) - feature.wallet_balance.alert
 * [PostWebhookEventsInvoiceCommunicationTriggered](#postwebhookeventsinvoicecommunicationtriggered) - invoice.communication.triggered
 * [PostWebhookEventsInvoiceCreateDrafted](#postwebhookeventsinvoicecreatedrafted) - invoice.create.drafted
+* [PostWebhookEventsInvoicePaymentFailed](#postwebhookeventsinvoicepaymentfailed) - invoice.payment.failed
 * [PostWebhookEventsInvoicePaymentOverdue](#postwebhookeventsinvoicepaymentoverdue) - invoice.payment.overdue
 * [PostWebhookEventsInvoiceSyncFailed](#postwebhookeventsinvoicesyncfailed) - invoice.sync.failed
 * [PostWebhookEventsInvoiceSyncSuccess](#postwebhookeventsinvoicesyncsuccess) - invoice.sync.success
@@ -1470,6 +1471,56 @@ func main() {
 ### Response
 
 **[*dtos.PostWebhookEventsInvoiceCreateDraftedResponse](../../models/dtos/postwebhookeventsinvoicecreatedraftedresponse.md), error**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.APIError | 4XX, 5XX        | \*/\*           |
+
+## PostWebhookEventsInvoicePaymentFailed
+
+Fired when a payment of an invoice does not succeed. `reason` is `payment_method_unavailable`, `provider_error` or `declined`; `is_auto_charge_attempt` is true when Flexprice charged the saved payment method. Doc-only for parsing.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="post_/webhook-events/invoice.payment.failed" method="post" path="/webhook-events/invoice.payment.failed" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.WebhookEvents.PostWebhookEventsInvoicePaymentFailed(ctx)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.WebhookDtoInvoicePaymentFailedWebhookPayload != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.PostWebhookEventsInvoicePaymentFailedResponse](../../models/dtos/postwebhookeventsinvoicepaymentfailedresponse.md), error**
 
 ### Errors
 

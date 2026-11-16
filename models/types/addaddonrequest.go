@@ -14,7 +14,7 @@ type AddAddonRequest struct {
 	Checkout *CheckoutParams `json:"checkout,omitzero"`
 	// Coupons apply to this addon's line items; price_id targets one price, omitted targets all.
 	Coupons []SubscriptionCouponInput `json:"coupons,omitzero"`
-	// LineItemCommitments allows setting commitment configuration per addon line item (keyed by price_id)
+	// Deprecated: use POST /commitments instead.
 	LineItemCommitments map[string]LineItemCommitmentConfig `json:"line_item_commitments,omitzero"`
 	Metadata            map[string]any                      `json:"metadata,omitzero"`
 	// OverrideLineItems allows overriding price/quantity/billing model for specific addon prices

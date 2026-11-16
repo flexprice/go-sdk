@@ -11,16 +11,22 @@ type UpdateSubscriptionLineItemRequest struct {
 	Amount       *string       `json:"amount,omitzero"`
 	BillingModel *BillingModel `json:"billing_model,omitzero"`
 	BucketSize   *WindowSize   `json:"bucket_size,omitzero"`
-	// Commitment fields
-	CommitmentAmount        *float64       `json:"commitment_amount,omitzero"`
-	CommitmentDuration      *BillingPeriod `json:"commitment_duration,omitzero"`
-	CommitmentOverageFactor *float64       `json:"commitment_overage_factor,omitzero"`
-	CommitmentQuantity      *float64       `json:"commitment_quantity,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentAmount   *float64       `json:"commitment_amount,omitzero"`
+	CommitmentDuration *BillingPeriod `json:"commitment_duration,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentOverageFactor *float64 `json:"commitment_overage_factor,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentQuantity *float64 `json:"commitment_quantity,omitzero"`
 	// Pointer so an explicit empty array can clear existing buckets (omission keeps them).
-	CommitmentTimeBuckets   []CommitmentBucketRequest `json:"commitment_time_buckets,omitzero"`
-	CommitmentTrueUpEnabled *bool                     `json:"commitment_true_up_enabled,omitzero"`
-	CommitmentType          *CommitmentType           `json:"commitment_type,omitzero"`
-	CommitmentWindowed      *bool                     `json:"commitment_windowed,omitzero"`
+	//
+	// Deprecated: use POST /commitments instead.
+	CommitmentTimeBuckets []CommitmentBucketRequest `json:"commitment_time_buckets,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentTrueUpEnabled *bool           `json:"commitment_true_up_enabled,omitzero"`
+	CommitmentType          *CommitmentType `json:"commitment_type,omitzero"`
+	// Deprecated: use POST /commitments instead.
+	CommitmentWindowed *bool `json:"commitment_windowed,omitzero"`
 	// EffectiveFrom for the existing line item (if not provided, defaults to now)
 	EffectiveFrom *string `json:"effective_from,omitzero"`
 	// Metadata for the new line item

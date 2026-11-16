@@ -22,6 +22,9 @@ type CreateCustomerRequest struct {
 	AddressState *string `json:"address_state,omitzero"`
 	// billing_currency is the fiat currency invoices are issued in; empty means the charge currency is used as-is
 	BillingCurrency *string `json:"billing_currency,omitzero"`
+	// billing_entity_id is the billing entity that bills this customer; defaults to the environment's
+	// default entity. Accepted only once billing entities are enabled, and never changes afterwards.
+	BillingEntityID *string `json:"billing_entity_id,omitzero"`
 	// contact is an optional contact number for the customer (e.g. phone)
 	Contact *string `json:"contact,omitzero"`
 	// contact_persons are people at the customer; at most one may be primary
@@ -37,7 +40,8 @@ type CreateCustomerRequest struct {
 	// name is the full name or company name of the customer
 	Name string `json:"name"`
 	// onboarding_workflow_name is given if a custom onboarding workflow is to be triggered for this customer
-	OnboardingWorkflowName *string `json:"onboarding_workflow_name,omitzero"`
+	OnboardingWorkflowName *string           `json:"onboarding_workflow_name,omitzero"`
+	Settings               *SettingsOverride `json:"settings,omitzero"`
 	// skip_onboarding_workflow when true, prevents the customer onboarding workflow from being triggered
 	// This is used internally when a customer is created via a workflow to prevent infinite loops
 	// Default: false
@@ -110,6 +114,13 @@ func (c *CreateCustomerRequest) GetBillingCurrency() *string {
 	return c.BillingCurrency
 }
 
+func (c *CreateCustomerRequest) GetBillingEntityID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.BillingEntityID
+}
+
 func (c *CreateCustomerRequest) GetContact() *string {
 	if c == nil {
 		return nil
@@ -164,6 +175,13 @@ func (c *CreateCustomerRequest) GetOnboardingWorkflowName() *string {
 		return nil
 	}
 	return c.OnboardingWorkflowName
+}
+
+func (c *CreateCustomerRequest) GetSettings() *SettingsOverride {
+	if c == nil {
+		return nil
+	}
+	return c.Settings
 }
 
 func (c *CreateCustomerRequest) GetSkipOnboardingWorkflow() *bool {

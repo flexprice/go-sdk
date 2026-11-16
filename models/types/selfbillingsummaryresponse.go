@@ -8,8 +8,10 @@ import (
 )
 
 type SelfBillingSummaryResponse struct {
-	Invoices           []SelfBillingInvoice          `json:"invoices,omitzero"`
-	Plan               *SelfBillingPlanResponse      `json:"plan,omitzero"`
+	Invoices []SelfBillingInvoice `json:"invoices,omitzero"`
+	// Plans are the plans a tenant can buy at checkout: during a self-serve trial and once no subscription is live.
+	// The first plan is the default.
+	Plans              []SelfBillingPlanResponse     `json:"plans,omitzero"`
 	Status             *TenantInternalStatus         `json:"status,omitzero"`
 	SubscriptionStatus *SubscriptionStatus           `json:"subscription_status,omitzero"`
 	TrialEndsAt        *time.Time                    `json:"trial_ends_at,omitzero"`
@@ -34,11 +36,11 @@ func (s *SelfBillingSummaryResponse) GetInvoices() []SelfBillingInvoice {
 	return s.Invoices
 }
 
-func (s *SelfBillingSummaryResponse) GetPlan() *SelfBillingPlanResponse {
+func (s *SelfBillingSummaryResponse) GetPlans() []SelfBillingPlanResponse {
 	if s == nil {
 		return nil
 	}
-	return s.Plan
+	return s.Plans
 }
 
 func (s *SelfBillingSummaryResponse) GetStatus() *TenantInternalStatus {

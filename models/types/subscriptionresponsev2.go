@@ -94,6 +94,7 @@ type SubscriptionResponseV2 struct {
 	// changes have not yet been reconciled into this subscription's line items.
 	PlanPricesOutOfSync *bool              `json:"plan_prices_out_of_sync,omitzero"`
 	ProrationBehavior   *ProrationBehavior `json:"proration_behavior,omitzero"`
+	Settings            *SettingsOverride  `json:"settings,omitzero"`
 	// StartDate is the start date of the subscription
 	StartDate          *time.Time          `json:"start_date,omitzero"`
 	Status             *Status             `json:"status,omitzero"`
@@ -432,6 +433,13 @@ func (s *SubscriptionResponseV2) GetProrationBehavior() *ProrationBehavior {
 		return nil
 	}
 	return s.ProrationBehavior
+}
+
+func (s *SubscriptionResponseV2) GetSettings() *SettingsOverride {
+	if s == nil {
+		return nil
+	}
+	return s.Settings
 }
 
 func (s *SubscriptionResponseV2) GetStartDate() *time.Time {

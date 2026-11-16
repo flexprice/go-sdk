@@ -8,36 +8,38 @@ import (
 )
 
 type PaymentResponse struct {
-	Amount                 *string                  `json:"amount,omitzero"`
-	Attempts               []PaymentAttemptResponse `json:"attempts,omitzero"`
-	CreatedAt              *time.Time               `json:"created_at,omitzero"`
-	CreatedBy              *string                  `json:"created_by,omitzero"`
-	Currency               *string                  `json:"currency,omitzero"`
-	DestinationID          *string                  `json:"destination_id,omitzero"`
-	DestinationType        *PaymentDestinationType  `json:"destination_type,omitzero"`
-	EnvironmentID          *string                  `json:"environment_id,omitzero"`
-	ErrorMessage           *string                  `json:"error_message,omitzero"`
-	FailedAt               *time.Time               `json:"failed_at,omitzero"`
-	GatewayMetadata        map[string]string        `json:"gateway_metadata,omitzero"`
-	GatewayPaymentID       *string                  `json:"gateway_payment_id,omitzero"`
-	GatewayTrackingID      *string                  `json:"gateway_tracking_id,omitzero"`
-	ID                     *string                  `json:"id,omitzero"`
-	IdempotencyKey         *string                  `json:"idempotency_key,omitzero"`
-	InvoiceNumber          *string                  `json:"invoice_number,omitzero"`
-	Metadata               map[string]string        `json:"metadata,omitzero"`
-	PaymentGateway         *string                  `json:"payment_gateway,omitzero"`
-	PaymentMethodID        *string                  `json:"payment_method_id,omitzero"`
-	PaymentMethodType      *PaymentMethodType       `json:"payment_method_type,omitzero"`
-	PaymentStatus          *PaymentStatus           `json:"payment_status,omitzero"`
-	PaymentURL             *string                  `json:"payment_url,omitzero"`
-	RefundedAt             *time.Time               `json:"refunded_at,omitzero"`
-	SaveCardAndMakeDefault *bool                    `json:"save_card_and_make_default,omitzero"`
-	SucceededAt            *time.Time               `json:"succeeded_at,omitzero"`
-	TenantID               *string                  `json:"tenant_id,omitzero"`
-	TrackAttempts          *bool                    `json:"track_attempts,omitzero"`
-	UpdatedAt              *time.Time               `json:"updated_at,omitzero"`
-	UpdatedBy              *string                  `json:"updated_by,omitzero"`
-	VoidedAt               *time.Time               `json:"voided_at,omitzero"`
+	Amount   *string                  `json:"amount,omitzero"`
+	Attempts []PaymentAttemptResponse `json:"attempts,omitzero"`
+	// connection_id is the connection that took this payment; null when no gateway connection was used
+	ConnectionID           *string                 `json:"connection_id,omitzero"`
+	CreatedAt              *time.Time              `json:"created_at,omitzero"`
+	CreatedBy              *string                 `json:"created_by,omitzero"`
+	Currency               *string                 `json:"currency,omitzero"`
+	DestinationID          *string                 `json:"destination_id,omitzero"`
+	DestinationType        *PaymentDestinationType `json:"destination_type,omitzero"`
+	EnvironmentID          *string                 `json:"environment_id,omitzero"`
+	ErrorMessage           *string                 `json:"error_message,omitzero"`
+	FailedAt               *time.Time              `json:"failed_at,omitzero"`
+	GatewayMetadata        map[string]string       `json:"gateway_metadata,omitzero"`
+	GatewayPaymentID       *string                 `json:"gateway_payment_id,omitzero"`
+	GatewayTrackingID      *string                 `json:"gateway_tracking_id,omitzero"`
+	ID                     *string                 `json:"id,omitzero"`
+	IdempotencyKey         *string                 `json:"idempotency_key,omitzero"`
+	InvoiceNumber          *string                 `json:"invoice_number,omitzero"`
+	Metadata               map[string]string       `json:"metadata,omitzero"`
+	PaymentGateway         *string                 `json:"payment_gateway,omitzero"`
+	PaymentMethodID        *string                 `json:"payment_method_id,omitzero"`
+	PaymentMethodType      *PaymentMethodType      `json:"payment_method_type,omitzero"`
+	PaymentStatus          *PaymentStatus          `json:"payment_status,omitzero"`
+	PaymentURL             *string                 `json:"payment_url,omitzero"`
+	RefundedAt             *time.Time              `json:"refunded_at,omitzero"`
+	SaveCardAndMakeDefault *bool                   `json:"save_card_and_make_default,omitzero"`
+	SucceededAt            *time.Time              `json:"succeeded_at,omitzero"`
+	TenantID               *string                 `json:"tenant_id,omitzero"`
+	TrackAttempts          *bool                   `json:"track_attempts,omitzero"`
+	UpdatedAt              *time.Time              `json:"updated_at,omitzero"`
+	UpdatedBy              *string                 `json:"updated_by,omitzero"`
+	VoidedAt               *time.Time              `json:"voided_at,omitzero"`
 }
 
 func (p PaymentResponse) MarshalJSON() ([]byte, error) {
@@ -63,6 +65,13 @@ func (p *PaymentResponse) GetAttempts() []PaymentAttemptResponse {
 		return nil
 	}
 	return p.Attempts
+}
+
+func (p *PaymentResponse) GetConnectionID() *string {
+	if p == nil {
+		return nil
+	}
+	return p.ConnectionID
 }
 
 func (p *PaymentResponse) GetCreatedAt() *time.Time {

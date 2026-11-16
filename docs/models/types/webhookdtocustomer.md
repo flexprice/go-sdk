@@ -11,6 +11,7 @@
 | `AddressLine2`      | `*string`           | :heavy_minus_sign:  | N/A                 |
 | `AddressPostalCode` | `*string`           | :heavy_minus_sign:  | N/A                 |
 | `AddressState`      | `*string`           | :heavy_minus_sign:  | N/A                 |
+| `BillingEntityID`   | `*string`           | :heavy_minus_sign:  | N/A                 |
 | `Email`             | `*string`           | :heavy_minus_sign:  | N/A                 |
 | `EnvironmentID`     | `*string`           | :heavy_minus_sign:  | N/A                 |
 | `ExternalID`        | `*string`           | :heavy_minus_sign:  | N/A                 |

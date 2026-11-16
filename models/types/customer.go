@@ -22,6 +22,8 @@ type Customer struct {
 	AddressState *string `json:"address_state,omitzero"`
 	// BillingCurrency is the fiat currency invoices are issued in; nil means charge currency is used as-is.
 	BillingCurrency *string `json:"billing_currency,omitzero"`
+	// BillingEntityID is the entity that bills the customer; nil while the environment has no billing entities. Never changes once set.
+	BillingEntityID *string `json:"billing_entity_id,omitzero"`
 	// Contact is an optional contact number for the customer (e.g. phone)
 	Contact        *string                 `json:"contact,omitzero"`
 	ContactPersons []CustomerContactPerson `json:"contact_persons,omitzero"`
@@ -38,10 +40,11 @@ type Customer struct {
 	// Metadata
 	Metadata map[string]string `json:"metadata,omitzero"`
 	// Name is the name of the customer
-	Name         *string       `json:"name,omitzero"`
-	Status       *Status       `json:"status,omitzero"`
-	TaxTreatment *TaxTreatment `json:"tax_treatment,omitzero"`
-	TenantID     *string       `json:"tenant_id,omitzero"`
+	Name         *string           `json:"name,omitzero"`
+	Settings     *SettingsOverride `json:"settings,omitzero"`
+	Status       *Status           `json:"status,omitzero"`
+	TaxTreatment *TaxTreatment     `json:"tax_treatment,omitzero"`
+	TenantID     *string           `json:"tenant_id,omitzero"`
 	// Timezone is the customer's IANA timezone name (e.g. "Asia/Kolkata").
 	// Defaults to "UTC". Inherited by subscriptions at creation time.
 	Timezone  *string    `json:"timezone,omitzero"`
@@ -107,6 +110,13 @@ func (c *Customer) GetBillingCurrency() *string {
 		return nil
 	}
 	return c.BillingCurrency
+}
+
+func (c *Customer) GetBillingEntityID() *string {
+	if c == nil {
+		return nil
+	}
+	return c.BillingEntityID
 }
 
 func (c *Customer) GetContact() *string {
@@ -177,6 +187,13 @@ func (c *Customer) GetName() *string {
 		return nil
 	}
 	return c.Name
+}
+
+func (c *Customer) GetSettings() *SettingsOverride {
+	if c == nil {
+		return nil
+	}
+	return c.Settings
 }
 
 func (c *Customer) GetStatus() *Status {
