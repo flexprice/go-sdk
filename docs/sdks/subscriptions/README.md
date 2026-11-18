@@ -1243,7 +1243,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Subscriptions.GetSubscriptionEntitlements(ctx, "<id>", nil)
+    res, err := s.Subscriptions.GetSubscriptionEntitlements(ctx, "<id>", nil, nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -1255,12 +1255,13 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Subscription ID                                       |
-| `featureIds`                                          | []`string`                                            | :heavy_minus_sign:                                    | Feature IDs to filter by                              |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `ctx`                                                             | [context.Context](https://pkg.go.dev/context#Context)             | :heavy_check_mark:                                                | The context to use for the request.                               |
+| `id`                                                              | `string`                                                          | :heavy_check_mark:                                                | Subscription ID                                                   |
+| `featureIds`                                                      | []`string`                                                        | :heavy_minus_sign:                                                | Feature IDs to filter by                                          |
+| `refreshGrants`                                                   | `*bool`                                                           | :heavy_minus_sign:                                                | Evaluate entitlement grants before returning their usage (slower) |
+| `opts`                                                            | [][dtos.Option](../../models/dtos/option.md)                      | :heavy_minus_sign:                                                | The options for this request.                                     |
 
 ### Response
 

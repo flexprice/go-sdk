@@ -8,12 +8,13 @@ import (
 )
 
 type WalletBalanceResponse struct {
-	AlertSettings    *AlertSettings `json:"alert_settings,omitzero"`
-	AlertState       *AlertState    `json:"alert_state,omitzero"`
-	AutoTopup        *AutoTopup     `json:"auto_topup,omitzero"`
-	Balance          *string        `json:"balance,omitzero"`
-	BalanceUpdatedAt *time.Time     `json:"balance_updated_at,omitzero"`
-	Config           *WalletConfig  `json:"config,omitzero"`
+	AlertSettings      *AlertSettings `json:"alert_settings,omitzero"`
+	AlertState         *AlertState    `json:"alert_state,omitzero"`
+	AutoTopup          *AutoTopup     `json:"auto_topup,omitzero"`
+	Balance            *string        `json:"balance,omitzero"`
+	BalanceAlertStatus *AlertState    `json:"balance_alert_status,omitzero"`
+	BalanceUpdatedAt   *time.Time     `json:"balance_updated_at,omitzero"`
+	Config             *WalletConfig  `json:"config,omitzero"`
 	// amount in the currency =  number of credits * conversion_rate
 	// ex if conversion_rate is 1, then 1 USD = 1 credit
 	// ex if conversion_rate is 2, then 1 USD = 0.5 credits
@@ -89,6 +90,13 @@ func (w *WalletBalanceResponse) GetBalance() *string {
 		return nil
 	}
 	return w.Balance
+}
+
+func (w *WalletBalanceResponse) GetBalanceAlertStatus() *AlertState {
+	if w == nil {
+		return nil
+	}
+	return w.BalanceAlertStatus
 }
 
 func (w *WalletBalanceResponse) GetBalanceUpdatedAt() *time.Time {

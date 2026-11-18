@@ -5,8 +5,9 @@ package types
 type InstalmentKind string
 
 const (
-	InstalmentKindInstalment InstalmentKind = "instalment"
-	InstalmentKindSettlement InstalmentKind = "settlement"
+	InstalmentKindInstalment      InstalmentKind = "instalment"
+	InstalmentKindSettlement      InstalmentKind = "settlement"
+	InstalmentKindCancellationFee InstalmentKind = "cancellation_fee"
 )
 
 func (e InstalmentKind) ToPointer() *InstalmentKind {
@@ -17,7 +18,7 @@ func (e InstalmentKind) ToPointer() *InstalmentKind {
 func (e *InstalmentKind) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "instalment", "settlement":
+		case "instalment", "settlement", "cancellation_fee":
 			return true
 		}
 	}

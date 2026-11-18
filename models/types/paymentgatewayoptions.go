@@ -7,7 +7,8 @@ import (
 )
 
 type PaymentGatewayOptions struct {
-	Stripe *StripePaymentGatewayOptions `json:"stripe,omitzero"`
+	Razorpay *RazorpayPaymentGatewayOptions `json:"razorpay,omitzero"`
+	Stripe   *StripePaymentGatewayOptions   `json:"stripe,omitzero"`
 }
 
 func (p PaymentGatewayOptions) MarshalJSON() ([]byte, error) {
@@ -19,6 +20,13 @@ func (p *PaymentGatewayOptions) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (p *PaymentGatewayOptions) GetRazorpay() *RazorpayPaymentGatewayOptions {
+	if p == nil {
+		return nil
+	}
+	return p.Razorpay
 }
 
 func (p *PaymentGatewayOptions) GetStripe() *StripePaymentGatewayOptions {

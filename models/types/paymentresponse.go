@@ -34,12 +34,14 @@ type PaymentResponse struct {
 	PaymentURL             *string                 `json:"payment_url,omitzero"`
 	RefundedAt             *time.Time              `json:"refunded_at,omitzero"`
 	SaveCardAndMakeDefault *bool                   `json:"save_card_and_make_default,omitzero"`
-	SucceededAt            *time.Time              `json:"succeeded_at,omitzero"`
-	TenantID               *string                 `json:"tenant_id,omitzero"`
-	TrackAttempts          *bool                   `json:"track_attempts,omitzero"`
-	UpdatedAt              *time.Time              `json:"updated_at,omitzero"`
-	UpdatedBy              *string                 `json:"updated_by,omitzero"`
-	VoidedAt               *time.Time              `json:"voided_at,omitzero"`
+	// SubmittedForProcessing is true while the gateway has the charge and its outcome is pending; it can't be processed again.
+	SubmittedForProcessing *bool      `json:"submitted_for_processing,omitzero"`
+	SucceededAt            *time.Time `json:"succeeded_at,omitzero"`
+	TenantID               *string    `json:"tenant_id,omitzero"`
+	TrackAttempts          *bool      `json:"track_attempts,omitzero"`
+	UpdatedAt              *time.Time `json:"updated_at,omitzero"`
+	UpdatedBy              *string    `json:"updated_by,omitzero"`
+	VoidedAt               *time.Time `json:"voided_at,omitzero"`
 }
 
 func (p PaymentResponse) MarshalJSON() ([]byte, error) {
@@ -226,6 +228,13 @@ func (p *PaymentResponse) GetSaveCardAndMakeDefault() *bool {
 		return nil
 	}
 	return p.SaveCardAndMakeDefault
+}
+
+func (p *PaymentResponse) GetSubmittedForProcessing() *bool {
+	if p == nil {
+		return nil
+	}
+	return p.SubmittedForProcessing
 }
 
 func (p *PaymentResponse) GetSucceededAt() *time.Time {

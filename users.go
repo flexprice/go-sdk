@@ -1590,7 +1590,7 @@ func (s *Users) DeleteServiceAccount(ctx context.Context, id string, opts ...dto
 }
 
 // RemoveUser - Remove user from tenant
-// Remove a human user (type=user) from the current tenant. Not supported for service accounts; use DELETE /users/{id} for those.
+// Remove a human user (type=user) from the current tenant. Also revokes every API key the user owns, in all environments. Not supported for service accounts; use DELETE /users/{id} for those.
 func (s *Users) RemoveUser(ctx context.Context, id string, opts ...dtos.Option) (*dtos.RemoveUserResponse, error) {
 	request := dtos.RemoveUserRequest{
 		ID: id,

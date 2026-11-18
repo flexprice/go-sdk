@@ -30,3 +30,4 @@ custom := types.IntegrationEntityType("custom_value")
 | `IntegrationEntityTypePrice`                | price                                       |
 | `IntegrationEntityTypeInvoiceLineItem`      | invoice_line_item                           |
 | `IntegrationEntityTypeSubscriptionLineItem` | subscription_line_item                      |
+| `IntegrationEntityTypePaymentMethodSetup`   | payment_method_setup                        |

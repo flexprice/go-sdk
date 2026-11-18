@@ -12,8 +12,8 @@ type TimeOfDayBucket struct {
 	End             *Bucket         `json:"end,omitzero"`
 	// ID is server-assigned. Stable for the lifetime of the line item;
 	// invoice breakdown and analytics responses reference this ID.
-	ID            *string  `json:"id,omitzero"`
-	OverageFactor *float64 `json:"overage_factor,omitzero"`
+	ID            *string `json:"id,omitzero"`
+	OverageFactor *string `json:"overage_factor,omitzero"`
 	// PriceID is the SUBSCRIPTION-scoped price created at bucket-creation time.
 	// Immutable post-create; changing pricing requires a successor line item.
 	PriceID       *string `json:"price_id,omitzero"`
@@ -60,7 +60,7 @@ func (t *TimeOfDayBucket) GetID() *string {
 	return t.ID
 }
 
-func (t *TimeOfDayBucket) GetOverageFactor() *float64 {
+func (t *TimeOfDayBucket) GetOverageFactor() *string {
 	if t == nil {
 		return nil
 	}

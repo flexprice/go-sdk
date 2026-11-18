@@ -65,12 +65,13 @@ func (e *ListPaymentsStatus) UnmarshalJSON(data []byte) error {
 }
 
 type ListPaymentsRequest struct {
-	Currency         *string `queryParam:"style=form,explode=true,name=currency"`
-	DestinationID    *string `queryParam:"style=form,explode=true,name=destination_id"`
-	DestinationType  *string `queryParam:"style=form,explode=true,name=destination_type"`
-	EndTime          *string `queryParam:"style=form,explode=true,name=end_time"`
-	Expand           *string `queryParam:"style=form,explode=true,name=expand"`
-	GatewayPaymentID *string `queryParam:"style=form,explode=true,name=gateway_payment_id"`
+	Currency         *string  `queryParam:"style=form,explode=true,name=currency"`
+	DestinationID    *string  `queryParam:"style=form,explode=true,name=destination_id"`
+	DestinationIds   []string `queryParam:"style=form,explode=false,name=destination_ids"`
+	DestinationType  *string  `queryParam:"style=form,explode=true,name=destination_type"`
+	EndTime          *string  `queryParam:"style=form,explode=true,name=end_time"`
+	Expand           *string  `queryParam:"style=form,explode=true,name=expand"`
+	GatewayPaymentID *string  `queryParam:"style=form,explode=true,name=gateway_payment_id"`
 	// For filtering by gateway tracking ID
 	GatewayTrackingID *string             `queryParam:"style=form,explode=true,name=gateway_tracking_id"`
 	Limit             *int64              `queryParam:"style=form,explode=true,name=limit"`
@@ -110,6 +111,13 @@ func (l *ListPaymentsRequest) GetDestinationID() *string {
 		return nil
 	}
 	return l.DestinationID
+}
+
+func (l *ListPaymentsRequest) GetDestinationIds() []string {
+	if l == nil {
+		return nil
+	}
+	return l.DestinationIds
 }
 
 func (l *ListPaymentsRequest) GetDestinationType() *string {

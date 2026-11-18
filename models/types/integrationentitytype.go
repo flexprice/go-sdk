@@ -17,6 +17,7 @@ const (
 	IntegrationEntityTypePrice                IntegrationEntityType = "price"
 	IntegrationEntityTypeInvoiceLineItem      IntegrationEntityType = "invoice_line_item"
 	IntegrationEntityTypeSubscriptionLineItem IntegrationEntityType = "subscription_line_item"
+	IntegrationEntityTypePaymentMethodSetup   IntegrationEntityType = "payment_method_setup"
 )
 
 func (e IntegrationEntityType) ToPointer() *IntegrationEntityType {
@@ -27,7 +28,7 @@ func (e IntegrationEntityType) ToPointer() *IntegrationEntityType {
 func (e *IntegrationEntityType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "customer", "plan", "invoice", "subscription", "payment", "credit_note", "addon", "item", "item_price", "price", "invoice_line_item", "subscription_line_item":
+		case "customer", "plan", "invoice", "subscription", "payment", "credit_note", "addon", "item", "item_price", "price", "invoice_line_item", "subscription_line_item", "payment_method_setup":
 			return true
 		}
 	}

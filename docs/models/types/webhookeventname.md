@@ -90,4 +90,10 @@ custom := types.WebhookEventName("custom_value")
 | `WebhookEventNameCheckoutSessionCompleted`                    | checkout.session.completed                                    |
 | `WebhookEventNameCheckoutSessionFailed`                       | checkout.session.failed                                       |
 | `WebhookEventNameCheckoutSessionExpired`                      | checkout.session.expired                                      |
+| `WebhookEventNameCheckoutSessionCancelled`                    | checkout.session.cancelled                                    |
+| `WebhookEventNameMandateConfirmed`                            | mandate.confirmed                                             |
+| `WebhookEventNameMandateRejected`                             | mandate.rejected                                              |
+| `WebhookEventNameMandateCancelled`                            | mandate.cancelled                                             |
+| `WebhookEventNameMandateSetupAttemptFailed`                   | mandate.setup_attempt_failed                                  |
+| `WebhookEventNameMandateSetupExpired`                         | mandate.setup_expired                                         |
 | `WebhookEventNameEventRejected`                               | event.rejected                                                |

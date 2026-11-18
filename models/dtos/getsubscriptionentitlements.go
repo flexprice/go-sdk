@@ -12,6 +12,8 @@ type GetSubscriptionEntitlementsRequest struct {
 	ID string `pathParam:"style=simple,explode=false,name=id"`
 	// Feature IDs to filter by
 	FeatureIds []string `queryParam:"style=form,explode=false,name=feature_ids"`
+	// Evaluate entitlement grants before returning their usage (slower)
+	RefreshGrants *bool `queryParam:"style=form,explode=true,name=refresh_grants"`
 }
 
 func (g GetSubscriptionEntitlementsRequest) MarshalJSON() ([]byte, error) {
@@ -37,6 +39,13 @@ func (g *GetSubscriptionEntitlementsRequest) GetFeatureIds() []string {
 		return nil
 	}
 	return g.FeatureIds
+}
+
+func (g *GetSubscriptionEntitlementsRequest) GetRefreshGrants() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.RefreshGrants
 }
 
 type GetSubscriptionEntitlementsResponse struct {

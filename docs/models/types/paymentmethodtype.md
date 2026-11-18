@@ -24,3 +24,4 @@ custom := types.PaymentMethodType("custom_value")
 | `PaymentMethodTypeCredits`     | CREDITS                        |
 | `PaymentMethodTypePaymentLink` | PAYMENT_LINK                   |
 | `PaymentMethodTypeUpi`         | UPI                            |
+| `PaymentMethodTypeEnach`       | ENACH                          |

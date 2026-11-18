@@ -27,7 +27,8 @@ type UpdateSubscriptionLineItemRequest struct {
 	CommitmentType          *CommitmentType `json:"commitment_type,omitzero"`
 	// Deprecated: use POST /commitments instead.
 	CommitmentWindowed *bool `json:"commitment_windowed,omitzero"`
-	// EffectiveFrom for the existing line item (if not provided, defaults to now)
+	// EffectiveFrom is when the new version starts and the current one ends (defaults to now). A date before
+	// the current version's start_date replaces it from that date instead, and price fields become optional.
 	EffectiveFrom *string `json:"effective_from,omitzero"`
 	// Metadata for the new line item
 	Metadata map[string]string `json:"metadata,omitzero"`

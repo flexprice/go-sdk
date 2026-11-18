@@ -5469,10 +5469,11 @@ func (s *Subscriptions) PreviewSubscriptionPlanChangeV2(ctx context.Context, id 
 
 // GetSubscriptionEntitlements - Get subscription entitlements
 // Use when checking what features or limits a subscription has (e.g. entitlement checks or feature gating). Optional feature_ids to filter.
-func (s *Subscriptions) GetSubscriptionEntitlements(ctx context.Context, id string, featureIds []string, opts ...dtos.Option) (*dtos.GetSubscriptionEntitlementsResponse, error) {
+func (s *Subscriptions) GetSubscriptionEntitlements(ctx context.Context, id string, featureIds []string, refreshGrants *bool, opts ...dtos.Option) (*dtos.GetSubscriptionEntitlementsResponse, error) {
 	request := dtos.GetSubscriptionEntitlementsRequest{
-		ID:         id,
-		FeatureIds: featureIds,
+		ID:            id,
+		FeatureIds:    featureIds,
+		RefreshGrants: refreshGrants,
 	}
 
 	o := dtos.Options{}

@@ -52,7 +52,8 @@ type InvoiceResponse struct {
 	// id is the unique identifier for this invoice
 	ID *string `json:"id,omitzero"`
 	// idempotency_key is a unique key used to prevent duplicate invoice creation when retrying API calls
-	IdempotencyKey *string `json:"idempotency_key,omitzero"`
+	IdempotencyKey *string         `json:"idempotency_key,omitzero"`
+	InFlightCharge *InFlightCharge `json:"in_flight_charge,omitzero"`
 	// invoice_number is the human-readable invoice number displayed to customers (e.g., INV-2024-001)
 	InvoiceNumber *string `json:"invoice_number,omitzero"`
 	// invoice_pdf_url is the URL where customers can download the PDF version of this invoice
@@ -299,6 +300,13 @@ func (i *InvoiceResponse) GetIdempotencyKey() *string {
 		return nil
 	}
 	return i.IdempotencyKey
+}
+
+func (i *InvoiceResponse) GetInFlightCharge() *InFlightCharge {
+	if i == nil {
+		return nil
+	}
+	return i.InFlightCharge
 }
 
 func (i *InvoiceResponse) GetInvoiceNumber() *string {

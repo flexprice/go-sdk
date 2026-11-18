@@ -9,14 +9,16 @@ import (
 type GetUsageAnalyticsResponse struct {
 	Currency        *string              `json:"currency,omitzero"`
 	CustomAnalytics []CustomAnalyticItem `json:"custom_analytics,omitzero"`
-	// Instalments lists, with expand "instalments", the instalments invoiced in the range for the v2 commitments covering
-	// a queried meter; it is empty with property or source filters, or when no usage line runs in the range.
+	// Instalments lists, with expand "instalments", the instalments of the v2 commitments covering a queried meter that
+	// were invoiced in the range, or are still scheduled with a bill_on in it; it is empty with property or source
+	// filters, or when no usage line runs in the range.
 	Instalments []UsageAnalyticInstalment `json:"instalments,omitzero"`
 	Items       []UsageAnalyticItem       `json:"items,omitzero"`
 	Subtotal    *string                   `json:"subtotal,omitzero"`
 	// TotalCost is the final cost after discount (Subtotal - TotalDiscount)
 	TotalCost *string `json:"total_cost,omitzero"`
-	// TotalCostWithInstalments is TotalCost plus the amounts of Instalments, set when expand includes "instalments".
+	// TotalCostWithInstalments is TotalCost plus the amounts of the invoiced Instalments, set when expand includes
+	// "instalments". Scheduled instalments are not billed yet, so they are left out.
 	TotalCostWithInstalments *string `json:"total_cost_with_instalments,omitzero"`
 	TotalDiscount            *string `json:"total_discount,omitzero"`
 }

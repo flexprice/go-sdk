@@ -8,17 +8,21 @@ import (
 )
 
 type UsageAnalyticInstalment struct {
-	Amount       *string `json:"amount,omitzero"`
-	CommitmentID *string `json:"commitment_id,omitzero"`
-	Currency     *string `json:"currency,omitzero"`
-	ID           *string `json:"id,omitzero"`
-	InvoiceID    *string `json:"invoice_id,omitzero"`
-	InvoiceLabel *string `json:"invoice_label,omitzero"`
+	Amount *string `json:"amount,omitzero"`
+	// when it becomes billable
+	BillOn           *string           `json:"bill_on,omitzero"`
+	CommitmentID     *string           `json:"commitment_id,omitzero"`
+	Currency         *string           `json:"currency,omitzero"`
+	ID               *string           `json:"id,omitzero"`
+	InstalmentStatus *InstalmentStatus `json:"instalment_status,omitzero"`
+	InvoiceID        *string           `json:"invoice_id,omitzero"`
+	InvoiceLabel     *string           `json:"invoice_label,omitzero"`
 	// when the invoice billing it was finalized
-	InvoicedAt         *time.Time `json:"invoiced_at,omitzero"`
-	ServicePeriodEnd   *time.Time `json:"service_period_end,omitzero"`
-	ServicePeriodStart *time.Time `json:"service_period_start,omitzero"`
-	SubscriptionID     *string    `json:"subscription_id,omitzero"`
+	InvoicedAt         *time.Time      `json:"invoiced_at,omitzero"`
+	Kind               *InstalmentKind `json:"kind,omitzero"`
+	ServicePeriodEnd   *time.Time      `json:"service_period_end,omitzero"`
+	ServicePeriodStart *time.Time      `json:"service_period_start,omitzero"`
+	SubscriptionID     *string         `json:"subscription_id,omitzero"`
 }
 
 func (u UsageAnalyticInstalment) MarshalJSON() ([]byte, error) {
@@ -37,6 +41,13 @@ func (u *UsageAnalyticInstalment) GetAmount() *string {
 		return nil
 	}
 	return u.Amount
+}
+
+func (u *UsageAnalyticInstalment) GetBillOn() *string {
+	if u == nil {
+		return nil
+	}
+	return u.BillOn
 }
 
 func (u *UsageAnalyticInstalment) GetCommitmentID() *string {
@@ -60,6 +71,13 @@ func (u *UsageAnalyticInstalment) GetID() *string {
 	return u.ID
 }
 
+func (u *UsageAnalyticInstalment) GetInstalmentStatus() *InstalmentStatus {
+	if u == nil {
+		return nil
+	}
+	return u.InstalmentStatus
+}
+
 func (u *UsageAnalyticInstalment) GetInvoiceID() *string {
 	if u == nil {
 		return nil
@@ -79,6 +97,13 @@ func (u *UsageAnalyticInstalment) GetInvoicedAt() *time.Time {
 		return nil
 	}
 	return u.InvoicedAt
+}
+
+func (u *UsageAnalyticInstalment) GetKind() *InstalmentKind {
+	if u == nil {
+		return nil
+	}
+	return u.Kind
 }
 
 func (u *UsageAnalyticInstalment) GetServicePeriodEnd() *time.Time {

@@ -5,12 +5,15 @@
 ### Available Operations
 
 * [GetCustomerInvoiceSummary](#getcustomerinvoicesummary) - Get customer invoice summary
+* [QueryEmail](#queryemail) - Search emails
 * [CreateInvoice](#createinvoice) - Create one-off invoice
 * [GetInvoicePreview](#getinvoicepreview) - Get invoice preview
 * [QueryInvoice](#queryinvoice) - Query invoices
 * [GetInvoice](#getinvoice) - Get invoice
 * [UpdateInvoice](#updateinvoice) - Update invoice
 * [TriggerInvoiceCommsWebhook](#triggerinvoicecommswebhook) - Trigger invoice communication webhook
+* [SendInvoiceEmail](#sendinvoiceemail) - Email invoice to customer
+* [ListInvoiceEmails](#listinvoiceemails) - List invoice emails
 * [FinalizeInvoice](#finalizeinvoice) - Finalize invoice
 * [ExecuteInvoiceModify](#executeinvoicemodify) - Execute invoice modification
 * [UpdateInvoicePaymentStatus](#updateinvoicepaymentstatus) - Update invoice payment status
@@ -64,6 +67,60 @@ func main() {
 ### Response
 
 **[*dtos.GetCustomerInvoiceSummaryResponse](../../models/dtos/getcustomerinvoicesummaryresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## QueryEmail
+
+Use when reviewing emails sent to customers, for example every bounced email this month or every email to one customer. Filter by delivery status, trigger, customer, document and date. Newest first; paginated.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="queryEmail" method="post" path="/emails/search" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Invoices.QueryEmail(ctx, types.EmailLogFilter{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListEmailLogsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `ctx`                                                        | [context.Context](https://pkg.go.dev/context#Context)        | :heavy_check_mark:                                           | The context to use for the request.                          |
+| `request`                                                    | [types.EmailLogFilter](../../models/types/emaillogfilter.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
+| `opts`                                                       | [][dtos.Option](../../models/dtos/option.md)                 | :heavy_minus_sign:                                           | The options for this request.                                |
+
+### Response
+
+**[*dtos.QueryEmailResponse](../../models/dtos/queryemailresponse.md), error**
 
 ### Errors
 
@@ -405,6 +462,113 @@ func main() {
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## SendInvoiceEmail
+
+Use when you want Flexprice to email a finalized invoice to the customer, with a link to the hosted invoice and the PDF attached. Sends to the customer's email unless `to` is given. Returns the queued email; delivery happens in the background.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="sendInvoiceEmail" method="post" path="/invoices/{id}/email" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Invoices.SendInvoiceEmail(ctx, "<id>", nil)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.EmailLogResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `ctx`                                                                           | [context.Context](https://pkg.go.dev/context#Context)                           | :heavy_check_mark:                                                              | The context to use for the request.                                             |
+| `id`                                                                            | `string`                                                                        | :heavy_check_mark:                                                              | Invoice ID                                                                      |
+| `body`                                                                          | [*types.SendInvoiceEmailRequest](../../models/types/sendinvoiceemailrequest.md) | :heavy_minus_sign:                                                              | Recipients overriding the customer's email                                      |
+| `opts`                                                                          | [][dtos.Option](../../models/dtos/option.md)                                    | :heavy_minus_sign:                                                              | The options for this request.                                                   |
+
+### Response
+
+**[*dtos.SendInvoiceEmailResponse](../../models/dtos/sendinvoiceemailresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## ListInvoiceEmails
+
+Use when showing which emails were sent for an invoice and whether each was delivered. Newest first.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="listInvoiceEmails" method="get" path="/invoices/{id}/emails" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Invoices.ListInvoiceEmails(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListEmailLogsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Invoice ID                                            |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.ListInvoiceEmailsResponse](../../models/dtos/listinvoiceemailsresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 404                  | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 

@@ -16,7 +16,8 @@ custom := types.InstalmentKind("custom_value")
 
 ## Values
 
-| Name                       | Value                      |
-| -------------------------- | -------------------------- |
-| `InstalmentKindInstalment` | instalment                 |
-| `InstalmentKindSettlement` | settlement                 |
+| Name                            | Value                           |
+| ------------------------------- | ------------------------------- |
+| `InstalmentKindInstalment`      | instalment                      |
+| `InstalmentKindSettlement`      | settlement                      |
+| `InstalmentKindCancellationFee` | cancellation_fee                |

@@ -12,7 +12,9 @@ type GetCustomerUsageSummaryRequest struct {
 	CustomerLookupKey *string  `queryParam:"style=form,explode=true,name=customer_lookup_key"`
 	FeatureIds        []string `queryParam:"style=form,explode=false,name=feature_ids"`
 	FeatureLookupKeys []string `queryParam:"style=form,explode=false,name=feature_lookup_keys"`
-	SubscriptionIds   []string `queryParam:"style=form,explode=false,name=subscription_ids"`
+	// RefreshGrants evaluates entitlement grants before returning their usage, so the read is slower.
+	RefreshGrants   *bool    `queryParam:"style=form,explode=true,name=refresh_grants"`
+	SubscriptionIds []string `queryParam:"style=form,explode=false,name=subscription_ids"`
 }
 
 func (g GetCustomerUsageSummaryRequest) MarshalJSON() ([]byte, error) {
@@ -52,6 +54,13 @@ func (g *GetCustomerUsageSummaryRequest) GetFeatureLookupKeys() []string {
 		return nil
 	}
 	return g.FeatureLookupKeys
+}
+
+func (g *GetCustomerUsageSummaryRequest) GetRefreshGrants() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.RefreshGrants
 }
 
 func (g *GetCustomerUsageSummaryRequest) GetSubscriptionIds() []string {

@@ -16,6 +16,7 @@
 * [DeleteCustomer](#deletecustomer) - Delete customer
 * [GetCustomerEntitlements](#getcustomerentitlements) - Get customer entitlements
 * [GetCustomerUpcomingGrants](#getcustomerupcominggrants) - Get upcoming credit grant applications
+* [ListCustomerPaymentIntegrations](#listcustomerpaymentintegrations) - List customer payment integrations
 * [ListCustomerPaymentMethods](#listcustomerpaymentmethods) - List customer payment methods
 
 ## UpdateCustomer
@@ -207,7 +208,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Customers.GetCustomerEntitlementsByExternalID(ctx, "<id>")
+    res, err := s.Customers.GetCustomerEntitlementsByExternalID(ctx, "<id>", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -219,11 +220,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `externalID`                                          | `string`                                              | :heavy_check_mark:                                    | Customer External ID                                  |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `ctx`                                                             | [context.Context](https://pkg.go.dev/context#Context)             | :heavy_check_mark:                                                | The context to use for the request.                               |
+| `externalID`                                                      | `string`                                                          | :heavy_check_mark:                                                | Customer External ID                                              |
+| `refreshGrants`                                                   | `*bool`                                                           | :heavy_minus_sign:                                                | Evaluate entitlement grants before returning their usage (slower) |
+| `opts`                                                            | [][dtos.Option](../../models/dtos/option.md)                      | :heavy_minus_sign:                                                | The options for this request.                                     |
 
 ### Response
 
@@ -581,7 +583,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Customers.GetCustomerEntitlements(ctx, "<id>")
+    res, err := s.Customers.GetCustomerEntitlements(ctx, "<id>", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -593,11 +595,12 @@ func main() {
 
 ### Parameters
 
-| Parameter                                             | Type                                                  | Required                                              | Description                                           |
-| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
-| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Customer ID                                           |
-| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `ctx`                                                             | [context.Context](https://pkg.go.dev/context#Context)             | :heavy_check_mark:                                                | The context to use for the request.                               |
+| `id`                                                              | `string`                                                          | :heavy_check_mark:                                                | Customer ID                                                       |
+| `refreshGrants`                                                   | `*bool`                                                           | :heavy_minus_sign:                                                | Evaluate entitlement grants before returning their usage (slower) |
+| `opts`                                                            | [][dtos.Option](../../models/dtos/option.md)                      | :heavy_minus_sign:                                                | The options for this request.                                     |
 
 ### Response
 
@@ -661,6 +664,59 @@ func main() {
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400, 404             | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## ListCustomerPaymentIntegrations
+
+Use to learn which connected gateways can serve this customer and what each can do: check out, auto-charge, list methods, add a method (with the method types it sets up, e.g. enach for Razorpay), set a default.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="listCustomerPaymentIntegrations" method="get" path="/customers/{id}/payment-integrations" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Customers.ListCustomerPaymentIntegrations(ctx, "<id>")
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.IntegrationsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                             | Type                                                  | Required                                              | Description                                           |
+| ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
+| `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Customer ID                                           |
+| `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
+
+### Response
+
+**[*dtos.ListCustomerPaymentIntegrationsResponse](../../models/dtos/listcustomerpaymentintegrationsresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 404                  | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 

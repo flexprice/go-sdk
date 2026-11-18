@@ -10,6 +10,8 @@ import (
 type GetCustomerEntitlementsRequest struct {
 	// Customer ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Evaluate entitlement grants before returning their usage (slower)
+	RefreshGrants *bool `queryParam:"style=form,explode=true,name=refresh_grants"`
 }
 
 func (g GetCustomerEntitlementsRequest) MarshalJSON() ([]byte, error) {
@@ -28,6 +30,13 @@ func (g *GetCustomerEntitlementsRequest) GetID() string {
 		return ""
 	}
 	return g.ID
+}
+
+func (g *GetCustomerEntitlementsRequest) GetRefreshGrants() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.RefreshGrants
 }
 
 type GetCustomerEntitlementsResponse struct {

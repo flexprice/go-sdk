@@ -10,6 +10,8 @@ import (
 type GetCustomerEntitlementsByExternalIDRequest struct {
 	// Customer External ID
 	ExternalID string `pathParam:"style=simple,explode=false,name=external_id"`
+	// Evaluate entitlement grants before returning their usage (slower)
+	RefreshGrants *bool `queryParam:"style=form,explode=true,name=refresh_grants"`
 }
 
 func (g GetCustomerEntitlementsByExternalIDRequest) MarshalJSON() ([]byte, error) {
@@ -28,6 +30,13 @@ func (g *GetCustomerEntitlementsByExternalIDRequest) GetExternalID() string {
 		return ""
 	}
 	return g.ExternalID
+}
+
+func (g *GetCustomerEntitlementsByExternalIDRequest) GetRefreshGrants() *bool {
+	if g == nil {
+		return nil
+	}
+	return g.RefreshGrants
 }
 
 type GetCustomerEntitlementsByExternalIDResponse struct {

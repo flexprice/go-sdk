@@ -7,6 +7,7 @@ import (
 )
 
 type SavedPaymentMethod struct {
+	BankAccount *SavedBankAccountDetails `json:"bank_account,omitzero"`
 	// Capability, not permission: could this be charged with nobody present.
 	// True for any active Chargebee or Stripe card (both vault off-session by
 	// construction); false for a Razorpay token without a mandate.
@@ -33,6 +34,13 @@ func (s *SavedPaymentMethod) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (s *SavedPaymentMethod) GetBankAccount() *SavedBankAccountDetails {
+	if s == nil {
+		return nil
+	}
+	return s.BankAccount
 }
 
 func (s *SavedPaymentMethod) GetCanAutoCharge() *bool {

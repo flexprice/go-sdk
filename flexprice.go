@@ -60,8 +60,6 @@ type Flexprice struct {
 	AccountingPeriods      *AccountingPeriods
 	Activity               *Activity
 	Addons                 *Addons
-	CreditGrants           *CreditGrants
-	Entitlements           *Entitlements
 	Alerts                 *Alerts
 	AlertSettings          *AlertSettings
 	Analytics              *Analytics
@@ -70,40 +68,41 @@ type Flexprice struct {
 	Commitments            *Commitments
 	Contracts              *Contracts
 	Costs                  *Costs
-	Coupons                *Coupons
 	CouponAssociations     *CouponAssociations
+	Coupons                *Coupons
+	CreditGrants           *CreditGrants
 	CreditNotes            *CreditNotes
 	Customers              *Customers
-	Wallets                *Wallets
-	Invoices               *Invoices
+	Entitlements           *Entitlements
 	Environments           *Environments
 	Events                 *Events
 	Features               *Features
 	FXRates                *FXRates
 	Groups                 *Groups
 	Integrations           *Integrations
+	Invoices               *Invoices
 	JournalEntries         *JournalEntries
 	Marketplace            *Marketplace
 	Payments               *Payments
 	PerformanceObligations *PerformanceObligations
 	Plans                  *Plans
-	SelfBilling            *SelfBilling
-	Prices                 *Prices
 	PriceUnits             *PriceUnits
+	Prices                 *Prices
 	Products               *Products
 	Rbac                   *Rbac
 	Refunds                *Refunds
 	RevenueReports         *RevenueReports
+	ScheduledTasks         *ScheduledTasks
 	Secrets                *Secrets
+	SelfBilling            *SelfBilling
 	Subscriptions          *Subscriptions
 	Tasks                  *Tasks
-	ScheduledTasks         *ScheduledTasks
 	TaxAssociations        *TaxAssociations
 	TaxRates               *TaxRates
 	Tenants                *Tenants
 	UsageRecords           *UsageRecords
 	Users                  *Users
-	WebhookEvents          *WebhookEvents
+	Wallets                *Wallets
 	Workflows              *Workflows
 
 	sdkConfiguration config.SDKConfiguration
@@ -181,10 +180,10 @@ func WithTimeout(timeout time.Duration) SDKOption {
 // New creates a new instance of the SDK with the provided options
 func New(opts ...SDKOption) *Flexprice {
 	sdk := &Flexprice{
-		SDKVersion: "2.1.49",
+		SDKVersion: "2.1.50",
 		sdkConfiguration: config.SDKConfiguration{
-			UserAgent:         "speakeasy-sdk/go 2.1.49 2.948.4 1.0 github.com/flexprice/go-sdk/v2",
-			SDKVersion:        "2.1.49",
+			UserAgent:         "speakeasy-sdk/go 2.1.50 2.948.4 1.0 github.com/flexprice/go-sdk/v2",
+			SDKVersion:        "2.1.50",
 			GenVersion:        "2.948.4",
 			OpenAPIDocVersion: "1.0",
 			ServerList:        ServerList,
@@ -205,8 +204,6 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.AccountingPeriods = newAccountingPeriods(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Activity = newActivity(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Addons = newAddons(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.CreditGrants = newCreditGrants(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Entitlements = newEntitlements(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Alerts = newAlerts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.AlertSettings = newAlertSettings(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Analytics = newAnalytics(sdk, sdk.sdkConfiguration, sdk.hooks)
@@ -215,40 +212,41 @@ func New(opts ...SDKOption) *Flexprice {
 	sdk.Commitments = newCommitments(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Contracts = newContracts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Costs = newCosts(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Coupons = newCoupons(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CouponAssociations = newCouponAssociations(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Coupons = newCoupons(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.CreditGrants = newCreditGrants(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.CreditNotes = newCreditNotes(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Customers = newCustomers(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Wallets = newWallets(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Invoices = newInvoices(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Entitlements = newEntitlements(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Environments = newEnvironments(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Events = newEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Features = newFeatures(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.FXRates = newFXRates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Groups = newGroups(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Integrations = newIntegrations(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Invoices = newInvoices(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.JournalEntries = newJournalEntries(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Marketplace = newMarketplace(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Payments = newPayments(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.PerformanceObligations = newPerformanceObligations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Plans = newPlans(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.SelfBilling = newSelfBilling(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.Prices = newPrices(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.PriceUnits = newPriceUnits(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Prices = newPrices(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Products = newProducts(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Rbac = newRbac(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Refunds = newRefunds(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.RevenueReports = newRevenueReports(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.ScheduledTasks = newScheduledTasks(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Secrets = newSecrets(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.SelfBilling = newSelfBilling(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Subscriptions = newSubscriptions(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Tasks = newTasks(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.ScheduledTasks = newScheduledTasks(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.TaxAssociations = newTaxAssociations(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.TaxRates = newTaxRates(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Tenants = newTenants(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.UsageRecords = newUsageRecords(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Users = newUsers(sdk, sdk.sdkConfiguration, sdk.hooks)
-	sdk.WebhookEvents = newWebhookEvents(sdk, sdk.sdkConfiguration, sdk.hooks)
+	sdk.Wallets = newWallets(sdk, sdk.sdkConfiguration, sdk.hooks)
 	sdk.Workflows = newWorkflows(sdk, sdk.sdkConfiguration, sdk.hooks)
 
 	return sdk

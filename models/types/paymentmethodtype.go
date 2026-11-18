@@ -11,6 +11,7 @@ const (
 	PaymentMethodTypeCredits     PaymentMethodType = "CREDITS"
 	PaymentMethodTypePaymentLink PaymentMethodType = "PAYMENT_LINK"
 	PaymentMethodTypeUpi         PaymentMethodType = "UPI"
+	PaymentMethodTypeEnach       PaymentMethodType = "ENACH"
 )
 
 func (e PaymentMethodType) ToPointer() *PaymentMethodType {
@@ -21,7 +22,7 @@ func (e PaymentMethodType) ToPointer() *PaymentMethodType {
 func (e *PaymentMethodType) IsExact() bool {
 	if e != nil {
 		switch *e {
-		case "CARD", "ACH", "OFFLINE", "CREDITS", "PAYMENT_LINK", "UPI":
+		case "CARD", "ACH", "OFFLINE", "CREDITS", "PAYMENT_LINK", "UPI", "ENACH":
 			return true
 		}
 	}

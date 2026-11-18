@@ -6,6 +6,8 @@
 
 * [ListPayments](#listpayments) - List payments
 * [CreatePayment](#createpayment) - Create payment
+* [GetSetupIntent](#getsetupintent) - Get setup intent
+* [CancelSetupIntent](#cancelsetupintent) - Cancel setup intent
 * [GetPayment](#getpayment) - Get payment
 * [UpdatePayment](#updatepayment) - Update payment
 * [DeletePayment](#deletepayment) - Delete payment
@@ -123,6 +125,114 @@ func main() {
 | -------------------- | -------------------- | -------------------- |
 | errors.ErrorResponse | 400                  | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## GetSetupIntent
+
+Returns the live state of the customer's latest setup link. Razorpay only.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="getSetupIntent" method="get" path="/payments/customers/{id}/setup/intent" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Payments.GetSetupIntent(ctx, "<id>", dtos.GetSetupIntentProviderRazorpay)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SetupIntentResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `id`                                                                       | `string`                                                                   | :heavy_check_mark:                                                         | Customer ID                                                                |
+| `provider`                                                                 | [dtos.GetSetupIntentProvider](../../models/dtos/getsetupintentprovider.md) | :heavy_check_mark:                                                         | Payment provider                                                           |
+| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
+
+### Response
+
+**[*dtos.GetSetupIntentResponse](../../models/dtos/getsetupintentresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
+## CancelSetupIntent
+
+Cancels the customer's latest setup link if it hasn't been completed. Razorpay only.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="cancelSetupIntent" method="post" path="/payments/customers/{id}/setup/intent/cancel" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/dtos"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Payments.CancelSetupIntent(ctx, "<id>", dtos.CancelSetupIntentProviderRazorpay)
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.SetupIntentResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                        | Type                                                                             | Required                                                                         | Description                                                                      |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `ctx`                                                                            | [context.Context](https://pkg.go.dev/context#Context)                            | :heavy_check_mark:                                                               | The context to use for the request.                                              |
+| `id`                                                                             | `string`                                                                         | :heavy_check_mark:                                                               | Customer ID                                                                      |
+| `provider`                                                                       | [dtos.CancelSetupIntentProvider](../../models/dtos/cancelsetupintentprovider.md) | :heavy_check_mark:                                                               | Payment provider                                                                 |
+| `opts`                                                                           | [][dtos.Option](../../models/dtos/option.md)                                     | :heavy_minus_sign:                                                               | The options for this request.                                                    |
+
+### Response
+
+**[*dtos.CancelSetupIntentResponse](../../models/dtos/cancelsetupintentresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400, 404             | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 
 ## GetPayment
