@@ -15,6 +15,7 @@ type UsageAnalyticInstalment struct {
 	Currency         *string           `json:"currency,omitzero"`
 	ID               *string           `json:"id,omitzero"`
 	InstalmentStatus *InstalmentStatus `json:"instalment_status,omitzero"`
+	InvoiceCadence   *InvoiceCadence   `json:"invoice_cadence,omitzero"`
 	InvoiceID        *string           `json:"invoice_id,omitzero"`
 	InvoiceLabel     *string           `json:"invoice_label,omitzero"`
 	// when the invoice billing it was finalized
@@ -76,6 +77,13 @@ func (u *UsageAnalyticInstalment) GetInstalmentStatus() *InstalmentStatus {
 		return nil
 	}
 	return u.InstalmentStatus
+}
+
+func (u *UsageAnalyticInstalment) GetInvoiceCadence() *InvoiceCadence {
+	if u == nil {
+		return nil
+	}
+	return u.InvoiceCadence
 }
 
 func (u *UsageAnalyticInstalment) GetInvoiceID() *string {

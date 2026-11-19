@@ -38,10 +38,10 @@ func (e *InvoiceFilterOrder) UnmarshalJSON(data []byte) error {
 type InvoiceFilter struct {
 	// amount_due_gt filters invoices with a total amount due greater than the specified value
 	// Useful for finding invoices above a certain threshold or identifying high-value invoices
-	AmountDueGt *float64 `json:"amount_due_gt,omitzero"`
+	AmountDueGt *string `json:"amount_due_gt,omitzero"`
 	// amount_remaining_gt filters invoices with an outstanding balance greater than the specified value
 	// Useful for finding invoices that still have significant unpaid amounts
-	AmountRemainingGt *float64 `json:"amount_remaining_gt,omitzero"`
+	AmountRemainingGt *string `json:"amount_remaining_gt,omitzero"`
 	// billing_entity_id filters by the customer's billing entity
 	BillingEntityID *string               `json:"billing_entity_id,omitzero"`
 	BillingReason   *InvoiceBillingReason `json:"billing_reason,omitzero"`
@@ -111,14 +111,14 @@ func (i *InvoiceFilter) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (i *InvoiceFilter) GetAmountDueGt() *float64 {
+func (i *InvoiceFilter) GetAmountDueGt() *string {
 	if i == nil {
 		return nil
 	}
 	return i.AmountDueGt
 }
 
-func (i *InvoiceFilter) GetAmountRemainingGt() *float64 {
+func (i *InvoiceFilter) GetAmountRemainingGt() *string {
 	if i == nil {
 		return nil
 	}

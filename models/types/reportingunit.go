@@ -8,7 +8,7 @@ import (
 
 type ReportingUnit struct {
 	// Multiplier: reporting_unit_value = unit_value * conversion_rate; must be > 0
-	ConversionRate *float64 `json:"conversion_rate,omitzero"`
+	ConversionRate *string `json:"conversion_rate,omitzero"`
 	// Display unit label, plural (e.g. "seconds")
 	UnitPlural *string `json:"unit_plural,omitzero"`
 	// Display unit label, singular (e.g. "second")
@@ -26,7 +26,7 @@ func (r *ReportingUnit) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (r *ReportingUnit) GetConversionRate() *float64 {
+func (r *ReportingUnit) GetConversionRate() *string {
 	if r == nil {
 		return nil
 	}

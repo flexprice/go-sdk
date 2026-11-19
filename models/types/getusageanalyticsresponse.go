@@ -9,9 +9,8 @@ import (
 type GetUsageAnalyticsResponse struct {
 	Currency        *string              `json:"currency,omitzero"`
 	CustomAnalytics []CustomAnalyticItem `json:"custom_analytics,omitzero"`
-	// Instalments lists, with expand "instalments", the instalments of the v2 commitments covering a queried meter that
-	// were invoiced in the range, or are still scheduled with a bill_on in it; it is empty with property or source
-	// filters, or when no usage line runs in the range.
+	// Instalments lists the commitment instalments in the range with expand "instalments": start <= bill_on < end,
+	// or start < bill_on <= end for an ARREAR one.
 	Instalments []UsageAnalyticInstalment `json:"instalments,omitzero"`
 	Items       []UsageAnalyticItem       `json:"items,omitzero"`
 	Subtotal    *string                   `json:"subtotal,omitzero"`

@@ -37,11 +37,11 @@ func (a *AutoTopupDuration) GetValue() *int64 {
 }
 
 type AutoTopup struct {
-	Amount    *float64           `json:"amount,omitzero"`
+	Amount    *string            `json:"amount,omitzero"`
 	Cooldown  *AutoTopupDuration `json:"cooldown,omitzero"`
 	Enabled   *bool              `json:"enabled,omitzero"`
 	Invoicing *bool              `json:"invoicing,omitzero"`
-	Threshold *float64           `json:"threshold,omitzero"`
+	Threshold *string            `json:"threshold,omitzero"`
 }
 
 func (a AutoTopup) MarshalJSON() ([]byte, error) {
@@ -55,7 +55,7 @@ func (a *AutoTopup) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (a *AutoTopup) GetAmount() *float64 {
+func (a *AutoTopup) GetAmount() *string {
 	if a == nil {
 		return nil
 	}
@@ -83,7 +83,7 @@ func (a *AutoTopup) GetInvoicing() *bool {
 	return a.Invoicing
 }
 
-func (a *AutoTopup) GetThreshold() *float64 {
+func (a *AutoTopup) GetThreshold() *string {
 	if a == nil {
 		return nil
 	}

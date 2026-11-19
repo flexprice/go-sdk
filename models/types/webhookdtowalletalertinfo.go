@@ -9,8 +9,8 @@ import (
 type WebhookDtoWalletAlertInfo struct {
 	AlertSettings  *AlertSettings `json:"alert_settings,omitzero"`
 	AlertType      *string        `json:"alert_type,omitzero"`
-	CreditBalance  *float64       `json:"credit_balance,omitzero"`
-	CurrentBalance *float64       `json:"current_balance,omitzero"`
+	CreditBalance  *string        `json:"credit_balance,omitzero"`
+	CurrentBalance *string        `json:"current_balance,omitzero"`
 	State          *string        `json:"state,omitzero"`
 }
 
@@ -39,14 +39,14 @@ func (w *WebhookDtoWalletAlertInfo) GetAlertType() *string {
 	return w.AlertType
 }
 
-func (w *WebhookDtoWalletAlertInfo) GetCreditBalance() *float64 {
+func (w *WebhookDtoWalletAlertInfo) GetCreditBalance() *string {
 	if w == nil {
 		return nil
 	}
 	return w.CreditBalance
 }
 
-func (w *WebhookDtoWalletAlertInfo) GetCurrentBalance() *float64 {
+func (w *WebhookDtoWalletAlertInfo) GetCurrentBalance() *string {
 	if w == nil {
 		return nil
 	}

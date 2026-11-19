@@ -179,7 +179,7 @@ type GetWalletTransactionsRequest struct {
 	// Wallet ID
 	IDPathParameter    string                       `pathParam:"style=simple,explode=false,name=id"`
 	CreatedBy          *string                      `queryParam:"style=form,explode=true,name=created_by"`
-	CreditsAvailableGt *float64                     `queryParam:"style=form,explode=true,name=credits_available_gt"`
+	CreditsAvailableGt *string                      `queryParam:"style=form,explode=true,name=credits_available_gt"`
 	EndTime            *string                      `queryParam:"style=form,explode=true,name=end_time"`
 	Expand             *string                      `queryParam:"style=form,explode=true,name=expand"`
 	ExpiryDateAfter    *string                      `queryParam:"style=form,explode=true,name=expiry_date_after"`
@@ -223,7 +223,7 @@ func (g *GetWalletTransactionsRequest) GetCreatedBy() *string {
 	return g.CreatedBy
 }
 
-func (g *GetWalletTransactionsRequest) GetCreditsAvailableGt() *float64 {
+func (g *GetWalletTransactionsRequest) GetCreditsAvailableGt() *string {
 	if g == nil {
 		return nil
 	}

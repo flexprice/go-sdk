@@ -12,12 +12,12 @@ type UpdateSubscriptionLineItemRequest struct {
 	BillingModel *BillingModel `json:"billing_model,omitzero"`
 	BucketSize   *WindowSize   `json:"bucket_size,omitzero"`
 	// Deprecated: use POST /commitments instead.
-	CommitmentAmount   *float64       `json:"commitment_amount,omitzero"`
+	CommitmentAmount   *string        `json:"commitment_amount,omitzero"`
 	CommitmentDuration *BillingPeriod `json:"commitment_duration,omitzero"`
 	// Deprecated: use POST /commitments instead.
-	CommitmentOverageFactor *float64 `json:"commitment_overage_factor,omitzero"`
+	CommitmentOverageFactor *string `json:"commitment_overage_factor,omitzero"`
 	// Deprecated: use POST /commitments instead.
-	CommitmentQuantity *float64 `json:"commitment_quantity,omitzero"`
+	CommitmentQuantity *string `json:"commitment_quantity,omitzero"`
 	// Pointer so an explicit empty array can clear existing buckets (omission keeps them).
 	//
 	// Deprecated: use POST /commitments instead.
@@ -74,7 +74,7 @@ func (u *UpdateSubscriptionLineItemRequest) GetBucketSize() *WindowSize {
 	return u.BucketSize
 }
 
-func (u *UpdateSubscriptionLineItemRequest) GetCommitmentAmount() *float64 {
+func (u *UpdateSubscriptionLineItemRequest) GetCommitmentAmount() *string {
 	if u == nil {
 		return nil
 	}
@@ -88,14 +88,14 @@ func (u *UpdateSubscriptionLineItemRequest) GetCommitmentDuration() *BillingPeri
 	return u.CommitmentDuration
 }
 
-func (u *UpdateSubscriptionLineItemRequest) GetCommitmentOverageFactor() *float64 {
+func (u *UpdateSubscriptionLineItemRequest) GetCommitmentOverageFactor() *string {
 	if u == nil {
 		return nil
 	}
 	return u.CommitmentOverageFactor
 }
 
-func (u *UpdateSubscriptionLineItemRequest) GetCommitmentQuantity() *float64 {
+func (u *UpdateSubscriptionLineItemRequest) GetCommitmentQuantity() *string {
 	if u == nil {
 		return nil
 	}

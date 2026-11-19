@@ -8,7 +8,7 @@ import (
 )
 
 type UsageRecordResponse struct {
-	Amount             *float64                        `json:"amount,omitzero"`
+	Amount             *string                         `json:"amount,omitzero"`
 	CreatedAt          *time.Time                      `json:"created_at,omitzero"`
 	CreatedBy          *string                         `json:"created_by,omitzero"`
 	Currency           *string                         `json:"currency,omitzero"`
@@ -19,7 +19,7 @@ type UsageRecordResponse struct {
 	PeriodEnd          *time.Time                      `json:"period_end,omitzero"`
 	PeriodStart        *time.Time                      `json:"period_start,omitzero"`
 	PlanID             *string                         `json:"plan_id,omitzero"`
-	Quantity           *float64                        `json:"quantity,omitzero"`
+	Quantity           *string                         `json:"quantity,omitzero"`
 	Status             *Status                         `json:"status,omitzero"`
 	SubscriptionID     *string                         `json:"subscription_id,omitzero"`
 	Synced             *bool                           `json:"synced,omitzero"`
@@ -40,7 +40,7 @@ func (u *UsageRecordResponse) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (u *UsageRecordResponse) GetAmount() *float64 {
+func (u *UsageRecordResponse) GetAmount() *string {
 	if u == nil {
 		return nil
 	}
@@ -117,7 +117,7 @@ func (u *UsageRecordResponse) GetPlanID() *string {
 	return u.PlanID
 }
 
-func (u *UsageRecordResponse) GetQuantity() *float64 {
+func (u *UsageRecordResponse) GetQuantity() *string {
 	if u == nil {
 		return nil
 	}

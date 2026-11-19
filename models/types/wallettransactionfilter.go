@@ -37,7 +37,7 @@ func (e *WalletTransactionFilterOrder) UnmarshalJSON(data []byte) error {
 
 type WalletTransactionFilter struct {
 	CreatedBy          *string    `json:"created_by,omitzero"`
-	CreditsAvailableGt *float64   `json:"credits_available_gt,omitzero"`
+	CreditsAvailableGt *string    `json:"credits_available_gt,omitzero"`
 	EndTime            *time.Time `json:"end_time,omitzero"`
 	Expand             *string    `json:"expand,omitzero"`
 	ExpiryDateAfter    *string    `json:"expiry_date_after,omitzero"`
@@ -77,7 +77,7 @@ func (w *WalletTransactionFilter) GetCreatedBy() *string {
 	return w.CreatedBy
 }
 
-func (w *WalletTransactionFilter) GetCreditsAvailableGt() *float64 {
+func (w *WalletTransactionFilter) GetCreditsAvailableGt() *string {
 	if w == nil {
 		return nil
 	}

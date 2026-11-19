@@ -9,12 +9,12 @@ import (
 
 type CreateSubscriptionLineItemRequest struct {
 	// Deprecated: use POST /commitments instead.
-	CommitmentAmount   *float64       `json:"commitment_amount,omitzero"`
+	CommitmentAmount   *string        `json:"commitment_amount,omitzero"`
 	CommitmentDuration *BillingPeriod `json:"commitment_duration,omitzero"`
 	// Deprecated: use POST /commitments instead.
-	CommitmentOverageFactor *float64 `json:"commitment_overage_factor,omitzero"`
+	CommitmentOverageFactor *string `json:"commitment_overage_factor,omitzero"`
 	// Deprecated: use POST /commitments instead.
-	CommitmentQuantity *float64 `json:"commitment_quantity,omitzero"`
+	CommitmentQuantity *string `json:"commitment_quantity,omitzero"`
 	// Deprecated: use POST /commitments instead.
 	CommitmentTimeBuckets []CommitmentBucketRequest `json:"commitment_time_buckets,omitzero"`
 	// Deprecated: use POST /commitments instead.
@@ -29,7 +29,7 @@ type CreateSubscriptionLineItemRequest struct {
 	// PriceID references an existing price (plan, addon, or subscription-scoped). Exactly one of price_id or price must be set.
 	PriceID             *string            `json:"price_id,omitzero"`
 	ProrationBehavior   *ProrationBehavior `json:"proration_behavior,omitzero"`
-	Quantity            *float64           `json:"quantity,omitzero"`
+	Quantity            *string            `json:"quantity,omitzero"`
 	StartDate           *time.Time         `json:"start_date,omitzero"`
 	SubscriptionPhaseID *string            `json:"subscription_phase_id,omitzero"`
 }
@@ -45,7 +45,7 @@ func (c *CreateSubscriptionLineItemRequest) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (c *CreateSubscriptionLineItemRequest) GetCommitmentAmount() *float64 {
+func (c *CreateSubscriptionLineItemRequest) GetCommitmentAmount() *string {
 	if c == nil {
 		return nil
 	}
@@ -59,14 +59,14 @@ func (c *CreateSubscriptionLineItemRequest) GetCommitmentDuration() *BillingPeri
 	return c.CommitmentDuration
 }
 
-func (c *CreateSubscriptionLineItemRequest) GetCommitmentOverageFactor() *float64 {
+func (c *CreateSubscriptionLineItemRequest) GetCommitmentOverageFactor() *string {
 	if c == nil {
 		return nil
 	}
 	return c.CommitmentOverageFactor
 }
 
-func (c *CreateSubscriptionLineItemRequest) GetCommitmentQuantity() *float64 {
+func (c *CreateSubscriptionLineItemRequest) GetCommitmentQuantity() *string {
 	if c == nil {
 		return nil
 	}
@@ -143,7 +143,7 @@ func (c *CreateSubscriptionLineItemRequest) GetProrationBehavior() *ProrationBeh
 	return c.ProrationBehavior
 }
 
-func (c *CreateSubscriptionLineItemRequest) GetQuantity() *float64 {
+func (c *CreateSubscriptionLineItemRequest) GetQuantity() *string {
 	if c == nil {
 		return nil
 	}

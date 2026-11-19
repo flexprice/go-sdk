@@ -7,9 +7,9 @@ import (
 )
 
 type LineItemCommitmentConfig struct {
-	CommitmentAmount   *float64       `json:"commitment_amount,omitzero"`
+	CommitmentAmount   *string        `json:"commitment_amount,omitzero"`
 	CommitmentDuration *BillingPeriod `json:"commitment_duration,omitzero"`
-	CommitmentQuantity *float64       `json:"commitment_quantity,omitzero"`
+	CommitmentQuantity *string        `json:"commitment_quantity,omitzero"`
 	// CommitmentTimeBuckets scopes commitment to specific UTC-hour windows; requires IsWindowCommitment=true.
 	CommitmentTimeBuckets []CommitmentBucketRequest `json:"commitment_time_buckets,omitzero"`
 	CommitmentType        *CommitmentType           `json:"commitment_type,omitzero"`
@@ -18,7 +18,7 @@ type LineItemCommitmentConfig struct {
 	// IsWindowCommitment applies commitment per window (e.g. per day) rather than per billing period.
 	IsWindowCommitment *bool `json:"is_window_commitment,omitzero"`
 	// OverageFactor is a multiplier on usage beyond commitment; 1.0 = base rate.
-	OverageFactor *float64 `json:"overage_factor,omitzero"`
+	OverageFactor *string `json:"overage_factor,omitzero"`
 }
 
 func (l LineItemCommitmentConfig) MarshalJSON() ([]byte, error) {
@@ -32,7 +32,7 @@ func (l *LineItemCommitmentConfig) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (l *LineItemCommitmentConfig) GetCommitmentAmount() *float64 {
+func (l *LineItemCommitmentConfig) GetCommitmentAmount() *string {
 	if l == nil {
 		return nil
 	}
@@ -46,7 +46,7 @@ func (l *LineItemCommitmentConfig) GetCommitmentDuration() *BillingPeriod {
 	return l.CommitmentDuration
 }
 
-func (l *LineItemCommitmentConfig) GetCommitmentQuantity() *float64 {
+func (l *LineItemCommitmentConfig) GetCommitmentQuantity() *string {
 	if l == nil {
 		return nil
 	}
@@ -81,7 +81,7 @@ func (l *LineItemCommitmentConfig) GetIsWindowCommitment() *bool {
 	return l.IsWindowCommitment
 }
 
-func (l *LineItemCommitmentConfig) GetOverageFactor() *float64 {
+func (l *LineItemCommitmentConfig) GetOverageFactor() *string {
 	if l == nil {
 		return nil
 	}

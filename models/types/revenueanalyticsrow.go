@@ -10,22 +10,22 @@ import (
 type RevenueAnalyticsRow struct {
 	// AdjustmentType labels rows broken out by include_adjustments:
 	// "commitment_trueup", "overage" or "revert". Empty for plain rows.
-	AdjustmentType *string  `json:"adjustment_type,omitzero"`
-	BillableQty    *float64 `json:"billable_qty,omitzero"`
+	AdjustmentType *string `json:"adjustment_type,omitzero"`
+	BillableQty    *string `json:"billable_qty,omitzero"`
 	// Day is set for day granularity; PeriodStart/PeriodEnd for period.
-	Day               *string  `json:"day,omitzero"`
-	EntitlementAmount *float64 `json:"entitlement_amount,omitzero"`
-	EntitlementQty    *float64 `json:"entitlement_qty,omitzero"`
+	Day               *string `json:"day,omitzero"`
+	EntitlementAmount *string `json:"entitlement_amount,omitzero"`
+	EntitlementQty    *string `json:"entitlement_qty,omitzero"`
 	// Group holds the requested dimensions and their values for this bucket.
 	Group           map[string]string `json:"group,omitzero"`
-	InvoiceDiscount *float64          `json:"invoice_discount,omitzero"`
-	LineDiscount    *float64          `json:"line_discount,omitzero"`
-	NetAmount       *float64          `json:"net_amount,omitzero"`
+	InvoiceDiscount *string           `json:"invoice_discount,omitzero"`
+	LineDiscount    *string           `json:"line_discount,omitzero"`
+	NetAmount       *string           `json:"net_amount,omitzero"`
 	PeriodEnd       *time.Time        `json:"period_end,omitzero"`
 	PeriodStart     *time.Time        `json:"period_start,omitzero"`
 	Status          *FactStatus       `json:"status,omitzero"`
-	TierDelta       *float64          `json:"tier_delta,omitzero"`
-	UsageAtListRate *float64          `json:"usage_at_list_rate,omitzero"`
+	TierDelta       *string           `json:"tier_delta,omitzero"`
+	UsageAtListRate *string           `json:"usage_at_list_rate,omitzero"`
 }
 
 func (r RevenueAnalyticsRow) MarshalJSON() ([]byte, error) {
@@ -46,7 +46,7 @@ func (r *RevenueAnalyticsRow) GetAdjustmentType() *string {
 	return r.AdjustmentType
 }
 
-func (r *RevenueAnalyticsRow) GetBillableQty() *float64 {
+func (r *RevenueAnalyticsRow) GetBillableQty() *string {
 	if r == nil {
 		return nil
 	}
@@ -60,14 +60,14 @@ func (r *RevenueAnalyticsRow) GetDay() *string {
 	return r.Day
 }
 
-func (r *RevenueAnalyticsRow) GetEntitlementAmount() *float64 {
+func (r *RevenueAnalyticsRow) GetEntitlementAmount() *string {
 	if r == nil {
 		return nil
 	}
 	return r.EntitlementAmount
 }
 
-func (r *RevenueAnalyticsRow) GetEntitlementQty() *float64 {
+func (r *RevenueAnalyticsRow) GetEntitlementQty() *string {
 	if r == nil {
 		return nil
 	}
@@ -81,21 +81,21 @@ func (r *RevenueAnalyticsRow) GetGroup() map[string]string {
 	return r.Group
 }
 
-func (r *RevenueAnalyticsRow) GetInvoiceDiscount() *float64 {
+func (r *RevenueAnalyticsRow) GetInvoiceDiscount() *string {
 	if r == nil {
 		return nil
 	}
 	return r.InvoiceDiscount
 }
 
-func (r *RevenueAnalyticsRow) GetLineDiscount() *float64 {
+func (r *RevenueAnalyticsRow) GetLineDiscount() *string {
 	if r == nil {
 		return nil
 	}
 	return r.LineDiscount
 }
 
-func (r *RevenueAnalyticsRow) GetNetAmount() *float64 {
+func (r *RevenueAnalyticsRow) GetNetAmount() *string {
 	if r == nil {
 		return nil
 	}
@@ -123,14 +123,14 @@ func (r *RevenueAnalyticsRow) GetStatus() *FactStatus {
 	return r.Status
 }
 
-func (r *RevenueAnalyticsRow) GetTierDelta() *float64 {
+func (r *RevenueAnalyticsRow) GetTierDelta() *string {
 	if r == nil {
 		return nil
 	}
 	return r.TierDelta
 }
 
-func (r *RevenueAnalyticsRow) GetUsageAtListRate() *float64 {
+func (r *RevenueAnalyticsRow) GetUsageAtListRate() *string {
 	if r == nil {
 		return nil
 	}
