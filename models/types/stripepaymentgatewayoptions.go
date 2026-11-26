@@ -7,6 +7,8 @@ import (
 )
 
 type StripePaymentGatewayOptions struct {
+	// AllowPromotionCodes lets the customer enter a promotion code; nil keeps it on.
+	AllowPromotionCodes *bool `json:"allow_promotion_codes,omitzero"`
 	// TaxIDCollectionEnabled only applies to PAYMENT_LINK Checkout Sessions.
 	TaxIDCollectionEnabled *bool `json:"tax_id_collection_enabled,omitzero"`
 }
@@ -20,6 +22,13 @@ func (s *StripePaymentGatewayOptions) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (s *StripePaymentGatewayOptions) GetAllowPromotionCodes() *bool {
+	if s == nil {
+		return nil
+	}
+	return s.AllowPromotionCodes
 }
 
 func (s *StripePaymentGatewayOptions) GetTaxIDCollectionEnabled() *bool {

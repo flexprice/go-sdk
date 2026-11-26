@@ -42,7 +42,7 @@ func main() {
     res, err := s.Analytics.QueryAnalytics(ctx, types.AnalyticsQueryRequest{
         Definition: types.AnalyticsViewDefinition{
             Metrics: []types.Metric{
-                types.MetricEventsVolume,
+                types.MetricEventCount,
             },
             Shape: types.ShapeScalar,
         },
@@ -323,7 +323,7 @@ func main() {
     res, err := s.Analytics.CreateAnalyticsView(ctx, types.CreateViewRequest{
         Definition: types.AnalyticsViewDefinition{
             Metrics: []types.Metric{
-                types.MetricNetBilling,
+                types.MetricCreditTopups,
             },
             Shape: types.ShapeScalar,
         },

@@ -12,10 +12,14 @@ type UpdateSubscriptionRequest struct {
 	// Pointer so omitting the field leaves the stored value unchanged; sending it sets the flag.
 	CancelAtPeriodEnd *bool `json:"cancel_at_period_end,omitzero"`
 	// ParentSubscriptionID sets or clears the parent subscription. Omit to leave unchanged; send "" to clear.
-	ParentSubscriptionID *string             `json:"parent_subscription_id,omitzero"`
-	ProrationBehavior    *ProrationBehavior  `json:"proration_behavior,omitzero"`
-	Settings             *SettingsOverride   `json:"settings,omitzero"`
-	Status               *SubscriptionStatus `json:"status,omitzero"`
+	ParentSubscriptionID *string `json:"parent_subscription_id,omitzero"`
+	// PaymentTermsDays is the days after the issue date an invoice falls due; only with DAYS.
+	PaymentTermsDays *int64 `json:"payment_terms_days,omitzero"`
+	// DAYS (due payment_terms_days after the issue date), DUE_ON_RECEIPT, END_OF_MONTH or END_OF_NEXT_MONTH.
+	PaymentTermsType  *PaymentTermsType   `json:"payment_terms_type,omitzero"`
+	ProrationBehavior *ProrationBehavior  `json:"proration_behavior,omitzero"`
+	Settings          *SettingsOverride   `json:"settings,omitzero"`
+	Status            *SubscriptionStatus `json:"status,omitzero"`
 }
 
 func (u UpdateSubscriptionRequest) MarshalJSON() ([]byte, error) {
@@ -48,6 +52,20 @@ func (u *UpdateSubscriptionRequest) GetParentSubscriptionID() *string {
 		return nil
 	}
 	return u.ParentSubscriptionID
+}
+
+func (u *UpdateSubscriptionRequest) GetPaymentTermsDays() *int64 {
+	if u == nil {
+		return nil
+	}
+	return u.PaymentTermsDays
+}
+
+func (u *UpdateSubscriptionRequest) GetPaymentTermsType() *PaymentTermsType {
+	if u == nil {
+		return nil
+	}
+	return u.PaymentTermsType
 }
 
 func (u *UpdateSubscriptionRequest) GetProrationBehavior() *ProrationBehavior {

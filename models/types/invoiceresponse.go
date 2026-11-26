@@ -69,7 +69,9 @@ type InvoiceResponse struct {
 	LastComputedAt *time.Time `json:"last_computed_at,omitzero"`
 	// line_items contains the individual items that make up this invoice (overrides embedded field)
 	LineItems []InvoiceLineItemResponse `json:"line_items,omitzero"`
-	Metadata  map[string]string         `json:"metadata,omitzero"`
+	// linked_wallet_transactions are the wallet credits this invoice pays for; pending ones are released when it is paid
+	LinkedWalletTransactions []LinkedWalletTransaction `json:"linked_wallet_transactions,omitzero"`
+	Metadata                 map[string]string         `json:"metadata,omitzero"`
 	// overpaid_amount is the amount overpaid if payment_status is OVERPAID (amount_paid - total)
 	OverpaidAmount *string `json:"overpaid_amount,omitzero"`
 	// paid_at is the timestamp when this invoice was fully paid
@@ -363,6 +365,13 @@ func (i *InvoiceResponse) GetLineItems() []InvoiceLineItemResponse {
 		return nil
 	}
 	return i.LineItems
+}
+
+func (i *InvoiceResponse) GetLinkedWalletTransactions() []LinkedWalletTransaction {
+	if i == nil {
+		return nil
+	}
+	return i.LinkedWalletTransactions
 }
 
 func (i *InvoiceResponse) GetMetadata() map[string]string {

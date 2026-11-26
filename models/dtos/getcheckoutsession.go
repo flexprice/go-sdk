@@ -10,6 +10,8 @@ import (
 type GetCheckoutSessionRequest struct {
 	// Checkout session ID
 	ID string `pathParam:"style=simple,explode=false,name=id"`
+	// Comma-separated fields to expand: invoice, payment
+	Expand *string `queryParam:"style=form,explode=true,name=expand"`
 }
 
 func (g GetCheckoutSessionRequest) MarshalJSON() ([]byte, error) {
@@ -28,6 +30,13 @@ func (g *GetCheckoutSessionRequest) GetID() string {
 		return ""
 	}
 	return g.ID
+}
+
+func (g *GetCheckoutSessionRequest) GetExpand() *string {
+	if g == nil {
+		return nil
+	}
+	return g.Expand
 }
 
 type GetCheckoutSessionResponse struct {

@@ -5,6 +5,7 @@
 ### Available Operations
 
 * [CreateCheckoutSession](#createcheckoutsession) - Create checkout session
+* [QueryCheckoutSession](#querycheckoutsession) - Query checkout sessions
 * [GetCheckoutSession](#getcheckoutsession) - Get checkout session
 * [DeleteCheckoutSession](#deletecheckoutsession) - Delete checkout session
 * [CancelCheckoutSession](#cancelcheckoutsession) - Cancel checkout session
@@ -67,6 +68,60 @@ func main() {
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 
+## QueryCheckoutSession
+
+Use when listing checkout sessions, e.g. a customer's sessions. Expand is not supported here; read one session with GET /checkout/sessions/{id}?expand=invoice,payment for its invoice, payment and attempts.
+
+### Example Usage
+
+<!-- UsageSnippet language="go" operationID="queryCheckoutSession" method="post" path="/checkout/sessions/search" -->
+```go
+package main
+
+import(
+	"context"
+	flexprice "github.com/flexprice/go-sdk/v2"
+	"github.com/flexprice/go-sdk/v2/models/types"
+	"log"
+)
+
+func main() {
+    ctx := context.Background()
+
+    s := flexprice.New(
+        flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
+    )
+
+    res, err := s.Checkout.QueryCheckoutSession(ctx, types.CheckoutSessionFilter{})
+    if err != nil {
+        log.Fatal(err)
+    }
+    if res.ListCheckoutSessionsResponse != nil {
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `ctx`                                                                      | [context.Context](https://pkg.go.dev/context#Context)                      | :heavy_check_mark:                                                         | The context to use for the request.                                        |
+| `request`                                                                  | [types.CheckoutSessionFilter](../../models/types/checkoutsessionfilter.md) | :heavy_check_mark:                                                         | The request object to use for the request.                                 |
+| `opts`                                                                     | [][dtos.Option](../../models/dtos/option.md)                               | :heavy_minus_sign:                                                         | The options for this request.                                              |
+
+### Response
+
+**[*dtos.QueryCheckoutSessionResponse](../../models/dtos/querycheckoutsessionresponse.md), error**
+
+### Errors
+
+| Error Type           | Status Code          | Content Type         |
+| -------------------- | -------------------- | -------------------- |
+| errors.ErrorResponse | 400                  | application/json     |
+| errors.ErrorResponse | 500                  | application/json     |
+| errors.APIError      | 4XX, 5XX             | \*/\*                |
+
 ## GetCheckoutSession
 
 Get checkout session
@@ -90,7 +145,7 @@ func main() {
         flexprice.WithSecurity("<YOUR_API_KEY_HERE>"),
     )
 
-    res, err := s.Checkout.GetCheckoutSession(ctx, "<id>")
+    res, err := s.Checkout.GetCheckoutSession(ctx, "<id>", nil)
     if err != nil {
         log.Fatal(err)
     }
@@ -106,6 +161,7 @@ func main() {
 | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | `ctx`                                                 | [context.Context](https://pkg.go.dev/context#Context) | :heavy_check_mark:                                    | The context to use for the request.                   |
 | `id`                                                  | `string`                                              | :heavy_check_mark:                                    | Checkout session ID                                   |
+| `expand`                                              | `*string`                                             | :heavy_minus_sign:                                    | Comma-separated fields to expand: invoice, payment    |
 | `opts`                                                | [][dtos.Option](../../models/dtos/option.md)          | :heavy_minus_sign:                                    | The options for this request.                         |
 
 ### Response
@@ -116,7 +172,7 @@ func main() {
 
 | Error Type           | Status Code          | Content Type         |
 | -------------------- | -------------------- | -------------------- |
-| errors.ErrorResponse | 404                  | application/json     |
+| errors.ErrorResponse | 400, 404             | application/json     |
 | errors.ErrorResponse | 500                  | application/json     |
 | errors.APIError      | 4XX, 5XX             | \*/\*                |
 

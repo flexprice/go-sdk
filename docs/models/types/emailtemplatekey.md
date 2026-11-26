@@ -8,11 +8,15 @@ import (
 )
 
 value := types.EmailTemplateKeyInvoiceFinalized
+
+// Open enum: custom values can be created with a direct type cast
+custom := types.EmailTemplateKey("custom_value")
 ```
 
 
 ## Values
 
-| Name                               | Value                              |
-| ---------------------------------- | ---------------------------------- |
-| `EmailTemplateKeyInvoiceFinalized` | invoice_finalized                  |
+| Name                                     | Value                                    |
+| ---------------------------------------- | ---------------------------------------- |
+| `EmailTemplateKeyInvoiceFinalized`       | invoice_finalized                        |
+| `EmailTemplateKeyInvoicePaymentReminder` | invoice_payment_reminder                 |

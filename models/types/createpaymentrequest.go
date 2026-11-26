@@ -7,7 +7,8 @@ import (
 )
 
 type CreatePaymentRequest struct {
-	Amount                 string                 `json:"amount"`
+	// Amount defaults to the invoice's amount remaining for invoice payments when zero or omitted.
+	Amount                 *string                `json:"amount,omitzero"`
 	CancelURL              *string                `json:"cancel_url,omitzero"`
 	Currency               string                 `json:"currency"`
 	DestinationID          string                 `json:"destination_id"`
@@ -28,15 +29,15 @@ func (c CreatePaymentRequest) MarshalJSON() ([]byte, error) {
 }
 
 func (c *CreatePaymentRequest) UnmarshalJSON(data []byte) error {
-	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"amount", "currency", "destination_id", "destination_type", "payment_method_type"}); err != nil {
+	if err := utils.UnmarshalJSON(data, &c, "", false, []string{"currency", "destination_id", "destination_type", "payment_method_type"}); err != nil {
 		return err
 	}
 	return nil
 }
 
-func (c *CreatePaymentRequest) GetAmount() string {
+func (c *CreatePaymentRequest) GetAmount() *string {
 	if c == nil {
-		return ""
+		return nil
 	}
 	return c.Amount
 }

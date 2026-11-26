@@ -12,6 +12,7 @@ type CheckoutSessionResponse struct {
 	CancelURL            *string               `json:"cancel_url,omitzero"`
 	CancelledAt          *time.Time            `json:"cancelled_at,omitzero"`
 	CheckoutInvoiceID    *string               `json:"checkout_invoice_id,omitzero"`
+	CheckoutPayment      *PaymentResponse      `json:"checkout_payment,omitzero"`
 	CheckoutPaymentID    *string               `json:"checkout_payment_id,omitzero"`
 	CheckoutStatus       *CheckoutStatus       `json:"checkout_status,omitzero"`
 	CompletedAt          *time.Time            `json:"completed_at,omitzero"`
@@ -23,6 +24,7 @@ type CheckoutSessionResponse struct {
 	FailureURL           *string               `json:"failure_url,omitzero"`
 	ID                   *string               `json:"id,omitzero"`
 	IdempotencyKey       *string               `json:"idempotency_key,omitzero"`
+	Invoice              *InvoiceResponse      `json:"invoice,omitzero"`
 	Metadata             map[string]string     `json:"metadata,omitzero"`
 	// NextPollAfterMs is how long a client should wait before reading again.
 	// Zero means stop — either the session is terminal, or this response did not
@@ -81,6 +83,13 @@ func (c *CheckoutSessionResponse) GetCheckoutInvoiceID() *string {
 		return nil
 	}
 	return c.CheckoutInvoiceID
+}
+
+func (c *CheckoutSessionResponse) GetCheckoutPayment() *PaymentResponse {
+	if c == nil {
+		return nil
+	}
+	return c.CheckoutPayment
 }
 
 func (c *CheckoutSessionResponse) GetCheckoutPaymentID() *string {
@@ -158,6 +167,13 @@ func (c *CheckoutSessionResponse) GetIdempotencyKey() *string {
 		return nil
 	}
 	return c.IdempotencyKey
+}
+
+func (c *CheckoutSessionResponse) GetInvoice() *InvoiceResponse {
+	if c == nil {
+		return nil
+	}
+	return c.Invoice
 }
 
 func (c *CheckoutSessionResponse) GetMetadata() map[string]string {

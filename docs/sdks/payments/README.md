@@ -92,11 +92,10 @@ func main() {
     )
 
     res, err := s.Payments.CreatePayment(ctx, types.CreatePaymentRequest{
-        Amount: "883.46",
-        Currency: "CFP Franc",
+        Currency: "Uganda Shilling",
         DestinationID: "<id>",
         DestinationType: types.PaymentDestinationTypeCustomer,
-        PaymentMethodType: types.PaymentMethodTypeOffline,
+        PaymentMethodType: types.PaymentMethodTypeCredits,
     })
     if err != nil {
         log.Fatal(err)

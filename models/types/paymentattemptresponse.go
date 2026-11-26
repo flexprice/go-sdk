@@ -8,17 +8,19 @@ import (
 )
 
 type PaymentAttemptResponse struct {
-	AttemptNumber    *int64            `json:"attempt_number,omitzero"`
-	CreatedAt        *time.Time        `json:"created_at,omitzero"`
-	CreatedBy        *string           `json:"created_by,omitzero"`
-	ErrorMessage     *string           `json:"error_message,omitzero"`
-	GatewayAttemptID *string           `json:"gateway_attempt_id,omitzero"`
-	ID               *string           `json:"id,omitzero"`
-	Metadata         map[string]string `json:"metadata,omitzero"`
-	PaymentID        *string           `json:"payment_id,omitzero"`
-	TenantID         *string           `json:"tenant_id,omitzero"`
-	UpdatedAt        *time.Time        `json:"updated_at,omitzero"`
-	UpdatedBy        *string           `json:"updated_by,omitzero"`
+	AttemptNumber    *int64               `json:"attempt_number,omitzero"`
+	CreatedAt        *time.Time           `json:"created_at,omitzero"`
+	CreatedBy        *string              `json:"created_by,omitzero"`
+	Error            *PaymentAttemptError `json:"error,omitzero"`
+	ErrorMessage     *string              `json:"error_message,omitzero"`
+	GatewayAttemptID *string              `json:"gateway_attempt_id,omitzero"`
+	ID               *string              `json:"id,omitzero"`
+	PaymentID        *string              `json:"payment_id,omitzero"`
+	PaymentMethod    *InstrumentDetails   `json:"payment_method,omitzero"`
+	PaymentStatus    *PaymentStatus       `json:"payment_status,omitzero"`
+	TenantID         *string              `json:"tenant_id,omitzero"`
+	UpdatedAt        *time.Time           `json:"updated_at,omitzero"`
+	UpdatedBy        *string              `json:"updated_by,omitzero"`
 }
 
 func (p PaymentAttemptResponse) MarshalJSON() ([]byte, error) {
@@ -53,6 +55,13 @@ func (p *PaymentAttemptResponse) GetCreatedBy() *string {
 	return p.CreatedBy
 }
 
+func (p *PaymentAttemptResponse) GetError() *PaymentAttemptError {
+	if p == nil {
+		return nil
+	}
+	return p.Error
+}
+
 func (p *PaymentAttemptResponse) GetErrorMessage() *string {
 	if p == nil {
 		return nil
@@ -74,18 +83,25 @@ func (p *PaymentAttemptResponse) GetID() *string {
 	return p.ID
 }
 
-func (p *PaymentAttemptResponse) GetMetadata() map[string]string {
-	if p == nil {
-		return nil
-	}
-	return p.Metadata
-}
-
 func (p *PaymentAttemptResponse) GetPaymentID() *string {
 	if p == nil {
 		return nil
 	}
 	return p.PaymentID
+}
+
+func (p *PaymentAttemptResponse) GetPaymentMethod() *InstrumentDetails {
+	if p == nil {
+		return nil
+	}
+	return p.PaymentMethod
+}
+
+func (p *PaymentAttemptResponse) GetPaymentStatus() *PaymentStatus {
+	if p == nil {
+		return nil
+	}
+	return p.PaymentStatus
 }
 
 func (p *PaymentAttemptResponse) GetTenantID() *string {

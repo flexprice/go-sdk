@@ -11,8 +11,9 @@ type CheckoutPaymentProviderConfig struct {
 	// CustomerNotPresent is the unattended/MIT opt-in. Zero value (omitted) means
 	// the customer is present, so a missed auto-charge may fall back to a hosted
 	// authorization link. Set true only from merchant-initiated paths (auto top-up).
-	CustomerNotPresent *bool   `json:"customer_not_present,omitzero"`
-	MaxMandateLimit    *string `json:"max_mandate_limit,omitzero"`
+	CustomerNotPresent *bool     `json:"customer_not_present,omitzero"`
+	LinkExpiry         *Duration `json:"link_expiry,omitzero"`
+	MaxMandateLimit    *string   `json:"max_mandate_limit,omitzero"`
 	// NotifyCustomer lets the gateway email/SMS the payment link to the customer.
 	NotifyCustomer *bool              `json:"notify_customer,omitzero"`
 	PaymentMethod  *PaymentMethodType `json:"payment_method,omitzero"`
@@ -41,6 +42,13 @@ func (c *CheckoutPaymentProviderConfig) GetCustomerNotPresent() *bool {
 		return nil
 	}
 	return c.CustomerNotPresent
+}
+
+func (c *CheckoutPaymentProviderConfig) GetLinkExpiry() *Duration {
+	if c == nil {
+		return nil
+	}
+	return c.LinkExpiry
 }
 
 func (c *CheckoutPaymentProviderConfig) GetMaxMandateLimit() *string {

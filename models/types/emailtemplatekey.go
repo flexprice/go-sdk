@@ -2,30 +2,24 @@
 
 package types
 
-import (
-	"encoding/json"
-	"fmt"
-)
-
 type EmailTemplateKey string
 
 const (
-	EmailTemplateKeyInvoiceFinalized EmailTemplateKey = "invoice_finalized"
+	EmailTemplateKeyInvoiceFinalized       EmailTemplateKey = "invoice_finalized"
+	EmailTemplateKeyInvoicePaymentReminder EmailTemplateKey = "invoice_payment_reminder"
 )
 
 func (e EmailTemplateKey) ToPointer() *EmailTemplateKey {
 	return &e
 }
-func (e *EmailTemplateKey) UnmarshalJSON(data []byte) error {
-	var v string
-	if err := json.Unmarshal(data, &v); err != nil {
-		return err
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *EmailTemplateKey) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "invoice_finalized", "invoice_payment_reminder":
+			return true
+		}
 	}
-	switch v {
-	case "invoice_finalized":
-		*e = EmailTemplateKey(v)
-		return nil
-	default:
-		return fmt.Errorf("invalid value for EmailTemplateKey: %v", v)
-	}
+	return false
 }

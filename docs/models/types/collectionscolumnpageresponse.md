@@ -1,0 +1,13 @@
+# CollectionsColumnPageResponse
+
+
+## Fields
+
+| Field                                                                     | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `AsOf`                                                                    | `*string`                                                                 | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `Cards`                                                                   | [][types.CollectionsItem](../../models/types/collectionsitem.md)          | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `HasMore`                                                                 | `*bool`                                                                   | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `Key`                                                                     | [*types.CollectionsColumnKey](../../models/types/collectionscolumnkey.md) | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `Page`                                                                    | `*int64`                                                                  | :heavy_minus_sign:                                                        | N/A                                                                       |
+| `Range`                                                                   | [*types.CollectionsRange](../../models/types/collectionsrange.md)         | :heavy_minus_sign:                                                        | N/A                                                                       |

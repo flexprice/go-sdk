@@ -7,6 +7,8 @@ import (
 )
 
 type InvoiceSyncSettings struct {
+	// Nil lets the sync decide from the collection method and saved payment method.
+	AutoAdvance *bool `json:"auto_advance,omitzero"`
 	// Zoho chart-of-accounts id ("Deposit To"). Empty omits account_id, leaving Zoho's
 	// Undeposited Funds default.a
 	DepositToAccountID *string `json:"deposit_to_account_id,omitzero"`
@@ -19,7 +21,9 @@ type InvoiceSyncSettings struct {
 	PaymentGateways      *ZohoPaymentGatewaySettings `json:"payment_gateways,omitzero"`
 	// Zoho payment modes are merchant-editable free strings with no id, so this is passed
 	// through verbatim. Empty means DefaultZohoPaymentMode.
-	PaymentMode               *string                    `json:"payment_mode,omitzero"`
+	PaymentMode *string `json:"payment_mode,omitzero"`
+	// Nil sends Stripe's invoice email for send_invoice invoices.
+	SendInvoiceEmail          *bool                      `json:"send_invoice_email,omitzero"`
 	ServicePeriodCustomFields *ServicePeriodCustomFields `json:"service_period_custom_fields,omitzero"`
 	// Zoho rejects payments on draft invoices, and merchants configure a Zoho auto-approval
 	// rule for FlexPrice-sent invoices, so we submit, wait for that rule to fire, then pay.
@@ -35,6 +39,13 @@ func (i *InvoiceSyncSettings) UnmarshalJSON(data []byte) error {
 		return err
 	}
 	return nil
+}
+
+func (i *InvoiceSyncSettings) GetAutoAdvance() *bool {
+	if i == nil {
+		return nil
+	}
+	return i.AutoAdvance
 }
 
 func (i *InvoiceSyncSettings) GetDepositToAccountID() *string {
@@ -77,6 +88,13 @@ func (i *InvoiceSyncSettings) GetPaymentMode() *string {
 		return nil
 	}
 	return i.PaymentMode
+}
+
+func (i *InvoiceSyncSettings) GetSendInvoiceEmail() *bool {
+	if i == nil {
+		return nil
+	}
+	return i.SendInvoiceEmail
 }
 
 func (i *InvoiceSyncSettings) GetServicePeriodCustomFields() *ServicePeriodCustomFields {

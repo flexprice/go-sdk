@@ -10,12 +10,14 @@ type CustomerContactPerson struct {
 	Department  *string `json:"department,omitzero"`
 	Designation *string `json:"designation,omitzero"`
 	Email       *string `json:"email,omitzero"`
-	FirstName   string  `json:"first_name"`
-	ID          *string `json:"id,omitzero"`
-	IsPrimary   *bool   `json:"is_primary,omitzero"`
-	LastName    *string `json:"last_name,omitzero"`
-	Mobile      *string `json:"mobile,omitzero"`
-	Salutation  *string `json:"salutation,omitzero"`
+	// email_types are the emails this person receives in place of the customer email, e.g. ["invoice"]
+	EmailTypes []EmailType `json:"email_types,omitzero"`
+	FirstName  string      `json:"first_name"`
+	ID         *string     `json:"id,omitzero"`
+	IsPrimary  *bool       `json:"is_primary,omitzero"`
+	LastName   *string     `json:"last_name,omitzero"`
+	Mobile     *string     `json:"mobile,omitzero"`
+	Salutation *string     `json:"salutation,omitzero"`
 }
 
 func (c CustomerContactPerson) MarshalJSON() ([]byte, error) {
@@ -48,6 +50,13 @@ func (c *CustomerContactPerson) GetEmail() *string {
 		return nil
 	}
 	return c.Email
+}
+
+func (c *CustomerContactPerson) GetEmailTypes() []EmailType {
+	if c == nil {
+		return nil
+	}
+	return c.EmailTypes
 }
 
 func (c *CustomerContactPerson) GetFirstName() string {

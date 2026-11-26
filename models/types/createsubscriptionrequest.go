@@ -3,9 +3,61 @@
 package types
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/flexprice/go-sdk/v2/internal/utils"
 	"time"
 )
+
+// CreateSubscriptionRequestPaymentTerms - Deprecated: use payment_terms_type and payment_terms_days. "<days> NET" (days 1–365), DUE_ON_RECEIPT, END_OF_MONTH or END_OF_NEXT_MONTH.
+//
+// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+type CreateSubscriptionRequestPaymentTerms string
+
+const (
+	CreateSubscriptionRequestPaymentTermsFifteenNet     CreateSubscriptionRequestPaymentTerms = "15 NET"
+	CreateSubscriptionRequestPaymentTermsThirtyNet      CreateSubscriptionRequestPaymentTerms = "30 NET"
+	CreateSubscriptionRequestPaymentTermsFortyFiveNet   CreateSubscriptionRequestPaymentTerms = "45 NET"
+	CreateSubscriptionRequestPaymentTermsSixtyNet       CreateSubscriptionRequestPaymentTerms = "60 NET"
+	CreateSubscriptionRequestPaymentTermsSeventyFiveNet CreateSubscriptionRequestPaymentTerms = "75 NET"
+	CreateSubscriptionRequestPaymentTermsNinetyNet      CreateSubscriptionRequestPaymentTerms = "90 NET"
+	CreateSubscriptionRequestPaymentTermsDueOnReceipt   CreateSubscriptionRequestPaymentTerms = "DUE_ON_RECEIPT"
+	CreateSubscriptionRequestPaymentTermsEndOfMonth     CreateSubscriptionRequestPaymentTerms = "END_OF_MONTH"
+	CreateSubscriptionRequestPaymentTermsEndOfNextMonth CreateSubscriptionRequestPaymentTerms = "END_OF_NEXT_MONTH"
+)
+
+func (e CreateSubscriptionRequestPaymentTerms) ToPointer() *CreateSubscriptionRequestPaymentTerms {
+	return &e
+}
+func (e *CreateSubscriptionRequestPaymentTerms) UnmarshalJSON(data []byte) error {
+	var v string
+	if err := json.Unmarshal(data, &v); err != nil {
+		return err
+	}
+	switch v {
+	case "15 NET":
+		fallthrough
+	case "30 NET":
+		fallthrough
+	case "45 NET":
+		fallthrough
+	case "60 NET":
+		fallthrough
+	case "75 NET":
+		fallthrough
+	case "90 NET":
+		fallthrough
+	case "DUE_ON_RECEIPT":
+		fallthrough
+	case "END_OF_MONTH":
+		fallthrough
+	case "END_OF_NEXT_MONTH":
+		*e = CreateSubscriptionRequestPaymentTerms(v)
+		return nil
+	default:
+		return fmt.Errorf("invalid value for CreateSubscriptionRequestPaymentTerms: %v", v)
+	}
+}
 
 type CreateSubscriptionRequest struct {
 	Addons []AddAddonToSubscriptionRequest `json:"addons,omitzero"`
@@ -64,9 +116,14 @@ type CreateSubscriptionRequest struct {
 	OverageFactor        *string                      `json:"overage_factor,omitzero"`
 	OverrideEntitlements []OverrideEntitlementRequest `json:"override_entitlements,omitzero"`
 	// OverrideLineItems overrides specific plan prices for this subscription.
-	OverrideLineItems []OverrideLineItemRequest        `json:"override_line_items,omitzero"`
-	PaymentBehavior   *PaymentBehavior                 `json:"payment_behavior,omitzero"`
-	PaymentTerms      *PaymentTerms                    `json:"payment_terms,omitzero"`
+	OverrideLineItems []OverrideLineItemRequest `json:"override_line_items,omitzero"`
+	PaymentBehavior   *PaymentBehavior          `json:"payment_behavior,omitzero"`
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	PaymentTerms *CreateSubscriptionRequestPaymentTerms `json:"payment_terms,omitzero"`
+	// PaymentTermsDays is the days after the issue date an invoice falls due; only with DAYS.
+	PaymentTermsDays *int64 `json:"payment_terms_days,omitzero"`
+	// DAYS (due payment_terms_days after the issue date), DUE_ON_RECEIPT, END_OF_MONTH or END_OF_NEXT_MONTH.
+	PaymentTermsType  *PaymentTermsType                `json:"payment_terms_type,omitzero"`
 	Phases            []SubscriptionPhaseCreateRequest `json:"phases,omitzero"`
 	PlanID            string                           `json:"plan_id"`
 	ProrationBehavior *ProrationBehavior               `json:"proration_behavior,omitzero"`
@@ -319,11 +376,25 @@ func (c *CreateSubscriptionRequest) GetPaymentBehavior() *PaymentBehavior {
 	return c.PaymentBehavior
 }
 
-func (c *CreateSubscriptionRequest) GetPaymentTerms() *PaymentTerms {
+func (c *CreateSubscriptionRequest) GetPaymentTerms() *CreateSubscriptionRequestPaymentTerms {
 	if c == nil {
 		return nil
 	}
 	return c.PaymentTerms
+}
+
+func (c *CreateSubscriptionRequest) GetPaymentTermsDays() *int64 {
+	if c == nil {
+		return nil
+	}
+	return c.PaymentTermsDays
+}
+
+func (c *CreateSubscriptionRequest) GetPaymentTermsType() *PaymentTermsType {
+	if c == nil {
+		return nil
+	}
+	return c.PaymentTermsType
 }
 
 func (c *CreateSubscriptionRequest) GetPhases() []SubscriptionPhaseCreateRequest {

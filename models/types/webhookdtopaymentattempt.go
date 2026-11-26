@@ -8,12 +8,15 @@ import (
 )
 
 type WebhookDtoPaymentAttempt struct {
-	AttemptNumber    *int64            `json:"attempt_number,omitzero"`
-	CreatedAt        *time.Time        `json:"created_at,omitzero"`
-	ErrorMessage     *string           `json:"error_message,omitzero"`
-	GatewayAttemptID *string           `json:"gateway_attempt_id,omitzero"`
-	ID               *string           `json:"id,omitzero"`
-	Metadata         map[string]string `json:"metadata,omitzero"`
+	AttemptNumber    *int64               `json:"attempt_number,omitzero"`
+	CreatedAt        *time.Time           `json:"created_at,omitzero"`
+	Error            *PaymentAttemptError `json:"error,omitzero"`
+	ErrorMessage     *string              `json:"error_message,omitzero"`
+	GatewayAttemptID *string              `json:"gateway_attempt_id,omitzero"`
+	ID               *string              `json:"id,omitzero"`
+	Metadata         map[string]string    `json:"metadata,omitzero"`
+	PaymentMethod    *InstrumentDetails   `json:"payment_method,omitzero"`
+	PaymentStatus    *PaymentStatus       `json:"payment_status,omitzero"`
 }
 
 func (w WebhookDtoPaymentAttempt) MarshalJSON() ([]byte, error) {
@@ -39,6 +42,13 @@ func (w *WebhookDtoPaymentAttempt) GetCreatedAt() *time.Time {
 		return nil
 	}
 	return w.CreatedAt
+}
+
+func (w *WebhookDtoPaymentAttempt) GetError() *PaymentAttemptError {
+	if w == nil {
+		return nil
+	}
+	return w.Error
 }
 
 func (w *WebhookDtoPaymentAttempt) GetErrorMessage() *string {
@@ -67,4 +77,18 @@ func (w *WebhookDtoPaymentAttempt) GetMetadata() map[string]string {
 		return nil
 	}
 	return w.Metadata
+}
+
+func (w *WebhookDtoPaymentAttempt) GetPaymentMethod() *InstrumentDetails {
+	if w == nil {
+		return nil
+	}
+	return w.PaymentMethod
+}
+
+func (w *WebhookDtoPaymentAttempt) GetPaymentStatus() *PaymentStatus {
+	if w == nil {
+		return nil
+	}
+	return w.PaymentStatus
 }

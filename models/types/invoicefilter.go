@@ -84,7 +84,8 @@ type InvoiceFilter struct {
 	PeriodStartLt *string `json:"period_start_lt,omitzero"`
 	// period_start_lte filters invoices with period_start <= value
 	PeriodStartLte *string `json:"period_start_lte,omitzero"`
-	// SkipLineItems if true, will not include line items in the response
+	// SkipLineItems if true, will not include line items in the response.
+	// Pages that include line items are limited to MaxInvoiceListLimitWithLineItems invoices.
 	SkipLineItems *bool           `json:"skip_line_items,omitzero"`
 	Sort          []SortCondition `json:"sort,omitzero"`
 	StartTime     *time.Time      `json:"start_time,omitzero"`

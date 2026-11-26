@@ -7,14 +7,14 @@ import (
 )
 
 type SavedPaymentMethod struct {
-	BankAccount *SavedBankAccountDetails `json:"bank_account,omitzero"`
+	BankAccount *BankDetails `json:"bank_account,omitzero"`
 	// Capability, not permission: could this be charged with nobody present.
 	// True for any active Chargebee or Stripe card (both vault off-session by
 	// construction); false for a Razorpay token without a mandate.
-	CanAutoCharge       *bool             `json:"can_auto_charge,omitzero"`
-	Card                *SavedCardDetails `json:"card,omitzero"`
-	ID                  *string           `json:"id,omitzero"`
-	InstantlyChargeable *bool             `json:"instantly_chargeable,omitzero"`
+	CanAutoCharge       *bool        `json:"can_auto_charge,omitzero"`
+	Card                *CardDetails `json:"card,omitzero"`
+	ID                  *string      `json:"id,omitzero"`
+	InstantlyChargeable *bool        `json:"instantly_chargeable,omitzero"`
 	// Which method to use when several are saved at this provider.
 	// Scoped to the provider: two providers means two defaults.
 	IsDefault *bool                         `json:"is_default,omitzero"`
@@ -22,7 +22,7 @@ type SavedPaymentMethod struct {
 	Recurring *SavedRecurringPaymentDetails `json:"recurring,omitzero"`
 	Status    *PaymentMethodStatus          `json:"status,omitzero"`
 	Type      *PaymentMethodType            `json:"type,omitzero"`
-	Upi       *SavedUPIDetails              `json:"upi,omitzero"`
+	Upi       *UPIDetails                   `json:"upi,omitzero"`
 }
 
 func (s SavedPaymentMethod) MarshalJSON() ([]byte, error) {
@@ -36,7 +36,7 @@ func (s *SavedPaymentMethod) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (s *SavedPaymentMethod) GetBankAccount() *SavedBankAccountDetails {
+func (s *SavedPaymentMethod) GetBankAccount() *BankDetails {
 	if s == nil {
 		return nil
 	}
@@ -50,7 +50,7 @@ func (s *SavedPaymentMethod) GetCanAutoCharge() *bool {
 	return s.CanAutoCharge
 }
 
-func (s *SavedPaymentMethod) GetCard() *SavedCardDetails {
+func (s *SavedPaymentMethod) GetCard() *CardDetails {
 	if s == nil {
 		return nil
 	}
@@ -106,7 +106,7 @@ func (s *SavedPaymentMethod) GetType() *PaymentMethodType {
 	return s.Type
 }
 
-func (s *SavedPaymentMethod) GetUpi() *SavedUPIDetails {
+func (s *SavedPaymentMethod) GetUpi() *UPIDetails {
 	if s == nil {
 		return nil
 	}

@@ -8,20 +8,20 @@ import (
 )
 
 type WebhookDtoMandate struct {
-	BankAccount        *WebhookDtoMandateBankAccount `json:"bank_account,omitzero"`
-	Card               *WebhookDtoMandateCard        `json:"card,omitzero"`
-	Currency           *string                       `json:"currency,omitzero"`
-	CustomerID         *string                       `json:"customer_id,omitzero"`
-	ExpiresAt          *time.Time                    `json:"expires_at,omitzero"`
-	ExternalCustomerID *string                       `json:"external_customer_id,omitzero"`
-	FailureReason      *string                       `json:"failure_reason,omitzero"`
-	ID                 *string                       `json:"id,omitzero"`
-	MaxAmount          *string                       `json:"max_amount,omitzero"`
-	Provider           *PaymentGatewayType           `json:"provider,omitzero"`
-	SetupIntentID      *string                       `json:"setup_intent_id,omitzero"`
-	Status             *string                       `json:"status,omitzero"`
-	Type               *PaymentMethodType            `json:"type,omitzero"`
-	Upi                *WebhookDtoMandateUPI         `json:"upi,omitzero"`
+	BankAccount        *BankDetails        `json:"bank_account,omitzero"`
+	Card               *CardDetails        `json:"card,omitzero"`
+	Currency           *string             `json:"currency,omitzero"`
+	CustomerID         *string             `json:"customer_id,omitzero"`
+	ExpiresAt          *time.Time          `json:"expires_at,omitzero"`
+	ExternalCustomerID *string             `json:"external_customer_id,omitzero"`
+	FailureReason      *string             `json:"failure_reason,omitzero"`
+	ID                 *string             `json:"id,omitzero"`
+	MaxAmount          *string             `json:"max_amount,omitzero"`
+	Provider           *PaymentGatewayType `json:"provider,omitzero"`
+	SetupIntentID      *string             `json:"setup_intent_id,omitzero"`
+	Status             *string             `json:"status,omitzero"`
+	Type               *PaymentMethodType  `json:"type,omitzero"`
+	Upi                *UPIDetails         `json:"upi,omitzero"`
 }
 
 func (w WebhookDtoMandate) MarshalJSON() ([]byte, error) {
@@ -35,14 +35,14 @@ func (w *WebhookDtoMandate) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-func (w *WebhookDtoMandate) GetBankAccount() *WebhookDtoMandateBankAccount {
+func (w *WebhookDtoMandate) GetBankAccount() *BankDetails {
 	if w == nil {
 		return nil
 	}
 	return w.BankAccount
 }
 
-func (w *WebhookDtoMandate) GetCard() *WebhookDtoMandateCard {
+func (w *WebhookDtoMandate) GetCard() *CardDetails {
 	if w == nil {
 		return nil
 	}
@@ -126,7 +126,7 @@ func (w *WebhookDtoMandate) GetType() *PaymentMethodType {
 	return w.Type
 }
 
-func (w *WebhookDtoMandate) GetUpi() *WebhookDtoMandateUPI {
+func (w *WebhookDtoMandate) GetUpi() *UPIDetails {
 	if w == nil {
 		return nil
 	}

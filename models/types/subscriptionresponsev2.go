@@ -7,6 +7,38 @@ import (
 	"time"
 )
 
+// SubscriptionResponseV2PaymentTerms - Deprecated: use payment_terms_type and payment_terms_days. "<days> NET" (days 1–365), DUE_ON_RECEIPT, END_OF_MONTH or END_OF_NEXT_MONTH.
+//
+// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+type SubscriptionResponseV2PaymentTerms string
+
+const (
+	SubscriptionResponseV2PaymentTermsFifteenNet     SubscriptionResponseV2PaymentTerms = "15 NET"
+	SubscriptionResponseV2PaymentTermsThirtyNet      SubscriptionResponseV2PaymentTerms = "30 NET"
+	SubscriptionResponseV2PaymentTermsFortyFiveNet   SubscriptionResponseV2PaymentTerms = "45 NET"
+	SubscriptionResponseV2PaymentTermsSixtyNet       SubscriptionResponseV2PaymentTerms = "60 NET"
+	SubscriptionResponseV2PaymentTermsSeventyFiveNet SubscriptionResponseV2PaymentTerms = "75 NET"
+	SubscriptionResponseV2PaymentTermsNinetyNet      SubscriptionResponseV2PaymentTerms = "90 NET"
+	SubscriptionResponseV2PaymentTermsDueOnReceipt   SubscriptionResponseV2PaymentTerms = "DUE_ON_RECEIPT"
+	SubscriptionResponseV2PaymentTermsEndOfMonth     SubscriptionResponseV2PaymentTerms = "END_OF_MONTH"
+	SubscriptionResponseV2PaymentTermsEndOfNextMonth SubscriptionResponseV2PaymentTerms = "END_OF_NEXT_MONTH"
+)
+
+func (e SubscriptionResponseV2PaymentTerms) ToPointer() *SubscriptionResponseV2PaymentTerms {
+	return &e
+}
+
+// IsExact returns true if the value matches a known enum value, false otherwise.
+func (e *SubscriptionResponseV2PaymentTerms) IsExact() bool {
+	if e != nil {
+		switch *e {
+		case "15 NET", "30 NET", "45 NET", "60 NET", "75 NET", "90 NET", "DUE_ON_RECEIPT", "END_OF_MONTH", "END_OF_NEXT_MONTH":
+			return true
+		}
+	}
+	return false
+}
+
 type SubscriptionResponseV2 struct {
 	// ActivePauseID references the current active pause configuration
 	// This will be null if no pause is active or scheduled
@@ -82,8 +114,13 @@ type SubscriptionResponseV2 struct {
 	// Pauses are included when subscription has pause status
 	Pauses []SubscriptionSubscriptionPause `json:"pauses,omitzero"`
 	// PaymentBehavior determines how subscription payments are handled
-	PaymentBehavior *string       `json:"payment_behavior,omitzero"`
-	PaymentTerms    *PaymentTerms `json:"payment_terms,omitzero"`
+	PaymentBehavior *string `json:"payment_behavior,omitzero"`
+	// Deprecated: This will be removed in a future release, please migrate away from it as soon as possible.
+	PaymentTerms *SubscriptionResponseV2PaymentTerms `json:"payment_terms,omitzero"`
+	// PaymentTermsDays is the days after the issue date an invoice falls due; only with DAYS.
+	PaymentTermsDays *int64 `json:"payment_terms_days,omitzero"`
+	// DAYS (due payment_terms_days after the issue date), DUE_ON_RECEIPT, END_OF_MONTH or END_OF_NEXT_MONTH.
+	PaymentTermsType *PaymentTermsType `json:"payment_terms_type,omitzero"`
 	// Phases are included when "phases" is in expand parameter
 	Phases []SubscriptionPhaseResponse `json:"phases,omitzero"`
 	Plan   *PlanResponse               `json:"plan,omitzero"`
@@ -393,11 +430,25 @@ func (s *SubscriptionResponseV2) GetPaymentBehavior() *string {
 	return s.PaymentBehavior
 }
 
-func (s *SubscriptionResponseV2) GetPaymentTerms() *PaymentTerms {
+func (s *SubscriptionResponseV2) GetPaymentTerms() *SubscriptionResponseV2PaymentTerms {
 	if s == nil {
 		return nil
 	}
 	return s.PaymentTerms
+}
+
+func (s *SubscriptionResponseV2) GetPaymentTermsDays() *int64 {
+	if s == nil {
+		return nil
+	}
+	return s.PaymentTermsDays
+}
+
+func (s *SubscriptionResponseV2) GetPaymentTermsType() *PaymentTermsType {
+	if s == nil {
+		return nil
+	}
+	return s.PaymentTermsType
 }
 
 func (s *SubscriptionResponseV2) GetPhases() []SubscriptionPhaseResponse {
